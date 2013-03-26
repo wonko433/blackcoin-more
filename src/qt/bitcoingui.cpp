@@ -498,8 +498,9 @@ void BitcoinGUI::setClientModel(ClientModel *clientModel)
         createTrayIconMenu();
 
         // Keep up to date with client
-        setNumConnections(clientModel->getNumConnections());
-        connect(clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(setNumConnections(int)));
+        updateNetworkState();
+        connect(_clientModel, SIGNAL(numConnectionsChanged(int)), this, SLOT(setNumConnections(int)));
+        connect(_clientModel, SIGNAL(networkActiveChanged(bool)), this, SLOT(setNetworkActive(bool)));
 
         setNumBlocks(clientModel->getNumBlocks(), clientModel->getLastBlockDate(), clientModel->getVerificationProgress(NULL), false);
         connect(clientModel, SIGNAL(numBlocksChanged(int,QDateTime,double,bool)), this, SLOT(setNumBlocks(int,QDateTime,double,bool)));
@@ -737,8 +738,9 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 }
 #endif // ENABLE_WALLET
 
-void BitcoinGUI::setNumConnections(int count)
+void BitcoinGUI::updateNetworkState()
 {
+    int count = clientModel->getNumConnections();
     QString icon;
     switch(count)
     {
@@ -749,7 +751,22 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(platformStyle->SingleColorIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Bitcoin network", "", count));
+
+    if (clientModel->getNetworkActive()) {
+        labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Bitcoin network", "", count));
+    } else {
+        labelConnectionsIcon->setToolTip(tr("Network activity disabled"));
+    }
+}
+
+void BitcoinGUI::setNumConnections(int count)
+{
+    updateNetworkState();
+}
+
+void BitcoinGUI::setNetworkActive(bool networkActive)
+{
+    updateNetworkState();
 }
 
 void BitcoinGUI::updateHeadersSyncProgressLabel()
