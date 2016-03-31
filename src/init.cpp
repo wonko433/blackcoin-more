@@ -26,6 +26,8 @@
 #include "netbase.h"
 #include "net.h"
 #include "net_processing.h"
+#include "policy/feerate.h"
+#include "policy/fees.h"
 #include "policy/policy.h"
 #include "rpc/server.h"
 #include "rpc/register.h"

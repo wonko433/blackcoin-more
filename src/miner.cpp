@@ -17,6 +17,7 @@
 #include "hash.h"
 #include "validation.h"
 #include "net.h"
+#include "policy/feerate.h"
 #include "policy/policy.h"
 #include "pos.h"
 #include "pow.h"
