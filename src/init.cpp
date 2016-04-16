@@ -1253,7 +1253,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
 #endif
 
     BOOST_FOREACH(const std::string& strDest, mapMultiArgs["-seednode"])
-        AddOneShot(strDest);
+        connman.AddOneShot(strDest);
 
 #if ENABLE_ZMQ
     pzmqNotificationInterface = CZMQNotificationInterface::CreateWithArguments(mapArgs);
