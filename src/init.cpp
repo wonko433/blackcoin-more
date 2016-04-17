@@ -1160,7 +1160,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
             LookupSubNet(net.c_str(), subnet);
             if (!subnet.IsValid())
                 return InitError(strprintf(_("Invalid netmask specified in -whitelist: '%s'"), net));
-            CNode::AddWhitelistedRange(subnet);
+            connman.AddWhitelistedRange(subnet);
         }
     }
 
