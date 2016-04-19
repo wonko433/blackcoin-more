@@ -1000,6 +1000,9 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     // Option to startup with mocktime set (used for regression testing):
     SetMockTime(GetArg("-mocktime", 0)); // SetMockTime(0) is a no-op
 
+    ServiceFlags nLocalServices = NODE_NETWORK;
+    ServiceFlags nRelevantServices = NODE_NETWORK;
+
     if (GetBoolArg("-peerbloomfilters", DEFAULT_PEERBLOOMFILTERS))
         nLocalServices = ServiceFlags(nLocalServices | NODE_BLOOM);
 
@@ -1531,7 +1534,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
         StartTorControl(threadGroup, scheduler);
 
     std::string strNodeError;
-    if(!StartNode(connman, threadGroup, scheduler, strNodeError))
+    if(!StartNode(connman, threadGroup, scheduler, nLocalServices, nRelevantServices, strNodeError))
         return InitError(strNodeError);
 
 #ifdef ENABLE_WALLET
