@@ -875,7 +875,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
                 (mapMultiArgs.count("-bind") ? mapMultiArgs.at("-bind").size() : 0) +
                 (mapMultiArgs.count("-whitebind") ? mapMultiArgs.at("-whitebind").size() : 0), size_t(1));
     int nUserMaxConnections = GetArg("-maxconnections", DEFAULT_MAX_PEER_CONNECTIONS);
-    nMaxConnections = std::max(nUserMaxConnections, 0);
+    int nMaxConnections = std::max(nUserMaxConnections, 0);
 
     // Trim requested connection counts, to fit into system limitations
     nMaxConnections = std::max(std::min(nMaxConnections, (int)(FD_SETSIZE - nBind - MIN_CORE_FILEDESCRIPTORS)), 0);
@@ -1534,7 +1534,8 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
         StartTorControl(threadGroup, scheduler);
 
     std::string strNodeError;
-    if(!StartNode(connman, threadGroup, scheduler, nLocalServices, nRelevantServices, strNodeError))
+    int nMaxOutbound = std::min(MAX_OUTBOUND_CONNECTIONS, nMaxConnections);
+    if(!StartNode(connman, threadGroup, scheduler, nLocalServices, nRelevantServices, nMaxConnections, nMaxOutbound, strNodeError))
         return InitError(strNodeError);
 
 #ifdef ENABLE_WALLET
