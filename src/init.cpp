@@ -1535,7 +1535,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
 
     std::string strNodeError;
     int nMaxOutbound = std::min(MAX_OUTBOUND_CONNECTIONS, nMaxConnections);
-    if(!StartNode(connman, threadGroup, scheduler, nLocalServices, nRelevantServices, nMaxConnections, nMaxOutbound, strNodeError))
+    if(!StartNode(connman, threadGroup, scheduler, nLocalServices, nRelevantServices, nMaxConnections, nMaxOutbound, chainActive.Height(), strNodeError))
         return InitError(strNodeError);
 
 #ifdef ENABLE_WALLET
