@@ -6611,7 +6611,7 @@ bool SendMessages(CNode* pto)
         // transactions become unconfirmed and spams other nodes.
         if (!fReindex && !fImporting && !IsInitialBlockDownload())
         {
-            GetMainSignals().Broadcast(nTimeBestReceived);
+            GetMainSignals().Broadcast(nTimeBestReceived, &connman);
         }
 
         //
