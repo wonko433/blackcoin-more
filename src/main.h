@@ -33,6 +33,7 @@ class CBlockTreeDB;
 class CBloomFilter;
 class CChainParams;
 class CInv;
+class CConnman;
 class CScriptCheck;
 class CTxMemPool;
 class CValidationInterface;
@@ -245,13 +246,14 @@ bool LoadBlockIndex();
 /** Unload database information */
 void UnloadBlockIndex();
 /** Process protocol messages received from a given node */
-bool ProcessMessages(CNode* pfrom);
+bool ProcessMessages(CNode* pfrom, CConnman& connman);
 /**
  * Send queued protocol messages to be sent to a give node.
  *
  * @param[in]   pto             The node which we are sending messages to.
+ * @param[in]   connman         The connection manager for that node.
  */
-bool SendMessages(CNode* pto);
+bool SendMessages(CNode* pto, CConnman& connman);
 /** Run an instance of the script checking thread */
 void ThreadScriptCheck();
 /** Check whether we are doing an initial block download (synchronizing from disk or network) */
