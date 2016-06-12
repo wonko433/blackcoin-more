@@ -507,27 +507,26 @@ std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://gitlab.com/blackcoin/blackcoin-more>";
     const std::string URL_WEBSITE = "<http://blackcoin.org/>";
-    // todo: remove urls from translations on next change
 
-    // return FormatParagraph(strprintf(_("Copyright (C) %i-%i %s"), 2009, COPYRIGHT_YEAR, CopyrightHolders())) + "\n" +
-    return FormatParagraph(strprintf("Copyright (C) %i-%i The Bitcoin Core Developers", 2009, COPYRIGHT_YEAR)) + "\n" +
+    return strprintf(_("Copyright (C) %i-%i The Bitcoin Core Developers", 2009, COPYRIGHT_YEAR)) +
            "\n" +
-           FormatParagraph(strprintf("Copyright (C) %i-%i The Blackcoin Developers", 2014, 2018)) + "\n" +
+           strprintf(_("Copyright (C) %i-%i The Blackcoin Developers", 2014, 2018)) +
            "\n" +
-           FormatParagraph(strprintf("Copyright (C) %i-%i The Blackcoin More Developers", 2018, COPYRIGHT_YEAR)) + "\n" +
+           strprintf(_("Copyright (C) %i-%i The Blackcoin More Developers", 2018, COPYRIGHT_YEAR)) +
            "\n" +
-           FormatParagraph(strprintf(_("Please contribute if you find Blackcoin More useful. "
+           "\n" +
+           strprintf(_("Please contribute if you find %s useful. "
                        "Visit %s for further information about the software."),
-               URL_WEBSITE)) +
+               PACKAGE_NAME, URL_WEBSITE) +
            "\n" +
-           FormatParagraph(strprintf(_("The source code is available from %s."),
-               URL_SOURCE_CODE)) +
+           strprintf(_("The source code is available from %s."),
+               URL_SOURCE_CODE) +
            "\n" +
            "\n" +
-           FormatParagraph(_("This is experimental software.")) + "\n" +
-           FormatParagraph(_("Distributed under the MIT software license, see the accompanying file COPYING or <http://www.opensource.org/licenses/mit-license.php>.")) + "\n" +
+           _("This is experimental software.") + "\n" +
+           strprintf(_("Distributed under the MIT software license, see the accompanying file %s or %s"), "COPYING", "<https://opensource.org/licenses/MIT>") + "\n" +
            "\n" +
-           _("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit <https://www.openssl.org/> and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.") +
+           strprintf(_("This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard."), "<https://www.openssl.org>") +
            "\n";
 }
 
