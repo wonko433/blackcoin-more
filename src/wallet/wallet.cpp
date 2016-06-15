@@ -1802,7 +1802,6 @@ bool CWalletTx::RelayWalletTransaction(CConnman* connman)
                 connman->ForEachNode([&inv](CNode* pnode)
                 {
                     pnode->PushInventory(inv);
-                    return true;
                 });
                 return true;
             }
