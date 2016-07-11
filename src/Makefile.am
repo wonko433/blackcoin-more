@@ -100,6 +100,7 @@ BITCOIN_CORE_H = \
   compressor.h \
   config.h \
   consensus/consensus.h \
+  consensus/tx_verify.h \
   consensus/merkle.h \
   consensus/params.h \
   consensus/validation.h \
@@ -203,6 +204,7 @@ libbitcoin_server_a_SOURCES = \
   blockencodings.cpp \
   chain.cpp \
   checkpoints.cpp \
+  consensus/tx_verify.cpp \
   httprpc.cpp \
   httpserver.cpp \
   init.cpp \
