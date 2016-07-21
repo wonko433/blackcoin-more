@@ -38,10 +38,6 @@ struct BIP9Deployment {
 struct Params {
     uint256 hashGenesisBlock;
     int nMaxReorganizationDepth;
-    /** Used to check majorities for block version upgrade */
-    int nMajorityEnforceBlockUpgrade;
-    int nMajorityRejectBlockOutdated;
-    int nMajorityWindow;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nTargetTimespan / nTargetSpacing) which is also used for BIP9 deployments.
