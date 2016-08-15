@@ -525,8 +525,10 @@ void CTxMemPool::removeRecursive(const CTransaction &origTx, std::vector<CTransa
         BOOST_FOREACH(txiter it, txToRemove) {
             CalculateDescendants(it, setAllRemoves);
         }
-        BOOST_FOREACH(txiter it, setAllRemoves) {
-            removed.push_back(it->GetTx());
+        if (removed) {
+            BOOST_FOREACH(txiter it, setAllRemoves) {
+                removed->push_back(it->GetTx());
+            }
         }
         RemoveStaged(setAllRemoves, false);
     }

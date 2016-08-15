@@ -2814,10 +2814,9 @@ bool static DisconnectTip(CValidationState& state, const CChainParams& chainpara
         for (const auto& it : block.vtx) {
             const CTransaction& tx = *it;
             // ignore validation errors in resurrected transactions
-            list<CTransaction> removed;
             CValidationState stateDummy;
             if (tx.IsCoinBase() || tx.IsCoinStake() || !AcceptToMemoryPool(mempool, stateDummy, tx, false, NULL, true)) {
-                mempool.removeRecursive(tx, removed);
+                mempool.removeRecursive(tx);
             } else if (mempool.exists(tx.GetHash())) {
                 vHashUpdate.push_back(tx.GetHash());
             }
@@ -2886,9 +2885,8 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         return false;
     int64_t nTime5 = GetTimeMicros(); nTimeChainState += nTime5 - nTime4;
     LogPrint("bench", "  - Writing chainstate: %.2fms [%.2fs]\n", (nTime5 - nTime4) * 0.001, nTimeChainState * 0.000001);
-    // Remove conflicting transactions from the mempool.
-    list<CTransaction> txConflicted;
-    mempool.removeForBlock(pblock->vtx, pindexNew->nHeight, txConflicted, !IsInitialBlockDownload());
+    // Remove conflicting transactions from the mempool.;
+    mempool.removeForBlock(pblock->vtx, pindexNew->nHeight, &txConflicted, !IsInitialBlockDownload());
     // Update chainActive & related variables.
     UpdateTip(pindexNew, chainparams);
     // Tell wallet about transactions that went from mempool
