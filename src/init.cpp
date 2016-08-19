@@ -1519,15 +1519,6 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     //// debug print
     LogPrintf("mapBlockIndex.size() = %u\n",   mapBlockIndex.size());
     LogPrintf("nBestHeight = %d\n",                   chainActive.Height());
-#ifdef ENABLE_WALLET
-    if (pwalletMain) {
-        LOCK(pwalletMain->cs_wallet);
-        LogPrintf("setKeyPool.size() = %u\n",      pwalletMain->GetKeyPoolSize());
-        LogPrintf("mapWallet.size() = %u\n",       pwalletMain->mapWallet.size());
-        LogPrintf("mapAddressBook.size() = %u\n",  pwalletMain->mapAddressBook.size());
-    }
-#endif
-
     if (GetBoolArg("-listenonion", DEFAULT_LISTEN_ONION))
         StartTorControl(threadGroup, scheduler);
 
@@ -1568,9 +1559,6 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
 
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
-        // Add wallet transactions that aren't already in a block to mapTransactions
-        pwalletMain->ReacceptWalletTransactions();
-
         // Run a thread to flush wallet periodically
         threadGroup.create_thread(boost::bind(&ThreadFlushWalletDB, boost::ref(pwalletMain->strWalletFile)));
     }
