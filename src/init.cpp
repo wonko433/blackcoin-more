@@ -1111,7 +1111,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     // ********************************************************* Step 6: network initialization
 
     assert(!g_connman);
-    g_connman = std::unique_ptr<CConnman>(new CConnman());
+    g_connman = std::unique_ptr<CConnman>(new CConnman(GetRand(std::numeric_limits<uint64_t>::max()), GetRand(std::numeric_limits<uint64_t>::max())));
     CConnman& connman = *g_connman;
 
     RegisterNodeSignals(GetNodeSignals());
