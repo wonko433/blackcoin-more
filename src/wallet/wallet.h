@@ -567,6 +567,7 @@ class CWallet : public CCryptoKeyStore, public CValidationInterface
 private:
     std::atomic<bool> fAbortRescan;
     std::atomic<bool> fScanningWallet;
+    static std::atomic<bool> fFlushThreadRunning;
 
     /**
      * Select a set of coins such that nValueRet >= nTargetValue and at least
