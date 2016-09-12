@@ -10,7 +10,6 @@
 #include <stdint.h>
 
 #include <boost/test/unit_test.hpp>
-
 using namespace std;
 
 BOOST_FIXTURE_TEST_SUITE(serialize_tests, BasicTestingSetup)
@@ -339,6 +338,32 @@ BOOST_AUTO_TEST_CASE(insert_delete)
     CSerializeData d;
     ss.GetAndClear(d);
     BOOST_CHECK_EQUAL(ss.size(), 0);
+}
+
+BOOST_AUTO_TEST_CASE(class_methods)
+{
+    int intval(100);
+    bool boolval(true);
+    std::string stringval("testing");
+    const char* charstrval("testing charstr");
+    CMutableTransaction txval;
+    CSerializeMethodsTestSingle methodtest1(intval, boolval, stringval, charstrval, txval);
+    CSerializeMethodsTestMany methodtest2(intval, boolval, stringval, charstrval, txval);
+    CSerializeMethodsTestSingle methodtest3;
+    CSerializeMethodsTestMany methodtest4;
+    CDataStream ss(SER_DISK, PROTOCOL_VERSION);
+    BOOST_CHECK(methodtest1 == methodtest2);
+    ss << methodtest1;
+    ss >> methodtest4;
+    ss << methodtest2;
+    ss >> methodtest3;
+    BOOST_CHECK(methodtest1 == methodtest2);
+    BOOST_CHECK(methodtest2 == methodtest3);
+    BOOST_CHECK(methodtest3 == methodtest4);
+
+    CDataStream ss2(SER_DISK, PROTOCOL_VERSION, intval, boolval, stringval, FLATDATA(charstrval), txval);
+    ss2 >> methodtest3;
+    BOOST_CHECK(methodtest3 == methodtest4);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
