@@ -392,13 +392,7 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char *pszDest, bool fCo
         uint64_t nonce = GetDeterministicRandomizer(RANDOMIZER_ID_LOCALHOSTNONCE).Write(id).Finalize();
         CNode* pnode = new CNode(id, nLocalServices, GetBestHeight(), hSocket, addrConnect, CalculateKeyedNetGroup(addrConnect), nonce, pszDest ? pszDest : "", false);
         pnode->nServicesExpected = ServiceFlags(addrConnect.nServices & nRelevantServices);
-        pnode->nTimeConnected = GetTime();
         pnode->AddRef();
-        GetNodeSignals().InitializeNode(pnode, *this);
-        {
-            LOCK(cs_vNodes);
-            vNodes.push_back(pnode);
-        }
 
         return pnode;
     } else if (!proxyConnectionFailed) {
@@ -2449,7 +2443,8 @@ CNode::CNode(NodeId idIn, ServiceFlags nLocalServicesIn, int nMyStartingHeightIn
     filterInventoryKnown(50000, 0.000001),
     nLocalHostNonce(nLocalHostNonceIn),
     nLocalServices(nLocalServicesIn),
-    nMyStartingHeight(nMyStartingHeightIn)
+    nMyStartingHeight(nMyStartingHeightIn),
+    nSendVersion(0)
 {
     nServices = NODE_NONE;
     nServicesExpected = NODE_NONE;
@@ -2505,10 +2500,6 @@ CNode::CNode(NodeId idIn, ServiceFlags nLocalServicesIn, int nMyStartingHeightIn
         LogPrint("net", "Added connection to %s peer=%d\n", addrName, id);
     else
         LogPrint("net", "Added connection peer=%d\n", id);
-
-    // Be shy and don't send version until we hear
-    if (hSocket != INVALID_SOCKET && !fInbound)
-        PushVersion();
 }
 
 CNode::~CNode()
