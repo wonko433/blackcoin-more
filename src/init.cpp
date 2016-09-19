@@ -972,7 +972,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     nBytesPerSigOp = GetArg("-bytespersigop", nBytesPerSigOp);
 
 #ifdef ENABLE_WALLET
-    if (!fDisableWallet && !CWallet::ParameterInteraction())
+    if (!CWallet::ParameterInteraction())
         return false;
 #endif
 
