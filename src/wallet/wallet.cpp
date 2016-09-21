@@ -426,7 +426,7 @@ void CWallet::Flush(bool shutdown)
 
 bool CWallet::Verify()
 {
-    if (GetBoolArg("-disablewallet", false))
+    if (GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET))
         return true;
 
     LogPrintf("Using BerkeleyDB version %s\n", DbEnv::version(0, 0, 0));
@@ -3755,7 +3755,7 @@ std::string CWallet::GetWalletHelpString(bool showDebug)
 
 bool CWallet::InitLoadWallet()
 {
-    if (GetBoolArg("-disablewallet", false)) {
+    if (GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET)) {
         pwalletMain = NULL;
         LogPrintf("Wallet disabled!\n");
         return true;
@@ -3922,7 +3922,7 @@ bool CWallet::InitLoadWallet()
 
 bool CWallet::ParameterInteraction()
 {
-    if (GetBoolArg("-disablewallet", false))
+    if (GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET))
         return true;
 
     if (mapArgs.count("-mintxfee"))
