@@ -1,7 +1,8 @@
 {
-    "txid": "f70f0d6c71416ed538e37549f430ab3665fee2437a42f10238c1bd490e782231",
-    "hash": "f70f0d6c71416ed538e37549f430ab3665fee2437a42f10238c1bd490e782231",
+    "txid": "fe7d174f42dce0cffa7a527e9bc8368956057619ec817648f6138b98f2533e8f",
+    "hash": "fe7d174f42dce0cffa7a527e9bc8368956057619ec817648f6138b98f2533e8f",
     "version": 1,
+    "size": 201,
     "locktime": 0,
     "vin": [
         {
