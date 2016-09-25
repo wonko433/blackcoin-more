@@ -144,6 +144,7 @@ testScripts = [
     'p2p-compactblocks.py',
     'importmulti.py',
     'import-rescan.py',
+    'rpcnamedargs.py',
     'uptime.py',
 ]
 if ENABLE_ZMQ:
