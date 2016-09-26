@@ -960,7 +960,7 @@ bool AppInit2(Config& config, boost::thread_group& threadGroup, CScheduler& sche
     if (mapArgs.count("-minrelaytxfee"))
     {
         CAmount n = 0;
-        if (!ParseMoney(mapArgs["-minrelaytxfee"], n))
+        if (!ParseMoney(mapArgs["-minrelaytxfee"], n) || 0 == n)
             return InitError(AmountErrMsg("minrelaytxfee", mapArgs["-minrelaytxfee"]));
         // High fee check is done afterward in CWallet::ParameterInteraction()
         ::minRelayTxFee = CFeeRate(n);
