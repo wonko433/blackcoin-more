@@ -3876,7 +3876,7 @@ bool static IsCanonicalBlockSignature(const CBlock* pblock)
     return IsLowDERSignature(pblock->vchBlockSig, NULL, false);
 }
 
-bool ProcessNewBlock(CValidationState& state, const CChainParams& chainparams, CNode* pfrom, const CBlock* pblock, bool fForceProcessing, const CDiskBlockPos* dbp)
+bool ProcessNewBlock(CValidationState& state, const CChainParams& chainparams, const CBlock* pblock, bool fForceProcessing, const CDiskBlockPos* dbp, bool *fNewBlock)
 {
     if (!IsCanonicalBlockSignature(pblock)) {
             if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
@@ -3890,12 +3890,8 @@ bool ProcessNewBlock(CValidationState& state, const CChainParams& chainparams, C
 
         // Store to disk
         CBlockIndex *pindex = NULL;
-        bool fNewBlock = false;
-        bool ret = AcceptBlock(*pblock, state, chainparams, &pindex, fForceProcessing, dbp, &fNewBlock);
-        if (pindex && pfrom) {
-            mapBlockSource[pindex->GetBlockHash()] = pfrom->GetId();
-            if (fNewBlock) pfrom->nLastBlockTime = GetTime();
-        }
+        if (fNewBlock) *fNewBlock = false;
+        bool ret = AcceptBlock(*pblock, state, chainparams, &pindex, fForceProcessing, dbp, fNewBlock);
         CheckBlockIndex(chainparams.GetConsensus());
         if (!ret)
             return error("%s: AcceptBlock FAILED", __func__);
@@ -5930,8 +5926,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     return true;
                 }
             }
+            bool fNewBlock = false;
             CValidationState state;
-            ProcessNewBlock(state, chainparams, pfrom, &block, true, NULL);
+            ProcessNewBlock(state, chainparams, &block, true, NULL, &fNewBlock);
             // TODO: could send reject message if block is invalid?
         }
     }
@@ -5968,19 +5965,29 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             } else
                 MarkBlockAsReceived(resp.blockhash); // it is now an empty pointer
                 fBlockRead = true;
+                // mapBlockSource is only used for sending reject messages and DoS scores,
+                // so the race between here and cs_main in ProcessNewBlock is fine.
+                mapBlockSource.emplace(resp.blockhash, std::make_pair(pfrom->GetId(), false));
             }
         } // Don't hold cs_main when we call into ProcessNewBlock
         if (fBlockRead) {
             CValidationState state;
+            bool fNewBlock = false;
             // Since we requested this block (it was in mapBlocksInFlight), force it to be processed,
             // even if it would not be a candidate for new tip (missing previous block, chain not long enough, etc)
-            ProcessNewBlock(state, chainparams, pfrom, &block, true, NULL);
+            // BIP 152 permits peers to relay compact blocks after validating
+            // the header only; we should not punish peers if the block turns
+            // out to be invalid.
+            ProcessNewBlock(state, chainparams, &block, true, NULL, &fNewBlock);
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
                 connman.PushMessage(pfrom, NetMsgType::REJECT, strCommand, (unsigned char)state.GetRejectCode(),
                                    state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), block.GetHash());
-            }
+                LOCK(cs_main);
+                mapBlockSource.erase(resp.blockhash);
+            } else if (fNewBlock)
+                pfrom->nLastBlockTime = GetTime();
         }
     }
 
@@ -6143,13 +6150,18 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         // Such an unrequested block may still be processed, subject to the
         // conditions in AcceptBlock().
         bool forceProcessing = pfrom->fWhitelisted && !IsInitialBlockDownload();
+        const uint256 hash(block.GetHash());
         {
             LOCK(cs_main);
             // Also always process if we requested the block explicitly, as we may
             // need it even though it is not a candidate for a new best tip.
-            forceProcessing |= MarkBlockAsReceived(block.GetHash());
+            forceProcessing |= MarkBlockAsReceived(hash);
+            // mapBlockSource is only used for sending reject messages and DoS scores,
+            // so the race between here and cs_main in ProcessNewBlock is fine.
+            mapBlockSource.emplace(hash, std::make_pair(pfrom->GetId(), true));
         }
-        ProcessNewBlock(state, chainparams, pfrom, &block, forceProcessing, NULL);
+        bool fNewBlock = false;
+        ProcessNewBlock(state, chainparams, &block, forceProcessing, NULL, &fNewBlock);
         int nDoS;
         if (state.IsInvalid(nDoS)) {
             assert (state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
@@ -6159,7 +6171,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 LOCK(cs_main);
                 Misbehaving(pfrom->GetId(), nDoS);
             }
-        }
+            LOCK(cs_main);
+            mapBlockSource.erase(hash);
+        } else if (fNewBlock)
+            pfrom->nLastBlockTime = GetTime();
 
     }
 
