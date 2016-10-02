@@ -3773,6 +3773,8 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
     if (ppindex)
         *ppindex = pindex;
 
+    CheckBlockIndex(chainparams.GetConsensus());
+
     return true;
 }
 
@@ -5923,11 +5925,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 }
             }
             CValidationState state;
-            ProcessNewBlock(state, chainparams, pfrom, &block, true, NULL, false, &connman);
+            ProcessNewBlock(state, chainparams, pfrom, &block, true, NULL);
             // TODO: could send reject message if block is invalid?
         }
-
-        CheckBlockIndex(chainparams.GetConsensus());
     }
 
     else if (strCommand == NetMsgType::BLOCKTXN && !fImporting && !fReindex) // Ignore blocks received while importing
@@ -6119,8 +6119,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 }
             }
         }
-
-        CheckBlockIndex(chainparams.GetConsensus());
         }
 
         NotifyHeaderTip();
