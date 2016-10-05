@@ -20,6 +20,7 @@
 #include "util.h"
 #include "rpc/server.h"
 #include "rpc/register.h"
+#include "script/sigcache.h"
 
 #include "test/testutil.h"
 
@@ -37,6 +38,7 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
         ECC_Start();
         SetupEnvironment();
         SetupNetworking();
+        InitSignatureCache();
         fPrintToDebugLog = false; // don't want to write to debug.log file
         fCheckBlockIndex = true;
         SelectParams(chainName);
