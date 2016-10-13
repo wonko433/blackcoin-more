@@ -158,7 +158,6 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fTestnetToBeDeprecatedFieldRPC = false;
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
@@ -257,7 +256,6 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
-        fTestnetToBeDeprecatedFieldRPC = true;
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
@@ -348,7 +346,6 @@ public:
         fDefaultConsistencyChecks = true;
         fRequireStandard = false;
         fMineBlocksOnDemand = true;
-        fTestnetToBeDeprecatedFieldRPC = false;
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
