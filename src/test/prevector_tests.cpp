@@ -4,7 +4,7 @@
 
 #include <vector>
 #include "prevector.h"
-#include "random.h"
+#include "test_random.h"
 
 #include "serialize.h"
 #include "streams.h"
@@ -26,7 +26,19 @@ class prevector_tester {
     pretype pre_vector_alt;
 
     typedef typename pretype::size_type Size;
+    bool passed = true;
+    FastRandomContext rand_cache;
 
+
+    template <typename A, typename B>
+        void local_check_equal(A a, B b)
+        {
+            local_check(a == b);
+        }
+    void local_check(bool b) 
+    {
+        passed &= b;
+    }
     void test() {
         const pretype& const_pre_vector = pre_vector;
         BOOST_CHECK_EQUAL(real_vector.size(), pre_vector.size());
@@ -156,6 +168,17 @@ public:
         real_vector.swap(real_vector_alt);
         pre_vector.swap(pre_vector_alt);
         test();
+    }
+
+    ~prevector_tester() {
+        BOOST_CHECK_MESSAGE(passed, "insecure_rand_Rz: "
+                << rand_cache.Rz
+                << ", insecure_rand_Rw: "
+                << rand_cache.Rw);
+    }
+    prevector_tester() {
+        seed_insecure_rand();
+        rand_cache = insecure_rand_ctx;
     }
 };
 
