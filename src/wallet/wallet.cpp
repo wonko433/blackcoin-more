@@ -10,7 +10,7 @@
 
 #include "chain.h"
 #include "checkpoints.h"
-#include "coincontrol.h"
+#include "wallet/coincontrol.h"
 #include "consensus/consensus.h"
 #include "consensus/validation.h"
 #include "dstencode.h"
