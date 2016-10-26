@@ -136,6 +136,33 @@ public:
 
     bool ForNode(NodeId id, std::function<bool(CNode* pnode)> func);
 
+    template <typename... Args>
+    void PushMessageWithVersionAndFlag(CNode* pnode, int nVersion, int flag, const std::string& sCommand, Args&&... args)
+    {
+        auto msg(BeginMessage(pnode, nVersion, flag, sCommand));
+        ::SerializeMany(msg, msg.nType, msg.nVersion, std::forward<Args>(args)...);
+        EndMessage(msg);
+        PushMessage(pnode, msg, sCommand);
+    }
+
+    template <typename... Args>
+    void PushMessageWithFlag(CNode* pnode, int flag, const std::string& sCommand, Args&&... args)
+    {
+        PushMessageWithVersionAndFlag(pnode, 0, flag, sCommand, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void PushMessageWithVersion(CNode* pnode, int nVersion, const std::string& sCommand, Args&&... args)
+    {
+        PushMessageWithVersionAndFlag(pnode, nVersion, 0, sCommand, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
+    void PushMessage(CNode* pnode, const std::string& sCommand, Args&&... args)
+    {
+        PushMessageWithVersionAndFlag(pnode, 0, 0, sCommand, std::forward<Args>(args)...);
+    }
+
     template<typename Callable>
     bool ForEachNodeContinueIf(Callable&& func)
     {
@@ -424,7 +451,7 @@ struct CNodeSignals
 {
     boost::signals2::signal<bool (CNode*, CConnman&), CombinerAll> ProcessMessages;
     boost::signals2::signal<bool (CNode*, CConnman&), CombinerAll> SendMessages;
-    boost::signals2::signal<void (NodeId, const CNode*)> InitializeNode;
+    boost::signals2::signal<void (CNode*, CConnman&)> InitializeNode;
     boost::signals2::signal<void (NodeId, bool&)> FinalizeNode;
 };
 
@@ -686,6 +713,10 @@ public:
       return nLocalHostNonce;
     }
 
+    int GetMyStartingHeight() const {
+      return nMyStartingHeight;
+    }
+
     int GetRefCount()
     {
         assert(nRefCount >= 0);
@@ -781,9 +812,6 @@ public:
 
     // TODO: Document the precondition of this function.  Is cs_vSend locked?
     void EndMessage(const char* pszCommand) UNLOCK_FUNCTION(cs_vSend);
-
-    void PushVersion();
-
 
     void PushMessage(const char* pszCommand)
     {
