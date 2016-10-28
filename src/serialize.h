@@ -885,7 +885,6 @@ protected:
 
     const int nType;
     const int nVersion;
-
 public:
     CSizeComputer(int nTypeIn, int nVersionIn) : nSize(0), nType(nTypeIn), nVersion(nVersionIn) {}
 
