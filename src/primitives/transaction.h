@@ -186,9 +186,13 @@ public:
         // so dust is a spendable txout less than
         // 546*minRelayTxFee/1000 (in satoshis)
     	if (scriptPubKey.IsUnspendable())
-    	            return 0;
-        size_t nSize = GetSerializeSize(SER_DISK,0)+148u;
-        return 3*minRelayTxFee.GetFee(nSize);
+    	    return 0;
+
+        size_t nSize = GetSerializeSize(*this, SER_DISK, 0);
+
+        nSize += (32 + 4 + 1 + 107 + 4); // the 148 mentioned above
+
+        return 3 * minRelayTxFee.GetFee(nSize);
     }
 
     bool IsDust(const CFeeRate &minRelayTxFee) const
