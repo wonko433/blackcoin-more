@@ -146,7 +146,7 @@ UniValue importprivkey(const JSONRPCRequest& request)
             throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
 
         // whenever a key is imported, we need to scan the whole chain
-        pwalletMain->nTimeFirstKey = 1; // 0 would be considered 'no value'
+        pwalletMain->UpdateTimeFirstKey(1);
 
         if (fRescan) {
             pwalletMain->ScanForWalletTransactions(chainActive.Genesis(), true);
@@ -526,8 +526,7 @@ UniValue importwallet(const JSONRPCRequest& request)
     while (pindex && pindex->pprev && pindex->GetBlockTime() > nTimeBegin - 7200)
         pindex = pindex->pprev;
 
-    if (!pwalletMain->nTimeFirstKey || nTimeBegin < pwalletMain->nTimeFirstKey)
-        pwalletMain->nTimeFirstKey = nTimeBegin;
+    pwalletMain->UpdateTimeFirstKey(nTimeBegin);
 
     LogPrintf("Rescanning last %i blocks\n", chainActive.Height() - pindex->nHeight + 1);
     pwalletMain->ScanForWalletTransactions(pindex);
@@ -812,9 +811,7 @@ UniValue processImport(const UniValue& data) {
                         throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
                     }
 
-                    if (timestamp < pwalletMain->nTimeFirstKey) {
-                        pwalletMain->nTimeFirstKey = timestamp;
-                    }
+                    pwalletMain->UpdateTimeFirstKey(timestamp);
                 }
             }
 
@@ -942,9 +939,7 @@ UniValue processImport(const UniValue& data) {
                     throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
                 }
 
-                if (timestamp < pwalletMain->nTimeFirstKey) {
-                    pwalletMain->nTimeFirstKey = timestamp;
-                }
+                pwalletMain->UpdateTimeFirstKey(timestamp);
 
                 success = true;
             }

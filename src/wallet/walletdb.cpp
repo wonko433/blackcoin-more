@@ -370,7 +370,7 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
 
             // Watch-only addresses have no birthday information for now,
             // so set the wallet birthday to the beginning of time.
-            pwallet->nTimeFirstKey = 1;
+            pwallet->UpdateTimeFirstKey(1);
         }
         else if (strType == "key" || strType == "wkey")
         {
@@ -480,11 +480,6 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
             wss.nKeyMeta++;
 
             pwallet->LoadKeyMetadata(vchPubKey, keyMeta);
-
-            // find earliest key creation time, as wallet birthday
-            if (!pwallet->nTimeFirstKey ||
-                (keyMeta.nCreateTime < pwallet->nTimeFirstKey))
-                pwallet->nTimeFirstKey = keyMeta.nCreateTime;
         }
         else if (strType == "defaultkey")
         {
@@ -639,7 +634,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
 
     // nTimeFirstKey is only reliable if all keys have metadata
     if ((wss.nKeys + wss.nCKeys) != wss.nKeyMeta)
-        pwallet->nTimeFirstKey = 1; // 0 would be considered 'no value'
+        pwallet->UpdateTimeFirstKey(1);
 
     BOOST_FOREACH(uint256 hash, wss.vWalletUpgrade)
         WriteTx(pwallet->mapWallet[hash]);
