@@ -77,7 +77,7 @@ class CBlock : public CBlockHeader
 {
 public:
     // network and disk
-    std::vector<std::shared_ptr<const CTransaction>> vtx;
+    std::vector<CTransactionRef> vtx;
 
     // network and disk
     std::vector<unsigned char> vchBlockSig;
