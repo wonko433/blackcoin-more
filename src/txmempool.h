@@ -522,9 +522,9 @@ public:
 
     void removeRecursive(const CTransaction &tx, std::list<CTransaction>& removed);
     void removeForReorg(const CCoinsViewCache *pcoins, unsigned int nMemPoolHeight, int flags);
-    void removeConflicts(const CTransaction &tx, std::list<CTransaction>& removed);
-    void removeForBlock(const std::vector<CTransaction>& vtx, unsigned int nBlockHeight,
-                        std::list<CTransaction>& conflicts, bool fCurrentEstimate = true);
+    void removeConflicts(const CTransaction &tx, std::vector<std::shared_ptr<const CTransaction>>* removed = NULL);
+    void removeForBlock(const std::vector<std::shared_ptr<const CTransaction>>& vtx, unsigned int nBlockHeight,
+                        std::vector<std::shared_ptr<const CTransaction>>* conflicts = NULL, bool fCurrentEstimate = true);
     void clear();
     void _clear(); //lock free
     bool CompareDepthAndScore(const uint256& hasha, const uint256& hashb);
