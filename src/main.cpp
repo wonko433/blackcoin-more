@@ -5578,8 +5578,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
         deque<COutPoint> vWorkQueue;
         vector<uint256> vEraseQueue;
-        CTransaction tx;
-        vRecv >> tx;
+        CTransactionRef ptx;
+        vRecv >> ptx;
+        const CTransaction& tx = *ptx;
 
         CInv inv(MSG_TX, tx.GetHash());
         pfrom->AddInventoryKnown(inv);
@@ -5884,18 +5885,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
         if (fBlockReconstructed) {
             // If we got here, we were able to optimistically reconstruct a
-            // block that is in flight from some other peer.  However, this
-            // cmpctblock may be invalid.  In particular, while we've checked
-            // that the block merkle root commits to the transaction ids, we
-            // haven't yet checked that tx witnesses are properly committed to
-            // in the coinbase witness commitment.
-            //
-            // ProcessNewBlock will call MarkBlockAsReceived(), which will
-            // clear any in-flight compact block state that might be present
-            // from some other peer.  We don't want a malleated compact block
-            // request to interfere with block relay, so we don't want to call
-            // ProcessNewBlock until we've already checked that the witness
-            // commitment is correct.
+            // block that is in flight from some other peer.
             {
                 LOCK(cs_main);
                 CValidationState dummy;
