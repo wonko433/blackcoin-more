@@ -208,7 +208,7 @@ BitcoinGUI::BitcoinGUI(const Config *cfg, const PlatformStyle *_platformStyle, c
     labelWalletEncryptionIcon = new QLabel();
     labelWalletHDStatusIcon = new QLabel();
     connectionsControl = new GUIUtil::ClickableLabel();
-    labelBlocksIcon = new QLabel();
+    labelBlocksIcon = new GUIUtil::ClickableLabel();
     labelStakingIcon = new QLabel();
 
     if(enableWallet)
@@ -269,8 +269,10 @@ BitcoinGUI::BitcoinGUI(const Config *cfg, const PlatformStyle *_platformStyle, c
 
     modalOverlay = new ModalOverlay(this->centralWidget());
 #ifdef ENABLE_WALLET
-    if(enableWallet)
+    if(enableWallet) {
         connect(walletFrame, SIGNAL(requestedSyncWarningInfo()), this, SLOT(showModalOverlay()));
+        connect(labelBlocksIcon, SIGNAL(clicked(QPoint)), this, SLOT(showModalOverlay()));
+    }
 #endif
 }
 
