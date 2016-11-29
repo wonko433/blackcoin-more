@@ -54,7 +54,12 @@ extern const std::map<std::string, std::vector<std::string> >& mapMultiArgs;
 extern bool fDebug;
 extern bool fPrintToConsole;
 extern bool fPrintToDebugLog;
+
+static const bool DEFAULT_TESTSAFEMODE = false;
 extern std::string strMiscWarning;
+extern bool fLargeWorkForkFound;
+extern bool fLargeWorkInvalidChainFound;
+
 extern bool fLogTimestamps;
 extern bool fLogTimeMicros;
 extern bool fLogIPs;
@@ -243,5 +248,7 @@ template <typename Callable> void TraceThread(const char* name,  Callable func)
 }
 
 std::string CopyrightHolders(const std::string& strPrefix);
+
+std::string GetWarnings(const std::string& strFor);
 
 #endif // BITCOIN_UTIL_H
