@@ -498,7 +498,7 @@ void CTxMemPool::CalculateDescendants(txiter entryit, setEntries &setDescendants
     }
 }
 
-void CTxMemPool::removeRecursive(const CTransaction &origTx, std::vector<CTransactionRef>* removed)
+void CTxMemPool::removeRecursive(const CTransaction &origTx)
 {
     // Remove transaction from memory pool
     {
@@ -524,11 +524,6 @@ void CTxMemPool::removeRecursive(const CTransaction &origTx, std::vector<CTransa
         setEntries setAllRemoves;
         BOOST_FOREACH(txiter it, txToRemove) {
             CalculateDescendants(it, setAllRemoves);
-        }
-        if (removed) {
-            BOOST_FOREACH(txiter it, setAllRemoves) {
-                removed->emplace_back(it->GetSharedTx());
-            }
         }
         RemoveStaged(setAllRemoves, false);
     }
@@ -571,7 +566,7 @@ void CTxMemPool::removeForReorg(const CCoinsViewCache *pcoins, unsigned int nMem
     RemoveStaged(setAllRemoves, false);
 }
 
-void CTxMemPool::removeConflicts(const CTransaction &tx, std::vector<CTransactionRef>* removed)
+void CTxMemPool::removeConflicts(const CTransaction &tx)
 {
     // Remove transactions which depend on inputs of tx, recursively
     list<CTransaction> result;
@@ -582,7 +577,7 @@ void CTxMemPool::removeConflicts(const CTransaction &tx, std::vector<CTransactio
             const CTransaction &txConflict = *it->second;
             if (txConflict != tx)
             {
-                removeRecursive(txConflict, removed);
+                removeRecursive(txConflict);
                 ClearPrioritisation(txConflict.GetHash());
             }
         }
