@@ -615,7 +615,6 @@ void SendCoinsDialog::updateGlobalFeeVariables()
 {
     if (ui->radioSmartFee->isChecked())
     {
-        nTxConfirmTarget = defaultConfirmTarget - ui->sliderSmartFee->value();
         payTxFee = CFeeRate(0);
 
         // set nMinimumTotalFee to 0 to not accidentally pay a custom fee
@@ -623,7 +622,6 @@ void SendCoinsDialog::updateGlobalFeeVariables()
     }
     else
     {
-        nTxConfirmTarget = defaultConfirmTarget;
         payTxFee = CFeeRate(ui->customFee->value());
 
         // if user has selected to set a minimum absolute fee, pass the value to coincontrol
@@ -658,7 +656,7 @@ void SendCoinsDialog::updateSmartFeeLabel()
     if(!model || !model->getOptionsModel())
         return;
 
-    int nBlocksToConfirm = defaultConfirmTarget - ui->sliderSmartFee->value();
+    int nBlocksToConfirm = ui->sliderSmartFee->maximum() - ui->sliderSmartFee->value() + 2;
     int estimateFoundAtBlocks = nBlocksToConfirm;
     CFeeRate feeRate = mempool.estimateSmartFee(nBlocksToConfirm, &estimateFoundAtBlocks);
     if (feeRate <= CFeeRate(0)) // not enough data => minfee
