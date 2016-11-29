@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(BlockPolicyEstimates)
     // so estimateFee(2) should return 9*baseRate etc...
     for (int i = 1; i < 10;i++) {
         origFeeEst.push_back(mpool.estimateFee(i).GetFeePerK());
-        if (i > 1) { // Fee estimates should be monotonically decreasing
+        if (i > 2) { // Fee estimates should be monotonically decreasing
             BOOST_CHECK(origFeeEst[i-1] <= origFeeEst[i-2]);
         }
         int mult = 11-i;
