@@ -82,7 +82,6 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
 CAmount GetProofOfWorkReward()
 {
     CAmount nSubsidy = 10000 * COIN;
-
     return nSubsidy;
 }
 
