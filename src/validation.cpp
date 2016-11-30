@@ -37,8 +37,8 @@
 #include "utilstrencodings.h"
 #include "validationinterface.h"
 #include "versionbits.h"
-#include "key.h"
 #include "wallet/wallet.h"
+#include "warnings.h"
 
 #include <atomic>
 #include <sstream>
