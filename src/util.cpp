@@ -102,7 +102,8 @@ const char * const BITCOIN_CONF_FILENAME = "blackmore.conf";
 const char * const BITCOIN_PID_FILENAME = "blackmored.pid";
 
 map<string, string> mapArgs;
-map<string, vector<string> > mapMultiArgs;
+static map<string, vector<string> > _mapMultiArgs;
+const map<string, vector<string> >& mapMultiArgs = _mapMultiArgs;
 bool fDebug = false;
 bool fPrintToConsole = false;
 bool fPrintToDebugLog = true;
@@ -237,9 +238,12 @@ bool LogAcceptCategory(const char* category)
         static boost::thread_specific_ptr<set<string> > ptrCategory;
         if (ptrCategory.get() == NULL)
         {
-            const vector<string>& categories = mapMultiArgs["-debug"];
-            ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
-            // thread_specific_ptr automatically deletes the set when the thread ends.
+            if (mapMultiArgs.count("-debug")) {
+                const vector<string>& categories = mapMultiArgs.at("-debug");
+                ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
+                // thread_specific_ptr automatically deletes the set when the thread ends.
+            } else
+                ptrCategory.reset(new set<string>());
         }
         const set<string>& setCategories = *ptrCategory.get();
 
@@ -342,7 +346,7 @@ static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
 void ParseParameters(int argc, const char* const argv[])
 {
     mapArgs.clear();
-    mapMultiArgs.clear();
+    _mapMultiArgs.clear();
 
     for (int i = 1; i < argc; i++)
     {
@@ -370,7 +374,7 @@ void ParseParameters(int argc, const char* const argv[])
         InterpretNegativeSetting(str, strValue);
 
         mapArgs[str] = strValue;
-        mapMultiArgs[str].push_back(strValue);
+        _mapMultiArgs[str].push_back(strValue);
     }
 }
 
@@ -542,7 +546,7 @@ void ReadConfigFile(const std::string& confPath)
         InterpretNegativeSetting(strKey, strValue);
         if (mapArgs.count(strKey) == 0)
             mapArgs[strKey] = strValue;
-        mapMultiArgs[strKey].push_back(strValue);
+        _mapMultiArgs[strKey].push_back(strValue);
     }
     // If datadir is changed in .conf file:
     ClearDatadirCache();
