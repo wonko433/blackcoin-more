@@ -294,7 +294,7 @@ UniValue importprunedfunds(const UniValue& params, bool fHelp)
             "2. \"txoutproof\"     (string, required) The hex output from gettxoutproof that contains the transaction\n"
         );
 
-    CTransaction tx;
+    CMutableTransaction tx;
     if (!DecodeHexTx(tx, params[0].get_str()))
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     uint256 hashTx = tx.GetHash();
@@ -331,7 +331,7 @@ UniValue importprunedfunds(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    if (pwalletMain->IsMine(tx)) {
+    if (pwalletMain->IsMine(wtx)) {
         pwalletMain->AddToWallet(wtx, false);
         return NullUniValue;
     }
