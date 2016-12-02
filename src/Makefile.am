@@ -116,7 +116,6 @@ BITCOIN_CORE_H = \
   keystore.h \
   dbwrapper.h \
   limitedmap.h \
-  main.h \
   memusage.h \
   merkleblock.h \
   miner.h \
@@ -169,6 +168,7 @@ BITCOIN_CORE_H = \
   utilmoneystr.h \
   utilstrencodings.h \
   utiltime.h \
+  validation.h \
   validationinterface.h \
   version.h \
   versionbits.h \
@@ -203,7 +203,6 @@ libbitcoin_server_a_SOURCES = \
   httpserver.cpp \
   init.cpp \
   dbwrapper.cpp \
-  main.cpp \
   merkleblock.cpp \
   miner.cpp \
   net.cpp \
@@ -227,6 +226,7 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   ui_interface.cpp \
+  validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
   $(BITCOIN_CORE_H)

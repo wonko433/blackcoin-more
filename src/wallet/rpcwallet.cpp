@@ -8,7 +8,7 @@
 #include "core_io.h"
 #include "dstencode.h"
 #include "init.h"
-#include "main.h"
+#include "validation.h"
 #include "net.h"
 #include "rpc/server.h"
 #include "timedata.h"
