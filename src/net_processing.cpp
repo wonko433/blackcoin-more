@@ -50,7 +50,8 @@ struct IteratorComparator
 };
 
 struct COrphanTx {
-    CTransaction tx;
+    // When modifying, adapt the copy of this definition in tests/DoS_tests.
+    CTransactionRef tx;
     NodeId fromPeer;
     int64_t nTimeExpire;
 };
@@ -573,9 +574,9 @@ void UnregisterNodeSignals(CNodeSignals& nodeSignals)
 // mapOrphanTransactions
 //
 
-bool AddOrphanTx(const CTransaction& tx, NodeId peer) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+bool AddOrphanTx(const CTransactionRef& tx, NodeId peer) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
-    uint256 hash = tx.GetHash();
+    const uint256& hash = tx->GetHash();
     if (mapOrphanTransactions.count(hash))
         return false;
 
@@ -595,7 +596,7 @@ bool AddOrphanTx(const CTransaction& tx, NodeId peer) EXCLUSIVE_LOCKS_REQUIRED(c
 
     auto ret = mapOrphanTransactions.emplace(hash, COrphanTx{tx, peer, GetTime() + ORPHAN_TX_EXPIRE_TIME});
     assert(ret.second);
-    BOOST_FOREACH(const CTxIn& txin, tx.vin) {
+    BOOST_FOREACH(const CTxIn& txin, tx->vin) {
         mapOrphanTransactionsByPrev[txin.prevout].insert(ret.first);
     }
 
@@ -609,7 +610,7 @@ int static EraseOrphanTx(uint256 hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
     map<uint256, COrphanTx>::iterator it = mapOrphanTransactions.find(hash);
     if (it == mapOrphanTransactions.end())
         return 0;
-    BOOST_FOREACH(const CTxIn& txin, it->second.tx.vin)
+    BOOST_FOREACH(const CTxIn& txin, it->second.tx->vin)
     {
         auto itPrev = mapOrphanTransactionsByPrev.find(txin.prevout);
         if (itPrev == mapOrphanTransactionsByPrev.end())
@@ -631,7 +632,7 @@ void EraseOrphansFor(NodeId peer)
         map<uint256, COrphanTx>::iterator maybeErase = iter++; // increment to avoid iterator becoming invalid
         if (maybeErase->second.fromPeer == peer)
         {
-            nErased += EraseOrphanTx(maybeErase->second.tx.GetHash());
+            nErased += EraseOrphanTx(maybeErase->second.tx->GetHash());
         }
     }
     if (nErased > 0) LogPrint("mempool", "Erased %d orphan tx from peer %d\n", nErased, peer);
@@ -652,7 +653,7 @@ unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans) EXCLUSIVE_LOCKS_REQUIRE
         {
             map<uint256, COrphanTx>::iterator maybeErase = iter++;
             if (maybeErase->second.nTimeExpire <= nNow) {
-                nErased += EraseOrphanTx(maybeErase->second.tx.GetHash());
+                nErased += EraseOrphanTx(maybeErase->second.tx->GetHash());
             } else {
                 nMinExpTime = std::min(maybeErase->second.nTimeExpire, nMinExpTime);
             }
@@ -723,7 +724,7 @@ void PeerLogicValidation::SyncTransaction(const CTransaction& tx, const CBlockIn
         auto itByPrev = mapOrphanTransactionsByPrev.find(tx.vin[j].prevout);
         if (itByPrev == mapOrphanTransactionsByPrev.end()) continue;
         for (auto mi = itByPrev->second.begin(); mi != itByPrev->second.end(); ++mi) {
-            const CTransaction& orphanTx = (*mi)->second.tx;
+            const CTransaction& orphanTx = *(*mi)->second.tx;
             const uint256& orphanHash = orphanTx.GetHash();
             vOrphanErase.push_back(orphanHash);
         }
@@ -1591,7 +1592,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                      mi != itByPrev->second.end();
                      ++mi)
                 {
-                    const CTransaction& orphanTx = (*mi)->second.tx;
+                    const CTransactionRef& porphanTx = (*mi)->second.tx;
+                    const CTransaction& orphanTx = *porphanTx;
                     const uint256& orphanHash = orphanTx.GetHash();
                     NodeId fromPeer = (*mi)->second.fromPeer;
                     bool fMissingInputs2 = false;
@@ -1603,7 +1605,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
                     if (setMisbehaving.count(fromPeer))
                         continue;
-                    if (AcceptToMemoryPool(mempool, stateDummy, MakeTransactionRef(orphanTx), true, &fMissingInputs2)) {
+                    if (AcceptToMemoryPool(mempool, stateDummy, porphanTx, true, &fMissingInputs2)) {
                         LogPrint("mempool", "   accepted orphan tx %s\n", orphanHash.ToString());
                         RelayTransaction(orphanTx, connman);
                         for (unsigned int i = 0; i < orphanTx.vout.size(); i++) {
@@ -1655,7 +1657,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     pfrom->AddInventoryKnown(_inv);
                     if (!AlreadyHave(_inv)) pfrom->AskFor(_inv);
                 }
-                AddOrphanTx(tx, pfrom->GetId());
+                AddOrphanTx(ptx, pfrom->GetId());
 
                 // DoS prevention: do not allow mapOrphanTransactions to grow unbounded
                 unsigned int nMaxOrphanTx = (unsigned int)std::max((int64_t)0, GetArg("-maxorphantx", DEFAULT_MAX_ORPHAN_TRANSACTIONS));
