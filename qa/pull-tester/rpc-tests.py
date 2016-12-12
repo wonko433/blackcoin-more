@@ -143,6 +143,7 @@ testScripts = [
     'signmessages.py',
     'p2p-compactblocks.py',
     'importmulti.py',
+    'import-rescan.py',
     'uptime.py',
 ]
 if ENABLE_ZMQ:
