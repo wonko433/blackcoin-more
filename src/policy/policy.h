@@ -30,6 +30,12 @@ static const unsigned int MAX_STANDARD_TX_SIGOPS = MAX_BLOCK_SIGOPS/5;
 static const unsigned int DEFAULT_MAX_MEMPOOL_SIZE = 300;
 /** Default for -bytespersigop */
 static const unsigned int DEFAULT_BYTES_PER_SIGOP = 20;
+/** Min feerate for defining dust. Historically this has been the same as the
+ * minRelayTxFee, however changing the dust limit changes which transactions are
+ * standard and should be done with care and ideally rarely. It makes sense to
+ * only increase the dust limit after prior releases were already not creating
+ * outputs below the new threshold */
+static const unsigned int DUST_RELAY_TX_FEE = 10000;
 /**
  * Standard script verification flags that standard transactions will comply
  * with. However scripts violating these flags may still be present in valid
@@ -65,6 +71,7 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason);
      */
 bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs);
 
+extern CFeeRate dustRelayFee;
 extern unsigned int nBytesPerSigOp;
 
 #endif // BITCOIN_POLICY_POLICY_H
