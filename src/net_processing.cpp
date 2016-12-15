@@ -740,6 +740,10 @@ void PeerLogicValidation::SyncTransaction(const CTransaction& tx, const CBlockIn
     }
 }
 
+static CCriticalSection cs_most_recent_block;
+static std::shared_ptr<const CBlock> most_recent_block;
+static uint256 most_recent_block_hash;
+
 void PeerLogicValidation::NewPoWValidBlock(const CBlockIndex *pindex, const std::shared_ptr<const CBlock>& pblock) {
     CBlockHeaderAndShortTxIDs cmpctblock(*pblock, true);
     CNetMsgMaker msgMaker(PROTOCOL_VERSION);
@@ -752,6 +756,12 @@ void PeerLogicValidation::NewPoWValidBlock(const CBlockIndex *pindex, const std:
     nHighestFastAnnounce = pindex->nHeight;
 
     uint256 hashBlock(pblock->GetHash());
+
+    {
+        LOCK(cs_most_recent_block);
+        most_recent_block_hash = hashBlock;
+        most_recent_block = pblock;
+    }
 
     connman->ForEachNode([this, &cmpctblock, pindex, &msgMaker, &hashBlock](CNode* pnode) {
         // TODO: Avoid the repeated-serialization here
@@ -1072,6 +1082,23 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
         // having to download the entire memory pool.
         connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::NOTFOUND, vNotFound));
     }
+}
+
+inline void static SendBlockTransactions(const CBlock& block, const BlockTransactionsRequest& req, CNode* pfrom, CConnman& connman) {
+    BlockTransactions resp(req);
+    for (size_t i = 0; i < req.indexes.size(); i++) {
+        if (req.indexes[i] >= block.vtx.size()) {
+            LOCK(cs_main);
+            Misbehaving(pfrom->GetId(), 100);
+            LogPrintf("Peer %d sent us a getblocktxn with out-of-bounds tx indices", pfrom->id);
+            return;
+        }
+        resp.txn[i] = block.vtx[req.indexes[i]];
+    }
+    LOCK(cs_main);
+    CNetMsgMaker msgMaker(pfrom->GetSendVersion());
+    int nSendFlags = 0;
+    connman.PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCKTXN, resp));
 }
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, int64_t nTimeReceived, const CChainParams& chainparams, CConnman& connman, std::atomic<bool>& interruptMsgProc)
@@ -1507,6 +1534,18 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         BlockTransactionsRequest req;
         vRecv >> req;
 
+        std::shared_ptr<const CBlock> recent_block;
+        {
+            LOCK(cs_most_recent_block);
+            if (most_recent_block_hash == req.blockhash)
+                recent_block = most_recent_block;
+            // Unlock cs_most_recent_block to avoid cs_main lock inversion
+        }
+        if (recent_block) {
+            SendBlockTransactions(*recent_block, req, pfrom, connman);
+            return true;
+        }
+
         LOCK(cs_main);
 
         BlockMap::iterator it = mapBlockIndex.find(req.blockhash);
@@ -1536,17 +1575,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         bool ret = ReadBlockFromDisk(block, it->second, chainparams.GetConsensus());
         assert(ret);
 
-        BlockTransactions resp(req);
-        for (size_t i = 0; i < req.indexes.size(); i++) {
-            if (req.indexes[i] >= block.vtx.size()) {
-                Misbehaving(pfrom->GetId(), 100);
-                LogPrintf("Peer %d sent us a getblocktxn with out-of-bounds tx indices", pfrom->id);
-                return true;
-            }
-            resp.txn[i] = block.vtx[req.indexes[i]];
-        }
-        int nSendFlags = 0;
-        connman.PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCKTXN, resp));
+        SendBlockTransactions(block, req, pfrom, connman);
     }
 
 
