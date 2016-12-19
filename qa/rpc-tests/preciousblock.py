@@ -99,7 +99,7 @@ class PreciousTest(BitcoinTestFramework):
         assert(self.nodes[2].getblockcount() == 6)
         hashL = self.nodes[2].getbestblockhash()
         print("Connect nodes and check no reorg occurs")
-        node_sync_via_rpc(self.nodes[0:3])
+        node_sync_via_rpc(self.nodes[1:3])
         connect_nodes_bi(self.nodes,1,2)
         connect_nodes_bi(self.nodes,0,2)
         assert(self.nodes[0].getbestblockhash() == hashH)
