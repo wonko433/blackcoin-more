@@ -274,7 +274,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
     //
     // Debug view
     //
-    if (fDebug)
+    if (logCategories != BCLog::NONE)
     {
         strHTML += "<hr><br>" + tr("Debug information") + "<br><br>";
         BOOST_FOREACH(const CTxIn& txin, wtx.tx->vin)
