@@ -610,6 +610,9 @@ public:
     std::deque<std::vector<unsigned char>> vSendMsg;
     CCriticalSection cs_vSend;
 
+    CCriticalSection cs_vProcessMsg;
+    std::list<CNetMessage> vProcessMsg;
+
     std::deque<CInv> vRecvGetData;
     std::list<CNetMessage> vRecvMsg;
     CCriticalSection cs_vRecvMsg;
