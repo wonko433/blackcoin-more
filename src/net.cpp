@@ -1233,8 +1233,8 @@ void CConnman::ThreadSocketHandler()
                             if (!pnode->ReceiveMsgBytes(pchBuf, nBytes, notify))
                                 pnode->CloseSocketDisconnect();
                             RecordBytesRecv(nBytes);
-                            if(notify)
-                                condMsgProc.notify_one();
+                            if (notify)
+                                WakeMessageHandler();
                         }
                         else if (nBytes == 0)
                         {
@@ -1309,8 +1309,10 @@ void CConnman::ThreadSocketHandler()
     }
 }
 
-
-
+void CConnman::WakeMessageHandler()
+{
+    condMsgProc.notify_one();
+}
 
 
 
