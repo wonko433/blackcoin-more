@@ -283,7 +283,7 @@ CAmount GetProofOfWorkSubsidy();
 CAmount GetProofOfStakeSubsidy();
 
 /** Guess verification progress (as a fraction between 0.0=genesis and 1.0=current tip). */
-double GuessVerificationProgress(const ChainTxData& data, CBlockIndex* pindex, bool fSigchecks = true);
+double GuessVerificationProgress(const ChainTxData& data, CBlockIndex* pindex);
 
 /**
  * Prune block and undo files (blk???.dat and undo???.dat) so that the disk space used is less than a user-defined target.
