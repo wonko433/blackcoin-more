@@ -160,9 +160,11 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "This is a pre-release test build - use at your own risk - do not use for "
 "mining or merchant applications"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
+"This is the transaction fee you may pay when fee estimates are not available."),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
 "This product includes software developed by the OpenSSL Project for use in "
-"the OpenSSL Toolkit <https://www.openssl.org/> and cryptographic software "
-"written by Eric Young and UPnP software written by Thomas Bernard."),
+"the OpenSSL Toolkit %s and cryptographic software written by Eric Young and "
+"UPnP software written by Thomas Bernard."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Total length of network version string (%i) exceeds maximum length (%i). "
 "Reduce the number or size of uacomments."),
@@ -190,6 +192,9 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Username and hashed password for JSON-RPC connections. The field <userpw> "
 "comes in the format: <USERNAME>:<SALT>$<HASH>. A canonical python script is "
 "included in share/rpcuser. This option can be specified multiple times"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"Warning: The network does not appear to fully agree! Some miners appear to "
+"be experiencing issues."),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Warning: The network does not appear to fully agree! Some miners appear to "
 "be experiencing issues."),
@@ -232,6 +237,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Block creation options:"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Cannot downgrade wallet"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Cannot resolve -%s address: '%s'"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Cannot write default address"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Chain selection options:"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Change index out of range"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Connect only to the specified node(s)"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Connect through SOCKS5 proxy"),
@@ -349,6 +355,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Unsupported argument -debugnet ignored, use -
 QT_TRANSLATE_NOOP("bitcoin-core", "Unsupported argument -tor found, use -onion."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Upgrade wallet to latest format on startup"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Use UPnP to map the listening port (default: %u)"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Use the test chain"),
 QT_TRANSLATE_NOOP("bitcoin-core", "User Agent comment (%s) contains unsafe characters."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Username for JSON-RPC connections"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Verifying blocks..."),
