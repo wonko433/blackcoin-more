@@ -1181,7 +1181,7 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     obj.push_back(Pair("bestblockhash",         chainActive.Tip()->GetBlockHash().GetHex()));
     obj.push_back(Pair("difficulty",            (double)diff));
     obj.push_back(Pair("mediantime",            (int64_t)chainActive.Tip()->GetPastTimeLimit()));
-    obj.push_back(Pair("verificationprogress",  GuessVerificationProgress(Params().Checkpoints(), chainActive.Tip())));
+    obj.push_back(Pair("verificationprogress",  GuessVerificationProgress(Params().TxData(), chainActive.Tip())));
     obj.push_back(Pair("chainwork",             chainActive.Tip()->nChainWork.GetHex()));
     obj.push_back(Pair("pruned",                fPruneMode));
 

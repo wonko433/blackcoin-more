@@ -40,10 +40,10 @@ class CInv;
 class CConnman;
 class CScriptCheck;
 class CTxMemPool;
+class CWallet;
 class CValidationInterface;
 class CValidationState;
-class CCheckpointData;
-class CWallet;
+struct ChainTxData;
 
 struct CDiskTxPos;
 struct PrecomputedTransactionData;
@@ -283,7 +283,7 @@ CAmount GetProofOfWorkSubsidy();
 CAmount GetProofOfStakeSubsidy();
 
 /** Guess verification progress (as a fraction between 0.0=genesis and 1.0=current tip). */
-double GuessVerificationProgress(const CCheckpointData& data, CBlockIndex* pindex, bool fSigchecks = true);
+double GuessVerificationProgress(const ChainTxData& data, CBlockIndex* pindex, bool fSigchecks = true);
 
 /**
  * Prune block and undo files (blk???.dat and undo???.dat) so that the disk space used is less than a user-defined target.
