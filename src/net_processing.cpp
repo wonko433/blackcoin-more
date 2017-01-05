@@ -2844,11 +2844,17 @@ bool SendMessages(CNode* pto, CConnman& connman, std::atomic<bool>& interruptMsg
 
                     int nSendFlags = 0;
 
-                    LOCK(cs_most_recent_block);
-                    if (most_recent_block_hash == pBestIndex->GetBlockHash()) {
-                        CBlockHeaderAndShortTxIDs cmpctblock(*most_recent_block);
-                        connman.PushMessage(pto, msgMaker.Make(nSendFlags, NetMsgType::CMPCTBLOCK, cmpctblock));
-                    } else {
+                    bool fGotBlockFromCache = false;
+                    {
+                        LOCK(cs_most_recent_block);
+                        if (most_recent_block_hash == pBestIndex->GetBlockHash()) {
+                            CBlockHeaderAndShortTxIDs cmpctblock(*most_recent_block);
+                            connman.PushMessage(pto, msgMaker.Make(nSendFlags, NetMsgType::CMPCTBLOCK, cmpctblock));
+                            }
+                            fGotBlockFromCache = true;
+                        }
+                    }
+                    if (!fGotBlockFromCache) {
                         CBlock block;
                         bool ret = ReadBlockFromDisk(block, pBestIndex, consensusParams);
                         assert(ret);
