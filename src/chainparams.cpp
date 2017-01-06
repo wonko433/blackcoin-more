@@ -124,6 +124,9 @@ public:
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000001f61a372a08476c5a2e");
 
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x36442d872ca6a66c65caef4d9468b8add290accc8cf7ec386eee50e62721ed3d"); //2400000
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -222,6 +225,9 @@ public:
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
 
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x00");
+
         /*
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 999999999999ULL; // never
@@ -295,6 +301,9 @@ public:
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
+
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x00");
 
         /*
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
