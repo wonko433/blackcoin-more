@@ -4,7 +4,6 @@ Test script for security-check.py
 '''
 from __future__ import division,print_function
 import subprocess
-import sys
 import unittest
 
 def write_testcode(filename):
