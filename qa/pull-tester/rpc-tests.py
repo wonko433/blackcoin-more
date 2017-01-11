@@ -145,6 +145,7 @@ testScripts = [
     'importmulti.py',
     'import-rescan.py',
     'rpcnamedargs.py',
+    'listsinceblock.py',
     'uptime.py',
 ]
 if ENABLE_ZMQ:
