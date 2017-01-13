@@ -180,8 +180,8 @@ static const double MIN_SUCCESS_PCT = .95;
 static const double SUFFICIENT_FEETXS = 1;
 
 // Minimum and Maximum values for tracking feerates
-static constexpr double MIN_FEERATE = 10;
-static const double MAX_FEERATE = 1e7;
+static constexpr double MIN_BUCKET_FEERATE = 10;
+static const double MAX_BUCKET_FEERATE = 1e7;
 static const double INF_FEERATE = MAX_MONEY;
 
 // We have to lump transactions into buckets based on feerate, but we want to be able
