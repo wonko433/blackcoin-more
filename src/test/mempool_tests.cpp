@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(MempoolRemoveTest)
     }
 
 
-    CTxMemPool testPool(CFeeRate(0));
+    CTxMemPool testPool;
 
     // Nothing in pool, remove should do nothing:
     unsigned int poolSize = testPool.size();
@@ -117,7 +117,7 @@ void CheckSort(CTxMemPool &pool, std::vector<std::string> &sortedOrder)
 
 BOOST_AUTO_TEST_CASE(MempoolIndexingTest)
 {
-    CTxMemPool pool(CFeeRate(0));
+    CTxMemPool pool;
     TestMemPoolEntryHelper entry;
 
     /* 3rd highest fee */
@@ -318,7 +318,7 @@ BOOST_AUTO_TEST_CASE(MempoolIndexingTest)
 
 BOOST_AUTO_TEST_CASE(MempoolAncestorIndexingTest)
 {
-    CTxMemPool pool(CFeeRate(0));
+    CTxMemPool pool;
     TestMemPoolEntryHelper entry;
 
     /* 3rd highest fee */
@@ -429,7 +429,7 @@ BOOST_AUTO_TEST_CASE(MempoolAncestorIndexingTest)
 
 BOOST_AUTO_TEST_CASE(MempoolSizeLimitTest)
 {
-    CTxMemPool pool(CFeeRate(1000));
+    CTxMemPool pool;
     TestMemPoolEntryHelper entry;
 
     CMutableTransaction tx1 = CMutableTransaction();

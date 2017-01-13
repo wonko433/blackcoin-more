@@ -185,7 +185,7 @@ static const double SUFFICIENT_FEETXS = 1;
 // inheriting DEFAULT_MIN_RELAY_TX_FEE and changing it is disruptive as it
 // invalidates old estimates files. So leave it at 1000 unless it becomes
 // necessary to lower it, and then lower it substantially.
-static constexpr double MIN_BUCKET_FEERATE = 1000;
+static constexpr double MIN_BUCKET_FEERATE = 10000;
 static const double MAX_BUCKET_FEERATE = 1e7;
 static const double INF_FEERATE = MAX_MONEY;
 
