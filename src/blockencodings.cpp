@@ -143,7 +143,8 @@ ReadStatus PartiallyDownloadedBlock::InitData(const CBlockHeaderAndShortTxIDs& c
                 mempool_count++;
                 extra_count++;
             } else {
-                // If we find two mempool txn that match the short id, just request it.
+                // If we find two mempool/extra txn that match the short id, just
+                // request it.
                 // This should be rare enough that the extra bandwidth doesn't matter,
                 // but eating a round-trip due to FillBlock failure would be annoying
                 if (txn_available[idit->second]) {
