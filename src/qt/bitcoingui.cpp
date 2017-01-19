@@ -32,6 +32,7 @@
 #include "macdockiconhandler.h"
 #endif
 
+#include "chainparams.h"
 #include "init.h"
 #include "ui_interface.h"
 #include "util.h"
@@ -755,8 +756,8 @@ void BitcoinGUI::updateHeadersSyncProgressLabel()
 {
     int64_t headersTipTime = clientModel->getHeaderTipTime();
     int headersTipHeight = clientModel->getHeaderTipHeight();
-    int estHeadersLeft = (GetTime() - headersTipTime)/600;
-    if (estHeadersLeft > REQ_HEADER_HEIGHT_DELTA_SYNC)
+    int estHeadersLeft = (GetTime() - headersTipTime) / Params().GetConsensus().nTargetSpacing;
+    if (estHeadersLeft > HEADER_HEIGHT_DELTA_SYNC)
         progressBarLabel->setText(tr("Syncing Headers (%1%)...").arg(QString::number(100.0 / (headersTipHeight+estHeadersLeft)*headersTipHeight, 'f', 1)));
 }
 
