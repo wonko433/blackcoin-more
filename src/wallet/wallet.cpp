@@ -4192,9 +4192,6 @@ bool CWallet::ParameterInteraction()
     nTxConfirmTarget = GetArg("-txconfirmtarget", DEFAULT_TX_CONFIRM_TARGET);
     bSpendZeroConfChange = GetBoolArg("-spendzeroconfchange", DEFAULT_SPEND_ZEROCONF_CHANGE);
 
-    if (GetBoolArg("-sendfreetransactions", false))
-        InitWarning("The argument -sendfreetransactions is no longer supported.");
-
     return true;
 }
 
