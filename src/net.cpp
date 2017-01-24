@@ -342,8 +342,8 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char *pszDest, bool fCo
         CNode* pnode = FindNode((CService)addrConnect);
         if (pnode)
         {
-            pnode->AddRef();
-            return pnode;
+            LogPrintf("Failed to open new connection, already connected\n");
+            return NULL;
         }
     }
 
@@ -373,12 +373,12 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char *pszDest, bool fCo
             CNode* pnode = FindNode((CService)addrConnect);
             if (pnode)
             {
-                pnode->AddRef();
                 if (pnode->addrName.empty()) {
                     pnode->addrName = std::string(pszDest);
                 }
                 CloseSocket(hSocket);
-                return pnode;
+                LogPrintf("Failed to open new connection, already connected\n");
+                return NULL;
             }
         }
 
@@ -387,15 +387,9 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char *pszDest, bool fCo
         // Add node
         CNode* pnode = new CNode(GetNewNodeId(), nLocalServices, GetBestHeight(), hSocket, addrConnect, pszDest ? pszDest : "", false);
         GetNodeSignals().InitializeNode(pnode->GetId(), pnode);
-        pnode->AddRef();
-
-        {
-            LOCK(cs_vNodes);
-            vNodes.push_back(pnode);
-        }
-
         pnode->nServicesExpected = ServiceFlags(addrConnect.nServices & nRelevantServices);
         pnode->nTimeConnected = GetTime();
+        pnode->AddRef();
 
         return pnode;
     } else if (!proxyConnectionFailed) {
@@ -1809,6 +1803,12 @@ bool CConnman::OpenNetworkConnection(const CAddress& addrConnect, bool fCountFai
         pnode->fOneShot = true;
     if (fFeeler)
         pnode->fFeeler = true;
+
+    {
+        LOCK(cs_vNodes);
+        vNodes.push_back(pnode);
+    }
+    GetNodeSignals().InitializeNode(pnode, *this);
 
     return true;
 }
