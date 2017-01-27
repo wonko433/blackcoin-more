@@ -34,8 +34,6 @@
 #include <queue>
 #include <utility>
 
-using namespace std;
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // BitcoinMiner
@@ -506,7 +504,7 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
         nConsecutiveFailed = 0;
 
         // Package can be added. Sort the entries in a valid order.
-        vector<CTxMemPool::txiter> sortedEntries;
+        std::vector<CTxMemPool::txiter> sortedEntries;
         SortForBlock(ancestors, iter, sortedEntries);
 
         for (size_t i=0; i<sortedEntries.size(); ++i) {
@@ -534,7 +532,7 @@ void BlockAssembler::addPriorityTxs(int64_t nBlockTime, bool fProofOfStake)
     }
 
     // This vector will be sorted into a priority queue:
-    vector<TxCoinAgePriority> vecPriority;
+    std::vector<TxCoinAgePriority> vecPriority;
     TxCoinAgePriorityCompare pricomparer;
     std::map<CTxMemPool::txiter, double, CTxMemPool::CompareIteratorByHash> waitPriMap;
     typedef std::map<CTxMemPool::txiter, double, CTxMemPool::CompareIteratorByHash>::iterator waitPriIter;
