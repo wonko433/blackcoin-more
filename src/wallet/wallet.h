@@ -754,7 +754,7 @@ public:
     CPubKey GenerateNewKey();
     void DeriveNewChildKey(CKeyMetadata& metadata, CKey& secret);
     //! Adds a key to the store, and saves it to disk.
-    bool AddKeyPubKey(const CKey& key, const CPubKey &pubkey);
+    bool AddKeyPubKey(const CKey& key, const CPubKey &pubkey) override;
     //! Adds a key to the store, without saving it to disk (used by LoadWallet)
     bool LoadKey(const CKey& key, const CPubKey &pubkey) { return CCryptoKeyStore::AddKeyPubKey(key, pubkey); }
     //! Load metadata (used by LoadWallet)
@@ -764,10 +764,10 @@ public:
     void UpdateTimeFirstKey(int64_t nCreateTime);
 
     //! Adds an encrypted key to the store, and saves it to disk.
-    bool AddCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigned char> &vchCryptedSecret);
+    bool AddCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigned char> &vchCryptedSecret) override;
     //! Adds an encrypted key to the store, without saving it to disk (used by LoadWallet)
     bool LoadCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigned char> &vchCryptedSecret);
-    bool AddCScript(const CScript& redeemScript);
+    bool AddCScript(const CScript& redeemScript) override;
     bool LoadCScript(const CScript& redeemScript);
 
     //! Adds a destination data tuple to the store, and saves it to disk
@@ -781,7 +781,7 @@ public:
 
     //! Adds a watch-only address to the store, and saves it to disk.
     bool AddWatchOnly(const CScript& dest, int64_t nCreateTime);
-    bool RemoveWatchOnly(const CScript &dest);
+    bool RemoveWatchOnly(const CScript &dest) override;
     //! Adds a watch-only address to the store, without saving it to disk (used by LoadWallet)
     bool LoadWatchOnly(const CScript &dest);
 
@@ -803,11 +803,11 @@ public:
     void MarkDirty();
     bool AddToWallet(const CWalletTx& wtxIn, bool fFlushOnClose=true);
     bool LoadToWallet(const CWalletTx& wtxIn);
-    void SyncTransaction(const CTransaction& tx, const CBlockIndex *pindex, int posInBlock);
+    void SyncTransaction(const CTransaction& tx, const CBlockIndex *pindex, int posInBlock) override;
     bool AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlockIndex* pIndex, int posInBlock, bool fUpdate);
     CBlockIndex* ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate = false);
     void ReacceptWalletTransactions();
-    void ResendWalletTransactions(int64_t nBestBlockTime, CConnman* connman);
+    void ResendWalletTransactions(int64_t nBestBlockTime, CConnman* connman) override;
     std::vector<uint256> ResendWalletTransactionsBefore(int64_t nTime, CConnman* connman);
     CAmount GetBalance() const;
     CAmount GetUnconfirmedBalance() const;
@@ -879,7 +879,7 @@ public:
     CAmount GetDebit(const CTransaction& tx, const isminefilter& filter) const;
     CAmount GetCredit(const CTransaction& tx, const isminefilter& filter) const;
     CAmount GetChange(const CTransaction& tx) const;
-    void SetBestChain(const CBlockLocator& loc);
+    void SetBestChain(const CBlockLocator& loc) override;
 
     DBErrors LoadWallet(bool& fFirstRunRet);
     DBErrors ZapWalletTx(std::vector<CWalletTx>& vWtx);
@@ -889,9 +889,9 @@ public:
 
     bool DelAddressBook(const CTxDestination& address);
 
-    void UpdatedTransaction(const uint256 &hashTx);
+    void UpdatedTransaction(const uint256 &hashTx) override;
 
-    void Inventory(const uint256 &hash)
+    void Inventory(const uint256 &hash) override
     {
         {
             LOCK(cs_wallet);
@@ -901,8 +901,8 @@ public:
         }
     }
 
-    void GetScriptForMining(std::shared_ptr<CReserveScript> &script);
-    void ResetRequestCount(const uint256 &hash)
+    void GetScriptForMining(boost::shared_ptr<CReserveScript> &script) override;
+    void ResetRequestCount(const uint256 &hash) override
     {
         LOCK(cs_wallet);
         mapRequestCount[hash] = 0;
