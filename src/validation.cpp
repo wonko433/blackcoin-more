@@ -3407,7 +3407,7 @@ void PruneOneBlockFile(const int fileNumber)
 }
 
 
-void UnlinkPrunedFiles(std::set<int>& setFilesToPrune)
+void UnlinkPrunedFiles(const std::set<int>& setFilesToPrune)
 {
     for (set<int>::iterator it = setFilesToPrune.begin(); it != setFilesToPrune.end(); ++it) {
         CDiskBlockPos pos(*it, 0);
@@ -4249,6 +4249,11 @@ std::string GetWarnings(const std::string& strFor)
  std::string CBlockFileInfo::ToString() const {
      return strprintf("CBlockFileInfo(blocks=%u, size=%u, heights=%u...%u, time=%s...%s)", nBlocks, nSize, nHeightFirst, nHeightLast, DateTimeStrFormat("%Y-%m-%d", nTimeFirst), DateTimeStrFormat("%Y-%m-%d", nTimeLast));
  }
+
+CBlockFileInfo* GetBlockFileInfo(size_t n)
+{
+    return &vinfoBlockFile.at(n);
+}
 
 ThresholdState VersionBitsTipState(const Consensus::Params& params, Consensus::DeploymentPos pos)
 {
