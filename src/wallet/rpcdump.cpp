@@ -754,7 +754,7 @@ UniValue ProcessImport(const UniValue& data, const int64_t timestamp)
 
             pwalletMain->MarkDirty();
 
-            if (!pwalletMain->HaveWatchOnly(redeemScript) && !pwalletMain->AddWatchOnly(redeemScript, timestamp)) {
+            if (!pwalletMain->AddWatchOnly(redeemScript, timestamp)) {
                 throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
             }
 
@@ -771,7 +771,7 @@ UniValue ProcessImport(const UniValue& data, const int64_t timestamp)
 
             pwalletMain->MarkDirty();
 
-            if (!pwalletMain->HaveWatchOnly(redeemDestination) && !pwalletMain->AddWatchOnly(redeemDestination, timestamp)) {
+            if (!pwalletMain->AddWatchOnly(redeemDestination, timestamp)) {
                 throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
             }
 
@@ -864,7 +864,7 @@ UniValue ProcessImport(const UniValue& data, const int64_t timestamp)
 
                 pwalletMain->MarkDirty();
 
-                if (!pwalletMain->HaveWatchOnly(pubKeyScript) && !pwalletMain->AddWatchOnly(pubKeyScript, timestamp)) {
+                if (!pwalletMain->AddWatchOnly(pubKeyScript, timestamp)) {
                     throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
                 }
 
@@ -882,7 +882,7 @@ UniValue ProcessImport(const UniValue& data, const int64_t timestamp)
 
                 pwalletMain->MarkDirty();
 
-                if (!pwalletMain->HaveWatchOnly(scriptRawPubKey) && !pwalletMain->AddWatchOnly(scriptRawPubKey, timestamp)) {
+                if (!pwalletMain->AddWatchOnly(scriptRawPubKey, timestamp)) {
                     throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
                 }
 
@@ -956,7 +956,7 @@ UniValue ProcessImport(const UniValue& data, const int64_t timestamp)
 
                 pwalletMain->MarkDirty();
 
-                if (!pwalletMain->HaveWatchOnly(script) && !pwalletMain->AddWatchOnly(script, timestamp)) {
+                if (!pwalletMain->AddWatchOnly(script, timestamp)) {
                     throw JSONRPCError(RPC_WALLET_ERROR, "Error adding address to wallet");
                 }
 
