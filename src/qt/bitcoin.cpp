@@ -187,8 +187,8 @@ public Q_SLOTS:
     void shutdown();
 
 Q_SIGNALS:
-    void initializeResult(int retval);
-    void shutdownResult(int retval);
+    void initializeResult(bool success);
+    void shutdownResult();
     void runawayException(const QString &message);
 
 private:
@@ -232,8 +232,8 @@ public:
     WId getMainWinId() const;
 
 public Q_SLOTS:
-    void initializeResult(int retval);
-    void shutdownResult(int retval);
+    void initializeResult(bool success);
+    void shutdownResult();
     /// Handle runaway exceptions. Shows a message box with the problem and quits the program.
     void handleRunawayException(const QString &message);
 
@@ -294,7 +294,7 @@ void BitcoinCore::initialize(Config *cfg)
             Q_EMIT initializeResult(false);
             return;
         }
-        int rv = AppInitMain(config, threadGroup, scheduler);
+        bool rv = AppInitMain(config, threadGroup, scheduler);
         Q_EMIT initializeResult(rv);
     } catch (const std::exception& e) {
         handleRunawayException(&e);
@@ -312,7 +312,7 @@ void BitcoinCore::shutdown()
         threadGroup.join_all();
         Shutdown();
         qDebug() << __func__ << ": Shutdown finished";
-        Q_EMIT shutdownResult(1);
+        Q_EMIT shutdownResult();
     } catch (const std::exception& e) {
         handleRunawayException(&e);
     } catch (...) {
@@ -408,8 +408,8 @@ void BitcoinApplication::startThread()
     executor->moveToThread(coreThread);
 
     /*  communication to and from thread */
-    connect(executor, SIGNAL(initializeResult(int)), this, SLOT(initializeResult(int)));
-    connect(executor, SIGNAL(shutdownResult(int)), this, SLOT(shutdownResult(int)));
+    connect(executor, SIGNAL(initializeResult(bool)), this, SLOT(initializeResult(bool)));
+    connect(executor, SIGNAL(shutdownResult()), this, SLOT(shutdownResult()));
     connect(executor, SIGNAL(runawayException(QString)), this, SLOT(handleRunawayException(QString)));
     connect(this, SIGNAL(requestedInitialize(Config *)), executor, SLOT(initialize(Config *)));
     connect(this, SIGNAL(requestedShutdown()), executor, SLOT(shutdown()));
@@ -460,12 +460,12 @@ void BitcoinApplication::requestShutdown()
     Q_EMIT requestedShutdown();
 }
 
-void BitcoinApplication::initializeResult(int retval)
+void BitcoinApplication::initializeResult(bool success)
 {
-    qDebug() << __func__ << ": Initialization result: " << retval;
-    // Set exit result: 0 if successful, 1 if failure
-    returnValue = retval ? 0 : 1;
-    if(retval)
+    qDebug() << __func__ << ": Initialization result: " << success;
+    // Set exit result.
+    returnValue = success ? EXIT_SUCCESS : EXIT_FAILURE;
+    if(success)
     {
         // Log this only after AppInit2 finishes, as then logging setup is guaranteed complete
         qWarning() << "Platform customization:" << platformStyle->getName();
@@ -517,9 +517,8 @@ void BitcoinApplication::initializeResult(int retval)
     }
 }
 
-void BitcoinApplication::shutdownResult(int retval)
+void BitcoinApplication::shutdownResult()
 {
-    qDebug() << __func__ << ": Shutdown result: " << retval;
     quit(); // Exit main loop after shutdown finished
 }
 
