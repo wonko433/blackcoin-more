@@ -11,6 +11,7 @@
 #include "consensus/tx_verify.h"
 #include "consensus/validation.h"
 #include "dstencode.h"
+#include "fs.h"
 #include "protocol.h"
 #include "serialize.h"
 #include "sync.h"
@@ -21,7 +22,6 @@
 #include <atomic>
 
 #include <boost/version.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/thread.hpp>
 
