@@ -128,6 +128,8 @@ void BlockAssembler::resetBlock()
 
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, int64_t* pFees, bool fProofOfStake)
 {
+    int64_t nTimeStart = GetTimeMicros();
+
     resetBlock();
 
     pblocktemplate.reset(new CBlockTemplate());
@@ -157,6 +159,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     addPriorityTxs(pblock->GetBlockTime(), fProofOfStake);
     addPackageTxs();
+
+    int64_t nTime1 = GetTimeMicros();
 
     nLastBlockTx = nBlockTx;
     nLastBlockSize = nBlockSize;
@@ -199,6 +203,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if (!fProofOfStake && !TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, false, true)) {
         throw std::runtime_error(strprintf("%s: TestBlockValidity failed: %s", __func__, FormatStateMessage(state)));
     }
+    int64_t nTime2 = GetTimeMicros();
+
+    LogPrint("bench", "CreateNewBlock() packages: %.2fms, validity: %.2fms (total %.2fms)\n", 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime2 - nTime1), 0.001 * (nTime2 - nTimeStart));
 
     return std::move(pblocktemplate);
 }
