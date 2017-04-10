@@ -138,7 +138,7 @@ static const bool DEFAULT_TXINDEX = true;
 static const unsigned int DEFAULT_BANSCORE_THRESHOLD = 100;
 
 /** Default for using fee filter */
-static const bool DEFAULT_FEEFILTER = true;
+static const bool DEFAULT_FEEFILTER = false;
 
 /** Maximum number of headers to announce when relaying blocks with headers message.*/
 static const unsigned int MAX_BLOCKS_TO_ANNOUNCE = 8;
