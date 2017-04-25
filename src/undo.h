@@ -14,7 +14,8 @@
  *
  *  Contains the prevout's CTxOut being spent, and if this was the
  *  last output of the affected transaction, its metadata as well
- *  (coinbase or not, height, transaction version, time)
+ *  (coinbase or not, height, time). Earlier versions also stored the transaction
+ *  version.
  */
 class CTxInUndo
 {
@@ -23,17 +24,18 @@ public:
     bool fCoinBase;       // if the outpoint was the last unspent: whether it belonged to a coinbase
     bool fCoinStake;	  // if the outpoint was the last unspent: whether it belonged to a coinstake
     unsigned int nHeight; // if the outpoint was the last unspent: its height
-    int nVersion;         // if the outpoint was the last unspent: its version
     unsigned int nTime; // if the outpoint was the last unspent: its time
 
-    CTxInUndo() : txout(), fCoinBase(false), fCoinStake(false), nHeight(0), nVersion(0), nTime(0) {}
-    CTxInUndo(const CTxOut &txoutIn, bool fCoinBaseIn = false, bool fCoinStakeIn = false, unsigned int nHeightIn = 0, int nVersionIn = 0, unsigned int nTimeIn = 0) : txout(txoutIn), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nVersion(nVersionIn), nTime(nTimeIn) { }
+    CTxInUndo() : txout(), fCoinBase(false), fCoinStake(false), nHeight(0), nTime(0) {}
+    CTxInUndo(const CTxOut &txoutIn, bool fCoinBaseIn = false, bool fCoinStakeIn = false, unsigned int nHeightIn = 0, unsigned int nTimeIn = 0) : txout(txoutIn), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nTime(nTimeIn) { }
 
     template<typename Stream>
     void Serialize(Stream &s) const {
-    	::Serialize(s, VARINT(nHeight*4+(fCoinBase ? 1 : 0)+(fCoinStake ? 2 : 0)));
-        if (nHeight > 0)
-            ::Serialize(s, VARINT(this->nVersion));
+    	::Serialize(s, VARINT(nHeight*4 + (fCoinBase ? 1 : 0) + (fCoinStake ? 2 : 0)));
+        if (nHeight > 0) {
+            int nVersionDummy = 0;
+            ::Serialize(s, VARINT(nVersionDummy));
+        }
         ::Serialize(s, this->nTime);
         ::Serialize(s, CTxOutCompressor(REF(txout)));
     }
@@ -45,8 +47,10 @@ public:
         nHeight = nCode / 4;
         fCoinBase = nCode & 1;
         fCoinStake = nCode & 2;
-        if (nHeight > 0)
-            ::Unserialize(s, VARINT(this->nVersion));
+        if (nHeight > 0) {
+            int nVersionDummy;
+            ::Unserialize(s, VARINT(nVersionDummy));
+        }
         ::Unserialize(s, this->nTime);
         ::Unserialize(s, REF(CTxOutCompressor(REF(txout))));
     }
