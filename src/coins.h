@@ -20,6 +20,84 @@
 #include <boost/foreach.hpp>
 #include <unordered_map>
 
+/**
+ * A UTXO entry.
+ *
+ * Serialized format:
+ * - VARINT((coinbase ? 1 : 0) | (height << 1))
+ * - VARINT((coinstake ? 2 : 0) | (height << 2))
+ * - the non-spent CTxOut (via CTxOutCompressor)
+ */
+class Coin
+{
+public:
+    //! whether the containing transaction was a coinbase
+    bool fCoinBase;
+
+    //! whether the containing transaction was a coinstake
+    bool fCoinStake;
+
+    //! unspent transaction output
+    CTxOut out;
+
+    //! at which height the containing transaction was included in the active block chain
+    uint32_t nHeight;
+
+    //! time of the CTransaction
+    unsigned int nTime;
+
+    //! construct a Coin from a CTxOut and height/coinbase properties.
+    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : fCoinBase(fCoinBaseIn), out(std::move(outIn)), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
+    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : fCoinBase(fCoinBaseIn), out(outIn), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
+
+    void Clear() {
+        out.SetNull();
+        fCoinBase = false;
+        fCoinStake = false;
+        nHeight = 0;
+        nTime = 0;
+    }
+
+    //! empty constructor
+    Coin() : fCoinBase(false), fCoinStake(false), nHeight(0), nTime(0) { }
+
+    bool IsCoinBase() const {
+        return fCoinBase;
+    }
+
+    bool IsCoinStake() const {
+        return fCoinStake;
+    }
+
+    template<typename Stream>
+    void Serialize(Stream &s) const {
+        assert(!IsPruned());
+        uint32_t code = nHeight * 2 + (fCoinBase ? 1 : 0) + (fCoinStake ? 2 : 0);
+        ::Serialize(s, VARINT(code));
+        ::Serialize(s, VARINT(nTime));
+        ::Serialize(s, CTxOutCompressor(REF(out)));
+    }
+
+    template<typename Stream>
+    void Unserialize(Stream &s) {
+        uint32_t code = 0;
+        ::Unserialize(s, VARINT(code));
+        nHeight = code >> 1;
+        fCoinBase = code & 1;
+        fCoinStake = (code >> 1) & 1;
+        ::Unserialize(s, VARINT(nTime));
+        ::Unserialize(s, REF(CTxOutCompressor(out)));
+    }
+
+    bool IsPruned() const {
+        return out.IsNull();
+    }
+
+    size_t DynamicMemoryUsage() const {
+        return memusage::DynamicUsage(out.scriptPubKey);
+    }
+};
+
 /** 
  * Pruned version of CTransaction: only retains metadata and unspent transaction outputs
  *
