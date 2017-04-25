@@ -1451,6 +1451,12 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
                     //If we're reindexing in prune mode, wipe away unusable block files and all undo data files
                     if (fPruneMode)
                         CleanupBlockRevFiles();
+                } else {
+                    // If necessary, upgrade from older database format.
+                    if (!pcoinsdbview->Upgrade()) {
+                        strLoadError = _("Error upgrading chainstate database");
+                        break;
+                    }
                 }
 
                 if (!LoadBlockIndex(chainparams)) {
