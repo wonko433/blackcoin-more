@@ -31,24 +31,24 @@
 class Coin
 {
 public:
-    //! whether the containing transaction was a coinbase
-    bool fCoinBase;
-
-    //! whether the containing transaction was a coinstake
-    bool fCoinStake;
-
     //! unspent transaction output
     CTxOut out;
 
-    //! at which height the containing transaction was included in the active block chain
-    uint32_t nHeight;
+    //! whether containing transaction was a coinbase
+    unsigned int fCoinBase : 1;
 
-    //! time of the CTransaction
+    //! at which height this containing transaction was included in the active block chain
+    uint32_t nHeight : 31;
+
+    //! whether containing transaction was a coinstake
+    bool fCoinStake;
+
+    //! time of the transaction
     unsigned int nTime;
 
-    //! construct a Coin from a CTxOut and height/coinbase properties.
-    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : fCoinBase(fCoinBaseIn), out(std::move(outIn)), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
-    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : fCoinBase(fCoinBaseIn), out(outIn), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
+    //! construct a Coin from a CTxOut and height/coinbase information.
+    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
+    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(outIn), fCoinBase(fCoinBaseIn),nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
 
     void Clear() {
         out.SetNull();
