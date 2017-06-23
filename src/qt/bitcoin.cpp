@@ -576,6 +576,7 @@ int main(int argc, char *argv[])
     qRegisterMetaType<CAmount>("CAmount");
     // Config is non-copyable so we can't register as a non pointer type
     qRegisterMetaType<Config *>();
+    qRegisterMetaType< std::function<void(void)> >("std::function<void(void)>");
 
     /// 3. Application identification
     // must be set before OptionsModel is initialized or translations are loaded,
