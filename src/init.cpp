@@ -1426,7 +1426,7 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
     LogPrintf("* Using %.1fMiB for in-memory UTXO set (plus up to %.1fMiB of unused mempool space)\n", nCoinCacheUsage * (1.0 / 1024 / 1024), nMempoolSizeMax * (1.0 / 1024 / 1024));
 
     bool fLoaded = false;
-    while (!fLoaded) {
+    while (!fLoaded && !fRequestShutdown) {
         bool fReset = fReindex;
         std::string strLoadError;
 
@@ -1458,6 +1458,7 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
                         break;
                     }
                 }
+                if (fRequestShutdown) break;
 
                 if (!LoadBlockIndex(chainparams)) {
                     strLoadError = _("Error loading block database");
@@ -1528,7 +1529,7 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
             fLoaded = true;
         } while(false);
 
-        if (!fLoaded) {
+        if (!fLoaded && !fRequestShutdown) {
             // first suggest a reindex
             if (!fReset) {
                 bool fRet = uiInterface.ThreadSafeQuestion(
