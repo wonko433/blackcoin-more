@@ -475,14 +475,14 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/janko33bd/bitcoin>";
-    const std::string URL_WEBSITE = "<http://blackcoin.co/>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/dopecoin-dev/dopecoin-core>";
+    const std::string URL_WEBSITE = "<https://dopecoin.com>";
     // todo: remove urls from translations on next change
     return FormatParagraph(strprintf(_("Copyright (C) 2009-%i The Bitcoin Core Developers"), COPYRIGHT_YEAR)) + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) 2014-%i The Blackcoin Core Developers"), COPYRIGHT_YEAR)) + "\n" +
+           FormatParagraph(strprintf(_("Copyright (C) 2014-%i The Dopecoin Core Developers"), COPYRIGHT_YEAR)) + "\n" +
            "\n" +
-           FormatParagraph(strprintf(_("Copyright (C) 2014-%i The Blackcoin Lore Developers"), COPYRIGHT_YEAR)) + "\n" +
-           "\n" +
-           FormatParagraph(strprintf(_("Please contribute if you find Blackcoin Lore useful. "
+           FormatParagraph(strprintf(_("Please contribute if you find Dopecoin Core useful. "
                        "Visit %s for further information about the software."),
                URL_WEBSITE)) +
            "\n" +
@@ -757,7 +757,7 @@ void InitLogging()
     fLogIPs = GetBoolArg("-logips", DEFAULT_LOGIPS);
 
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("Bitcoin version %s (%s)\n", FormatFullVersion(), CLIENT_DATE);
+    LogPrintf("Dopecoin Core version %s\n", FormatFullVersion());
 }
 
 /** Initialize bitcoin.
@@ -980,7 +980,7 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
 
     // Sanity check
     if (!InitSanityCheck())
-        return InitError(_("Initialization sanity check failed. Bitcoin Core is shutting down."));
+        return InitError(_("Initialization sanity check failed. Dopecoin Core is shutting down."));
 
     std::string strDataDir = GetDataDir().string();
 
@@ -992,9 +992,9 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
     try {
         static boost::interprocess::file_lock lock(pathLockFile.string().c_str());
         if (!lock.try_lock())
-            return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Bitcoin Core is probably already running."), strDataDir));
+            return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Dopecoin Core is probably already running."), strDataDir));
     } catch(const boost::interprocess::interprocess_exception& e) {
-        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Bitcoin Core is probably already running.") + " %s.", strDataDir, e.what()));
+        return InitError(strprintf(_("Cannot obtain a lock on data directory %s. Dopecoin Core is probably already running.") + " %s.", strDataDir, e.what()));
     }
 
 #ifndef WIN32

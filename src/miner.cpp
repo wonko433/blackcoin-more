@@ -77,14 +77,6 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
     return nNewTime - nOldTime;
 }
 
-// miner's coin base reward (POW)
-CAmount GetProofOfWorkReward()
-{
-    CAmount nSubsidy = 10000 * COIN;
-
-    return nSubsidy;
-}
-
 int64_t GetMaxTransactionTime(CBlock* pblock)
     {
         int64_t maxTransactionTime = 0;
@@ -306,7 +298,7 @@ CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& s
 
         // Compute final coinbase transaction.
 		if (!fProofOfStake) {
-			txNew.vout[0].nValue = nFees +  GetProofOfWorkSubsidy();
+			txNew.vout[0].nValue = nFees +  GetProofOfWorkSubsidy(nHeight);
 			txNew.vin[0].scriptSig = CScript() << nHeight << OP_0;
 			pblocktemplate->vTxFees[0] = -nFees;
 		}

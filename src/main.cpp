@@ -110,7 +110,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "BlackCoin Signed Message:\n";
+const string strMessageMagic = "Dopecoin Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -979,7 +979,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
 
     if (tx.IsCoinBase())
     {
-        if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 100)
+        if (tx.vin[0].scriptSig.size() < 1 || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
     }
     else
@@ -1677,14 +1677,20 @@ bool ReadFromDisk(CTransaction& tx, CDiskTxPos& txindex)
     return true;
 }
 
-CAmount GetProofOfWorkSubsidy()
+CAmount GetProofOfWorkSubsidy(int nHeight)
 {
-	return 10000 * COIN;
+    if (nHeight == 1) {
+        return 145000000 * COIN;
+    }
+    
+    else {
+        return 0 * COIN;
+    }
 }
 
 CAmount GetProofOfStakeSubsidy()
 {
-    return COIN * 3 / 2;
+    return COIN * 30;
 }
 
 bool IsInitialBlockDownload()
@@ -2202,8 +2208,12 @@ bool DisconnectBlock(const CBlock& block, CValidationState& state, const CBlockI
         // but it must be corrected before txout nversion ever influences a network rule.
         if (outsBlock.nVersion < 0)
             outs->nVersion = outsBlock.nVersion;
+
+        // Dopecoin: skip check
+        /*
         if (*outs != outsBlock)
             fClean = fClean && error("DisconnectBlock(): added transaction mismatch? database corrupted");
+        */
 
         // remove outputs
         outs->Clear();
@@ -2468,7 +2478,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nStakeModifier = ComputeStakeModifier(pindex->pprev, block.IsProofOfStake() ? block.vtx[1].vin[0].prevout.hash : pindex->GetBlockHash());
 
     // Check proof-of-stake
-    if (block.IsProofOfStake() && block.GetBlockTime() > chainparams.GetConsensus().nProtocolV3Time) {
+    if (block.IsProofOfStake()) {
          const COutPoint &prevout = block.vtx[1].vin[0].prevout;
          const CCoins *coins = view.AccessCoins(prevout.hash);
           if (!coins)
@@ -2543,18 +2553,19 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     // BlackCoin also requires low S in sigs
     flags |= SCRIPT_VERIFY_LOW_S;
 
-    // Start enforcing CHECKLOCKTIMEVERIFY, (BIP65) since protocol v3
-
-    if (block.GetBlockTime() > chainparams.GetConsensus().nProtocolV3Time) {
+    // Start enforcing CHECKLOCKTIMEVERIFY, (BIP65) since POS
+    if (block.IsProofOfStake()) {
         flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         flags |= SCRIPT_VERIFY_NULLDUMMY;
     }
 
+    /*
     // Start enforcing BIP68 (sequence locks) and BIP112 (CHECKSEQUENCEVERIFY) using versionbits logic.
-//    int nLockTimeFlags = 0;
-//    if (VersionBitsState(pindex->pprev, chainparams.GetConsensus(), Consensus::DEPLOYMENT_CSV, versionbitscache) == THRESHOLD_ACTIVE) {
-//        flags |= SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
-//    }
+    int nLockTimeFlags = 0;
+    if (VersionBitsState(pindex->pprev, chainparams.GetConsensus(), Consensus::DEPLOYMENT_CSV, versionbitscache) == THRESHOLD_ACTIVE) {
+        flags |= SCRIPT_VERIFY_CHECKSEQUENCEVERIFY;
+    }
+    */
 
     int64_t nTime2 = GetTimeMicros(); nTimeForks += nTime2 - nTime1;
     LogPrint("bench", "    - Fork checks: %.2fms [%.2fs]\n", 0.001 * (nTime2 - nTime1), nTimeForks * 0.000001);
@@ -2713,7 +2724,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime3 - nTime2), 0.001 * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * 0.000001);
 
     if (block.IsProofOfWork()) {
-            CAmount blockReward = nFees + GetProofOfWorkSubsidy();
+            CAmount blockReward = nFees + GetProofOfWorkSubsidy(pindex->nHeight);
             if (block.vtx[0].GetValueOut() > blockReward)
                 return state.DoS(100,
                                  error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
@@ -2721,7 +2732,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                                        REJECT_INVALID, "bad-cb-amount");
     }
 	
-    if (block.IsProofOfStake() && block.GetBlockTime() > chainparams.GetConsensus().nProtocolV3Time) {
+    if (block.IsProofOfStake()) {
             CAmount blockReward = nFees + GetProofOfStakeSubsidy();
             if (nActualStakeReward > blockReward)
                 return state.DoS(100,
@@ -3434,15 +3445,13 @@ bool GetCoinAge(const CTransaction& tx, CBlockTreeDB& txdb, const CBlockIndex* p
 	        if (tx.nTime < txPrev.nTime)
 	            return false;  // Transaction timestamp violation
 
-	        if (Params().GetConsensus().IsProtocolV3(tx.nTime))
+	        int nSpendDepth;
+	        if (IsConfirmedInNPrevBlocks(txindex, pindexPrev, Params().GetConsensus().nStakeMinConfirmations - 1, nSpendDepth))
 	        {
-	            int nSpendDepth;
-	            if (IsConfirmedInNPrevBlocks(txindex, pindexPrev, Params().GetConsensus().nStakeMinConfirmations - 1, nSpendDepth))
-	            {
-	                LogPrint("coinage", "coin age skip nSpendDepth=%d\n", nSpendDepth + 1);
-	                continue; // only count coins meeting min confirmations requirement
-	            }
+	            LogPrint("coinage", "coin age skip nSpendDepth=%d\n", nSpendDepth + 1);
+	            continue; // only count coins meeting min confirmations requirement
 	        }
+            
 	        else
 	        {
 	            // Read block header
@@ -3682,9 +3691,11 @@ static bool CheckBlockSignature(const CBlock& block, const uint256& hash)
 
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
+    /*
 	if (block.nVersion < 7 && Params().GetConsensus().IsProtocolV2(block.GetBlockTime()))
 	        return state.Invalid(error("%s: rejected nVersion=%d block", __func__, block.nVersion),
 	REJECT_OBSOLETE, "bad-version");
+    */
 
     // Check proof of work matches claimed amount
     if (fCheckPOW && !CheckProofOfWork(block.GetPoWHash(), block.nBits, Params().GetConsensus()))
@@ -3853,7 +3864,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
 {
     const int nHeight = pindexPrev == NULL ? 0 : pindexPrev->nHeight + 1;
     const Consensus::Params& consensusParams = Params().GetConsensus();
-
+    
     if (block.IsProofOfWork() && nHeight > consensusParams.nLastPOWBlock)
     	return state.DoS(100, error("%s : reject proof-of-work at height %d", __func__, nHeight), REJECT_INVALID, "bad-pow-height");
 

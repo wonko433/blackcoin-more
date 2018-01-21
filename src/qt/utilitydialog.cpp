@@ -33,7 +33,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
 {
     ui->setupUi(this);
 
-    QString version = tr("Bitcoin Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
+    QString version = tr("Dopecoin Core") + " " + tr("version") + " " + QString::fromStdString(FormatFullVersion());
     /* On x86 add a bit specifier to the version so that users can distinguish between
      * 32 and 64 bit builds. On other architectures, 32/64 bit may be more ambigious.
      */
@@ -45,7 +45,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
 
     if (about)
     {
-        setWindowTitle(tr("About Bitcoin Core"));
+        setWindowTitle(tr("About Dopecoin Core"));
 
         /// HTML-format the license message from the core
         QString licenseInfo = QString::fromStdString(LicenseInfo());
@@ -55,7 +55,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
         uri.setMinimal(true); // use non-greedy matching
         licenseInfoHTML.replace(uri, "<a href=\"\\1\">\\1</a>");
         // Replace newlines with HTML breaks
-        licenseInfoHTML.replace("\n\n", "<br><br>");
+        licenseInfoHTML.replace("\n", "<br>");
 
         ui->aboutMessage->setTextFormat(Qt::RichText);
         ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -66,7 +66,7 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
     } else {
         setWindowTitle(tr("Command-line options"));
         QString header = tr("Usage:") + "\n" +
-            "  Lore-qt [" + tr("command-line options") + "]                     " + "\n";
+            "  dopecoin-qt [" + tr("command-line options") + "]                     " + "\n";
         QTextCursor cursor(ui->helpMessage->document());
         cursor.insertText(version);
         cursor.insertBlock();
@@ -162,7 +162,7 @@ ShutdownWindow::ShutdownWindow(QWidget *parent, Qt::WindowFlags f):
 {
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(new QLabel(
-        tr("Bitcoin Core is shutting down...") + "<br /><br />" +
+        tr("Dopecoin Core is shutting down...") + "<br /><br />" +
         tr("Do not shut down the computer until this window disappears.")));
     setLayout(layout);
 }

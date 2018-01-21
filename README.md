@@ -1,82 +1,54 @@
-Bitcoin Core integration/staging tree
+Dopecoin Core
 =====================================
 
-[![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
+https://dopecoin.com
 
-https://bitcoincore.org
-
-What is Bitcoin?
+What is Dopecoin?
 ----------------
 
-Bitcoin is an experimental new digital currency that enables instant payments to
-anyone, anywhere in the world. Bitcoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. Bitcoin Core is the name of open source
-software which enables the use of this currency.
+Dopecoin is a digital currency, similar to Bitcoin, that was developed for marijuana enthusiasts.
+The currency was created in January 2014 and relaunched as DopeCoinGold in January 2017.
+
+Dopecoin Core is the name of open source software which enables the use of this currency.
+It is based on Bitcoin Core 0.12.1 with some features backported from Bitcoin Core 0.13.x and 0.14.0.
+
+Our mission is to provide this billion dollar industry with alternative payment and advertising resources.
+Thank you for joining us on the Dopecoin adventure!
 
 For more information, as well as an immediately useable, binary version of
-the Bitcoin Core software, see https://bitcoin.org/en/download, or read the
-[original whitepaper](https://bitcoincore.org/bitcoin.pdf).
+the Dopecoin Core software, see [website](https://dopecoin.com) or visit [forum](https://bitcointalk.org/index.php?topic=467641.0).
 
 License
 -------
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Dopecoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
-The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
-regularly to indicate new official, stable release versions of Bitcoin Core.
+The `master` branch is regularly built and tested and is meant to be stable. Development is normally done in separate branches.
+[Tags](https://github.com/dopecoin-dev/dopecoin-core/tags) are created regularly to indicate new official, stable release versions of Dopecoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The developer [mailing list](https://lists.linuxfoundation.org/mailman/listinfo/bitcoin-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
+Coin Specifications
+----------------
 
-Developer IRC can be found on Freenode at #bitcoin-core-dev.
+- Total: 200,000,000 DOPE
+- Algorithm: POSV3
+- POS reward: 30 DOPE
+- Block time: 90 seconds
+- P2P port: 40420
+- RPC port: 40421
 
-Testing
--------
+Builds
+----------------
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+v.4.1.0.0:
 
-### Automated Testing
-
-Developers are strongly encouraged to write [unit tests](/doc/unit-tests.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled in configure) with: `make check`
-
-There are also [regression and integration tests](/qa) of the RPC interface, written
-in Python, that are run automatically on the build server.
-These tests can be run with: `qa/pull-tester/rpc-tests.py`
-
-The Travis CI system makes sure that every pull request is built for Windows
-and Linux, OSX, and that unit and sanity tests are automatically run.
-
-### Manual Quality Assurance (QA) Testing
-
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
-
-Translations
-------------
-
-Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://www.transifex.com/projects/p/bitcoin/).
-
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
-
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
-
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/bitcoin-translators).
+- Rebased to Bitcoin Core 0.12.1
+- BIP32 HD wallet support
+- Added autocomplete to Dopecoin-Qt console window
+- Added toggle for unmasking password
+- Block hash changed back to SHA256D

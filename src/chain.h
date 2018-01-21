@@ -259,10 +259,11 @@ private:
 public:
     int64_t GetPastTimeLimit() const
     {
-        if (Params().GetConsensus().IsProtocolV2(GetBlockTime()))
+        /* if (Params().GetConsensus().IsProtocolV2(GetBlockTime()))
             return GetBlockTime();
         else
-            return GetMedianTimePast();
+            return GetMedianTimePast(); */
+        return GetBlockTime();
     }
 
     bool IsProofOfWork() const

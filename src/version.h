@@ -9,34 +9,34 @@
  * network protocol versioning
  */
 
-static const int PROTOCOL_VERSION = 70012;
+static const int PROTOCOL_VERSION = 40002;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
 
 //! In this version, 'getheaders' was introduced.
-static const int GETHEADERS_VERSION = 31800;
+static const int GETHEADERS_VERSION = 30000;
 
 //! demand canonical block signatures starting from this version
-static const int CANONICAL_BLOCK_SIG_VERSION = 60018;
+static const int CANONICAL_BLOCK_SIG_VERSION = 40001;
 
 //! disconnect from peers older than this proto version
 static const int MIN_PEER_PROTO_VERSION = CANONICAL_BLOCK_SIG_VERSION;
 
 //! nTime field added to CAddress, starting with this version;
 //! if possible, avoid requesting addresses nodes older than this
-static const int CADDR_TIME_VERSION = 31402;
+static const int CADDR_TIME_VERSION = 30000;
 
 //! BIP 0031, pong message, is enabled for all versions AFTER this one
-static const int BIP0031_VERSION = 60000;
+static const int BIP0031_VERSION = 30000;
 
 //! "mempool" command, enhanced "getdata" behavior starts with this version
-static const int MEMPOOL_GD_VERSION = 60002;
+static const int MEMPOOL_GD_VERSION = 30000;
 
 //! "filter*" commands are disabled without NODE_BLOOM after and including this version
-static const int NO_BLOOM_VERSION = 70011;
+static const int NO_BLOOM_VERSION = 40002;
 
 //! "sendheaders" command and announcing blocks with headers starts with this version
-static const int SENDHEADERS_VERSION = 70012;
+static const int SENDHEADERS_VERSION = 40002;
 
 #endif // BITCOIN_VERSION_H

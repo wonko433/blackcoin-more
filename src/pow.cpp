@@ -17,10 +17,7 @@ static arith_uint256 GetTargetLimit(int64_t nTime, bool fProofOfStake, const Con
     uint256 nLimit;
 
     if (fProofOfStake) {
-        if (params.IsProtocolV2(nTime))
-            nLimit = params.posLimitV2;
-        else
-            nLimit = params.posLimit;
+        nLimit = params.posLimit;
     } else {
         nLimit = params.powLimit;
     }
@@ -30,8 +27,13 @@ static arith_uint256 GetTargetLimit(int64_t nTime, bool fProofOfStake, const Con
 
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, bool fProofOfStake, const Consensus::Params& params)
 {
-	unsigned int nTargetLimit = UintToArith256(params.powLimit).GetCompact();
-
+    unsigned int nTargetLimit;
+    if (fProofOfStake) {
+        nTargetLimit = UintToArith256(params.posLimit).GetCompact();
+    } else {
+        nTargetLimit = UintToArith256(params.powLimit).GetCompact();
+    }
+    
 	    // Genesis block
 	    if (pindexLast == NULL)
 	        return nTargetLimit;
@@ -52,13 +54,11 @@ unsigned int CalculateNextTargetRequired(const CBlockIndex* pindexLast, int64_t 
 	    	return pindexLast->nBits;
 
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing = params.IsProtocolV2(pindexLast->GetBlockTime()) ? params.nTargetSpacing : params.nTargetSpacingV1;
+    int64_t nTargetSpacing = params.nTargetSpacing;
 
     // Limit adjustment step
-    if (pindexLast->GetBlockTime() > params.nProtocolV1RetargetingFixedTime && nActualSpacing < 0)
-        nActualSpacing = nTargetSpacing;
-    if (pindexLast->GetBlockTime() > params.nProtocolV3Time && nActualSpacing > nTargetSpacing*10)
-        nActualSpacing = nTargetSpacing*10;
+    if (nActualSpacing > nTargetSpacing * 10)
+        nActualSpacing = nTargetSpacing * 10;
 
     // retarget with exponential moving toward target spacing
     const arith_uint256 bnTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), pindexLast->IsProofOfStake(), params);
@@ -87,7 +87,8 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 
 
     // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget)
+    // Dopecoin: skip genesis block check
+    if (UintToArith256(hash) > bnTarget && hash != params.hashGenesisBlock)
         return error("CheckProofOfWork(): hash doesn't match nBits");
 
     return true;

@@ -55,6 +55,11 @@
         <file alias="staking_on">res/icons/staking_on.png</file>
         <file alias="staking_off">res/icons/staking_off.png</file>
     </qresource>
+    <qresource prefix="/images">
+        <file alias="banner">res/images/banner.png</file>
+        <file alias="splash">res/images/splash.png</file>
+        <file alias="wallet_bgcoin">res/images/wallet_bgcoin.png</file>
+    </qresource>
     <qresource prefix="/movies">
         <file alias="spinner-000">res/movies/spinner-000.png</file>
         <file alias="spinner-001">res/movies/spinner-001.png</file>

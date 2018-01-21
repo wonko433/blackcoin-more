@@ -13,7 +13,7 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-	if (nVersion > 6)
+	if (nVersion > 4)
 	        return SerializeHash(*this);
 	    return GetPoWHash();
 }

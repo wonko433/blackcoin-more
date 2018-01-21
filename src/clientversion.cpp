@@ -13,12 +13,12 @@
  * for both bitcoind and bitcoin-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Satoshi");
+const std::string CLIENT_NAME("Dopecoin Core");
 
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX ""
+#define CLIENT_VERSION_SUFFIX "-dope"
 
 
 /**
@@ -42,10 +42,11 @@ const std::string CLIENT_NAME("Satoshi");
 #include "build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. $Format:%n#define GIT_ARCHIVE 1$
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
+#define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "$Format:%h$"
-#define GIT_COMMIT_DATE "$Format:%cD$"
+#define GIT_COMMIT_ID "49cace1f9d2"
+#define GIT_COMMIT_DATE "Sat, 17 Jun 2017 23:23:53 +0200"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \
@@ -67,16 +68,7 @@ const std::string CLIENT_NAME("Satoshi");
 #endif
 #endif
 
-#ifndef BUILD_DATE
-#ifdef GIT_COMMIT_DATE
-#define BUILD_DATE GIT_COMMIT_DATE
-#else
-#define BUILD_DATE __DATE__ ", " __TIME__
-#endif
-#endif
-
 const std::string CLIENT_BUILD(BUILD_DESC CLIENT_VERSION_SUFFIX);
-const std::string CLIENT_DATE(BUILD_DATE);
 
 static std::string FormatVersion(int nVersion)
 {
