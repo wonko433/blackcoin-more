@@ -841,6 +841,7 @@ public:
 
     /* Set the current HD master key (will reset the chain child index counters) */
     bool SetHDMasterKey(const CPubKey& key);
+    static const bool DEFAULT_STAKE_CACHE = true;
 };
 
 /** A key allocated from the key pool. */
@@ -897,7 +898,6 @@ public:
         READWRITE(vchPubKey);
     }
 };
-
 
 
 /** 
@@ -980,5 +980,5 @@ public:
 private:
     std::vector<char> _ssExtra;
 };
-bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, int64_t nTime, const COutPoint& prevout, int64_t* pBlockTime = NULL);
+
 #endif // BITCOIN_WALLET_WALLET_H
