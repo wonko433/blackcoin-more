@@ -3067,7 +3067,7 @@ std::map<CTxDestination, CAmount> CWallet::GetAddressBalances()
             if (!CheckFinalTx(*pcoin) || !pcoin->IsTrusted())
                 continue;
 
-            if ((pcoin->IsCoinBase() || pcoin->IsCoinStake()) && pcoin->GetBlocksToMaturity() > 0)
+            if (pcoin->IsCoinBase() && pcoin->GetBlocksToMaturity() > 0)
                 continue;
 
             int nDepth = pcoin->GetDepthInMainChain();
