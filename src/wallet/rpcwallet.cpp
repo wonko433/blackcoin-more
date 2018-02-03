@@ -399,6 +399,12 @@ static void SendMoney(const CTxDestination &address, CAmount nValue, bool fSubtr
     if (nValue > curBalance)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
 
+    if (fWalletUnlockStakingOnly)
+    {
+            string strError = _("Error: Wallet unlocked for staking only, unable to create transaction.");
+            throw JSONRPCError(RPC_WALLET_ERROR, strError);
+    }
+
     // Parse Bitcoin address
     CScript scriptPubKey = GetScriptForDestination(address);
 
@@ -1926,8 +1932,8 @@ UniValue walletpassphrase(const UniValue& params, bool fHelp)
 {
     if (!EnsureWalletIsAvailable(fHelp))
         return NullUniValue;
-    
-    if (pwalletMain->IsCrypted() && (fHelp || params.size() != 2))
+
+    if (pwalletMain->IsCrypted() && (fHelp || params.size() < 2 || params.size() > 3))
         throw runtime_error(
             "walletpassphrase \"passphrase\" timeout\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
