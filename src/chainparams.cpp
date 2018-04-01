@@ -151,6 +151,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x0e58d4b3215bb1889d5a027d40269a167b93c68e9ae28961de4717558be92d38"));
 
         vSeeds.push_back(CDNSSeedData("dopecoin.com", "dnsseed.dopecoin.com"));
+        vSeeds.push_back(CDNSSeedData("188.166.89.189", "188.166.89.189"));
         vSeeds.push_back(CDNSSeedData("37.120.190.76", "37.120.190.76"));
         vSeeds.push_back(CDNSSeedData("37.120.186.85", "37.120.186.85"));
         vSeeds.push_back(CDNSSeedData("188.68.52.172", "188.68.52.172"));
