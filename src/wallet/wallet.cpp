@@ -47,7 +47,7 @@ const char * DEFAULT_WALLET_DAT = "wallet.dat";
 const uint32_t BIP32_HARDENED_KEY_LIMIT = 0x80000000;
 
 static int64_t GetStakeCombineThreshold() { return 5000 * COIN; }
-static int64_t GetStakeSplitThreshold() { return 1 * GetStakeCombineThreshold(); }
+static int64_t GetStakeSplitThreshold() { return 2 * GetStakeCombineThreshold(); }
 
 /**
  * Fees smaller than this (in satoshi) are considered zero fee (for transaction creation)
