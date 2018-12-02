@@ -363,7 +363,6 @@ static void SendMoney(const CTxDestination &address, CAmount nValue, bool fSubtr
 
     if (fWalletUnlockStakingOnly)
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Wallet unlocked for staking only, unable to create transaction");
-    }
 
     // Parse Bitcoin address
     CScript scriptPubKey = GetScriptForDestination(address);

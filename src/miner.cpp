@@ -604,7 +604,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
         }
 
         if (!regtestMode) {
-            while (vNodes.empty() || IsInitialBlockDownload())
+            while (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload())
             {
                 nLastCoinStakeSearchInterval = 0;
                 fTryToSync = true;
@@ -613,7 +613,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
             if (fTryToSync)
             {
                 fTryToSync = false;
-                if (vNodes.size() < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60)
+                if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60)
                 {
                     MilliSleep(60000);
                     continue;
