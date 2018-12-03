@@ -1808,7 +1808,7 @@ bool CConnman::OpenNetworkConnection(const CAddress& addrConnect, bool fCountFai
         LOCK(cs_vNodes);
         vNodes.push_back(pnode);
     }
-    GetNodeSignals().InitializeNode(pnode, *this);
+    GetNodeSignals().InitializeNode(pnode->GetId(), pnode);
 
     return true;
 }
