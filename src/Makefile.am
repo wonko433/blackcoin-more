@@ -107,6 +107,7 @@ BITCOIN_CORE_H = \
   core_memusage.h \
   dstencode.h \
   hash.h \
+  cuckoocache.h \
   httprpc.h \
   httpserver.h \
   indirectmap.h \
