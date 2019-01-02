@@ -141,7 +141,7 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, const CTransaction& tx, unsigned
     const CTxIn& txin = tx.vin[0];
 
     // First try finding the previous transaction in database
-    CTransaction txPrev;
+    CMutableTransaction txPrev;
     CDiskTxPos txindex;
 
     if (!ReadFromDisk(txPrev, txindex, *pblocktree, txin.prevout))

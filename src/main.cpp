@@ -1695,7 +1695,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
     return true;
 }
 
-bool ReadFromDisk(CTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& txdb, COutPoint prevout)
+bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& txdb, COutPoint prevout)
 {
     if (!txdb.ReadTxIndex(prevout.hash, txindex)){
         LogPrintf("no tx index %s \n", prevout.hash.ToString());
@@ -1710,7 +1710,7 @@ bool ReadFromDisk(CTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& txdb, COu
     return true;
 }
 
-bool ReadFromDisk(CTransaction& tx, CDiskTxPos& txindex)
+bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex)
 {
     CAutoFile filein(OpenBlockFile(txindex, true), SER_DISK, CLIENT_VERSION);
     if (filein.IsNull())
@@ -2377,11 +2377,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                         REJECT_INVALID, "bad-diffbits");
 
     // Set proof-of-stake hash modifier
-    pindex->nStakeModifier = ComputeStakeModifier(pindex->pprev, block.IsProofOfStake() ? block.vtx[1].vin[0].prevout.hash : block.GetHash());
+    pindex->nStakeModifier = ComputeStakeModifier(pindex->pprev, block.IsProofOfStake() ? block.vtx[1]->vin[0].prevout.hash : block.GetHash());
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && block.GetBlockTime() > chainparams.GetConsensus().nProtocolV3Time) {
-         const COutPoint &prevout = block.vtx[1].vin[0].prevout;
+         const COutPoint &prevout = block.vtx[1]->vin[0].prevout;
          const CCoins *coins = view.AccessCoins(prevout.hash);
           if (!coins)
               return state.DoS(100, error("ConnectBlock(): kernel input unavailable"),
@@ -2393,7 +2393,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                   error("ConnectBlock(): tried to stake at depth %d", pindex->nHeight - coins->nHeight),
                     REJECT_INVALID, "bad-cs-premature");
 
-         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.vtx[1].nTime))
+         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.vtx[1]->nTime))
               return state.DoS(100, error("ConnectBlock(): proof-of-stake hash doesn't match nBits"),
                                  REJECT_INVALID, "bad-cs-proofhash");
     }
@@ -3426,7 +3426,7 @@ static bool CheckBlockSignature(const CBlock& block)
     vector<vector<unsigned char> > vSolutions;
     txnouttype whichType;
 
-    const CTxOut& txout = block.vtx[1].vout[1];
+    const CTxOut& txout = block.vtx[1]->vout[1];
 
     if (!Solver(txout.scriptPubKey, whichType, vSolutions))
         return false;
@@ -3511,24 +3511,24 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
 
     // Check coinbase timestamp
-    if (block.GetBlockTime() > FutureDrift(block.vtx[0].nTime))
+    if (block.GetBlockTime() > FutureDrift(block.vtx[0]->nTime))
             return state.DoS(50, false, REJECT_INVALID, "bad-cb-time", false, "coinbase timestamp is too early");
 
     // Check coinstake timestamp
-    if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.vtx[1].nTime))
+    if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.vtx[1]->nTime))
             return state.DoS(50, false, REJECT_INVALID, "bad-cs-time", false, "coinstake timestamp violation");
 
     if (block.IsProofOfStake()) {
             // Coinbase output must be empty if proof-of-stake block
-            if (block.vtx[0].vout.size() != 1 || !block.vtx[0].vout[0].IsEmpty())
+            if (block.vtx[0]->vout.size() != 1 || !block.vtx[0]->vout[0].IsEmpty())
                 return state.DoS(100, false, REJECT_INVALID, "bad-cb-not-empty", false, "coinbase output not empty for proof-of-stake block");
 
             // Second transaction must be coinstake, the rest must not be
-            if (block.vtx.size() < 2 || !block.vtx[1].IsCoinStake())
+            if (block.vtx.size() < 2 || !block.vtx[1]->IsCoinStake())
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-missing", false, "second tx is not coinstake");
 
             for (unsigned int i = 2; i < block.vtx.size(); i++)
-                if (block.vtx[i].IsCoinStake())
+                if (block.vtx[i]->IsCoinStake())
                 return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
 
     }
@@ -3542,18 +3542,18 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
         return state.DoS(100, false, REJECT_INVALID, "bad-block-signature", false, "bad proof-of-stake block signature");
 
     // Check transactions
-    for (const auto& tx : block.vtx)
+    for (const auto& tx : block.vtx) {
         if (!CheckTransaction(*tx, state))
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                  strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(), state.GetDebugMessage()));
 
         // check transaction timestamp
-        if (block.GetBlockTime() < (int64_t)tx.nTime)
+        if (block.GetBlockTime() < (int64_t)tx->nTime)
            return state.DoS(100, false, REJECT_INVALID, "bad-tx-time", false, "block timestamp earlier than transaction timestamp");
     }
 
     unsigned int nSigOps = 0;
-    BOOST_FOREACH(const CTransaction& tx, block.vtx)
+    for (const auto& tx : block.vtx)
     {
         nSigOps += GetSigOpCountWithoutP2SH(*tx);
     }
@@ -5322,7 +5322,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             // We send this to non-NODE NETWORK peers as well, because
             // they may wish to request compact blocks from us
             bool fAnnounceUsingCMPCTBLOCK = false;
-            nCMPCTBLOCKVersion = 1;
+            uint64_t nCMPCTBLOCKVersion = 1;
             connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::SENDCMPCT, fAnnounceUsingCMPCTBLOCK, nCMPCTBLOCKVersion));
         }
     }
@@ -5919,8 +5919,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     // TODO: don't ignore failures
                     return true;
                 }
-                std::vector<CTransaction> dummy;
-                status = tempBlock.FillBlock(block, dummy);
+                std::vector<CTransactionRef> dummy;
+                status = tempBlock.FillBlock(*pblock, dummy);
                 if (status == READ_STATUS_OK) {
                     fBlockReconstructed = true;
                 }
@@ -5956,8 +5956,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 }
             }
             bool fNewBlock = false;
-            CValidationState state;
-            ProcessNewBlock(state, chainparams, &block, true, NULL, &fNewBlock);
+            ProcessNewBlock(chainparams, &block, true, NULL, &fNewBlock);
             // TODO: could send reject message if block is invalid?
         }
     }
