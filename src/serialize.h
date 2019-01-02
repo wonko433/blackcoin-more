@@ -13,6 +13,7 @@
 #include <ios>
 #include <limits>
 #include <map>
+#include <memory>
 #include <set>
 #include <stdint.h>
 #include <string>
