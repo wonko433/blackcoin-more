@@ -193,7 +193,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTime, co
     auto it=cache.find(prevout);
 
     if(it == cache.end()) {
-        CTransaction txPrev;
+        CMutableTransaction txPrev;
         CDiskTxPos txindex;
         if (!ReadFromDisk(txPrev, txindex, *pblocktree, prevout))
             return false;
@@ -227,7 +227,7 @@ void CacheKernel(std::map<COutPoint, CStakeCache>& cache, const COutPoint& prevo
         //already in cache
         return;
     }
-    CTransaction txPrev;
+    CMutableTransaction txPrev;
     CDiskTxPos txindex;
     if (!ReadFromDisk(txPrev, txindex, *pblocktree, prevout))
         return;

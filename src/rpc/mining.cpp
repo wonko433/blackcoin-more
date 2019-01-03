@@ -896,7 +896,9 @@ UniValue checkkernel(const UniValue& params, bool fHelp)
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
         CBlock *pblock = &pblocktemplate->block;
-        pblock->nTime = pblock->vtx[0].nTime = nTime;
+        CMutableTransaction coinstakeTx(*pblock->vtx[0]);
+        pblock->nTime = coinstakeTx.nTime = nTime;
+        pblock->vtx[0] = MakeTransactionRef(std::move(coinstakeTx));
 
         CDataStream ss(SER_DISK, PROTOCOL_VERSION);
         ss << *pblock;
