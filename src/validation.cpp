@@ -3081,7 +3081,7 @@ bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
                 // we have to make sure that we have no future timestamps in
                 // our transactions set
                 for (vector<CTransaction>::iterator it = block.vtx.begin(); it != block.vtx.end();)
-                    if (it->nTime > block.nTime) { it = block.vtx.erase(it); } else { ++it; }
+                    if (it->get()->nTime > block.nTime) { it = block.vtx.erase(it); } else { ++it; }
 
                 block.vtx.insert(block.vtx.begin() + 1, txCoinStake);
 
