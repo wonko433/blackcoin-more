@@ -167,7 +167,7 @@ bool AppInit(int argc, char* argv[])
 #endif // HAVE_DECL_DAEMON
         }
 
-        fRet = AppInitMain(threadGroup, scheduler);
+        fRet = AppInitMain(config, threadGroup, scheduler);
     }
     catch (const std::exception& e) {
         PrintExceptionContinue(&e, "AppInit()");

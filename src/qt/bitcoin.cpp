@@ -284,7 +284,7 @@ void BitcoinCore::initialize(Config *cfg)
             Q_EMIT initializeResult(false);
             return;
         }
-        int rv = AppInitMain(threadGroup, scheduler);
+        int rv = AppInitMain(config, threadGroup, scheduler);
         Q_EMIT initializeResult(rv);
     } catch (const std::exception& e) {
         handleRunawayException(&e);
