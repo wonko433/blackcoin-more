@@ -413,8 +413,8 @@ UniValue importpubkey(const UniValue& params, bool fHelp)
 
     if (!IsHex(params[0].get_str()))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Pubkey must be a hex string");
-    std::vector<unsigned char> data(ParseHex(params[0].get_str()));
-    CPubKey pubKey(data.begin(), data.end());
+    std::vector<unsigned char> vData(ParseHex(params[0].get_str()));
+    CPubKey pubKey(vData.begin(), vData.end());
     if (!pubKey.IsFullyValid())
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Pubkey is not a valid public key");
 
