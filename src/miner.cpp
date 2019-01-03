@@ -89,7 +89,7 @@ CAmount GetProofOfWorkReward()
 int64_t GetMaxTransactionTime(CBlock* pblock)
 {
     int64_t maxTransactionTime = 0;
-    for (std::vector<CTransaction>::const_iterator it(pblock->vtx.begin()); it != pblock->vtx.end(); ++it)
+    for (std::vector<CTransactionRef>::const_iterator it(pblock->vtx.begin()); it != pblock->vtx.end(); ++it)
         maxTransactionTime = std::max(maxTransactionTime, (int64_t)it->get()->nTime);
     return maxTransactionTime;
 }
