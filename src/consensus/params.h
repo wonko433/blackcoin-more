@@ -76,6 +76,7 @@ struct Params {
     int nStakeMinConfirmations;
     unsigned int nStakeMinAge;
     uint256 nMinimumChainWork;
+    uint256 defaultAssumeValid;
 };
 } // namespace Consensus
 

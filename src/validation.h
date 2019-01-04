@@ -185,6 +185,9 @@ extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
 
+/** Block hash whose ancestors we will assume to have valid scripts without checking them. */
+extern uint256 hashAssumeValid;
+
 /** Best header we've seen so far (used for getheaders queries' starting points). */
 extern CBlockIndex *pindexBestHeader;
 
@@ -469,7 +472,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
  *  By "context", we mean only the previous block headers, but not the UTXO
  *  set; UTXO-related validity checks are done in ConnectBlock(). */
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, CBlockIndex *pindexPrev);
-bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIndex *pindexPrev);
+bool ContextualCheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, CBlockIndex *pindexPrev);
 
 /** Apply the effects of this block (with given index) on the UTXO set represented by coins.
  *  Validity checks that depend on the UTXO set are also done; ConnectBlock()
