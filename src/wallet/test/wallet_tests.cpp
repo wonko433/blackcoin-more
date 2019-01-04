@@ -9,10 +9,16 @@
 #include <utility>
 #include <vector>
 
+#include "rpc/server.h"
+#include "test/test_bitcoin.h"
+#include "validation.h"
 #include "wallet/test/wallet_test_fixture.h"
 
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
+#include <univalue.h>
+
+extern UniValue importmulti(const JSONRPCRequest& request);
 
 // how many times to run all the tests to have a chance to catch errors that only show up with particular random shuffles
 #define RUN_TESTS 100
@@ -44,7 +50,7 @@ static void add_coin(const CAmount& nValue, int nAge = 6*24, bool fIsFromMe = fa
         // so stop vin being empty, and cache a non-zero Debit to fake out IsFromMe()
         tx.vin.resize(1);
     }
-    CWalletTx* wtx = new CWalletTx(&wallet, tx);
+    CWalletTx* wtx = new CWalletTx(&wallet, MakeTransactionRef(std::move(tx)));
     if (fIsFromMe)
     {
         wtx->fDebitCached = true;
@@ -219,7 +225,7 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
         // run the 'mtgox' test (see http://blockexplorer.com/tx/29a3efd3ef04f9153d47a990bd7b048a4b2d213daaa5fb8ed670fb85f13bdbcf)
         // they tried to consolidate 10 50k coins into one 500k coin, and ended up with 50k in change
         empty_wallet();
-        for (int i = 0; i < 20; i++)
+        for (int j = 0; j < 20; j++)
             add_coin(50000 * COIN);
 
         BOOST_CHECK( wallet.SelectCoinsMinConf(500000 * COIN, 1, 1, 0, vCoins, setCoinsRet, nValueRet));
@@ -298,7 +304,7 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
             BOOST_CHECK(!equal_sets(setCoinsRet, setCoinsRet2));
 
             int fails = 0;
-            for (int i = 0; i < RANDOM_REPEATS; i++)
+            for (int j = 0; j < RANDOM_REPEATS; j++)
             {
                 // selecting 1 from 100 identical coins depends on the shuffle; this test will fail 1% of the time
                 // run the test RANDOM_REPEATS times and only complain if all of them fail
@@ -319,7 +325,7 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
             add_coin(25 * CENT);
 
             fails = 0;
-            for (int i = 0; i < RANDOM_REPEATS; i++)
+            for (int j = 0; j < RANDOM_REPEATS; j++)
             {
                 // selecting 1 from 100 identical coins depends on the shuffle; this test will fail 1% of the time
                 // run the test RANDOM_REPEATS times and only complain if all of them fail
@@ -351,6 +357,60 @@ BOOST_AUTO_TEST_CASE(ApproximateBestSubset)
     BOOST_CHECK(wallet.SelectCoinsMinConf(1003 * COIN, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
     BOOST_CHECK_EQUAL(nValueRet, 1003 * COIN);
     BOOST_CHECK_EQUAL(setCoinsRet.size(), 2U);
+}
+
+BOOST_FIXTURE_TEST_CASE(rescan, TestChain100Setup)
+{
+    LOCK(cs_main);
+
+    // Cap last block file size, and mine new block in a new block file.
+    CBlockIndex* oldTip = chainActive.Tip();
+    GetBlockFileInfo(oldTip->GetBlockPos().nFile)->nSize = MAX_BLOCKFILE_SIZE;
+    CreateAndProcessBlock({}, GetScriptForRawPubKey(coinbaseKey.GetPubKey()));
+    CBlockIndex* newTip = chainActive.Tip();
+
+    // Verify ScanForWalletTransactions picks up transactions in both the old
+    // and new block files.
+    {
+        CWallet wallet;
+        LOCK(wallet.cs_wallet);
+        wallet.AddKeyPubKey(coinbaseKey, coinbaseKey.GetPubKey());
+        BOOST_CHECK_EQUAL(oldTip, wallet.ScanForWalletTransactions(oldTip));
+        BOOST_CHECK_EQUAL(wallet.GetImmatureBalance(), 100 * COIN);
+    }
+
+    // Prune the older block file.
+    PruneOneBlockFile(oldTip->GetBlockPos().nFile);
+    UnlinkPrunedFiles({oldTip->GetBlockPos().nFile});
+
+    // Verify ScanForWalletTransactions only picks transactions in the new block
+    // file.
+    {
+        CWallet wallet;
+        LOCK(wallet.cs_wallet);
+        wallet.AddKeyPubKey(coinbaseKey, coinbaseKey.GetPubKey());
+        BOOST_CHECK_EQUAL(newTip, wallet.ScanForWalletTransactions(oldTip));
+        BOOST_CHECK_EQUAL(wallet.GetImmatureBalance(), 50 * COIN);
+    }
+
+    {
+        CWallet wallet;
+        ::pwalletMain = &wallet;
+        UniValue key;
+        key.setObject();
+        key.pushKV("scriptPubKey", HexStr(GetScriptForRawPubKey(coinbaseKey.GetPubKey())));
+        key.pushKV("timestamp", 0);
+        key.pushKV("internal", UniValue(true));
+        UniValue keys;
+        keys.setArray();
+        keys.push_back(key);
+        JSONRPCRequest request;
+        request.params.setArray();
+        request.params.push_back(keys);
+
+        UniValue response = importmulti(request);
+        BOOST_CHECK_EQUAL(response.write(), strprintf("[{\"success\":false,\"error\":{\"code\":-1,\"message\":\"Failed to rescan before time %d, transactions may be missing.\"}}]", newTip->GetBlockTimeMax()));
+    }
 }
 
 BOOST_AUTO_TEST_SUITE_END()

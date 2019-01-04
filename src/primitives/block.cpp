@@ -38,7 +38,7 @@ std::string CBlock::ToString() const
         HexStr(vchBlockSig.begin(), vchBlockSig.end()));
     for (unsigned int i = 0; i < vtx.size(); i++)
     {
-        s << "  " << vtx[i].ToString() << "\n";
+        s << "  " << vtx[i]->ToString() << "\n";
     }
     return s.str();
 }

@@ -7,7 +7,7 @@
 
 #include "policy/policy.h"
 
-#include "main.h"
+#include "validation.h"
 #include "tinyformat.h"
 #include "util.h"
 #include "utilstrencodings.h"
@@ -55,10 +55,10 @@ bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
 
 int64_t FutureDrift(int64_t nTime)
 {
-	// loose policy for FutureDrift in regtest mode
-	if (Params().GetConsensus().fPowNoRetargeting && chainActive.Height() <= Params().GetConsensus().nLastPOWBlock) {
-	         return nTime + 24 * 60 * 60;
-	}
+    // loose policy for FutureDrift in regtest mode
+    if (Params().GetConsensus().fPowNoRetargeting && chainActive.Height() <= Params().GetConsensus().nLastPOWBlock) {
+             return nTime + 24 * 60 * 60;
+    }
     return Params().GetConsensus().IsProtocolV2(nTime) ? nTime + 15 : nTime + 10 * 60;
 }
 
@@ -73,7 +73,7 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason)
     // almost as much to process as they cost the sender in fees, because
     // computing signature hashes is O(ninputs*txsize). Limiting transactions
     // to MAX_STANDARD_TX_SIZE mitigates CPU exhaustion attacks.
-    unsigned int sz = tx.GetSerializeSize(SER_NETWORK, CTransaction::CURRENT_VERSION);
+    unsigned int sz = tx.GetTotalSize();
     if (sz >= MAX_STANDARD_TX_SIZE) {
         reason = "tx-size";
         return false;

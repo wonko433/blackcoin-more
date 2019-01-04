@@ -11,7 +11,7 @@
 #include "chainparams.h"
 #include "config.h"
 #include "dstencode.h"
-#include "main.h" // For minRelayTxFee
+#include "validation.h" // For minRelayTxFee
 #include "ui_interface.h"
 #include "util.h"
 #include "wallet/wallet.h"
@@ -823,9 +823,9 @@ void PaymentServer::reportSslErrors(QNetworkReply* reply, const QList<QSslError>
     Q_EMIT message(tr("Network request error"), errString, CClientUIInterface::MSG_ERROR);
 }
 
-void PaymentServer::setOptionsModel(OptionsModel *optionsModel)
+void PaymentServer::setOptionsModel(OptionsModel *_optionsModel)
 {
-    this->optionsModel = optionsModel;
+    this->optionsModel = _optionsModel;
 }
 
 void PaymentServer::handlePaymentACK(const QString& paymentACKMsg)

@@ -56,6 +56,7 @@ BITCOIN_TESTS =\
   test/coins_tests.cpp \
   test/compress_tests.cpp \
   test/crypto_tests.cpp \
+  test/cuckoocache_tests.cpp \
   test/DoS_tests.cpp \
   test/dstencode_tests.cpp \
   test/getarg_tests.cpp \
@@ -86,6 +87,7 @@ BITCOIN_TESTS =\
   test/streams_tests.cpp \
   test/test_bitcoin.cpp \
   test/test_bitcoin.h \
+  test/test_random.h \
   test/testutil.cpp \
   test/testutil.h \
   test/timedata_tests.cpp \

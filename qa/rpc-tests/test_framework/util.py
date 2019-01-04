@@ -125,13 +125,27 @@ def sync_blocks(rpc_connections, wait=1, timeout=60):
     """
     Wait until everybody has the same tip
     """
+    maxheight = 0
     while timeout > 0:
-        tips = [ x.getbestblockhash() for x in rpc_connections ]
+        tips = [ x.waitforblockheight(maxheight, int(wait * 1000)) for x in rpc_connections ]
+        heights = [ x["height"] for x in tips ]
         if tips == [ tips[0] ]*len(tips):
             return True
-        time.sleep(wait)
+        if heights == [ heights[0] ]*len(heights): #heights are the same but hashes are not
+            raise AssertionError("Block sync failed")
         timeout -= wait
+        maxheight = max(heights)
     raise AssertionError("Block sync failed")
+
+def sync_chain(rpc_connections, wait=1):
+    """
+    Wait until everybody has the same best block
+    """
+    while True:
+        counts = [ x.getbestblockhash() for x in rpc_connections ]
+        if counts == [ counts[0] ]*len(counts):
+            break
+        time.sleep(wait)
 
 def sync_mempools(rpc_connections, wait=1, timeout=60):
     """
@@ -499,13 +513,17 @@ def assert_fee_amount(fee, tx_size, fee_per_kB):
     if fee > (tx_size + 2) * fee_per_kB / 1000:
         raise AssertionError("Fee of %s BTC too high! (Should be %s BTC)"%(str(fee), str(target_fee)))
 
-def assert_equal(thing1, thing2):
-    if thing1 != thing2:
-        raise AssertionError("%s != %s"%(str(thing1),str(thing2)))
+def assert_equal(thing1, thing2, *args):
+    if thing1 != thing2 or any(thing1 != arg for arg in args):
+        raise AssertionError("not(%s)" % " == ".join(str(arg) for arg in (thing1, thing2) + args))
 
 def assert_greater_than(thing1, thing2):
     if thing1 <= thing2:
         raise AssertionError("%s <= %s"%(str(thing1),str(thing2)))
+
+def assert_greater_than_or_equal(thing1, thing2):
+    if thing1 < thing2:
+        raise AssertionError("%s < %s"%(str(thing1),str(thing2)))
 
 def assert_raises(exc, fun, *args, **kwds):
     assert_raises_message(exc, None, fun, *args, **kwds)
@@ -516,6 +534,18 @@ def assert_raises_message(exc, message, fun, *args, **kwds):
     except exc as e:
         if message is not None and message not in e.error['message']:
             raise AssertionError("Expected substring not found:"+e.error['message'])
+    except Exception as e:
+        raise AssertionError("Unexpected exception raised: "+type(e).__name__)
+    else:
+        raise AssertionError("No exception raised")
+
+def assert_raises_jsonrpc(code, fun, *args, **kwds):
+    '''Check for specific JSONRPC exception code'''
+    try:
+        fun(*args, **kwds)
+    except JSONRPCException as e:
+        if e.error["code"] != code:
+            raise AssertionError("Unexpected JSONRPC error code %i" % e.error["code"])
     except Exception as e:
         raise AssertionError("Unexpected exception raised: "+type(e).__name__)
     else:
@@ -629,16 +659,15 @@ def create_tx(node, coinbase, to_address, amount):
 
 # Create a spend of each passed-in utxo, splicing in "txouts" to each raw
 # transaction to make it large.  See gen_return_txouts() above.
-def create_lots_of_big_transactions(node, txouts, utxos, fee):
+def create_lots_of_big_transactions(node, txouts, utxos, num, fee):
     addr = node.getnewaddress()
     txids = []
-    for i in range(len(utxos)):
+    for _ in range(num):
         t = utxos.pop()
-        inputs = []
-        inputs.append({ "txid" : t["txid"], "vout" : t["vout"]})
+        inputs=[{ "txid" : t["txid"], "vout" : t["vout"]}]
         outputs = {}
-        send_value = t['amount'] - fee
-        outputs[addr] = satoshi_round(send_value)
+        change = t['amount'] - fee
+        outputs[addr] = satoshi_round(change)
         rawtx = node.createrawtransaction(inputs, outputs)
         newtx = rawtx[0:92]
         newtx = newtx + txouts
@@ -647,6 +676,19 @@ def create_lots_of_big_transactions(node, txouts, utxos, fee):
         txid = node.sendrawtransaction(signresult["hex"], True)
         txids.append(txid)
     return txids
+
+def mine_large_block(node, utxos=None):
+    # generate a 66k transaction,
+    # and 14 of them is close to the 1MB block limit
+    num = 14
+    txouts = gen_return_txouts()
+    utxos = utxos if utxos is not None else []
+    if len(utxos) < num:
+        utxos.clear()
+        utxos.extend(node.listunspent())
+    fee = 100 * node.getnetworkinfo()["relayfee"]
+    create_lots_of_big_transactions(node, txouts, utxos, num, fee=fee)
+    node.generate(1)
 
 def get_bip9_status(node, key):
     info = node.getblockchaininfo()

@@ -36,7 +36,7 @@ public:
     OverrideStream<Stream>& operator<<(const T& obj)
     {
         // Serialize to this stream
-        ::Serialize(*this->stream, obj, nType, nVersion);
+        ::Serialize(*this, obj);
         return (*this);
     }
 
@@ -44,9 +44,22 @@ public:
     OverrideStream<Stream>& operator>>(T& obj)
     {
         // Unserialize from this stream
-        ::Unserialize(*this->stream, obj, nType, nVersion);
+        ::Unserialize(*this, obj);
         return (*this);
     }
+
+    void write(const char* pch, size_t nSize)
+    {
+        stream->write(pch, nSize);
+    }
+
+    void read(char* pch, size_t nSize)
+    {
+        stream->read(pch, nSize);
+    }
+
+    int GetVersion() const { return nVersion; }
+    int GetType() const { return nType; }
 };
 
 template<typename S>
@@ -54,6 +67,75 @@ OverrideStream<S> WithOrVersion(S* s, int nVersionFlag)
 {
     return OverrideStream<S>(s, s->GetType(), s->GetVersion() | nVersionFlag);
 }
+
+/* Minimal stream for overwriting and/or appending to an existing byte vector
+ *
+ * The referenced vector will grow as necessary
+ */
+class CVectorWriter
+{
+ public:
+
+/*
+ * @param[in]  nTypeIn Serialization Type
+ * @param[in]  nVersionIn Serialization Version (including any flags)
+ * @param[in]  vchDataIn  Referenced byte vector to overwrite/append
+ * @param[in]  nPosIn Starting position. Vector index where writes should start. The vector will initially
+ *                    grow as necessary to  max(index, vec.size()). So to append, use vec.size().
+*/
+    CVectorWriter(int nTypeIn, int nVersionIn, std::vector<unsigned char>& vchDataIn, size_t nPosIn) : nType(nTypeIn), nVersion(nVersionIn), vchData(vchDataIn), nPos(nPosIn)
+    {
+        if(nPos > vchData.size())
+            vchData.resize(nPos);
+    }
+/*
+ * (other params same as above)
+ * @param[in]  args  A list of items to serialize starting at nPos.
+*/
+    template <typename... Args>
+    CVectorWriter(int nTypeIn, int nVersionIn, std::vector<unsigned char>& vchDataIn, size_t nPosIn, Args&&... args) : CVectorWriter(nTypeIn, nVersionIn, vchDataIn, nPosIn)
+    {
+        ::SerializeMany(*this, std::forward<Args>(args)...);
+    }
+    void write(const char* pch, size_t nSize)
+    {
+        assert(nPos <= vchData.size());
+        size_t nOverwrite = std::min(nSize, vchData.size() - nPos);
+        if (nOverwrite) {
+            memcpy(vchData.data() + nPos, reinterpret_cast<const unsigned char*>(pch), nOverwrite);
+        }
+        if (nOverwrite < nSize) {
+            vchData.insert(vchData.end(), reinterpret_cast<const unsigned char*>(pch) + nOverwrite, reinterpret_cast<const unsigned char*>(pch) + nSize);
+        }
+        nPos += nSize;
+    }
+    template<typename T>
+    CVectorWriter& operator<<(const T& obj)
+    {
+        // Serialize to this stream
+        ::Serialize(*this, obj);
+        return (*this);
+    }
+    int GetVersion() const
+    {
+        return nVersion;
+    }
+    int GetType() const
+    {
+        return nType;
+    }
+    void seek(size_t nSize)
+    {
+        nPos += nSize;
+        if(nPos > vchData.size())
+            vchData.resize(nPos);
+    }
+private:
+    const int nType;
+    const int nVersion;
+    std::vector<unsigned char>& vchData;
+    size_t nPos;
+};
 
 /** Double ended buffer combining vector and stream-like interfaces.
  *
@@ -90,12 +172,10 @@ public:
         Init(nTypeIn, nVersionIn);
     }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1300
     CDataStream(const char* pbegin, const char* pend, int nTypeIn, int nVersionIn) : vch(pbegin, pend)
     {
         Init(nTypeIn, nVersionIn);
     }
-#endif
 
     CDataStream(const vector_type& vchIn, int nTypeIn, int nVersionIn) : vch(vchIn.begin(), vchIn.end())
     {
@@ -110,6 +190,13 @@ public:
     CDataStream(const std::vector<unsigned char>& vchIn, int nTypeIn, int nVersionIn) : vch(vchIn.begin(), vchIn.end())
     {
         Init(nTypeIn, nVersionIn);
+    }
+
+    template <typename... Args>
+    CDataStream(int nTypeIn, int nVersionIn, Args&&... args)
+    {
+        Init(nTypeIn, nVersionIn);
+        ::SerializeMany(*this, std::forward<Args>(args)...);
     }
 
     void Init(int nTypeIn, int nVersionIn)
@@ -154,6 +241,8 @@ public:
     void clear()                                     { vch.clear(); nReadPos = 0; }
     iterator insert(iterator it, const char& x=char()) { return vch.insert(it, x); }
     void insert(iterator it, size_type n, const char& x) { vch.insert(it, n, x); }
+    value_type* data()                               { return vch.data() + nReadPos; }
+    const value_type* data() const                   { return vch.data() + nReadPos; }
 
     void insert(iterator it, std::vector<char>::const_iterator first, std::vector<char>::const_iterator last)
     {
@@ -168,7 +257,6 @@ public:
             vch.insert(it, first, last);
     }
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1300
     void insert(iterator it, const char* first, const char* last)
     {
         assert(last - first >= 0);
@@ -181,7 +269,6 @@ public:
         else
             vch.insert(it, first, last);
     }
-#endif
 
     iterator erase(iterator it)
     {
@@ -247,10 +334,8 @@ public:
     int GetType()                { return nType; }
     void SetVersion(int n)       { nVersion = n; }
     int GetVersion()             { return nVersion; }
-    void ReadVersion()           { *this >> nVersion; }
-    void WriteVersion()          { *this << nVersion; }
 
-    CDataStream& read(char* pch, size_t nSize)
+    void read(char* pch, size_t nSize)
     {
         // Read from the beginning of the buffer
         unsigned int nReadPosNext = nReadPos + nSize;
@@ -263,14 +348,13 @@ public:
             memcpy(pch, &vch[nReadPos], nSize);
             nReadPos = 0;
             vch.clear();
-            return (*this);
+            return;
         }
         memcpy(pch, &vch[nReadPos], nSize);
         nReadPos = nReadPosNext;
-        return (*this);
     }
 
-    CDataStream& ignore(int nSize)
+    void ignore(int nSize)
     {
         // Ignore from the beginning of the buffer
         if (nSize < 0) {
@@ -283,21 +367,19 @@ public:
                 throw std::ios_base::failure("CDataStream::ignore(): end of data");
             nReadPos = 0;
             vch.clear();
-            return (*this);
+            return;
         }
         nReadPos = nReadPosNext;
-        return (*this);
     }
 
-    CDataStream& write(const char* pch, size_t nSize)
+    void write(const char* pch, size_t nSize)
     {
         // Write to the end of the buffer
         vch.insert(vch.end(), pch, pch + nSize);
-        return (*this);
     }
 
     template<typename Stream>
-    void Serialize(Stream& s, int nType, int nVersion) const
+    void Serialize(Stream& s) const
     {
         // Special case: stream << stream concatenates like stream += stream
         if (!vch.empty())
@@ -305,17 +387,10 @@ public:
     }
 
     template<typename T>
-    unsigned int GetSerializeSize(const T& obj)
-    {
-        // Tells the size of the object if serialized to this stream
-        return ::GetSerializeSize(obj, nType, nVersion);
-    }
-
-    template<typename T>
     CDataStream& operator<<(const T& obj)
     {
         // Serialize to this stream
-        ::Serialize(*this, obj, nType, nVersion);
+        ::Serialize(*this, obj);
         return (*this);
     }
 
@@ -323,7 +398,7 @@ public:
     CDataStream& operator>>(T& obj)
     {
         // Unserialize from this stream
-        ::Unserialize(*this, obj, nType, nVersion);
+        ::Unserialize(*this, obj);
         return (*this);
     }
 
@@ -427,19 +502,16 @@ public:
     int GetType()                { return nType; }
     void SetVersion(int n)       { nVersion = n; }
     int GetVersion()             { return nVersion; }
-    void ReadVersion()           { *this >> nVersion; }
-    void WriteVersion()          { *this << nVersion; }
 
-    CAutoFile& read(char* pch, size_t nSize)
+    void read(char* pch, size_t nSize)
     {
         if (!file)
             throw std::ios_base::failure("CAutoFile::read: file handle is NULL");
         if (fread(pch, 1, nSize, file) != nSize)
             throw std::ios_base::failure(feof(file) ? "CAutoFile::read: end of file" : "CAutoFile::read: fread failed");
-        return (*this);
     }
 
-    CAutoFile& ignore(size_t nSize)
+    void ignore(size_t nSize)
     {
         if (!file)
             throw std::ios_base::failure("CAutoFile::ignore: file handle is NULL");
@@ -450,23 +522,14 @@ public:
                 throw std::ios_base::failure(feof(file) ? "CAutoFile::ignore: end of file" : "CAutoFile::read: fread failed");
             nSize -= nNow;
         }
-        return (*this);
     }
 
-    CAutoFile& write(const char* pch, size_t nSize)
+    void write(const char* pch, size_t nSize)
     {
         if (!file)
             throw std::ios_base::failure("CAutoFile::write: file handle is NULL");
         if (fwrite(pch, 1, nSize, file) != nSize)
             throw std::ios_base::failure("CAutoFile::write: write failed");
-        return (*this);
-    }
-
-    template<typename T>
-    unsigned int GetSerializeSize(const T& obj)
-    {
-        // Tells the size of the object if serialized to this stream
-        return ::GetSerializeSize(obj, nType, nVersion);
     }
 
     template<typename T>
@@ -475,7 +538,7 @@ public:
         // Serialize to this stream
         if (!file)
             throw std::ios_base::failure("CAutoFile::operator<<: file handle is NULL");
-        ::Serialize(*this, obj, nType, nVersion);
+        ::Serialize(*this, obj);
         return (*this);
     }
 
@@ -485,7 +548,7 @@ public:
         // Unserialize from this stream
         if (!file)
             throw std::ios_base::failure("CAutoFile::operator>>: file handle is NULL");
-        ::Unserialize(*this, obj, nType, nVersion);
+        ::Unserialize(*this, obj);
         return (*this);
     }
 };
@@ -546,6 +609,9 @@ public:
         fclose();
     }
 
+    int GetVersion() const { return nVersion; }
+    int GetType() const { return nType; }
+
     void fclose()
     {
         if (src) {
@@ -560,7 +626,7 @@ public:
     }
 
     // read a number of bytes
-    CBufferedFile& read(char *pch, size_t nSize) {
+    void read(char *pch, size_t nSize) {
         if (nSize + nReadPos > nReadLimit)
             throw std::ios_base::failure("Read attempted past buffer limit");
         if (nSize + nRewind > vchBuf.size())
@@ -579,7 +645,6 @@ public:
             pch += nNow;
             nSize -= nNow;
         }
-        return (*this);
     }
 
     // return the current reading position
@@ -625,7 +690,7 @@ public:
     template<typename T>
     CBufferedFile& operator>>(T& obj) {
         // Unserialize from this stream
-        ::Unserialize(*this, obj, nType, nVersion);
+        ::Unserialize(*this, obj);
         return (*this);
     }
 

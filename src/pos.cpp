@@ -13,7 +13,7 @@
 #include "clientversion.h"
 #include "coins.h"
 #include "hash.h"
-#include "main.h"
+#include "validation.h"
 #include "uint256.h"
 #include "primitives/transaction.h"
 #include <stdio.h>
@@ -141,7 +141,7 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, const CTransaction& tx, unsigned
     const CTxIn& txin = tx.vin[0];
 
     // First try finding the previous transaction in database
-    CTransaction txPrev;
+    CMutableTransaction txPrev;
     CDiskTxPos txindex;
 
     if (!ReadFromDisk(txPrev, txindex, *pblocktree, txin.prevout))
@@ -193,7 +193,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTime, co
     auto it=cache.find(prevout);
 
     if(it == cache.end()) {
-        CTransaction txPrev;
+        CMutableTransaction txPrev;
         CDiskTxPos txindex;
         if (!ReadFromDisk(txPrev, txindex, *pblocktree, prevout))
             return false;
@@ -227,7 +227,7 @@ void CacheKernel(std::map<COutPoint, CStakeCache>& cache, const COutPoint& prevo
         //already in cache
         return;
     }
-    CTransaction txPrev;
+    CMutableTransaction txPrev;
     CDiskTxPos txindex;
     if (!ReadFromDisk(txPrev, txindex, *pblocktree, prevout))
         return;

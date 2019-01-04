@@ -253,7 +253,7 @@ private:
     CScript script;
     //! The P2SH redeemscript
     CScript redeemscript;
-    CTransaction creditTx;
+    CTransactionRef creditTx;
     CMutableTransaction spendTx;
     bool havePush;
     std::vector<unsigned char> push;
@@ -285,8 +285,8 @@ public:
             redeemscript = scriptPubKey;
             scriptPubKey = CScript() << OP_HASH160 << ToByteVector(CScriptID(redeemscript)) << OP_EQUAL;
         }
-        creditTx = BuildCreditingTransaction(scriptPubKey, nValue);
-        spendTx = BuildSpendingTransaction(CScript(), creditTx);
+        creditTx = MakeTransactionRef(BuildCreditingTransaction(scriptPubKey, nValue));
+        spendTx = BuildSpendingTransaction(CScript(), *creditTx);
     }
 
     TestBuilder& ScriptError(ScriptError_t err)
@@ -295,10 +295,10 @@ public:
         return *this;
     }
 
-    TestBuilder& Add(const CScript& script)
+    TestBuilder& Add(const CScript& _script)
     {
         DoPush();
-        spendTx.vin[0].scriptSig += script;
+        spendTx.vin[0].scriptSig += _script;
         return *this;
     }
 
@@ -315,8 +315,8 @@ public:
         return *this;
     }
 
-    TestBuilder& Push(const CScript& script) {
-         DoPush(std::vector<unsigned char>(script.begin(), script.end()));
+    TestBuilder& Push(const CScript& _script) {
+         DoPush(std::vector<unsigned char>(_script.begin(), _script.end()));
         return *this;
     }
 
@@ -374,7 +374,7 @@ public:
     {
         TestBuilder copy = *this; // Make a copy so we can rollback the push.
         DoPush();
-        DoTest(creditTx.vout[0].scriptPubKey, spendTx.vin[0].scriptSig, flags, comment, scriptError, nValue);
+        DoTest(creditTx->vout[0].scriptPubKey, spendTx.vin[0].scriptSig, flags, comment, scriptError, nValue);
         *this = copy;
         return *this;
     }
@@ -389,7 +389,7 @@ public:
             array.push_back(amount);
         }
         array.push_back(FormatScript(spendTx.vin[0].scriptSig));
-        array.push_back(FormatScript(creditTx.vout[0].scriptPubKey));
+        array.push_back(FormatScript(creditTx->vout[0].scriptPubKey));
         array.push_back(FormatScriptFlags(flags));
         array.push_back(FormatScriptError((ScriptError_t)scriptError));
         array.push_back(comment);
@@ -403,7 +403,7 @@ public:
 
     const CScript& GetScriptPubKey()
     {
-        return creditTx.vout[0].scriptPubKey;
+        return creditTx->vout[0].scriptPubKey;
     }
 };
 
