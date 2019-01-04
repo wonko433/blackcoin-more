@@ -787,15 +787,15 @@ class CompactBlocksTest(BitcoinTestFramework):
         sync_blocks(self.nodes)
 
         print("\tTesting compactblock construction...")
-        self.test_compactblock_construction(self.nodes[0], self.test_node, 1, False)
+        self.test_compactblock_construction(self.nodes[0], self.test_node)
         sync_blocks(self.nodes)
-        self.test_compactblock_construction(self.nodes[1], self.ex_softfork_node, 2, False)
+        self.test_compactblock_construction(self.nodes[1], self.ex_softfork_node)
         sync_blocks(self.nodes)
 
         print("\tTesting compactblock requests... ")
-        self.test_compactblock_requests(self.nodes[0], self.test_node, 1, False)
+        self.test_compactblock_requests(self.nodes[0], self.test_node, 1)
         sync_blocks(self.nodes)
-        self.test_compactblock_requests(self.nodes[1], self.ex_softfork_node, 2, False)
+        self.test_compactblock_requests(self.nodes[1], self.ex_softfork_node, 2)
         sync_blocks(self.nodes)
 
         print("\tTesting getblocktxn requests...")
