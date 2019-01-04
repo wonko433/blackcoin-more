@@ -23,6 +23,11 @@ namespace Consensus { struct Params; };
 
 static const bool DEFAULT_PRINTPRIORITY = false;
 
+// How many seconds to look ahead and prepare a block for staking
+// Look ahead up to 3 "timeslots" in the future, 48 seconds
+// Reduce this to reduce computational waste for stakers, increase this to increase the amount of time available to construct full blocks
+static const int32_t MAX_STAKE_LOOKAHEAD = 16 * 3;
+
 CAmount GetProofOfWorkReward();
 
 struct CBlockTemplate

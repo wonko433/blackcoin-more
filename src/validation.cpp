@@ -16,6 +16,8 @@
 #include "init.h"
 #include "key.h"
 #include "policy/fees.h"
+#include "policy/policy.h"
+#include "pos.h"
 #include "pow.h"
 #include "pubkey.h"
 #include "primitives/block.h"
@@ -1001,7 +1003,7 @@ bool GetTransaction(const uint256 &hash, CTransactionRef &txOut, const Consensus
         if (ReadBlockFromDisk(block, pindexSlow, consensusParams)) {
             for (const auto& tx : block.vtx) {
                 if (tx->GetHash() == hash) {
-                    txOut = *tx;
+                    txOut = tx;
                     hashBlock = pindexSlow->GetBlockHash();
                     return true;
                 }
@@ -2923,6 +2925,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check transactions
     for (const auto& tx : block.vtx)
+    {
         if (!CheckTransaction(*tx, state, true))
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                  strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(), state.GetDebugMessage()));
@@ -3045,12 +3048,12 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
 
     CValidationState state;
     // verify hash target and signature of coinstake tx
-    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], pblock->vtx[1], pblock->nBits, state))
+    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state))
         return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
     LogPrintf("%s\n", pblock->ToString());
-    LogPrintf("out %s\n", FormatMoney(pblock->vtx[1].GetValueOut()));
+    LogPrintf("out %s\n", FormatMoney(pblock->vtx[1]->GetValueOut()));
 
     // Found a solution
     {
@@ -3065,7 +3068,9 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
         }
 
         // Process this block the same as if we had received it from another node
-        if (!ProcessNewBlock(state, chainparams, NULL, pblock, true, NULL, false, g_connman.get()))
+        std::shared_ptr<const CBlock> staked_pblock =
+                    std::make_shared<const CBlock>(*pblock);
+        if (!ProcessNewBlock(chainparams, staked_pblock, true, NULL))
             return error("CheckStake() : ProcessNewBlock, block not accepted");
     }
 
@@ -3073,18 +3078,18 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
 }
 
 // novacoin: attempt to generate suitable proof-of-stake
-bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
+bool SignBlock(CBlock* pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
 {
     // if we are trying to sign
     // something except proof-of-stake block template
-    if (!block.vtx[0].vout[0].IsEmpty()){
+    if (!pblock->vtx[0]->vout[0].IsEmpty()){
         LogPrintf("something except proof-of-stake block\n");
         return false;
     }
 
     // if we are trying to sign
     // a complete proof-of-stake block
-    if (block.IsProofOfStake()){
+    if (pblock->IsProofOfStake()){
         LogPrintf("trying to sign a complete proof-of-stake block\n");
         return true;
     }
@@ -3092,35 +3097,35 @@ bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
     static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
 
     CKey key;
-    CMutableTransaction txCoinBase(block.vtx[0]);
+    CMutableTransaction txCoinBase(pblock->vtx[0]);
     CMutableTransaction txCoinStake;
-    txCoinStake.nTime = GetAdjustedTime();
+    txCoinStake.nTime = nTime;
     txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
 
     int64_t nSearchTime = txCoinStake.nTime; // search to current time
 
     if (nSearchTime > nLastCoinStakeSearchTime)
     {
-        if (wallet.CreateCoinStake(wallet, block.nBits, 1, nFees, txCoinStake, key))
+        if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
         {
             if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
             {
                 // make sure coinstake would meet timestamp protocol
                 // as it would be the same as the block timestamp
-                txCoinBase.nTime = block.nTime = txCoinStake.nTime;
-                block.vtx[0] = txCoinBase;
+                txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
+                pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
 
                 // we have to make sure that we have no future timestamps in
                 // our transactions set
-                for (vector<CTransaction>::iterator it = block.vtx.begin(); it != block.vtx.end();)
-                    if (it->get()->nTime > block.nTime) { it = block.vtx.erase(it); } else { ++it; }
+                for (vector<CTransaction>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
+                    if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
-                block.vtx.insert(block.vtx.begin() + 1, txCoinStake);
+                pblock->vtx.insert(pblock->vtx.begin() + 1, txCoinStake);
 
-                block.hashMerkleRoot = BlockMerkleRoot(block);
+                pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 
                 // append a signature to our block
-                return key.Sign(block.GetHash(), block.vchBlockSig);
+                return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
             }
         }
         nLastCoinStakeSearchInterval = nSearchTime - nLastCoinStakeSearchTime;
@@ -3292,7 +3297,7 @@ static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned 
     return (nFound >= nRequired);
 }
 
-bool static IsCanonicalBlockSignature(const CBlock* pblock)
+bool static IsCanonicalBlockSignature(const std::shared_ptr<const CBlock> pblock)
 {
     if (pblock->IsProofOfWork()) {
         return pblock->vchBlockSig.empty();
@@ -3303,8 +3308,9 @@ bool static IsCanonicalBlockSignature(const CBlock* pblock)
 
 bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
 {
+    CValidationState state;
     if (!IsCanonicalBlockSignature(pblock)) {
-            if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
+            if (pblock && pblock->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
                 return state.DoS(100, error("ProcessNewBlock(): bad block signature encoding"),
                                  REJECT_INVALID, "bad-block-signature-encoding");
             return false;
