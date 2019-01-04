@@ -1613,7 +1613,7 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
 
 #ifdef ENABLE_WALLET
     // Mine proof-of-stake blocks in the background
-    if (!GetBoolArg("-staking", true))
+    if (!GetBoolArg("-staking", DEFAULT_STAKE))
         LogPrintf("Staking disabled\n");
     else if (pwalletMain)
         threadGroup.create_thread(boost::bind(&ThreadStakeMiner, pwalletMain, chainparams));

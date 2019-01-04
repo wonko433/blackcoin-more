@@ -16,6 +16,7 @@
 #include "dstencode.h"
 #include "key.h"
 #include "keystore.h"
+#include "miner.h"
 #include "validation.h"
 #include "net.h"
 #include "policy/policy.h"
