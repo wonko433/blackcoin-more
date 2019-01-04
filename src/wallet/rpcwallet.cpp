@@ -29,18 +29,6 @@ using namespace std;
 int64_t nWalletUnlockTime;
 static CCriticalSection cs_nWalletUnlockTime;
 
-static void accountingDeprecationCheck()
-{
-    if (!GetBoolArg("-enableaccounts", false))
-        throw runtime_error(
-            "Accounting API is deprecated and will be removed in future.\n"
-            "It can easily result in negative or odd balances if misused or misunderstood, which has happened in the field.\n"
-            "If you still want to enable it, add to your config file iknowaccountsarebroken=1\n");
-
-    if (GetBoolArg("-staking", true))
-        throw runtime_error("If you want to use accounting API, staking must be disabled, add to your config file staking=0\n");
-}
-
 std::string HelpRequiringPassphrase()
 {
     return pwalletMain && pwalletMain->IsCrypted()
@@ -637,8 +625,6 @@ UniValue getreceivedbyaccount(const JSONRPCRequest& request)
             + HelpExampleRpc("getreceivedbyaccount", "\"tabby\", 6")
         );
 
-    accountingDeprecationCheck();
-
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     // Minimum confirmations
@@ -739,8 +725,6 @@ UniValue getbalance(const JSONRPCRequest& request)
         return  ValueFromAmount(nBalance);
     }
 
-    accountingDeprecationCheck();
-
     string strAccount = AccountFromValue(request.params[0]);
 
     CAmount nBalance = pwalletMain->GetAccountBalance(strAccount, nMinDepth, filter);
@@ -789,8 +773,6 @@ UniValue movecmd(const JSONRPCRequest& request)
             "\nAs a json rpc call\n"
             + HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 6, \"happy birthday!\"")
         );
-
-    accountingDeprecationCheck();
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
@@ -1261,8 +1243,6 @@ UniValue listreceivedbyaccount(const JSONRPCRequest& request)
             + HelpExampleRpc("listreceivedbyaccount", "6, true, true")
         );
 
-    accountingDeprecationCheck();
-
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     return ListReceived(request.params, true);
@@ -1518,8 +1498,6 @@ UniValue listaccounts(const JSONRPCRequest& request)
             "\nAs json rpc call\n"
             + HelpExampleRpc("listaccounts", "6")
         );
-
-    accountingDeprecationCheck();
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
