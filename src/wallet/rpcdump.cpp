@@ -1061,7 +1061,7 @@ UniValue importmulti(const JSONRPCRequest& mainRequest)
     EnsureWalletIsUnlocked();
 
     // Verify all timestamps are present before importing any keys.
-    const int64_t now = chainActive.Tip() ? chainActive.Tip()->GetMedianTimePast() : 0;
+    const int64_t now = chainActive.Tip() ? chainActive.Tip()->GetPastTimeLimit() : 0;
     for (const UniValue& data : requests.getValues()) {
         GetImportTimestamp(data, now);
     }
