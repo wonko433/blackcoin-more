@@ -567,6 +567,7 @@ class CWallet : public CCryptoKeyStore, public CValidationInterface
 private:
     std::atomic<bool> fAbortRescan;
     std::atomic<bool> fScanningWallet;
+    static std::atomic<bool> fFlushThreadRunning;
 
     /**
      * Select a set of coins such that nValueRet >= nTargetValue and at least
@@ -974,6 +975,7 @@ public:
     static std::string GetWalletHelpString(bool showDebug);
 
     /* Initializes the wallet, returns a new CWallet instance or a null pointer in case of an error */
+    static CWallet* CreateWalletFromFile(const std::string walletFile);
     static bool InitLoadWallet();
 
     /**

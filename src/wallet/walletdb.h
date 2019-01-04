@@ -188,6 +188,6 @@ private:
     void operator=(const CWalletDB&);
 };
 
-void ThreadFlushWalletDB(const std::string& strFile);
+void ThreadFlushWalletDB();
 
 #endif // BITCOIN_WALLET_WALLETDB_H
