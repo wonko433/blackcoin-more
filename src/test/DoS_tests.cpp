@@ -30,6 +30,7 @@ extern unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans);
 struct COrphanTx {
     CTransactionRef tx;
     NodeId fromPeer;
+    int64_t nTimeExpire;
 };
 extern std::map<uint256, COrphanTx> mapOrphanTransactions;
 
