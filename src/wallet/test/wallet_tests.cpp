@@ -86,12 +86,12 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
         empty_wallet();
 
         // with an empty wallet we can't even pay one cent
-        BOOST_CHECK(!wallet.SelectCoinsMinConf( 1 * CENT, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK(!wallet.SelectCoinsMinConf( 1 * CENT, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
 
         add_coin(1*CENT, 4);        // add a new 1 cent coin
 
         // with a new 1 cent coin, we still can't find a mature 1 cent
-        BOOST_CHECK(!wallet.SelectCoinsMinConf( 1 * CENT, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK(!wallet.SelectCoinsMinConf( 1 * CENT, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
 
         // but we can find a new 1 cent
         BOOST_CHECK( wallet.SelectCoinsMinConf( 1 * CENT, 1, 1, 0, vCoins, setCoinsRet, nValueRet));
@@ -100,7 +100,7 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
         add_coin(2*CENT);           // add a mature 2 cent coin
 
         // we can't make 3 cents of mature coins
-        BOOST_CHECK(!wallet.SelectCoinsMinConf( 3 * CENT, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK(!wallet.SelectCoinsMinConf( 3 * CENT, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
 
         // we can make 3 cents of new  coins
         BOOST_CHECK( wallet.SelectCoinsMinConf( 3 * CENT, 1, 1, 0, vCoins, setCoinsRet, nValueRet));
@@ -113,11 +113,11 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
         // now we have new: 1+10=11 (of which 10 was self-sent), and mature: 2+5+20=27.  total = 38
 
         // we can't make 38 cents only if we disallow new coins:
-        BOOST_CHECK(!wallet.SelectCoinsMinConf(38 * CENT, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK(!wallet.SelectCoinsMinConf(38 * CENT, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
         // we can't even make 37 cents if we don't allow new coins even if they're from us
-        BOOST_CHECK(!wallet.SelectCoinsMinConf(38 * CENT, 6, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK(!wallet.SelectCoinsMinConf(38 * CENT, 10, 10, 0, vCoins, setCoinsRet, nValueRet));
         // but we can make 37 cents if we accept new coins from ourself
-        BOOST_CHECK( wallet.SelectCoinsMinConf(37 * CENT, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+        BOOST_CHECK( wallet.SelectCoinsMinConf(37 * CENT, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
         BOOST_CHECK_EQUAL(nValueRet, 37 * CENT);
         // and we can make 38 cents if we accept all new coins
         BOOST_CHECK( wallet.SelectCoinsMinConf(38 * CENT, 1, 1, 0, vCoins, setCoinsRet, nValueRet));
@@ -299,8 +299,8 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
 
             // picking 50 from 100 coins doesn't depend on the shuffle,
             // but does depend on randomness in the stochastic approximation code
-            BOOST_CHECK(wallet.SelectCoinsMinConf(50 * COIN, 1, 6, 0, vCoins, setCoinsRet , nValueRet));
-            BOOST_CHECK(wallet.SelectCoinsMinConf(50 * COIN, 1, 6, 0, vCoins, setCoinsRet2, nValueRet));
+            BOOST_CHECK(wallet.SelectCoinsMinConf(50 * COIN, 1, 10, 0, vCoins, setCoinsRet , nValueRet));
+            BOOST_CHECK(wallet.SelectCoinsMinConf(50 * COIN, 1, 10, 0, vCoins, setCoinsRet2, nValueRet));
             BOOST_CHECK(!equal_sets(setCoinsRet, setCoinsRet2));
 
             int fails = 0;
@@ -308,8 +308,8 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
             {
                 // selecting 1 from 100 identical coins depends on the shuffle; this test will fail 1% of the time
                 // run the test RANDOM_REPEATS times and only complain if all of them fail
-                BOOST_CHECK(wallet.SelectCoinsMinConf(COIN, 1, 6, 0, vCoins, setCoinsRet , nValueRet));
-                BOOST_CHECK(wallet.SelectCoinsMinConf(COIN, 1, 6, 0, vCoins, setCoinsRet2, nValueRet));
+                BOOST_CHECK(wallet.SelectCoinsMinConf(COIN, 1, 10, 0, vCoins, setCoinsRet , nValueRet));
+                BOOST_CHECK(wallet.SelectCoinsMinConf(COIN, 1, 10, 0, vCoins, setCoinsRet2, nValueRet));
                 if (equal_sets(setCoinsRet, setCoinsRet2))
                     fails++;
             }
@@ -329,8 +329,8 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
             {
                 // selecting 1 from 100 identical coins depends on the shuffle; this test will fail 1% of the time
                 // run the test RANDOM_REPEATS times and only complain if all of them fail
-                BOOST_CHECK(wallet.SelectCoinsMinConf(90*CENT, 1, 6, 0, vCoins, setCoinsRet , nValueRet));
-                BOOST_CHECK(wallet.SelectCoinsMinConf(90*CENT, 1, 6, 0, vCoins, setCoinsRet2, nValueRet));
+                BOOST_CHECK(wallet.SelectCoinsMinConf(90*CENT, 1, 10, 0, vCoins, setCoinsRet , nValueRet));
+                BOOST_CHECK(wallet.SelectCoinsMinConf(90*CENT, 1, 10, 0, vCoins, setCoinsRet2, nValueRet));
                 if (equal_sets(setCoinsRet, setCoinsRet2))
                     fails++;
             }
@@ -354,7 +354,7 @@ BOOST_AUTO_TEST_CASE(ApproximateBestSubset)
         add_coin(1000 * COIN);
     add_coin(3 * COIN);
 
-    BOOST_CHECK(wallet.SelectCoinsMinConf(1003 * COIN, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+    BOOST_CHECK(wallet.SelectCoinsMinConf(1003 * COIN, 1, 10, 0, vCoins, setCoinsRet, nValueRet));
     BOOST_CHECK_EQUAL(nValueRet, 1003 * COIN);
     BOOST_CHECK_EQUAL(setCoinsRet.size(), 2U);
 
