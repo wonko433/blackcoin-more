@@ -5,6 +5,8 @@ Before every release candidate:
 
 * Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md#synchronising-translations).
 
+* Update manpages, see [gen-manpages.sh](https://github.com/bitcoin/bitcoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
+
 Before every minor and major release:
 
 * Update [bips.md](bips.md) to account for changes since the last release.
@@ -23,6 +25,8 @@ Before every major release:
 * Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
 
 ### First time / New builders
+
+If you're using the automated script (found in [contrib/gitian-build.sh](/contrib/gitian-build.sh)), then at this point you should run it with the "--setup" command. Otherwise ignore this.
 
 Check out the source code in the following directory hierarchy.
 
@@ -66,6 +70,8 @@ Tag version (or release candidate) in git
     git tag -s v(new version, e.g. 0.8.0)
 
 ### Setup and perform Gitian builds
+
+If you're using the automated script (found in [contrib/gitian-build.sh](/contrib/gitian-build.sh)), then at this point you should run it with the "--build" command. Otherwise ignore this.
 
 Setup Gitian descriptors:
 
@@ -278,6 +284,8 @@ bitcoin.org (see below for bitcoin.org update instructions).
 
   - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~bitcoin/+archive/ubuntu/bitcoin)
 
-  - Add release notes for the new version to the directory `doc/release-notes` in git master
+  - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
+
+  - Create a [new GitHub release](https://github.com/bitcoin/bitcoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

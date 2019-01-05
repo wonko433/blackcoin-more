@@ -209,10 +209,10 @@ UniValue getbestblockhash(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 0)
         throw runtime_error(
             "getbestblockhash\n"
-            "\nReturns the hash of the best (tip) block in the longest block chain.\n"
-            "\nResult\n"
+            "\nReturns the hash of the best (tip) block in the longest blockchain.\n"
+            "\nResult:\n"
             "\"hex\"      (string) the block hash hex encoded\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("getbestblockhash", "")
             + HelpExampleRpc("getbestblockhash", "")
         );
@@ -235,17 +235,17 @@ UniValue waitfornewblock(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw runtime_error(
-            "waitfornewblock\n"
+            "waitfornewblock (timeout)\n"
             "\nWaits for a specific new block and returns useful info about it.\n"
             "\nReturns the current block on timeout or exit.\n"
             "\nArguments:\n"
-            "1. timeout (milliseconds) (int, optional, default=false)\n"
-            "\nResult::\n"
+            "1. timeout (int, optional, default=0) Time in milliseconds to wait for a response. 0 indicates no timeout.\n"
+            "\nResult:\n"
             "{                           (json object)\n"
             "  \"hash\" : {       (string) The blockhash\n"
             "  \"height\" : {     (int) Block height\n"
             "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("waitfornewblock", "1000")
             + HelpExampleRpc("waitfornewblock", "1000")
         );
@@ -317,7 +317,7 @@ UniValue waitforblockheight(const JSONRPCRequest& request)
         throw runtime_error(
             "waitforblockheight <height> (timeout)\n"
             "\nWaits for (at least) block height and returns the height and hash\n"
-            "\nof the current tip.\n"
+            "of the current tip.\n"
             "\nReturns the current block on timeout or exit.\n"
             "\nArguments:\n"
             "1. height  (required, int) Block height to wait for (int)\n"
@@ -327,7 +327,7 @@ UniValue waitforblockheight(const JSONRPCRequest& request)
             "  \"hash\" : {       (string) The blockhash\n"
             "  \"height\" : {     (int) Block height\n"
             "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("waitforblockheight", "\"100\", 1000")
             + HelpExampleRpc("waitforblockheight", "\"100\", 1000")
         );
@@ -384,8 +384,8 @@ std::string EntryDescriptionString()
            "    \"modifiedfee\" : n,      (numeric) transaction fee with fee deltas used for mining priority\n"
            "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
            "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
-           "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
-           "    \"currentpriority\" : n,  (numeric) transaction priority now\n"
+           "    \"startingpriority\" : n, (numeric) DEPRECATED. Priority when transaction entered pool\n"
+           "    \"currentpriority\" : n,  (numeric) DEPRECATED. Transaction priority now\n"
            "    \"descendantcount\" : n,  (numeric) number of in-mempool descendant transactions (including this one)\n"
            "    \"descendantsize\" : n,   (numeric) size of in-mempool descendants (including this one)\n"
            "    \"descendantfees\" : n,   (numeric) modified fees (see above) of in-mempool descendants (including this one)\n"
@@ -478,7 +478,7 @@ UniValue getrawmempool(const JSONRPCRequest& request)
             + EntryDescriptionString()
             + "  }, ...\n"
             "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("getrawmempool", "true")
             + HelpExampleRpc("getrawmempool", "true")
         );
@@ -510,7 +510,7 @@ UniValue getmempoolancestors(const JSONRPCRequest& request)
             + EntryDescriptionString()
             + "  }, ...\n"
             "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("getmempoolancestors", "\"mytxid\"")
             + HelpExampleRpc("getmempoolancestors", "\"mytxid\"")
             );
@@ -574,7 +574,7 @@ UniValue getmempooldescendants(const JSONRPCRequest& request)
             + EntryDescriptionString()
             + "  }, ...\n"
             "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("getmempooldescendants", "\"mytxid\"")
             + HelpExampleRpc("getmempooldescendants", "\"mytxid\"")
             );
@@ -630,7 +630,7 @@ UniValue getmempoolentry(const JSONRPCRequest& request)
             "{                           (json object)\n"
             + EntryDescriptionString()
             + "}\n"
-            "\nExamples\n"
+            "\nExamples:\n"
             + HelpExampleCli("getmempoolentry", "\"mytxid\"")
             + HelpExampleRpc("getmempoolentry", "\"mytxid\"")
         );
@@ -699,9 +699,9 @@ UniValue getblockheader(const JSONRPCRequest& request)
             "  \"nonce\" : n,           (numeric) The nonce\n"
             "  \"bits\" : \"1d00ffff\", (string) The bits\n"
             "  \"difficulty\" : x.xxx,  (numeric) The difficulty\n"
+            "  \"chainwork\" : \"0000...1f3\"     (string) Expected number of hashes required to produce the current chain (in hex)\n"
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\",      (string) The hash of the next block\n"
-            "  \"chainwork\" : \"0000...1f3\"     (string) Expected number of hashes required to produce the current chain (in hex)\n"
             "}\n"
             "\nResult (for verbose=false):\n"
             "\"data\"             (string) A string that is serialized, hex-encoded data for block 'hash'.\n"

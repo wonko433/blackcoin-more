@@ -88,13 +88,13 @@ pass `--with-incompatible-bdb` to configure.
 
 See the section "Disable-wallet mode" to build Blackcoin More without wallet.
 
-Optional:
+Optional (see --with-miniupnpc and --enable-upnp-default):
 
-    sudo apt-get install libminiupnpc-dev (see --with-miniupnpc and --enable-upnp-default)
+    sudo apt-get install libminiupnpc-dev
 
-ZMQ dependencies:
+ZMQ dependencies (provides ZMQ API 4.x):
 
-    sudo apt-get install libzmq3-dev (provides ZMQ API 4.x)
+    sudo apt-get install libzmq3-dev
 
 Dependencies for the GUI: Ubuntu & Debian
 -----------------------------------------
@@ -251,8 +251,6 @@ disable-wallet mode with:
 
     ./configure --disable-wallet
 
-In this case there is no dependency on Berkeley DB 4.8.
-
 Mining is also possible in disable-wallet mode, but only using the `getblocktemplate` RPC
 call not `getwork`.
 
@@ -318,17 +316,16 @@ started than on [OpenBSD](build-openbsd.md). Installing dependencies:
 
 For the wallet (optional):
 
-    pkg install db5
+    pkg install db6
 
 This will give a warning "configure: WARNING: Found Berkeley DB other
 than 4.8; wallets opened by this build will not be portable!", but as FreeBSD never
-had a binary release, this may not matter. If backwards compatibility
-with 4.8-built Bitcoin Core is needed follow the steps under "Berkeley DB" above.
+had a binary release, this may not matter.
 
 Then build using:
 
     ./autogen.sh
-    ./configure --with-incompatible-bdb BDB_CFLAGS="-I/usr/local/include/db5" BDB_LIBS="-L/usr/local/lib -ldb_cxx-5"
+    ./configure --with-incompatible-bdb BDB_CFLAGS="-I/usr/local/include/db6" BDB_LIBS="-L/usr/local/lib -ldb_cxx-6.2"
     make
 
 *Note on debugging*: The version of `gdb` installed by default is [ancient and considered harmful](https://wiki.freebsd.org/GdbRetirement).
