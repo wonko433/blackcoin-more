@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-# Copyright (c) 2013-2016 The Bitcoin Core developers
+#!/usr/bin/env python3
+# Copyright (c) 2013-2017 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -104,7 +104,7 @@ def filtermultiport(ips):
     hist = collections.defaultdict(list)
     for ip in ips:
         hist[ip['sortkey']].append(ip)
-    return [value[0] for (key,value) in hist.items() if len(value)==1]
+    return [value[0] for (key,value) in list(hist.items()) if len(value)==1]
 
 # Based on Greg Maxwell's seed_filter.py
 def filterbyasn(ips, max_per_asn, max_total):
@@ -164,9 +164,9 @@ def main():
 
     for ip in ips:
         if ip['net'] == 'ipv6':
-            print '[%s]:%i' % (ip['ip'], ip['port'])
+            print('[%s]:%i' % (ip['ip'], ip['port']))
         else:
-            print '%s:%i' % (ip['ip'], ip['port'])
+            print('%s:%i' % (ip['ip'], ip['port']))
 
 if __name__ == '__main__':
     main()
