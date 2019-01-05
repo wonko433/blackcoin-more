@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2015-2017 The Bitcoin Unlimited developers
 // Copyright (c) 2017 The Bitcoin developers
 // Distributed under the MIT software license, see the accompanying
