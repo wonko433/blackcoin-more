@@ -149,6 +149,7 @@ private:
 
     // Configuration parameters for the block size
     unsigned int nBlockMaxSize;
+    CFeeRate blockMinFeeRate;
 
     // Information on the current status of the block
     uint64_t nBlockSize;
