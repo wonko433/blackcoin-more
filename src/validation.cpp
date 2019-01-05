@@ -2953,7 +2953,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, const Co
     return true;
 }
 
-bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams)
+bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainParams& chainparams)
 {
     uint256 hashBlock = pblock->GetHash();
 
@@ -2992,7 +2992,7 @@ bool CheckStake(CBlock* pblock, CWallet& wallet, const CChainParams& chainparams
 }
 
 // novacoin: attempt to generate suitable proof-of-stake
-bool SignBlock(CBlock* pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
 {
     // if we are trying to sign
     // something except proof-of-stake block template
@@ -3011,7 +3011,7 @@ bool SignBlock(CBlock* pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
     static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
 
     CKey key;
-    CMutableTransaction txCoinBase(pblock->vtx[0]);
+    CMutableTransaction txCoinBase(*pblock->vtx[0]);
     CMutableTransaction txCoinStake;
     txCoinStake.nTime = nTime;
     txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
@@ -3031,7 +3031,7 @@ bool SignBlock(CBlock* pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
 
                 // we have to make sure that we have no future timestamps in
                 // our transactions set
-                for (vector<CTransaction>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
+                for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
                     if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
                 pblock->vtx.insert(pblock->vtx.begin() + 1, txCoinStake);
@@ -3223,18 +3223,17 @@ bool static IsCanonicalBlockSignature(const std::shared_ptr<const CBlock> pblock
 
 bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
 {
-    CValidationState state;
-    if (!IsCanonicalBlockSignature(pblock)) {
-            if (pblock && pblock->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
-                return state.DoS(100, error("ProcessNewBlock(): bad block signature encoding"),
-                                 REJECT_INVALID, "bad-block-signature-encoding");
-            return false;
-    }
-
     {
         CBlockIndex *pindex = NULL;
         if (fNewBlock) *fNewBlock = false;
         CValidationState state;
+
+        // Check if block signature is canonical
+        if (!IsCanonicalBlockSignature(pblock)) {
+            if (pblock && pblock->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
+                return error("%s: bad block signature encoding", __func__);
+        }
+    
         // Ensure that CheckBlock() passes before calling AcceptBlock, as
         // belt-and-suspenders.
         bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());

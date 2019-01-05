@@ -475,8 +475,8 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
 
             ++nConsecutiveFailed;
 
-            if (nConsecutiveFailed > MAX_CONSECUTIVE_FAILURES && nBlockWeight >
-                    nBlockMaxWeight - 4000) {
+            if (nConsecutiveFailed > MAX_CONSECUTIVE_FAILURES && nBlockSize >
+                    nBlockMaxSize - 4000) {
                 // Give up if we're close to full and haven't succeeded in a while
                 break;
             }
@@ -682,8 +682,8 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 
                 // Try to sign a block (this also checks for a PoS stake)
                 pblocktemplate->block.nTime = i;
-                CBlock *pblock = &pblocktemplate->block;
-                if (SignBlock(pblock, pwallet, nFees, i)) {
+                std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
+                if (SignBlock(pblock, *pwallet, nFees, i)) {
                     // increase priority so we can build the full PoS block ASAP to ensure the timestamp doesn't expire
                     SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
 
@@ -704,8 +704,8 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                         break;
                     }
                     // Sign the full block and use the timestamp from earlier for a valid stake
-                    CBlock *pblockfilled = &pblocktemplatefilled->block;
-                    if (SignBlock(pblockfilled, pwallet, nFees, i)) {
+                    std::shared_ptr<CBlock> pblockfilled = std::make_shared<CBlock>(pblocktemplatefilled->block);
+                    if (SignBlock(pblockfilled, *pwallet, nFees, i)) {
                         // Should always reach here unless we spent too much time processing transactions and the timestamp is now invalid
                         // CheckStake also does CheckBlock and AcceptBlock to propogate it to the network
                         bool validBlock = false;

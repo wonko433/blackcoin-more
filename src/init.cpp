@@ -515,11 +515,11 @@ std::string LicenseInfo()
     const std::string URL_SOURCE_CODE = "<https://gitlab.com/blackcoin/blackcoin-more>";
     const std::string URL_WEBSITE = "<http://blackcoin.org/>";
 
-    return strprintf(_("Copyright (C) %i-%i The Bitcoin Core Developers", 2009, COPYRIGHT_YEAR)) +
+    return strprintf(_("Copyright (C) 2009-%i The Bitcoin Core Developers"), COPYRIGHT_YEAR) +
            "\n" +
-           strprintf(_("Copyright (C) %i-%i The Blackcoin Developers", 2014, 2018)) +
+           strprintf(_("Copyright (C) 2014-%i The Blackcoin Developers"), 2018) +
            "\n" +
-           strprintf(_("Copyright (C) %i-%i The Blackcoin More Developers", 2018, COPYRIGHT_YEAR)) +
+           strprintf(_("Copyright (C) 2018-%i The Blackcoin More Developers"), COPYRIGHT_YEAR) +
            "\n" +
            "\n" +
            strprintf(_("Please contribute if you find %s useful. "
