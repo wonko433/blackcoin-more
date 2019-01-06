@@ -609,7 +609,7 @@ void CWallet::RemoveFromSpends(const uint256& wtxid)
 	if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
         return;
 
-    BOOST_FOREACH(const CTxIn& txin, thisTx.vin)
+    BOOST_FOREACH(const CTxIn& txin, thisTx.tx->vin)
         RemoveFromSpends(txin.prevout, wtxid);
 }
 
@@ -634,10 +634,10 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
             if (pcoin->GetBlocksToMaturity() > 0)
                 continue;
 
-            for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
-                isminetype mine = IsMine(pcoin->vout[i]);
+            for (unsigned int i = 0; i < pcoin->tx->vout.size(); i++) {
+                isminetype mine = IsMine(pcoin->tx->vout[i]);
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
-                    !IsLockedCoin((*it).first, i) && (pcoin->vout[i].nValue > 0))
+                    !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0))
                 	vCoins.push_back(COutput(pcoin, i, nDepth,
                 	                                                 ((mine & ISMINE_SPENDABLE) != ISMINE_NO) ||
                 	                                                  (mine & ISMINE_WATCH_SOLVABLE) != ISMINE_NO,
@@ -672,7 +672,7 @@ bool CWallet::SelectCoinsForStaking(CAmount& nTargetValue, std::set<std::pair<co
         if (nValueRet >= nTargetValue)
             break;
 
-        int64_t n = pcoin->vout[i].nValue;
+        int64_t n = pcoin->tx->vout[i].nValue;
 
         pair<int64_t,pair<const CWalletTx*,unsigned int> > coin = make_pair(n,make_pair(pcoin, i));
 
@@ -765,7 +765,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 vector<vector<unsigned char> > vSolutions;
                 txnouttype whichType;
                 CScript scriptPubKeyOut;
-                scriptPubKeyKernel = pcoin.first->vout[pcoin.second].scriptPubKey;
+                scriptPubKeyKernel = pcoin.first->tx->vout[pcoin.second].scriptPubKey;
                 if (!Solver(scriptPubKeyKernel, whichType, vSolutions))
                 {
                     LogPrint("coinstake", "CreateCoinStake : failed to parse kernel\n");
@@ -808,7 +808,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
                 txNew.nTime -= n;
                 txNew.vin.push_back(CTxIn(pcoin.first->GetHash(), pcoin.second));
-                nCredit += pcoin.first->vout[pcoin.second].nValue;
+                nCredit += pcoin.first->tx->vout[pcoin.second].nValue;
                 vwtxPrev.push_back(pcoin.first);
                 txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
 
@@ -829,21 +829,21 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     {
         // Attempt to add more inputs
         // Only add coins of the same key/address as kernel
-        if (txNew.vout.size() == 2 && ((pcoin.first->vout[pcoin.second].scriptPubKey == scriptPubKeyKernel || pcoin.first->vout[pcoin.second].scriptPubKey == txNew.vout[1].scriptPubKey))
+        if (txNew.vout.size() == 2 && ((pcoin.first->tx->vout[pcoin.second].scriptPubKey == scriptPubKeyKernel || pcoin.first->tx->vout[pcoin.second].scriptPubKey == txNew.vout[1].scriptPubKey))
             && pcoin.first->GetHash() != txNew.vin[0].prevout.hash)
         {
             // Stop adding more inputs if already too many inputs
             if (txNew.vin.size() >= 10)
                 break;
             // Stop adding inputs if reached reserve limit
-            if (nCredit + pcoin.first->vout[pcoin.second].nValue > nBalance - nReserveBalance)
+            if (nCredit + pcoin.first->tx->vout[pcoin.second].nValue > nBalance - nReserveBalance)
                 break;
             // Do not add additional significant input
-            if (pcoin.first->vout[pcoin.second].nValue >= GetStakeCombineThreshold())
+            if (pcoin.first->tx->vout[pcoin.second].nValue >= GetStakeCombineThreshold())
                 continue;
 
             txNew.vin.push_back(CTxIn(pcoin.first->GetHash(), pcoin.second));
-            nCredit += pcoin.first->vout[pcoin.second].nValue;
+            nCredit += pcoin.first->tx->vout[pcoin.second].nValue;
             vwtxPrev.push_back(pcoin.first);
         }
     }
@@ -1464,7 +1464,7 @@ void CWallet::SyncTransaction(const CTransaction& tx, const CBlockIndex *pindex,
 {
     LOCK2(cs_main, cs_wallet);
 
-    if (!pblock) {
+    if (!pindex && posInBlock == -1) {
         // wallets need to refund inputs when disconnecting coinstake
         if (tx.IsCoinStake()) {
             if (IsFromMe(tx)) {
@@ -1518,11 +1518,6 @@ CAmount CWallet::GetDebit(const CTxIn &txin, const isminefilter& filter) const
         }
     }
     return 0;
-}
-
-isminetype CWallet::IsMine(const CTxDestination &dest) const
-{
-    return ::IsMine(*this, dest);
 }
 
 isminetype CWallet::IsMine(const CTxOut& txout) const
@@ -1886,7 +1881,7 @@ CBlockIndex* CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool f
             pindex = chainActive.Next(pindex);
         }
         if (pindex && fAbortRescan) {
-            LogPrintf("Rescan aborted at block %d. Progress=%f\n", pindex->nHeight, Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), pindex));
+            LogPrintf("Rescan aborted at block %d. Progress=%f\n", pindex->nHeight, GuessVerificationProgress(chainParams.TxData(), pindex));
         }
         ShowProgress(_("Rescanning..."), 100); // hide progress dialog in GUI
 
@@ -1935,7 +1930,7 @@ bool CWalletTx::RelayWalletTransaction(CConnman* connman)
     {
         CValidationState state;
         /* GetDepthInMainChain already catches known conflicts. */
-        if (InMempool() || AcceptToMemoryPool(false, maxTxFee, state)) {
+        if (InMempool() || AcceptToMemoryPool(maxTxFee, state)) {
             LogPrintf("Relaying wtx %s\n", GetHash().ToString());
             if (connman) {
                 CInv inv(MSG_TX, GetHash());
@@ -1999,7 +1994,7 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter) const
     if ((IsCoinBase() || IsCoinStake()) && GetBlocksToMaturity() > 0)
         return 0;
 
-    CAmount credit = 0;
+    int64_t credit = 0;
     if (filter & ISMINE_SPENDABLE)
     {
         // GetBalance can assume transactions in mapWallet won't change
@@ -2919,22 +2914,17 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                 if (coinControl && coinControl->nConfirmTarget > 0)
                     currentConfirmationTarget = coinControl->nConfirmTarget;
 
-                // Allow to override the default confirmation target over the CoinControl instance
-                int currentConfirmationTarget = nTxConfirmTarget;
-                if (coinControl && coinControl->nConfirmTarget > 0)
-                    currentConfirmationTarget = coinControl->nConfirmTarget;
-
                 // Can we complete this as a free transaction?
                 if (fSendFreeTransactions && nBytes <= MAX_FREE_TRANSACTION_CREATE_SIZE)
                 {
                     // Not enough fee: enough priority?
-                    double dPriorityNeeded = mempool.estimateSmartPriority(currentConfirmationTarget);
+                    double dPriorityNeeded = mempool.estimateSmartPriority(nTxConfirmTarget);
                     // Require at least hard-coded AllowFree.
                     if (dPriority >= dPriorityNeeded && AllowFree(dPriority))
                         break;
                 }
 
-                CAmount nFeeNeeded = GetMinimumFee(nBytes, currentConfirmationTarget, mempool);
+                CAmount nFeeNeeded = GetMinimumFee(nBytes, nTxConfirmTarget, mempool);
                 if (coinControl && nFeeNeeded > 0 && coinControl->nMinimumTotalFee > nFeeNeeded) {
                     nFeeNeeded = coinControl->nMinimumTotalFee;
                 }
@@ -3770,7 +3760,7 @@ uint64_t CWallet::GetStakeWeight() const
     BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins)
     {
 		if (pcoin.first->GetDepthInMainChain() >= Params().GetConsensus().nStakeMinConfirmations)
-			nWeight += pcoin.first->vout[pcoin.second].nValue;
+			nWeight += pcoin.first->tx->vout[pcoin.second].nValue;
     }
 
     return nWeight;
