@@ -3034,7 +3034,7 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
                 for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
                     if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
-                pblock->vtx.insert(pblock->vtx.begin() + 1, txCoinStake);
+                pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
 
                 pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 

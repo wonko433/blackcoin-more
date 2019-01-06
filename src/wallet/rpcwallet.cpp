@@ -1922,8 +1922,8 @@ UniValue walletpassphrase(const JSONRPCRequest& request)
     RPCRunLater("lockwallet", boost::bind(LockWallet, pwalletMain), nSleepTime);
 
     // ppcoin: if user OS account compromised prevent trivial sendmoney commands
-    if (params.size() > 2)
-    	fWalletUnlockStakingOnly = params[2].get_bool();
+    if (request.params.size() > 2)
+    	fWalletUnlockStakingOnly = request.params[2].get_bool();
     else
     	fWalletUnlockStakingOnly = false;
 
