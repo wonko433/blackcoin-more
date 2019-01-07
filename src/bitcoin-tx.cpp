@@ -206,7 +206,7 @@ static void MutateTxTime(CMutableTransaction& tx, const std::string& cmdVal)
 {
     int64_t newTime = atoi64(cmdVal);
     if (newTime < 0LL || newTime > 0xffffffffLL)
-        throw runtime_error("Invalid TX time requested");
+        throw std::runtime_error("Invalid TX time requested");
 
     tx.nTime = (unsigned int) newTime;
 }

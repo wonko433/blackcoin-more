@@ -595,7 +595,7 @@ bool WalletModel::getPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) const
 
 bool WalletModel::IsSpendable(const CTxDestination &dest) const
 { 
-    return wallet->IsMine(dest) & ISMINE_SPENDABLE;
+    return IsMine(*wallet, dest) & ISMINE_SPENDABLE;
 }
 
 bool WalletModel::getPrivKey(const CKeyID &address, CKey& vchPrivKeyOut) const
