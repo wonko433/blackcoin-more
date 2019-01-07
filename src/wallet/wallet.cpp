@@ -2886,6 +2886,7 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                 }
 
                 CTransaction txNewConst(txNew);
+                unsigned int nBytes = txNewConst.GetTotalSize();
 
                 // Remove scriptSigs to eliminate the fee calculation dummy signatures
                 for (auto& vin : txNew.vin) {
