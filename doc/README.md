@@ -32,8 +32,8 @@ Drag Blackcoin-More to your applications folder, and then run Blackcoin-More.
 for help and more information.
 * Ask for help on [#blackcoin](http://webchat.freenode.net?channels=blackcoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=blackcoin).
 * Ask for help in [Blackcoin room](https://gitter.im/BlackCoin_Hub) on Gitter.
-* Ask for help in [/r/blackcoin/](https://nm.reddit.com/r/blackcoin/) on Freenode.
-* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838).
+* Ask for help in [/r/blackcoin/](https://nm.reddit.com/r/blackcoin/) on Reddit.
+* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838.new#new).
 
 Building
 ---------------------
@@ -63,7 +63,7 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838.new#new).
 * Discuss Blackcoin development in [Blackcoin room](https://gitter.im/BlackCoin_Hub) on Gitter.
 * Discuss Blackcoin development in [Blackcoin team](https://keybase.io/team/blackcoin) on Keybase.
 
