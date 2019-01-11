@@ -1145,7 +1145,6 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     obj.push_back(Pair("pruned",                fPruneMode));
 
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    CBlockIndex* tip = chainActive.Tip();
     UniValue bip9_softforks(UniValue::VOBJ);
     BIP9SoftForkDescPushBack(bip9_softforks, "csv", consensusParams, Consensus::DEPLOYMENT_CSV);
     obj.push_back(Pair("bip9_softforks", bip9_softforks));
