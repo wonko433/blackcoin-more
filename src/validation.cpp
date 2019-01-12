@@ -2966,15 +2966,11 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
         return true;
     }
 
-    static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
-
     CKey key;
     CMutableTransaction txCoinBase(*pblock->vtx[0]);
     CMutableTransaction txCoinStake;
     txCoinStake.nTime = nTime;
     txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
-
-    int64_t nSearchTime = txCoinStake.nTime; // search to current time
 
     if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
     {
