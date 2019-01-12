@@ -449,7 +449,7 @@ unsigned int GetSigOpCountWithoutP2SH(const CTransaction& tx)
     {
         nSigOps += txin.scriptSig.GetSigOpCount(false);
     }
-    for (const auto& txin : tx.vout)
+    for (const auto& txout : tx.vout)
     {
         nSigOps += txout.scriptPubKey.GetSigOpCount(false);
     }
@@ -2976,38 +2976,33 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
 
     int64_t nSearchTime = txCoinStake.nTime; // search to current time
 
-    if (nSearchTime > nLastCoinStakeSearchTime)
+    if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
     {
-        if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
+        if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
         {
-            if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
-            {
-                // make sure coinstake would meet timestamp protocol
-                // as it would be the same as the block timestamp
-                txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
-                pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
+            // make sure coinstake would meet timestamp protocol
+            // as it would be the same as the block timestamp
+            txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
+            pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
 
-                // we have to make sure that we have no future timestamps in
-                // our transactions set
-                for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
-                    if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
+            // we have to make sure that we have no future timestamps in
+            // our transactions set
+            for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
+                if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
-                pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
+            pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
 
-                pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
+            pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 
-                // append a signature to our block
-                return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
-            }
+            // append a signature to our block
+            return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
         }
-        nLastCoinStakeSearchInterval = nSearchTime - nLastCoinStakeSearchTime;
-        nLastCoinStakeSearchTime = nSearchTime;
     }
 
     return false;
 }
 
-static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& chainparams, CBlockIndex**)
+static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex)
 {
     AssertLockHeld(cs_main);
     // Check for duplicate
@@ -3728,10 +3723,10 @@ void UnloadBlockIndex()
     fHavePruned = false;
 }
 
-bool LoadBlockIndex()
+bool LoadBlockIndex(const CChainParams& chainparams)
 {
     // Load block index from databases
-    if (!fReindex && !LoadBlockIndexDB())
+    if (!fReindex && !LoadBlockIndexDB(chainparams))
         return false;
     return true;
 }
