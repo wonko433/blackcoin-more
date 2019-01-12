@@ -12,6 +12,7 @@
 static void AddTx(const CTransaction& tx, const CAmount& nFee, CTxMemPool& pool)
 {
     int64_t nTime = 0;
+    double dPriority = 10.0;
     unsigned int nHeight = 1;
     bool spendsCoinbase = false;
     unsigned int sigOpCost = 4;
@@ -107,7 +108,7 @@ static void MempoolEviction(benchmark::State& state)
         AddTx(tx6, 1100LL, pool);
         AddTx(tx7, 9000LL, pool);
         pool.TrimToSize(pool.DynamicMemoryUsage() * 3 / 4);
-        // pool.TrimToSize(tx1.GetTotalSize())
+        pool.TrimToSize(tx1.GetTotalSize())
     }
 }
 

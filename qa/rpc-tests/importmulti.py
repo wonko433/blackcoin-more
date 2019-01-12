@@ -130,7 +130,7 @@ class ImportMultiTest (BitcoinTestFramework):
             "timestamp": "now",
             "pubkeys": [ address['pubkey'] ],
             "internal": True
-        }];
+        }]
         result = self.nodes[1].importmulti(request)
         assert_equal(result[0]['success'], True)
         address_assert = self.nodes[1].validateaddress(address['address'])
@@ -145,7 +145,7 @@ class ImportMultiTest (BitcoinTestFramework):
             "scriptPubKey": address['scriptPubKey'],
             "timestamp": "now",
             "pubkeys": [ address['pubkey'] ]
-        }];
+        }]
         result = self.nodes[1].importmulti(request)
         assert_equal(result[0]['success'], False)
         assert_equal(result[0]['error']['code'], -8)
@@ -158,7 +158,6 @@ class ImportMultiTest (BitcoinTestFramework):
         # Address + Private key + !watchonly
         print("Should import an address with private key")
         address = self.nodes[0].validateaddress(self.nodes[0].getnewaddress())
-        timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
         result = self.nodes[1].importmulti([{
             "scriptPubKey": {
                 "address": address['address']
@@ -315,7 +314,7 @@ class ImportMultiTest (BitcoinTestFramework):
         self.nodes[1].generate(100)
         transactionid = self.nodes[1].sendtoaddress(multi_sig_script['address'], 10.00)
         self.nodes[1].generate(1)
-        transaction = self.nodes[1].gettransaction(transactionid);
+        transaction = self.nodes[1].gettransaction(transactionid)
 
         print("Should import a p2sh with respective redeem script and private keys")
         result = self.nodes[1].importmulti([{
@@ -361,7 +360,7 @@ class ImportMultiTest (BitcoinTestFramework):
             "timestamp": "now",
             "pubkeys": [ address2['pubkey'] ],
             "internal": True
-        }];
+        }]
         result = self.nodes[1].importmulti(request)
         assert_equal(result[0]['success'], False)
         assert_equal(result[0]['error']['code'], -5)

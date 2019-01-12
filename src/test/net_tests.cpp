@@ -5,12 +5,12 @@
 #include "test/test_bitcoin.h"
 #include <string>
 #include <boost/test/unit_test.hpp>
-#include "chainparams.h"
 #include "hash.h"
-#include "net.h"
-#include "netbase.h"
 #include "serialize.h"
 #include "streams.h"
+#include "net.h"
+#include "netbase.h"
+#include "chainparams.h"
 
 class CAddrManSerializationMock : public CAddrMan
 {

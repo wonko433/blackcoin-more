@@ -111,7 +111,6 @@ class TestNode(SingleNodeConnCB):
 
 class CompactBlocksTest(BitcoinTestFramework):
     def __init__(self):
-        super().__init__()
         self.setup_clean_chain = True
         self.num_nodes = 2
         self.extra_args = [[], ["-txindex"]]
@@ -202,7 +201,7 @@ class CompactBlocksTest(BitcoinTestFramework):
 
         # Now try a SENDCMPCT message with too-high version
         sendcmpct = msg_sendcmpct()
-        sendcmpct.version = preferred_version+1
+        sendcmpct.version = 999  # was: preferred_version+1
         sendcmpct.announce = True
         test_node.send_and_ping(sendcmpct)
         check_announcement_of_new_block(node, test_node, lambda p: p.last_cmpctblock is None)
@@ -247,7 +246,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         if old_node is not None:
             # Verify that a peer using an older protocol version can receive
             # announcements from this node.
-            sendcmpct.version = preferred_version-1
+            sendcmpct.version = 1  # preferred_version-1
             sendcmpct.announce = True
             old_node.send_and_ping(sendcmpct)
             # Header sync
@@ -275,7 +274,6 @@ class CompactBlocksTest(BitcoinTestFramework):
         node.generate(101)
         num_transactions = 25
         address = node.getnewaddress()
-
         for i in range(num_transactions):
             txid = node.sendtoaddress(address, 0.1)
             hex_tx = node.gettransaction(txid)["hex"]
@@ -286,7 +284,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         assert(test_node.wait_for_block_announcement(tip))
 
         # Make sure we will receive a fast-announce compact block
-        self.request_cb_announcements(test_node, node, version)
+        self.request_cb_announcements(test_node, node)
 
         # Now mine a block, and look at the resulting compact block.
         test_node.clear_block_announcement()
@@ -307,7 +305,7 @@ class CompactBlocksTest(BitcoinTestFramework):
             assert(test_node.last_cmpctblock is not None)
             # Convert the on-the-wire representation to absolute indexes
             header_and_shortids = HeaderAndShortIDs(test_node.last_cmpctblock.header_and_shortids)
-        self.check_compactblock_construction_from_block(version, header_and_shortids, block_hash, block)
+        self.check_compactblock_construction_from_block(header_and_shortids, block_hash, block)
 
         # Now fetch the compact block using a normal non-announce getdata
         with mininode_lock:
@@ -324,9 +322,9 @@ class CompactBlocksTest(BitcoinTestFramework):
             assert(test_node.last_cmpctblock is not None)
             # Convert the on-the-wire representation to absolute indexes
             header_and_shortids = HeaderAndShortIDs(test_node.last_cmpctblock.header_and_shortids)
-        self.check_compactblock_construction_from_block(version, header_and_shortids, block_hash, block)
+        self.check_compactblock_construction_from_block(header_and_shortids, block_hash, block)
 
-    def check_compactblock_construction_from_block(self, version, header_and_shortids, block_hash, block):
+    def check_compactblock_construction_from_block(self, header_and_shortids, block_hash, block):
         # Check that we got the right block!
         header_and_shortids.header.calc_sha256()
         assert_equal(header_and_shortids.header.sha256, block_hash)
@@ -698,7 +696,7 @@ class CompactBlocksTest(BitcoinTestFramework):
 
     # Helper for enabling cb announcements
     # Send the sendcmpct request and sync headers
-    def request_cb_announcements(self, peer, node, version):
+    def request_cb_announcements(self, peer, node, version=1):
         tip = node.getbestblockhash()
         peer.get_headers(locator=[int(tip, 16)], hashstop=0)
 
@@ -778,7 +776,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         # We will need UTXOs to construct transactions in later tests.
         self.make_utxos()
 
-        self.log.info("Running tests:")
+        print("Running tests:")
 
         print("\tTesting SENDCMPCT p2p message... ")
         self.test_sendcmpct(self.nodes[0], self.test_node, 1)

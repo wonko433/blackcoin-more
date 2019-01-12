@@ -692,7 +692,7 @@
     <message>
         <location filename="../bitcoin.cpp" line="+518"/>
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation type="unfinished"></translation>
+        <translation>A fatal error occurred. Blackcoin can no longer continue safely and will quit.</translation>
     </message>
 </context>
 <context>
@@ -935,7 +935,7 @@
     <message>
         <location line="+71"/>
         <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
-        <translation>The entered address &quot;%1&quot; is not a valid Bitcoin address.</translation>
+        <translation>The entered address &quot;%1&quot; is not a valid Blackcoin address.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1119,7 +1119,7 @@
     <message>
         <location line="+119"/>
         <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the Blackcoin network, as detailed below.</translation>
+        <translation>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the blackcoin network, as detailed below.</translation>
     </message>
     <message>
         <location line="+19"/>

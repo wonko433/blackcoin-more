@@ -2319,7 +2319,7 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
     obj.push_back(Pair("paytxfee",      ValueFromAmount(payTxFee.GetFeePerK())));
     CKeyID masterKeyID = pwalletMain->GetHDChain().masterKeyID;
     if (!masterKeyID.IsNull())
-        obj.push_back(Pair("hdmasterkeyid", masterKeyID.GetHex()));
+         obj.push_back(Pair("hdmasterkeyid", masterKeyID.GetHex()));
     return obj;
 }
 
@@ -2544,8 +2544,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
         // backward compatibility bool only fallback
         includeWatching = request.params[1].get_bool();
       }
-    }
-    else {
+      else {
         RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VSTR)(UniValue::VOBJ));
 
         UniValue options = request.params[1];
@@ -2566,7 +2565,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             CTxDestination dest =
                     DecodeDestination(options["changeAddress"].get_str());
 
-            if (!IsValidDestination(dest)) {
+            if (!IsValidDestination(dest))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid blackcoin address");
 
             changeAddress = dest;

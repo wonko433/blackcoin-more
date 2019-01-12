@@ -313,15 +313,18 @@ public:
 /** getdata message type flags */
 const uint32_t MSG_TYPE_MASK    = 0xffffffff >> 2;
 
-/** getdata message types */
+/** getdata / inv message types.
+ * These numbers are defined by the protocol. When adding a new value, be sure
+ * to mention it in the respective BIP.
+ */
 enum GetDataMsg
 {
     UNDEFINED = 0,
     MSG_TX = 1,
-    MSG_BLOCK,
+    MSG_BLOCK = 2,
     // The following can only occur in getdata. Invs always use TX or BLOCK.
-    MSG_FILTERED_BLOCK,
-    MSG_CMPCT_BLOCK,
+    MSG_FILTERED_BLOCK = 3,  //!< Defined in BIP37
+    MSG_CMPCT_BLOCK = 4,     //!< Defined in BIP152
 };
 
 /** inv message data */
