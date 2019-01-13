@@ -26,11 +26,6 @@ static const bool DEFAULT_PRINTPRIORITY = false;
 static const bool DEFAULT_STAKE = true;
 static const bool DEFAULT_STAKE_CACHE = true;
 
-// How many seconds to look ahead and prepare a block for staking
-// Look ahead up to 3 "timeslots" in the future, 48 seconds
-// Reduce this to reduce computational waste for stakers, increase this to increase the amount of time available to construct full blocks
-static const int32_t MAX_STAKE_LOOKAHEAD = 16 * 3;
-
 CAmount GetProofOfWorkReward();
 
 struct CBlockTemplate
@@ -207,5 +202,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
 int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 /** Run the miner threads */
 void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams);
+/** Sign proof-of-stake block */
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees);
 
 #endif // BITCOIN_MINER_H
