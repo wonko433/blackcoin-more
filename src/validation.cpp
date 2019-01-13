@@ -3100,27 +3100,12 @@ static bool AcceptBlock(const std::shared_ptr<const CBlock>& pblock, CValidation
     return true;
 }
 
-bool static IsCanonicalBlockSignature(const std::shared_ptr<const CBlock> pblock)
-{
-    if (pblock->IsProofOfWork()) {
-        return pblock->vchBlockSig.empty();
-    }
-
-    return IsLowDERSignature(pblock->vchBlockSig, NULL, false);
-}
-
 bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
 {
     {
         CBlockIndex *pindex = NULL;
         if (fNewBlock) *fNewBlock = false;
         CValidationState state;
-
-        // Check if block signature is canonical
-        if (!IsCanonicalBlockSignature(pblock)) {
-            if (pblock && pblock->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
-                return error("%s: bad block signature encoding", __func__);
-        }
     
         // Ensure that CheckBlock() passes before calling AcceptBlock, as
         // belt-and-suspenders.
@@ -3172,6 +3157,15 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     assert(state.IsValid());
 
     return true;
+}
+
+bool IsCanonicalBlockSignature(const std::shared_ptr<const CBlock> pblock)
+{
+    if (pblock->IsProofOfWork()) {
+        return pblock->vchBlockSig.empty();
+    }
+
+    return IsLowDERSignature(pblock->vchBlockSig, NULL, false);
 }
 
 /**

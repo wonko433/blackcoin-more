@@ -2073,7 +2073,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 mapBlockSource.emplace(pblock->GetHash(), std::make_pair(pfrom->GetId(), false));
             }
             bool fNewBlock = false;
-            ProcessNewBlock(chainparams, pblock, true, &fNewBlock);
+            ProcessNetBlock(chainparams, pblock, true, &fNewBlock, pfrom, connman);
             if (fNewBlock)
                 pfrom->nLastBlockTime = GetTime();
 
@@ -2150,7 +2150,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             bool fNewBlock = false;
             // Since we requested this block (it was in mapBlocksInFlight), force it to be processed,
             // even if it would not be a candidate for new tip (missing previous block, chain not long enough, etc)
-            ProcessNewBlock(chainparams, pblock, true, &fNewBlock);
+            ProcessNetBlock(chainparams, pblock, true, &fNewBlock, pfrom, connman);
             if (fNewBlock)
                 pfrom->nLastBlockTime = GetTime();
         }
@@ -2328,7 +2328,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             mapBlockSource.emplace(hash, std::make_pair(pfrom->GetId(), true));
         }
         bool fNewBlock = false;
-        ProcessNewBlock(chainparams, pblock, forceProcessing, &fNewBlock);
+        ProcessNetBlock(chainparams, pblock, forceProcessing, &fNewBlock, pfrom, connman);
         if (fNewBlock)
             pfrom->nLastBlockTime = GetTime();
     }
@@ -3202,6 +3202,23 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
     }
     return true;
 }
+
+bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CNode* pfrom, CConnman& connman)
+{
+    // Check if block signature is canonical
+    if (!IsCanonicalBlockSignature(pblock))
+    {
+        if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
+            Misbehaving(pfrom->GetId(), 100);
+
+        return error("%s: bad block signature encoding", __func__);
+    }
+
+    if (!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock))
+        return error("%s: ProcessNewBlock FAILED", __func__);
+
+    return true;
+} 
 
 class CNetProcessingCleanup
 {
