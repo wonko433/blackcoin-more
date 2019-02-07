@@ -169,7 +169,7 @@ public:
         chainTxData = ChainTxData{
             // Data as of block 2be3dbc08d6890259e352a9f96ba2f565929f3e55f40722af0ded94372b78d53 (height 2407852).
             1546686720, // * UNIX timestamp of last known number of transactions
-            6410197,  // * total number of transactions between genesis and that timestamp
+            6410197,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             2.0         // * estimated number of transactions per second after that timestamp
         };
@@ -253,14 +253,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0x0000724595fb3b9609d441cbfb9577615c292abf07d996d3edabc48de843642d")),
+                ( 90235, uint256S("0x567898e79184dc2f7dc3a661f794f28566e4b856d70180914f7371b1b3cc82d8"))
         };
 
         chainTxData = ChainTxData{
-            // Data as of block ? (height ?)
-            0,
-            0,
-            0
+            // Data as of block 567898e79184dc2f7dc3a661f794f28566e4b856d70180914f7371b1b3cc82d8 (height 90235).
+            1549558800,
+            179080,
+            2.0
         };
 
     }
