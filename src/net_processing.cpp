@@ -3208,8 +3208,11 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     // Check if block signature is canonical
     if (!IsCanonicalBlockSignature(pblock))
     {
+        /*
+        // ToDo: enable banning when cmpctblock signature issue is fixed
         if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
             Misbehaving(pfrom->GetId(), 100);
+        */
 
         return error("%s: bad block signature encoding", __func__);
     }
