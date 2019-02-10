@@ -3206,15 +3206,22 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
 bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CNode* pfrom, CConnman& connman)
 {
     // Check if block signature is canonical
-    if (!IsCanonicalBlockSignature(pblock))
+    if (!IsCanonicalBlockSignature(pblock, false))
     {
-        /*
-        // ToDo: enable banning when cmpctblock signature issue is fixed
-        if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION)
-            Misbehaving(pfrom->GetId(), 100);
-        */
-
+        if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION) {
+            // ToDo: enable banning when cmpctblock signature issue is fixed
+            // Misbehaving(pfrom->GetId(), 100);
+        }
         return error("%s: bad block signature encoding", __func__);
+    }
+
+    if (!IsCanonicalBlockSignature(pblock, true))
+    {
+        if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_LOW_S_VERSION) {
+            // ToDo: enable banning when cmpctblock signature issue is fixed
+            // Misbehaving(pfrom->GetId(), 100);
+            return error("%s: bad block signature encoding (low-s)", __func__);
+        }
     }
 
     if (!ProcessNewBlock(chainparams, pblock, fForceProcessing, fNewBlock))
