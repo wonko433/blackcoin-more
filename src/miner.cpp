@@ -547,9 +547,10 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                     SetThreadPriority(THREAD_PRIORITY_LOWEST);
                     MilliSleep(500);
                 }
-                else
+                
+		}
                     MilliSleep(nMinerSleep);
-            }
+
         }
     }
     catch (const boost::thread_interrupted&)
