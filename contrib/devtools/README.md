@@ -85,6 +85,12 @@ gen-manpages.sh
 A small script to automatically create manpages in ../../doc/man by running the release binaries with the -help option.
 This requires help2man which can be found at: https://www.gnu.org/software/help2man/
 
+gen-manpages.sh
+===============
+
+A small script to automatically create manpages in ../../doc/man by running the release binaries with the -help option.
+This requires help2man which can be found at: https://www.gnu.org/software/help2man/
+
 git-subtree-check.sh
 ====================
 
