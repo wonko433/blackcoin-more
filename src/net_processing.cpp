@@ -3209,8 +3209,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     if (!IsCanonicalBlockSignature(pblock, false))
     {
         if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_VERSION) {
-            // ToDo: enable banning when cmpctblock signature issue is fixed
-            // Misbehaving(pfrom->GetId(), 100);
+            Misbehaving(pfrom->GetId(), 100);
         }
         return error("%s: bad block signature encoding", __func__);
     }
@@ -3218,8 +3217,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     if (!IsCanonicalBlockSignature(pblock, true))
     {
         if (pfrom && pfrom->nVersion >= CANONICAL_BLOCK_SIG_LOW_S_VERSION) {
-            // ToDo: enable banning when cmpctblock signature issue is fixed
-            // Misbehaving(pfrom->GetId(), 100);
+            Misbehaving(pfrom->GetId(), 100);
             return error("%s: bad block signature encoding (low-s)", __func__);
         }
     }
