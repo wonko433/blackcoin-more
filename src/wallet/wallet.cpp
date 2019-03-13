@@ -20,7 +20,6 @@
 #include "validation.h"
 #include "net.h"
 #include "policy/policy.h"
-#include "pos.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
 #include "script/script.h"
@@ -727,7 +726,6 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     if (setCoins.empty())
         return false;
 
-    static std::map<COutPoint, CStakeCache> stakeCache;
     if(stakeCache.size() > setCoins.size() + 100){
         //Determining if the cache is still valid is harder than just clearing it when it gets too big, so instead just clear it
         //when it has more than 100 entries more than the actual setCoins.
