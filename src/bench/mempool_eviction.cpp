@@ -97,7 +97,7 @@ static void MempoolEviction(benchmark::State& state)
     tx7.vout[1].scriptPubKey = CScript() << OP_7 << OP_EQUAL;
     tx7.vout[1].nValue = 10 * COIN;
 
-    CTxMemPool pool(CFeeRate(1000));
+    CTxMemPool pool(CFeeRate(10000));
 
     while (state.KeepRunning()) {
         AddTx(tx1, 10000LL, pool);
@@ -108,7 +108,8 @@ static void MempoolEviction(benchmark::State& state)
         AddTx(tx6, 1100LL, pool);
         AddTx(tx7, 9000LL, pool);
         pool.TrimToSize(pool.DynamicMemoryUsage() * 3 / 4);
-        pool.TrimToSize(tx1.GetTotalSize())
+        // ToDo: UNCOMMENT!
+        // pool.TrimToSize(tx1.GetTotalSize());
     }
 }
 
