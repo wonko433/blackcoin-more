@@ -7,7 +7,10 @@
 
 #include "addrman.h"
 #include "arith_uint256.h"
+/*
+// Disable BIP152
 #include "blockencodings.h"
+*/
 #include "chainparams.h"
 #include "consensus/validation.h"
 #include "hash.h"
@@ -104,12 +107,18 @@ namespace {
         uint256 hash;
         const CBlockIndex* pindex;                               //!< Optional.
         bool fValidatedHeaders;                                  //!< Whether this block has validated headers at the time of request.
+        /*
+        // Disable BIP152
         std::unique_ptr<PartiallyDownloadedBlock> partialBlock;  //!< Optional, used for CMPCTBLOCK downloads
+        */
     };
     std::map<uint256, std::pair<NodeId, std::list<QueuedBlock>::iterator> > mapBlocksInFlight;
 
     /** Stack of nodes which we have set to announce using compact blocks */
+    /*
+    // Disable BIP152
     std::list<NodeId> lNodesAnnouncingHeaderAndIDs;
+    */
 
     /** Number of preferable block download peers. */
     int nPreferredDownload = 0;
@@ -179,17 +188,18 @@ struct CNodeState {
     bool fPreferredDownload;
     //! Whether this peer wants invs or headers (when possible) for block announcements.
     bool fPreferHeaders;
+    // Disable BIP152
     //! Whether this peer wants invs or cmpctblocks (when possible) for block announcements.
-    bool fPreferHeaderAndIDs;
+    // bool fPreferHeaderAndIDs;
     /**
       * Whether this peer will send us cmpctblocks if we request them.
       */
-    bool fProvidesHeaderAndIDs;
+    // bool fProvidesHeaderAndIDs;
     /**
      * If we've announced NODE_WITNESS to this peer: whether the peer sends witnesses in cmpctblocks/blocktxns,
      * otherwise: whether this peer sends non-witnesses in cmpctblocks/blocktxns.
      */
-    bool fSupportsDesiredCmpctVersion;
+    // bool fSupportsDesiredCmpctVersion;
 
     CNodeState(CAddress addrIn, std::string addrNameIn) : address(addrIn), name(addrNameIn) {
         fCurrentlyConnected = false;
@@ -207,9 +217,12 @@ struct CNodeState {
         nBlocksInFlightValidHeaders = 0;
         fPreferredDownload = false;
         fPreferHeaders = false;
+        /*
+        // Disable BIP152
         fPreferHeaderAndIDs = false;
         fProvidesHeaderAndIDs = false;
         fSupportsDesiredCmpctVersion = false;
+        */
     }
 };
 
@@ -338,8 +351,13 @@ bool MarkBlockAsInFlight(NodeId nodeid, const uint256& hash, const Consensus::Pa
     // Make sure it's not listed somewhere already.
     MarkBlockAsReceived(hash);
 
+    /*
+    // Disable BIP152
     std::list<QueuedBlock>::iterator it = state->vBlocksInFlight.insert(state->vBlocksInFlight.end(),
             {hash, pindex, pindex != NULL, std::unique_ptr<PartiallyDownloadedBlock>(pit ? new PartiallyDownloadedBlock(&mempool) : NULL)});
+    */
+    std::list<QueuedBlock>::iterator it = state->vBlocksInFlight.insert(state->vBlocksInFlight.end(),
+            {hash, pindex, pindex != NULL});
     state->nBlocksInFlight++;
     state->nBlocksInFlightValidHeaders += it->fValidatedHeaders;
     if (state->nBlocksInFlight == 1) {
@@ -388,6 +406,8 @@ void UpdateBlockAvailability(NodeId nodeid, const uint256 &hash) {
     }
 }
 
+/*
+// Disable BIP152
 void MaybeSetPeerAsAnnouncingHeaderAndIDs(NodeId nodeid, CConnman& connman) {
     AssertLockHeld(cs_main);
     CNodeState* nodestate = State(nodeid);
@@ -422,6 +442,7 @@ void MaybeSetPeerAsAnnouncingHeaderAndIDs(NodeId nodeid, CConnman& connman) {
         });
     }
 }
+*/
 
 // Requires cs_main
 bool CanDirectFetch(const Consensus::Params &consensusParams)
@@ -761,11 +782,17 @@ void PeerLogicValidation::SyncTransaction(const CTransaction& tx, const CBlockIn
 
 static CCriticalSection cs_most_recent_block;
 static std::shared_ptr<const CBlock> most_recent_block;
+/*
+// Disable BIP152
 static std::shared_ptr<const CBlockHeaderAndShortTxIDs> most_recent_compact_block;
+*/
 static uint256 most_recent_block_hash;
 
 void PeerLogicValidation::NewPoWValidBlock(const CBlockIndex *pindex, const std::shared_ptr<const CBlock>& pblock) {
+    /*
+    // Disable BIP152
     std::shared_ptr<const CBlockHeaderAndShortTxIDs> pcmpctblock = std::make_shared<const CBlockHeaderAndShortTxIDs> (*pblock);
+    */
     const CNetMsgMaker msgMaker(PROTOCOL_VERSION);
 
     LOCK(cs_main);
@@ -781,9 +808,14 @@ void PeerLogicValidation::NewPoWValidBlock(const CBlockIndex *pindex, const std:
         LOCK(cs_most_recent_block);
         most_recent_block_hash = hashBlock;
         most_recent_block = pblock;
+        /*
+        // Disable BIP152
         most_recent_compact_block = pcmpctblock;
+        */
     }
 
+    /*
+    // Disable BIP152
     connman->ForEachNode([this, &pcmpctblock, pindex, &msgMaker, &hashBlock](CNode* pnode) {
         // TODO: Avoid the repeated-serialization here
         if (pnode->nVersion < INVALID_CB_NO_BAN_VERSION || pnode->fDisconnect)
@@ -801,6 +833,7 @@ void PeerLogicValidation::NewPoWValidBlock(const CBlockIndex *pindex, const std:
             state.pindexBestHeaderSent = pindex;
         }
     });
+    */
 }
 
 void PeerLogicValidation::UpdatedBlockTip(const CBlockIndex *pindexNew, const CBlockIndex *pindexFork, bool fInitialDownload) {
@@ -860,7 +893,10 @@ void PeerLogicValidation::BlockChecked(const CBlock& block, const CValidationSta
              !IsInitialBlockDownload() &&
              mapBlocksInFlight.count(hash) == mapBlocksInFlight.size()) {
         if (it != mapBlockSource.end()) {
+            /*
+            // Disable BIP 152
             MaybeSetPeerAsAnnouncingHeaderAndIDs(it->second.first, *connman);
+            */
         }
     }
     if (it != mapBlockSource.end())
@@ -968,7 +1004,11 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
 
             it++;
 
+            /*
+            // Disable BIP152
             if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK || inv.type == MSG_CMPCT_BLOCK)
+            */
+            if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK)
             {
                 bool send = false;
                 BlockMap::iterator mi = mapBlockIndex.find(inv.hash);
@@ -1025,7 +1065,11 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                         assert(!"cannot load block from disk");
                     if (inv.type == MSG_BLOCK)
                         connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::BLOCK, block));
+                    /*
+                    // Disable BIP152
                     else if (inv.type == MSG_FILTERED_BLOCK)
+                    */
+                    else // MSG_FILTERED_BLOCK
                     {
                         bool sendMerkleBlock = false;
                         CMerkleBlock merkleBlock;
@@ -1051,6 +1095,8 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                         // else
                             // no response
                     }
+                    /*
+                    // Disable BIP152
                     else if (inv.type == MSG_CMPCT_BLOCK)
                     {
                         // If a peer is asking for old blocks, we're almost guaranteed
@@ -1064,6 +1110,7 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                         } else
                             connman.PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCK, block));
                     }
+                    */
 
                     // Trigger the peer node to send a getblocks request for the next batch of inventory
                     if (inv.hash == pfrom->hashContinue)
@@ -1104,7 +1151,11 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
             // Track requests for our stuff.
             GetMainSignals().Inventory(inv.hash);
 
+            /*
+            // Disable BIP152
             if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK || inv.type == MSG_CMPCT_BLOCK)
+            */
+            if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK)
                 break;
         }
     }
@@ -1123,6 +1174,8 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
     }
 }
 
+/*
+// Disable BIP152
 inline void static SendBlockTransactions(const CBlock& block, const BlockTransactionsRequest& req, CNode* pfrom, CConnman& connman) {
     BlockTransactions resp(req);
     for (size_t i = 0; i < req.indexes.size(); i++) {
@@ -1139,6 +1192,7 @@ inline void static SendBlockTransactions(const CBlock& block, const BlockTransac
     int nSendFlags = 0;
     connman.PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCKTXN, resp));
 }
+*/
 
 bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStream& vRecv, int64_t nTimeReceived, const CChainParams& chainparams, CConnman& connman, const std::atomic<bool>& interruptMsgProc)
 {
@@ -1371,6 +1425,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             // nodes)
             connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::SENDHEADERS));
         }
+        /*
+        // Disable BIP152
         if (pfrom->nVersion >= SHORT_IDS_BLOCKS_VERSION) {
             // Tell our peer we are willing to provide version 1 or 2 cmpctblocks
             // However, we do not request new block announcements using
@@ -1381,6 +1437,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             uint64_t nCMPCTBLOCKVersion = 1;
             connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::SENDCMPCT, fAnnounceUsingCMPCTBLOCK, nCMPCTBLOCKVersion));
         }
+        */
         pfrom->fSuccessfullyConnected = true;
     }
 
@@ -1445,6 +1502,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         State(pfrom->GetId())->fPreferHeaders = true;
     }
 
+    /*
+    // Disable BIP152
     else if (strCommand == NetMsgType::SENDCMPCT)
     {
         bool fAnnounceUsingCMPCTBLOCK = false;
@@ -1464,6 +1523,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             }
         }
     }
+    */
 
 
     else if (strCommand == NetMsgType::INV)
@@ -1610,6 +1670,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
     }
 
 
+    /*
+    // Disable BIP152
     else if (strCommand == NetMsgType::GETBLOCKTXN)
     {
         BlockTransactionsRequest req;
@@ -1658,6 +1720,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         SendBlockTransactions(block, req, pfrom, connman);
     }
+    */
 
 
     else if (strCommand == NetMsgType::GETHEADERS)
@@ -1899,6 +1962,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
     }
 
 
+    /*
+    // Disable BIP152
     else if (strCommand == NetMsgType::CMPCTBLOCK && !fImporting && !fReindex) // Ignore blocks received while importing
     {
         CBlockHeaderAndShortTxIDs cmpctblock;
@@ -2155,6 +2220,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 pfrom->nLastBlockTime = GetTime();
         }
     }
+    */
 
 
     else if (strCommand == NetMsgType::HEADERS && !fImporting && !fReindex) // Ignore headers received while importing
@@ -2294,10 +2360,13 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                             pindexLast->GetBlockHash().ToString(), pindexLast->nHeight);
                 }
                 if (vGetData.size() > 0) {
+                    /*
+                    // Disable BIP152
                     if (nodestate->fSupportsDesiredCmpctVersion && vGetData.size() == 1 && mapBlocksInFlight.size() == 1 && pindexLast->pprev->IsValid(BLOCK_VALID_CHAIN)) {
                         // In any case, we want to download using a compact block, not a regular one
                         vGetData[0] = CInv(MSG_CMPCT_BLOCK, vGetData[0].hash);
                     }
+                    */
                     connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::GETDATA, vGetData));
                 }
             }
@@ -2842,9 +2911,13 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
             // add all to the inv queue.
             LOCK(pto->cs_inventory);
             std::vector<CBlock> vHeaders;
+            /*
+            // Disable BIP152
             bool fRevertToInv = ((!state.fPreferHeaders &&
                                  (!state.fPreferHeaderAndIDs || pto->vBlockHashesToAnnounce.size() > 1)) ||
                                 pto->vBlockHashesToAnnounce.size() > MAX_BLOCKS_TO_ANNOUNCE);
+            */
+            bool fRevertToInv = (!state.fPreferHeaders || pto->vBlockHashesToAnnounce.size() > MAX_BLOCKS_TO_ANNOUNCE);
             const CBlockIndex *pBestIndex = NULL; // last header queued for delivery
             ProcessBlockAvailability(pto->id); // ensure pindexBestKnownBlock is up-to-date
 
@@ -2896,6 +2969,8 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
                     }
                 }
             }
+            /*
+            // Disable BIP152
             if (!fRevertToInv && !vHeaders.empty()) {
                 if (vHeaders.size() == 1 && state.fPreferHeaderAndIDs) {
                     // We only send up to 1 block as header-and-ids, as otherwise
@@ -2937,6 +3012,7 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
                 } else
                     fRevertToInv = true;
             }
+            */
             if (fRevertToInv) {
                 // If falling back to using an inv, just try to inv the tip.
                 // The last entry in vBlockHashesToAnnounce was our tip at some point
@@ -2962,6 +3038,19 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
                             pto->id, hashToAnnounce.ToString());
                     }
                 }
+            // Disable BIP152
+            } else if (!vHeaders.empty()) {
+                if (vHeaders.size() > 1) {
+                    LogPrint("net", "%s: %u headers, range (%s, %s), to peer=%d\n", __func__,
+                            vHeaders.size(),
+                            vHeaders.front().GetHash().ToString(),
+                            vHeaders.back().GetHash().ToString(), pto->id);
+                } else {
+                    LogPrint("net", "%s: sending header %s to peer=%d\n", __func__,
+                            vHeaders.front().GetHash().ToString(), pto->id);
+                }
+                connman.PushMessage(pto, msgMaker.Make(NetMsgType::HEADERS, vHeaders));
+                state.pindexBestHeaderSent = pBestIndex;
             }
             pto->vBlockHashesToAnnounce.clear();
         }
