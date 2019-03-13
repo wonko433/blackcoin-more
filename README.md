@@ -1,20 +1,20 @@
 Blackcoin More
 =====================================
 
-https://blackcoin.org
+https://blackcoinmore.org
 
 What is Blackcoin?
 ----------------
 
-Blackcoin is a decentralised digital currency with near-instant transaction speeds and negligible transaction fees built upon Proof of Stake 3.0 (PoSv3) as introduced by the Blackcoin development team.
+Blackcoin is a decentralised digital currency with near-instant transaction speeds and negligible transaction fees built upon Proof of Stake 3.0 (PoSV3, BPoS) as introduced by the Blackcoin development team.
 
-What is Blackcoin-More?
+What is Blackcoin More?
 ----------------
 
-Blackcoin-More is the name of open source software which enables use of the Blackcoin protcol. 
-By building upon Bitcoin Core 0.13.2, with some patches from newer Bitcoin Core versions to offer performance enhancements, Blackcoin-More is an alternate approach to the old "legacy" client built by Rat4 for wider compatibility with third party services and a more advanced base.
+Blackcoin More is the name of open source software which enables use of the Blackcoin protocol. 
+By building upon Bitcoin Core 0.14.3, with some patches from newer Bitcoin Core versions to offer performance enhancements, Blackcoin More is an alternate approach to the original client that provides wider compatibility with third party services and a more advanced base.
 
-For more information, as well as an immediately useable, binary version of the Blackcoin More software, see https://blackcoin.org.
+For more information, as well as an immediately useable, binary version of the Blackcoin More software, see https://blackcoinmore.org.
 
 License
 -------

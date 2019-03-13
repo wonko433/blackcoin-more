@@ -18,7 +18,10 @@ However, it downloads and stores the entire history of Blackcoin transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.
 
-See the blackcoin website at:
+See the Blackcoin More website at:
+https://blackcoinmore.org
+
+See the Blackcoin website at:
   https://blackcoin.org
 
 Also see the bitcoin wiki at:
