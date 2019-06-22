@@ -621,12 +621,12 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
         {
             const uint256& wtxid = it->first;
             const CWalletTx* pcoin = &(*it).second;
-
             int nDepth = pcoin->GetDepthInMainChain();
+
             if (nDepth < 1)
                 continue;
 
-            if (nDepth < Params().GetConsensus().nStakeMinConfirmations)
+            if (nDepth < Params().GetConsensus().nCoinbaseMaturity)
                 continue;
 
             if (pcoin->GetBlocksToMaturity() > 0)
@@ -726,17 +726,18 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     if (setCoins.empty())
         return false;
 
-    if(stakeCache.size() > setCoins.size() + 100){
+    if (stakeCache.size() > setCoins.size() + 100) {
         //Determining if the cache is still valid is harder than just clearing it when it gets too big, so instead just clear it
         //when it has more than 100 entries more than the actual setCoins.
         stakeCache.clear();
     }
-    if(GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
+
+    if (GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
         BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins)
         {
             boost::this_thread::interruption_point();
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
-            CacheKernel(stakeCache, prevoutStake); //this will do a 2 disk loads per op
+            CacheKernel(stakeCache, prevoutStake, pindexPrev, *pcoinsTip); //this will do a 2 disk loads per op
         }
 
     }
@@ -753,9 +754,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             // Search backward in time from the given txNew timestamp
             // Search nSearchInterval seconds back up to nMaxStakeSearchInterval
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
-            uint32_t nBlockTime;
-            //LogPrintf("looking for coinstake \n");
-            if (CheckKernel(pindexPrev, nBits, txNew.nTime - n, prevoutStake, &nBlockTime, stakeCache))
+            if (CheckKernel(pindexPrev, nBits, txNew.nTime - n, prevoutStake, *pcoinsTip, stakeCache))
             {
                 // Found a kernel
                 LogPrint("coinstake", "CreateCoinStake : kernel found\n");
@@ -1904,7 +1903,7 @@ void CWallet::ReacceptWalletTransactions()
 
         int nDepth = wtx.GetDepthInMainChain();
 
-        if (!wtx.IsCoinBase() && !wtx.IsCoinStake() && (nDepth == 0 && !wtx.isAbandoned())) {
+        if (!(wtx.IsCoinBase() || wtx.IsCoinStake()) && (nDepth == 0 && !wtx.isAbandoned())) {
             mapSorted.insert(std::make_pair(wtx.nOrderPos, &wtx));
         }
     }
@@ -1923,7 +1922,7 @@ void CWallet::ReacceptWalletTransactions()
 bool CWalletTx::RelayWalletTransaction(CConnman* connman)
 {
     assert(pwallet->GetBroadcastTransactions());
-    if (!IsCoinBase() && !IsCoinStake() && !isAbandoned() && GetDepthInMainChain() == 0)
+    if (!(IsCoinBase() || IsCoinStake()) && !isAbandoned() && GetDepthInMainChain() == 0)
     {
         CValidationState state;
         /* GetDepthInMainChain already catches known conflicts. */
@@ -3393,7 +3392,7 @@ std::map<CTxDestination, CAmount> CWallet::GetAddressBalances()
             if (!pcoin->IsTrusted())
                 continue;
 
-            if (pcoin->IsCoinBase() && pcoin->GetBlocksToMaturity() > 0)
+            if ((pcoin->IsCoinBase() || pcoin->IsCoinStake()) && pcoin->GetBlocksToMaturity() > 0)
                 continue;
 
             int nDepth = pcoin->GetDepthInMainChain();
@@ -3731,8 +3730,8 @@ uint64_t CWallet::GetStakeWeight() const
     LOCK2(cs_main, cs_wallet);
     BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins)
     {
-		if (pcoin.first->GetDepthInMainChain() >= Params().GetConsensus().nStakeMinConfirmations)
-			nWeight += pcoin.first->tx->vout[pcoin.second].nValue;
+        if (pcoin.first->GetDepthInMainChain() >= Params().GetConsensus().nCoinbaseMaturity)
+            nWeight += pcoin.first->tx->vout[pcoin.second].nValue;
     }
 
     return nWeight;

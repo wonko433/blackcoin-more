@@ -3,6 +3,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+// Header spam protection by Qtum
+// Copyright (c) 2016-2019 The Qtum developers
+
 #ifndef BITCOIN_VALIDATION_H
 #define BITCOIN_VALIDATION_H
 
@@ -244,7 +247,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
  * @param[in]  chainparams The params for the chain we want to connect to
  * @param[out] ppindex If set, the pointer will be set to point to the last new block index object for the given headers
  */
-bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& block, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=NULL);
+bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& block, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=nullptr, const CBlockIndex** pindexFirst=nullptr);
 
 /** Check whether enough disk space is available for an incoming block */
 bool CheckDiskSpace(uint64_t nAdditionalBytes = 0);
@@ -474,8 +477,6 @@ public:
 bool WriteBlockToDisk(const CBlock& block, CDiskBlockPos& pos, const CMessageHeader::MessageStartChars& messageStart);
 bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus::Params& consensusParams);
 bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus::Params& consensusParams);
-bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& txdb, COutPoint prevout);
-bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex);
 
 /** Functions for validating blocks and updating the block tree */
 

@@ -868,7 +868,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, vout must be positive");
 
             COutPoint cInput(uint256S(txid), nOutput);
-            if (CheckKernel(pindexPrev, nBits, nTime, cInput))
+            if (CheckKernel(pindexPrev, nBits, nTime, cInput, *pcoinsTip))
             {
                 kernel = cInput;
                 break;
