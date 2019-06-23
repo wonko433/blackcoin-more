@@ -1,7 +1,7 @@
 #!/bin/bash
 # version   v0.1
 # date      2018-06-17
-# function: Installation of an FxTC masternode with options to install sentinel
+# function: Installation of an Megacoin masternode with options to install sentinel
 #
 # Instructions:
 #           Run this script w/ the desired parameters. Leave blank or use -h for help.
@@ -17,15 +17,15 @@
 export LC_ALL=C
 scriptversion="v0.1.2"
 release=""
-git="https://github.com/fxtc/fxtc.git"
+git="https://github.com/LIMXTEC/Megacoin.git"
 date="$(date +%y-%m-%d-%s)"
 script=$( cd $(dirname ${BASH_SOURCE[0]}) || exit > /dev/null; pwd -P )
 logfile="/tmp/install_${date}_out.log"
-name="fxtc"
+name="megacoin"
 daemon_dir="/usr/local/bin"
-daemon="fxtcd"
+daemon="megacoind"
 cli_dir="/usr/local/bin"
-cli="fxtc-cli"
+cli="megacoin-cli"
 ssh_port=${SSH_CLIENT##* }
 port=9468
 rpcport=9469
@@ -57,7 +57,7 @@ function get_confirmation() {
 
 function current_release () {
 latest_release="$( bash <<EOF
-curl --silent "https://api.github.com/repos/fxtc/fxtc/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")'
+curl --silent "https://api.github.com/repos/LIMXTEC/Megacoin/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")'
 EOF
 )"
 }
@@ -115,7 +115,7 @@ function create_user() {
     else
         echo "* Adding new system user ${user}"
         adduser --disabled-password --gecos "" ${user} &>> ${logfile}
-        echo "fxtc    ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        echo "megacoin    ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
     fi
 
 }
@@ -137,7 +137,7 @@ function create_sentinel() {
     apt-get -qqy -o=Dpkg::Use-Pty=0 -o=Acquire::ForceIPv4=true install virtualenv python-virtualenv &>> ${logfile}
     # if code directory does not exists, we create it clone the src
     if [ ! -d ${sent_dir} ]; then
-        { cd ${data_dir} || exit; git clone https://github.com/fxtc/sentinel.git sentinel; cd sentinel || exit; } >> ${logfile}
+        { cd ${data_dir} || exit; git clone https://github.com/LIMXTEC/sentinel.git sentinel; cd sentinel || exit; } >> ${logfile}
     else
         echo "* Updating the existing sentinel GIT repo"
         cd ${sent_dir} ||exit    &>> ${logfile}
@@ -357,11 +357,11 @@ function cleanup_after() {
 
 function print_logo() {
     cd ~/ || exit
-    wget -q http://fixedtradecoin.org/wp-content/uploads/2018/06/cropped-fxtc.png 2>&1
-    convert cropped-fxtc.png cropped-fxtc.jpg 2>&1
-    rm cropped-fxtc.png
-    mv cropped-fxtc.jpg /usr/local/bin/cropped-fxtc.jpg 2>&1
-    jp2a -b --colors --width=55 /usr/local/bin/cropped-fxtc.jpg 2>&1
+    wget -q https://raw.githubusercontent.com/LIMXTEC/Megacoin/0.15/src/qt/res/icons/megacoin_logo_horizontal.png 2>&1
+    convert megacoin_logo_horizontal.png megacoin_logo_horizontal.jpg 2>&1
+    rm megacoin_logo_horizontal.png
+    mv megacoin_logo_horizontal.jpg /usr/local/bin/megacoin_logo_horizontal.jpg 2>&1
+    jp2a -b --colors --width=55 /usr/local/bin/megacoin_logo_horizontal.jpg 2>&1
 
 }
 
@@ -484,7 +484,7 @@ clear
 function change_password() {
 clear
 echo "Please enter a password for ${user} user"
-passwd fxtc
+passwd megacoin
 clear
 }
 
@@ -496,10 +496,10 @@ function build_mn() {
          { echo "Deleting ${script}/${name} for clean cloning"; rm -rf ${script:?}/${name}; echo "Stopping $(tput setaf 1)${daemon}$(tput setaf 7) daemon"; } >> ${logfile}
             if [[ "$testnet" -eq 1  ]]; then
                 systemctl stop ${name}.testnet.service &>> ${logfile}
-                sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -testnet stop -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+                sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -testnet stop -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
             else
                 systemctl stop ${name}.service &>> ${logfile}
-                sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli stop -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+                sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli stop -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
             fi
         fi
         cd ${script} || exit                       &>> ${logfile}
@@ -526,11 +526,11 @@ function build_mn() {
         ./configure --without-gui
         make
         cd ${script}/${name}/src || exit
-        strip fxtcd
-        strip fxtc-cli
-        chmod 755 fxtcd fxtc-cli
-        mv fxtcd ${daemon_dir}/${daemon}
-        mv fxtc-cli ${cli_dir}/${cli}
+        strip megacoind
+        strip megacoin-cli
+        chmod 755 megacoind megacoin-cli
+        mv megacoind ${daemon_dir}/${daemon}
+        mv megacoin-cli ${cli_dir}/${cli}
     else
         echo "* Daemon already in place at ${daemon_dir}/${daemon}, not compiling"
     fi
@@ -546,62 +546,62 @@ function create_script() {
 if [[ "$testnet" -eq 1  ]]; then
 (cat > ${data_dir}/${name}.menu.sh) << "EOF"     &> /dev/null
 #!/bin/bash
-latest_release=$(curl --silent "https://api.github.com/repos/fxtc/fxtc/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+latest_release=$(curl --silent "https://api.github.com/repos/LIMXTEC/Megacoin/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
     }
     one(){
     echo "Start Masternode"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtcd -testnet -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoind -testnet -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
         pause
     }
     two(){
     echo "Check systemd status"
-        systemctl status fxtc.testnet.service
+        systemctl status megacoin.testnet.service
         pause
     }
     three(){
     echo "Run Masternode GetInfo"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -testnet -getinfo -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -testnet -getinfo -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
         pause
     }
     four(){
     echo  "Edit Masternode config file"
-        nano /home/fxtc/.fxtc/fxtc.conf
+        nano /home/megacoin/.megacoin/megacoin.conf
         pause
     }
     five(){
     echo  "Check Masternode Status"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc -testnet masternode status"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin -testnet masternode status"
        pause
     }
     six(){
     echo  "Check Masternode Sync Status"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc -testnet mnsync status"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin -testnet mnsync status"
        pause
     }
 #    seven(){
 #    echo  "Check Masternode Debug"
-#        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc -testnet masternode debug"
+#        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin -testnet masternode debug"
 #       pause
 #    }
 #    six(){
 #    echo  "Activate Sentinel"
-#        sudo -u fxtc -- bash -c "SENTINEL_CONFIG=/var/lib/fxtc/sentinel/sentinel.conf; cd /var/lib/fxtc/sentinel && venv/bin/python /bin/sentinel.py"
+#        sudo -u megacoin -- bash -c "SENTINEL_CONFIG=/var/lib/megacoin/sentinel/sentinel.conf; cd /var/lib/megacoin/sentinel && venv/bin/python /bin/sentinel.py"
 #        $(tput setaf 7)pause
 #    }
 #    seven(){
 #    echo  "Edit Sentinel Config file"
-#        nano /var/lib/fxtc/sentinel/sentinel.conf
+#        nano /var/lib/megacoin/sentinel/sentinel.conf
 #    }
 #    eight(){
 #    echo  "Add Sentinel Cron Job"
-#        sudo -u fxtc -- bash -c '"* * * * * export SENTINEL_CONFIG=/var/lib/fxtc/sentinel/sentinel.conf; cd /var/lib/fxtc/sentinel && venv/bin/python /bin/sentinel.py 2>&1 >> /var/log/sentinel/sentinel-cron.log" | crontab -'
+#        sudo -u megacoin -- bash -c '"* * * * * export SENTINEL_CONFIG=/var/lib/megacoin/sentinel/sentinel.conf; cd /var/lib/megacoin/sentinel && venv/bin/python /bin/sentinel.py 2>&1 >> /var/log/sentinel/sentinel-cron.log" | crontab -'
 #       pause
 #    }
     show_menus() {
     clear
-    jp2a -b --colors --width=55 /usr/local/bin/cropped-fxtc.jpg
+    jp2a -b --colors --width=55 /usr/local/bin/megacoin_logo_horizontal.jpg
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "  M A I N - M E N U - T E S T N E T"
     echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -641,62 +641,62 @@ EOF
 else
 (cat > ${data_dir}/${name}.menu.sh) << "EOF"     &> /dev/null
 #!/bin/bash
-latest_release=$(curl --silent "https://api.github.com/repos/fxtc/fxtc/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
+latest_release=$(curl --silent "https://api.github.com/repos/LIMXTEC/Megacoin/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
     }
     one(){
     echo "Start Masternode"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtcd -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoind -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
         pause
     }
     two(){
     echo "Check systemd status"
-        systemctl status fxtc.service
+        systemctl status megacoin.service
         pause
     }
     three(){
     echo "Run Masternode GetInfo"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -getinfo -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -getinfo -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin"
         pause
     }
     four(){
     echo  "Edit Masternode config file"
-        nano /home/fxtc/.fxtc/fxtc.conf
+        nano /home/megacoin/.megacoin/megacoin.conf
         pause
     }
     five(){
     echo  "Check Masternode Status"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc masternode status"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin masternode status"
        pause
     }
     six(){
     echo  "Check Masternode Sync Status"
-        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc mnsync status"
+        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin mnsync status"
        pause
     }
 #    seven(){
 #    echo  "Check Masternode Debug"
-#        sudo -u fxtc -- bash -c "/usr/local/bin/fxtc-cli -conf=/home/fxtc/.fxtc/fxtc.conf -datadir=/var/lib/fxtc masternode debug"
+#        sudo -u megacoin -- bash -c "/usr/local/bin/megacoin-cli -conf=/home/megacoin/.megacoin/megacoin.conf -datadir=/var/lib/megacoin masternode debug"
 #      pause
 #    }
 #    six(){
 #    echo  "Activate Sentinel"
-#        sudo -u fxtc -- bash -c "SENTINEL_CONFIG=/var/lib/fxtc/sentinel/sentinel.conf; cd /var/lib/fxtc/sentinel && venv/bin/python /bin/sentinel.py"
+#        sudo -u megacoin -- bash -c "SENTINEL_CONFIG=/var/lib/megacoin/sentinel/sentinel.conf; cd /var/lib/megacoin/sentinel && venv/bin/python /bin/sentinel.py"
 #        $(tput setaf 7)pause
 #    }
 #    seven(){
 #    echo  "Edit Sentinel Config file"
-#        nano /var/lib/fxtc/sentinel/sentinel.conf
+#        nano /var/lib/megacoin/sentinel/sentinel.conf
 #    }
 #    eight(){
 #    echo  "Add Sentinel Cron Job"
-#        sudo -u fxtc -- bash -c '"* * * * * export SENTINEL_CONFIG=/var/lib/fxtc/sentinel/sentinel.conf; cd /var/lib/fxtc/sentinel && venv/bin/python /bin/sentinel.py 2>&1 >> /var/log/sentinel/sentinel-cron.log" | crontab -'
+#        sudo -u megacoin -- bash -c '"* * * * * export SENTINEL_CONFIG=/var/lib/megacoin/sentinel/sentinel.conf; cd /var/lib/megacoin/sentinel && venv/bin/python /bin/sentinel.py 2>&1 >> /var/log/sentinel/sentinel-cron.log" | crontab -'
 #       pause
 #    }
     show_menus() {
     clear
-    jp2a -b --colors --width=55 /usr/local/bin/cropped-fxtc.jpg
+    jp2a -b --colors --width=55 /usr/local/bin/megacoin_logo_horizontal.jpg
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "  M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -738,9 +738,9 @@ fi
 
 function get_help(){
     clear
-    echo "##############---FxTC Masternode Install Script Help---#########################"
+    echo "##############---Megacoin Masternode Install Script Help---#########################"
     echo "masternode.sh, version ${scriptversion}";
-    echo "Latest FxTC release is:  $(tput setaf 1)${latest_release}$(tput setaf 7)";
+    echo "Latest Megacoin release is:  $(tput setaf 1)${latest_release}$(tput setaf 7)";
     echo "Usage example:";
     echo "./masternode.sh (-r|--release) string [(-h|--help)] [(-c|--clear)] [(-s|--sentinel)] [(-n|--startnode)] [(-u|--update)] [(-t|--testnet)]";
     echo "$(tput setaf 3)./masternode.sh -r ${latest_release} -s -n$(tput setaf 7) will install the masternode in the latest release, install sentinel and start the node for block syncing";
@@ -798,7 +798,7 @@ echo "$(tput setaf 3)$logfile$(tput setaf 7)"
 echo "$(tput setaf 1)Please run this script to check the health of your masternode$(tput setaf 7)"
 echo "$(tput setaf 3) => $(tput setaf 7)bash $(tput setaf 3)${data_dir}/${name}.menu.sh$(tput setaf 7)"
 echo "==================================================================================="
-su -c bash fxtc
+su -c bash megacoin
 cd ~/ || exit
 }
 

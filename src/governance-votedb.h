@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_GOVERNANCE_VOTEDB_H
-#define FXTC_GOVERNANCE_VOTEDB_H
+#ifndef MEGACOIN_GOVERNANCE_VOTEDB_H
+#define MEGACOIN_GOVERNANCE_VOTEDB_H
 
 #include <list>
 #include <map>
@@ -91,4 +91,4 @@ private:
 
 };
 
-#endif // FXTC_GOVERNANCE_VOTEDB_H
+#endif // MEGACOIN_GOVERNANCE_VOTEDB_H

@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_NETADDRESS_H
-#define FXTC_NETADDRESS_H
+#ifndef MEGACOIN_NETADDRESS_H
+#define MEGACOIN_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
 #include <config/bitcoin-config.h>
@@ -174,4 +174,4 @@ class CService : public CNetAddr
         }
 };
 
-#endif // FXTC_NETADDRESS_H
+#endif // MEGACOIN_NETADDRESS_H

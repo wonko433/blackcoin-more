@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_CONSENSUS_MERKLE_H
-#define FXTC_CONSENSUS_MERKLE_H
+#ifndef MEGACOIN_CONSENSUS_MERKLE_H
+#define MEGACOIN_CONSENSUS_MERKLE_H
 
 #include <stdint.h>
 #include <vector>
@@ -26,4 +26,4 @@ uint256 BlockMerkleRoot(const CBlock& block, bool* mutated = nullptr);
  */
 uint256 BlockWitnessMerkleRoot(const CBlock& block, bool* mutated = nullptr);
 
-#endif // FXTC_CONSENSUS_MERKLE_H
+#endif // MEGACOIN_CONSENSUS_MERKLE_H

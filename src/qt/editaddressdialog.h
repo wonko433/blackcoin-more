@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_QT_EDITADDRESSDIALOG_H
-#define FXTC_QT_EDITADDRESSDIALOG_H
+#ifndef MEGACOIN_QT_EDITADDRESSDIALOG_H
+#define MEGACOIN_QT_EDITADDRESSDIALOG_H
 
 #include <QDialog>
 
@@ -56,4 +56,4 @@ private:
     QString address;
 };
 
-#endif // FXTC_QT_EDITADDRESSDIALOG_H
+#endif // MEGACOIN_QT_EDITADDRESSDIALOG_H

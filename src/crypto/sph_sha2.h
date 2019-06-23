@@ -37,8 +37,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef FXTC_CRYPTO_SPH_SHA2_H
-#define FXTC_CRYPTO_SPH_SHA2_H
+#ifndef MEGACOIN_CRYPTO_SPH_SHA2_H
+#define MEGACOIN_CRYPTO_SPH_SHA2_H
 
 #include <stddef.h>
 #include <crypto/sph_types.h>
@@ -375,4 +375,4 @@ void sph_sha512_comp(const sph_u64 msg[16], sph_u64 val[8]);
 #ifdef __cplusplus
 }
 
-#endif // FXTC_CRYPTO_SPH_SHA2_H
+#endif // MEGACOIN_CRYPTO_SPH_SHA2_H

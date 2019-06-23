@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_WALLET_RPCWALLET_H
-#define FXTC_WALLET_RPCWALLET_H
+#ifndef MEGACOIN_WALLET_RPCWALLET_H
+#define MEGACOIN_WALLET_RPCWALLET_H
 
 #include <string>
 

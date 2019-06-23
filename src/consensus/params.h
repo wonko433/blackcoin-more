@@ -2,11 +2,12 @@
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_CONSENSUS_PARAMS_H
-#define FXTC_CONSENSUS_PARAMS_H
+#ifndef MEGACOIN_CONSENSUS_PARAMS_H
+#define MEGACOIN_CONSENSUS_PARAMS_H
 
 #include <amount.h>
 #include <uint256.h>
@@ -110,6 +111,7 @@ struct Params {
     bool fPowNoRetargeting;
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
+    int64_t nPowTargetTimespanV2; // Megacoin
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
@@ -119,4 +121,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // FXTC_CONSENSUS_PARAMS_H
+#endif // MEGACOIN_CONSENSUS_PARAMS_H

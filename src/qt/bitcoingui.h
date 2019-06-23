@@ -1,11 +1,12 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2018 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_QT_BITCOINGUI_H
-#define FXTC_QT_BITCOINGUI_H
+#ifndef MEGACOIN_QT_BITCOINGUI_H
+#define MEGACOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
 #include <config/bitcoin-config.h>
@@ -125,6 +126,8 @@ private:
     QAction* encryptWalletAction = nullptr;
     QAction* backupWalletAction = nullptr;
     QAction* changePassphraseAction = nullptr;
+    // Megacoin
+    QAction *openRepairAction = nullptr;
     // Dash
     QAction *unlockWalletAction = nullptr;
     //
@@ -135,6 +138,22 @@ private:
     //
     QAction* openAction = nullptr;
     QAction* showHelpMessageAction = nullptr;
+
+    // Megacoin
+    QAction* openWebsite1 = nullptr;
+    QAction* openWebsite2 = nullptr;
+    QAction* openWebsite3 = nullptr;
+    QAction* openWebsite4 = nullptr;
+    QAction* openWebsite5 = nullptr;
+    QAction* openWebsite6 = nullptr;
+    QAction* openWebsite7 = nullptr;
+    QAction* openWebsite8 = nullptr;
+
+    QAction* Exchangesite1 = nullptr;
+    QAction* Exchangesite2 = nullptr;
+    QAction* Exchangesite3 = nullptr;
+    QAction* Exchangesite4 = nullptr;
+
     QAction* m_wallet_selector_label_action = nullptr;
     QAction* m_wallet_selector_action = nullptr;
 
@@ -345,4 +364,4 @@ private Q_SLOTS:
     void onMenuSelection(QAction* action);
 };
 
-#endif // FXTC_QT_BITCOINGUI_H
+#endif // MEGACOIN_QT_BITCOINGUI_H

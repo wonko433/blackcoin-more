@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_THREADINTERRUPT_H
-#define FXTC_THREADINTERRUPT_H
+#ifndef MEGACOIN_THREADINTERRUPT_H
+#define MEGACOIN_THREADINTERRUPT_H
 
 #include <atomic>
 #include <chrono>

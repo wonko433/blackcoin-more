@@ -9,8 +9,8 @@
 //
 // For more information, see BIP 173.
 
-#ifndef FXTC_BECH32_H
-#define FXTC_BECH32_H
+#ifndef MEGACOIN_BECH32_H
+#define MEGACOIN_BECH32_H
 
 #include <stdint.h>
 #include <string>
@@ -27,4 +27,4 @@ std::pair<std::string, std::vector<uint8_t>> Decode(const std::string& str);
 
 } // namespace bech32
 
-#endif // FXTC_BECH32_H
+#endif // MEGACOIN_BECH32_H

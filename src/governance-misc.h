@@ -4,8 +4,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_GOVERNANCE_MISC_H
-#define FXTC_GOVERNANCE_MISC_H
+#ifndef MEGACOIN_GOVERNANCE_MISC_H
+#define MEGACOIN_GOVERNANCE_MISC_H
 
 //#include "validation.h"
 #include <governance.h>
@@ -53,4 +53,4 @@ class CGovernanceVote;
 // 	}
 // };
 
-#endif // FXTC_GOVERNANCE_MISC_H
+#endif // MEGACOIN_GOVERNANCE_MISC_H

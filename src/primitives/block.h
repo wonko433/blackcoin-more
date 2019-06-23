@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_PRIMITIVES_BLOCK_H
-#define FXTC_PRIMITIVES_BLOCK_H
+#ifndef MEGACOIN_PRIMITIVES_BLOCK_H
+#define MEGACOIN_PRIMITIVES_BLOCK_H
 
 #include <primitives/transaction.h>
 #include <serialize.h>
@@ -180,4 +180,4 @@ struct CBlockLocator
     }
 };
 
-#endif // FXTC_PRIMITIVES_BLOCK_H
+#endif // MEGACOIN_PRIMITIVES_BLOCK_H

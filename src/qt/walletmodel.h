@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_QT_WALLETMODEL_H
-#define FXTC_QT_WALLETMODEL_H
+#ifndef MEGACOIN_QT_WALLETMODEL_H
+#define MEGACOIN_QT_WALLETMODEL_H
 
 #include <amount.h>
 #include <key.h>
@@ -302,4 +302,4 @@ public Q_SLOTS:
     void pollBalanceChanged();
 };
 
-#endif // FXTC_QT_WALLETMODEL_H
+#endif // MEGACOIN_QT_WALLETMODEL_H

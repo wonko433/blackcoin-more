@@ -1,5 +1,6 @@
 // Copyright (c) 2014-2018 The Bitcoin Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -28,7 +29,12 @@ NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift,
     titleAddText(qApp->translate("SplashScreen", _titleAddText))
 {
     // load pixmap
-    QPixmap pixmap(":/icons/bitcoin");
+    QPixmap pixmap;
+    if (std::char_traits<char>::length(_titleAddText) == 0) {
+        pixmap.load(":/icons/bitcoin");
+    } else {
+        pixmap.load(":/icons/bitcoin_splash");
+    }
 
     if(iconColorHueShift != 0 && iconColorSaturationReduction != 0)
     {

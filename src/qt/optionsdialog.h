@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_QT_OPTIONSDIALOG_H
-#define FXTC_QT_OPTIONSDIALOG_H
+#ifndef MEGACOIN_QT_OPTIONSDIALOG_H
+#define MEGACOIN_QT_OPTIONSDIALOG_H
 
 #include <QDialog>
 #include <QValidator>
@@ -69,4 +69,4 @@ private:
     QDataWidgetMapper *mapper;
 };
 
-#endif // FXTC_QT_OPTIONSDIALOG_H
+#endif // MEGACOIN_QT_OPTIONSDIALOG_H

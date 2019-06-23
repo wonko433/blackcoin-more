@@ -1,6 +1,7 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -122,7 +123,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
     widget->setFont(fixedPitchFont());
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a FxTCoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Megacoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -131,7 +132,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no bitcoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("fxtcoin"))
+    if(!uri.isValid() || uri.scheme() != QString("megacoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -193,7 +194,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("fxtcoin:%1").arg(info.address);
+    QString ret = QString("megacoin:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -413,6 +414,22 @@ bool openBitcoinConf()
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
 
+// Megacoin resources
+void hyperlinks_slot1(){QString link1 = "https://megacoin.eu/"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot2(){QString link1 = "https://t.me/Megacoin1"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot3(){QString link1 = "https://t.me/Megacoin_MEC"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot4(){QString link1 = "https://twitter.com/megacoin3"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot5(){QString link1 = "https://discordapp.com/invite/r9ebtKD"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot6(){QString link1 = "https://bitcointalk.org/index.php?topic=2242071.0"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot7(){QString link1 = "https://chainz.cryptoid.info/mec/"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks_slot8(){QString link1 = "https://github.com/LIMXTEC/Megacoin"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+
+// Megacoin exchanges
+void hyperlinks2_slot1(){QString link1 = "https://crex24.com/de/exchange/MEC-BTC"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks2_slot2(){QString link1 = "https://www.cryptopia.co.nz/Exchange?market=MEC_BTC"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks2_slot3(){QString link1 = "https://coinexchange.io/market/MEC/BTC"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+void hyperlinks2_slot4(){QString link1 = "https://novaexchange.com/market/BTC_MEC/"; QDesktopServices::openUrl(QUrl(link1, QUrl::TolerantMode));}
+
 // Dash
 void openMNConfigfile()
 {
@@ -576,10 +593,10 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "FxTCoin.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Megacoin.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "FxTCoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("FxTCoin (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Megacoin (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Megacoin (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -674,8 +691,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "FxTCoin.desktop";
-    return GetAutostartDir() / strprintf("fxtcoin-%s.lnk", chain);
+        return GetAutostartDir() / "Megacoin.desktop";
+    return GetAutostartDir() / strprintf("megacoin-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -719,9 +736,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=FxTCoin\n";
+            optionFile << "Name=Megacoin\n";
         else
-            optionFile << strprintf("Name=FxTCoin (%s)\n", chain);
+            optionFile << strprintf("Name=Megacoin (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -817,6 +834,35 @@ bool GetStartOnSystemStartup() { return false; }
 bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 
 #endif
+
+// Open CSS when configured
+QString loadStyleSheet()
+{
+    QString styleSheet;
+    QSettings settings;
+    QString cssName;
+    
+    /*
+    QString theme = settings.value("theme", "").toString();
+
+    if(!theme.isEmpty()){
+        cssName = QString(":/css/") + theme;
+    }
+    else {
+        //cssName = QString(":/css/megacoin_main");
+        settings.setValue("theme", "megacoin_main");
+    }
+    */
+
+    cssName = QString(":/css/megacoin_main");
+    
+    QFile qFile(cssName);      
+    if (qFile.open(QFile::ReadOnly)) {
+        styleSheet = QLatin1String(qFile.readAll());
+    }
+        
+    return styleSheet;
+}
 
 void setClipboard(const QString& str)
 {

@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_VALIDATIONINTERFACE_H
-#define FXTC_VALIDATIONINTERFACE_H
+#ifndef MEGACOIN_VALIDATIONINTERFACE_H
+#define MEGACOIN_VALIDATIONINTERFACE_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
 
@@ -225,4 +225,4 @@ public:
 
 CMainSignals& GetMainSignals();
 
-#endif // FXTC_VALIDATIONINTERFACE_H
+#endif // MEGACOIN_VALIDATIONINTERFACE_H

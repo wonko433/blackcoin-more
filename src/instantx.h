@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_INSTANTX_H
-#define FXTC_INSTANTX_H
+#ifndef MEGACOIN_INSTANTX_H
+#define MEGACOIN_INSTANTX_H
 
 #include <chain.h>
 #include <net.h>
@@ -262,4 +262,4 @@ public:
     void Relay(CConnman& connman) const;
 };
 
-#endif // FXTC_INSTANTX_H
+#endif // MEGACOIN_INSTANTX_H

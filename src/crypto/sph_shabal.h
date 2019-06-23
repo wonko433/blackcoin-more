@@ -33,8 +33,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef FXTC_CRYPTO_SPH_SHABAL_H
-#define FXTC_CRYPTO_SPH_SHABAL_H
+#ifndef MEGACOIN_CRYPTO_SPH_SHABAL_H
+#define MEGACOIN_CRYPTO_SPH_SHABAL_H
 
 #include <stddef.h>
 #include <crypto/sph_types.h>
@@ -340,4 +340,4 @@ void sph_shabal512_addbits_and_close(
 }
 #endif
 
-#endif // FXTC_CRYPTO_SPH_SHABAL_H
+#endif // MEGACOIN_CRYPTO_SPH_SHABAL_H

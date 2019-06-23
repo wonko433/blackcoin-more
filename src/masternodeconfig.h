@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_MASTERNODECONFIG_H
-#define FXTC_MASTERNODECONFIG_H
+#ifndef MEGACOIN_MASTERNODECONFIG_H
+#define MEGACOIN_MASTERNODECONFIG_H
 
 class CMasternodeConfig;
 extern CMasternodeConfig masternodeConfig;
@@ -95,4 +95,4 @@ private:
 
 };
 
-#endif // FXTC_MASTERNODECONFIG_H
+#endif // MEGACOIN_MASTERNODECONFIG_H

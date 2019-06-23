@@ -33,8 +33,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef FXTC_CRYPTO_SPH_LUFFA_H
-#define FXTC_CRYPTO_SPH_LUFFA_H
+#ifndef MEGACOIN_CRYPTO_SPH_LUFFA_H
+#define MEGACOIN_CRYPTO_SPH_LUFFA_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -293,4 +293,4 @@ void sph_luffa512_addbits_and_close(
 }
 #endif
 
-#endif // FXTC_CRYPTO_SPH_LUFFA_H
+#endif // MEGACOIN_CRYPTO_SPH_LUFFA_H

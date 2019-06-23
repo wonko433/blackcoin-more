@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_UNDO_H
-#define FXTC_UNDO_H
+#ifndef MEGACOIN_UNDO_H
+#define MEGACOIN_UNDO_H
 
 #include <compressor.h>
 #include <consensus/consensus.h>
@@ -109,4 +109,4 @@ public:
     }
 };
 
-#endif // FXTC_UNDO_H
+#endif // MEGACOIN_UNDO_H

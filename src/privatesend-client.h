@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_PRIVATESEND_CLIENT_H
-#define FXTC_PRIVATESEND_CLIENT_H
+#ifndef MEGACOIN_PRIVATESEND_CLIENT_H
+#define MEGACOIN_PRIVATESEND_CLIENT_H
 
 #include <masternode.h>
 #include <privatesend.h>
@@ -148,4 +148,4 @@ public:
 
 void ThreadCheckPrivateSendClient(CConnman& connman);
 
-#endif // FXTC_PRIVATESEND_CLIENT_H
+#endif // MEGACOIN_PRIVATESEND_CLIENT_H

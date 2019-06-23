@@ -5,8 +5,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef FXTC_CHAINPARAMS_H
-#define FXTC_CHAINPARAMS_H
+#ifndef MEGACOIN_CHAINPARAMS_H
+#define MEGACOIN_CHAINPARAMS_H
 
 #include <chainparamsbase.h>
 #include <consensus/params.h>
@@ -141,4 +141,4 @@ void SelectParams(const std::string& chain);
  */
 void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 
-#endif // FXTC_CHAINPARAMS_H
+#endif // MEGACOIN_CHAINPARAMS_H
