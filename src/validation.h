@@ -445,19 +445,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 bool ContextualCheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
-<<<<<<< HEAD
-/** Apply the effects of this block (with given index) on the UTXO set represented by coins.
- *  Validity checks that depend on the UTXO set are also done; ConnectBlock()
- *  can fail if those validity checks fail (among other reasons). */
-bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex, CCoinsViewCache& coins,
-                  const CChainParams& chainparams, bool fJustCheck = false);
-
-/** Undo the effects of this block (with given index) on the UTXO set represented by coins.
- *  In case pfClean is provided, operation will try to be tolerant about errors, and *pfClean
- *  will be true if no problems were found. Otherwise, the return value will be false in case
- *  of problems. Note that in any case, coins may be modified. */
-bool DisconnectBlock(const CBlock& block, CValidationState& state, const CBlockIndex* pindex, CCoinsViewCache& coins, bool* pfClean = NULL);
-
 /** Check mined proof-of-stake block */
 bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainParams& chainparams);
 
