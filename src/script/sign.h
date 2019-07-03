@@ -6,6 +6,7 @@
 #ifndef BITCOIN_SCRIPT_SIGN_H
 #define BITCOIN_SCRIPT_SIGN_H
 
+#include <coins.h>
 #include "script/interpreter.h"
 
 class CKeyID;
