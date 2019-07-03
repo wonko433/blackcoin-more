@@ -2696,16 +2696,18 @@ bool ProcessMessages(CNode* pfrom, CConnman& connman, const std::atomic<bool>& i
     // this maintains the order of responses
     if (!pfrom->vRecvGetData.empty()) return true;
 
-        // Don't bother if send buffer is too full to respond anyway
-        if (pfrom->fPauseSend)
+std::list<CNetMessage> msgs;
+    {
+        LOCK(pfrom->cs_vProcessMsg);
+        if (pfrom->vProcessMsg.empty())
             return false;
-            // Just take one message
-            msgs.splice(msgs.begin(), pfrom->vProcessMsg, pfrom->vProcessMsg.begin());
-            pfrom->nProcessQueueSize -= msgs.front().vRecv.size() + CMessageHeader::HEADER_SIZE;
-            pfrom->fPauseRecv = pfrom->nProcessQueueSize > connman.GetReceiveFloodSize();
-            fMoreWork = !pfrom->vProcessMsg.empty();
-        }
-        CNetMessage& msg(msgs.front());
+        // Just take one message
+        msgs.splice(msgs.begin(), pfrom->vProcessMsg, pfrom->vProcessMsg.begin());
+        pfrom->nProcessQueueSize -= msgs.front().vRecv.size() + CMessageHeader::HEADER_SIZE;
+        pfrom->fPauseRecv = pfrom->nProcessQueueSize > connman->GetReceiveFloodSize();
+        fMoreWork = !pfrom->vProcessMsg.empty();
+    }
+    CNetMessage& msg(msgs.front());
 
         msg.SetVersion(pfrom->GetRecvVersion());
         // Scan for message start
