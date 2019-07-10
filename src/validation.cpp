@@ -1269,6 +1269,7 @@ CAmount GetBlockSubsidy(int nHeight, CBlockHeader pblock, const Consensus::Param
     return fSuperblockPartOnly ? nSuperblockPart : nSubsidy - nSuperblockPart;
     */
 
+    // Megacoin
     CAmount nSubsidy = 500 * COIN;
     /*
         Total Coins: 42 Million
