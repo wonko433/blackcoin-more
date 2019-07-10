@@ -53,57 +53,64 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
 
     if (nOldTime < nNewTime)
     {
-        // We have to know original fees
-        CAmount nFees = pblock->vtx[0]->GetValueOut() - GetBlockSubsidy(pindexPrev->nHeight + 1, pblock->GetBlockHeader(), consensusParams);
-
         pblock->nTime = nNewTime;
-        // Parameter consensusParams.fPowAllowMinDifficultyBlocks implemented into GetNextWorkRequired
-        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
 
-        // Calculate delta reward
-        CAmount nBlockReward = GetBlockSubsidy(pindexPrev->nHeight + 1, pblock->GetBlockHeader(), consensusParams);
-        CAmount nFounderReward = GetFounderReward(pindexPrev->nHeight + 1, nFees + nBlockReward);
-        CAmount nMasternodePayment = GetMasternodePayment(pindexPrev->nHeight + 1, nFees + nBlockReward);
+        if (pindexPrev->nHeight + 1 >= consensusParams.nFirstMasternodeBlockHeight) {
+            // We have to know original fees
+            CAmount nFees = pblock->vtx[0]->GetValueOut() - GetBlockSubsidy(pindexPrev->nHeight + 1, pblock->GetBlockHeader(), consensusParams);
 
-        // Update rewards if necessary
-        if (pblock->vtx[0]->GetValueOut() != nFees + nBlockReward) {
-            // Update coinbase output to new value
-            CMutableTransaction coinbaseTx(*pblock->vtx[0]);
-            coinbaseTx.vout[0].nValue = nFees + nBlockReward;
+            // Parameter consensusParams.fPowAllowMinDifficultyBlocks implemented into GetNextWorkRequired
+            // pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
 
-            // Update founder reward to new value
-            if (nFounderReward > 0) {
-                CTxDestination destination = DecodeDestination(Params().FounderAddress());
-                if (IsValidDestination(destination)) {
-                    CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
+            // Calculate delta reward
+            CAmount nBlockReward = GetBlockSubsidy(pindexPrev->nHeight + 1, pblock->GetBlockHeader(), consensusParams);
+            CAmount nFounderReward = GetFounderReward(pindexPrev->nHeight + 1, nFees + nBlockReward);
+            CAmount nMasternodePayment = GetMasternodePayment(pindexPrev->nHeight + 1, nFees + nBlockReward);
 
+            // Update rewards if necessary
+            if (pblock->vtx[0]->GetValueOut() != nFees + nBlockReward) {
+                // Update coinbase output to new value
+                CMutableTransaction coinbaseTx(*pblock->vtx[0]);
+                coinbaseTx.vout[0].nValue = nFees + nBlockReward;
+
+                // Update founder reward to new value
+                if (nFounderReward > 0) {
+                    CTxDestination destination = DecodeDestination(Params().FounderAddress());
+                    if (IsValidDestination(destination)) {
+                        CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
+
+                        for (auto output : coinbaseTx.vout) {
+                            if (output.scriptPubKey == FOUNDER_SCRIPT) {
+                                coinbaseTx.vout[0].nValue -= nFounderReward;
+                                output.nValue = nFounderReward;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // FXTC TODO: add superblocks support
+
+                // Update masternode reward to new value
+                CScript cMasternodePayee;
+                if(mnpayments.GetBlockPayee(pindexPrev->nHeight + 1, cMasternodePayee)) {
                     for (auto output : coinbaseTx.vout) {
-                        if (output.scriptPubKey == FOUNDER_SCRIPT) {
-                            coinbaseTx.vout[0].nValue -= nFounderReward;
-                            output.nValue = nFounderReward;
+                        if (output.scriptPubKey == cMasternodePayee) {
+                            coinbaseTx.vout[0].nValue -= nMasternodePayment;
+                            output.nValue = nMasternodePayment;
                             break;
                         }
                     }
                 }
+
+                pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
             }
-
-            // FXTC TODO: add superblocks support
-
-            // Update masternode reward to new value
-            CScript cMasternodePayee;
-            if(mnpayments.GetBlockPayee(pindexPrev->nHeight + 1, cMasternodePayee)) {
-                for (auto output : coinbaseTx.vout) {
-                    if (output.scriptPubKey == cMasternodePayee) {
-                        coinbaseTx.vout[0].nValue -= nMasternodePayment;
-                        output.nValue = nMasternodePayment;
-                        break;
-                    }
-                }
-            }
-
-            pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
         }
     }
+
+    // Updating time can change work required on testnet:
+    if (consensusParams.fPowAllowMinDifficultyBlocks)
+        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, consensusParams);
 
     return nNewTime - nOldTime;
 }
@@ -209,7 +216,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;
-    pblock->nBits=GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
+    // pblock->nBits=GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());
     CAmount nBlockReward = GetBlockSubsidy(nHeight, pblock->GetBlockHeader(), chainparams.GetConsensus());
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
@@ -218,34 +225,38 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[0].nValue = nFees + nBlockReward;
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
-    // Dash
-    // Update coinbase transaction with additional info about masternode and governance payments,
-    // get some info back to pass to getblocktemplate
-    FillBlockPayments(coinbaseTx, nHeight, nFees + nBlockReward, pblock->txoutMasternode, pblock->voutSuperblock);
-    // LogPrintf("CreateNewBlock -- nBlockHeight %d blockReward %lld txoutMasternode %s txNew %s\n",
-    //             nHeight, nFees + nBlockReward, pblock->txoutMasternode.ToString(), txNew.ToString());
-    //
+    if (nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight) {
+        // Dash
+        // Update coinbase transaction with additional info about masternode and governance payments,
+        // get some info back to pass to getblocktemplate
+        FillBlockPayments(coinbaseTx, nHeight, nFees + nBlockReward, pblock->txoutMasternode, pblock->voutSuperblock);
+        // LogPrintf("CreateNewBlock -- nBlockHeight %d blockReward %lld txoutMasternode %s txNew %s\n",
+        //             nHeight, nFees + nBlockReward, pblock->txoutMasternode.ToString(), txNew.ToString());
+        //
 
-    // FXTC BEGIN
-    CAmount nFounderReward = GetFounderReward(nHeight, nFees + nBlockReward);
-    if (nFounderReward > 0) {
-        CTxDestination destination = DecodeDestination(Params().FounderAddress());
-        if (IsValidDestination(destination)) {
-            CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
-            coinbaseTx.vout[0].nValue -= nFounderReward;
-            coinbaseTx.vout.push_back(CTxOut(nFounderReward, CScript(FOUNDER_SCRIPT.begin(), FOUNDER_SCRIPT.end())));
-        } else {
-            LogPrintf("CreateNewBlock(): invalid founder reward destination\n");
+        // FXTC BEGIN
+        CAmount nFounderReward = GetFounderReward(nHeight, nFees + nBlockReward);
+        if (nFounderReward > 0) {
+            CTxDestination destination = DecodeDestination(Params().FounderAddress());
+            if (IsValidDestination(destination)) {
+                CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
+                coinbaseTx.vout[0].nValue -= nFounderReward;
+                coinbaseTx.vout.push_back(CTxOut(nFounderReward, CScript(FOUNDER_SCRIPT.begin(), FOUNDER_SCRIPT.end())));
+            } else {
+                LogPrintf("CreateNewBlock(): invalid founder reward destination\n");
+            }
         }
+        //
     }
-    //
 
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());
     pblocktemplate->vTxFees[0] = -nFees;
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
-    LogPrintf("CreateNewBlock(): block height: %ld pow reward: %ld pos reward: %ld founder reward: %ld masternode reward: %ld\n", nHeight, nBlockReward, 0, nFounderReward, GetMasternodePayment(nHeight, nFees + nBlockReward));
+
+    if (nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight)
+        LogPrintf("CreateNewBlock(): block height: %ld pow reward: %ld pos reward: %ld founder reward: %ld masternode reward: %ld\n", nHeight, nBlockReward, 0, nFounderReward, GetMasternodePayment(nHeight, nFees + nBlockReward));
 
     // Fill in header
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();

@@ -119,6 +119,9 @@ struct Params {
     // FXTC BEGIN
     int nlastValidPowHashHeight;
     // FXTC EMD
+
+    // Megacoin
+    int nFirstMasternodeBlockHeight;
 };
 } // namespace Consensus
 

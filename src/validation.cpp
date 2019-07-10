@@ -1314,7 +1314,9 @@ CAmount GetFounderReward(int nHeight, CAmount blockValue)
 {
         CAmount ret = 0;
 
-        if (nHeight >= 5) ret = blockValue * 0.01;
+        int nMNFirstBlock = Params().GetConsensus().nFirstMasternodeBlockHeight;
+
+        if (nHeight >= nMNFirstBlock) ret = blockValue * 0.01;
 
         //if (nHeight >= nEndOfFounderReward.WeDontKnowYet) ret = 0;
 
@@ -2220,50 +2222,52 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-    // FXTC BEGIN
-    CAmount founderReward = GetFounderReward(pindex->nHeight, block.vtx[0]->GetValueOut());
-    if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_FOUNDER_REWARD_CHECK) && founderReward > 0) {
-        CTxDestination destination = DecodeDestination(Params().FounderAddress());
-        if (IsValidDestination(destination)) {
-            CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
-            bool FounderPaid = false;
+    if (nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight) {
+        // FXTC BEGIN
+        CAmount founderReward = GetFounderReward(pindex->nHeight, block.vtx[0]->GetValueOut());
+        if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_FOUNDER_REWARD_CHECK) && founderReward > 0) {
+            CTxDestination destination = DecodeDestination(Params().FounderAddress());
+            if (IsValidDestination(destination)) {
+                CScript FOUNDER_SCRIPT = GetScriptForDestination(destination);
+                bool FounderPaid = false;
 
-            for (const auto& output : block.vtx[0]->vout) {
-                if (output.scriptPubKey == FOUNDER_SCRIPT && ((output.nValue == founderReward) || sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_FOUNDER_REWARD_VALUE))) {
-                    FounderPaid = true;
-                    break;
+                for (const auto& output : block.vtx[0]->vout) {
+                    if (output.scriptPubKey == FOUNDER_SCRIPT && ((output.nValue == founderReward) || sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_FOUNDER_REWARD_VALUE))) {
+                        FounderPaid = true;
+                        break;
+                    }
                 }
+                if (!FounderPaid) {
+                    return state.DoS(0, error("ConnectBlock(INFINEX): no founder reward"), REJECT_INVALID, "no-founder-reward");
+                }
+            } else {
+                return state.DoS(0, error("ConnectBlock(INFINEX): invalid founder reward destination"), REJECT_INVALID, "invalid-founder-reward-destination");
             }
-            if (!FounderPaid) {
-                return state.DoS(0, error("ConnectBlock(INFINEX): no founder reward"), REJECT_INVALID, "no-founder-reward");
-            }
-        } else {
-            return state.DoS(0, error("ConnectBlock(INFINEX): invalid founder reward destination"), REJECT_INVALID, "invalid-founder-reward-destination");
         }
+
+        // FXTC END
+
+        // DASH : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
+
+        // It's possible that we simply don't have enough data and this could fail
+        // (i.e. block itself could be a correct one and we need to store it),
+        // that's why this is in ConnectBlock. Could be the other way around however -
+        // the peer who sent us this block is missing some data and wasn't able
+        // to recognize that block is actually invalid.
+        // TODO: resync data (both ways?) and try to reprocess this block later.
+        //CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, pindex->GetBlockHeader(), chainparams.GetConsensus());
+        std::string strError = "";
+        if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_MASTERNODE_REWARD_VALUE) && !IsBlockValueValid(block, pindex->nHeight, block.vtx[0]->GetValueOut(), strError)) {
+            return state.DoS(0, error("ConnectBlock(DASH): %s", strError), REJECT_INVALID, "bad-cb-amount");
+        }
+
+        if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_MASTERNODE_REWARD_PAYEE) && !IsBlockPayeeValid(block.vtx[0], pindex->nHeight, block.vtx[0]->GetValueOut(), pindex->GetBlockHeader())) {
+            mapRejectedBlocks.insert(make_pair(block.GetHash(), GetTime()));
+            return state.DoS(0, error("ConnectBlock(DASH): couldn't find masternode or superblock payments"),
+                                    REJECT_INVALID, "bad-cb-payee");
+        }
+        // END DASH
     }
-
-    // FXTC END
-
-    // DASH : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
-
-    // It's possible that we simply don't have enough data and this could fail
-    // (i.e. block itself could be a correct one and we need to store it),
-    // that's why this is in ConnectBlock. Could be the other way around however -
-    // the peer who sent us this block is missing some data and wasn't able
-    // to recognize that block is actually invalid.
-    // TODO: resync data (both ways?) and try to reprocess this block later.
-    //CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, pindex->GetBlockHeader(), chainparams.GetConsensus());
-    std::string strError = "";
-    if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_MASTERNODE_REWARD_VALUE) && !IsBlockValueValid(block, pindex->nHeight, block.vtx[0]->GetValueOut(), strError)) {
-        return state.DoS(0, error("ConnectBlock(DASH): %s", strError), REJECT_INVALID, "bad-cb-amount");
-    }
-
-    if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_MASTERNODE_REWARD_PAYEE) && !IsBlockPayeeValid(block.vtx[0], pindex->nHeight, block.vtx[0]->GetValueOut(), pindex->GetBlockHeader())) {
-        mapRejectedBlocks.insert(make_pair(block.GetHash(), GetTime()));
-        return state.DoS(0, error("ConnectBlock(DASH): couldn't find masternode or superblock payments"),
-                                REJECT_INVALID, "bad-cb-payee");
-    }
-    // END DASH
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
