@@ -1232,6 +1232,7 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 CAmount GetBlockSubsidy(int nHeight, CBlockHeader pblock, const Consensus::Params& consensusParams, bool fSuperblockPartOnly)
 {
+    /*
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
     if (halvings >= 64)
@@ -1266,6 +1267,31 @@ CAmount GetBlockSubsidy(int nHeight, CBlockHeader pblock, const Consensus::Param
     CAmount nSuperblockPart = (nHeight >= consensusParams.nBudgetPaymentsStartBlock) ? nSubsidy/10 : 0;
 
     return fSuperblockPartOnly ? nSuperblockPart : nSubsidy - nSuperblockPart;
+    */
+
+    CAmount nSubsidy = 500 * COIN;
+    /*
+        Total Coins: 42 Million
+        * 1st 5 Months, 21 Million Coins will be generated
+          Every 21,000 Blocks (1 Month) the reward steps down from 500, 250, 125, 75, 50.
+
+        * Through the next few decades the Remaining 21 Million will be generated
+          Every 420,000 Blocks (2 Years), The reward starts at 25 and is Halved each period
+          10.5 Million come from first 2 Years of 420K Blocks
+    */
+    int BlockCountA = 21000;
+    int BlockCountB = 420000;
+    if (nHeight >= BlockCountA * 5)
+    {
+        nSubsidy = 25 * COIN;
+        nSubsidy >>= ((nHeight - (BlockCountA * 5)) / (BlockCountB)); // Subsidy is cut in half every 420000 blocks
+    }
+    else if (nHeight >= BlockCountA * 4) { nSubsidy = 50 * COIN; }
+    else if (nHeight >= BlockCountA * 3) { nSubsidy = 75 * COIN; }
+    else if (nHeight >= BlockCountA * 2) { nSubsidy = 125 * COIN; }
+    else if (nHeight >= BlockCountA) { nSubsidy = 250 * COIN; }
+
+    return nSubsidy;
 }
 
 //FXTC BEGIN
