@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,11 +12,17 @@
 #include <utilstrencodings.h>
 #include <crypto/common.h>
 
+/*
 #include <crypto/lyra2z.h>
 #include <crypto/nist5.h>
 #include <crypto/scrypt.h>
 #include <crypto/x11.h>
 #include <crypto/x16r.h>
+*/
+
+// Megacoin
+#include "crypto/scrypt.h"
+#include "crypto/hashblock.h"
 
 uint256 CBlockHeader::GetHash() const
 {
@@ -24,6 +31,7 @@ uint256 CBlockHeader::GetHash() const
 
 uint256 CBlockHeader::GetPoWHash() const
 {
+/*
     uint256 powHash = uint256S("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
     switch (nVersion & ALGO_VERSION_MASK)
@@ -38,8 +46,22 @@ uint256 CBlockHeader::GetPoWHash() const
     }
 
     return powHash;
+*/
+
+// Megacoin
+    /*
+    if(GetBlockTime() >= 1493124696) { //Human time (GMT): Tue, 25 Apr 2017 12:51:36 GMT
+        return HashTimeTravel(BEGIN(nVersion), END(nNonce), GetBlockTime()); // MegaCoin TimeTravel
+    }
+    else {
+    */
+        uint256 thash;
+        scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
+        return thash;
+    //}
 }
 
+/*
 unsigned int CBlockHeader::GetAlgoEfficiency(int nBlockHeight) const
 {
     switch (nVersion & ALGO_VERSION_MASK)
@@ -55,6 +77,7 @@ unsigned int CBlockHeader::GetAlgoEfficiency(int nBlockHeight) const
 
     return 1; // FXTC TODO: we should not be here
 }
+*/
 
 std::string CBlock::ToString() const
 {

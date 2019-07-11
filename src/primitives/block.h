@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +13,7 @@
 #include <serialize.h>
 #include <uint256.h>
 
+/*
 // Algo number in nVersion
 enum {
     ALGO_VERSION_MASK    = (255 << 8),
@@ -27,6 +29,7 @@ enum {
 };
 
 const unsigned int ALGO_ACTIVE_COUNT = 5;
+*/
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
