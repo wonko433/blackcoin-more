@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018-2019 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -581,8 +582,9 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/fxtc/fxtc>";
-    const std::string URL_WEBSITE = "<https://fixedtradecoin.org>";
+    // Megacoin
+    const std::string URL_SOURCE_CODE = "<https://github.com/LIMXTEC/Megacoin>";
+    const std::string URL_WEBSITE = "<https://megacoin.eu>";
 
     // FXTC BEGIN
     //return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +

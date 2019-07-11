@@ -2,6 +2,7 @@
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018-2019 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1290,6 +1291,7 @@ int GetNumCores()
 
 std::string CopyrightHolders(const std::string& strPrefix)
 {
+    /*
     // FXTC BEGIN
     //std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
     std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2009, COPYRIGHT_YEAR) + "The Bitcoin Core developers";
@@ -1304,6 +1306,14 @@ std::string CopyrightHolders(const std::string& strPrefix)
     if (strCopyrightHolders.find("Bitcoin Core") == std::string::npos) {
         strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
     }
+    */
+
+    // Megacoin
+    std::string strCopyrightHolders = strPrefix + strprintf(" %u-%u ", 2009, COPYRIGHT_YEAR) + "The Bitcoin Core developers";
+    strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2011, COPYRIGHT_YEAR) + "The Litecoin Core developers";
+    strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2014, COPYRIGHT_YEAR) + "The Dash Core developers";
+    strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2018, COPYRIGHT_YEAR) + "The FXTC developers";
+    strCopyrightHolders += "\n" + strPrefix + strprintf(" %u-%u ", 2013, COPYRIGHT_YEAR) + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
     return strCopyrightHolders;
 }
 
