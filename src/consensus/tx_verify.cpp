@@ -169,7 +169,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
     for (const auto& txout : tx.vout)
     {
         if (txout.IsEmpty() && !tx.IsCoinBase() && !tx.IsCoinStake())
-            return state.DoS(100, error("CheckTransaction(): txout empty for user transaction"));
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-empty");
         if (txout.nValue < 0)
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-negative");
         if (txout.nValue > MAX_MONEY)
@@ -228,7 +228,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
             }
 
             // Check transaction timestamp
-            if (coins->nTime > tx.nTime)
+            if (coin.nTime > tx.nTime)
                     return state.DoS(100, false, REJECT_INVALID, "bad-txns-time-earlier-than-input");
 
             // Check for negative or overflow input values

@@ -202,7 +202,7 @@ bool VerifySignature(const Coin& coin, const uint256 txFromHash, const CTransact
     if (txin.prevout.hash != txFromHash)
         return false;
 
-    return VerifyScript(txin.scriptSig, txout.scriptPubKey, NULL, flags, checker);
+    return VerifyScript(txin.scriptSig, txout.scriptPubKey, flags, checker);
 }
 
 static vector<valtype> CombineMultisig(const CScript& scriptPubKey, const BaseSignatureChecker& checker,
