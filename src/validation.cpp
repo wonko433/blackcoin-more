@@ -1271,21 +1271,22 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
     // Check proof-of-stake
     if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
          const COutPoint &prevout = block.vtx[1]->vin[0].prevout;
-         const CCoins *coins = view.AccessCoins(prevout.hash);
-          if (!coins)
-              return state.DoS(100, error("ConnectBlock(): kernel input unavailable"),
+        Coin coin;
+        if(!view.GetCoin(prevout, coin)){
+                         return state.DoS(100, error("ConnectBlock(): kernel input unavailable"),
                                 REJECT_INVALID, "bad-cs-kernel");
+        }
 
          // Check proof-of-stake min confirmations
-         if (pindex->nHeight - coins->nHeight < chainparams.GetConsensus().nCoinbaseMaturity)
+         if (pindex->nHeight - coin.nHeight < chainparams.GetConsensus().nCoinbaseMaturity)
               return state.DoS(100,
-                  error("ConnectBlock(): tried to stake at depth %d", pindex->nHeight - coins->nHeight),
+                  error("ConnectBlock(): tried to stake at depth %d", pindex->nHeight - coin.nHeight),
                     REJECT_INVALID, "bad-cs-premature");
 
-         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.vtx[1]->nTime))
+         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coin.nTime, coin.out.nValue, prevout, block.vtx[1]->nTime))
               return state.DoS(100, error("ConnectBlock(): proof-of-stake hash doesn't match nBits"),
                                  REJECT_INVALID, "bad-cs-proofhash");
-    }
+}
 
     bool fScriptChecks = true;
     if (!hashAssumeValid.IsNull()) {
@@ -2550,6 +2551,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& params, const CBlockIndex *pindexPrev, int64_t nAdjustedTime)
 {
+    const Consensus::Params& consensusParams = params.GetConsensus();
     uint256 hash = block.GetHash();
     if (hash == consensusParams.hashGenesisBlock)
            return true;
@@ -2559,7 +2561,6 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     int nHeight = pindexPrev->nHeight+1;
 
     // Check proof of work
-    const Consensus::Params& consensusParams = params.GetConsensus();
     if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, block.IsProofOfStake()))
         return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
 
