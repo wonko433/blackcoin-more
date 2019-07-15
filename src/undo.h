@@ -30,7 +30,7 @@ public:
             // Required to maintain compatibility with older undo format.
             ::Serialize(s, (unsigned char)0);
         }
-        ::Serialize(s, this->nTime);
+        ::Serialize(s, txout->nTime);
         ::Serialize(s, CTxOutCompressor(REF(txout->out)));
     }
 
