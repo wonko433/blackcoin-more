@@ -1,5 +1,5 @@
-#ifndef FXTC_QT_TEST_WALLETTESTS_H
-#define FXTC_QT_TEST_WALLETTESTS_H
+#ifndef MEGACOIN_QT_TEST_WALLETTESTS_H
+#define MEGACOIN_QT_TEST_WALLETTESTS_H
 
 #include <QObject>
 #include <QTest>
@@ -12,4 +12,4 @@ private Q_SLOTS:
     void walletTests();
 };
 
-#endif // FXTC_QT_TEST_WALLETTESTS_H
+#endif // MEGACOIN_QT_TEST_WALLETTESTS_H
