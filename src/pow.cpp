@@ -10,6 +10,9 @@
 #include <spork.h>
 // FXTC END
 
+// Megacoin
+#include <bignum.h>
+
 #include <arith_uint256.h>
 #include <chain.h>
 #include <primitives/block.h>
@@ -608,6 +611,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     return true;
 }
 
+/*
 // FXTC BEGIN
 unsigned int GetHandbrakeForce(int32_t nVersion, int nHeight)
 {
@@ -637,3 +641,4 @@ unsigned int GetHandbrakeForce(int32_t nVersion, int nHeight)
     return 1; // FXTC TODO: we should not be here
 }
 // FXTC END
+*/

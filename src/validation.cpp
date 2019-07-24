@@ -2223,7 +2223,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-    if (nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight) {
+    if (pindex->nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight) {
         // FXTC BEGIN
         CAmount founderReward = GetFounderReward(pindex->nHeight, block.vtx[0]->GetValueOut());
         if (!sporkManager.IsSporkActive(SPORK_FXTC_02_IGNORE_FOUNDER_REWARD_CHECK) && founderReward > 0) {
@@ -2478,7 +2478,8 @@ void static UpdateTip(const CBlockIndex *pindexNew, const CChainParams& chainPar
         for (int i = 0; i < 100 && pindex != nullptr; i++)
         {
             int32_t nExpectedVersion = ComputeBlockVersion(pindex->pprev, chainParams.GetConsensus());
-            if ((pindex->nVersion & ~ALGO_VERSION_MASK) > VERSIONBITS_LAST_OLD_BLOCK_VERSION && (pindex->nVersion & ~nExpectedVersion & ~ALGO_VERSION_MASK) != 0)
+            // if ((pindex->nVersion & ~ALGO_VERSION_MASK) > VERSIONBITS_LAST_OLD_BLOCK_VERSION && (pindex->nVersion & ~nExpectedVersion & ~ALGO_VERSION_MASK) != 0)
+            if (pindex->nVersion > VERSIONBITS_LAST_OLD_BLOCK_VERSION && (pindex->nVersion & ~nExpectedVersion) != 0)
                 ++nUpgraded;
             pindex = pindex->pprev;
         }
@@ -3195,6 +3196,7 @@ CBlockIndex* CChainState::AddToBlockIndex(const CBlockHeader& block)
     }
     pindexNew->nTimeMax = (pindexNew->pprev ? std::max(pindexNew->pprev->nTimeMax, pindexNew->nTime) : pindexNew->nTime);
     pindexNew->nChainWork = (pindexNew->pprev ? pindexNew->pprev->nChainWork : 0) + GetBlockProof(*pindexNew);
+    /*
     // FXTC BEGIN
     pindexNew->nChainWorkSha256d = (pindexNew->pprev ? pindexNew->pprev->nChainWorkSha256d : 0) + (((pindexNew->nVersion & ALGO_VERSION_MASK) == ALGO_SHA256D) ? GetBlockProof(*pindexNew) : 0);
     pindexNew->nChainWorkScrypt = (pindexNew->pprev ? pindexNew->pprev->nChainWorkScrypt : 0) + (((pindexNew->nVersion & ALGO_VERSION_MASK) == ALGO_SCRYPT) ? GetBlockProof(*pindexNew) : 0);
@@ -3203,6 +3205,7 @@ CBlockIndex* CChainState::AddToBlockIndex(const CBlockHeader& block)
     pindexNew->nChainWorkX11 = (pindexNew->pprev ? pindexNew->pprev->nChainWorkX11 : 0) + (((pindexNew->nVersion & ALGO_VERSION_MASK) == ALGO_X11) ? GetBlockProof(*pindexNew) : 0);
     pindexNew->nChainWorkX16R = (pindexNew->pprev ? pindexNew->pprev->nChainWorkX16R : 0) + (((pindexNew->nVersion & ALGO_VERSION_MASK) == ALGO_X16R) ? GetBlockProof(*pindexNew) : 0);
     // FXTC END
+    */
     pindexNew->RaiseValidity(BLOCK_VALID_TREE);
     if (pindexBestHeader == nullptr || pindexBestHeader->nChainWork < pindexNew->nChainWork)
         pindexBestHeader = pindexNew;
@@ -4117,6 +4120,7 @@ bool CChainState::LoadBlockIndex(const Consensus::Params& consensus_params, CBlo
     {
         CBlockIndex* pindex = item.second;
         pindex->nChainWork = (pindex->pprev ? pindex->pprev->nChainWork : 0) + GetBlockProof(*pindex);
+        /*
         // FXTC BEGIN
         pindex->nChainWorkSha256d = (pindex->pprev ? pindex->pprev->nChainWorkSha256d : 0) + (((pindex->nVersion & ALGO_VERSION_MASK) == ALGO_SHA256D) ? GetBlockProof(*pindex) : 0);
         pindex->nChainWorkScrypt = (pindex->pprev ? pindex->pprev->nChainWorkScrypt : 0) + (((pindex->nVersion & ALGO_VERSION_MASK) == ALGO_SCRYPT) ? GetBlockProof(*pindex) : 0);
@@ -4125,6 +4129,7 @@ bool CChainState::LoadBlockIndex(const Consensus::Params& consensus_params, CBlo
         pindex->nChainWorkX11 = (pindex->pprev ? pindex->pprev->nChainWorkX11 : 0) + (((pindex->nVersion & ALGO_VERSION_MASK) == ALGO_X11) ? GetBlockProof(*pindex) : 0);
         pindex->nChainWorkX16R = (pindex->pprev ? pindex->pprev->nChainWorkX16R : 0) + (((pindex->nVersion & ALGO_VERSION_MASK) == ALGO_X16R) ? GetBlockProof(*pindex) : 0);
         // FXTC END
+        */
         pindex->nTimeMax = (pindex->pprev ? std::max(pindex->pprev->nTimeMax, pindex->nTime) : pindex->nTime);
         // We can link the chain of blocks for which we've received transactions at some point.
         // Pruned nodes may have deleted the block.

@@ -1232,6 +1232,7 @@ bool AppInitParameterInteraction()
         }
     }
 
+    /*
     // algo switch
     std::string strAlgo = gArgs.GetArg("-algo","sha256d");
     transform(strAlgo.begin(), strAlgo.end(), strAlgo.begin(), ::tolower);
@@ -1249,6 +1250,7 @@ bool AppInitParameterInteraction()
          miningAlgo = ALGO_X16R;
     else
          miningAlgo = ALGO_SHA256D; // FXTC TODO: we should not be here
+    */
 
     return true;
 }

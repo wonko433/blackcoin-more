@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -170,6 +171,7 @@ const CBlockIndex* LastCommonAncestor(const CBlockIndex* pa, const CBlockIndex* 
     return pa;
 }
 
+/*
 std::string GetAlgoName(int32_t nAlgo)
 {
     switch (nAlgo)
@@ -201,3 +203,4 @@ int32_t GetAlgoId(std::string strAlgo)
 
     return miningAlgo;
 }
+*/

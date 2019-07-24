@@ -1,6 +1,7 @@
 // Copyright (c) 2016-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -202,7 +203,8 @@ protected:
 
     bool Condition(const CBlockIndex* pindex, const Consensus::Params& params) const override
     {
-        return (((pindex->nVersion & VERSIONBITS_TOP_MASK) == VERSIONBITS_TOP_BITS) && (pindex->nVersion & Mask(params) & ~ALGO_VERSION_MASK) != 0);
+        // return (((pindex->nVersion & VERSIONBITS_TOP_MASK) == VERSIONBITS_TOP_BITS) && (pindex->nVersion & Mask(params) & ~ALGO_VERSION_MASK) != 0);
+        return (((pindex->nVersion & VERSIONBITS_TOP_MASK) == VERSIONBITS_TOP_BITS) && (pindex->nVersion & Mask(params)) != 0);
     }
 
 public:
