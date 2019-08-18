@@ -1,5 +1,6 @@
 // Copyright (c) 2015-2018 The Bitcoin Core developers
 // Copyright (c) 2018 FXTC developers
+// Copyright (c) 2019 Megacoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -286,7 +287,7 @@ static void http_reject_request_cb(struct evhttp_request* req, void*)
 /** Event dispatcher thread */
 static bool ThreadHTTP(struct event_base* base)
 {
-    RenameThread("fxtc-http");
+    RenameThread("megacoin-http");
     LogPrint(BCLog::HTTP, "Entering http event loop\n");
     event_base_dispatch(base);
     // Event loop will be interrupted by InterruptHTTPServer()
@@ -335,7 +336,7 @@ static bool HTTPBindAddresses(struct evhttp* http)
 /** Simple wrapper to set thread name and run work queue */
 static void HTTPWorkQueueRun(WorkQueue<HTTPClosure>* queue)
 {
-    RenameThread("fxtc-httpworker");
+    RenameThread("megacoin-httpworker");
     queue->Run();
 }
 
