@@ -173,7 +173,7 @@ static const char* FEE_ESTIMATES_FILENAME="fee_estimates.dat";
 /**
  * This is a minimally invasive approach to shutdown on LevelDB read errors from the
  * chainstate, while keeping user interface out of the common library, which is shared
- * between fxtcoind, and fxtcoin-qt and non-server tools.
+ * between megacoind, and megacoin-qt and non-server tools.
 */
 class CCoinsViewErrorCatcher final : public CCoinsViewBacked
 {
@@ -228,7 +228,7 @@ void Shutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("fxtc-shutoff");
+    RenameThread("megacoin-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
@@ -692,7 +692,7 @@ static void CleanupBlockRevFiles()
 static void ThreadImport(std::vector<fs::path> vImportFiles)
 {
     const CChainParams& chainparams = Params();
-    RenameThread("fxtc-loadblk");
+    RenameThread("megacoin-loadblk");
     ScheduleBatchPriority();
 
     {
@@ -765,7 +765,7 @@ static void ThreadImport(std::vector<fs::path> vImportFiles)
 }
 
 /** Sanity checks
- *  Ensure that FxTCoin is running in a usable environment with all
+ *  Ensure that Megacoin is running in a usable environment with all
  *  necessary library support.
  */
 static bool InitSanityCheck(void)
@@ -1232,6 +1232,7 @@ bool AppInitParameterInteraction()
         }
     }
 
+    /*
     // algo switch
     std::string strAlgo = gArgs.GetArg("-algo","sha256d");
     transform(strAlgo.begin(), strAlgo.end(), strAlgo.begin(), ::tolower);
@@ -1249,13 +1250,14 @@ bool AppInitParameterInteraction()
          miningAlgo = ALGO_X16R;
     else
          miningAlgo = ALGO_SHA256D; // FXTC TODO: we should not be here
+    */
 
     return true;
 }
 
 static bool LockDataDirectory(bool probeOnly)
 {
-    // Make sure only a single FxTCoin process is using the data directory.
+    // Make sure only a single Megacoin process is using the data directory.
     fs::path datadir = GetDataDir();
     if (!DirIsWritable(datadir)) {
         return InitError(strprintf(_("Cannot write to data directory '%s'; check permissions."), datadir.string()));
@@ -1328,9 +1330,9 @@ bool AppInitMain()
     // Warn about relative -datadir path.
     if (gArgs.IsArgSet("-datadir") && !fs::path(gArgs.GetArg("-datadir", "")).is_absolute()) {
         LogPrintf("Warning: relative datadir option '%s' specified, which will be interpreted relative to the " /* Continued */
-                  "current working directory '%s'. This is fragile, because if fxtcoin is started in the future "
+                  "current working directory '%s'. This is fragile, because if megacoin is started in the future "
                   "from a different location, it will be unable to locate the current data files. There could "
-                  "also be data loss if fxtcoin is started while in a temporary directory.\n",
+                  "also be data loss if megacoin is started while in a temporary directory.\n",
             gArgs.GetArg("-datadir", ""), fs::current_path().string());
     }
 

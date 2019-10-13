@@ -10,6 +10,9 @@
 #include <spork.h>
 // FXTC END
 
+// Megacoin
+#include <bignum.h>
+
 #include <arith_uint256.h>
 #include <chain.h>
 #include <primitives/block.h>
@@ -405,6 +408,20 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     int fork1 = 1000000;
     int fork2 = 21000;
 
+    // Megacoin Miningalgo switch
+	//10/21/2019 @ 12:00am (UTC) Mainet
+	// please check also block.cpp:L62
+    if(GetBlockTime() >= 1571616000 && GetBlockTime() <= 1571616000 + 86400) // We have a timerange from 24 hours  to find a new block
+    {
+        if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*24) 
+            {
+        //consensus.nPowTargetSpacing = 2.5 * 60; // Megacoin	
+        //This should be one hour then is this function possible
+    LogPrintf("Megacoin Hashalgoupdate HashX16R \n", BlockReading->nHeight );
+    return nProofOfWorkLimit;
+            }
+    }
+
     if (pindexLast->nHeight+1 <= fork1) {
         return KimotoGravityWell(pindexLast, pblock, params);
     }
@@ -608,6 +625,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
     return true;
 }
 
+/*
 // FXTC BEGIN
 unsigned int GetHandbrakeForce(int32_t nVersion, int nHeight)
 {
@@ -637,3 +655,4 @@ unsigned int GetHandbrakeForce(int32_t nVersion, int nHeight)
     return 1; // FXTC TODO: we should not be here
 }
 // FXTC END
+*/

@@ -248,6 +248,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             }
         }
         //
+
+        LogPrintf("CreateNewBlock(): block height: %ld pow reward: %ld pos reward: %ld founder reward: %ld masternode reward: %ld\n", nHeight, nBlockReward, 0, nFounderReward, GetMasternodePayment(nHeight, nFees + nBlockReward));
     }
 
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
@@ -255,9 +257,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vTxFees[0] = -nFees;
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
-
-    if (nHeight >= chainparams.GetConsensus().nFirstMasternodeBlockHeight)
-        LogPrintf("CreateNewBlock(): block height: %ld pow reward: %ld pos reward: %ld founder reward: %ld masternode reward: %ld\n", nHeight, nBlockReward, 0, nFounderReward, GetMasternodePayment(nHeight, nFees + nBlockReward));
 
     // Fill in header
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
