@@ -55,10 +55,19 @@ uint256 CBlockHeader::GetPoWHash() const
     }
     else {
     */
-        uint256 thash;
+    
+    uint256 thash;
+    // please check also pow.cpp:L414
+	//10/21/2019 @ 12:00am (UTC)
+    if(GetBlockTime() >= 1571616000) //10/21/2019 @ 12:00am (UTC)
+    {
+        thash = HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
+    } //10/21/2019 @ 12:00am (UTC)
+    else 
+    {
         scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
         return thash;
-    //}
+    }
 }
 
 /*

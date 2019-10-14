@@ -85,8 +85,8 @@ public:
         consensus.nMasternodePaymentsStartBlock = 50;
         consensus.nMasternodePaymentsIncreaseBlock = 50;
         consensus.nMasternodePaymentsIncreasePeriod = 365 * 1440; // 1 common year
-        consensus.nMasternodeCollateralMinimum = 1000; // starting MN collateral
-        consensus.nMasternodeCollateralMaximum = 100000; // MN collateral at infinity
+        consensus.nMasternodeCollateralMinimum = 21000; // starting MN collateral
+        consensus.nMasternodeCollateralMaximum = 210000; // MN collateral at infinity
 
         consensus.nInstantSendKeepLock = 24;
 
@@ -193,9 +193,9 @@ public:
 
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
-        strSporkPubKey = "04491f11731dd8c8a6f6418e69d01cf35a93327971c3c207dde66b58fc2e7e5c9510b5a80a61bc4982fea1533e96f25a1319cd602e14edd1702d652cd3da367bcb";
+        strSporkPubKey = "0490511F62A54A924FF13A2E43383325A65FD9CAA16C66C2334FA39E000D1229E74A47B22230E37CFBB42806902B0EB08249EBA6FD7913FEA0557F4697109D42E3";
 
-        founderAddress = "fXdevXfLwHZ4TLya3enVvg8BJXPRKqFBrR";
+        founderAddress = "M7uyx2is8rgnTsfxC28mTbuxmXqQPSTKAH";
 
         // Megacoin
         checkpointData = {
@@ -211,7 +211,7 @@ public:
         // FXTC
 
         // Megacoin
-        consensus.nFirstMasternodeBlockHeight = 999999999;
+        consensus.nFirstMasternodeBlockHeight = 1200000;
 
         chainTxData = ChainTxData{
             // Megacoin: data as of block 0x8da1c7f79018fac8acac69a57b2f8b5d2743af67976a4525fdedc8c85a3a1418 (height 410476).
@@ -345,9 +345,9 @@ public:
 
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
-        strSporkPubKey = "04c7cfbb6d4e912aa67acd1ccb997425211376f480d45c1850d70ef3dbfbc6ed663429dc73b67fa8b8c8cb49dac68903929879090a34937bc2b65db6003cbbfed4";
+        strSporkPubKey = "04C637C5DBCA831BF02266B23E0F271B2689A5754A83BBE00B901C821D567AD23343007E21DA062F2D1C9231B23FDE29D34C7FC8F58292735CBB348F48F768C6F3";
 
-        founderAddress = "tXdevXRj7MeN6GF68NVwqsHonLYeS8GPzV";
+        founderAddress = "mv5hH1xC3KQJr4ATDr1yQLmFhRYgVmjua6";
 
         // Megacoin
         checkpointData = {
@@ -360,7 +360,7 @@ public:
         // FXTC
 
         // Megacoin
-        consensus.nFirstMasternodeBlockHeight = 999999999;
+        consensus.nFirstMasternodeBlockHeight = 5000;
 
         chainTxData = ChainTxData{
             // Megacoin: data as of block 0x8da1c7f79018fac8acac69a57b2f8b5d2743af67976a4525fdedc8c85a3a1418 (height 410476).
@@ -481,7 +481,7 @@ public:
         // FXTC
 
         // Megacoin
-        consensus.nFirstMasternodeBlockHeight = 999999999;
+        consensus.nFirstMasternodeBlockHeight = 5000;
 
         chainTxData = ChainTxData{
             0,
