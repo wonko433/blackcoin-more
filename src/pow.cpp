@@ -404,6 +404,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     // Megacoin
     assert(pindexLast != nullptr);
+    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
     int fork1 = 1000000;
     int fork2 = 21000;
@@ -426,7 +427,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return KimotoGravityWell(pindexLast, pblock, params);
     }
 
-    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
     if (pindexLast->nHeight+1 <= fork2)
     {
     // Only change once per difficulty adjustment interval
