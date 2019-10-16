@@ -1292,7 +1292,14 @@ CAmount GetBlockSubsidy(int nHeight, CBlockHeader pblock, const Consensus::Param
     else if (nHeight >= BlockCountA * 3) { nSubsidy = 75 * COIN; }
     else if (nHeight >= BlockCountA * 2) { nSubsidy = 125 * COIN; }
     else if (nHeight >= BlockCountA) { nSubsidy = 250 * COIN; }
-
+    
+    int nMNFirstBlock = Params().GetConsensus().nFirstMasternodeBlockHeight;
+    
+    if (nHeight >= nMNFirstBlock){
+        CAmount nSuperblockPart1 = nSubsidy/10;
+        return nSubsidy - nSuperblockPart1; 
+        // Governancesystem10% for the community
+    }
     return nSubsidy;
 }
 
@@ -1300,7 +1307,7 @@ CAmount GetBlockSubsidy(int nHeight, CBlockHeader pblock, const Consensus::Param
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
 {
     /*
-	CAmount ret = blockValue * 0.00;
+    CAmount ret = blockValue * 0.00;
 
     int nMNPIBlock = Params().GetConsensus().nMasternodePaymentsIncreaseBlock;
     int nMNPIPeriod = Params().GetConsensus().nMasternodePaymentsIncreasePeriod;
@@ -1308,22 +1315,47 @@ CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
     // Doubled initial reward as compensation for blockchain restart
     //if(nHeight >= nMNPIBlock) ret = (0.25 - 0.24 * (100.00 * nMNPIPeriod / (1.00 * nHeight + 100.00 * nMNPIPeriod ))) * blockValue; // Increase smoothly from 1% up to 25% in infinity
     if(nHeight >= nMNPIBlock) ret = (0.25 - 0.23 * (100.00 * nMNPIPeriod / (1.00 * nHeight + 100.00 * nMNPIPeriod ))) * blockValue; // Increase smoothly from 2% up to 25% in infinity
-	*/
-	CAmount ret = blockValue / 2.222; // 45 % for masternodes
-
+    */
+    CAmount ret = blockValue / 2; // 50 % for masternodes
+    
     return ret;
+    
+   // To Do Create a masternodeamount from 20% to 80% with the COLLATERALamount 21000 - 100000 COIN
+   /*CMasternode::CollateralStatus CMasternode::CheckCollateral(const COutPoint& outpoint, int& nHeightRet)
+    {
+    AssertLockHeld(cs_main);
+
+    Coin coin;
+    if(!GetUTXOCoin(outpoint, coin)) {
+        return COLLATERAL_UTXO_NOT_FOUND;
+    }
+
+    // FXTC BEGIN
+    nHeightRet = coin.nHeight;
+
+    CMasternode cm;
+    //if(coin.out.nValue != 1000 * COIN) {
+    if(!cm.CollateralValueCheck(coin.nHeight,coin.out.nValue)) {
+    // FXTC END
+        return COLLATERAL_INVALID_AMOUNT;
+    }
+
+    nHeightRet = coin.nHeight;
+    return COLLATERAL_OK;
+    }
+    */
 }
 
 CAmount GetFounderReward(int nHeight, CAmount blockValue)
 {
         CAmount ret = 0;
-
+        /*
         int nMNFirstBlock = Params().GetConsensus().nFirstMasternodeBlockHeight;
 
         if (nHeight >= nMNFirstBlock) ret = blockValue / 10; // 10% for the community
 
         //if (nHeight >= nEndOfFounderReward.WeDontKnowYet) ret = 0;
-
+        */
         return ret;
 }
 //FXTC END
@@ -3597,7 +3629,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
             // The malleation check is ignored; as the transaction tree itself
             // already does not permit it, it is impossible to trigger in the
             // witness tree.
-            if(nHeight > 25000)	{
+            if(nHeight > 25000) {
                 if (block.vtx[0]->vin[0].scriptWitness.stack.size() != 1 || block.vtx[0]->vin[0].scriptWitness.stack[0].size() != 32) {
                     return state.DoS(100, false, REJECT_INVALID, "bad-witness-nonce-size", true, strprintf("%s : invalid witness reserved value size", __func__));
                 }
@@ -3611,7 +3643,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     }
 
     // No witness data is allowed in blocks that don't commit to witness data, as this would otherwise leave room for spam
-    if(nHeight > 25000)	{
+    if(nHeight > 25000) {
         if (!fHaveWitness) {
           for (const auto& tx : block.vtx) {
                 if (tx->HasWitness()) {

@@ -17,8 +17,9 @@
 #include <crypto/nist5.h>
 #include <crypto/scrypt.h>
 #include <crypto/x11.h>
-#include <crypto/x16r.h>
 */
+#include <crypto/x16r.h>
+
 
 // Megacoin
 #include "crypto/scrypt.h"

@@ -90,13 +90,13 @@ public:
 
         consensus.nInstantSendKeepLock = 24;
 
-        consensus.nBudgetPaymentsStartBlock = 365 * 1440; // 1 common year
-        consensus.nBudgetPaymentsCycleBlocks = 10958; // weekly
+        consensus.nBudgetPaymentsStartBlock = 1200000; // Fork 0.17
+        consensus.nBudgetPaymentsCycleBlocks = 8064; // two weeks 
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 86400; // 1 day
 
-        consensus.nSuperblockStartBlock = 365 * 1440; // 1 common year
-        consensus.nSuperblockCycle = 10958; // weekly
+        consensus.nSuperblockStartBlock = 1200000; // Fork 0.17
+        consensus.nSuperblockCycle = 8640; // weekly
 
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 20000;
@@ -211,7 +211,7 @@ public:
         // FXTC
 
         // Megacoin
-        consensus.nFirstMasternodeBlockHeight = 1200000;
+        consensus.nFirstMasternodeBlockHeight = 1200000; Fork 0.17
 
         chainTxData = ChainTxData{
             // Megacoin: data as of block 0x8da1c7f79018fac8acac69a57b2f8b5d2743af67976a4525fdedc8c85a3a1418 (height 410476).
