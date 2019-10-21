@@ -375,7 +375,7 @@ UniValue getaddressesbyaccount(const JSONRPCRequest& request)
     return ret;
 }
 
-static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, CWalletTx& wtxNew, const CCoinControl& coin_control)
+static void SendMoneyToScript(CWallet * const pwallet, const CScript scriptPubKey, CAmount nValue, bool fSubtractFeeFromAmount, CWalletTx& wtxNew, const CCoinControl& coin_control)
 {
     CAmount curBalance = pwallet->GetBalance();
 
@@ -392,9 +392,6 @@ static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CA
 
     if (fWalletUnlockStakingOnly)
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Wallet unlocked for staking only, unable to create transaction");
-
-    // Parse Bitcoin address
-    CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
     CReserveKey reservekey(pwallet);
@@ -414,6 +411,14 @@ static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CA
         strError = strprintf("Error: The transaction was rejected! Reason given: %s", state.GetRejectReason());
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
+}
+
+static void SendMoney(CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, CWalletTx& wtxNew, const CCoinControl& coin_control)
+{
+    // Parse Bitcoin address
+    CScript scriptPubKey = GetScriptForDestination(address);
+
+    SendMoneyToScript(pwallet, scriptPubKey, nValue, fSubtractFeeFromAmount, wtxNew, coin_control);
 }
 
 UniValue sendtoaddress(const JSONRPCRequest& request)
@@ -2870,6 +2875,103 @@ UniValue generate(const JSONRPCRequest& request)
     return generateBlocks(coinbase_script, num_generate, max_tries, true);
 }
 
+UniValue burn(const JSONRPCRequest& request)
+{
+    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw std::runtime_error(
+            "burn <amount> [hex string]\n"
+            "<amount> is a real and is rounded to the nearest 0.00000001"
+            + HelpRequiringPassphrase());
+
+    CScript scriptPubKey;
+
+    if (request.params.size() > 1) {
+        vector<unsigned char> data;
+        if (request.params[1].get_str().size() > 0){
+            data = ParseHexV(request.params[1], "data");
+        } else {
+            // Empty data is valid
+        }
+        scriptPubKey = CScript() << OP_RETURN << data;
+    } else {
+        scriptPubKey = CScript() << OP_RETURN;
+    }
+
+    CAmount nAmount = AmountFromValue(request.params[0], true);
+    CWalletTx wtx;
+
+    EnsureWalletIsUnlocked();
+
+    SendMoneyToScript(scriptPubKey, nAmount, false, wtx);
+
+    return wtx.GetHash().GetHex();
+}
+
+/*
+// Blackcoin ToDo: fix burnwallet
+UniValue burnwallet(const JSONRPCRequest& request)
+{
+    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+
+    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
+        throw std::runtime_error(
+            "burnwallet <hex string> [force]"
+            + HelpRequiringPassphrase());
+
+    CScript scriptPubKey;
+
+    if (request.params.size() > 0) {
+        vector<unsigned char> data;
+        if (request.params[0].get_str().size() > 0){
+            data = ParseHexV(request.params[0], "data");
+        } else {
+            // Empty data is valid
+        }
+        scriptPubKey = CScript() << OP_RETURN << data;
+    } else {
+        scriptPubKey = CScript() << OP_RETURN;
+    }
+
+    bool fForce = false;
+    if (request.params.size() > 1)
+        fForce = request.params[1].get_bool();
+
+    EnsureWalletIsUnlocked();
+
+    if (!fForce) {
+        if (scriptPubKey.size() <= 32)
+            throw JSONRPCError(RPC_WALLET_ERROR, "Warning: small data");
+        if (pwallet->GetUnconfirmedBalance() != 0)
+            throw JSONRPCError(RPC_WALLET_ERROR, "Warning: unconfirmed balance != 0");
+        if (pwallet->GetImmatureBalance() != 0)
+            throw JSONRPCError(RPC_WALLET_ERROR, "Warning: immature balance != 0");
+        if (pwallet->GetStake() != 0)
+            throw JSONRPCError(RPC_WALLET_ERROR, "Warning: stake balance != 0");
+    }
+
+    CAmount nAmount = pwallet->GetBalance();
+    std::vector<CRecipient> vecSend;
+    CRecipient recipient = {scriptPubKey, nAmount, false};
+    vecSend.push_back(recipient);
+    CWalletTx wtx;
+    CReserveKey keyChange(pwallet);
+    CAmount nFeeRequired = 0;
+    int nChangePosRet = -1;
+    std::string strError;
+    pwallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePosRet, strError, coin_control);
+    vecSend[0].nAmount -= nFeeRequired;
+    if (!pwallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePosRet, strError, coin_control))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Transaction creation failed");
+
+    if (!pwallet->CommitTransaction(wtx, keyChange))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Transaction commit failed");
+
+    return wtx.GetHash().GetHex();
+}
+*/
+
 extern UniValue abortrescan(const JSONRPCRequest& request); // in rpcdump.cpp
 extern UniValue dumpprivkey(const JSONRPCRequest& request); // in rpcdump.cpp
 extern UniValue importprivkey(const JSONRPCRequest& request);
@@ -2933,6 +3035,11 @@ static const CRPCCommand commands[] =
     { "wallet",             "walletpassphrasechange",   &walletpassphrasechange,   true,   {"oldpassphrase","newpassphrase"} },
     { "wallet",             "walletpassphrase",         &walletpassphrase,         true,   {"passphrase","timeout","stakingonly"} },
     { "wallet",             "removeprunedfunds",        &removeprunedfunds,        true,   {"txid"} },
+    { "wallet",             "burn",                     &burn,                     false,  {"amount","hex_string"} },
+    /*
+    // Blackcoin ToDo: fix burnwallet
+    { "wallet",             "burnwallet",               &burnwallet,               false,  {"hex_string","force"} },
+    */
 
     { "generating",         "generate",                 &generate,                 true,   {"nblocks","maxtries"} },
 };

@@ -118,8 +118,15 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "setnetworkactive", 0, "state" },
     { "getmempoolancestors", 1, "verbose" },
     { "getmempooldescendants", 1, "verbose" },
-    { "reservebalance", 0, "reserve"},
-    { "reservebalance", 1, "amount"},
+    { "reservebalance", 0, "reserve" },
+    { "reservebalance", 1, "amount" },
+    { "burn", 0, "amount" },
+    { "burn", 1, "hex_string" },
+    /*
+    // Blackcoin ToDo: fix burnwallet
+    { "burnwallet", 0, "hex_string" },
+    { "burnwallet", 1, "force" },
+    */
     { "logging", 0, "include" },
     { "logging", 1, "exclude" },
     { "disconnectnode", 1, "nodeid" },
