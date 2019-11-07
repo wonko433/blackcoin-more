@@ -57,7 +57,7 @@ bool requestUnlock(WalletModel* walletModel, AskPassphraseDialog::Context contex
 void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent);
 void setupAmountWidget(QLineEdit* widget, QWidget* parent);
 
-// Parse "pivx:" URI into recipient object, return true on successful parsing
+// Parse "bitcloud:" URI into recipient object, return true on successful parsing
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out);
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out);
 QString formatBitcoinURI(const SendCoinsRecipient& info);
@@ -123,7 +123,7 @@ bool isObscured(QWidget* w);
 // Open debug.log
 bool openDebugLogfile();
 
-// Open pivx.conf
+// Open bitcloud.conf
 bool openConfigfile();
 
 // Open masternode.conf

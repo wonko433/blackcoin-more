@@ -32,7 +32,7 @@ Homepage: http://www.pivx.org
 Vcs-Git: git://github.com/PIVX-Project/PIVX.git
 Vcs-Browser: http://github.com/PIVX-Project/PIVX
 
-Package: pivxd
+Package: bitcloudd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
@@ -45,10 +45,10 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 10+ GB of space, slowly growing.
  .
- This package provides the daemon, pivxd, and the CLI tool
- pivx-cli to interact with the daemon.
+ This package provides the daemon, bitcloudd, and the CLI tool
+ bitcloud-cli to interact with the daemon.
 
-Package: pivx-qt
+Package: bitcloud-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI

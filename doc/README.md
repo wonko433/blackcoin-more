@@ -13,20 +13,20 @@ The following are some helpful notes on how to run PIVX Core on your native plat
 
 Unpack the files into a directory and run:
 
-- `bin/pivx-qt` (GUI) or
-- `bin/pivxd` (headless)
+- `bin/bitcloud-qt` (GUI) or
+- `bin/bitcloudd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run pivx-qt.exe.
+Unpack the files into a directory, and then run bitcloud-qt.exe.
 
 ### macOS
 
-Drag PIVX-Qt to your applications folder, and then run PIVX-Qt.
+Drag BTDX-Qt to your applications folder, and then run BTDX-Qt.
 
 ### Need Help?
 
-* See the documentation at the [PIVX Wiki](https://github.com/PIVX-Project/PIVX/wiki)
+* See the documentation at the [PIVX Wiki](https://github.com/LIMXTEC/Bitcloud/wiki)
 for help and more information.
 * Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [PIVX Forum](http://forum.pivx.org/).
 * Join our Discord server [Discord Server](https://discord.pivx.org)

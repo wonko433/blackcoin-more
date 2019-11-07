@@ -154,7 +154,7 @@ void setupAmountWidget(QLineEdit* widget, QWidget* parent)
 
 bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 {
-    // return if URI is not valid or is no PIVX: URI
+    // return if URI is not valid or is no BITCLOUD: URI
     if (!uri.isValid() || uri.scheme() != QString(URI_SCHEME))
         return false;
 
@@ -203,9 +203,9 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient* out)
 {
-    // Convert pivx:// to pivx:
+    // Convert bitcloud:// to bitcloud:
     //
-    //    Cannot handle this later, because pivx:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because bitcloud:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
     if (uri.startsWith(URI_SCHEME "://", Qt::CaseInsensitive)) {
         uri.replace(0, std::strlen(URI_SCHEME) + 3, URI_SCHEME ":");
@@ -389,7 +389,7 @@ bool openConfigfile()
 {
     boost::filesystem::path pathConfig = GetConfigFile();
 
-    /* Open pivx.conf with the associated application */
+    /* Open bitcloud.conf with the associated application */
     if (boost::filesystem::exists(pathConfig))
         return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
     return false;

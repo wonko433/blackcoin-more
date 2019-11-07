@@ -6,7 +6,7 @@
 #include "script/standard.h"
 #include "uint256.h"
 #include "utilstrencodings.h"
-#include "test/test_pivx.h"
+#include "test/test_bitcloud.h"
 
 #include <vector>
 #include <map>

@@ -21,19 +21,19 @@ Summary:	Peer to Peer Cryptographic Currency
 Group:		Applications/System
 License:	MIT
 URL:		https://pivx.org/
-Source0:	https://pivx.org/bin/pivx-core-%{version}/pivx-%{version}.tar.gz
+Source0:	https://pivx.org/bin/bitcloud-core-%{version}/pivx-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/debian/examples/pivx.conf
+Source10:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/debian/examples/bitcloud.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivxd.1
-Source21:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivx-cli.1
-Source22:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/pivx-qt.1
+Source20:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloudd.1
+Source21:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloud-cli.1
+Source22:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloud-qt.1
 
 #selinux
 Source30:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.te
-# Source31 - what about pivx-tx and bench_pivx ???
+# Source31 - what about bitcloud-tx and bench_pivx ???
 Source31:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.fc
 Source32:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.if
 
@@ -124,13 +124,13 @@ BuildRequires:	checkpolicy
 BuildRequires:	%{_datadir}/selinux/devel/Makefile
 
 %description server
-This package provides a stand-alone pivx-core daemon. For most users, this
+This package provides a stand-alone bitcloud-core daemon. For most users, this
 package is only needed if they need a full-node without the graphical client.
 
 Some third party wallet software will want this package to provide the actual
-pivx-core node they use to connect to the network.
+bitcloud-core node they use to connect to the network.
 
-If you use the graphical pivx-core client then you almost certainly do not
+If you use the graphical bitcloud-core client then you almost certainly do not
 need this package.
 
 %package utils
@@ -139,10 +139,10 @@ Group:		Applications/System
 
 %description utils
 This package provides several command line utilities for interacting with a
-pivx-core daemon.
+bitcloud-core daemon.
 
-The pivx-cli utility allows you to communicate and control a pivx daemon
-over RPC, the pivx-tx utility allows you to create a custom transaction, and
+The bitcloud-cli utility allows you to communicate and control a pivx daemon
+over RPC, the bitcloud-tx utility allows you to create a custom transaction, and
 the bench_pivx utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the pivx-server package.
@@ -151,7 +151,7 @@ This package contains utilities needed by the pivx-server package.
 %prep
 %setup -q
 %patch0 -p1 -b .libressl
-cp -p %{SOURCE10} ./pivx.conf.example
+cp -p %{SOURCE10} ./bitcloud.conf.example
 tar -zxf %{SOURCE1}
 cp -p db-%{bdbv}.NC/LICENSE ./db-%{bdbv}.NC-LICENSE
 mkdir db4 SELinux
@@ -182,14 +182,14 @@ popd
 make install DESTDIR=%{buildroot}
 
 mkdir -p -m755 %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/pivxd %{buildroot}%{_sbindir}/pivxd
+mv %{buildroot}%{_bindir}/bitcloudd %{buildroot}%{_sbindir}/bitcloudd
 
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
-cat <<EOF > %{buildroot}%{_tmpfilesdir}/pivx.conf
-d /run/pivxd 0750 pivx pivx -
+cat <<EOF > %{buildroot}%{_tmpfilesdir}/bitcloud.conf
+d /run/bitcloudd 0750 pivx pivx -
 EOF
-touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/pivx.conf
+touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/bitcloud.conf
 
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/pivx
@@ -200,9 +200,9 @@ OPTIONS=""
 
 # System service defaults.
 # Don't change these unless you know what you're doing.
-CONFIG_FILE="%{_sysconfdir}/pivx/pivx.conf"
+CONFIG_FILE="%{_sysconfdir}/pivx/bitcloud.conf"
 DATA_DIR="%{_localstatedir}/lib/pivx"
-PID_FILE="/run/pivxd/pivxd.pid"
+PID_FILE="/run/bitcloudd/bitcloudd.pid"
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/pivx
 
@@ -214,7 +214,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=%{_sbindir}/pivxd -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
+ExecStart=%{_sbindir}/bitcloudd -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
 EnvironmentFile=%{_sysconfdir}/sysconfig/pivx
 User=pivx
 Group=pivx
@@ -262,14 +262,14 @@ touch %{buildroot}%{_datadir}/pixmaps/*.xpm -r %{SOURCE100}
 
 # Desktop File - change the touch timestamp if modifying
 mkdir -p %{buildroot}%{_datadir}/applications
-cat <<EOF > %{buildroot}%{_datadir}/applications/pivx-core.desktop
+cat <<EOF > %{buildroot}%{_datadir}/applications/bitcloud-core.desktop
 [Desktop Entry]
 Encoding=UTF-8
 Name=Bitcoin
 Comment=Bitcoin P2P Cryptocurrency
 Comment[fr]=Bitcoin, monnaie virtuelle cryptographique pair à pair
 Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
-Exec=pivx-qt %u
+Exec=bitcloud-qt %u
 Terminal=false
 Type=Application
 Icon=pivx128
@@ -277,14 +277,14 @@ MimeType=x-scheme-handler/pivx;
 Categories=Office;Finance;
 EOF
 # change touch date when modifying desktop
-touch -a -m -t 201511100546 %{buildroot}%{_datadir}/applications/pivx-core.desktop
-%{_bindir}/desktop-file-validate %{buildroot}%{_datadir}/applications/pivx-core.desktop
+touch -a -m -t 201511100546 %{buildroot}%{_datadir}/applications/bitcloud-core.desktop
+%{_bindir}/desktop-file-validate %{buildroot}%{_datadir}/applications/bitcloud-core.desktop
 
 # KDE protocol - change the touch timestamp if modifying
 mkdir -p %{buildroot}%{_datadir}/kde4/services
-cat <<EOF > %{buildroot}%{_datadir}/kde4/services/pivx-core.protocol
+cat <<EOF > %{buildroot}%{_datadir}/kde4/services/bitcloud-core.protocol
 [Protocol]
-exec=pivx-qt '%u'
+exec=bitcloud-qt '%u'
 protocol=pivx
 input=none
 output=none
@@ -296,14 +296,14 @@ makedir=false
 deleting=false
 EOF
 # change touch date when modifying protocol
-touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/pivx-core.protocol
+touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/bitcloud-core.protocol
 %endif
 
 # man pages
-install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/pivxd.1
-install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/pivx-cli.1
+install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/bitcloudd.1
+install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/bitcloud-cli.1
 %if %{_buildqt}
-install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/pivx-qt.1
+install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/bitcloud-qt.1
 %endif
 
 # nuke these, we do extensive testing of binaries in %%check before packaging
@@ -375,16 +375,16 @@ rm -rf %{buildroot}
 %files core
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING pivx.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_bindir}/pivx-qt
-%attr(0644,root,root) %{_datadir}/applications/pivx-core.desktop
-%attr(0644,root,root) %{_datadir}/kde4/services/pivx-core.protocol
+%doc COPYING bitcloud.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%attr(0755,root,root) %{_bindir}/bitcloud-qt
+%attr(0644,root,root) %{_datadir}/applications/bitcloud-core.desktop
+%attr(0644,root,root) %{_datadir}/kde4/services/bitcloud-core.protocol
 %attr(0644,root,root) %{_datadir}/pixmaps/*.ico
 %attr(0644,root,root) %{_datadir}/pixmaps/*.bmp
 %attr(0644,root,root) %{_datadir}/pixmaps/*.svg
 %attr(0644,root,root) %{_datadir}/pixmaps/*.png
 %attr(0644,root,root) %{_datadir}/pixmaps/*.xpm
-%attr(0644,root,root) %{_mandir}/man1/pivx-qt.1*
+%attr(0644,root,root) %{_mandir}/man1/bitcloud-qt.1*
 %endif
 
 %files libs
@@ -406,30 +406,30 @@ rm -rf %{buildroot}
 %files server
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING pivx.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_sbindir}/pivxd
-%attr(0644,root,root) %{_tmpfilesdir}/pivx.conf
+%doc COPYING bitcloud.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%attr(0755,root,root) %{_sbindir}/bitcloudd
+%attr(0644,root,root) %{_tmpfilesdir}/bitcloud.conf
 %attr(0644,root,root) %{_unitdir}/pivx.service
 %dir %attr(0750,pivx,pivx) %{_sysconfdir}/pivx
 %dir %attr(0750,pivx,pivx) %{_localstatedir}/lib/pivx
 %config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/pivx
 %attr(0644,root,root) %{_datadir}/selinux/*/*.pp
-%attr(0644,root,root) %{_mandir}/man1/pivxd.1*
+%attr(0644,root,root) %{_mandir}/man1/bitcloudd.1*
 
 %files utils
 %defattr(-,root,root,-)
 %license COPYING
-%doc COPYING pivx.conf.example doc/README.md
-%attr(0755,root,root) %{_bindir}/pivx-cli
-%attr(0755,root,root) %{_bindir}/pivx-tx
+%doc COPYING bitcloud.conf.example doc/README.md
+%attr(0755,root,root) %{_bindir}/bitcloud-cli
+%attr(0755,root,root) %{_bindir}/bitcloud-tx
 %attr(0755,root,root) %{_bindir}/bench_pivx
-%attr(0644,root,root) %{_mandir}/man1/pivx-cli.1*
+%attr(0644,root,root) %{_mandir}/man1/bitcloud-cli.1*
 
 
 
 %changelog
 * Fri Feb 26 2016 Alice Wonder <buildmaster@librelamp.com> - 0.12.0-2
-- Rename Qt package from pivx to pivx-core
+- Rename Qt package from pivx to bitcloud-core
 - Make building of the Qt package optional
 - When building the Qt package, default to Qt5 but allow building
 -  against Qt4

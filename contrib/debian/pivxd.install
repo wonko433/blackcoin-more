@@ -1,3 +1,3 @@
-usr/local/bin/pivxd usr/bin
-usr/local/bin/pivx-cli usr/bin
-debian/examples/pivx.conf etc/pivx
+usr/local/bin/bitcloudd usr/bin
+usr/local/bin/bitcloud-cli usr/bin
+debian/examples/bitcloud.conf etc/pivx

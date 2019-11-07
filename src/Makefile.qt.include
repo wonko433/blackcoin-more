@@ -2,44 +2,44 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/pivx-qt
+bin_PROGRAMS += qt/bitcloud-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
 # pivx qt core #
 QT_TS = \
-  qt/locale/pivx_bg.ts \
-  qt/locale/pivx_ca.ts \
-  qt/locale/pivx_cs.ts \
-  qt/locale/pivx_da.ts \
-  qt/locale/pivx_de.ts \
-  qt/locale/pivx_en.ts \
-  qt/locale/pivx_en_GB.ts \
-  qt/locale/pivx_en_US.ts \
-  qt/locale/pivx_eo.ts \
-  qt/locale/pivx_es.ts \
-  qt/locale/pivx_es_ES.ts \
-  qt/locale/pivx_fi.ts \
-  qt/locale/pivx_fr_FR.ts \
-  qt/locale/pivx_hi_IN.ts \
-  qt/locale/pivx_hr.ts \
-  qt/locale/pivx_hr_HR.ts \
-  qt/locale/pivx_it.ts \
-  qt/locale/pivx_ja.ts \
-  qt/locale/pivx_ko_KR.ts \
-  qt/locale/pivx_lt_LT.ts \
-  qt/locale/pivx_nl.ts \
-  qt/locale/pivx_pl.ts \
-  qt/locale/pivx_pt.ts \
-  qt/locale/pivx_pt_BR.ts \
-  qt/locale/pivx_ro_RO.ts \
-  qt/locale/pivx_ru.ts \
-  qt/locale/pivx_sk.ts \
-  qt/locale/pivx_sv.ts \
-  qt/locale/pivx_tr.ts \
-  qt/locale/pivx_uk.ts \
-  qt/locale/pivx_vi.ts \
-  qt/locale/pivx_zh_CN.ts \
-  qt/locale/pivx_zh_TW.ts
+  qt/locale/bitcloud_bg.ts \
+  qt/locale/bitcloud_ca.ts \
+  qt/locale/bitcloud_cs.ts \
+  qt/locale/bitcloud_da.ts \
+  qt/locale/bitcloud_de.ts \
+  qt/locale/bitcloud_en.ts \
+  qt/locale/bitcloud_en_GB.ts \
+  qt/locale/bitcloud_en_US.ts \
+  qt/locale/bitcloud_eo.ts \
+  qt/locale/bitcloud_es.ts \
+  qt/locale/bitcloud_es_ES.ts \
+  qt/locale/bitcloud_fi.ts \
+  qt/locale/bitcloud_fr_FR.ts \
+  qt/locale/bitcloud_hi_IN.ts \
+  qt/locale/bitcloud_hr.ts \
+  qt/locale/bitcloud_hr_HR.ts \
+  qt/locale/bitcloud_it.ts \
+  qt/locale/bitcloud_ja.ts \
+  qt/locale/bitcloud_ko_KR.ts \
+  qt/locale/bitcloud_lt_LT.ts \
+  qt/locale/bitcloud_nl.ts \
+  qt/locale/bitcloud_pl.ts \
+  qt/locale/bitcloud_pt.ts \
+  qt/locale/bitcloud_pt_BR.ts \
+  qt/locale/bitcloud_ro_RO.ts \
+  qt/locale/bitcloud_ru.ts \
+  qt/locale/bitcloud_sk.ts \
+  qt/locale/bitcloud_sv.ts \
+  qt/locale/bitcloud_tr.ts \
+  qt/locale/bitcloud_uk.ts \
+  qt/locale/bitcloud_vi.ts \
+  qt/locale/bitcloud_zh_CN.ts \
+  qt/locale/bitcloud_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -208,10 +208,10 @@ QT_MOC = \
   qt/rpcconsole.moc \
   qt/pivx/settings/moc_settingsconsolewidget.cpp
 
-QT_QRC_CPP = qt/qrc_pivx.cpp
-QT_QRC = qt/pivx.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_pivx_locale.cpp
-QT_QRC_LOCALE = qt/pivx_locale.qrc
+QT_QRC_CPP = qt/qrc_bitcloud.cpp
+QT_QRC = qt/bitcloud.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_bitcloud_locale.cpp
+QT_QRC_LOCALE = qt/bitcloud_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -719,7 +719,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/pivx-qt-res.rc
+BITCOIN_RC = qt/res/bitcloud-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -748,12 +748,12 @@ $(qt_libbitcoinqt_a_OBJECTS) $(qt_pivx_qt_OBJECTS) : | $(QT_MOC)
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# pivx-qt binary #
+# bitcloud-qt binary #
 qt_pivx_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
 qt_pivx_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_pivx_qt_SOURCES = qt/pivx.cpp
+qt_pivx_qt_SOURCES = qt/bitcloud.cpp
 if TARGET_DARWIN
   qt_pivx_qt_SOURCES += $(BITCOIN_MM)
 endif
@@ -778,13 +778,13 @@ QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/pivxstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+$(srcdir)/qt/bitcloudstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/pivxstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/pivx.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/bitcloudstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/bitcloud.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/pivx_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/bitcloud_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
@@ -798,14 +798,14 @@ $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(R
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name pivx $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_pivx_locale.qrc
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_bitcloud_locale.qrc
 
 CLEANFILES += $(CLEAN_QT)
 
 pivx_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_pivx_qt_OBJECTS) qt/pivx-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_pivx_qt_OBJECTS) qt/bitcloud-qt$(EXEEXT) $(LIBBITCOINQT)
 
-pivx_qt : qt/pivx-qt$(EXEEXT)
+pivx_qt : qt/bitcloud-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)
