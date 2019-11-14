@@ -75,7 +75,6 @@ public:
     QList<TransactionRecord> cachedWallet;
     bool hasZcTxes = false;
 
-
     /* Query entire wallet anew from core.
      */
     void refreshWallet()
@@ -112,11 +111,12 @@ public:
 
             // Now take the remaining ones and do the work here
             std::size_t const remainingSize = txesSize - totalSumSize;
-            cachedWallet.append(convertTxToRecords(this, wallet,
-                                                   std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
-                                                   ));
+            auto res = convertTxToRecords(this, wallet,
+                                              std::vector<CWalletTx>(walletTxes.end() - remainingSize, walletTxes.end())
+            );
+            cachedWallet.append(res);
 
-            for (QFuture<QList<TransactionRecord>> &future : tasks) {
+            for (auto &future : tasks) {
                 future.waitForFinished();
                 cachedWallet.append(future.result());
             }
@@ -128,15 +128,16 @@ public:
 
     static QList<TransactionRecord> convertTxToRecords(TransactionTablePriv* tablePriv, const CWallet* wallet, const std::vector<CWalletTx>& walletTxes) {
         QList<TransactionRecord> cachedWallet;
+
         bool hasZcTxes = tablePriv->hasZcTxes;
         for (const auto &tx : walletTxes) {
             if (TransactionRecord::showTransaction(tx)) {
                 QList<TransactionRecord> records = TransactionRecord::decomposeTransaction(wallet, tx);
 
-                if (!hasZcTxes) {
-                    for (const TransactionRecord &record : records) {
+                for (const TransactionRecord &record : records) {
+                    // Check for zc txes.
+                    if (!hasZcTxes) {
                         hasZcTxes = HasZcTxesIfNeeded(record);
-                        if (hasZcTxes) break;
                     }
                 }
 
@@ -162,7 +163,7 @@ public:
 
        Call with transaction that was added, removed or changed.
      */
-    void updateWallet(const uint256& hash, int status, bool showTransaction)
+    void updateWallet(const uint256& hash, int status, bool showTransaction, TransactionRecord& ret)
     {
         qDebug() << "TransactionTablePriv::updateWallet : " + QString::fromStdString(hash.ToString()) + " " + QString::number(status);
 
@@ -187,49 +188,49 @@ public:
                         " showTransaction=" + QString::number(showTransaction) + " derivedStatus=" + QString::number(status);
 
         switch (status) {
-        case CT_NEW:
-            if (inModel) {
-                qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is already in model";
-                break;
-            }
-            if (showTransaction) {
-                LOCK2(cs_main, wallet->cs_wallet);
-                // Find transaction in wallet
-                std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(hash);
-                if (mi == wallet->mapWallet.end()) {
-                    qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is not in wallet";
+            case CT_NEW:
+                if (inModel) {
+                    qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is already in model";
                     break;
                 }
-                // Added -- insert at the right position
-                QList<TransactionRecord> toInsert =
-                    TransactionRecord::decomposeTransaction(wallet, mi->second);
-                if (!toInsert.isEmpty()) /* only if something to insert */
-                {
-                    parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + toInsert.size() - 1);
-                    int insert_idx = lowerIndex;
-                    foreach (const TransactionRecord& rec, toInsert) {
-                        cachedWallet.insert(insert_idx, rec);
-                        if (!hasZcTxes) hasZcTxes = HasZcTxesIfNeeded(rec);
-                        insert_idx += 1;
+                if (showTransaction) {
+                    LOCK2(cs_main, wallet->cs_wallet);
+                    // Find transaction in wallet
+                    auto mi = wallet->mapWallet.find(hash);
+                    if (mi == wallet->mapWallet.end()) {
+                        qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_NEW, but transaction is not in wallet";
+                        break;
                     }
-                    parent->endInsertRows();
+                    // Added -- insert at the right position
+                    QList<TransactionRecord> toInsert =
+                        TransactionRecord::decomposeTransaction(wallet, mi->second);
+                    if (!toInsert.isEmpty()) { /* only if something to insert */
+                        parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex + toInsert.size() - 1);
+                        int insert_idx = lowerIndex;
+                        for (const TransactionRecord& rec : toInsert) {
+                            cachedWallet.insert(insert_idx, rec);
+                            if (!hasZcTxes) hasZcTxes = HasZcTxesIfNeeded(rec);
+                            insert_idx += 1;
+                            ret = rec; // Return record
+                        }
+                        parent->endInsertRows();
+                    }
                 }
-            }
-            break;
-        case CT_DELETED:
-            if (!inModel) {
-                qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_DELETED, but transaction is not in model";
                 break;
-            }
-            // Removed -- remove entire transaction from table
-            parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex - 1);
-            cachedWallet.erase(lower, upper);
-            parent->endRemoveRows();
-            break;
-        case CT_UPDATED:
-            // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
-            // visible transactions.
-            break;
+            case CT_DELETED:
+                if (!inModel) {
+                    qWarning() << "TransactionTablePriv::updateWallet : Warning: Got CT_DELETED, but transaction is not in model";
+                    break;
+                }
+                // Removed -- remove entire transaction from table
+                parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex - 1);
+                cachedWallet.erase(lower, upper);
+                parent->endRemoveRows();
+                break;
+            case CT_UPDATED:
+                // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
+                // visible transactions.
+                break;
         }
     }
 
@@ -316,9 +317,11 @@ void TransactionTableModel::updateTransaction(const QString& hash, int status, b
     uint256 updated;
     updated.SetHex(hash.toStdString());
 
-    priv->updateWallet(updated, status, showTransaction);
+    TransactionRecord rec(0);
+    priv->updateWallet(updated, status, showTransaction, rec);
 
-    emit txArrived(hash);
+    if (!rec.isNull())
+        emit txArrived(hash, rec.isCoinStake(), rec.isAnyColdStakingType());
 }
 
 void TransactionTableModel::updateConfirmations()
@@ -435,6 +438,13 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
         return tr("PIV Stake");
     case TransactionRecord::StakeZPIV:
         return tr("zPIV Stake");
+    case TransactionRecord::StakeDelegated:
+        return tr("PIV Cold Stake");
+    case TransactionRecord::StakeHot:
+        return tr("PIV Stake in behalf of");
+    case TransactionRecord::P2CSDelegationSent:
+    case TransactionRecord::P2CSDelegation:
+        return tr("Stake delegation");
     case TransactionRecord::Generated:
         return tr("Mined");
     case TransactionRecord::ObfuscationDenominate:
@@ -513,6 +523,10 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord* wtx, b
     case TransactionRecord::ZerocoinSpend_Change_zPiv:
     case TransactionRecord::StakeZPIV:
         return tr("Anonymous");
+    case TransactionRecord::P2CSDelegation:
+    case TransactionRecord::P2CSDelegationSent:
+    case TransactionRecord::StakeDelegated:
+    case TransactionRecord::StakeHot:
     case TransactionRecord::SendToSelf: {
         QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(wtx->address));
         return label.isEmpty() ? "" : label;
