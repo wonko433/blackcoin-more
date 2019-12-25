@@ -201,16 +201,6 @@ void ColdStakingWidget::loadWalletModel(){
         ui->listView->setModel(csModel);
         ui->listView->setModelColumn(ColdStakingModel::OWNER_ADDRESS);
 
-        if (csModel->rowCount() > 0) {
-            CAmount coldStaking = walletModel->getColdStakedBalance();
-            ui->labelStakingTotal->setText(tr("Total Staking: %1").arg(
-                    (coldStaking == 0) ? "0.00 PIV" : GUIUtil::formatBalance(coldStaking, nDisplayUnit))
-            );
-            ui->labelStakingTotal->setVisible(true);
-        } else {
-            ui->labelStakingTotal->setVisible(false);
-        }
-
         addressTableModel = walletModel->getAddressTableModel();
         addressesFilter = new AddressFilterProxyModel(AddressTableModel::ColdStaking, this);
         addressesFilter->setSourceModel(addressTableModel);
@@ -224,6 +214,8 @@ void ColdStakingWidget::loadWalletModel(){
         ui->containerHistoryLabel->setVisible(false);
         ui->emptyContainer->setVisible(false);
         ui->listView->setVisible(false);
+
+        tryRefreshDelegations();
     }
 
 }
@@ -235,7 +227,10 @@ void ColdStakingWidget::onTxArrived(const QString& hash, const bool& isCoinStake
 }
 
 void ColdStakingWidget::walletSynced(bool sync) {
-    tryRefreshDelegations();
+    if (this->isChainSync != sync) {
+        this->isChainSync = sync;
+        tryRefreshDelegations();
+    }
 }
 
 void ColdStakingWidget::tryRefreshDelegations() {
@@ -255,8 +250,15 @@ bool ColdStakingWidget::refreshDelegations(){
 
 void ColdStakingWidget::onDelegationsRefreshed() {
     isLoading = false;
-    if (ui->pushLeft->isChecked())
-        showList(csModel->rowCount() > 0);
+    bool hasDel = csModel->rowCount() > 0;
+
+    updateStakingTotalLabel();
+
+    // Update list if we are showing that section.
+    if (!isInDelegation) {
+        showList(hasDel);
+        ui->labelStakingTotal->setVisible(hasDel);
+    }
 }
 
 void ColdStakingWidget::run(int type) {
@@ -281,9 +283,12 @@ void ColdStakingWidget::onContactsClicked(){
         menu->hide();
     }
 
-    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeSend() : walletModel->getAddressTableModel()->sizeDell();
+    int contactsSize = isContactOwnerSelected ? walletModel->getAddressTableModel()->sizeRecv() : walletModel->getAddressTableModel()->sizeColdSend();
     if(contactsSize == 0) {
-        inform(tr("No contacts available, you can go to the contacts screen and add some there!"));
+        inform(isContactOwnerSelected ?
+                 tr( "No receive addresses available, you can go to the receive screen and create some there!") :
+                 tr("No contacts available, you can go to the contacts screen and add some there!")
+        );
         return;
     }
 
@@ -327,12 +332,7 @@ void ColdStakingWidget::onContactsClicked(){
         return;
     }
 
-    if (isContactOwnerSelected) {
-        menuContacts->setWalletModel(walletModel, AddressTableModel::Receive);
-    } else {
-        menuContacts->setWalletModel(walletModel, AddressTableModel::Delegators);
-    }
-
+    menuContacts->setWalletModel(walletModel, isContactOwnerSelected ? AddressTableModel::Receive : AddressTableModel::ColdStakingSend);
     menuContacts->resizeList(width, height);
     menuContacts->setStyleSheet(styleSheet());
     menuContacts->adjustSize();
@@ -341,6 +341,7 @@ void ColdStakingWidget::onContactsClicked(){
 }
 
 void ColdStakingWidget::onDelegateSelected(bool delegate){
+    isInDelegation = delegate;
     if (menu && menu->isVisible()) {
         menu->hide();
     }
@@ -349,7 +350,7 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         menuAddresses->hide();
     }
 
-    if(delegate){
+    if(isInDelegation){
         ui->btnCoinControl->setVisible(true);
         ui->containerSend->setVisible(true);
         ui->containerBtn->setVisible(true);
@@ -367,7 +368,6 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
         ui->containerBtn->setVisible(false);
         ui->btnColdStaking->setVisible(true);
         showList(csModel->rowCount() > 0);
-
         ui->btnMyStakingAddresses->setVisible(true);
         ui->listViewStakingAddress->setVisible(false);
     }
@@ -376,7 +376,6 @@ void ColdStakingWidget::onDelegateSelected(bool delegate){
 void ColdStakingWidget::updateDisplayUnit() {
     if (walletModel && walletModel->getOptionsModel()) {
         nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
-        ui->listView->update();
     }
 }
 
@@ -403,9 +402,11 @@ void ColdStakingWidget::onSendClicked(){
     SendCoinsRecipient dest = sendMultiRow->getValue();
     dest.isP2CS = true;
 
-    // Amount must be < 10 PIV, check chainparams minColdStakingAmount
-    if (dest.amount < (COIN * 10)) {
-        inform(tr("Invalid entry, minimum delegable amount is 10 PIV"));
+    // Amount must be >= minColdStakingAmount
+    const CAmount& minColdStakingAmount = walletModel->getMinColdStakingAmount();
+    if (dest.amount < minColdStakingAmount) {
+        inform(tr("Invalid entry, minimum delegable amount is ") +
+               BitcoinUnits::formatWithUnit(nDisplayUnit, minColdStakingAmount));
         return;
     }
 
@@ -422,6 +423,16 @@ void ColdStakingWidget::onSendClicked(){
 
     if (!isOwnerAddressFromThisWallet) {
         isOwnerAddressFromThisWallet = walletModel->isMine(inputOwner);
+
+        // Warn the user if the owner address is not from this wallet
+        if (!isOwnerAddressFromThisWallet &&
+            !ask(tr("ALERT!"),
+                    tr("Delegating to an external owner address!\n\n"
+                       "The delegated coins will NOT be spendable by this wallet.\nSpending these coins will need to be done from the wallet or\ndevice containing the owner address.\n\n"
+                       "Do you wish to proceed?"))
+            ) {
+                return;
+        }
     }
 
     // Don't try to delegate the balance if both addresses are from this wallet
@@ -443,8 +454,7 @@ void ColdStakingWidget::onSendClicked(){
             this,
             prepareStatus,
             walletModel,
-            BitcoinUnits::formatWithUnit(walletModel->getOptionsModel()->getDisplayUnit(),
-                                         currentTransaction.getTransactionFee()),
+            BitcoinUnits::formatWithUnit(nDisplayUnit, currentTransaction.getTransactionFee()),
             true
     );
 
@@ -455,7 +465,7 @@ void ColdStakingWidget::onSendClicked(){
 
     showHideOp(true);
     TxDetailDialog* dialog = new TxDetailDialog(window);
-    dialog->setDisplayUnit(walletModel->getOptionsModel()->getDisplayUnit());
+    dialog->setDisplayUnit(nDisplayUnit);
     dialog->setData(walletModel, currentTransaction);
     dialog->adjustSize();
     openDialogWithOpaqueBackgroundY(dialog, window, 3, 5);
@@ -489,13 +499,13 @@ void ColdStakingWidget::clearAll() {
 }
 
 void ColdStakingWidget::onCoinControlClicked(){
-    if(ui->pushRight->isChecked()) {
+    if(isInDelegation) {
         if (walletModel->getBalance() > 0) {
             if (!coinControlDialog) {
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);
             } else {
-                coinControlDialog->updateView();
+                coinControlDialog->refreshDialog();
             }
             coinControlDialog->exec();
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());
@@ -632,6 +642,7 @@ void ColdStakingWidget::onEditClicked() {
     if (label.isEmpty()) {
         label = index.data(Qt::DisplayRole).toString();
     }
+    updateStakingTotalLabel();
     inform(label + tr(" staking!"));
 }
 
@@ -645,6 +656,7 @@ void ColdStakingWidget::onDeleteClicked() {
     if (label.isEmpty()) {
         label = index.data(Qt::DisplayRole).toString();
     }
+    updateStakingTotalLabel();
     inform(label + tr(" blacklisted from staking"));
 }
 
@@ -715,6 +727,14 @@ void ColdStakingWidget::changeTheme(bool isLightTheme, QString& theme){
     static_cast<CSDelegationHolder*>(delegate->getRowFactory())->isLightTheme = isLightTheme;
     static_cast<AddressHolder*>(addressDelegate->getRowFactory())->isLightTheme = isLightTheme;
     ui->listView->update();
+}
+
+void ColdStakingWidget::updateStakingTotalLabel()
+{
+    const CAmount& total = csModel->getTotalAmount();
+    ui->labelStakingTotal->setText(tr("Total Staking: %1").arg(
+            (total == 0) ? "0.00 PIV" : GUIUtil::formatBalance(total, nDisplayUnit))
+    );
 }
 
 ColdStakingWidget::~ColdStakingWidget(){

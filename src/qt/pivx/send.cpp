@@ -447,7 +447,7 @@ bool SendWidget::sendZpiv(QList<SendCoinsRecipient> recipients){
     if(!boost::get<CNoDestination>(&CoinControlDialog::coinControl->destChange)){
         changeAddress = CBitcoinAddress(CoinControlDialog::coinControl->destChange).ToString();
     }else{
-        changeAddress = walletModel->getAddressTableModel()->getLastUnusedAddress().toStdString();
+        changeAddress = walletModel->getAddressTableModel()->getAddressToShow().toStdString();
     }
 
     if (walletModel->sendZpiv(
@@ -592,7 +592,7 @@ void SendWidget::onCoinControlClicked(){
                 coinControlDialog = new CoinControlDialog();
                 coinControlDialog->setModel(walletModel);
             } else {
-                coinControlDialog->updateView();
+                coinControlDialog->refreshDialog();
             }
             coinControlDialog->exec();
             ui->btnCoinControl->setActive(CoinControlDialog::coinControl->HasSelected());

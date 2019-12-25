@@ -58,8 +58,8 @@ WalletModel::~WalletModel()
     unsubscribeFromCoreSignals();
 }
 
-bool WalletModel::isTestnet() const {
-    return Params().NetworkID() == CBaseChainParams::TESTNET;
+bool WalletModel::isTestNetwork() const {
+    return Params().NetworkID() == CBaseChainParams::TESTNET || Params().NetworkID() == CBaseChainParams::REGTEST;
 }
 
 bool WalletModel::isColdStakingNetworkelyEnabled() const {
@@ -80,6 +80,11 @@ CAmount WalletModel::getBalance(const CCoinControl* coinControl) const
     }
 
     return wallet->GetBalance();
+}
+
+CAmount WalletModel::getMinColdStakingAmount() const
+{
+    return Params().GetMinColdStakingAmount();
 }
 
 CAmount WalletModel::getUnconfirmedBalance() const
@@ -306,7 +311,7 @@ bool WalletModel::validateStakingAddress(const QString& address) {
     if (validateAddress(address)) {
         // check for staking only addresses
         QChar firstLetter = address.at(0).toLower();
-        if (isTestnet() && firstLetter == 'w')
+        if (isTestNetwork() && firstLetter == 'w')
             return true;
 
         // mainnet check
@@ -431,7 +436,16 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             return TransactionCreationFailed;
         }
 
-        bool fCreated = wallet->CreateTransaction(vecSend, *newTx, *keyChange, nFeeRequired, strFailReason, coinControl, recipients[0].inputType, recipients[0].useSwiftTX);
+        bool fCreated = wallet->CreateTransaction(vecSend,
+                                                  *newTx,
+                                                  *keyChange,
+                                                  nFeeRequired,
+                                                  strFailReason,
+                                                  coinControl,
+                                                  recipients[0].inputType,
+                                                  recipients[0].useSwiftTX,
+                                                  0,
+                                                  true);
         transaction.setTransactionFee(nFeeRequired);
 
         if (recipients[0].useSwiftTX && newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_MAX_VALUE) * COIN) {
@@ -506,12 +520,10 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction& tran
     foreach (const SendCoinsRecipient& rcp, transaction.getRecipients()) {
         // Don't touch the address book when we have a payment request
         if (!rcp.paymentRequest.IsInitialized()) {
-
-            std::string strAddress = rcp.address.toStdString();
-            CTxDestination dest = CBitcoinAddress(strAddress).Get();
+            CBitcoinAddress address = CBitcoinAddress(rcp.address.toStdString());
+            std::string purpose = address.IsStakingAddress() ? AddressBook::AddressBookPurpose::COLD_STAKING_SEND : AddressBook::AddressBookPurpose::SEND;
             std::string strLabel = rcp.label.toStdString();
-
-            updateAddressBookLabels(dest, strLabel, "send");
+            updateAddressBookLabels(address.Get(), strLabel, purpose);
         }
         emit coinsSent(wallet, rcp, transaction_array);
     }
@@ -681,6 +693,17 @@ bool WalletModel::setWalletLocked(bool locked, const SecureString& passPhrase, b
     }
 }
 
+bool WalletModel::lockForStakingOnly(const SecureString& passPhrase)
+{
+    if (!wallet->IsLocked()) {
+        wallet->fWalletUnlockAnonymizeOnly = true;
+        return true;
+    } else {
+        setWalletLocked(false, passPhrase, true);
+    }
+    return false;
+}
+
 bool WalletModel::isAnonymizeOnlyUnlocked()
 {
     return wallet->fWalletUnlockAnonymizeOnly;
@@ -717,7 +740,7 @@ static void NotifyKeyStoreStatusChanged(WalletModel* walletmodel, CCryptoKeyStor
 
 static void NotifyAddressBookChanged(WalletModel* walletmodel, CWallet* wallet, const CTxDestination& address, const std::string& label, bool isMine, const std::string& purpose, ChangeType status)
 {
-    QString strAddress = QString::fromStdString(CBitcoinAddress(address).ToString());
+    QString strAddress = QString::fromStdString(pwalletMain->ParseIntoAddress(address, purpose).ToString());
     QString strLabel = QString::fromStdString(label);
     QString strPurpose = QString::fromStdString(purpose);
 
@@ -985,7 +1008,8 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
         int nDepth = wallet->mapWallet[outpoint.hash].GetDepthAndMempool(fConflicted);
         if (nDepth < 0 || fConflicted) continue;
         COutput out(&wallet->mapWallet[outpoint.hash], outpoint.n, nDepth, true);
-        if (outpoint.n < out.tx->vout.size() && wallet->IsMine(out.tx->vout[outpoint.n]) == ISMINE_SPENDABLE)
+        if (outpoint.n < out.tx->vout.size() &&
+                (wallet->IsMine(out.tx->vout[outpoint.n]) & ISMINE_SPENDABLE_ALL) != ISMINE_NO)
             vCoins.push_back(out);
     }
 

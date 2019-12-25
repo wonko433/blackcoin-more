@@ -182,7 +182,6 @@ void DashboardWidget::handleTransactionClicked(const QModelIndex &index){
     window->showHide(true);
     TxDetailDialog *dialog = new TxDetailDialog(window, false);
     dialog->setData(walletModel, rIndex);
-    dialog->adjustSize();
     openDialogWithOpaqueBackgroundY(dialog, window, 3, 17);
 
     // Back to regular status
@@ -252,7 +251,12 @@ void DashboardWidget::onTxArrived(const QString& hash, const bool& isCoinStake, 
 }
 
 void DashboardWidget::showList(){
-    if (ui->emptyContainer->isVisible()) {
+    if (filter->rowCount() == 0){
+        ui->emptyContainer->setVisible(true);
+        ui->listTransactions->setVisible(false);
+        ui->comboBoxSortType->setVisible(false);
+        ui->comboBoxSort->setVisible(false);
+    } else {
         ui->emptyContainer->setVisible(false);
         ui->listTransactions->setVisible(true);
         ui->comboBoxSortType->setVisible(true);

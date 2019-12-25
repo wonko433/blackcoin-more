@@ -30,10 +30,14 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
 
     // Set parent stylesheet
     this->setStyleSheet(_mainWindow->styleSheet());
-
     /* Containers */
+    ui->containerTop->setContentsMargins(10, 4, 10, 10);
+#ifdef Q_OS_MAC
+    ui->containerTop->load("://bg-dashboard-banner");
+    setCssProperty(ui->containerTop,"container-topbar-no-image");
+#else
     ui->containerTop->setProperty("cssClass", "container-top");
-    ui->containerTop->setContentsMargins(10,4,10,10);
+#endif
 
     std::initializer_list<QWidget*> lblTitles = {ui->labelTitle1, ui->labelTitle2, ui->labelTitle3, ui->labelTitle4, ui->labelTitle5, ui->labelTitle6};
     setCssProperty(lblTitles, "text-title-topbar");
@@ -111,6 +115,8 @@ TopBar::TopBar(PIVXGUI* _mainWindow, QWidget *parent) :
     connect(ui->pushButtonTheme, SIGNAL(Mouse_Pressed()), this, SLOT(onThemeClicked()));
     connect(ui->pushButtonFAQ, SIGNAL(Mouse_Pressed()), _mainWindow, SLOT(openFAQ()));
     connect(ui->pushButtonColdStaking, SIGNAL(Mouse_Pressed()), this, SLOT(onColdStakingClicked()));
+    connect(ui->pushButtonSync, &ExpandableButton::Mouse_HoverLeave, this, &TopBar::refreshProgressBarSize);
+    connect(ui->pushButtonSync, &ExpandableButton::Mouse_Hover, this, &TopBar::refreshProgressBarSize);
 }
 
 void TopBar::onThemeClicked(){
@@ -122,12 +128,11 @@ void TopBar::onThemeClicked(){
     if(lightTheme){
         ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-light",  true);
         ui->pushButtonTheme->setButtonText("Light Theme");
-        updateStyle(ui->pushButtonTheme);
     }else{
         ui->pushButtonTheme->setButtonClassStyle("cssClass", "btn-check-theme-dark", true);
         ui->pushButtonTheme->setButtonText("Dark Theme");
-        updateStyle(ui->pushButtonTheme);
     }
+    updateStyle(ui->pushButtonTheme);
 
     emit themeChanged(lightTheme);
 }
@@ -144,7 +149,7 @@ void TopBar::onBtnLockClicked(){
                 connect(lockUnlockWidget, SIGNAL(Mouse_Leave()), this, SLOT(lockDropdownMouseLeave()));
                 connect(ui->pushButtonLock, &ExpandableButton::Mouse_HoverLeave, [this](){
                     QMetaObject::invokeMethod(this, "lockDropdownMouseLeave", Qt::QueuedConnection);
-                }); //, SLOT(lockDropdownMouseLeave()));
+                });
                 connect(lockUnlockWidget, SIGNAL(lockClicked(
                 const StateClicked&)),this, SLOT(lockDropdownClicked(
                 const StateClicked&)));
@@ -212,7 +217,7 @@ void TopBar::lockDropdownClicked(const StateClicked& state){
                                         AskPassphraseDialog::Context::ToggleLock);
                 dlg->adjustSize();
                 openDialogWithOpaqueBackgroundY(dlg, window);
-                if (this->walletModel->getEncryptionStatus() == WalletModel::Unlocked) {
+                if (walletModel->getEncryptionStatus() == WalletModel::Unlocked) {
                     ui->pushButtonLock->setButtonText("Wallet Unlocked");
                     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-unlock", true);
                 }
@@ -220,18 +225,25 @@ void TopBar::lockDropdownClicked(const StateClicked& state){
                 break;
             }
             case 2: {
-                if (walletModel->getEncryptionStatus() == WalletModel::UnlockedForAnonymizationOnly)
+                WalletModel::EncryptionStatus status = walletModel->getEncryptionStatus();
+                if (status == WalletModel::UnlockedForAnonymizationOnly)
                     break;
-                showHideOp(true);
-                AskPassphraseDialog *dlg = new AskPassphraseDialog(AskPassphraseDialog::Mode::UnlockAnonymize, window, walletModel,
-                                        AskPassphraseDialog::Context::ToggleLock);
-                dlg->adjustSize();
-                openDialogWithOpaqueBackgroundY(dlg, window);
-                if (this->walletModel->getEncryptionStatus() == WalletModel::UnlockedForAnonymizationOnly) {
+
+                if (status == WalletModel::Unlocked) {
+                    walletModel->lockForStakingOnly();
+                } else {
+                    showHideOp(true);
+                    AskPassphraseDialog *dlg = new AskPassphraseDialog(AskPassphraseDialog::Mode::UnlockAnonymize,
+                                                                       window, walletModel,
+                                                                       AskPassphraseDialog::Context::ToggleLock);
+                    dlg->adjustSize();
+                    openDialogWithOpaqueBackgroundY(dlg, window);
+                    dlg->deleteLater();
+                }
+                if (walletModel->getEncryptionStatus() == WalletModel::UnlockedForAnonymizationOnly) {
                     ui->pushButtonLock->setButtonText(tr("Wallet Unlocked for staking"));
                     ui->pushButtonLock->setButtonClassStyle("cssClass", "btn-check-status-staking", true);
                 }
-                dlg->deleteLater();
                 break;
             }
         }
@@ -255,10 +267,14 @@ void TopBar::lockDropdownMouseLeave(){
 
 void TopBar::onBtnReceiveClicked(){
     if(walletModel) {
+        QString addressStr = walletModel->getAddressTableModel()->getAddressToShow();
+        if (addressStr.isNull()) {
+            inform(tr("Error generating address"));
+            return;
+        }
         showHideOp(true);
         ReceiveDialog *receiveDialog = new ReceiveDialog(window);
-
-        receiveDialog->updateQr(walletModel->getAddressTableModel()->getLastUnusedAddress());
+        receiveDialog->updateQr(addressStr);
         if (openDialogWithOpaqueBackground(receiveDialog, window)) {
             inform(tr("Address Copied"));
         }
@@ -466,7 +482,6 @@ void TopBar::loadWalletModel(){
             SLOT(updateBalances(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
     connect(walletModel, &WalletModel::encryptionStatusChanged, this, &TopBar::refreshStatus);
-
     // update the display unit, to not use the default ("PIVX")
     updateDisplayUnit();
 
@@ -522,15 +537,15 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
                             const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance,
                             const CAmount& delegatedBalance, const CAmount& coldStakedBalance){
 
+    // Locked balance. //TODO move this to the signal properly in the future..
     CAmount nLockedBalance = 0;
-    if (!walletModel) {
+    if (walletModel) {
         nLockedBalance = walletModel->getLockedBalance();
     }
+    ui->labelTitle1->setText(nLockedBalance > 0 ? tr("Available (Locked included)") : tr("Available"));
 
-    // PIV Balance
-    //CAmount nTotalBalance = balance + unconfirmedBalance;
-    CAmount pivAvailableBalance = balance + delegatedBalance - immatureBalance - nLockedBalance;
-
+    // PIV Total
+    CAmount pivAvailableBalance = balance + delegatedBalance;
     // zPIV Balance
     CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
 
@@ -555,4 +570,16 @@ void TopBar::updateBalances(const CAmount& balance, const CAmount& unconfirmedBa
 void TopBar::resizeEvent(QResizeEvent *event){
     if (lockUnlockWidget && lockUnlockWidget->isVisible()) lockDropdownMouseLeave();
     QWidget::resizeEvent(event);
+}
+
+void TopBar::refreshProgressBarSize() {
+    QMetaObject::invokeMethod(this, "expandSync", Qt::QueuedConnection);
+}
+
+void TopBar::expandSync() {
+    if (progressBar) {
+        progressBar->setMaximumWidth(ui->pushButtonSync->maximumWidth());
+        progressBar->setFixedWidth(ui->pushButtonSync->width());
+        progressBar->setMinimumWidth(ui->pushButtonSync->width() - 2);
+    }
 }

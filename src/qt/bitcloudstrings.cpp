@@ -63,6 +63,8 @@ QT_TRANSLATE_NOOP("bitcloud-core", ""
 "Enable automatic wallet backups triggered after each zPIV minting (0-1, "
 "default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", ""
+"Enable cold staking functionality (0-1, default: %u). Disabled if staking=0"),
+QT_TRANSLATE_NOOP("bitcloud-core", ""
 "Enable or disable staking functionality for PIV inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", ""
 "Enable or disable staking functionality for zPIV inputs (0-1, default: %u)"),
@@ -226,6 +228,10 @@ QT_TRANSLATE_NOOP("bitcloud-core", ""
 "Warning: -paytxfee is set very high! This is the transaction fee you will "
 "pay if you send a transaction."),
 QT_TRANSLATE_NOOP("bitcloud-core", ""
+"Warning: Peers are being disconnected due time differences. Please check "
+"that your computer's date and time are correct! If your clock is wrong PIVX "
+"Core will not work properly."),
+QT_TRANSLATE_NOOP("bitcloud-core", ""
 "Warning: Please check that your computer's date and time are correct! If "
 "your clock is wrong PIVX Core will not work properly."),
 QT_TRANSLATE_NOOP("bitcloud-core", ""
@@ -273,7 +279,6 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Cannot downgrade wallet"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Cannot resolve -bind address: '%s'"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Cannot resolve -externalip address: '%s'"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Cannot resolve -whitebind address: '%s'"),
-QT_TRANSLATE_NOOP("bitcloud-core", "Cannot write default address"),
 QT_TRANSLATE_NOOP("bitcloud-core", "CoinSpend: Accumulator witness does not verify"),
 QT_TRANSLATE_NOOP("bitcloud-core", "CoinSpend: failed check"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Connect only to the specified node(s)"),
@@ -314,7 +319,6 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Error loading wallet.dat: Wallet corrupted")
 QT_TRANSLATE_NOOP("bitcloud-core", "Error loading wallet.dat: Wallet requires newer version of PIVX Core"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Error reading from database, shutting down."),
-QT_TRANSLATE_NOOP("bitcloud-core", "Error recovering public key."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Error writing zerocoinDB to disk"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Error"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Error: A fatal internal error occured, see debug.log for details"),
@@ -357,7 +361,6 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Invalid amount"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Invalid masternodeprivkey. Please see documenation."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Invalid netmask specified in -whitelist: '%s'"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Invalid port detected in masternode.conf"),
-QT_TRANSLATE_NOOP("bitcloud-core", "Invalid private key."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Keep at most <n> unconnectable transactions in memory (default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Limit size of signature cache to <n> entries (default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Line: %d"),
@@ -379,7 +382,7 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Masternode options:"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Maximum per-connection receive buffer, <n>*1000 bytes (default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Maximum per-connection send buffer, <n>*1000 bytes (default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Mint did not make it into blockchain"),
-QT_TRANSLATE_NOOP("bitcloud-core", "Need address because change is not exact"),
+QT_TRANSLATE_NOOP("bitcloud-core", "Need destination or change address because change is not exact"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Need to specify a port with -whitebind: '%s'"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Node relay options:"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Not enough file descriptors available."),
@@ -428,7 +431,6 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Set the number of threads to service RPC cal
 QT_TRANSLATE_NOOP("bitcloud-core", "Sets the DB_PRIVATE flag in the wallet db environment (default: %u)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Show all debugging options (usage: --help -help-debug)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Shrink debug.log file on client startup (default: 1 when no -debug)"),
-QT_TRANSLATE_NOOP("bitcloud-core", "Signing failed."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Signing timed out."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Signing transaction failed"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Specify configuration file (default: %s)"),
@@ -471,6 +473,7 @@ QT_TRANSLATE_NOOP("bitcloud-core", "Trying to spend an already spent serial #, t
 QT_TRANSLATE_NOOP("bitcloud-core", "Unable to bind to %s on this computer (bind returned error %s)"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Unable to find transaction containing mint %s"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Unable to find transaction containing mint, txHash: %s"),
+QT_TRANSLATE_NOOP("bitcloud-core", "Unable to generate initial key"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Unable to sign spork message, wrong key?"),
 QT_TRANSLATE_NOOP("bitcloud-core", "Unable to start HTTP server. See debug log for details."),
 QT_TRANSLATE_NOOP("bitcloud-core", "Unknown network specified in -onlynet: '%s'"),

@@ -237,7 +237,6 @@ QPushButton[cssClass="btn-check-cold-staking"]:checked {
 
 *[cssClass="btn-nav-dash"]:checked {
     background-color: #0f0b16;
-    padding-top: 25px;
     font-size:14px;
     color: #B088FF;
 }
@@ -400,7 +399,11 @@ HH       TOP BAR
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-top"] {
+    background-color:#000000;
     border-image: url("://bg-dashboard-banner") 0 0 0 0 stretch stretch;
+}
+
+*[cssClass="container-topbar-no-image"] {
     background-color:#000000;
 }
 
@@ -1692,6 +1695,11 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
     font-size:16px;
 }
 
+*[cssClass="text-violet-warning"] {
+    color: #877B9F;;
+    font-size:13px;
+}
+
 *[cssClass="ic-warning"] {
     qproperty-icon: url("://ic-transaction-warning") off,
     url("://ic-transaction-warning") on ;
@@ -2744,7 +2752,11 @@ QPushButton[cssClass="ic-step-confirm-welcome"] {
 
 
 *[cssClass="container-welcome"] {
+    background-color: #000000;
     border-image: url("://bg-welcome") 0 0 0 0 stretch stretch;
+}
+
+*[cssClass="container-welcome-no-image"] {
     background-color:#000000;
 }
 
@@ -2865,7 +2877,17 @@ HH        Tooltip
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 
-QToolTip { color: white; background-color: #b088ff; border: none;padding:10px; border-radius:2px;}
+QToolTip {
+    color: white;
+    background-color: #b088ff;
+    border: none;
+    padding:4px;
+    border-radius:3px;
+    text-align: center;
+    qproperty-alignment: AlignVCenter;
+    min-height: 25px;
+    min-width: 40px;
+}
 
 
 /*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH

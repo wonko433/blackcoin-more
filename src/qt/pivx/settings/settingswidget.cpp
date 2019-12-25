@@ -155,6 +155,7 @@ SettingsWidget::SettingsWidget(PIVXGUI* parent) :
     connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::message, this, &SettingsWidget::message);
     connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::message, this, &SettingsWidget::message);
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::message, this, &SettingsWidget::message);
+    connect(settingsInformationWidget, &SettingsInformationWidget::message,this, &SettingsWidget::message);
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -188,6 +189,7 @@ void SettingsWidget::loadWalletModel(){
     this->settingsSingMessageWidgets->setWalletModel(this->walletModel);
     this->settingsBitToolWidget->setWalletModel(this->walletModel);
     this->settingsMultisendWidget->setWalletModel(this->walletModel);
+    this->settingsDisplayOptionsWidget->setWalletModel(this->walletModel);
 }
 
 void SettingsWidget::onResetAction(){
@@ -206,8 +208,25 @@ void SettingsWidget::onSaveOptionsClicked(){
     if(mapper->submit()) {
         pwalletMain->MarkDirty();
         if (this->clientModel->getOptionsModel()->isRestartRequired()) {
-            openStandardDialog(tr("Restart required"), tr("You wallet will be restarted to apply the changes\n"), tr("OK"));
-            emit handleRestart(QStringList());
+            bool fAcceptRestart = openStandardDialog(tr("Restart required"), tr("Your wallet needs to be restarted to apply the changes\n"), tr("Restart Now"), tr("Restart Later"));
+
+            if (fAcceptRestart) {
+                // Get command-line arguments and remove the application name
+                QStringList args = QApplication::arguments();
+                args.removeFirst();
+
+                // Remove existing repair-options
+                args.removeAll(SALVAGEWALLET);
+                args.removeAll(RESCAN);
+                args.removeAll(ZAPTXES1);
+                args.removeAll(ZAPTXES2);
+                args.removeAll(UPGRADEWALLET);
+                args.removeAll(REINDEX);
+
+                emit handleRestart(args);
+            } else {
+                inform(tr("Options will be applied on next wallet restart"));
+            }
         } else {
             inform(tr("Options stored"));
         }
@@ -393,13 +412,14 @@ void SettingsWidget::setMapper(){
     settingsDisplayOptionsWidget->setMapper(mapper);
 }
 
-void SettingsWidget::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn){
+bool SettingsWidget::openStandardDialog(QString title, QString body, QString okBtn, QString cancelBtn){
     showHideOp(true);
     DefaultDialog *confirmDialog = new DefaultDialog(window);
     confirmDialog->setText(title, body, okBtn, cancelBtn);
     confirmDialog->adjustSize();
     openDialogWithOpaqueBackground(confirmDialog, window);
     confirmDialog->deleteLater();
+    return confirmDialog->isOk;
 }
 
 SettingsWidget::~SettingsWidget(){
