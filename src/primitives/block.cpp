@@ -18,8 +18,11 @@ uint256 CBlockHeader::GetHash() const
     if (nVersion < 4)
         return HashQuark(BEGIN(nVersion), END(nNonce));
 
+    /*
+    // BTDX
     if (nVersion < 7)
         return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
+    */
 
     return Hash(BEGIN(nVersion), END(nNonce));
 }

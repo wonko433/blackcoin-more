@@ -46,8 +46,11 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         int64_t nActualSpacing = 0;
         if (pindexLast->nHeight != 0)
             nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
+
         if (nActualSpacing < 0)
             nActualSpacing = 1;
+
+        // update for V2 time protocol
         if (fTimeV2 && nActualSpacing > nTargetSpacing*10)
             nActualSpacing = nTargetSpacing*10;
 
@@ -63,6 +66,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         int64_t nInterval = nTargetTimespan / nTargetSpacing;
         bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
         bnNew /= ((nInterval + 1) * nTargetSpacing);
+        
+        // BTDX
+        if (pindexLast->nHeight == Params().LAST_POW_BLOCK() || pindexLast->nHeight <= Params().LAST_POW_BLOCK() + 2)
+            bnNew = bnTargetLimit;
 
         if (bnNew <= 0 || bnNew > bnTargetLimit)
             bnNew = bnTargetLimit;
@@ -110,6 +117,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     // Retarget
     bnNew *= nActualTimespan;
     bnNew /= _nTargetTimespan;
+
+	// BTDX: set the diff down for POS LimxDev 02-07-2017
+	if (pindexLast->nHeight <= Params().LAST_POW_BLOCK())
+        bnNew = Params().ProofOfWorkLimit();
 
     if (bnNew > Params().ProofOfWorkLimit()) {
         bnNew = Params().ProofOfWorkLimit();

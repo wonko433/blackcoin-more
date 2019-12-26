@@ -2010,6 +2010,8 @@ int64_t GetBlockValue(int nHeight)
 
     }
 
+    /*
+    // BTDX
     int64_t nSubsidy = 0;
     if (nHeight == 0) {
         nSubsidy = 60001 * COIN;
@@ -2042,6 +2044,41 @@ int64_t GetBlockValue(int nHeight)
     } else {
         nSubsidy = 5 * COIN;
     }
+    */
+    
+	int64_t nSubsidy = 150 * COIN; // ~10 %
+	// 105120 blocks in a year
+	// Max coin after 8 years ~42M
+	/*
+	0	78840	150	11826000
+	1	78840	75	5913000
+	2	78840	37	2917080
+	3	78840	34	2680560
+	4	78840	30	2365200
+	5	78840	24	1892160
+	6	78840	18	1419120
+	7	78840	12	946080
+	8	78840	7	551880
+	9	78840	4	315360
+	*/
+	int nSubsidyHalvingInterval = 78840; // 3/4 year
+	int halvings = nHeight / nSubsidyHalvingInterval;
+	
+	if( nHeight == 0 ) return 11278450 * COIN;
+	if( nHeight <= 2016 ) return nSubsidy / 10000 ;
+	
+	if (halvings >= 10) return nSubsidy / 50; // 3 BTDX
+ 
+    if (halvings > 2) nSubsidy = nSubsidy * 1.85;
+    if (halvings > 3) nSubsidy = nSubsidy * 1.75;
+    if (halvings > 4) nSubsidy = nSubsidy * 1.65;
+    if (halvings > 5) nSubsidy = nSubsidy * 1.45;
+    if (halvings > 6) nSubsidy = nSubsidy * 1.35;
+    if (halvings > 7) nSubsidy = nSubsidy * 1.25;
+    if (halvings > 8) nSubsidy = nSubsidy * 1.15;
+    if (halvings > 9) nSubsidy = nSubsidy * 1.05;
+	nSubsidy >>= halvings;
+
     return nSubsidy;
 }
 
@@ -2289,6 +2326,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
             return 0;
     }
 
+    /*
     if (nHeight <= 43200) {
         ret = blockValue / 5;
     } else if (nHeight < 86400 && nHeight > 43200) {
@@ -2305,6 +2343,9 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         if (isZPIVStake)
             ret = 2 * COIN;
     }
+    */
+    
+    ret = blockValue / 100 * 60;
 
     return ret;
 }
@@ -2879,13 +2920,13 @@ void AddWrappedSerialsInflation()
 void RecalculateZPIVMinted()
 {
     CBlockIndex *pindex = chainActive[Params().Zerocoin_StartHeight()];
-    uiInterface.ShowProgress(_("Recalculating minted ZPIV..."), 0);
+    uiInterface.ShowProgress(_("Recalculating minted zBTDX..."), 0);
     while (true) {
         // Log Message and feedback message every 1000 blocks
         if (pindex->nHeight % 1000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)(pindex->nHeight - Params().Zerocoin_StartHeight()) * 100 / (chainActive.Height() - Params().Zerocoin_StartHeight()))));
-            uiInterface.ShowProgress(_("Recalculating minted ZPIV..."), percent);
+            uiInterface.ShowProgress(_("Recalculating minted zBTDX..."), percent);
         }
 
         //overwrite possibly wrong vMintsInBlock data
@@ -2911,12 +2952,12 @@ void RecalculateZPIVMinted()
 void RecalculateZPIVSpent()
 {
     CBlockIndex* pindex = chainActive[Params().Zerocoin_StartHeight()];
-    uiInterface.ShowProgress(_("Recalculating spent ZPIV..."), 0);
+    uiInterface.ShowProgress(_("Recalculating spent zBTDX..."), 0);
     while (true) {
         if (pindex->nHeight % 1000 == 0) {
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
             int percent = std::max(1, std::min(99, (int)((double)(pindex->nHeight - Params().Zerocoin_StartHeight()) * 100 / (chainActive.Height() - Params().Zerocoin_StartHeight()))));
-            uiInterface.ShowProgress(_("Recalculating spent ZPIV..."), percent);
+            uiInterface.ShowProgress(_("Recalculating spent zBTDX..."), percent);
         }
 
         //Rewrite zBTDX supply
@@ -3384,11 +3425,15 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
     CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
+    
+    /*
+    // BTDX
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
+    */
 
-    //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    // BTDX: check that the block does not overmint
+    if (pindex->pprev->nHeight > 4200 && !IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
         return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
                                     FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
                          REJECT_INVALID, "bad-cb-amount");
@@ -4578,6 +4623,8 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
 
     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
 
+    /*
+    // BTDX
     if ((Params().NetworkID() != CBaseChainParams::REGTEST) && block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
         double n1 = ConvertBitsToDouble(block.nBits);
         double n2 = ConvertBitsToDouble(nBitsRequired);
@@ -4587,13 +4634,17 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
 
         return true;
     }
+    */
 
     if (block.nBits != nBitsRequired) {
+        /*
+        // BTDX
         // Pivx Specific reference to the block with the wrong threshold was used.
         if ((block.nTime == (uint32_t) Params().PivxBadBlockTime()) && (block.nBits == (uint32_t) Params().PivxBadBlocknBits())) {
             // accept PIVX block minted with incorrect proof of work threshold
             return true;
         }
+        */
 
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
     }

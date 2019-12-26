@@ -13,7 +13,7 @@
 #include "uint256.h"
 
 /** The maximum allowed size for a serialized block, in bytes (network rule) */
-static const unsigned int MAX_BLOCK_SIZE_CURRENT = 2000000;
+static const unsigned int MAX_BLOCK_SIZE_CURRENT = 1000000; // BTDX
 static const unsigned int MAX_BLOCK_SIZE_LEGACY = 1000000;
 
 /** Nodes collect new transactions into a block, hash them into a hash tree,
@@ -27,7 +27,7 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION=7;     //!> Version 7 removes nAccumulatorCheckpoint from serialization
+    static const int32_t CURRENT_VERSION=3;     // BTDX !> Version 7 removes nAccumulatorCheckpoint from serialization
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
@@ -53,9 +53,12 @@ public:
         READWRITE(nBits);
         READWRITE(nNonce);
 
+        /*
+        // BTDX
         //zerocoin active, header changes to include accumulator checksum
         if(nVersion > 3 && nVersion < 7)
             READWRITE(nAccumulatorCheckpoint);
+        */
     }
 
     void SetNull()
