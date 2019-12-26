@@ -1,21 +1,21 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit bitcoind.service
+# $ systemctl edit bitcloudd.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/pivx/bitcloud.conf
+# /etc/bitcloud/bitcloud.conf
 
 [Unit]
-Description=PIVX daemon
+Description=Bitcloud daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/bitcloudd -daemon -conf=/etc/pivx/bitcloud.conf -pid=/run/bitcloudd/bitcloudd.pid
-# Creates /run/bitcloudd owned by pivx
+ExecStart=/usr/bin/bitcloudd -daemon -datadir=/var/lib/bitcloud -conf=/etc/bitcloud/bitcloud.conf -pid=/run/bitcloudd/bitcloudd.pid
+# Creates /run/bitcloudd owned by bitcloud
 RuntimeDirectory=bitcloudd
-User=pivx
+User=bitcloud
 Type=forking
 PIDFile=/run/bitcloudd/bitcloudd.pid
 Restart=on-failure
@@ -38,7 +38,8 @@ NoNewPrivileges=true
 PrivateDevices=true
 
 # Deny the creation of writable and executable memory mappings.
-MemoryDenyWriteExecute=true
+# Commented out as it's not supported on Debian 8 or Ubuntu 16.04 LTS
+#MemoryDenyWriteExecute=true
 
 [Install]
 WantedBy=multi-user.target

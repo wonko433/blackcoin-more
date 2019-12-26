@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Bitcloud Core
+Comment=PIVX P2P Cryptocurrency
+Comment[fr]=Bitcloud, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Bitcloud, eşten eşe kriptografik sanal para birimi
+Exec=bitcloud-qt %u
+Terminal=false
+Type=Application
+Icon=bitcloud128
+MimeType=x-scheme-handler/bitcloud;
+Categories=Office;Finance;
+StartupWMClass=BTDX-qt

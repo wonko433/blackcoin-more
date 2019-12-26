@@ -1,0 +1,8 @@
+/usr/bin/bitcloud-cli		--	gen_context(system_u:object_r:bitcloud_exec_t,s0)
+/usr/sbin/bitcloudd		--	gen_context(system_u:object_r:bitcloud_exec_t,s0)
+/usr/lib(64)?/bitcloud/bitcloudd		--	gen_context(system_u:object_r:bitcloud_exec_t,s0)
+
+/etc/bitcloud(/.*)?		gen_context(system_u:object_r:bitcloud_conf_t,s0)
+/var/lib/bitcloud(/.*)?		gen_context(system_u:object_r:bitcloud_var_lib_t,s0)
+
+(/var)?/run/bitcloudd(/.*)?   gen_context(system_u:object_r:bitcloud_var_run_t,s0)

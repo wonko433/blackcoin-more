@@ -1,0 +1,81 @@
+policy_module(bitcloud, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type bitcloud_t;
+type bitcloud_exec_t;
+init_daemon_domain(bitcloud_t, bitcloud_exec_t)
+
+permissive bitcloud_t;
+
+type bitcloud_initrc_exec_t;
+init_script_file(bitcloud_initrc_exec_t)
+
+type bitcloud_conf_t;
+files_type(bitcloud_conf_t)
+
+type bitcloud_var_lib_t;
+files_type(bitcloud_var_lib_t)
+
+type bitcloud_var_run_t;
+files_type(bitcloud_var_run_t)
+
+type bitcloud_port_t;
+corenet_port(bitcloud_port_t)
+
+########################################
+#
+# bitcloud local policy
+#
+allow bitcloud_t self:process { fork };
+
+allow bitcloud_t self:fifo_file rw_fifo_file_perms;
+allow bitcloud_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(bitcloud_t, bitcloud_conf_t, bitcloud_conf_t)
+manage_files_pattern(bitcloud_t, bitcloud_conf_t, bitcloud_conf_t)
+
+manage_dirs_pattern(bitcloud_t, bitcloud_var_lib_t, bitcloud_var_lib_t)
+manage_files_pattern(bitcloud_t, bitcloud_var_lib_t, bitcloud_var_lib_t)
+files_var_lib_filetrans(bitcloud_t, bitcloud_var_lib_t, { dir file })
+
+manage_dirs_pattern(bitcloud_t, bitcloud_var_run_t, bitcloud_var_run_t)
+manage_files_pattern(bitcloud_t, bitcloud_var_run_t, bitcloud_var_run_t)
+
+sysnet_dns_name_resolve(bitcloud_t)
+corenet_all_recvfrom_unlabeled(bitcloud_t)
+
+allow bitcloud_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(bitcloud_t)
+corenet_tcp_sendrecv_generic_node(bitcloud_t)
+corenet_tcp_sendrecv_all_ports(bitcloud_t)
+corenet_tcp_bind_generic_node(bitcloud_t)
+
+gen_require(`
+    type bitcloud_port_t;
+')
+allow bitcloud_t bitcloud_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type bitcloud_port_t;
+')
+allow bitcloud_t bitcloud_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(bitcloud_t)
+
+files_read_etc_files(bitcloud_t)
+
+miscfiles_read_localization(bitcloud_t)
+
+sysnet_dns_name_resolve(bitcloud_t)
+
+allow bitcloud_t bitcloud_exec_t:file execute_no_trans;
+allow bitcloud_t self:process setsched;
+corecmd_exec_ls(bitcloud_t)
+corenet_tcp_connect_http_port(bitcloud_t)
+dev_read_urand(bitcloud_t)
+fs_getattr_xattr_fs(bitcloud_t)
+kernel_read_system_state(bitcloud_t)

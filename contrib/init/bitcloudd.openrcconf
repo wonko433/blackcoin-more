@@ -1,7 +1,7 @@
 # /etc/conf.d/bitcloudd: config file for /etc/init.d/bitcloudd
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/pivx/bitcloud.conf"
+#BITCOIND_CONFIGFILE="/etc/bitcloud/bitcloud.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
 #BITCOIND_PIDDIR="/var/run/bitcloudd"
@@ -13,8 +13,8 @@
 #BITCOIND_DATADIR="/var/lib/bitcloudd"
 
 # User and group to own bitcloudd process
-#BITCOIND_USER="pivx"
-#BITCOIND_GROUP="pivx"
+#BITCOIND_USER="bitcloud"
+#BITCOIND_GROUP="bitcloud"
 
 # Path to bitcloudd executable
 #BITCOIND_BIN="/usr/bin/bitcloudd"

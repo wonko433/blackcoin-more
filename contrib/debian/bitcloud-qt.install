@@ -1,0 +1,6 @@
+usr/local/bin/bitcloud-qt usr/bin
+share/pixmaps/bitcloud32.xpm usr/share/pixmaps
+share/pixmaps/bitcloud16.xpm usr/share/pixmaps
+share/pixmaps/bitcloud128.png usr/share/pixmaps
+debian/bitcloud-qt.desktop usr/share/applications
+debian/bitcloud-qt.protocol usr/share/kde4/services/

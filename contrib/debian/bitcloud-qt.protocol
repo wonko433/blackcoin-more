@@ -1,6 +1,6 @@
 [Protocol]
 exec=bitcloud-qt '%u'
-protocol=pivx
+protocol=bitcloud
 input=none
 output=none
 helper=true

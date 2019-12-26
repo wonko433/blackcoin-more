@@ -13,29 +13,29 @@
 %endif
 %endif
 
-Name:		pivx
+Name:		bitcloud
 Version:	0.12.0
 Release:	2%{?dist}
 Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://pivx.org/
-Source0:	https://pivx.org/bin/bitcloud-core-%{version}/pivx-%{version}.tar.gz
+URL:		https://bit-cloud.info/
+Source0:	https://bit-cloud.info/bin/bitcloud-core-%{version}/bitcloud-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/debian/examples/bitcloud.conf
+Source10:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/contrib/debian/examples/bitcloud.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloudd.1
-Source21:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloud-cli.1
-Source22:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/doc/man/bitcloud-qt.1
+Source20:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/doc/man/bitcloudd.1
+Source21:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/doc/man/bitcloud-cli.1
+Source22:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/doc/man/bitcloud-qt.1
 
 #selinux
-Source30:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.te
-# Source31 - what about bitcloud-tx and bench_pivx ???
-Source31:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.fc
-Source32:	https://raw.githubusercontent.com/pivx-project/pivx/v%{version}/contrib/rpm/pivx.if
+Source30:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/contrib/rpm/bitcloud.te
+# Source31 - what about bitcloud-tx and bench_bitcloud ???
+Source31:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/contrib/rpm/bitcloud.fc
+Source32:	https://raw.githubusercontent.com/LIMXTEC/Bitcloud/v%{version}/contrib/rpm/bitcloud.if
 
 Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg
 
@@ -50,13 +50,13 @@ BuildRequires:	autoconf automake libtool
 BuildRequires:	libevent-devel
 
 
-Patch0:		pivx-0.12.0-libressl.patch
+Patch0:		bitcloud-0.12.0-libressl.patch
 
 
 %description
 Bitcoin is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
-issuing of pivxs is carried out collectively by the network.
+issuing of bitclouds is carried out collectively by the network.
 
 %if %{_buildqt}
 %package core
@@ -81,7 +81,7 @@ BuildRequires:	%{_bindir}/convert
 %description core
 Bitcoin is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
-issuing of pivxs is carried out collectively by the network.
+issuing of bitclouds is carried out collectively by the network.
 
 This package contains the Qt based graphical client and node. If you are looking
 to run a Bitcoin wallet, this is probably the package you want.
@@ -93,28 +93,28 @@ Summary:	Bitcoin shared libraries
 Group:		System Environment/Libraries
 
 %description libs
-This package provides the pivxconsensus shared libraries. These libraries
+This package provides the bitcloudconsensus shared libraries. These libraries
 may be used by third party software to provide consensus verification
 functionality.
 
 Unless you know need this package, you probably do not.
 
 %package devel
-Summary:	Development files for pivx
+Summary:	Development files for bitcloud
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 This package contains the header files and static library for the
-pivxconsensus shared library. If you are developing or compiling software
+bitcloudconsensus shared library. If you are developing or compiling software
 that wants to link against that library, then you need this package installed.
 
 Most people do not need this package installed.
 
 %package server
-Summary:	The pivx daemon
+Summary:	The bitcloud daemon
 Group:		System Environment/Daemons
-Requires:	pivx-utils = %{version}-%{release}
+Requires:	bitcloud-utils = %{version}-%{release}
 Requires:	selinux-policy policycoreutils-python
 Requires(pre):	shadow-utils
 Requires(post):	%{_sbindir}/semodule %{_sbindir}/restorecon %{_sbindir}/fixfiles %{_sbindir}/sestatus
@@ -141,11 +141,11 @@ Group:		Applications/System
 This package provides several command line utilities for interacting with a
 bitcloud-core daemon.
 
-The bitcloud-cli utility allows you to communicate and control a pivx daemon
+The bitcloud-cli utility allows you to communicate and control a bitcloud daemon
 over RPC, the bitcloud-tx utility allows you to create a custom transaction, and
-the bench_pivx utility can be used to perform some benchmarks.
+the bench_bitcloud utility can be used to perform some benchmarks.
 
-This package contains utilities needed by the pivx-server package.
+This package contains utilities needed by the bitcloud-server package.
 
 
 %prep
@@ -172,7 +172,7 @@ make %{?_smp_mflags}
 pushd SELinux
 for selinuxvariant in %{selinux_variants}; do
 	make NAME=${selinuxvariant} -f %{_datadir}/selinux/devel/Makefile
-	mv pivx.pp pivx.pp.${selinuxvariant}
+	mv bitcloud.pp bitcloud.pp.${selinuxvariant}
 	make NAME=${selinuxvariant} -f %{_datadir}/selinux/devel/Makefile clean
 done
 popd
@@ -187,27 +187,27 @@ mv %{buildroot}%{_bindir}/bitcloudd %{buildroot}%{_sbindir}/bitcloudd
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
 cat <<EOF > %{buildroot}%{_tmpfilesdir}/bitcloud.conf
-d /run/bitcloudd 0750 pivx pivx -
+d /run/bitcloudd 0750 bitcloud bitcloud -
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/bitcloud.conf
 
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/pivx
-# Provide options to the pivx daemon here, for example
+cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/bitcloud
+# Provide options to the bitcloud daemon here, for example
 # OPTIONS="-testnet -disable-wallet"
 
 OPTIONS=""
 
 # System service defaults.
 # Don't change these unless you know what you're doing.
-CONFIG_FILE="%{_sysconfdir}/pivx/bitcloud.conf"
-DATA_DIR="%{_localstatedir}/lib/pivx"
+CONFIG_FILE="%{_sysconfdir}/bitcloud/bitcloud.conf"
+DATA_DIR="%{_localstatedir}/lib/bitcloud"
 PID_FILE="/run/bitcloudd/bitcloudd.pid"
 EOF
-touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/pivx
+touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/bitcloud
 
 mkdir -p %{buildroot}%{_unitdir}
-cat <<EOF > %{buildroot}%{_unitdir}/pivx.service
+cat <<EOF > %{buildroot}%{_unitdir}/bitcloud.service
 [Unit]
 Description=Bitcoin daemon
 After=syslog.target network.target
@@ -215,9 +215,9 @@ After=syslog.target network.target
 [Service]
 Type=forking
 ExecStart=%{_sbindir}/bitcloudd -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
-EnvironmentFile=%{_sysconfdir}/sysconfig/pivx
-User=pivx
-Group=pivx
+EnvironmentFile=%{_sysconfdir}/sysconfig/bitcloud
+User=bitcloud
+Group=bitcloud
 
 Restart=on-failure
 PrivateTmp=true
@@ -229,34 +229,34 @@ StartLimitBurst=5
 [Install]
 WantedBy=multi-user.target
 EOF
-touch -a -m -t 201504280000 %{buildroot}%{_unitdir}/pivx.service
+touch -a -m -t 201504280000 %{buildroot}%{_unitdir}/bitcloud.service
 #end systemd stuff
 
-mkdir %{buildroot}%{_sysconfdir}/pivx
-mkdir -p %{buildroot}%{_localstatedir}/lib/pivx
+mkdir %{buildroot}%{_sysconfdir}/bitcloud
+mkdir -p %{buildroot}%{_localstatedir}/lib/bitcloud
 
 #SELinux
 for selinuxvariant in %{selinux_variants}; do
 	install -d %{buildroot}%{_datadir}/selinux/${selinuxvariant}
-	install -p -m 644 SELinux/pivx.pp.${selinuxvariant} %{buildroot}%{_datadir}/selinux/${selinuxvariant}/pivx.pp
+	install -p -m 644 SELinux/bitcloud.pp.${selinuxvariant} %{buildroot}%{_datadir}/selinux/${selinuxvariant}/bitcloud.pp
 done
 
 %if %{_buildqt}
 # qt icons
-install -D -p share/pixmaps/pivx.ico %{buildroot}%{_datadir}/pixmaps/pivx.ico
+install -D -p share/pixmaps/bitcloud.ico %{buildroot}%{_datadir}/pixmaps/bitcloud.ico
 install -p share/pixmaps/nsis-header.bmp %{buildroot}%{_datadir}/pixmaps/
 install -p share/pixmaps/nsis-wizard.bmp %{buildroot}%{_datadir}/pixmaps/
-install -p %{SOURCE100} %{buildroot}%{_datadir}/pixmaps/pivx.svg
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx16.png -w16 -h16
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx32.png -w32 -h32
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx64.png -w64 -h64
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx128.png -w128 -h128
-%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/pivx256.png -w256 -h256
-%{_bindir}/convert -resize 16x16 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx16.xpm
-%{_bindir}/convert -resize 32x32 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx32.xpm
-%{_bindir}/convert -resize 64x64 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx64.xpm
-%{_bindir}/convert -resize 128x128 %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx128.xpm
-%{_bindir}/convert %{buildroot}%{_datadir}/pixmaps/pivx256.png %{buildroot}%{_datadir}/pixmaps/pivx256.xpm
+install -p %{SOURCE100} %{buildroot}%{_datadir}/pixmaps/bitcloud.svg
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/bitcloud16.png -w16 -h16
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/bitcloud32.png -w32 -h32
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/bitcloud64.png -w64 -h64
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/bitcloud128.png -w128 -h128
+%{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/bitcloud256.png -w256 -h256
+%{_bindir}/convert -resize 16x16 %{buildroot}%{_datadir}/pixmaps/bitcloud256.png %{buildroot}%{_datadir}/pixmaps/bitcloud16.xpm
+%{_bindir}/convert -resize 32x32 %{buildroot}%{_datadir}/pixmaps/bitcloud256.png %{buildroot}%{_datadir}/pixmaps/bitcloud32.xpm
+%{_bindir}/convert -resize 64x64 %{buildroot}%{_datadir}/pixmaps/bitcloud256.png %{buildroot}%{_datadir}/pixmaps/bitcloud64.xpm
+%{_bindir}/convert -resize 128x128 %{buildroot}%{_datadir}/pixmaps/bitcloud256.png %{buildroot}%{_datadir}/pixmaps/bitcloud128.xpm
+%{_bindir}/convert %{buildroot}%{_datadir}/pixmaps/bitcloud256.png %{buildroot}%{_datadir}/pixmaps/bitcloud256.xpm
 touch %{buildroot}%{_datadir}/pixmaps/*.png -r %{SOURCE100}
 touch %{buildroot}%{_datadir}/pixmaps/*.xpm -r %{SOURCE100}
 
@@ -272,8 +272,8 @@ Comment[tr]=Bitcoin, eşten eşe kriptografik sanal para birimi
 Exec=bitcloud-qt %u
 Terminal=false
 Type=Application
-Icon=pivx128
-MimeType=x-scheme-handler/pivx;
+Icon=bitcloud128
+MimeType=x-scheme-handler/bitcloud;
 Categories=Office;Finance;
 EOF
 # change touch date when modifying desktop
@@ -285,7 +285,7 @@ mkdir -p %{buildroot}%{_datadir}/kde4/services
 cat <<EOF > %{buildroot}%{_datadir}/kde4/services/bitcloud-core.protocol
 [Protocol]
 exec=bitcloud-qt '%u'
-protocol=pivx
+protocol=bitcloud
 input=none
 output=none
 helper=true
@@ -311,7 +311,7 @@ rm -f %{buildroot}%{_bindir}/test_*
 
 %check
 make check
-srcdir=src test/pivx-util-test.py
+srcdir=src test/bitcloud-util-test.py
 test/functional/test_runner.py --extended
 
 %post libs -p /sbin/ldconfig
@@ -319,37 +319,37 @@ test/functional/test_runner.py --extended
 %postun libs -p /sbin/ldconfig
 
 %pre server
-getent group pivx >/dev/null || groupadd -r pivx
-getent passwd pivx >/dev/null ||
-	useradd -r -g pivx -d /var/lib/pivx -s /sbin/nologin \
-	-c "Bitcoin wallet server" pivx
+getent group bitcloud >/dev/null || groupadd -r bitcloud
+getent passwd bitcloud >/dev/null ||
+	useradd -r -g bitcloud -d /var/lib/bitcloud -s /sbin/nologin \
+	-c "Bitcoin wallet server" bitcloud
 exit 0
 
 %post server
-%systemd_post pivx.service
+%systemd_post bitcloud.service
 # SELinux
 if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
 for selinuxvariant in %{selinux_variants}; do
-	%{_sbindir}/semodule -s ${selinuxvariant} -i %{_datadir}/selinux/${selinuxvariant}/pivx.pp &> /dev/null || :
+	%{_sbindir}/semodule -s ${selinuxvariant} -i %{_datadir}/selinux/${selinuxvariant}/bitcloud.pp &> /dev/null || :
 done
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 8332
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 8333
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 18332
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 18333
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 18443
-%{_sbindir}/semanage port -a -t pivx_port_t -p tcp 18444
-%{_sbindir}/fixfiles -R pivx-server restore &> /dev/null || :
-%{_sbindir}/restorecon -R %{_localstatedir}/lib/pivx || :
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 8332
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 8333
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 18332
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 18333
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 18443
+%{_sbindir}/semanage port -a -t bitcloud_port_t -p tcp 18444
+%{_sbindir}/fixfiles -R bitcloud-server restore &> /dev/null || :
+%{_sbindir}/restorecon -R %{_localstatedir}/lib/bitcloud || :
 fi
 
 %posttrans server
 %{_bindir}/systemd-tmpfiles --create
 
 %preun server
-%systemd_preun pivx.service
+%systemd_preun bitcloud.service
 
 %postun server
-%systemd_postun pivx.service
+%systemd_postun bitcloud.service
 # SELinux
 if [ $1 -eq 0 ]; then
 	if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
@@ -360,11 +360,11 @@ if [ $1 -eq 0 ]; then
 	%{_sbindir}/semanage port -d -p tcp 18443
 	%{_sbindir}/semanage port -d -p tcp 18444
 	for selinuxvariant in %{selinux_variants}; do
-		%{_sbindir}/semodule -s ${selinuxvariant} -r pivx &> /dev/null || :
+		%{_sbindir}/semodule -s ${selinuxvariant} -r bitcloud &> /dev/null || :
 	done
-	%{_sbindir}/fixfiles -R pivx-server restore &> /dev/null || :
-	[ -d %{_localstatedir}/lib/pivx ] && \
-		%{_sbindir}/restorecon -R %{_localstatedir}/lib/pivx &> /dev/null || :
+	%{_sbindir}/fixfiles -R bitcloud-server restore &> /dev/null || :
+	[ -d %{_localstatedir}/lib/bitcloud ] && \
+		%{_sbindir}/restorecon -R %{_localstatedir}/lib/bitcloud &> /dev/null || :
 	fi
 fi
 
@@ -409,10 +409,10 @@ rm -rf %{buildroot}
 %doc COPYING bitcloud.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
 %attr(0755,root,root) %{_sbindir}/bitcloudd
 %attr(0644,root,root) %{_tmpfilesdir}/bitcloud.conf
-%attr(0644,root,root) %{_unitdir}/pivx.service
-%dir %attr(0750,pivx,pivx) %{_sysconfdir}/pivx
-%dir %attr(0750,pivx,pivx) %{_localstatedir}/lib/pivx
-%config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/pivx
+%attr(0644,root,root) %{_unitdir}/bitcloud.service
+%dir %attr(0750,bitcloud,bitcloud) %{_sysconfdir}/bitcloud
+%dir %attr(0750,bitcloud,bitcloud) %{_localstatedir}/lib/bitcloud
+%config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/bitcloud
 %attr(0644,root,root) %{_datadir}/selinux/*/*.pp
 %attr(0644,root,root) %{_mandir}/man1/bitcloudd.1*
 
@@ -422,14 +422,14 @@ rm -rf %{buildroot}
 %doc COPYING bitcloud.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/bitcloud-cli
 %attr(0755,root,root) %{_bindir}/bitcloud-tx
-%attr(0755,root,root) %{_bindir}/bench_pivx
+%attr(0755,root,root) %{_bindir}/bench_bitcloud
 %attr(0644,root,root) %{_mandir}/man1/bitcloud-cli.1*
 
 
 
 %changelog
 * Fri Feb 26 2016 Alice Wonder <buildmaster@librelamp.com> - 0.12.0-2
-- Rename Qt package from pivx to bitcloud-core
+- Rename Qt package from bitcloud to bitcloud-core
 - Make building of the Qt package optional
 - When building the Qt package, default to Qt5 but allow building
 -  against Qt4
@@ -439,4 +439,4 @@ rm -rf %{buildroot}
 - Initial spec file for 0.12.0 release
 
 # This spec file is written from scratch but a lot of the packaging decisions are directly
-# based upon the 0.11.2 package spec file from https://www.ringingliberty.com/pivx/
+# based upon the 0.11.2 package spec file from https://www.ringingliberty.com/bitcloud/

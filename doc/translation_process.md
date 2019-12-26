@@ -1,12 +1,12 @@
 Translations
 ============
 
-The PIVX Core project has been designed to support multiple localisations. This makes adding new phrases, and completely new languages easily achievable. For managing all application translations, PIVX Core makes use of the Transifex online translation management tool.
+The Bitcloud Core project has been designed to support multiple localisations. This makes adding new phrases, and completely new languages easily achievable. For managing all application translations, Bitcloud Core makes use of the Transifex online translation management tool.
 
 ### Helping to translate (using Transifex)
 Transifex is setup to monitor the GitHub repo for updates, and when code containing new translations is found, Transifex will process any changes. It may take several hours after a pull-request has been merged, to appear in the Transifex web interface.
 
-Multiple language support is critical in assisting PIVX's global adoption, and growth. One of PIVX's greatest strengths is cross-border money transfers, any help making that easier is greatly appreciated.
+Multiple language support is critical in assisting Bitcloud's global adoption, and growth. One of Bitcloud's greatest strengths is cross-border money transfers, any help making that easier is greatly appreciated.
 
 See the [Transifex PIVX project](https://www.transifex.com/pivx-project/pivx-project-translations/) to assist in translations.
 
@@ -104,6 +104,6 @@ To create a new language template, you will need to edit the languages manifest 
 **Note:** that the language translation file **must end in `.qm`** (the compiled extension), and not `.ts`.
 
 ### Questions and general assistance
-The PIVX Core translation maintainers include *Fuzzbawls*. You can find them, and others, in the [PIVX Discord](https://discord.pivx.org).
+The Bitcloud Core translation maintainers include *Fuzzbawls*. You can find them, and others, in the [PIVX Discord](https://discord.pivx.org).
 
 Announcements will be posted during application pre-releases to notify translators to check for updates.

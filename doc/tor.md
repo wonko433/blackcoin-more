@@ -1,15 +1,15 @@
 # TOR SUPPORT IN PIVX
 
-It is possible to run PIVX Core as a Tor hidden service, and connect to such services.
+It is possible to run Bitcloud Core as a Tor hidden service, and connect to such services.
 
 The following directions assume you have a Tor proxy running on port 9050. Many distributions default to having a SOCKS proxy listening on port 9050, but others may not. In particular, the Tor Browser Bundle defaults to listening on port 9150. See [Tor Project FAQ:TBBSocksPort](https://www.torproject.org/docs/faq.html.en#TBBSocksPort) for how to properly
 configure Tor.
 
 
-## 1. Run PIVX Core behind a Tor proxy
+## 1. Run Bitcloud Core behind a Tor proxy
 ----------------------------------
 
-The first step is running PIVX behind a Tor proxy. This will already anonymize all
+The first step is running Bitcloud behind a Tor proxy. This will already anonymize all
 outgoing connections, but more is possible.
 
 	-proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
@@ -38,24 +38,24 @@ In a typical situation, this suffices to run behind a Tor proxy:
 	./bitcloudd -proxy=127.0.0.1:9050
 
 
-## 2. Run a PIVX Core hidden server
+## 2. Run a Bitcloud Core hidden server
 
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file): *Needed for Tor version 0.2.7.0 and older versions of Tor only. For newer
 versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
-	HiddenServiceDir /var/lib/tor/pivx-service/
+	HiddenServiceDir /var/lib/tor/bitcloud-service/
 	HiddenServicePort 51472 127.0.0.1:51472
 	HiddenServicePort 61472 127.0.0.1:61472
 
 The directory can be different of course, but (both) port numbers should be equal to
 your bitcloudd's P2P listen port (51472 by default).
 
-	-externalip=X   You can tell pivx about its publicly reachable address using
+	-externalip=X   You can tell bitcloud about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
 	                configuration, you can find your .onion address in
-	                /var/lib/tor/pivx-service/hostname. For connections
+	                /var/lib/tor/bitcloud-service/hostname. For connections
 	                coming from unroutable addresses (such as 127.0.0.1, where the
 	                Tor proxy typically runs), .onion addresses are given
 	                preference for your node to advertise itself with.
@@ -72,7 +72,7 @@ your bitcloudd's P2P listen port (51472 by default).
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
 
-	./bitcloudd -proxy=127.0.0.1:9050 -externalip=pivxzj6l4cvo2fxy.onion -listen
+	./bitcloudd -proxy=127.0.0.1:9050 -externalip=bitcloudzj6l4cvo2fxy.onion -listen
 
 (obviously, replace the .onion address with your own). It should be noted that you still
 listen on all devices and another node could establish a clearnet connection, when knowing
@@ -90,19 +90,19 @@ and open port 51472 on your firewall (or use -upnp).
 If you only want to use Tor to reach .onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
 
-	./bitcloudd -onion=127.0.0.1:9050 -externalip=pivxzj6l4cvo2fxy.onion -discover
+	./bitcloudd -onion=127.0.0.1:9050 -externalip=bitcloudzj6l4cvo2fxy.onion -discover
 
 ## 3. Automatically listen on Tor
 
 Starting with Tor version 0.2.7.1 it is possible, through Tor's control socket
 API, to create and destroy 'ephemeral' hidden services programmatically.
-PIVX Core has been updated to make use of this.
+Bitcloud Core has been updated to make use of this.
 
 This means that if Tor is running (and proper authentication has been configured),
-PIVX Core automatically creates a hidden service to listen on. This will positively
+Bitcloud Core automatically creates a hidden service to listen on. This will positively
 affect the number of available .onion nodes.
 
-This new feature is enabled by default if PIVX Core is listening (`-listen`), and
+This new feature is enabled by default if Bitcloud Core is listening (`-listen`), and
 requires a Tor connection to work. It can be explicitly disabled with `-listenonion=0`
 and, if not disabled, configured using the `-torcontrol` and `-torpassword` settings.
 To show verbose debugging information, pass `-debug=tor`.
@@ -125,7 +125,7 @@ in the tor configuration file. The hashed password can be obtained with the comm
 
 ## 4. Privacy recommendations
 
-- Do not add anything but PIVX Core ports to the hidden service created in section 2.
+- Do not add anything but Bitcloud Core ports to the hidden service created in section 2.
   If you run a web service too, create a new hidden service for that.
   Otherwise it is trivial to link them, which may reduce privacy. Hidden
   services created automatically (as in section 3) always have only one port

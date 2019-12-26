@@ -937,7 +937,7 @@
                      </property>
                      <property name="text">
                       <string>Welcome to
-PIVX Core Wallet</string>
+Bitcloud Core Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -963,7 +963,7 @@ PIVX Core Wallet</string>
                    <item alignment="Qt::AlignHCenter">
                     <widget class="QLabel" name="labelMessage2">
                      <property name="text">
-                      <string>PIVX is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</string>
+                      <string>Bitcloud is a cutting edge cryptocurrency, with many features not available in most other cryptocurrencies.</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignHCenter|Qt::AlignTop</set>

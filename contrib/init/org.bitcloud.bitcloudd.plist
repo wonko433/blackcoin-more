@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>org.pivx.bitcloudd</string>
+	<string>org.bitcloud.bitcloudd</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/bitcloudd</string>

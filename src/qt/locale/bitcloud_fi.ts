@@ -76,12 +76,12 @@
         <translation>Vastaanottavat osoitteet</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Nämä ovat sinun PIVX osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
+        <source>These are your Bitcloud addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Nämä ovat sinun Bitcloud osoitteesi maksujen lähetystä varten. Tarkista aina määrä ja vastaanottava osoite ennen kolikoiden lähettämistä.</translation>
     </message>
     <message>
-        <source>These are your PIVX addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Nämä ovat sinun PIVX osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
+        <source>These are your Bitcloud addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Nämä ovat sinun Bitcloud osoitteesi maksujen vastaanottamista varten. On suositeltavaa käyttää uutta vastaanottavaa osoitetta jokaiselle uudelle rahansiirrolle.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -196,15 +196,15 @@
         <translation>Vahvista lompakon salaus</translation>
     </message>
     <message>
-        <source>PIVX will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your PIVs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella PIVien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
+        <source>Bitcloud will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BTDXs from being stolen by malware infecting your computer.</source>
+        <translation>Bitcloud sulkeutuu salausprosessin ajaksi. Muista, että lompakon salaus ei voi täysin suojella PIVien varkaudelta, jos tietokoneesi sisältää haittaohjelmia.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Oletko varma että tahdot salata lompakkosi?</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PIV&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BTDX&lt;/b&gt;!</source>
         <translation>Varoitus: Jos salaat lompakkosi ja unohdat salausavaimesi, &lt;b&gt;menetät kaikki PIVisi&lt;/b&gt;</translation>
     </message>
     <message>
@@ -560,8 +560,8 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -579,12 +579,12 @@
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to PIVX Core.</source>
-        <translation>Tervetuloa PIVX Ytimeen.</translation>
+        <source>Welcome to Bitcloud Core.</source>
+        <translation>Tervetuloa Bitcloud Ytimeen.</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -740,12 +740,12 @@
         <translation>Ekspertti</translation>
     </message>
     <message>
-        <source>Automatically start PIVX after logging in to the system.</source>
-        <translation>Automaattisesti käynnistä PIVX kun kirjaudut sisään.</translation>
+        <source>Automatically start Bitcloud after logging in to the system.</source>
+        <translation>Automaattisesti käynnistä Bitcloud kun kirjaudut sisään.</translation>
     </message>
     <message>
-        <source>&amp;Start PIVX on system login</source>
-        <translation>&amp;Aloita PIVX järjestelmän kirjautumisessa</translation>
+        <source>&amp;Start Bitcloud on system login</source>
+        <translation>&amp;Aloita Bitcloud järjestelmän kirjautumisessa</translation>
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
@@ -764,12 +764,12 @@
         <translation>&amp;Verkko</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting PIVX.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting Bitcloud.</source>
         <translation>Käyttöliittymän kielen voi säätää täällä. Tämä asetus tulee voimaan uudelleenkäynnistettyäsi lompakon.</translation>
     </message>
     <message>
-        <source>Connect to the PIVX network through a SOCKS5 proxy.</source>
-        <translation>Yhdistä PIVX verkkoon SOCKS5 proxyn kautta</translation>
+        <source>Connect to the Bitcloud network through a SOCKS5 proxy.</source>
+        <translation>Yhdistä Bitcloud verkkoon SOCKS5 proxyn kautta</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -871,8 +871,8 @@
 <context>
     <name>PIVXGUI</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -899,8 +899,8 @@
         <translation>Lopeta ohjelma</translation>
     </message>
     <message>
-        <source>PIVX Core client</source>
-        <translation>PIVX Ydin asiakasohjelma</translation>
+        <source>Bitcloud Core client</source>
+        <translation>Bitcloud Ydin asiakasohjelma</translation>
     </message>
     <message>
         <source>Error</source>
@@ -965,8 +965,8 @@
         <translation>Määrä</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
     </context>
 <context>
@@ -1008,8 +1008,8 @@
         <translation>Lohko ketju</translation>
     </message>
     <message>
-        <source>Open the PIVX debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Avaa PIVX debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
+        <source>Open the Bitcloud debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Avaa Bitcloud debug loki nykyisestä sijainnista. Tämä voi kestää muutaman sekunnin suurille lokeille</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -1120,8 +1120,8 @@
         <translation>Ulos:</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Tervetuloa PIVX RPC konsoliin.</translation>
+        <source>Welcome to the Bitcloud RPC console.</source>
+        <translation>Tervetuloa Bitcloud RPC konsoliin.</translation>
     </message>
     <message>
         <source>never</source>
@@ -1333,8 +1333,8 @@
         <translation>TekstiNimike</translation>
     </message>
     <message>
-        <source>Welcome to the PIVX RPC console.</source>
-        <translation>Tervetuloa PIVX RPC konsoliin.</translation>
+        <source>Welcome to the Bitcloud RPC console.</source>
+        <translation>Tervetuloa Bitcloud RPC konsoliin.</translation>
     </message>
     </context>
 <context>
@@ -1582,8 +1582,8 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>PIVX Core is shutting down...</source>
-        <translation>PIVX core sammuu...</translation>
+        <source>Bitcloud Core is shutting down...</source>
+        <translation>Bitcloud Core sammuu...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1604,15 +1604,15 @@
         <translation>Lomake</translation>
     </message>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
 </context>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>PIVX Core</source>
-        <translation>PIVX Ydin</translation>
+        <source>Bitcloud Core</source>
+        <translation>Bitcloud Ydin</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -1627,8 +1627,8 @@
         <translation>Dash Core kehittäjät</translation>
     </message>
     <message>
-        <source>The PIVX Core developers</source>
-        <translation>PIVX core kehittäjät</translation>
+        <source>The Bitcloud Core developers</source>
+        <translation>Bitcloud Core kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -1887,8 +1887,8 @@
         <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko korruptoitunut</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of PIVX Core</source>
-        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version PIVX Coresta</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Bitcloud Core</source>
+        <translation>Virhe ladattaessa wallet.dat tiedostoa: Lompakko vaatii uudemman version Bitcloud Coresta</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>

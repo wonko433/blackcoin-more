@@ -5,8 +5,8 @@ connections, inter-process communication, and shared-memory,
 providing various message-oriented semantics such as publish/subscribe,
 request/reply, and push/pull.
 
-The PIVX Core daemon can be configured to act as a trusted "border
-router", implementing the pivx wire protocol and relay, making
+The Bitcloud Core daemon can be configured to act as a trusted "border
+router", implementing the bitcloud wire protocol and relay, making
 consensus decisions, maintaining the local blockchain database,
 broadcasting locally generated transactions into the network, and
 providing a queryable RPC interface to interact on a polled basis for
@@ -33,7 +33,7 @@ buffering or reassembly.
 
 ## Prerequisites
 
-The ZeroMQ feature in PIVX Core requires the ZeroMQ API >= 4.0.0
+The ZeroMQ feature in Bitcloud Core requires the ZeroMQ API >= 4.0.0
 [libzmq](https://github.com/zeromq/libzmq/releases).
 For version information, see [dependencies.md](dependencies.md).
 Typically, it is packaged by distributions as something like

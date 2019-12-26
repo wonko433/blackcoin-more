@@ -1,13 +1,13 @@
-PIVX Core
+Bitcloud Core
 =============
 
 Setup
 ---------------------
-[PIVX Core](http://pivx.org/wallet) is the original PIVX client and it builds the backbone of the network. However, it downloads and stores the entire history of PIVX transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Bitcloud Core](http://pivx.org/wallet) is the original Bitcloud client and it builds the backbone of the network. However, it downloads and stores the entire history of Bitcloud transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run PIVX Core on your native platform.
+The following are some helpful notes on how to run Bitcloud Core on your native platform.
 
 ### Unix
 
@@ -26,14 +26,13 @@ Drag BTDX-Qt to your applications folder, and then run BTDX-Qt.
 
 ### Need Help?
 
-* See the documentation at the [PIVX Wiki](https://github.com/LIMXTEC/Bitcloud/wiki)
+* See the documentation at the [PIVX Wiki](https://github.com/PIVX-Project/PIVX/wiki)
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [PIVX Forum](http://forum.pivx.org/).
-* Join our Discord server [Discord Server](https://discord.pivx.org)
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=2092583.0).
 
 Building
 ---------------------
-The following are developer notes on how to build PIVX Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Bitcloud Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -43,7 +42,7 @@ The following are developer notes on how to build PIVX Core on your native platf
 
 Development
 ---------------------
-The PIVX repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Bitcloud repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,8 +55,7 @@ The PIVX repo's [root README](/README.md) contains relevant information on the d
 - [Dnsseed Policy](dnsseed-policy.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [PIVX](http://forum.pivx.org/) forum.
-* Join the [PIVX Discord](https://discord.pivx.org).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=2092583.0).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
