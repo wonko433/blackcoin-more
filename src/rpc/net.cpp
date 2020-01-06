@@ -181,7 +181,7 @@ UniValue addnode(const UniValue& params, bool fHelp)
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:51472\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:51472\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:8329\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:8329\", \"onetry\""));
 
     std::string strNode = params[0].get_str();
 
@@ -255,7 +255,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:51472\",  (string) The pivx server host and port\n"
+            "         \"address\" : \"192.168.0.201:8329\",  (string) The bitcloud server host and port\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "       ,...\n"
@@ -409,7 +409,7 @@ UniValue getnetworkinfo(const UniValue& params, bool fHelp)
             "  }\n"
             "  ,...\n"
             "  ],\n"
-            "  \"relayfee\": x.xxxxxxxx,                (numeric) minimum relay fee for non-free transactions in pivx/kb\n"
+            "  \"relayfee\": x.xxxxxxxx,                (numeric) minimum relay fee for non-free transactions in btdx/kb\n"
             "  \"localaddresses\": [                    (array) list of local addresses\n"
             "  {\n"
             "    \"address\": \"xxxx\",                 (string) network address\n"

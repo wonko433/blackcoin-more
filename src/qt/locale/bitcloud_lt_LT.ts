@@ -499,8 +499,8 @@
         <translation>Ši etiketė taps raudona, jei gavėjas gaus sumą mažesnę už %1</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Gali skirtis +/- %1 upiv kiekvienoje įvestyje.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Gali skirtis +/- %1 ubtdx kiekvienoje įvestyje.</translation>
     </message>
     <message>
         <source>(no label)</source>

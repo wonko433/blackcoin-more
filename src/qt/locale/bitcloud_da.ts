@@ -702,8 +702,8 @@ For Staking</translation>
         <translation>Denne tekstmarkør bliver rød, hvis en modtageradresse modtager et beløb mindre end %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan variere +/- %1 opiv pr input.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Kan variere +/- %1 ubtdx pr input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -3824,8 +3824,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Der skal angives en masternodeprivkey i konfigurationen. For mere information, se i dokumentationen.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kunne kun bruges på hovednettet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 kunne kun bruges på hovednettet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3836,8 +3836,8 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(skal være 51472 for hovednettet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(skal være 8329 for hovednettet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

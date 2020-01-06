@@ -718,8 +718,8 @@ for staking</source>
         <translation>Diese Bezeichnung wird rot, wenn ein Empfänger einen Betrag erhält, der kleiner ist als %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kann um +/- %1 upiv pro Eingang variieren.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Kann um +/- %1 ubtdx pro Eingang variieren.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1389,8 +1389,8 @@ Die staking Aktivität wird automatisch gestartet, sobald die Wallet genügend K
         <translation>Benutzer_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Address: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Address: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -4827,8 +4827,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Sie müssen einen privaten Masternode-Schlüssel in der Konfiguration festlegen. Bitte nutzen Sie die Dokumentation zwecks Hilfe.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kann nur im Mainnet verwendet werden)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 kann nur im Mainnet verwendet werden)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4839,8 +4839,8 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(muss im Mainnet 51472 sein)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(muss im Mainnet 8329 sein)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

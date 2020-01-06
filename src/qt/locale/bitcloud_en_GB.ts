@@ -507,8 +507,8 @@
         <translation>This label turns red if any recipient receives an amount smaller than %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Can vary +/- %1 upiv per input.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Can vary +/- %1 ubtdx per input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -3247,8 +3247,8 @@ Please check the address and try again.</translation>
         <translation>You must specify a masternodeprivkey in the configuration. Please see documentation for help.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 could be used only on mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3259,8 +3259,8 @@ Please check the address and try again.</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(must be 51472 for mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(must be 8329 for mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

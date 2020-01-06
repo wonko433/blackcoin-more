@@ -55,7 +55,7 @@
 
 
 #if defined(NDEBUG)
-#error "PIVX cannot be compiled without assertions."
+#error "Bitcloud cannot be compiled without assertions."
 #endif
 
 /**
@@ -92,7 +92,7 @@ int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
 
 int64_t nReserveBalance = 0;
 
-/** Fees smaller than this (in upiv) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in ubtdx) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -2046,28 +2046,28 @@ int64_t GetBlockValue(int nHeight)
     }
     */
     
-	int64_t nSubsidy = 150 * COIN; // ~10 %
-	// 105120 blocks in a year
-	// Max coin after 8 years ~42M
-	/*
-	0	78840	150	11826000
-	1	78840	75	5913000
-	2	78840	37	2917080
-	3	78840	34	2680560
-	4	78840	30	2365200
-	5	78840	24	1892160
-	6	78840	18	1419120
-	7	78840	12	946080
-	8	78840	7	551880
-	9	78840	4	315360
-	*/
-	int nSubsidyHalvingInterval = 78840; // 3/4 year
-	int halvings = nHeight / nSubsidyHalvingInterval;
-	
-	if( nHeight == 0 ) return 11278450 * COIN;
-	if( nHeight <= 2016 ) return nSubsidy / 10000 ;
-	
-	if (halvings >= 10) return nSubsidy / 50; // 3 BTDX
+    int64_t nSubsidy = 150 * COIN; // ~10 %
+    // 105120 blocks in a year
+    // Max coin after 8 years ~42M
+    /*
+    0	78840	150	11826000
+    1	78840	75	5913000
+    2	78840	37	2917080
+    3	78840	34	2680560
+    4	78840	30	2365200
+    5	78840	24	1892160
+    6	78840	18	1419120
+    7	78840	12	946080
+    8	78840	7	551880
+    9	78840	4	315360
+    */
+    int nSubsidyHalvingInterval = 78840; // 3/4 year
+    int halvings = nHeight / nSubsidyHalvingInterval;
+    
+    if( nHeight == 0 ) return 11278450 * COIN;
+    if( nHeight <= 2016 ) return nSubsidy / 10000 ;
+    
+    if (halvings >= 10) return nSubsidy / 50; // 3 BTDX
  
     if (halvings > 2) nSubsidy = nSubsidy * 1.85;
     if (halvings > 3) nSubsidy = nSubsidy * 1.75;
@@ -2077,7 +2077,7 @@ int64_t GetBlockValue(int nHeight)
     if (halvings > 7) nSubsidy = nSubsidy * 1.25;
     if (halvings > 8) nSubsidy = nSubsidy * 1.15;
     if (halvings > 9) nSubsidy = nSubsidy * 1.05;
-	nSubsidy >>= halvings;
+    nSubsidy >>= halvings;
 
     return nSubsidy;
 }
@@ -2327,6 +2327,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
     }
 
     /*
+    // BTDX
     if (nHeight <= 43200) {
         ret = blockValue / 5;
     } else if (nHeight < 86400 && nHeight > 43200) {
@@ -2727,7 +2728,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
         const CTransaction& tx = block.vtx[i];
 
         /** UNDO ZEROCOIN DATABASING
-         * note we only undo zerocoin databasing in the following statement, value to and from PIVX
+         * note we only undo zerocoin databasing in the following statement, value to and from BTDX
          * addresses should still be handled by the typical bitcoin based undo code
          * */
         if (tx.ContainsZerocoins()) {

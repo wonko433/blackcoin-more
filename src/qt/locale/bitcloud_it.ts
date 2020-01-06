@@ -743,8 +743,8 @@ per lo staking</translation>
         <translation>Questa etichetta diventa rossa se uno dei destinatari riceve un importo inferiore a %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Può variare di +/- %1 uPIV per input.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Può variare di +/- %1 ubtdx per input.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1622,8 +1622,8 @@ Si avvierà automaticamente non appena il portafoglio avrà sufficienti conferme
         <translation>user_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Address: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Address: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -6495,8 +6495,8 @@ Portafoglio Bitcloud Core.</translation>
         <translation>È necessario specificare una chiave masternodepriv nella configurazione. Consultare la documentazione per assistenza.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 potrebbe essere utilizzato solo su mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 potrebbe essere utilizzato solo su mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6507,8 +6507,8 @@ Portafoglio Bitcloud Core.</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(deve essere 51472 per mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(deve essere 8329 per mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

@@ -650,8 +650,8 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
         <translation>Ta etykieta zmienia kolor na czerwony, jeśli odbiorca otrzymuje mniej niż %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Zmienia się +/- %1 upiv</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Zmienia się +/- %1 ubtdx</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -3808,8 +3808,8 @@ Sprawdź adres i spróbuj ponownie.</translation>
         <translation>Musisz określić masternodeprivkey w konfiguracji. Aby uzyskać pomoc, zapoznaj się z dokumentacją.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 może być używany tylko w sieci mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 może być używany tylko w sieci mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3820,8 +3820,8 @@ Sprawdź adres i spróbuj ponownie.</translation>
         <translation>(domyślnie: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(musi być 51472 dla mainnetu)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(musi być 8329 dla mainnetu)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

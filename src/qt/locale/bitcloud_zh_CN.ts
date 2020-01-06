@@ -131,7 +131,7 @@
     </message>
     <message>
         <source>These are your Bitcloud addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是用于发送Bitcloud的地址。在发送PIVX之前，请认真核查发送金额和接收地址。</translation>
+        <translation>这是用于发送Bitcloud的地址。在发送BTDX之前，请认真核查发送金额和接收地址。</translation>
     </message>
     <message>
         <source>These are your Bitcloud addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -377,7 +377,7 @@ for staking</source>
     </message>
     <message>
         <source>Bitcloud will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BTDXs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取PIVs。</translation>
+        <translation>BTDX将关闭以完成加密过程。但是，仅仅加密您的钱包是不够的，因为它并不能阻止恶意软件从您的电脑里面偷取BTDXs。</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -743,8 +743,8 @@ for staking</source>
         <translation>如果任何收件人收到的金额小于%1，此标签将变为红色。</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>每个输入可以浮动+/- %1 upiv。</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>每个输入可以浮动+/- %1 ubtdx。</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -895,7 +895,7 @@ for staking</source>
     <message>
         <source>You can delegate your BTDXs and let a hot node (24/7 online node)
 stake in your behalf, keeping the keys in a secure place offline.</source>
-        <translation>您可以委派您的PIV并让热节点（24/7在线节点）
+        <translation>您可以委派您的BTDX并让热节点（24/7在线节点）
 代表您进行放样并将密钥离线保存在安全的位置。</translation>
     </message>
     <message>
@@ -904,7 +904,7 @@ stake in your behalf, keeping the keys in a secure place offline.</source>
     </message>
     <message>
         <source>Delegate or Accept BTDX delegation</source>
-        <translation>授予权限或接受PIV权限</translation>
+        <translation>授予权限或接受BTDX权限</translation>
     </message>
     <message>
         <source>Delegate</source>
@@ -988,7 +988,7 @@ Do you wish to proceed?</source>
     </message>
     <message>
         <source>You don't have any BTDX to select.</source>
-        <translation>您没有任何PIV可选择。</translation>
+        <translation>您没有任何BTDX可选择。</translation>
     </message>
     <message>
         <source>URI copied to clipboard</source>
@@ -1156,7 +1156,7 @@ address</source>
     </message>
     <message>
         <source>Amount of BTDX and zBTDX staked.</source>
-        <translation>已加注的PIV 和 zBTDX 金额</translation>
+        <translation>已加注的BTDX 和 zBTDX 金额</translation>
     </message>
     <message>
         <source>All</source>
@@ -1212,7 +1212,7 @@ address</source>
     </message>
     <message>
         <source>How to get BTDX or zBTDX</source>
-        <translation>如何获取PIV 或 zBTDX</translation>
+        <translation>如何获取BTDX 或 zBTDX</translation>
     </message>
     <message>
         <source>You can verify the staking activity in the status bar at the top right of the wallet.
@@ -1371,7 +1371,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>The entered address "%1" is not a valid Bitcloud address.</source>
-        <translation>所输入的地址“%1”不是有效的PIVX地址。</translation>
+        <translation>所输入的地址“%1”不是有效的BTDX地址。</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1534,7 +1534,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>Bitcloud Core will download and store a copy of the Bitcloud block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Bitcloud Core将下载并存储PIVX区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
+        <translation>Bitcloud Core将下载并存储BTDX区块链副本。 至少 %1 GB的数据将存储在此目录中，并且会随着时间的推移而增长。 钱包也将存储在此目录中。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1622,8 +1622,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>用户_主节点</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>地址: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>地址: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -1666,7 +1666,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To create a Bitcloud Masternode you must dedicate 10.000 BTDX (the unit of Bitcloud) to the network (however, these coins are still yours and will never leave your possession). &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;You can deactivate the node and unlock the coins at any time.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;创建一个PIVX 主节点，你必须奉献给网络10.000 BTDX (PIVX的单位)(但是，这些币仍属于你，永远都是属于你的财产)。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;创建一个BTDX 主节点，你必须奉献给网络10.000 BTDX (BTDX的单位)(但是，这些币仍属于你，永远都是属于你的财产)。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;你可以在任何时候关闭该节点并解锁币。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Make sure you have this amount of coins.</source>
@@ -1678,7 +1678,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A transaction of 10,000 BTDX will be made&lt;/p&gt;&lt;p&gt;to a new empty address in your wallet.&lt;/p&gt;&lt;p&gt;The Address is labeled under the master node's name.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 PIV的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;将进行10,000 BTDX的交易&lt;/p&gt;&lt;p&gt;到您的钱包空地址&lt;/p&gt;&lt;p&gt;地址被标记在主节点的名称之下&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Set Master Node’s IP and port</source>
@@ -1874,7 +1874,7 @@ this controller wallet (select the Masternode in the list and press "start").
 到剪贴板的远程服务器上。
 
 
-您只需将数据粘贴到pivx.conf文件中
+您只需将数据粘贴到bitcloud.conf文件中
 ，然后使用主节点启动它
 这个控制器钱包(在列表中选择主节点并按“开始”)。
 </translation>
@@ -2042,8 +2042,8 @@ Are you sure?</source>
         <translation>解析的数据太大</translation>
     </message>
     <message>
-        <source>Invalid URI, not starting with "pivx" prefix</source>
-        <translation>无效的URI，不是以“ pivx”前缀开头</translation>
+        <source>Invalid URI, not starting with "bitcloud" prefix</source>
+        <translation>无效的URI，不是以“ bitcloud”前缀开头</translation>
     </message>
 </context>
 <context>
@@ -2093,7 +2093,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>Automatically open the Bitcloud client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>自动打开路由器上的PIVX钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
+        <translation>自动打开路由器上的BTDX钱包使用的端口。 这只有当您的路由器支持UPnP并且该享生效时才有用。</translation>
     </message>
     <message>
         <source>Accept connections from outside</source>
@@ -2113,11 +2113,11 @@ Are you sure?</source>
     </message>
     <message>
         <source>Automatically start Bitcloud after logging in to the system.</source>
-        <translation>登录系统后自动启动PIVX。</translation>
+        <translation>登录系统后自动启动BTDX。</translation>
     </message>
     <message>
         <source>&amp;Start Bitcloud on system login</source>
-        <translation>&amp;开机启动PIVX</translation>
+        <translation>&amp;开机启动BTDX</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -2145,7 +2145,7 @@ Are you sure?</source>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting Bitcloud.</source>
-        <translation>可以在这里设置用户界面语言。此设置将在重新启动PIVX后生效。</translation>
+        <translation>可以在这里设置用户界面语言。此设置将在重新启动BTDX后生效。</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -2159,15 +2159,15 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>Enable automatic minting of BTDX units to zBTDX</source>
-        <translation>启动自动铸造PIV到zPIV</translation>
+        <translation>启动自动铸造BTDX到zBTDX</translation>
     </message>
     <message>
         <source>Enable zBTDX Automint</source>
-        <translation>启动自动铸造zPIV</translation>
+        <translation>启动自动铸造zBTDX</translation>
     </message>
     <message>
         <source>Enable automatic zBTDX minting from specific addresses</source>
-        <translation>启用从特定地址自动生成zPIV</translation>
+        <translation>启用从特定地址自动生成zBTDX</translation>
     </message>
     <message>
         <source>Enable Automint Addresses</source>
@@ -2175,19 +2175,19 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>Percentage of incoming BTDX which get automatically converted to zBTDX via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为zPIV的传入PIV的百分比(最小:10%)</translation>
+        <translation>通过零币协议自动转换为zBTDX的传入BTDX的百分比(最小:10%)</translation>
     </message>
     <message>
         <source>Percentage of autominted zBTDX</source>
-        <translation>自动铸造的zPIV百分比</translation>
+        <translation>自动铸造的zBTDX百分比</translation>
     </message>
     <message>
         <source>Wait with automatic conversion to Zerocoin until enough BTDX for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的PIV为这种面额可用</translation>
+        <translation>等待自动转换为零币，直到足够的BTDX为这种面额可用</translation>
     </message>
     <message>
         <source>Preferred Automint zBTDX Denomination</source>
-        <translation>首选自动铸造zPIV面额</translation>
+        <translation>首选自动铸造zBTDX面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2195,7 +2195,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>Connect to the Bitcloud network through a SOCKS5 proxy.</source>
-        <translation>通过SOCKS5代理连接到PIVX网络。</translation>
+        <translation>通过SOCKS5代理连接到BTDX网络。</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -2251,7 +2251,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>选择显示发送PIVX的默认单位。</translation>
+        <translation>选择显示发送BTDX的默认单位。</translation>
     </message>
     <message>
         <source>Decimal digits</source>
@@ -2414,7 +2414,7 @@ Address: %4
     </message>
     <message>
         <source>A fatal error occurred. Bitcloud can no longer continue safely and will quit.</source>
-        <translation>发生了一个致命的错误。PIVX不能继续安全，将退出。</translation>
+        <translation>发生了一个致命的错误。BTDX不能继续安全，将退出。</translation>
     </message>
 </context>
 <context>
@@ -2452,7 +2452,7 @@ Address: %4
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcloud address or malformed URI parameters.</source>
-        <translation>URI不能被解析!这可能是由无效的PIVX地址或格式错误的URI参数造成的。</translation>
+        <translation>URI不能被解析!这可能是由无效的BTDX地址或格式错误的URI参数造成的。</translation>
     </message>
     <message>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2567,12 +2567,12 @@ Address: %4
     <message>
         <source>Minting zBTDX anonymizes your BTDX by removing any
 transaction history, making transactions untraceable </source>
-        <translation>铸造zPIV会通过删除任何
-交易历史匿名化您的PIV，使交易无法被跟踪</translation>
+        <translation>铸造zBTDX会通过删除任何
+交易历史匿名化您的BTDX，使交易无法被跟踪</translation>
     </message>
     <message>
         <source>Mint new zBTDX or convert back to BTDX</source>
-        <translation>铸造新的zPIV或转换回PIV</translation>
+        <translation>铸造新的zBTDX或转换回BTDX</translation>
     </message>
     <message>
         <source>Last Zerocoin Movements</source>
@@ -2584,19 +2584,19 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Mint zBTDX</source>
-        <translation>铸造zPIV</translation>
+        <translation>铸造zBTDX</translation>
     </message>
     <message>
         <source>Enter amount of BTDX to mint into zBTDX</source>
-        <translation>输入一定量的PIV铸造成zPIV</translation>
+        <translation>输入一定量的BTDX铸造成zBTDX</translation>
     </message>
     <message>
         <source>Convert back to BTDX</source>
-        <translation>转换回PIV</translation>
+        <translation>转换回BTDX</translation>
     </message>
     <message>
         <source>Enter amount of zBTDX to convert back into BTDX</source>
-        <translation>输入一定量的zPIV转换回PIV</translation>
+        <translation>输入一定量的zBTDX转换回BTDX</translation>
     </message>
     <message>
         <source>Zerocoin</source>
@@ -2604,7 +2604,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>zBTDX is currently undergoing maintenance</source>
-        <translation>zPIV目前正在维护中</translation>
+        <translation>zBTDX目前正在维护中</translation>
     </message>
     <message>
         <source>You need to unlock the wallet to be able to %1 zBTDX</source>
@@ -2624,15 +2624,15 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>zBTDX minted successfully</source>
-        <translation>zPIV铸造成功</translation>
+        <translation>zBTDX铸造成功</translation>
     </message>
     <message>
         <source>zBTDX converted back to BTDX</source>
-        <translation>zBTDX 转换回PIV</translation>
+        <translation>zBTDX 转换回BTDX</translation>
     </message>
     <message>
         <source>You don't have any BTDX to select.</source>
-        <translation>您没有任何PIV可选择。</translation>
+        <translation>您没有任何BTDX可选择。</translation>
     </message>
     <message>
         <source>Rescan Mints</source>
@@ -2800,7 +2800,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Bitcloud Core didn't yet exit safely...</source>
-        <translation>PIVX核心尚未安全退出……</translation>
+        <translation>BTDX核心尚未安全退出……</translation>
     </message>
 </context>
 <context>
@@ -2875,7 +2875,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Open the Bitcloud debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>从当前数据目录打开PIVX调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
+        <translation>从当前数据目录打开BTDX调试日志文件。对于大型日志文件，这可能需要几秒钟。</translation>
     </message>
     <message>
         <source>Number of Masternodes</source>
@@ -3019,7 +3019,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Custom zBTDX Backup Path:</source>
-        <translation>自定义zPIV备份路径:</translation>
+        <translation>自定义zBTDX备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3099,7 +3099,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Welcome to the Bitcloud RPC console.</source>
-        <translation>欢迎访问PIVX RPC控制台</translation>
+        <translation>欢迎访问BTDX RPC控制台</translation>
     </message>
     <message>
         <source>&amp;Disconnect Node</source>
@@ -3269,7 +3269,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Scan the QR code or copy the address to receive BTDX.</source>
-        <translation>扫描二维码或复制地址接收PIV</translation>
+        <translation>扫描二维码或复制地址接收BTDX</translation>
     </message>
     <message>
         <source>No address </source>
@@ -3399,7 +3399,7 @@ transaction history, making transactions untraceable </source>
     </message>
     <message>
         <source>Instead of only sharing a Bitcloud address, you can create a Payment Request message which bundles up more information than is contained in just a Bitcloud address.</source>
-        <translation>与共享PIVX地址不同，您可以创建一个支付请求消息，该消息包含的信息比仅包含PIVX地址所包含的信息更多。</translation>
+        <translation>与共享BTDX地址不同，您可以创建一个支付请求消息，该消息包含的信息比仅包含BTDX地址所包含的信息更多。</translation>
     </message>
     <message>
         <source>Label</source>
@@ -3467,7 +3467,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     </message>
     <message>
         <source>The remainder of the value resultant from the inputs minus the outputs value goes to the "change" Bitcloud address</source>
-        <translation>输入值减去输出值所得的值的其余部分归为“更改”PIVX地址</translation>
+        <translation>输入值减去输出值所得的值的其余部分归为“更改”BTDX地址</translation>
     </message>
 </context>
 <context>
@@ -3568,7 +3568,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     </message>
     <message>
         <source>Enter a Bitcloud address or contact label</source>
-        <translation>输入PIVX地址或联系人标签</translation>
+        <translation>输入BTDX地址或联系人标签</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -3596,11 +3596,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     </message>
     <message>
         <source>Send BTDX</source>
-        <translation>花费PIV</translation>
+        <translation>花费BTDX</translation>
     </message>
     <message>
         <source>Send zBTDX</source>
-        <translation>花费zPIV</translation>
+        <translation>花费zBTDX</translation>
     </message>
     <message>
         <source>Total remaining from the selected UTXO</source>
@@ -3656,7 +3656,7 @@ These coins will no longer be cold-staked.</source>
     </message>
     <message>
         <source>zBTDX is currently undergoing maintenance.</source>
-        <translation>zPIV目前正在维护中</translation>
+        <translation>zBTDX目前正在维护中</translation>
     </message>
     <message>
         <source>Coin control mint not found</source>
@@ -3676,11 +3676,11 @@ These coins will no longer be cold-staked.</source>
     </message>
     <message>
         <source>zBTDX transaction sent!</source>
-        <translation>zPIV交易已发送！</translation>
+        <translation>zBTDX交易已发送！</translation>
     </message>
     <message>
         <source>Version 1 zBTDX require a security level of 100 to successfully spend.</source>
-        <translation>版本1 zPIV要求安全级别为100才能成功使用。</translation>
+        <translation>版本1 zBTDX要求安全级别为100才能成功使用。</translation>
     </message>
     <message>
         <source>Too much inputs (</source>
@@ -3720,11 +3720,11 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>You don't have any BTDX to select.</source>
-        <translation>您没有任何PIV可供选择。</translation>
+        <translation>您没有任何BTDX可供选择。</translation>
     </message>
     <message>
         <source>You don't have any zBTDX in your balance to select.</source>
-        <translation>你的余额中没有zPIV可供选择。</translation>
+        <translation>你的余额中没有zBTDX可供选择。</translation>
     </message>
     <message>
         <source>No contacts available, you can go to the contacts screen and add some there!</source>
@@ -3902,7 +3902,7 @@ Remember to write it down and store it safely, otherwise you might lose access t
     </message>
     <message>
         <source>Enter a Bitcloud address</source>
-        <translation>输入一个PIVX地址</translation>
+        <translation>输入一个BTDX地址</translation>
     </message>
     <message>
         <source>Add address</source>
@@ -4031,7 +4031,7 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <source>Welcome to the Bitcloud RPC console.</source>
-        <translation>欢迎访问PIVX RPC控制台</translation>
+        <translation>欢迎访问BTDX RPC控制台</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
@@ -4125,11 +4125,11 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <source>1) What is Bitcloud?</source>
-        <translation>1）什么是PIVX?</translation>
+        <translation>1）什么是BTDX?</translation>
     </message>
     <message>
         <source>2) Why are my BTDX unspendable?</source>
-        <translation>2) 我的PIV为什么不能用？</translation>
+        <translation>2) 我的BTDX为什么不能用？</translation>
     </message>
     <message>
         <source>3) Bitcloud privacy? What is Zerocoin (zBTDX)?</source>
@@ -4137,21 +4137,21 @@ Verify that you have installed a predetermined text editor.</source>
     </message>
     <message>
         <source>4) Why are my zBTDX unspendable?</source>
-        <translation>4) 我的zPIV为什么不能用？</translation>
+        <translation>4) 我的zBTDX为什么不能用？</translation>
     </message>
     <message>
         <source>5) Why did my wallet convert the balance
     into zBTDX automatically?</source>
         <translation>5）为什么我的钱包把余额自动转换成
-zPIV了?</translation>
+zBTDX了?</translation>
     </message>
     <message>
         <source>6) How do I receive BTDX/zBTDX?</source>
-        <translation>6）如何接收PIV/zBTDX?</translation>
+        <translation>6）如何接收BTDX/zBTDX?</translation>
     </message>
     <message>
         <source>7) How do I stake BTDX/zBTDX?</source>
-        <translation>7）如何加注PIV/zBTDX?</translation>
+        <translation>7）如何加注BTDX/zBTDX?</translation>
     </message>
     <message>
         <source>8) Where I should go if I need support?</source>
@@ -4171,7 +4171,7 @@ zPIV了?</translation>
     </message>
     <message>
         <source>What is Bitcloud?</source>
-        <translation>PIVX是什么?</translation>
+        <translation>BTDX是什么?</translation>
     </message>
     <message>
         <source>
@@ -4190,14 +4190,14 @@ zPIV了?</translation>
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-PIVX是一种使用区块链技术的数字在线货币
+BTDX是一种使用区块链技术的数字在线货币
 全球范围内快捷交易，即时，基本为
-零的交易费用。PIVX是市场上领先的安全和
+零的交易费用。BTDX是市场上领先的安全和
 隐私加密货币，也是第一个PoS(股权证明)加密货币
 实现零币(zBTDX)和零币加注。
 &lt;/p&gt;&lt;p align="justify"&gt;
-PIVX使用了一个股权证明(PoS)一致系统算法，
-允许所有PIVX的所有者参与赚取区块奖励
+BTDX使用了一个股权证明(PoS)一致系统算法，
+允许所有BTDX的所有者参与赚取区块奖励
 同时保护网络与完整的节点钱包，以及
 运行主节点创建和投票来进行提案。</translation>
     </message>
@@ -4207,7 +4207,7 @@ PIVX使用了一个股权证明(PoS)一致系统算法，
     </message>
     <message>
         <source>Why are my BTDX unspendable?</source>
-        <translation>我的PIV为什么不能用？</translation>
+        <translation>我的BTDX为什么不能用？</translation>
     </message>
     <message>
         <source>
@@ -4221,10 +4221,10 @@ PIVX使用了一个股权证明(PoS)一致系统算法，
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-接收到的PIVX需要网络上的6个确认
+接收到的BTDX需要网络上的6个确认
 才能成为有资格的花费，可以花~6分钟。
 &lt;/p&gt;&lt;p align="justify"&gt;
-您的PIVX钱包也需要完全同步
+您的BTDX钱包也需要完全同步
 查看网络收支余额。
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
@@ -4249,13 +4249,13 @@ PIVX使用了一个股权证明(PoS)一致系统算法，
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-zPIV是一种可选的以隐私为中心的隐私币
-它是PIVX区块链的一员，基本上在任何块资源管理器
+zBTDX是一种可选的以隐私为中心的隐私币
+它是BTDX区块链的一员，基本上在任何块资源管理器
 所有的交易都不能被跟踪&lt;a style='color: #b088ff' href='https://pivx.org/zpiv/'&gt;
 
 你可以阅读更多关于技术方面的文章&lt;/a&gt;
 
-PIVX零币(zBTDX)技术文件
+PIVX零币(zPIV)技术文件
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 </translation>
     </message>
@@ -4265,7 +4265,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>Why are my zBTDX unspendable?</source>
-        <translation>我的PIV为什么不能用？</translation>
+        <translation>我的BTDX为什么不能用？</translation>
     </message>
     <message>
         <source>
@@ -4277,7 +4277,7 @@ PIVX零币(zBTDX)技术文件
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-铸币后，zPIV将需要20个确认和1个确认
+铸币后，zBTDX将需要20个确认和1个确认
 在网络上增加相同面额的铸币
 才够资格消费。
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -4288,7 +4288,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>Why did my wallet convert the balance into zBTDX automatically?</source>
-        <translation>为什么我的钱包会自动将余额转换成zPIV ?</translation>
+        <translation>为什么我的钱包会自动将余额转换成zBTDX ?</translation>
     </message>
     <message>
         <source>6</source>
@@ -4296,7 +4296,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>How do I receive BTDX/zBTDX?</source>
-        <translation>我怎么接收PIV/zBTDX?</translation>
+        <translation>我怎么接收BTDX/zBTDX?</translation>
     </message>
     <message>
         <source>
@@ -4309,10 +4309,10 @@ PIVX零币(zBTDX)技术文件
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-可以使用zPIV并将其发送到任何PIVX地址。接收机将
-接收标准的PIVX，但是根据zPIV协议，PIVX的来源是匿名的。
+可以使用zBTDX并将其发送到任何BTDX地址。接收机将
+接收标准的BTDX，但是根据zBTDX协议，BTDX的来源是匿名的。
 &lt;/p&gt;&lt;p align="justify"&gt;
-如果你想要更多的zPIV，你将需要在“隐私”标签上铸造你的余额。
+如果你想要更多的zBTDX，你将需要在“隐私”标签上铸造你的余额。
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -4321,7 +4321,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>How do I stake BTDX/zBTDX?</source>
-        <translation>我怎么加注PIV/zBTDX?</translation>
+        <translation>我怎么加注BTDX/zBTDX?</translation>
     </message>
     <message>
         <source>
@@ -4359,20 +4359,20 @@ PIVX零币(zBTDX)技术文件
 &lt;ol&gt;&lt;li&gt;
 确保你的钱包是完全同步的，且使用最新版本。
 &lt;li&gt;
-您必须有至少101个确认的PIVX余额。
+您必须有至少101个确认的BTDX余额。
 &lt;li&gt;
 你的钱包必须在线，并为匿名和加注的目的被解锁。
 &lt;li&gt;
 一旦所有这些步骤都遵循了，应该就可以启用加注
 &lt;li&gt;
-您可以通过将鼠标移到钱包界面左上角的行中的package图标上来查看在钱包中进行标记的状态。被点亮，并将状态“Staking启用”，以表明它是加注状态。使用命令行接口(pivx-cli);命令getstakingstatus将确认加注是活跃状态。
+您可以通过将鼠标移到钱包界面左上角的行中的package图标上来查看在钱包中进行标记的状态。被点亮，并将状态“Staking启用”，以表明它是加注状态。使用命令行接口(bitcloud-cli);命令getstakingstatus将确认加注是活跃状态。
 &lt;/li&gt;&lt;/ol&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
-加注zPIV:&lt;/p&gt;&lt;p align="justify"&gt;
+加注zBTDX:&lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ol&gt;&lt;li&gt;
 确保你的钱包是完全同步的，且使用最新版本
 &lt;li&gt;
-您新创建的或现有的zPIV余额必须至少有200个确认。
+您新创建的或现有的zBTDX余额必须至少有200个确认。
 &lt;li&gt;
 我们的钱包必须在线，并为匿名和加注的目的被解锁。
 加注现在应该是启用状态了。
@@ -4459,8 +4459,8 @@ PIVX零币(zBTDX)技术文件
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-主节点是运行完整节点PIVX核心钱包的计算机
-需要10,000个PIV作抵押以提供额外服务
+主节点是运行完整节点BTDX核心钱包的计算机
+需要10,000个BTDX作抵押以提供额外服务
 到网络，会收到一部分的区块奖励作为定期
 回报
 这些服务包括:
@@ -4482,10 +4482,10 @@ PIVX零币(zBTDX)技术文件
 主节点福利：
 &lt;/p&gt;&lt;p align="justify"&gt;
 &lt;ul&gt;
-&lt;li&gt;参与PIVX治理&lt;/li&gt;
+&lt;li&gt;参与BTDX治理&lt;/li&gt;
 &lt;li&gt;赢取主节点奖励&lt;/li&gt;
 &lt;li&gt;商品期货期权&lt;/li&gt;
-&lt;li&gt;帮助保护PIVX网络&lt;/li&gt;
+&lt;li&gt;帮助保护BTDX网络&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;&lt;p align="justify"&gt;
 
@@ -4511,7 +4511,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;A Masternode Controller wallet is where the 10,000 BTDX collateral can reside during a Controller-Remote masternode setup. It is a wallet that can activate the remote masternode wallet/s and allows you to keep your collateral coins offline while the remote masternode remains online. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是在控制器-远程主节点设置期间10,000 PIV附属品可以驻留的地方。这是一个可以激活远程主节点钱包的钱包/s，远程主节点保持在线的时候，可以让你的抵押品硬币离线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;主节点控制器钱包是在控制器-远程主节点设置期间10,000 BTDX附属品可以驻留的地方。这是一个可以激活远程主节点钱包的钱包/s，远程主节点保持在线的时候，可以让你的抵押品硬币离线。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Frequently Asked Questions</source>
@@ -4622,7 +4622,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>Unable to open bitcloud.conf with default application</source>
-        <translation>无法使用默认应用程序打开pivx.conf</translation>
+        <translation>无法使用默认应用程序打开bitcloud.conf</translation>
     </message>
     <message>
         <source>In:</source>
@@ -4681,7 +4681,7 @@ PIVX零币(zBTDX)技术文件
     </message>
     <message>
         <source>Start Bitcloud on system login</source>
-        <translation>开机启动PIVX</translation>
+        <translation>开机启动BTDX</translation>
     </message>
     <message>
         <source>Minimize to the tray instead of the taskbar</source>
@@ -4769,7 +4769,7 @@ Are you sure?
     </message>
     <message>
         <source>MultiSend allows you to automatically send up to 100% of your stake or masternode reward to a list of other Bitcloud addresses after it matures.</source>
-        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他PIVX地址列表</translation>
+        <translation>成熟以后，多重花费允许您自动发送高达 100% 的股权或主节点奖励到其他BTDX地址列表</translation>
     </message>
     <message>
         <source>Active</source>
@@ -4876,7 +4876,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     </message>
     <message>
         <source>Enter a Bitcloud address or contact label</source>
-        <translation>输入PIVX地址或联系人标签</translation>
+        <translation>输入BTDX地址或联系人标签</translation>
     </message>
     <message>
         <source>Add address</source>
@@ -5237,7 +5237,7 @@ Check one or both of the check boxes to send on stake and/or masternode rewards<
     </message>
     <message>
         <source>About Bitcloud</source>
-        <translation>关于PIVX </translation>
+        <translation>关于BTDX </translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5744,7 +5744,7 @@ Are you sure?
     </message>
     <message>
         <source>BTDX Stake</source>
-        <translation>PIV加注</translation>
+        <translation>BTDX加注</translation>
     </message>
     <message>
         <source>zBTDX Stake</source>
@@ -5752,11 +5752,11 @@ Are you sure?
     </message>
     <message>
         <source>BTDX Cold Stake</source>
-        <translation>PIV冷饮</translation>
+        <translation>BTDX冷饮</translation>
     </message>
     <message>
         <source>BTDX Stake in behalf of</source>
-        <translation>PIV权益代表</translation>
+        <translation>BTDX权益代表</translation>
     </message>
     <message>
         <source>Stake delegation</source>
@@ -5780,23 +5780,23 @@ Are you sure?
     </message>
     <message>
         <source>Converted BTDX to zBTDX</source>
-        <translation>转换PIV为zPIV</translation>
+        <translation>转换BTDX为zBTDX</translation>
     </message>
     <message>
         <source>Spent zBTDX</source>
-        <translation>已经花费zPIV</translation>
+        <translation>已经花费zBTDX</translation>
     </message>
     <message>
         <source>Received BTDX from zBTDX</source>
-        <translation>从zPIV接收PIV</translation>
+        <translation>从zBTDX接收BTDX</translation>
     </message>
     <message>
         <source>Minted Change as zBTDX from zBTDX Spend</source>
-        <translation>铸币的变化，从zPIV花费zPIV</translation>
+        <translation>铸币的变化，从zBTDX花费zBTDX</translation>
     </message>
     <message>
         <source>Converted zBTDX to BTDX</source>
-        <translation>转换PIV为zPIV</translation>
+        <translation>转换BTDX为zBTDX</translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -6089,19 +6089,19 @@ Are you sure?
         <source>Welcome to
 Bitcloud Core Wallet</source>
         <translation>欢迎
-PIVX核心钱包</translation>
+BTDX核心钱包</translation>
     </message>
     <message>
         <source>Bitcloud is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
-        <translation>PIVX是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
+        <translation>BTDX是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - Bitcloud believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——PIVX相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——BTDX相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>The masternode network is Bitcloud's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
-        <translation>主节点网络是PIVX在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
+        <translation>主节点网络是BTDX在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
     </message>
     <message>
         <source>How Bitcloud respects your privacy?</source>
@@ -6120,7 +6120,7 @@ PIVX核心钱包</translation>
     <name>ZPivControlDialog</name>
     <message>
         <source>Select zBTDX to Spend</source>
-        <translation>选择zPIV 花费</translation>
+        <translation>选择zBTDX 花费</translation>
     </message>
     <message>
         <source>Coin Control</source>
@@ -6131,8 +6131,8 @@ PIVX核心钱包</translation>
         <translation>按钮</translation>
     </message>
     <message>
-        <source>zPiv</source>
-        <translation>zPiv</translation>
+        <source>zBTDX</source>
+        <translation>zBTDX</translation>
     </message>
     <message>
         <source>0.00 </source>
@@ -6156,11 +6156,11 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Select zBTDX Denominations to Spend</source>
-        <translation>选择zPIV 面额花费</translation>
+        <translation>选择zBTDX 面额花费</translation>
     </message>
 </context>
 <context>
-    <name>pivx-core</name>
+    <name>bitcloud-core</name>
     <message>
         <source>(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)</source>
         <translation>(1 =保留tx元数据，例如帐户所有者和付款请求信息，2 =删除tx元数据)</translation>
@@ -6187,7 +6187,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. Bitcloud Core is probably already running.</source>
-        <translation>无法获取数据目录%s锁。PIVX核心可能已经在运行了。</translation>
+        <translation>无法获取数据目录%s锁。BTDX核心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
@@ -6219,7 +6219,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Enable automatic wallet backups triggered after each zBTDX minting (0-1, default: %u)</source>
-        <translation>启用每次zPIV生成后触发的自动钱包备份(0-1，默认值:%u)</translation>
+        <translation>启用每次zBTDX生成后触发的自动钱包备份(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable cold staking functionality (0-1, default: %u). Disabled if staking=0</source>
@@ -6227,11 +6227,11 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for BTDX inputs (0-1, default: %u)</source>
-        <translation>启用或禁用PIV输入标记功能(0-1，默认值:%u)</translation>
+        <translation>启用或禁用BTDX输入标记功能(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for zBTDX inputs (0-1, default: %u)</source>
-        <translation>启用或禁用zPIV输入的标记功能(0-1，默认值:%u)</translation>
+        <translation>启用或禁用zBTDX输入的标记功能(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable spork administration functionality with the appropriate private key.</source>
@@ -6267,11 +6267,11 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Fees (in BTDX/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>小于此值的费用(以PIV/Kb为单位)视为零中继费用(默认值:%s)</translation>
+        <translation>小于此值的费用(以BTDX/Kb为单位)视为零中继费用(默认值:%s)</translation>
     </message>
     <message>
         <source>Fees (in BTDX/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>小于此值的费用(以PIV/Kb为单位)被认为是交易创建的零费用(默认值:%s)</translation>
+        <translation>小于此值的费用(以BTDX/Kb为单位)被认为是交易创建的零费用(默认值:%s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -6387,7 +6387,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. Bitcloud Core is probably already running.</source>
-        <translation>无法绑定到此计算机上的%s。PIVX核心可能已经在运行了。</translation>
+        <translation>无法绑定到此计算机上的%s。BTDX核心可能已经在运行了。</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation denominated funds for this transaction.</source>
@@ -6395,11 +6395,11 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 BTDX.</source>
-        <translation>无法找到不等于10000 PIV的模糊非计价基金来进行这笔交易。</translation>
+        <translation>无法找到不等于10000 BTDX的模糊非计价基金来进行这笔交易。</translation>
     </message>
     <message>
         <source>Unable to locate enough funds for this transaction that are not equal 10000 BTDX.</source>
-        <translation>无法为这次交易找到不等于10000 PIV的足够资金。</translation>
+        <translation>无法为这次交易找到不等于10000 BTDX的足够资金。</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -6450,8 +6450,8 @@ PIVX核心钱包</translation>
         <translation>您必须在配置中指定一个主节点privkey。有关帮助，请参阅文档。</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472只可在网上使用)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329只可在网上使用)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6462,8 +6462,8 @@ PIVX核心钱包</translation>
         <translation>(默认: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(主网必须为51472)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(主网必须为8329)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>
@@ -6559,7 +6559,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Copyright (C) 2015-%i The Bitcloud Core Developers</source>
-        <translation>版权所有(C) 2015-%i PIVX核心开发者</translation>
+        <translation>版权所有(C) 2015-%i BTDX核心开发者</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -6611,7 +6611,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Enable precomputation of zBTDX spends and stakes (0-1, default %u)</source>
-        <translation>启用预先计算zPIV的花费和加注(0-1，默认%u)</translation>
+        <translation>启用预先计算zBTDX的花费和加注(0-1，默认%u)</translation>
     </message>
     <message>
         <source>Enable publish hash transaction (locked via SwiftX) in &lt;address&gt;</source>
@@ -6647,7 +6647,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of Bitcloud Core</source>
-        <translation>加载的钱包出错。dat: 钱包需要更新版本的PIVX核心</translation>
+        <translation>加载的钱包出错。dat: 钱包需要更新版本的BTDX核心</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -6699,7 +6699,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Fee (in BTDX/kB) to add to transactions you send (default: %s)</source>
-        <translation>将费用(以PIV/kB为单位)添加到您发送的交易中(默认:%s)</translation>
+        <translation>将费用(以BTDX/kB为单位)添加到您发送的交易中(默认:%s)</translation>
     </message>
     <message>
         <source>Force safe mode (default: %u)</source>
@@ -6739,7 +6739,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. Bitcloud Core is shutting down.</source>
-        <translation>初始化完整性检查失败。PIVX核心快要关闭了。</translation>
+        <translation>初始化完整性检查失败。BTDX核心快要关闭了。</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -6799,19 +6799,19 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Recalculating BTDX supply...</source>
-        <translation>重新计算PIV供应量……</translation>
+        <translation>重新计算BTDX供应量……</translation>
     </message>
     <message>
-        <source>Recalculating minted ZPIV...</source>
-        <translation>重新计算铸造ZPIV……</translation>
+        <source>Recalculating minted ZBTDX...</source>
+        <translation>重新计算铸造ZBTDX……</translation>
     </message>
     <message>
-        <source>Recalculating spent ZPIV...</source>
-        <translation>重新计算ZPIV……</translation>
+        <source>Recalculating spent ZBTDX...</source>
+        <translation>重新计算ZBTDX……</translation>
     </message>
     <message>
         <source>Reindex the BTDX and zBTDX money supply statistics</source>
-        <translation>重新索引PIV和zPIV货币供应统计数据</translation>
+        <translation>重新索引BTDX和zBTDX货币供应统计数据</translation>
     </message>
     <message>
         <source>Reindexing zerocoin database...</source>
@@ -6855,7 +6855,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Disable all Bitcloud specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有PIVX特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
+        <translation>禁用所有BTDX特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
@@ -6891,7 +6891,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any automatic zBTDX backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup. If backuppath is set as well, 4 backups will happen</source>
-        <translation>指定自定义备份路径，以添加任何自动zPIV备份的副本。如果将其设置为dir，则每个备份将生成一个时间戳文件。如果设置为文件，将重写到该文件的每次备份。如果还设置了备份文件，则会进行4次备份</translation>
+        <translation>指定自定义备份路径，以添加任何自动zBTDX备份的副本。如果将其设置为dir，则每个备份将生成一个时间戳文件。如果设置为文件，将重写到该文件的每次备份。如果还设置了备份文件，则会进行4次备份</translation>
     </message>
     <message>
         <source>Specify custom backup path to add a copy of any wallet backup. If set as dir, every backup generates a timestamped file. If set as file, will rewrite to that file every backup.</source>
@@ -7327,7 +7327,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Syncing zBTDX wallet...</source>
-        <translation>正在同步zPIV钱包……</translation>
+        <translation>正在同步zBTDX钱包……</translation>
     </message>
     <message>
         <source>The coin spend has been used</source>
@@ -7443,7 +7443,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Value is below the smallest available denomination (= 1) of zBTDX</source>
-        <translation>值小于zPIV的最小可用面额(= 1)</translation>
+        <translation>值小于zBTDX的最小可用面额(= 1)</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
@@ -7459,7 +7459,7 @@ PIVX核心钱包</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart Bitcloud Core to complete</source>
-        <translation>钱包需要重写:重新启动PIVX核心完成</translation>
+        <translation>钱包需要重写:重新启动BTDX核心完成</translation>
     </message>
     <message>
         <source>Wallet options:</source>

@@ -499,8 +499,8 @@
         <translation>Ĉi tiun etikedo ruĝiĝas se iu ajna ricevanto ricevas totalo pli malgranda ol %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Povas varii +/- %1 upiv per enigo.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Povas varii +/- %1 ubtdx per enigo.</translation>
     </message>
     <message>
         <source>(no label)</source>

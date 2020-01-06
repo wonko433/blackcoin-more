@@ -941,7 +941,7 @@ for staking</source>
     </message>
     <message>
         <location line="+8"/>
-        <source>Can vary +/- %1 upiv per input.</source>
+        <source>Can vary +/- %1 ubtdx per input.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2022,7 +2022,7 @@ It will start automatically as soon as the wallet has enough confirmations on an
     </message>
     <message>
         <location line="+7"/>
-        <source>Address: 88.26.164.88:51474</source>
+        <source>Address: 88.26.164.88:8330</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8018,8 +8018,8 @@ Bitcloud Core Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation type="unfinished">(51472 could be used only on mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation type="unfinished">(8329 could be used only on mainnet)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8033,7 +8033,7 @@ Bitcloud Core Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>(must be 51472 for mainnet)</source>
+        <source>(must be 8329 for mainnet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

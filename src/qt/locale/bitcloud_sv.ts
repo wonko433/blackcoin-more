@@ -725,8 +725,8 @@ for staking</source>
         <translation>Den här etiketten blir röd, ifall någon mottagare får en mängd som är mindre än %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan variera med +/- %1 upiv per inmatning.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Kan variera med +/- %1 ubtdx per inmatning.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1380,8 +1380,8 @@ Den startar automatiskt så snart plånboken har tillräckligt många bekräftel
         <translation>användare_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Address: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Address: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -4512,8 +4512,8 @@ Var vänlig kontrollera adressen och försök igen.</translation>
         <translation>Du måste specifiera en masternodeprivkey i konfigurationen. Var vänlig se dokumentationen för hjälp.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kunde endast användas på mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 kunde endast användas på mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4524,8 +4524,8 @@ Var vänlig kontrollera adressen och försök igen.</translation>
         <translation>(standard: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(måste vara 51472 för mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(måste vara 8329 för mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

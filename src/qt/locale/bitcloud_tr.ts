@@ -744,8 +744,8 @@ Stake için kaldırın</translation>
         <translation>Herhangi bir alıcı %1 'den küçük bir miktar alırsa, bu etiket kırmızıya döner.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Her giriş için +/- %1 upiv farkedebilir.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Her giriş için +/- %1 ubtdx farkedebilir.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1623,8 +1623,8 @@ Cüzdanınız senkronize olduktan ve harcanmamış bakiyeniz yeterli miktarda on
         <translation>kullanıcı_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Adres: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Adres: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -6488,8 +6488,8 @@ Hoşgeldiniz</translation>
         <translation>Konfigürasyonda bir masternodeprivkey belirlemelisiniz.  Lütfen dokümantasyona bakınız.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 sadece mainnet üzerinde kullanılabilir)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 sadece mainnet üzerinde kullanılabilir)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6500,8 +6500,8 @@ Hoşgeldiniz</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(mainnet için 51472 olmalıdır)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(mainnet için 8329 olmalıdır)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

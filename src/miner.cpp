@@ -40,7 +40,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// PIVXMiner
+// BitcloudMiner
 //
 
 //
@@ -127,6 +127,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         pindexPrev = mapBlockIndex.at(pindexPrev->GetBlockHash());
     }
 
+    /*
+    // BTDX: block version 3
     const int nHeight = pindexPrev->nHeight + 1;
 
     // Make sure to create the correct block version
@@ -147,6 +149,12 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
     }
+    */
+    
+    // -regtest only: allow overriding block.nVersion with
+    // -blockversion=N to test forking scenarios
+    if (Params().MineBlocksOnDemand())
+        pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
 
     // Create coinbase tx
     CMutableTransaction txNew;
@@ -780,7 +788,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running PIVXMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running BitcloudMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
@@ -869,12 +877,12 @@ void static ThreadBitcoinMiner(void* parg)
         BitcoinMiner(pwallet, false);
         boost::this_thread::interruption_point();
     } catch (const std::exception& e) {
-        LogPrintf("PIVXMiner exception");
+        LogPrintf("BitcloudMiner exception");
     } catch (...) {
-        LogPrintf("PIVXMiner exception");
+        LogPrintf("BitcloudMiner exception");
     }
 
-    LogPrintf("PIVXMiner exiting\n");
+    LogPrintf("BitcloudMiner exiting\n");
 }
 
 void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)

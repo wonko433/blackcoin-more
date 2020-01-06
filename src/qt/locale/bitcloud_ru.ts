@@ -742,8 +742,8 @@ for staking</source>
         <translation>Этот маркер становится красным если получаемая адресатом сумма меньше, чем %1</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Может вариироваться +/- %1 upiv при вводе</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Может вариироваться +/- %1 ubtdx при вводе</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1620,8 +1620,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>user_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Адрес: 88.26.164.88:51474 </translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Адрес: 88.26.164.88:8330 </translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -6417,8 +6417,8 @@ Bitcloud Core Wallet</source>
         <translation>Вы должны указать в  строке приложенный ключ. Пожалуйста, обратитесь к документации для получения справки</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 можно использовать только в сети)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 можно использовать только в сети)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6429,8 +6429,8 @@ Bitcloud Core Wallet</source>
         <translation>(неуплата: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(должен быть 51472 для mainet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(должен быть 8329 для mainet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

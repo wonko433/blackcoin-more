@@ -743,8 +743,8 @@ para staking</translation>
         <translation>Esta etiqueta se vuelve roja, si algún destinatario recibe una cantidad menor que %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Puede variar +/- %1 upiv por entrada.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Puede variar +/- %1 ubtdx por entrada.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1620,8 +1620,8 @@ It will start automatically as soon as the wallet has enough confirmations on an
         <translation>usuario_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Dirección: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Dirección: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -6423,8 +6423,8 @@ Bitcloud Core Wallet</translation>
         <translation>Debes especificar un masternodeprivkey en la configuración. Por favor mira la documentación por ayuda.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 puede ser utilizado solo en mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 puede ser utilizado solo en mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6435,8 +6435,8 @@ Bitcloud Core Wallet</translation>
         <translation>(predeterminado: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(debe ser 51472 para un mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(debe ser 8329 para un mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

@@ -743,8 +743,8 @@ voor bewijs van Inzet</translation>
         <translation>Dit label wordt rood, als een ontvanger een hoeveelheid kleiner dan %1 ontvangt.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Kan +/-%1 upiv per invoer variëren.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Kan +/-%1 ubtdx per invoer variëren.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1621,8 +1621,8 @@ Het zal automatisch starten zodra de portemonnee voldoende bevestigingen heeft o
         <translation>user_masternode</translation>
     </message>
     <message>
-        <source>Address: 88.26.164.88:51474</source>
-        <translation>Adres: 88.26.164.88:51474</translation>
+        <source>Address: 88.26.164.88:8330</source>
+        <translation>Adres: 88.26.164.88:8330</translation>
     </message>
     <message>
         <source>Jan. 19, 2019</source>
@@ -6493,8 +6493,8 @@ Bitcloud Core Portemonnee</translation>
         <translation>Je moet een masternodeprivkey opgeven in de configuratie. Raadpleeg de documentatie voor hulp.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 kan alleen op mainnet worden gebruikt)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 kan alleen op mainnet worden gebruikt)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6505,8 +6505,8 @@ Bitcloud Core Portemonnee</translation>
         <translation>(standaard: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(moet 51472 voor mainnet zijn)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(moet 8329 voor mainnet zijn)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

@@ -507,8 +507,8 @@
         <translation>Етикета става червен, когато получателя ще получи сума по-малка от %1.</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 upiv per input.</source>
-        <translation>Може да има разлика от +/- %1 upiv на вх.</translation>
+        <source>Can vary +/- %1 ubtdx per input.</source>
+        <translation>Може да има разлика от +/- %1 ubtdx на вх.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -3201,8 +3201,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>Трябва да зададете masternodeprivkey в конфигурационния файл. Консултирайте се с документацията за повече помощ.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 може да се ползва само в mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 може да се ползва само в mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3213,8 +3213,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
         <translation>(по подразбиране: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(трябва да е 51472 за mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(трябва да е 8329 за mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

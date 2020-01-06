@@ -2840,12 +2840,12 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <translation>Confirmation time:</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uBTDXs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBTDXs in fee,&lt;br /&gt;while "at least" pays 1000 uBTDXs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>If the custom fee is set to 1000 uBTDXs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBTDXs in fee,&lt;br /&gt;while "at least" pays 1000 uBTDXs. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>If the custom fee is set to 1000 uPIVs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uPIVs in fee,&lt;br /&gt;while "total at least" pays 1000 uPIVs. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
+        <source>If the custom fee is set to 1000 uBTDXs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBTDXs in fee,&lt;br /&gt;while "total at least" pays 1000 uBTDXs. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>If the custom fee is set to 1000 uBTDXs and the transaction is only 250 bytes, then "per kilobyte" only pays 250 uBTDXs in fee,&lt;br /&gt;while "total at least" pays 1000 uBTDXs. For transactions bigger than a kilobyte both pay by kilobyte.</translation>
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for Bitcloud transactions than the network can process.</source>
@@ -4085,7 +4085,7 @@ https://www.transifex.com/pivx-project/pivx-project-translations</translation>
         <source>To use bitcloudd, or the -server option to bitcloud-qt, you must set an rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=pivxrpc
+rpcuser=bitcloudrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
@@ -4096,7 +4096,7 @@ for example: alertnotify=echo %%s | mail -s "Bitcloud Alert" admin@foo.com
         <translation>To use bitcloudd, or the -server option to bitcloud-qt, you must set an rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=pivxrpc
+rpcuser=bitcloudrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
@@ -4166,8 +4166,8 @@ for example: alertnotify=echo %%s | mail -s "Bitcloud Alert" admin@foo.com
         <translation>You must specify a masternodeprivkey in the configuration. Please see documentation for help.</translation>
     </message>
     <message>
-        <source>(51472 could be used only on mainnet)</source>
-        <translation>(51472 could be used only on mainnet)</translation>
+        <source>(8329 could be used only on mainnet)</source>
+        <translation>(8329 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4178,8 +4178,8 @@ for example: alertnotify=echo %%s | mail -s "Bitcloud Alert" admin@foo.com
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 51472 for mainnet)</source>
-        <translation>(must be 51472 for mainnet)</translation>
+        <source>(must be 8329 for mainnet)</source>
+        <translation>(must be 8329 for mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

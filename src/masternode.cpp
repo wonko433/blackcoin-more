@@ -555,9 +555,10 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
         return error("%s : Got bad Masternode address signature", __func__);
     }
 
+    // BTDX
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
-        if (addr.GetPort() != 51472) return false;
-    } else if (addr.GetPort() == 51472)
+        if (addr.GetPort() != 8329) return false;
+    } else if (addr.GetPort() == 8329)
         return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts

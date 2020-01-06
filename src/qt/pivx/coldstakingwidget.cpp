@@ -96,7 +96,7 @@ ColdStakingWidget::ColdStakingWidget(PIVXGUI* parent) :
     setCssProperty(ui->pushRight, "btn-check-right");
 
     /* Subtitle */
-    ui->labelSubtitle1->setText(tr("You can delegate your PIVs and let a hot node (24/7 online node)\nstake in your behalf, keeping the keys in a secure place offline."));
+    ui->labelSubtitle1->setText(tr("You can delegate your BTDXs and let a hot node (24/7 online node)\nstake in your behalf, keeping the keys in a secure place offline."));
     setCssSubtitleScreen(ui->labelSubtitle1);
     spacerDiv = new QSpacerItem(40, 20, QSizePolicy::Maximum, QSizePolicy::Expanding);
 
