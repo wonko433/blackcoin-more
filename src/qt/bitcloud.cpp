@@ -238,7 +238,7 @@ private:
     void startThread();
 };
 
-#include "pivx.moc"
+#include "bitcloud.moc"
 
 BitcoinCore::BitcoinCore() : QObject()
 {
@@ -526,8 +526,8 @@ int main(int argc, char* argv[])
 // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
 /// 2. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(pivx_locale);
-    Q_INIT_RESOURCE(pivx);
+    Q_INIT_RESOURCE(bitcloud_locale);
+    Q_INIT_RESOURCE(bitcloud);
 
 #if QT_VERSION > 0x050100
     // Generate high-dpi pixmaps

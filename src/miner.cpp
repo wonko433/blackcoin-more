@@ -150,6 +150,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
     }
     */
+    const int nHeight = pindexPrev->nHeight + 1;
+    bool fZerocoinActive = nHeight >= Params().Zerocoin_StartHeight();
     
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
