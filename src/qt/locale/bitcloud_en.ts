@@ -2521,7 +2521,7 @@ Are you sure?</source>
     </message>
     <message>
         <location line="+6"/>
-        <source>Invalid URI, not starting with &quot;pivx&quot; prefix</source>
+        <source>Invalid URI, not starting with &quot;bitcloud&quot; prefix</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2654,7 +2654,7 @@ Are you sure?</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

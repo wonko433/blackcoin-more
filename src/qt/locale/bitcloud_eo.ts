@@ -969,9 +969,9 @@
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation>Ĉu mankas lingvon aŭ nekompleta tradukado? Helpu la  tradukcio ĉi tie:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://github.com/LIMXTEC/BitSend</translation>
     </message>
     <message>
         <source>Connect to the Bitcloud network through a SOCKS5 proxy.</source>

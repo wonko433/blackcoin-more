@@ -1494,9 +1494,9 @@ Den vil starte automatisk så snart at pungen har nok bekræftelser på nogen af
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation>Det valgte sprog mangler, eller oversættelsen er mangelfuld. Hjælp ved at bidrage med oversættelser her:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://github.com/LIMXTEC/BitSend</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

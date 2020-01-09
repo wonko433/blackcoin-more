@@ -1356,9 +1356,9 @@ Użyj hasła składającego się z dziesięciu lub więcej losowych znaków lub 
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-https://www.transifex.com/pivx-project/pivx-project-translations </translation>
+        https://github.com/LIMXTEC/BitSend</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>

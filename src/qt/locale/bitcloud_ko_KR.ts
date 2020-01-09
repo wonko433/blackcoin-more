@@ -353,7 +353,7 @@ for staking</source>
     </message>
     <message>
         <source>Bitcloud will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your BTDXs from being stolen by malware infecting your computer.</source>
-        <translation>PIVX는 이제 암호화 프로세스를 마치기 위해 닫힐것입니다. 지갑을 암호화하더라도 맬웨어로 인한 BTDXs 의 도난당하는 것을 완벽하게 보호 할 수는 없습니다.</translation>
+        <translation>Bitcloud는 이제 암호화 프로세스를 마치기 위해 닫힐것입니다. 지갑을 암호화하더라도 맬웨어로 인한 BTDXs 의 도난당하는 것을 완벽하게 보호 할 수는 없습니다.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -1550,7 +1550,7 @@ for staking</source>
     </message>
     <message>
         <source>Automatically start Bitcloud after logging in to the system.</source>
-        <translation>시스템 로그인 후 PIVX을 자동으로 시작합니다.</translation>
+        <translation>시스템 로그인 후 Bitcloud을 자동으로 시작합니다.</translation>
     </message>
     <message>
         <source>&amp;Start Bitcloud on system login</source>
@@ -1582,13 +1582,13 @@ for staking</source>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting Bitcloud.</source>
-        <translation>사용자 인터페이스 언어를 설정할 수 있습니다. 이 설정은 PIVX을 다시 시작한 후에 적용됩니다.</translation>
+        <translation>사용자 인터페이스 언어를 설정할 수 있습니다. 이 설정은 Bitcloud을 다시 시작한 후에 적용됩니다.</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation>지원 언어가 없거나 번역이 불완전한가요? 번역을 도와주세요 :
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://github.com/LIMXTEC/BitSend</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1861,7 +1861,7 @@ Address: %4
     </message>
     <message>
         <source>Cannot start bitcloud: click-to-pay handler</source>
-        <translation>PIVX을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
+        <translation>Bitcloud을 시작할 수 없습니다: 결제하기 위한 클릭 처리</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcloud address or malformed URI parameters.</source>
@@ -4272,7 +4272,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <source>Disable all Bitcloud specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>PIVX의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, SwiftTX, Budgeting) (0-1, 기본값: %u)</translation>
+        <translation>Bitcloud의 모든 특정 기능들을 비활성화합니다(마스터노드, 난독화, SwiftTX, Budgeting) (0-1, 기본값: %u)</translation>
     </message>
     <message>
         <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>

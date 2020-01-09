@@ -1625,7 +1625,7 @@ in die Zwischenablage zu kopieren.
 
 
 SIe müssen lediglich die Daten in das bitcloud.conf-File ihres externen Servers einfügen,
-die Pivx-wallet starten, um dann von der Kontrollwallet aus
+die Bitcloud-wallet starten, um dann von der Kontrollwallet aus
 ihren Masternode zu starten.
 </translation>
     </message>
@@ -1851,9 +1851,9 @@ Sind sie sicher?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-https://www.transifex.com/pivx-project/pivx-project-translations</source>
+        https://github.com/LIMXTEC/BitSend</source>
         <translation>Sprache fehlt oder ist unvollständig? Helfe mit und trage zur Übersetzung bei unter:
-https://www.transifex.com/pivx-project/pivx-project-translations</translation>
+        https://github.com/LIMXTEC/BitSend</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
