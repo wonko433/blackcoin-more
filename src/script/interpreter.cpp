@@ -61,7 +61,7 @@ static inline void popstack(std::vector<valtype>& stack)
     stack.pop_back();
 }
 
-bool static IsCompressedOrUncompressedPubKey(const vector<unsigned char> &vchPubKey) {
+bool IsCompressedOrUncompressedPubKey(const std::vector<unsigned char> &vchPubKey) {
     if (vchPubKey.size() < 33) {
         //  Non-canonical public key: too short
         return false;

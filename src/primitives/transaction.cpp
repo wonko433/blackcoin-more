@@ -50,11 +50,6 @@ CTxOut::CTxOut(const CAmount& nValueIn, CScript scriptPubKeyIn)
     scriptPubKey = scriptPubKeyIn;
 }
 
-uint256 CTxOut::GetHash() const
-{
-    return SerializeHash(*this);
-}
-
 std::string CTxOut::ToString() const
 {
     if (IsEmpty()) return "CTxOut(empty)";

@@ -42,6 +42,7 @@ class CConnman;
 class CScriptCheck;
 class CTxMemPool;
 class CValidationState;
+class CWallet;
 struct ChainTxData;
 
 struct CDiskTxPos;

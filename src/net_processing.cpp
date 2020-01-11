@@ -145,8 +145,8 @@ public:
         maxSize(0),
         maxAvg(0)
     {
-        maxSize = GetArg("-headerspamfiltermaxsize", DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE);
-        maxAvg = GetArg("-headerspamfiltermaxavg", DEFAULT_HEADER_SPAM_FILTER_MAX_AVG);
+        maxSize = gArgs.GetArg("-headerspamfiltermaxsize", DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE);
+        maxAvg = gArgs.GetArg("-headerspamfiltermaxavg", DEFAULT_HEADER_SPAM_FILTER_MAX_AVG);
     }
 
     bool addHeaders(const CBlockIndex *pindexFirst, const CBlockIndex *pindexLast)
@@ -353,10 +353,9 @@ bool ProcessNetBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block
     {
         LOCK(cs_main);
         CNodeState *nodestate = State(pfrom->GetId());
-        CNodeHeaders& headers = ServiceHeaders(nodestate->address);
         const CBlockIndex *pindexLast = ppindex == nullptr ? nullptr : *ppindex;
-        headers.addHeaders(pindexFirst, pindexLast);
-        return headers.updateState(state, ret);
+        nodestate->headers.addHeaders(pindexFirst, pindexLast);
+        return nodestate->headers.updateState(state, ret);
     }
     return ret;
 }
@@ -526,7 +525,7 @@ bool TipMayBeStale(const Consensus::Params &consensusParams)
     if (g_last_tip_update == 0) {
         g_last_tip_update = GetTime();
     }
-    return g_last_tip_update < GetTime() - consensusParams.nPowTargetSpacing * 3 && mapBlocksInFlight.empty();
+    return g_last_tip_update < GetTime() - consensusParams.nTargetSpacing * 3 && mapBlocksInFlight.empty();
 }
 
 // Requires cs_main
@@ -1356,7 +1355,7 @@ bool static ProcessHeadersMessage(CNode *pfrom, CConnman *connman, const std::ve
 
     CValidationState state;
     CBlockHeader first_invalid_header;
-    if (!ProcessNetBlockHeaders(headers, state, chainparams, &pindexLast, &first_invalid_header)) {
+    if (!ProcessNetBlockHeaders(pfrom, headers, state, chainparams, &pindexLast, &first_invalid_header)) {
         int nDoS;
         if (state.IsInvalid(nDoS)) {
             LOCK(cs_main);

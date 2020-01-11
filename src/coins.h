@@ -37,11 +37,11 @@ public:
     //! whether containing transaction was a coinbase
     unsigned int fCoinBase : 1;
 
-    //! at which height this containing transaction was included in the active block chain
-    uint32_t nHeight : 31;
-
     //! whether containing transaction was a coinstake
     bool fCoinStake;
+
+    //! at which height this containing transaction was included in the active block chain
+    uint32_t nHeight : 31;
 
     //! time of the transaction
     unsigned int nTime;

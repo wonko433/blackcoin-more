@@ -850,19 +850,6 @@ ServiceFlags nLocalServices = NODE_NETWORK;
     std::terminate();
 };
 
-[[noreturn]] static void new_handler_terminate()
-{
-    // Rather than throwing std::bad-alloc if allocation fails, terminate
-    // immediately to (try to) avoid chain corruption.
-    // Since LogPrintf may itself allocate memory, set the handler directly
-    // to terminate first.
-    std::set_new_handler(std::terminate);
-    LogPrintf("Error: Out of memory. Terminating.\n");
-
-    // The log was successful, terminate now.
-    std::terminate();
-};
-
 bool AppInitBasicSetup()
 {
     // ********************************************************* Step 1: setup
@@ -1149,7 +1136,7 @@ bool AppInitParameterInteraction()
                 return InitError(strprintf("Invalid nTimeout (%s)", vDeploymentParams[2]));
             }
             bool found = false;
-            for (int i=0; i<(int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++i)
+            for (int j=0; j<(int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j)
             {
                 if (vDeploymentParams[0].compare(VersionBitsDeploymentInfo[j].name) == 0) {
                     UpdateVersionBitsParameters(Consensus::DeploymentPos(j), nStartTime, nTimeout);
@@ -1611,7 +1598,7 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
 
     // Encoded addresses using cashaddr instead of base58
     // Activates by default on Feb, 15, 2018
-    config.SetCashAddrEncoding(GetBoolArg("-usecashaddr", GetAdjustedTime() > 43019942400));
+    config.SetCashAddrEncoding(gArgs.GetBoolArg("-usecashaddr", GetAdjustedTime() > 43019942400));
 
 #ifdef ENABLE_WALLET
     if (!CWallet::InitLoadWallet())
