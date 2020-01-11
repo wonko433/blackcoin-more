@@ -36,9 +36,8 @@ std::string CBlock::ToString() const
         nTime, nBits, nNonce,
         vtx.size(),
         HexStr(vchBlockSig.begin(), vchBlockSig.end()));
-    for (unsigned int i = 0; i < vtx.size(); i++)
-    {
-        s << "  " << vtx[i]->ToString() << "\n";
+    for (const auto& tx : vtx) {
+        s << "  " << tx->ToString() << "\n";
     }
     return s.str();
 }

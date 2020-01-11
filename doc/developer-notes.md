@@ -3,41 +3,64 @@ Developer Notes
 
 Various coding styles have been used during the history of the codebase,
 and the result is not very consistent. However, we're now trying to converge to
-a single style, so please use it in new code. Old code will be converted
-gradually and you are encouraged to use the provided
-[clang-format-diff script](/contrib/devtools/README.md#clang-format-diffpy)
-to clean up the patch automatically before submitting a pull request.
+a single style, which is specified below. When writing patches, favor the new
+style over attempting to mimick the surrounding style, except for move-only
+commits.
 
-- Basic rules specified in [src/.clang-format](/src/.clang-format).
+Do not submit patches solely to modify the style of existing code.
+
+- **Indentation and whitespace rules** as specified in
+[src/.clang-format](/src/.clang-format). You can use the provided
+[clang-format-diff script](/contrib/devtools/README.md#clang-format-diffpy)
+tool to clean up patches automatically before submission.
   - Braces on new lines for namespaces, classes, functions, methods.
   - Braces on the same line for everything else.
   - 4 space indentation (no tabs) for every block except namespaces.
   - No indentation for `public`/`protected`/`private` or for `namespace`.
   - No extra spaces inside parenthesis; don't do ( this )
   - No space after function names; one space after `if`, `for` and `while`.
-  - If an `if` only has a single-statement then-clause, it can appear
-    on the same line as the if, without braces. In every other case,
-    braces are required, and the then and else clauses must appear
+  - If an `if` only has a single-statement `then`-clause, it can appear
+    on the same line as the `if`, without braces. In every other case,
+    braces are required, and the `then` and `else` clauses must appear
     correctly indented on a new line.
+
+- **Symbol naming conventions**. These are preferred in new code, but are not
+required when doing so would need changes to significant pieces of existing
+code.
+  - Variable and namespace names are all lowercase, and may use `_` to
+    separate words (snake_case).
+    - Class member variables have a `m_` prefix.
+    - Global variables have a `g_` prefix.
+  - Constant names are all uppercase, and use `_` to separate words.
+  - Class names, function names and method names are UpperCamelCase
+    (PascalCase). Do not prefix class names with `C`.
+
+- **Miscellaneous**
   - `++i` is preferred over `i++`.
 
 Block style example:
 ```c++
+int g_count = 0;
+
 namespace foo
 {
 class Class
 {
+    std::string m_name;
+
+public:
     bool Function(const std::string& s, int n)
     {
         // Comment summarising what this section of code does
         for (int i = 0; i < n; ++i) {
+            int total_sum = 0;
             // When something fails, return early
             if (!Something()) return false;
             ...
-            if (SomethingElse()) {
-                DoMore();
+            if (SomethingElse(i)) {
+                total_sum += ComputeSomething(g_count);
             } else {
-                DoLess();
+                DoSomething(m_name, total_sum);
             }
         }
 
@@ -45,7 +68,7 @@ class Class
         return true;
     }
 }
-}
+} // namespace foo
 ```
 
 Doxygen comments
@@ -264,7 +287,7 @@ General C++
 
 - Assertions should not have side-effects
 
-  - *Rationale*: Even though the source code is set to to refuse to compile
+  - *Rationale*: Even though the source code is set to refuse to compile
     with assertions disabled, having side-effects in assertions is unexpected and
     makes the code harder to understand
 
@@ -343,10 +366,9 @@ Strings and formatting
 Variable names
 --------------
 
-The shadowing warning (`-Wshadow`) is enabled by default. It prevents issues rising
-from using a different variable with the same name.
-
-Please name variables so that their names do not shadow variables defined in the source code.
+Although the shadowing warning (`-Wshadow`) is not enabled by default (it prevents issues rising
+from using a different variable with the same name),
+please name variables so that their names do not shadow variables defined in the source code.
 
 E.g. in member initializers, prepend `_` to the argument name shadowing the
 member name:
@@ -403,10 +425,33 @@ Source code organization
 
   - *Rationale*: Shorter and simpler header files are easier to read, and reduce compile time
 
+- Every `.cpp` and `.h` file should `#include` every header file it directly uses classes, functions or other
+  definitions from, even if those headers are already included indirectly through other headers. One exception
+  is that a `.cpp` file does not need to re-include the includes already included in its corresponding `.h` file.
+
+  - *Rationale*: Excluding headers because they are already indirectly included results in compilation
+    failures when those indirect dependencies change. Furthermore, it obscures what the real code
+    dependencies are.
+
 - Don't import anything into the global namespace (`using namespace ...`). Use
   fully specified types such as `std::string`.
 
   - *Rationale*: Avoids symbol conflicts
+
+- Terminate namespaces with a comment (`// namespace mynamespace`). The comment
+  should be placed on the same line as the brace closing the namespace, e.g.
+
+```c++
+namespace mynamespace {
+    ...
+} // namespace mynamespace
+
+namespace {
+    ...
+} // namespace
+```
+
+  - *Rationale*: Avoids confusion about the namespace context
 
 GUI
 -----
@@ -516,10 +561,10 @@ A few guidelines for introducing and reviewing new RPC interfaces:
     which is error prone, and it is easy to get things such as escaping wrong.
     JSON already supports nested data structures, no need to re-invent the wheel.
 
-  - *Exception*: AmountToValue can parse amounts as string. This was introduced because many JSON
+  - *Exception*: AmountFromValue can parse amounts as string. This was introduced because many JSON
     parsers and formatters hard-code handling decimal numbers as floating point
     values, resulting in potential loss of precision. This is unacceptable for
-    monetary values. **Always** use `AmountToValue` and `ValueToAmount` when
+    monetary values. **Always** use `AmountFromValue` and `ValueFromAmount` when
     inputting or outputting monetary values. The only exceptions to this are
     `prioritisetransaction` and `getblocktemplate` because their interface
     is specified as-is in BIP22.

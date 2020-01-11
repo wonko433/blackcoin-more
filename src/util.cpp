@@ -9,7 +9,6 @@
 #include "fs.h"
 #include "random.h"
 #include "serialize.h"
-#include "sync.h"
 #include "utilstrencodings.h"
 #include "utiltime.h"
 
@@ -74,40 +73,20 @@
 #endif
 
 #include <boost/algorithm/string/case_conv.hpp> // for to_lower()
-#include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/predicate.hpp> // for startswith() and endswith()
-#include <boost/foreach.hpp>
 #include <boost/program_options/detail/config_file.hpp>
-#include <boost/program_options/parsers.hpp>
 #include <boost/thread.hpp>
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 #include <openssl/conf.h>
 
-// Work around clang compilation problem in Boost 1.46:
-// /usr/include/boost/program_options/detail/config_file.hpp:163:17: error: call to function 'to_internal' that is neither visible in the template definition nor found by argument-dependent lookup
-// See also: http://stackoverflow.com/questions/10020179/compilation-fail-in-boost-librairies-program-options
-//           http://clang.debian.net/status.php?version=3.0&key=CANNOT_FIND_FUNCTION
-namespace boost {
-
-    namespace program_options {
-        std::string to_internal(const std::string&);
-    }
-
-} // namespace boost
-
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
-
-using namespace std;
 
 const char * const BITCOIN_CONF_FILENAME = "blackmore.conf";
 const char * const BITCOIN_PID_FILENAME = "blackmored.pid";
 
-CCriticalSection cs_args;
-std::map<std::string, std::string> mapArgs;
-static std::map<std::string, std::vector<std::string> > _mapMultiArgs;
-const std::map<std::string, std::vector<std::string> >& mapMultiArgs = _mapMultiArgs;
+ArgsManager gArgs;
 bool fPrintToConsole = false;
 bool fPrintToDebugLog = true;
 
@@ -117,30 +96,28 @@ bool fLogIPs = DEFAULT_LOGIPS;
 std::atomic<bool> fReopenDebugLog(false);
 CTranslationInterface translationInterface;
 
-/** Log categories bitfield. Leveldb/libevent need special handling if their flags are changed at runtime. */
+/** Log categories bitfield. */
 std::atomic<uint32_t> logCategories(0);
 
 /** Init OpenSSL library multithreading support */
-static CCriticalSection** ppmutexOpenSSL;
+static std::unique_ptr<CCriticalSection[]> ppmutexOpenSSL;
 void locking_callback(int mode, int i, const char* file, int line) NO_THREAD_SAFETY_ANALYSIS
 {
     if (mode & CRYPTO_LOCK) {
-        ENTER_CRITICAL_SECTION(*ppmutexOpenSSL[i]);
+        ENTER_CRITICAL_SECTION(ppmutexOpenSSL[i]);
     } else {
-        LEAVE_CRITICAL_SECTION(*ppmutexOpenSSL[i]);
+        LEAVE_CRITICAL_SECTION(ppmutexOpenSSL[i]);
     }
 }
 
-// Init
+// Singleton for wrapping OpenSSL setup/teardown.
 class CInit
 {
 public:
     CInit()
     {
         // Init OpenSSL library multithreading support
-        ppmutexOpenSSL = (CCriticalSection**)OPENSSL_malloc(CRYPTO_num_locks() * sizeof(CCriticalSection*));
-        for (int i = 0; i < CRYPTO_num_locks(); i++)
-            ppmutexOpenSSL[i] = new CCriticalSection();
+        ppmutexOpenSSL.reset(new CCriticalSection[CRYPTO_num_locks()]);
         CRYPTO_set_locking_callback(locking_callback);
 
         // OpenSSL can optionally load a config file which lists optional loadable modules and engines.
@@ -163,10 +140,9 @@ public:
         // Securely erase the memory used by the PRNG
         RAND_cleanup();
         // Shutdown OpenSSL library multithreading support
-        CRYPTO_set_locking_callback(NULL);
-        for (int i = 0; i < CRYPTO_num_locks(); i++)
-            delete ppmutexOpenSSL[i];
-        OPENSSL_free(ppmutexOpenSSL);
+        CRYPTO_set_locking_callback(nullptr);
+        // Clear the set of locks now to maintain symmetry with the constructor.
+        ppmutexOpenSSL.reset();
     }
 }
 instance_of_cinit;
@@ -193,9 +169,9 @@ static boost::once_flag debugPrintInitFlag = BOOST_ONCE_INIT;
  * the OS/libc. When the shutdown sequence is fully audited and
  * tested, explicit destruction of these objects can be implemented.
  */
-static FILE* fileout = NULL;
-static boost::mutex* mutexDebugLog = NULL;
-static list<string> *vMsgsBeforeOpenLog;
+static FILE* fileout = nullptr;
+static boost::mutex* mutexDebugLog = nullptr;
+static std::list<std::string>* vMsgsBeforeOpenLog;
 
 static int FileWriteStr(const std::string &str, FILE *fp)
 {
@@ -204,9 +180,9 @@ static int FileWriteStr(const std::string &str, FILE *fp)
 
 static void DebugPrintInit()
 {
-    assert(mutexDebugLog == NULL);
+    assert(mutexDebugLog == nullptr);
     mutexDebugLog = new boost::mutex();
-    vMsgsBeforeOpenLog = new list<string>;
+    vMsgsBeforeOpenLog = new std::list<std::string>;
 }
 
 void OpenDebugLog()
@@ -214,12 +190,12 @@ void OpenDebugLog()
     boost::call_once(&DebugPrintInit, debugPrintInitFlag);
     boost::mutex::scoped_lock scoped_lock(*mutexDebugLog);
 
-    assert(fileout == NULL);
+    assert(fileout == nullptr);
     assert(vMsgsBeforeOpenLog);
     fs::path pathDebug = GetDataDir() / "debug.log";
-    fileout = fopen(pathDebug.string().c_str(), "a");
+    fileout = fsbridge::fopen(pathDebug, "a");
     if (fileout) {
-        setbuf(fileout, NULL); // unbuffered
+        setbuf(fileout, nullptr); // unbuffered
         // dump buffered messages from before we opened the log
         while (!vMsgsBeforeOpenLog->empty()) {
             FileWriteStr(vMsgsBeforeOpenLog->front(), fileout);
@@ -228,7 +204,7 @@ void OpenDebugLog()
     }
 
     delete vMsgsBeforeOpenLog;
-    vMsgsBeforeOpenLog = NULL;
+    vMsgsBeforeOpenLog = nullptr;
 }
 
 struct CLogCategoryDesc
@@ -297,6 +273,21 @@ std::string ListLogCategories()
     return ret;
 }
 
+std::vector<CLogCategoryActive> ListActiveLogCategories()
+{
+    std::vector<CLogCategoryActive> ret;
+    for (unsigned int i = 0; i < ARRAYLEN(LogCategories); i++) {
+        // Omit the special cases.
+        if (LogCategories[i].flag != BCLog::NONE && LogCategories[i].flag != BCLog::ALL) {
+            CLogCategoryActive catActive;
+            catActive.category = LogCategories[i].category;
+            catActive.active = LogAcceptCategory(LogCategories[i].flag);
+            ret.push_back(catActive);
+        }
+    }
+    return ret;
+}
+
 /**
  * fStartedNewLine is a state variable held by the calling context that will
  * suppress printing of the timestamp when multiple calls are made that don't
@@ -304,16 +295,20 @@ std::string ListLogCategories()
  */
 static std::string LogTimestampStr(const std::string &str, std::atomic_bool *fStartedNewLine)
 {
-    string strStamped;
+    std::string strStamped;
 
     if (!fLogTimestamps)
         return str;
 
     if (*fStartedNewLine) {
-        int64_t nTimeMicros = GetLogTimeMicros();
+        int64_t nTimeMicros = GetTimeMicros();
         strStamped = DateTimeStrFormat("%Y-%m-%d %H:%M:%S", nTimeMicros/1000000);
         if (fLogTimeMicros)
             strStamped += strprintf(".%06d", nTimeMicros%1000000);
+        int64_t mocktime = GetMockTime();
+        if (mocktime) {
+            strStamped += " (mocktime: " + DateTimeStrFormat("%Y-%m-%d %H:%M:%S", mocktime) + ")";
+        }
         strStamped += ' ' + str;
     } else
         strStamped = str;
@@ -331,7 +326,7 @@ int LogPrintStr(const std::string &str)
     int ret = 0; // Returns total number of characters written
     static std::atomic_bool fStartedNewLine(true);
 
-    string strTimestamped = LogTimestampStr(str, &fStartedNewLine);
+    std::string strTimestamped = LogTimestampStr(str, &fStartedNewLine);
 
     if (fPrintToConsole)
     {
@@ -345,7 +340,7 @@ int LogPrintStr(const std::string &str)
         boost::mutex::scoped_lock scoped_lock(*mutexDebugLog);
 
         // buffer if we haven't opened the log yet
-        if (fileout == NULL) {
+        if (fileout == nullptr) {
             assert(vMsgsBeforeOpenLog);
             ret = strTimestamped.length();
             vMsgsBeforeOpenLog->push_back(strTimestamped);
@@ -356,8 +351,8 @@ int LogPrintStr(const std::string &str)
             if (fReopenDebugLog) {
                 fReopenDebugLog = false;
                 fs::path pathDebug = GetDataDir() / "debug.log";
-                if (freopen(pathDebug.string().c_str(),"a",fileout) != NULL)
-                    setbuf(fileout, NULL); // unbuffered
+                if (fsbridge::freopen(pathDebug,"a",fileout) != nullptr)
+                    setbuf(fileout, nullptr); // unbuffered
             }
 
             ret = FileWriteStr(strTimestamped, fileout);
@@ -384,11 +379,11 @@ static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
     }
 }
 
-void ParseParameters(int argc, const char* const argv[])
+void ArgsManager::ParseParameters(int argc, const char* const argv[])
 {
     LOCK(cs_args);
     mapArgs.clear();
-    _mapMultiArgs.clear();
+    mapMultiArgs.clear();
 
     for (int i = 1; i < argc; i++)
     {
@@ -416,17 +411,25 @@ void ParseParameters(int argc, const char* const argv[])
         InterpretNegativeSetting(str, strValue);
 
         mapArgs[str] = strValue;
-        _mapMultiArgs[str].push_back(strValue);
+        mapMultiArgs[str].push_back(strValue);
     }
 }
 
-bool IsArgSet(const std::string& strArg)
+std::vector<std::string> ArgsManager::GetArgs(const std::string& strArg)
+{
+    LOCK(cs_args);
+    if (IsArgSet(strArg))
+        return mapMultiArgs.at(strArg);
+    return {};
+}
+
+bool ArgsManager::IsArgSet(const std::string& strArg)
 {
     LOCK(cs_args);
     return mapArgs.count(strArg);
 }
 
-std::string GetArg(const std::string& strArg, const std::string& strDefault)
+std::string ArgsManager::GetArg(const std::string& strArg, const std::string& strDefault)
 {
     LOCK(cs_args);
     if (mapArgs.count(strArg))
@@ -434,7 +437,7 @@ std::string GetArg(const std::string& strArg, const std::string& strDefault)
     return strDefault;
 }
 
-int64_t GetArg(const std::string& strArg, int64_t nDefault)
+int64_t ArgsManager::GetArg(const std::string& strArg, int64_t nDefault)
 {
     LOCK(cs_args);
     if (mapArgs.count(strArg))
@@ -442,7 +445,7 @@ int64_t GetArg(const std::string& strArg, int64_t nDefault)
     return nDefault;
 }
 
-bool GetBoolArg(const std::string& strArg, bool fDefault)
+bool ArgsManager::GetBoolArg(const std::string& strArg, bool fDefault)
 {
     LOCK(cs_args);
     if (mapArgs.count(strArg))
@@ -450,16 +453,16 @@ bool GetBoolArg(const std::string& strArg, bool fDefault)
     return fDefault;
 }
 
-bool SoftSetArg(const std::string& strArg, const std::string& strValue)
+bool ArgsManager::SoftSetArg(const std::string& strArg, const std::string& strValue)
 {
     LOCK(cs_args);
     if (mapArgs.count(strArg))
         return false;
-    mapArgs[strArg] = strValue;
+    ForceSetArg(strArg, strValue);
     return true;
 }
 
-bool SoftSetBoolArg(const std::string& strArg, bool fValue)
+bool ArgsManager::SoftSetBoolArg(const std::string& strArg, bool fValue)
 {
     if (fValue)
         return SoftSetArg(strArg, std::string("1"));
@@ -467,10 +470,12 @@ bool SoftSetBoolArg(const std::string& strArg, bool fValue)
         return SoftSetArg(strArg, std::string("0"));
 }
 
-void ForceSetArg(const std::string& strArg, const std::string& strValue)
+void ArgsManager::ForceSetArg(const std::string& strArg, const std::string& strValue)
 {
     LOCK(cs_args);
     mapArgs[strArg] = strValue;
+    mapMultiArgs[strArg].clear();
+    mapMultiArgs[strArg].push_back(strValue);
 }
 
 
@@ -494,7 +499,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
 {
 #ifdef WIN32
     char pszModule[MAX_PATH] = "";
-    GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
+    GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
     const char* pszModule = "blackcoin";
 #endif
@@ -515,7 +520,6 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    namespace fs = fs;
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Blackmore
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Blackmore
     // Mac: ~/Library/Application Support/Blackmore
@@ -526,7 +530,7 @@ fs::path GetDefaultDataDir()
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
-    if (pszHome == NULL || strlen(pszHome) == 0)
+    if (pszHome == nullptr || strlen(pszHome) == 0)
         pathRet = fs::path("/");
     else
         pathRet = fs::path(pszHome);
@@ -546,7 +550,6 @@ static CCriticalSection csPathCached;
 
 const fs::path &GetDataDir(bool fNetSpecific)
 {
-    namespace fs = fs;
 
     LOCK(csPathCached);
 
@@ -557,8 +560,8 @@ const fs::path &GetDataDir(bool fNetSpecific)
     if (!path.empty())
         return path;
 
-    if (IsArgSet("-datadir")) {
-        path = fs::system_complete(GetArg("-datadir", ""));
+    if (gArgs.IsArgSet("-datadir")) {
+        path = fs::system_complete(gArgs.GetArg("-datadir", ""));
         if (!fs::is_directory(path)) {
             path = "";
             return path;
@@ -591,7 +594,7 @@ fs::path GetConfigFile(const std::string& confPath)
     return pathConfigFile;
 }
 
-void ReadConfigFile(const std::string& confPath)
+void ArgsManager::ReadConfigFile(const std::string& confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
@@ -599,18 +602,18 @@ void ReadConfigFile(const std::string& confPath)
 
     {
         LOCK(cs_args);
-        set<string> setOptions;
+        std::set<std::string> setOptions;
         setOptions.insert("*");
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
             // Don't overwrite existing settings so command line settings override bitcoin.conf
-            string strKey = string("-") + it->string_key;
-            string strValue = it->value[0];
+            std::string strKey = std::string("-") + it->string_key;
+            std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
             if (mapArgs.count(strKey) == 0)
                 mapArgs[strKey] = strValue;
-            _mapMultiArgs[strKey].push_back(strValue);
+            mapMultiArgs[strKey].push_back(strValue);
         }
     }
     // If datadir is changed in .conf file:
@@ -620,14 +623,14 @@ void ReadConfigFile(const std::string& confPath)
 #ifndef WIN32
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(GetArg("-pid", BITCOIN_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", BITCOIN_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
 
 void CreatePidFile(const fs::path &path, pid_t pid)
 {
-    FILE* file = fopen(path.string().c_str(), "w");
+    FILE* file = fsbridge::fopen(path, "w");
     if (file)
     {
         fprintf(file, "%d\n", pid);
@@ -648,21 +651,21 @@ bool RenameOver(fs::path src, fs::path dest)
 }
 
 /**
- * Ignores exceptions thrown by Boost's create_directory if the requested directory exists.
+ * Ignores exceptions thrown by Boost's create_directories if the requested directory exists.
  * Specifically handles case where path p exists, but it wasn't possible for the user to
  * write to the parent directory.
  */
-bool TryCreateDirectory(const fs::path& p)
+bool TryCreateDirectories(const fs::path& p)
 {
     try
     {
-        return fs::create_directory(p);
+        return fs::create_directories(p);
     } catch (const fs::filesystem_error&) {
         if (!fs::exists(p) || !fs::is_directory(p))
             throw;
     }
 
-    // create_directory didn't create the directory, it had to have existed already
+    // create_directories didn't create the directory, it had to have existed already
     return false;
 }
 
@@ -766,7 +769,7 @@ void ShrinkDebugFile()
     constexpr size_t RECENT_DEBUG_HISTORY_SIZE = 10 * 1000000;
     // Scroll debug.log if it's getting too big
     fs::path pathLog = GetDataDir() / "debug.log";
-    FILE* file = fopen(pathLog.string().c_str(), "r");
+    FILE* file = fsbridge::fopen(pathLog, "r");
     // If debug.log file is more than 10% bigger the RECENT_DEBUG_HISTORY_SIZE
     // trim it down by saving only the last RECENT_DEBUG_HISTORY_SIZE bytes
     if (file && fs::file_size(pathLog) > 11 * (RECENT_DEBUG_HISTORY_SIZE / 10))
@@ -777,25 +780,23 @@ void ShrinkDebugFile()
         int nBytes = fread(vch.data(), 1, vch.size(), file);
         fclose(file);
 
-        file = fopen(pathLog.string().c_str(), "w");
+        file = fsbridge::fopen(pathLog, "w");
         if (file)
         {
             fwrite(vch.data(), 1, nBytes, file);
             fclose(file);
         }
     }
-    else if (file != NULL)
+    else if (file != nullptr)
         fclose(file);
 }
 
 #ifdef WIN32
 fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
 {
-    namespace fs = fs;
-
     char pszPath[MAX_PATH] = "";
 
-    if(SHGetSpecialFolderPathA(NULL, pszPath, nFolder, fCreate))
+    if(SHGetSpecialFolderPathA(nullptr, pszPath, nFolder, fCreate))
     {
         return fs::path(pszPath);
     }

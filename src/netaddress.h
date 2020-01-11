@@ -73,7 +73,6 @@ class CNetAddr
         bool IsRoutable() const;
         bool IsInternal() const;
         bool IsValid() const;
-        bool IsMulticast() const;
         enum Network GetNetwork() const;
         std::string ToString() const;
         std::string ToStringIP() const;
@@ -81,7 +80,7 @@ class CNetAddr
         uint64_t GetHash() const;
         bool GetInAddr(struct in_addr* pipv4Addr) const;
         std::vector<unsigned char> GetGroup() const;
-        int GetReachabilityFrom(const CNetAddr *paddrPartner = NULL) const;
+        int GetReachabilityFrom(const CNetAddr *paddrPartner = nullptr) const;
 
         CNetAddr(const struct in6_addr& pipv6Addr, const uint32_t scope = 0);
         bool GetIn6Addr(struct in6_addr* pipv6Addr) const;
@@ -149,7 +148,6 @@ class CService : public CNetAddr
         CService(const struct in_addr& ipv4Addr, unsigned short port);
         CService(const struct sockaddr_in& addr);
         void Init();
-        void SetPort(unsigned short portIn);
         unsigned short GetPort() const;
         bool GetSockAddr(struct sockaddr* paddr, socklen_t *addrlen) const;
         bool SetSockAddr(const struct sockaddr* paddr);

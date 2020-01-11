@@ -63,7 +63,8 @@ public:
     TxInUndoDeserializer(Coin* coin) : txout(coin) {}
 };
 
-static const size_t MAX_INPUTS_PER_BLOCK = MAX_BLOCK_SIZE / ::GetSerializeSize(CTxIn(), SER_NETWORK, PROTOCOL_VERSION);
+static const size_t MIN_TRANSACTION_INPUT_SIZE = ::GetSerializeSize(CTxIn(), SER_NETWORK, PROTOCOL_VERSION);
+static const size_t MAX_INPUTS_PER_BLOCK = MAX_BLOCK_SIZE / MIN_TRANSACTION_INPUT_SIZE;
 
 /** Undo information for a CTransaction */
 class CTxUndo

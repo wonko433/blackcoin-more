@@ -26,4 +26,4 @@ See the Blackcoin website at:
 
 Also see the bitcoin wiki at:
   https://en.bitcoin.it/wiki/Main_Page
-for more help and information.
+for more help and information. 

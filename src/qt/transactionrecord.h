@@ -69,8 +69,7 @@ public:
     /** Current number of blocks (to know whether cached status is still valid) */
     int cur_num_blocks;
 
-    /** Number of conflicts received into wallet as of last status update */
-    int64_t cur_num_conflicts;
+    bool needsUpdate;
 };
 
 /** UI model for a transaction. A core transaction can be represented by multiple UI transactions if it has

@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Criar novo endereço</translation>
+        <translation>Criar um novo endereço</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>Escol&amp;ha</translation>
+        <translation>E&amp;scolha</translation>
     </message>
     <message>
         <source>Sending addresses</source>
@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>Copiar rótu&amp;lo</translation>
+        <translation>Copiar &amp;rótulo</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -87,7 +87,7 @@
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>Comma separated file (*.csv)</translation>
+        <translation>Arquivo separado por virgula (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>Syncing Headers (%1%)...</source>
-        <translation>Sincronizando cabeçahos (%1%)...</translation>
+        <translation>Sincronizando cabeçalhos (%1%)...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
@@ -923,7 +923,7 @@
     </message>
     <message>
         <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>Desconhecido. Sincroniando cabeçahos (%1)...</translation>
+        <translation>Desconhecido. Sincronizando cabeçalhos (%1)...</translation>
     </message>
 </context>
 <context>
@@ -3690,10 +3690,6 @@
         <translation>Buscar por endereços de peers via DNS, se estiver baixo em endereços (padrão: 1 a não ser que -connect/-noconnect)</translation>
     </message>
     <message>
-        <source>Sets the serialization of raw transaction or block hex returned in non-verbose mode, non-segwit(0) or segwit(1) (default: %d)</source>
-        <translation>Define a criação do raw da transação ou bloco em modo não verbal, não segwit (0) ou segwit (1) (padrão: %d)</translation>
-    </message>
-    <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
         <translation>Suportar filtragem de blocos e transações com filtros bloom (padrão: %u)</translation>
     </message>
@@ -3802,10 +3798,6 @@
         <translation>Retransmitir P2SH não multisig (padrão: %u)</translation>
     </message>
     <message>
-        <source>Send transactions with full-RBF opt-in enabled (default: %u)</source>
-        <translation>Ativar opção full-RBF nas transações enviadas (padrão: %u)</translation>
-    </message>
-    <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>
         <translation>Defina o tamanho da chave para piscina&lt;n&gt; (padrão: %u)</translation>
     </message>
@@ -3835,7 +3827,7 @@
     </message>
     <message>
         <source>Starting network threads...</source>
-        <translation>Iniciando análise da rede...</translation>
+        <translation>Iniciando atividades da rede...</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
@@ -3855,11 +3847,11 @@
     </message>
     <message>
         <source>Transaction amounts must not be negative</source>
-        <translation>As quantidades das transações devem ser positivas.</translation>
+        <translation>As quantidades das transações não podem serem negativas</translation>
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
-        <translation>A transação demorou muito na memória</translation>
+        <translation>A transação demorou muito para ser confirmada na mempool chain</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
@@ -3879,7 +3871,7 @@
     </message>
     <message>
         <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>Adicionar um cliente para se conectar e tentar manter a conexão ativa</translation>
+        <translation>Adicionar um nódulo para se conectar e tentar manter a conexão ativa</translation>
     </message>
     <message>
         <source>Loading wallet...</source>

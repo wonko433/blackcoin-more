@@ -6,6 +6,7 @@
 #ifndef BITCOIN_PRIMITIVES_TRANSACTION_H
 #define BITCOIN_PRIMITIVES_TRANSACTION_H
 
+#include <stdint.h>
 #include "amount.h"
 #include "script/script.h"
 #include "serialize.h"
@@ -102,7 +103,7 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITE(prevout);
-        READWRITE(*(CScriptBase*)(&scriptSig));
+        READWRITE(scriptSig);
         READWRITE(nSequence);
     }
 
@@ -142,7 +143,7 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITE(nValue);
-        READWRITE(*(CScriptBase*)(&scriptPubKey));
+        READWRITE(scriptPubKey);
     }
 
     void SetNull()
@@ -155,25 +156,6 @@ public:
     {
         return (nValue == -1);
     }
-
-    void SetEmpty()
-    {
-        nValue = 0;
-        scriptPubKey.clear();
-    }
-
-    bool IsEmpty() const
-    {
-        return (nValue == 0 && scriptPubKey.empty());
-    }
-
-    bool IsUnspendable() const
-    {
-        return IsEmpty() ||
-                 (scriptPubKey.size() > 0 && *scriptPubKey.begin() == OP_RETURN);
-    }
-
-    uint256 GetHash() const;
 
     friend bool operator==(const CTxOut& a, const CTxOut& b)
     {

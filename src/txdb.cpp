@@ -54,6 +54,28 @@ struct CoinEntry {
 
 }
 
+struct CoinEntry {
+    COutPoint* outpoint;
+    char key;
+    CoinEntry(const COutPoint* ptr) : outpoint(const_cast<COutPoint*>(ptr)), key(DB_COIN)  {}
+
+    template<typename Stream>
+    void Serialize(Stream &s) const {
+        s << key;
+        s << outpoint->hash;
+        s << VARINT(outpoint->n);
+    }
+
+    template<typename Stream>
+    void Unserialize(Stream& s) {
+        s >> key;
+        s >> outpoint->hash;
+        s >> VARINT(outpoint->n);
+    }
+};
+
+}
+
 CCoinsViewDB::CCoinsViewDB(size_t nCacheSize, bool fMemory, bool fWipe) : db(GetDataDir() / "chainstate", nCacheSize, fMemory, fWipe, true)
 {
 }
@@ -85,8 +107,8 @@ bool CCoinsViewDB::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) {
     CDBBatch batch(db);
     size_t count = 0;
     size_t changed = 0;
-    size_t batch_size = (size_t)GetArg("-dbbatchsize", nDefaultDbBatchSize);
-    int crash_simulate = GetArg("-dbcrashratio", 0);
+    size_t batch_size = (size_t)gArgs.GetArg("-dbbatchsize", nDefaultDbBatchSize);
+    int crash_simulate = gArgs.GetArg("-dbcrashratio", 0);
     assert(!hashBlock.IsNull());
 
     uint256 old_tip = GetBestBlock();
@@ -126,7 +148,7 @@ bool CCoinsViewDB::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) {
                 static FastRandomContext rng;
                 if (rng.randrange(crash_simulate) == 0) {
                     LogPrintf("Simulating a crash. Goodbye.\n");
-                    exit(0);
+                    _Exit(0);
                 }
             }
         }
@@ -172,7 +194,7 @@ bool CBlockTreeDB::ReadLastBlockFile(int &nFile) {
 
 CCoinsViewCursor *CCoinsViewDB::Cursor() const
 {
-    CCoinsViewDBCursor *i = new CCoinsViewDBCursor(const_cast<CDBWrapper*>(&db)->NewIterator(), GetBestBlock());
+    CCoinsViewDBCursor *i = new CCoinsViewDBCursor(const_cast<CDBWrapper&>(db).NewIterator(), GetBestBlock());
     /* It seems that there are no "const iterators" for LevelDB.  Since we
        only need read operations on it, use a const-cast to get around
        that restriction.  */
@@ -259,7 +281,7 @@ bool CBlockTreeDB::ReadFlag(const std::string &name, bool &fValue) {
     return true;
 }
 
-bool CBlockTreeDB::LoadBlockIndexGuts(std::function<CBlockIndex*(const uint256&)> insertBlockIndex)
+bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, std::function<CBlockIndex*(const uint256&)> insertBlockIndex)
 {
     std::unique_ptr<CDBIterator> pcursor(NewIterator());
 
@@ -288,18 +310,12 @@ bool CBlockTreeDB::LoadBlockIndexGuts(std::function<CBlockIndex*(const uint256&)
                 pindexNew->nStakeModifier = diskindex.nStakeModifier;
                 pindexNew->nTx            = diskindex.nTx;
 
-                // Litecoin: Disable PoW Sanity check while loading block index from disk.
-                                // We use the sha256 hash for the block index for performance reasons, which is recorded for later use.
-                                // CheckProofOfWork() uses the scrypt hash which is discarded after a block is accepted.
-                                // While it is technically feasible to verify the PoW, doing so takes several minutes as it
-                                // requires recomputing every PoW hash during every Litecoin startup.
-                                // We opt instead to simply trust the data that is on your local disk.
-                                //if (!CheckProofOfWork(pindexNew->GetBlockPoWHash(), pindexNew->nBits, Params().GetConsensus()))
-                //    return error("LoadBlockIndex(): CheckProofOfWork failed: %s", pindexNew->ToString());
+                if (!CheckProofOfWork(pindexNew->GetBlockPoWHash(), pindexNew->nBits, consensusParams))
+                    return error("%s: CheckProofOfWork failed: %s", __func__, pindexNew->ToString());
 
                 pcursor->Next();
             } else {
-                return error("LoadBlockIndex() : failed to read value");
+                return error("%s: failed to read value", __func__);
             }
         } else {
             break;
@@ -438,5 +454,5 @@ bool CCoinsViewDB::Upgrade() {
     db.CompactRange({DB_COINS, uint256()}, key);
     uiInterface.SetProgressBreakAction(std::function<void(void)>());
     LogPrintf("[%s].\n", ShutdownRequested() ? "CANCELLED" : "DONE");
-    return true;
+    return !ShutdownRequested();
 }

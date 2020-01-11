@@ -17,20 +17,13 @@ SEQUENCE_LOCKTIME_MASK = 0x0000ffff
 NOT_FINAL_ERROR = "64: non-BIP68-final"
 
 class BIP68Test(BitcoinTestFramework):
-    def __init__(self):
-        super().__init__()
+    def set_test_params(self):
         self.num_nodes = 2
-        self.setup_clean_chain = False
-
-    def setup_network(self):
-        self.nodes = []
-        self.nodes.append(start_node(0, self.options.tmpdir))
-        self.nodes.append(start_node(1, self.options.tmpdir, ["-acceptnonstdtxn=0"]))
-        self.is_network_split = False
-        self.relayfee = self.nodes[0].getnetworkinfo()["relayfee"]
-        connect_nodes(self.nodes[0], 1)
+        self.extra_args = [[], ["-acceptnonstdtxn=0"]]
 
     def run_test(self):
+        self.relayfee = self.nodes[0].getnetworkinfo()["relayfee"]
+
         # Generate some coins
         self.nodes[0].generate(110)
 
@@ -90,12 +83,7 @@ class BIP68Test(BitcoinTestFramework):
         tx2.vout = [CTxOut(int(value-self.relayfee*COIN), CScript([b'a']))]
         tx2.rehash()
 
-        try:
-            self.nodes[0].sendrawtransaction(ToHex(tx2))
-        except JSONRPCException as exp:
-            assert_equal(exp.error["message"], NOT_FINAL_ERROR)
-        else:
-            assert(False)
+        assert_raises_rpc_error(-26, NOT_FINAL_ERROR, self.nodes[0].sendrawtransaction, ToHex(tx2))
 
         # Setting the version back down to 1 should disable the sequence lock,
         # so this should be accepted.
@@ -190,14 +178,12 @@ class BIP68Test(BitcoinTestFramework):
             tx.vout.append(CTxOut(int(value-self.relayfee*tx_size*COIN/1000), CScript([b'a'])))
             rawtx = self.nodes[0].signrawtransaction(ToHex(tx))["hex"]
 
-            try:
-                self.nodes[0].sendrawtransaction(rawtx)
-            except JSONRPCException as exp:
-                assert(not should_pass and using_sequence_locks)
-                assert_equal(exp.error["message"], NOT_FINAL_ERROR)
+            if (using_sequence_locks and not should_pass):
+                # This transaction should be rejected
+                assert_raises_rpc_error(-26, NOT_FINAL_ERROR, self.nodes[0].sendrawtransaction, rawtx)
             else:
-                assert(should_pass or not using_sequence_locks)
-                # Recalculate utxos if we successfully sent the transaction
+                # This raw transaction should be accepted
+                self.nodes[0].sendrawtransaction(rawtx)
                 utxos = self.nodes[0].listunspent()
 
     # Test that sequence locks on unconfirmed inputs must have nSequence
@@ -239,14 +225,13 @@ class BIP68Test(BitcoinTestFramework):
             tx.vout = [CTxOut(int(orig_tx.vout[0].nValue - relayfee*COIN), CScript([b'a']))]
             tx.rehash()
 
-            try:
-                node.sendrawtransaction(ToHex(tx))
-            except JSONRPCException as exp:
-                assert_equal(exp.error["message"], NOT_FINAL_ERROR)
-                assert(orig_tx.hash in node.getrawmempool())
+            if (orig_tx.hash in node.getrawmempool()):
+                # sendrawtransaction should fail if the tx is in the mempool
+                assert_raises_rpc_error(-26, NOT_FINAL_ERROR, node.sendrawtransaction, ToHex(tx))
             else:
-                # orig_tx must not be in mempool
-                assert(orig_tx.hash not in node.getrawmempool())
+                # sendrawtransaction should succeed if the tx is not in the mempool
+                node.sendrawtransaction(ToHex(tx))
+
             return tx
 
         test_nonzero_locks(tx2, self.nodes[0], self.relayfee, use_height_lock=True)
@@ -254,7 +239,7 @@ class BIP68Test(BitcoinTestFramework):
 
         # Now mine some blocks, but make sure tx2 doesn't get mined.
         # Use prioritisetransaction to lower the effective feerate to 0
-        self.nodes[0].prioritisetransaction(tx2.hash, int(-self.relayfee*COIN))
+        self.nodes[0].prioritisetransaction(txid=tx2.hash, fee_delta=int(-self.relayfee*COIN))
         cur_time = int(time.time())
         for i in range(10):
             self.nodes[0].setmocktime(cur_time + 600)
@@ -267,7 +252,7 @@ class BIP68Test(BitcoinTestFramework):
         test_nonzero_locks(tx2, self.nodes[0], self.relayfee, use_height_lock=False)
 
         # Mine tx2, and then try again
-        self.nodes[0].prioritisetransaction(tx2.hash, int(self.relayfee*COIN))
+        self.nodes[0].prioritisetransaction(txid=tx2.hash, fee_delta=int(self.relayfee*COIN))
 
         # Advance the time on the node so that we can test timelocks
         self.nodes[0].setmocktime(cur_time+600)
@@ -295,12 +280,7 @@ class BIP68Test(BitcoinTestFramework):
         tx5.vout[0].nValue += int(utxos[0]["amount"]*COIN)
         raw_tx5 = self.nodes[0].signrawtransaction(ToHex(tx5))["hex"]
 
-        try:
-            self.nodes[0].sendrawtransaction(raw_tx5)
-        except JSONRPCException as exp:
-            assert_equal(exp.error["message"], NOT_FINAL_ERROR)
-        else:
-            assert(False)
+        assert_raises_rpc_error(-26, NOT_FINAL_ERROR, self.nodes[0].sendrawtransaction, raw_tx5)
 
         # Test mempool-BIP68 consistency after reorg
         #
@@ -373,12 +353,7 @@ class BIP68Test(BitcoinTestFramework):
         tx3.vout = [CTxOut(int(tx2.vout[0].nValue - self.relayfee*COIN), CScript([b'a']))]
         tx3.rehash()
 
-        try:
-            self.nodes[0].sendrawtransaction(ToHex(tx3))
-        except JSONRPCException as exp:
-            assert_equal(exp.error["message"], NOT_FINAL_ERROR)
-        else:
-            assert(False)
+        assert_raises_rpc_error(-26, NOT_FINAL_ERROR, self.nodes[0].sendrawtransaction, ToHex(tx3))
 
         # make a block that violates bip68; ensure that the tip updates
         tip = int(self.nodes[0].getbestblockhash(), 16)
@@ -394,11 +369,14 @@ class BIP68Test(BitcoinTestFramework):
 
     def activateCSV(self):
         # activation should happen at block height 432 (3 periods)
+        # getblockchaininfo will show CSV as active at block 431 (144 * 3 -1) since it's returning whether CSV is active for the next block.
         min_activation_height = 432
         height = self.nodes[0].getblockcount()
-        assert(height < min_activation_height)
-        self.nodes[0].generate(min_activation_height-height)
-        assert(get_bip9_status(self.nodes[0], 'csv')['status'] == 'active')
+        assert_greater_than(min_activation_height - height, 2)
+        self.nodes[0].generate(min_activation_height - height - 2)
+        assert_equal(get_bip9_status(self.nodes[0], 'csv')['status'], "locked_in")
+        self.nodes[0].generate(1)
+        assert_equal(get_bip9_status(self.nodes[0], 'csv')['status'], "active")
         sync_blocks(self.nodes)
 
     # Use self.nodes[1] to test that version 2 transactions are standard.

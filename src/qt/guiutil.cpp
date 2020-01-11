@@ -509,7 +509,7 @@ void SubstituteFonts(const QString& language)
             /* 10.10 or later system */
             if (language == "zh_CN" || language == "zh_TW" || language == "zh_HK") // traditional or simplified Chinese
               QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Heiti SC");
-            else if (language == "ja") // Japanesee
+            else if (language == "ja") // Japanese
               QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Songti SC");
             else
               QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Lucida Grande");
@@ -686,11 +686,11 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
     if (fAutoStart)
     {
-        CoInitialize(NULL);
+        CoInitialize(nullptr);
 
         // Get a pointer to the IShellLink interface.
-        IShellLink* psl = NULL;
-        HRESULT hres = CoCreateInstance(CLSID_ShellLink, NULL,
+        IShellLink* psl = nullptr;
+        HRESULT hres = CoCreateInstance(CLSID_ShellLink, nullptr,
             CLSCTX_INPROC_SERVER, IID_IShellLink,
             reinterpret_cast<void**>(&psl));
 
@@ -698,12 +698,12 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         {
             // Get the current executable path
             TCHAR pszExePath[MAX_PATH];
-            GetModuleFileName(NULL, pszExePath, sizeof(pszExePath));
+            GetModuleFileName(nullptr, pszExePath, sizeof(pszExePath));
 
             // Start client minimized
             QString strArgs = "-min";
             // Set -testnet /-regtest options
-            strArgs += QString::fromStdString(strprintf(" -testnet=%d -regtest=%d", GetBoolArg("-testnet", false), GetBoolArg("-regtest", false)));
+            strArgs += QString::fromStdString(strprintf(" -testnet=%d -regtest=%d", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false)));
 
 #ifdef UNICODE
             boost::scoped_array<TCHAR> args(new TCHAR[strArgs.length() + 1]);
@@ -726,7 +726,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
             // Query IShellLink for the IPersistFile interface for
             // saving the shortcut in persistent storage.
-            IPersistFile* ppf = NULL;
+            IPersistFile* ppf = nullptr;
             hres = psl->QueryInterface(IID_IPersistFile, reinterpret_cast<void**>(&ppf));
             if (SUCCEEDED(hres))
             {
@@ -754,8 +754,6 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
 fs::path static GetAutostartDir()
 {
-    namespace fs = fs;
-
     char* pszConfigHome = getenv("XDG_CONFIG_HOME");
     if (pszConfigHome) return fs::path(pszConfigHome) / "autostart";
     char* pszHome = getenv("HOME");
@@ -814,7 +812,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
             optionFile << "Name=Bitcoin\n";
         else
             optionFile << strprintf("Name=Bitcoin (%s)\n", chain);
-        optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", GetBoolArg("-testnet", false), GetBoolArg("-regtest", false));
+        optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
         optionFile.close();
@@ -835,26 +833,21 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
 LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef findUrl)
 {
     // loop through the list of startup items and try to find the bitcoin app
-    CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, NULL);
-    if (listSnapshot == NULL) {
-        return nullptr;
-    }
-    
-    // loop through the list of startup items and try to find the bitcoin app
+    CFArrayRef listSnapshot = LSSharedFileListCopySnapshot(list, nullptr);
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-        CFURLRef currentItemURL = NULL;
+        CFURLRef currentItemURL = nullptr;
 
 #if defined(MAC_OS_X_VERSION_MAX_ALLOWED) && MAC_OS_X_VERSION_MAX_ALLOWED >= 10100
     if(&LSSharedFileListItemCopyResolvedURL)
-        currentItemURL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, NULL);
+        currentItemURL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, nullptr);
 #if defined(MAC_OS_X_VERSION_MIN_REQUIRED) && MAC_OS_X_VERSION_MIN_REQUIRED < 10100
     else
-        LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, NULL);
+        LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, nullptr);
 #endif
 #else
-    LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, NULL);
+    LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, nullptr);
 #endif
 
         if(currentItemURL) {
@@ -867,19 +860,12 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
             CFRelease(currentItemURL);
         }
     }
-
-    CFRelease(listSnapshot);
-    return NULL;
+    return nullptr;
 }
 
 bool GetStartOnSystemStartup()
 {
     CFURLRef bitcoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-
-    if (bitcoinAppUrl == nullptr) {
-        return false;
-    }
-    
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
@@ -890,17 +876,12 @@ bool GetStartOnSystemStartup()
 bool SetStartOnSystemStartup(bool fAutoStart)
 {
     CFURLRef bitcoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-
-    if (bitcoinAppUrl == nullptr) {
-        return false;
-    }
-    
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if(fAutoStart && !foundItem) {
         // add bitcoin app to startup item list
-        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, NULL, NULL, bitcoinAppUrl, NULL, NULL);
+        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitcoinAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {
         // remove item
@@ -917,32 +898,6 @@ bool GetStartOnSystemStartup() { return false; }
 bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 
 #endif
-
-void saveWindowGeometry(const QString& strSetting, QWidget *parent)
-{
-    QSettings settings;
-    settings.setValue(strSetting + "Pos", parent->pos());
-    settings.setValue(strSetting + "Size", parent->size());
-}
-
-void restoreWindowGeometry(const QString& strSetting, const QSize& defaultSize, QWidget *parent)
-{
-    QSettings settings;
-    QPoint pos = settings.value(strSetting + "Pos").toPoint();
-    QSize size = settings.value(strSetting + "Size", defaultSize).toSize();
-
-    parent->resize(size);
-    parent->move(pos);
-
-    if ((!pos.x() && !pos.y()) || (QApplication::desktop()->screenNumber(parent) == -1))
-    {
-        QRect screen = QApplication::desktop()->screenGeometry();
-        QPoint defaultPos((screen.width() - defaultSize.width()) / 2,
-                          (screen.height() - defaultSize.height()) / 2);
-        parent->resize(defaultSize);
-        parent->move(defaultPos);
-    }
-}
 
 void setClipboard(const QString& str)
 {

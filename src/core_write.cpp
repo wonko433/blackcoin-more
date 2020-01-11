@@ -5,7 +5,9 @@
 #include "core_io.h"
 
 #include "dstencode.h"
-#include "primitives/transaction.h"
+#include "base58.h"
+#include "consensus/consensus.h"
+#include "consensus/validation.h"
 #include "script/script.h"
 #include "script/standard.h"
 #include "serialize.h"
@@ -15,8 +17,15 @@
 #include "utilmoneystr.h"
 #include "utilstrencodings.h"
 
-#include <boost/assign/list_of.hpp>
-#include <boost/foreach.hpp>
+UniValue ValueFromAmount(const CAmount& amount)
+{
+    bool sign = amount < 0;
+    int64_t n_abs = (sign ? -amount : amount);
+    int64_t quotient = n_abs / COIN;
+    int64_t remainder = n_abs % COIN;
+    return UniValue(UniValue::VNUM,
+            strprintf("%s%d.%08d", sign ? "-" : "", quotient, remainder));
+}
 
 std::string FormatScript(const CScript& script)
 {
@@ -53,15 +62,14 @@ std::string FormatScript(const CScript& script)
     return ret.substr(0, ret.size() - 1);
 }
 
-const std::map<unsigned char, std::string> mapSigHashTypes =
-    boost::assign::map_list_of
-    (static_cast<unsigned char>(SIGHASH_ALL), std::string("ALL"))
-    (static_cast<unsigned char>(SIGHASH_ALL|SIGHASH_ANYONECANPAY), std::string("ALL|ANYONECANPAY"))
-    (static_cast<unsigned char>(SIGHASH_NONE), std::string("NONE"))
-    (static_cast<unsigned char>(SIGHASH_NONE|SIGHASH_ANYONECANPAY), std::string("NONE|ANYONECANPAY"))
-    (static_cast<unsigned char>(SIGHASH_SINGLE), std::string("SINGLE"))
-    (static_cast<unsigned char>(SIGHASH_SINGLE|SIGHASH_ANYONECANPAY), std::string("SINGLE|ANYONECANPAY"))
-    ;
+const std::map<unsigned char, std::string> mapSigHashTypes = {
+    {static_cast<unsigned char>(SIGHASH_ALL), std::string("ALL")},
+    {static_cast<unsigned char>(SIGHASH_ALL|SIGHASH_ANYONECANPAY), std::string("ALL|ANYONECANPAY")},
+    {static_cast<unsigned char>(SIGHASH_NONE), std::string("NONE")},
+    {static_cast<unsigned char>(SIGHASH_NONE|SIGHASH_ANYONECANPAY), std::string("NONE|ANYONECANPAY")},
+    {static_cast<unsigned char>(SIGHASH_SINGLE), std::string("SINGLE")},
+    {static_cast<unsigned char>(SIGHASH_SINGLE|SIGHASH_ANYONECANPAY), std::string("SINGLE|ANYONECANPAY")},
+};
 
 /**
  * Create the assembly string representation of a CScript object.
@@ -95,7 +103,7 @@ std::string ScriptToAsmStr(const CScript& script, const bool fAttemptSighashDeco
                     // this won't decode correctly formatted public keys in Pubkey or Multisig scripts due to
                     // the restrictions on the pubkey formats (see IsCompressedOrUncompressedPubKey) being incongruous with the
                     // checks in CheckSignatureEncoding.
-                    if (CheckSignatureEncoding(vch, SCRIPT_VERIFY_STRICTENC, NULL)) {
+                    if (CheckSignatureEncoding(vch, SCRIPT_VERIFY_STRICTENC, nullptr)) {
                         const unsigned char chSigHashType = vch.back();
                         if (mapSigHashTypes.count(chSigHashType)) {
                             strSigHashDecode = "[" + mapSigHashTypes.find(chSigHashType)->second + "]";
@@ -148,7 +156,7 @@ void ScriptPubKeyToUniv(const CScript& scriptPubKey,
     out.pushKV("addresses", a);
 }
 
-void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry)
+void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry, bool include_hex, int serialize_flags)
 {
     entry.pushKV("txid", tx.GetHash().GetHex());
     entry.pushKV("version", tx.nVersion);
@@ -180,8 +188,7 @@ void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry)
 
         UniValue out(UniValue::VOBJ);
 
-        UniValue outValue(UniValue::VNUM, FormatMoney(txout.nValue));
-        out.pushKV("value", outValue);
+        out.pushKV("value", ValueFromAmount(txout.nValue));
         out.pushKV("n", (int64_t)i);
 
         UniValue o(UniValue::VOBJ);
@@ -194,5 +201,7 @@ void TxToUniv(const CTransaction& tx, const uint256& hashBlock, UniValue& entry)
     if (!hashBlock.IsNull())
         entry.pushKV("blockhash", hashBlock.GetHex());
 
-    entry.pushKV("hex", EncodeHexTx(tx)); // the hex-encoded transaction. used the name "hex" to be consistent with the verbose output of "getrawtransaction".
+    if (include_hex) {
+        entry.pushKV("hex", EncodeHexTx(tx, serialize_flags)); // the hex-encoded transaction. used the name "hex" to be consistent with the verbose output of "getrawtransaction".
+    }
 }

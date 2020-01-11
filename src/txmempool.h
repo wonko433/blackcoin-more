@@ -21,14 +21,13 @@
 #include "sync.h"
 #include "random.h"
 
-#undef foreach
 #include "boost/multi_index_container.hpp"
 #include "boost/multi_index/ordered_index.hpp"
 #include "boost/multi_index/hashed_index.hpp"
+#include <boost/multi_index/sequenced_index.hpp>
 
 #include <boost/signals2/signal.hpp>
 
-class CAutoFile;
 class CBlockIndex;
 
 /** Fake height value used in Coin to signify they are only in the memory pool (since 0.8) */
@@ -46,7 +45,7 @@ struct LockPoints
     // values are still valid even after a reorg.
     CBlockIndex* maxInputBlock;
 
-    LockPoints() : height(0), time(0), maxInputBlock(NULL) { }
+    LockPoints() : height(0), time(0), maxInputBlock(nullptr) { }
 };
 
 class CTxMemPool;
@@ -60,11 +59,6 @@ class CTxMemPool;
  * When a new entry is added to the mempool, we update the descendant state
  * (nCountWithDescendants, nSizeWithDescendants, and nModFeesWithDescendants) for
  * all ancestors of the newly added transaction.
- *
- * If updating the descendant state is skipped, we can mark the entry as
- * "dirty", and set nSizeWithDescendants/nModFeesWithDescendants to equal nTxSize/
- * nFee+feeDelta. (This can potentially happen during a reorg, where we limit the
- * amount of work we're willing to do to avoid consuming too much CPU.)
  *
  */
 
@@ -84,9 +78,7 @@ private:
 
     // Information about descendants of this transaction that are in the
     // mempool; if we remove this transaction we must remove all of these
-    // descendants as well.  if nCountWithDescendants is 0, treat this entry as
-    // dirty, and nSizeWithDescendants and nModFeesWithDescendants will not be
-    // correct.
+    // descendants as well.
     uint64_t nCountWithDescendants;  //!< number of descendant transactions
     uint64_t nSizeWithDescendants;   //!< ... and size
     CAmount nModFeesWithDescendants; //!< ... and total fees (all including us)
@@ -116,7 +108,7 @@ public:
     size_t DynamicMemoryUsage() const { return nUsageSize; }
     const LockPoints& GetLockPoints() const { return lockPoints; }
 
-    // Adjusts the descendant state, if this entry is not dirty.
+    // Adjusts the descendant state.
     void UpdateDescendantState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount);
     // Adjusts the ancestor state
     void UpdateAncestorState(int64_t modifySize, CAmount modifyFee, int64_t modifyCount, int modifySigOps);
@@ -192,13 +184,18 @@ private:
     const LockPoints& lp;
 };
 
-// extracts a TxMemPoolEntry's transaction hash
+// extracts a transaction hash from CTxMempoolEntry or CTransactionRef
 struct mempoolentry_txid
 {
     typedef uint256 result_type;
     result_type operator() (const CTxMemPoolEntry &entry) const
     {
         return entry.GetTx().GetHash();
+    }
+
+    result_type operator() (const CTransactionRef& tx) const
+    {
+        return tx->GetHash();
     }
 };
 
@@ -295,8 +292,6 @@ struct entry_time {};
 struct mining_score {};
 struct ancestor_score {};
 
-class CBlockPolicyEstimator;
-
 /**
  * Information about a mempool transaction.
  */
@@ -325,6 +320,20 @@ enum class MemPoolRemovalReason {
     REORG,       //! Removed for reorganization
     BLOCK,       //! Removed for block
     CONFLICT     //! Removed for conflict with in-block transaction
+};
+
+class SaltedTxidHasher
+{
+private:
+    /** Salt */
+    const uint64_t k0, k1;
+
+public:
+    SaltedTxidHasher();
+
+    size_t operator()(const uint256& txid) const {
+        return SipHashUint256(k0, k1, txid);
+    }
 };
 
 class SaltedTxidHasher
@@ -409,21 +418,12 @@ public:
  * CalculateMemPoolAncestors() takes configurable limits that are designed to
  * prevent these calculations from being too CPU intensive.
  *
- * Adding transactions from a disconnected block can be very time consuming,
- * because we don't have a way to limit the number of in-mempool descendants.
- * To bound CPU processing, we limit the amount of work we're willing to do
- * to properly update the descendant information for a tx being added from
- * a disconnected block.  If we would exceed the limit, then we instead mark
- * the entry as "dirty", and set the feerate for sorting purposes to be equal
- * the feerate of the transaction without any descendants.
- *
  */
 class CTxMemPool
 {
 private:
     uint32_t nCheckFrequency; //!< Value n means that n times in 2^32 we check.
     unsigned int nTransactionsUpdated; //!< Used by getblocktemplate to trigger CreateNewBlock() invocation
-    CBlockPolicyEstimator* minerPolicyEstimator;
 
     uint64_t totalTxSize;      //!< sum of all mempool tx' byte sizes
     uint64_t cachedInnerUsage; //!< sum of dynamic memory usage of all the map elements (NOT the maps themselves)
@@ -508,7 +508,6 @@ public:
     /** Create a new CTxMemPool.
      */
     CTxMemPool();
-    ~CTxMemPool();
 
     /**
      * If sanity-checking is turned on, check makes sure the pool is
@@ -523,8 +522,8 @@ public:
     // to track size/count of descendant transactions.  First version of
     // addUnchecked can be used to have it call CalculateMemPoolAncestors(), and
     // then invoke the second version.
-    bool addUnchecked(const uint256& hash, const CTxMemPoolEntry &entry, bool validFeeEstimate = true);
-    bool addUnchecked(const uint256& hash, const CTxMemPoolEntry &entry, setEntries &setAncestors, bool validFeeEstimate = true);
+    bool addUnchecked(const uint256& hash, const CTxMemPoolEntry &entry);
+    bool addUnchecked(const uint256& hash, const CTxMemPoolEntry &entry, setEntries &setAncestors);
 
     void removeRecursive(const CTransaction &tx, MemPoolRemovalReason reason = MemPoolRemovalReason::UNKNOWN);
     void removeForReorg(const CCoinsViewCache *pcoins, unsigned int nMemPoolHeight, int flags);
@@ -599,7 +598,7 @@ public:
       *  pvNoSpendsRemaining, if set, will be populated with the list of outpoints
       *  which are not in mempool which no longer have any spends in this mempool.
       */
-    void TrimToSize(size_t sizelimit, std::vector<COutPoint>* pvNoSpendsRemaining=NULL);
+    void TrimToSize(size_t sizelimit, std::vector<COutPoint>* pvNoSpendsRemaining=nullptr);
 
     /** Expire all transaction (and their dependencies) in the mempool older than time. Return the number of removed transactions. */
     int Expire(int64_t time);
@@ -635,19 +634,6 @@ public:
     CTransactionRef get(const uint256& hash) const;
     TxMempoolInfo info(const uint256& hash) const;
     std::vector<TxMempoolInfo> infoAll() const;
-
-    /** Estimate fee rate needed to get into the next nBlocks
-     *  If no answer can be given at nBlocks, return an estimate
-     *  at the lowest number of blocks where one can be given
-     */
-    CFeeRate estimateSmartFee(int nBlocks, int *answerFoundAtBlocks = NULL) const;
-
-    /** Estimate fee rate needed to get into the next nBlocks */
-    CFeeRate estimateFee(int nBlocks) const;
-
-    /** Write/Read estimates to disk */
-    bool WriteFeeEstimates(CAutoFile& fileout) const;
-    bool ReadFeeEstimates(CAutoFile& filein);
 
     size_t DynamicMemoryUsage() const;
 
@@ -696,6 +682,13 @@ private:
 /** 
  * CCoinsView that brings transactions from a memorypool into view.
  * It does not check for spendings by memory pool transactions.
+ * Instead, it provides access to all Coins which are either unspent in the
+ * base CCoinsView, or are outputs from any mempool transaction!
+ * This allows transaction replacement to work as expected, as you want to
+ * have all inputs "available" to check signatures, and any cycles in the
+ * dependency graph are checked directly in AcceptToMemoryPool.
+ * It also allows you to sign a double-spend directly in signrawtransaction,
+ * as long as the conflicting transaction is not yet confirmed.
  */
 class CCoinsViewMemPool : public CCoinsViewBacked
 {
@@ -704,8 +697,98 @@ protected:
 
 public:
     CCoinsViewMemPool(CCoinsView* baseIn, const CTxMemPool& mempoolIn);
-    bool GetCoin(const COutPoint &outpoint, Coin &coin) const;
-    bool HaveCoin(const COutPoint &outpoint) const;
+    bool GetCoin(const COutPoint &outpoint, Coin &coin) const override;
+};
+
+/**
+ * DisconnectedBlockTransactions
+
+ * During the reorg, it's desirable to re-add previously confirmed transactions
+ * to the mempool, so that anything not re-confirmed in the new chain is
+ * available to be mined. However, it's more efficient to wait until the reorg
+ * is complete and process all still-unconfirmed transactions at that time,
+ * since we expect most confirmed transactions to (typically) still be
+ * confirmed in the new chain, and re-accepting to the memory pool is expensive
+ * (and therefore better to not do in the middle of reorg-processing).
+ * Instead, store the disconnected transactions (in order!) as we go, remove any
+ * that are included in blocks in the new chain, and then process the remaining
+ * still-unconfirmed transactions at the end.
+ */
+
+// multi_index tag names
+struct txid_index {};
+struct insertion_order {};
+
+struct DisconnectedBlockTransactions {
+    typedef boost::multi_index_container<
+        CTransactionRef,
+        boost::multi_index::indexed_by<
+            // sorted by txid
+            boost::multi_index::hashed_unique<
+                boost::multi_index::tag<txid_index>,
+                mempoolentry_txid,
+                SaltedTxidHasher
+            >,
+            // sorted by order in the blockchain
+            boost::multi_index::sequenced<
+                boost::multi_index::tag<insertion_order>
+            >
+        >
+    > indexed_disconnected_transactions;
+
+    // It's almost certainly a logic bug if we don't clear out queuedTx before
+    // destruction, as we add to it while disconnecting blocks, and then we
+    // need to re-process remaining transactions to ensure mempool consistency.
+    // For now, assert() that we've emptied out this object on destruction.
+    // This assert() can always be removed if the reorg-processing code were
+    // to be refactored such that this assumption is no longer true (for
+    // instance if there was some other way we cleaned up the mempool after a
+    // reorg, besides draining this object).
+    ~DisconnectedBlockTransactions() { assert(queuedTx.empty()); }
+
+    indexed_disconnected_transactions queuedTx;
+    uint64_t cachedInnerUsage = 0;
+
+    // Estimate the overhead of queuedTx to be 6 pointers + an allocation, as
+    // no exact formula for boost::multi_index_contained is implemented.
+    size_t DynamicMemoryUsage() const {
+        return memusage::MallocUsage(sizeof(CTransactionRef) + 6 * sizeof(void*)) * queuedTx.size() + cachedInnerUsage;
+    }
+
+    void addTransaction(const CTransactionRef& tx)
+    {
+        queuedTx.insert(tx);
+        cachedInnerUsage += RecursiveDynamicUsage(tx);
+    }
+
+    // Remove entries based on txid_index, and update memory usage.
+    void removeForBlock(const std::vector<CTransactionRef>& vtx)
+    {
+        // Short-circuit in the common case of a block being added to the tip
+        if (queuedTx.empty()) {
+            return;
+        }
+        for (auto const &tx : vtx) {
+            auto it = queuedTx.find(tx->GetHash());
+            if (it != queuedTx.end()) {
+                cachedInnerUsage -= RecursiveDynamicUsage(*it);
+                queuedTx.erase(it);
+            }
+        }
+    }
+
+    // Remove an entry by insertion_order index, and update memory usage.
+    void removeEntry(indexed_disconnected_transactions::index<insertion_order>::type::iterator entry)
+    {
+        cachedInnerUsage -= RecursiveDynamicUsage(*entry);
+        queuedTx.get<insertion_order>().erase(entry);
+    }
+
+    void clear()
+    {
+        cachedInnerUsage = 0;
+        queuedTx.clear();
+    }
 };
 
 #endif // BITCOIN_TXMEMPOOL_H

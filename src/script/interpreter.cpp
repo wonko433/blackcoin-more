@@ -13,9 +13,7 @@
 #include "script/script.h"
 #include "uint256.h"
 
-using namespace std;
-
-typedef vector<unsigned char> valtype;
+typedef std::vector<unsigned char> valtype;
 
 namespace {
 
@@ -33,7 +31,7 @@ inline bool set_error(ScriptError* ret, const ScriptError serror)
     return false;
 }
 
-} // anon namespace
+} // namespace
 
 bool CastToBool(const valtype& vch)
 {
@@ -56,14 +54,14 @@ bool CastToBool(const valtype& vch)
  */
 #define stacktop(i)  (stack.at(stack.size()+(i)))
 #define altstacktop(i)  (altstack.at(altstack.size()+(i)))
-static inline void popstack(vector<valtype>& stack)
+static inline void popstack(std::vector<valtype>& stack)
 {
     if (stack.empty())
-        throw runtime_error("popstack(): stack empty");
+        throw std::runtime_error("popstack(): stack empty");
     stack.pop_back();
 }
 
-bool IsCompressedOrUncompressedPubKey(const vector<unsigned char> &vchPubKey) {
+bool static IsCompressedOrUncompressedPubKey(const vector<unsigned char> &vchPubKey) {
     if (vchPubKey.size() < 33) {
         //  Non-canonical public key: too short
         return false;
@@ -201,7 +199,7 @@ bool static IsDefinedHashtypeSignature(const valtype &vchSig) {
     return true;
 }
 
-bool CheckSignatureEncoding(const vector<unsigned char> &vchSig, unsigned int flags, ScriptError* serror) {
+bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned int flags, ScriptError* serror) {
     // Empty signature. Not strictly DER encoded, but allowed to provide a
     // compact way to provide an invalid signature for use with CHECK(MULTI)SIG
     if (vchSig.size() == 0) {
@@ -248,14 +246,14 @@ bool static CheckMinimalPush(const valtype& data, opcodetype opcode) {
     return true;
 }
 
-bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, unsigned int flags, const BaseSignatureChecker& checker, ScriptError* serror)
+bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& script, unsigned int flags, const BaseSignatureChecker& checker, ScriptError* serror)
 {
     static const CScriptNum bnZero(0);
     static const CScriptNum bnOne(1);
-    static const CScriptNum bnFalse(0);
-    static const CScriptNum bnTrue(1);
+    // static const CScriptNum bnFalse(0);
+    // static const CScriptNum bnTrue(1);
     static const valtype vchFalse(0);
-    static const valtype vchZero(0);
+    // static const valtype vchZero(0);
     static const valtype vchTrue(1, 1);
 
     CScript::const_iterator pc = script.begin();
@@ -263,8 +261,8 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
     CScript::const_iterator pbegincodehash = script.begin();
     opcodetype opcode;
     valtype vchPushValue;
-    vector<bool> vfExec;
-    vector<valtype> altstack;
+    std::vector<bool> vfExec;
+    std::vector<valtype> altstack;
     set_error(serror, SCRIPT_ERR_UNKNOWN_ERROR);
     if (script.size() > MAX_SCRIPT_SIZE)
         return set_error(serror, SCRIPT_ERR_SCRIPT_SIZE);
@@ -1029,7 +1027,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
             }
 
             // Size limits
-            if (stack.size() + altstack.size() > 1000)
+            if (stack.size() + altstack.size() > MAX_STACK_SIZE)
                 return set_error(serror, SCRIPT_ERR_STACK_SIZE);
         }
     }
@@ -1100,7 +1098,7 @@ public:
         // Serialize the script
         if (nInput != nIn)
             // Blank out other inputs' signatures
-            ::Serialize(s, CScriptBase());
+            ::Serialize(s, CScript());
         else
             SerializeScriptCode(s);
         // Serialize the nSequence
@@ -1145,29 +1143,29 @@ public:
 
 uint256 GetPrevoutHash(const CTransaction& txTo) {
     CHashWriter ss(SER_GETHASH, 0);
-    for (unsigned int n = 0; n < txTo.vin.size(); n++) {
-        ss << txTo.vin[n].prevout;
+    for (const auto& txin : txTo.vin) {
+        ss << txin.prevout;
     }
     return ss.GetHash();
 }
 
 uint256 GetSequenceHash(const CTransaction& txTo) {
     CHashWriter ss(SER_GETHASH, 0);
-    for (unsigned int n = 0; n < txTo.vin.size(); n++) {
-        ss << txTo.vin[n].nSequence;
+    for (const auto& txin : txTo.vin) {
+        ss << txin.nSequence;
     }
     return ss.GetHash();
 }
 
 uint256 GetOutputsHash(const CTransaction& txTo) {
     CHashWriter ss(SER_GETHASH, 0);
-    for (unsigned int n = 0; n < txTo.vout.size(); n++) {
-        ss << txTo.vout[n];
+    for (const auto& txout : txTo.vout) {
+        ss << txout;
     }
     return ss.GetHash();
 }
 
-} // anon namespace
+} // namespace
 
 PrecomputedTransactionData::PrecomputedTransactionData(const CTransaction& txTo)
 {
@@ -1206,14 +1204,14 @@ bool TransactionSignatureChecker::VerifySignature(const std::vector<unsigned cha
     return pubkey.Verify(sighash, vchSig);
 }
 
-bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn, const vector<unsigned char>& vchPubKey, const CScript& scriptCode) const
+bool TransactionSignatureChecker::CheckSig(const std::vector<unsigned char>& vchSigIn, const std::vector<unsigned char>& vchPubKey, const CScript& scriptCode) const
 {
     CPubKey pubkey(vchPubKey);
     if (!pubkey.IsValid())
         return false;
 
     // Hash type is one byte tacked on to the end of the signature
-    vector<unsigned char> vchSig(vchSigIn);
+    std::vector<unsigned char> vchSig(vchSigIn);
     if (vchSig.empty())
         return false;
     int nHashType = vchSig.back();
@@ -1317,7 +1315,7 @@ bool VerifyScript(const CScript& scriptSig, const CScript& scriptPubKey, unsigne
         return set_error(serror, SCRIPT_ERR_SIG_PUSHONLY);
     }
 
-    vector<vector<unsigned char> > stack, stackCopy;
+    std::vector<std::vector<unsigned char> > stack, stackCopy;
     if (!EvalScript(stack, scriptSig, flags, checker, serror))
         // serror is set
         return false;

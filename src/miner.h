@@ -14,10 +14,7 @@
 
 class CBlockIndex;
 class CChainParams;
-class CReserveKey;
 class CScript;
-class CWallet;
-class CBlock;
 
 namespace Consensus { struct Params; };
 
@@ -159,7 +156,16 @@ private:
     const CChainParams& chainparams;
 
 public:
-    BlockAssembler(const CChainParams& chainparams);
+    struct Options {
+        Options();
+        size_t nBlockMaxWeight;
+        size_t nBlockMaxSize;
+        CFeeRate blockMinFeeRate;
+    };
+
+    BlockAssembler(const CChainParams& params);
+    BlockAssembler(const CChainParams& params, const Options& options);
+
     /** Construct a new block template with coinbase to scriptPubKeyIn */
     std::unique_ptr<CBlockTemplate> CreateNewBlock(const CScript& scriptPubKeyIn, int64_t* pFees = 0, bool fProofOfStake = false);
 
@@ -182,7 +188,7 @@ private:
     /** Test if a new package would "fit" in the block */
     bool TestPackage(uint64_t packageSize, int64_t packageSigOps);
     /** Perform checks on each transaction in a package:
-      * locktime, premature-witness, serialized size (if necessary)
+      * locktime, serialized size (if necessary)
       * These checks should always succeed, and they're here
       * only as an extra check in case of suboptimal node configuration */
     bool TestPackageTransactions(const CTxMemPool::setEntries& package);

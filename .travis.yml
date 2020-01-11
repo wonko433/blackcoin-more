@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 os: linux
-language: generic
+language: minimal
 cache:
   directories:
   - depends/built
@@ -40,7 +40,6 @@ before_install:
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/pyenv/d' | tr "\n" ":" | sed "s|::|:|g")
 install:
-    - if [ -n "$PPA" ]; then travis_retry sudo add-apt-repository "$PPA" -y; fi
     - if [ -n "$DPKG_ADD_ARCH" ]; then sudo dpkg --add-architecture "$DPKG_ADD_ARCH" ; fi
     - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get update; fi
     - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get install --no-install-recommends --no-upgrade -qq $PACKAGES; fi
@@ -53,7 +52,7 @@ before_script:
     - if [ -n "$OSX_SDK" -a -f depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz ]; then tar -C depends/SDKs -xf depends/sdk-sources/MacOSX${OSX_SDK}.sdk.tar.gz; fi
     - make $MAKEJOBS -C depends HOST=$HOST $DEP_OPTS
 script:
-    - if [ "$CHECK_DOC" = 1 -a "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then while read LINE; do travis_retry gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys $LINE; done < contrib/verify-commits/trusted-keys; fi
+    - if [ "$CHECK_DOC" = 1 -a "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then while read LINE; do travis_retry gpg --keyserver hkp://subset.pool.sks-keyservers.net --recv-keys $LINE; done < contrib/verify-commits/trusted-keys; fi
     - if [ "$CHECK_DOC" = 1 -a "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then git fetch --unshallow; fi
     - if [ "$CHECK_DOC" = 1 -a "$TRAVIS_REPO_SLUG" = "bitcoin/bitcoin" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then contrib/verify-commits/verify-commits.sh; fi
     - export TRAVIS_COMMIT_LOG=`git log --format=fuller -1`

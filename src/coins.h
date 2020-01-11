@@ -7,6 +7,7 @@
 #ifndef BITCOIN_COINS_H
 #define BITCOIN_COINS_H
 
+#include "primitives/transaction.h"
 #include "compressor.h"
 #include "core_memusage.h"
 #include "hash.h"
@@ -17,7 +18,6 @@
 #include <assert.h>
 #include <stdint.h>
 
-#include <boost/foreach.hpp>
 #include <unordered_map>
 
 /**
@@ -48,7 +48,7 @@ public:
 
     //! construct a Coin from a CTxOut and height/coinbase information.
     Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
-    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(outIn), fCoinBase(fCoinBaseIn),nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
+    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(outIn), fCoinBase(fCoinBaseIn), nHeight(nHeightIn), fCoinStake(fCoinStakeIn), nTime(nTimeIn) {}
 
     void Clear() {
         out.SetNull();
@@ -162,11 +162,13 @@ private:
 class CCoinsView
 {
 public:
-    //! Retrieve the Coin (unspent transaction output) for a given outpoint.
+    /** Retrieve the Coin (unspent transaction output) for a given outpoint.
+     *  Returns true only when an unspent coin was found, which is returned in coin.
+     *  When false is returned, coin's value is unspecified.
+     */
     virtual bool GetCoin(const COutPoint &outpoint, Coin &coin) const;
 
-    //! Just check whether we have data for a given outpoint.
-    //! This may (but cannot always) return true for spent outputs.
+    //! Just check whether a given outpoint is unspent.
     virtual bool HaveCoin(const COutPoint &outpoint) const;
 
     //! Retrieve the block hash whose state this CCoinsView currently represents
@@ -230,11 +232,14 @@ public:
     CCoinsViewCache(CCoinsView *baseIn);
 
     // Standard CCoinsView methods
-    bool GetCoin(const COutPoint &outpoint, Coin &coin) const;
-    bool HaveCoin(const COutPoint &outpoint) const;
-    uint256 GetBestBlock() const;
+    bool GetCoin(const COutPoint &outpoint, Coin &coin) const override;
+    bool HaveCoin(const COutPoint &outpoint) const override;
+    uint256 GetBestBlock() const override;
     void SetBestBlock(const uint256 &hashBlock);
-    bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock);
+    bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) override;
+    CCoinsViewCursor* Cursor() const override {
+        throw std::logic_error("CCoinsViewCache cursor iteration not supported.");
+    }
 
     /**
      * Check if we have the given utxo already loaded in this cache.

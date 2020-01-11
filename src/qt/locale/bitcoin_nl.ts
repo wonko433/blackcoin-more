@@ -311,7 +311,7 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Ontvang adressen...</translation>
+        <translation>&amp;Ontvangstadressen...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
@@ -423,7 +423,7 @@
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Toon de lijst met gebruikte ontvangst adressen en labels</translation>
+        <translation>Toon de lijst met gebruikte ontvangstadressen en labels</translation>
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
@@ -887,7 +887,7 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation>Recente transacties zijn mogelijk nog niet zichtbaar. De balans van de geldbeugel is daarom mogelijk niet correct. Deze informatie is correct van zodra de synchronisatie met het Blackcoin-netwerk werd voltooid, zoals onderaan beschreven.</translation>
+        <translation>Recente transacties zijn mogelijk nog niet zichtbaar. De balans van de geldbeugel is daarom mogelijk niet correct. Deze informatie is correct van zodra de synchronisatie met het Bitcoin-netwerk werd voltooid, zoals onderaan beschreven.</translation>
     </message>
     <message>
         <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -1809,7 +1809,7 @@
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>Een optioneel label om te associëren met het nieuwe ontvangende adres</translation>
+        <translation>Een optioneel label om te associëren met het nieuwe ontvangstadres</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
@@ -3455,7 +3455,7 @@
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for relaying, mining and transaction creation (default: %s)</source>
-        <translation>Transactiekosten (in %s/kB) kleiner dan dit worden beschouw dat geen transactiekosten in rekening worden gebracht voor doorgeven, mijnen en transactiecreatie (standaard: %s)</translation>
+        <translation>Transactiekosten (in %s/kB) kleiner dan dit worden beschouw dat geen transactiekosten in rekening worden gebracht voor doorgeven, delven en transactiecreatie (standaard: %s)</translation>
     </message>
     <message>
         <source>If paytxfee is not set, include enough fee so transactions begin confirmation on average within n blocks (default: %u)</source>
@@ -3663,7 +3663,7 @@
     </message>
     <message>
         <source>Equivalent bytes per sigop in transactions for relay and mining (default: %u)</source>
-        <translation>Equivalent byter per sigop in transactions voor doorsturen en mijnen (standaard: %u)</translation>
+        <translation>Equivalente bytes per sigop in transacties voor doorsturen en delven (standaard: %u)</translation>
     </message>
     <message>
         <source>Fees (in %s/kB) smaller than this are considered zero fee for transaction creation (default: %s)</source>
@@ -3800,10 +3800,6 @@
     <message>
         <source>Relay non-P2SH multisig (default: %u)</source>
         <translation>Geef non-P2SH multisig door (standaard: %u)</translation>
-    </message>
-    <message>
-        <source>Send transactions with full-RBF opt-in enabled (default: %u)</source>
-        <translation>Verstuur transacties met full-RBF opt-in ingeschakeld (standaard: %u)</translation>
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>

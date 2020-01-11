@@ -12,7 +12,6 @@
 static void AddTx(const CTransaction& tx, const CAmount& nFee, CTxMemPool& pool)
 {
     int64_t nTime = 0;
-    double dPriority = 10.0;
     unsigned int nHeight = 1;
     bool spendsCoinbase = false;
     unsigned int sigOpCost = 4;

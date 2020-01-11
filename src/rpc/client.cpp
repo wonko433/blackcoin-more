@@ -10,10 +10,7 @@
 #include <set>
 #include <stdint.h>
 
-#include <boost/algorithm/string/case_conv.hpp> // for to_lower()
 #include <univalue.h>
-
-using namespace std;
 
 class CRPCConvertParam
 {
@@ -24,7 +21,7 @@ public:
 };
 
 /**
- * Specifiy a (method, idx, name) here if the argument is a non-string RPC
+ * Specify a (method, idx, name) here if the argument is a non-string RPC
  * argument and needs to be converted from JSON.
  *
  * @note Parameter indexes start from 0.
@@ -70,6 +67,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "getblocktemplate", 0, "template_request" },
     { "listsinceblock", 1, "target_confirmations" },
     { "listsinceblock", 2, "include_watchonly" },
+    { "listsinceblock", 3, "include_removed" },
     { "sendmany", 1, "amounts" },
     { "sendmany", 2, "minconf" },
     { "sendmany", 4, "subtractfeefrom" },
@@ -80,7 +78,10 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "listunspent", 0, "minconf" },
     { "listunspent", 1, "maxconf" },
     { "listunspent", 2, "addresses" },
+    { "listunspent", 3, "include_unsafe" },
+    { "listunspent", 4, "query_options" },
     { "getblock", 1, "verbosity" },
+    { "getblock", 1, "verbose" },
     { "getblockheader", 1, "verbose" },
     { "getchaintxstats", 0, "nblocks" },
     { "gettransaction", 1, "include_watchonly" },
@@ -91,6 +92,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "signrawtransaction", 1, "prevtxs" },
     { "signrawtransaction", 2, "privkeys" },
     { "sendrawtransaction", 1, "allowhighfees" },
+    { "combinerawtransaction", 0, "txs" },
     { "fundrawtransaction", 1, "options" },
     { "gettxout", 1, "n" },
     { "gettxout", 2, "include_mempool" },
@@ -109,7 +111,8 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "keypoolrefill", 0, "newsize" },
     { "getrawmempool", 0, "verbose" },
     { "estimatefee", 0, "nblocks" },
-    { "prioritisetransaction", 1, "fee_delta" },
+    { "prioritisetransaction", 1, "dummy" },
+    { "prioritisetransaction", 2, "fee_delta" },
     { "setban", 2, "bantime" },
     { "setban", 3, "absolute" },
     { "setnetworkactive", 0, "state" },
@@ -117,6 +120,9 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "getmempooldescendants", 1, "verbose" },
     { "reservebalance", 0, "reserve"},
     { "reservebalance", 1, "amount"},
+    { "logging", 0, "include" },
+    { "logging", 1, "exclude" },
+    { "disconnectnode", 1, "nodeid" },
     // Echo with conversion (For testing only)
     { "echojson", 0, "arg0" },
     { "echojson", 1, "arg1" },
@@ -170,7 +176,7 @@ UniValue ParseNonRFCJSONValue(const std::string& strVal)
     UniValue jVal;
     if (!jVal.read(std::string("[")+strVal+std::string("]")) ||
         !jVal.isArray() || jVal.size()!=1)
-        throw runtime_error(string("Error parsing JSON:")+strVal);
+        throw std::runtime_error(std::string("Error parsing JSON:")+strVal);
     return jVal[0];
 }
 

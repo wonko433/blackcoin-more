@@ -26,7 +26,6 @@
 #include <stdio.h>
 
 #include <boost/algorithm/string.hpp>
-#include <boost/assign/list_of.hpp>
 
 static bool fCreateBlank;
 static std::map<std::string,UniValue> registers;
@@ -41,7 +40,7 @@ static int AppInitRawTx(int argc, char* argv[])
     //
     // Parameters
     //
-    ParseParameters(argc, argv);
+    gArgs.ParseParameters(argc, argv);
 
     // Check for -testnet or -regtest parameter (Params() calls are only valid after this clause)
     try {
@@ -51,9 +50,9 @@ static int AppInitRawTx(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    fCreateBlank = GetBoolArg("-create", false);
+    fCreateBlank = gArgs.GetBoolArg("-create", false);
 
-    if (argc<2 || IsArgSet("-?") || IsArgSet("-h") || IsArgSet("-help"))
+    if (argc<2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help"))
     {
         // First part of help message is specific to this utility
         std::string strUsage = strprintf(_("%s bitcoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
@@ -355,7 +354,11 @@ static void MutateTxAddOutMultiSig(CMutableTransaction& tx, const std::string& s
     CScript scriptPubKey = GetScriptForMultisig(required, pubkeys);
 
     if (bScriptHash) {
-        // Get the ID for the script, then call
+        if (scriptPubKey.size() > MAX_SCRIPT_ELEMENT_SIZE) {
+            throw std::runtime_error(strprintf(
+                        "redeemScript exceeds size limit: %d > %d", scriptPubKey.size(), MAX_SCRIPT_ELEMENT_SIZE));
+        }
+        // Get the address for the redeem script, then call
         // GetScriptForDestination() to construct a P2SH scriptPubKey.
         scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
     }
@@ -414,8 +417,16 @@ static void MutateTxAddOutScript(CMutableTransaction& tx, const std::string& str
         bScriptHash = (flags.find("S") != std::string::npos);
     }
 
+    if (scriptPubKey.size() > MAX_SCRIPT_SIZE) {
+        throw std::runtime_error(strprintf(
+                    "script exceeds size limit: %d > %d", scriptPubKey.size(), MAX_SCRIPT_SIZE));
+    }
     if (bScriptHash) {
-        scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
+        if (scriptPubKey.size() > MAX_SCRIPT_ELEMENT_SIZE) {
+            throw std::runtime_error(strprintf(
+                        "redeemScript exceeds size limit: %d > %d", scriptPubKey.size(), MAX_SCRIPT_ELEMENT_SIZE));
+        }
+      scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
     }
 
     // construct TxOut, append to transaction output list
@@ -533,7 +544,11 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
             if (!prevOut.isObject())
                 throw std::runtime_error("expected prevtxs internal object");
 
-            std::map<std::string,UniValue::VType> types = boost::assign::map_list_of("txid", UniValue::VSTR)("vout",UniValue::VNUM)("scriptPubKey",UniValue::VSTR);
+            std::map<std::string, UniValue::VType> types = {
+                {"txid", UniValue::VSTR},
+                {"vout", UniValue::VNUM},
+                {"scriptPubKey", UniValue::VSTR},
+            };
             if (!prevOut.checkObject(types))
                 throw std::runtime_error("prevtxs internal object typecheck fail");
 
@@ -598,7 +613,7 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
             ProduceSignature(MutableTransactionSignatureCreator(&keystore, &mergedTx, i, amount, nHashType), prevPubKey, sigdata);
 
         // ... and merge in other signatures:
-        BOOST_FOREACH(const CTransaction& txv, txVariants)
+        for (const CTransaction& txv : txVariants)
             sigdata = CombineSignatures(prevPubKey, MutableTransactionSignatureChecker(&mergedTx, i, amount), sigdata, DataFromTransaction(txv, i));
         UpdateTransaction(mergedTx, i, sigdata);
 
@@ -647,11 +662,13 @@ static void MutateTx(CMutableTransaction& tx, const std::string& command,
         MutateTxDelOutput(tx, commandVal);
     else if (command == "outaddr")
         MutateTxAddOutAddr(tx, commandVal);
-    else if (command == "outpubkey")
+    else if (command == "outpubkey") {
+        if (!ecc) { ecc.reset(new Secp256k1Init()); }
         MutateTxAddOutPubKey(tx, commandVal);
-    else if (command == "outmultisig")
+    } else if (command == "outmultisig") {
+        if (!ecc) { ecc.reset(new Secp256k1Init()); }
         MutateTxAddOutMultiSig(tx, commandVal);
-    else if (command == "outscript")
+    } else if (command == "outscript")
         MutateTxAddOutScript(tx, commandVal);
     else if (command == "outdata")
         MutateTxAddOutData(tx, commandVal);
@@ -696,9 +713,9 @@ static void OutputTxHex(const CTransaction& tx)
 
 static void OutputTx(const CTransaction& tx)
 {
-    if (GetBoolArg("-json", false))
+    if (gArgs.GetBoolArg("-json", false))
         OutputTxJSON(tx);
-    else if (GetBoolArg("-txid", false))
+    else if (gArgs.GetBoolArg("-txid", false))
         OutputTxHash(tx);
     else
         OutputTxHex(tx);
@@ -781,7 +798,7 @@ static int CommandLineRawTx(int argc, char* argv[])
         nRet = EXIT_FAILURE;
     }
     catch (...) {
-        PrintExceptionContinue(NULL, "CommandLineRawTx()");
+        PrintExceptionContinue(nullptr, "CommandLineRawTx()");
         throw;
     }
 
@@ -804,7 +821,7 @@ int main(int argc, char* argv[])
         PrintExceptionContinue(&e, "AppInitRawTx()");
         return EXIT_FAILURE;
     } catch (...) {
-        PrintExceptionContinue(NULL, "AppInitRawTx()");
+        PrintExceptionContinue(nullptr, "AppInitRawTx()");
         return EXIT_FAILURE;
     }
 
@@ -815,7 +832,7 @@ int main(int argc, char* argv[])
     catch (const std::exception& e) {
         PrintExceptionContinue(&e, "CommandLineRawTx()");
     } catch (...) {
-        PrintExceptionContinue(NULL, "CommandLineRawTx()");
+        PrintExceptionContinue(nullptr, "CommandLineRawTx()");
     }
     return ret;
 }

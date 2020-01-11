@@ -31,8 +31,6 @@
 #include "wallet/wallet.h"
 
 #include <algorithm>
-#include <boost/thread.hpp>
-#include <boost/tuple/tuple.hpp>
 #include <queue>
 #include <utility>
 
@@ -52,18 +50,7 @@ uint64_t nLastBlockSize = 0;
 int64_t nLastCoinStakeSearchInterval = 0;
 unsigned int nMinerSleep = 500;
 
-class ScoreCompare
-{
-public:
-    ScoreCompare() {}
-
-    bool operator()(const CTxMemPool::txiter a, const CTxMemPool::txiter b)
-    {
-        return CompareTxMemPoolEntryByScore()(*b,*a); // Convert to less than
-    }
-};
-
-int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
+int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
     int64_t nOldTime = pblock->nTime;
     int64_t nNewTime = std::max(pindexPrev->GetPastTimeLimit()+1, GetAdjustedTime());
@@ -93,22 +80,37 @@ int64_t GetMaxTransactionTime(CBlock* pblock)
     return maxTransactionTime;
 }
 
-BlockAssembler::BlockAssembler(const CChainParams& _chainparams)
-    : chainparams(_chainparams)
-{
-    if (IsArgSet("-blockmintxfee")) {
-        CAmount n = 0;
-        ParseMoney(GetArg("-blockmintxfee", ""), n);
-        blockMinFeeRate = CFeeRate(n);
-    } else {
-        blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
-    }
-
-    // Largest block you're willing to create:
-    nBlockMaxSize = GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
-    // Limit to between 1K and MAX_BLOCK_SIZE-1K for sanity:
-    nBlockMaxSize = std::max((unsigned int)1000, std::min((unsigned int)(MAX_BLOCK_SIZE-1000), nBlockMaxSize));
+BlockAssembler::Options::Options() {
+    blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
+    nBlockMaxSize = DEFAULT_BLOCK_MAX_SIZE;
 }
+
+BlockAssembler::BlockAssembler(const CChainParams& params, const Options& options) : chainparams(params)
+{
+    blockMinFeeRate = options.blockMinFeeRate;
+    // Limit size to between 1K and MAX_BLOCK_SIZE-1K for sanity:
+    nBlockMaxSize = std::max<size_t>(1000, std::min<size_t>(MAX_BLOCK_SIZE - 1000, options.nBlockMaxSize));
+}
+
+static BlockAssembler::Options DefaultOptions(const CChainParams& params)
+{
+    // Block resource limits
+    // If neither -blockmaxsize or -blockmaxsize is given, limit to DEFAULT_BLOCK_MAX_*
+    // If only one is given, only restrict the specified resource.
+    // If both are given, restrict both.
+    BlockAssembler::Options options;
+    options.nBlockMaxSize = gArgs.GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
+    if (gArgs.IsArgSet("-blockmintxfee")) {
+        CAmount n = 0;
+        ParseMoney(gArgs.GetArg("-blockmintxfee", ""), n);
+        options.blockMinFeeRate = CFeeRate(n);
+    } else {
+        options.blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
+    }
+    return options;
+}
+
+BlockAssembler::BlockAssembler(const CChainParams& params) : BlockAssembler(params, DefaultOptions(params)) {}
 
 void BlockAssembler::resetBlock()
 {
@@ -148,7 +150,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (chainparams.MineBlocksOnDemand())
-        pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
+        pblock->nVersion = gArgs.GetArg("-blockversion", pblock->nVersion);
 
     pblock->nTime = GetAdjustedTime();
 
@@ -181,9 +183,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vTxFees[0] = -nFees;
 
-    /*
     LogPrintf("CreateNewBlock(): total size %u txs: %u fees: %ld sigops %d\n", nBlockSize, nBlockTx, nFees, nBlockSigOps);
-    */
 
     if (pFees)
         *pFees = nFees;
@@ -237,7 +237,7 @@ bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOps)
 bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& package)
 {
     uint64_t nPotentialBlockSize = nBlockSize;
-    BOOST_FOREACH (const CTxMemPool::txiter it, package) {
+    for (const CTxMemPool::txiter it : package) {
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
         uint64_t nTxSize = ::GetSerializeSize(it->GetTx(), SER_NETWORK, PROTOCOL_VERSION);
@@ -261,7 +261,7 @@ void BlockAssembler::AddToBlock(CTxMemPool::txiter iter)
     nFees += iter->GetFee();
     inBlock.insert(iter);
 
-    bool fPrintPriority = GetBoolArg("-printpriority", DEFAULT_PRINTPRIORITY);
+    bool fPrintPriority = gArgs.GetBoolArg("-printpriority", DEFAULT_PRINTPRIORITY);
     if (fPrintPriority) {
         LogPrintf("fee %s txid %s\n",
                   CFeeRate(iter->GetModifiedFee(), iter->GetTxSize()).ToString(),
@@ -273,11 +273,11 @@ int BlockAssembler::UpdatePackagesForAdded(const CTxMemPool::setEntries& already
         indexed_modified_transaction_set &mapModifiedTx)
 {
     int nDescendantsUpdated = 0;
-    BOOST_FOREACH(const CTxMemPool::txiter it, alreadyAdded) {
+    for (const CTxMemPool::txiter it : alreadyAdded) {
         CTxMemPool::setEntries descendants;
         mempool.CalculateDescendants(it, descendants);
         // Insert all descendants (not yet in block) into the modified set
-        BOOST_FOREACH(CTxMemPool::txiter desc, descendants) {
+        for (CTxMemPool::txiter desc : descendants) {
             if (alreadyAdded.count(desc))
                 continue;
             ++nDescendantsUpdated;

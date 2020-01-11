@@ -11,12 +11,16 @@
 #include <assert.h>
 
 bool CCoinsView::GetCoin(const COutPoint &outpoint, Coin &coin) const { return false; }
-bool CCoinsView::HaveCoin(const COutPoint &outpoint) const { return false; }
 uint256 CCoinsView::GetBestBlock() const { return uint256(); }
 std::vector<uint256> CCoinsView::GetHeadBlocks() const { return std::vector<uint256>(); }
 bool CCoinsView::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock) { return false; }
 CCoinsViewCursor *CCoinsView::Cursor() const { return 0; }
 
+bool CCoinsView::HaveCoin(const COutPoint &outpoint) const
+{
+    Coin coin;
+    return GetCoin(outpoint, coin);
+}
 
 CCoinsViewBacked::CCoinsViewBacked(CCoinsView *viewIn) : base(viewIn) { }
 bool CCoinsViewBacked::GetCoin(const COutPoint &outpoint, Coin &coin) const { return base->GetCoin(outpoint, coin); }
@@ -57,7 +61,7 @@ bool CCoinsViewCache::GetCoin(const COutPoint &outpoint, Coin &coin) const {
     CCoinsMap::const_iterator it = FetchCoin(outpoint);
     if (it != cacheCoins.end()) {
         coin = it->second.coin;
-        return true;
+        return !coin.IsSpent();
     }
     return false;
 }
@@ -128,7 +132,7 @@ bool CCoinsViewCache::HaveCoin(const COutPoint &outpoint) const {
 
 bool CCoinsViewCache::HaveCoinInCache(const COutPoint &outpoint) const {
     CCoinsMap::const_iterator it = cacheCoins.find(outpoint);
-    return it != cacheCoins.end();
+    return (it != cacheCoins.end() && !it->second.coin.IsSpent());
 }
 
 uint256 CCoinsViewCache::GetBestBlock() const {
@@ -241,7 +245,8 @@ bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
     return true;
 }
 
-static const size_t MAX_OUTPUTS_PER_BLOCK = MAX_BLOCK_SIZE /  ::GetSerializeSize(CTxOut(), SER_NETWORK, PROTOCOL_VERSION); // TODO: merge with similar definition in undo.h.
+static const size_t MIN_TRANSACTION_OUTPUT_SIZE = ::GetSerializeSize(CTxOut(), SER_NETWORK, PROTOCOL_VERSION);
+static const size_t MAX_OUTPUTS_PER_BLOCK = MAX_BLOCK_SIZE / MIN_TRANSACTION_OUTPUT_SIZE;
 
 const Coin& AccessByTxid(const CCoinsViewCache& view, const uint256& txid)
 {

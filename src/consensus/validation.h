@@ -7,6 +7,10 @@
 #define BITCOIN_CONSENSUS_VALIDATION_H
 
 #include <string>
+#include "version.h"
+#include "consensus/consensus.h"
+#include "primitives/transaction.h"
+#include "primitives/block.h"
 
 /** "reject" message codes */
 static const unsigned char REJECT_MALFORMED = 0x01;
@@ -14,7 +18,7 @@ static const unsigned char REJECT_INVALID = 0x10;
 static const unsigned char REJECT_OBSOLETE = 0x11;
 static const unsigned char REJECT_DUPLICATE = 0x12;
 static const unsigned char REJECT_NONSTANDARD = 0x40;
-static const unsigned char REJECT_DUST = 0x41;
+// static const unsigned char REJECT_DUST = 0x41; // part of BIP 61
 static const unsigned char REJECT_INSUFFICIENTFEE = 0x42;
 static const unsigned char REJECT_CHECKPOINT = 0x43;
 

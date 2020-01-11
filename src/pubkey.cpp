@@ -10,8 +10,8 @@
 namespace
 {
 /* Global secp256k1_context object used for verification. */
-secp256k1_context* secp256k1_context_verify = NULL;
-}
+secp256k1_context* secp256k1_context_verify = nullptr;
+} // namespace
 
 /** This function is taken from the libsecp256k1 distribution and implements
  *  DER parsing for ECDSA signatures, while supporting an arbitrary subset of
@@ -172,10 +172,7 @@ bool CPubKey::Verify(const uint256 &hash, const std::vector<unsigned char>& vchS
     if (!secp256k1_ec_pubkey_parse(secp256k1_context_verify, &pubkey, &(*this)[0], size())) {
         return false;
     }
-    if (vchSig.size() == 0) {
-        return false;
-    }
-    if (!ecdsa_signature_parse_der_lax(secp256k1_context_verify, &sig, &vchSig[0], vchSig.size())) {
+    if (!ecdsa_signature_parse_der_lax(secp256k1_context_verify, &sig, vchSig.data(), vchSig.size())) {
         return false;
     }
     /* libsecp256k1's ECDSA verification requires lower-S signatures, which have
@@ -274,10 +271,10 @@ bool CExtPubKey::Derive(CExtPubKey &out, unsigned int _nChild) const {
 
 /* static */ bool CPubKey::CheckLowS(const std::vector<unsigned char>& vchSig) {
     secp256k1_ecdsa_signature sig;
-    if (!ecdsa_signature_parse_der_lax(secp256k1_context_verify, &sig, &vchSig[0], vchSig.size())) {
+    if (!ecdsa_signature_parse_der_lax(secp256k1_context_verify, &sig, vchSig.data(), vchSig.size())) {
         return false;
     }
-    return (!secp256k1_ecdsa_signature_normalize(secp256k1_context_verify, NULL, &sig));
+    return (!secp256k1_ecdsa_signature_normalize(secp256k1_context_verify, nullptr, &sig));
 }
 
 int CompareBigEndian(const unsigned char *c1, size_t c1len, const unsigned char *c2, size_t c2len) {
@@ -334,9 +331,9 @@ bool CPubKey::CheckSignatureElement(const unsigned char *vch, int len, bool half
 ECCVerifyHandle::ECCVerifyHandle()
 {
     if (refcount == 0) {
-        assert(secp256k1_context_verify == NULL);
+        assert(secp256k1_context_verify == nullptr);
         secp256k1_context_verify = secp256k1_context_create(SECP256K1_CONTEXT_VERIFY);
-        assert(secp256k1_context_verify != NULL);
+        assert(secp256k1_context_verify != nullptr);
     }
     refcount++;
 }
@@ -345,8 +342,8 @@ ECCVerifyHandle::~ECCVerifyHandle()
 {
     refcount--;
     if (refcount == 0) {
-        assert(secp256k1_context_verify != NULL);
+        assert(secp256k1_context_verify != nullptr);
         secp256k1_context_destroy(secp256k1_context_verify);
-        secp256k1_context_verify = NULL;
+        secp256k1_context_verify = nullptr;
     }
 }

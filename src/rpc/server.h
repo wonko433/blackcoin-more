@@ -17,8 +17,6 @@
 
 #include <univalue.h>
 
-static const unsigned int DEFAULT_RPC_SERIALIZE_VERSION = 1;
-
 class CRPCCommand;
 
 namespace RPCServer
@@ -27,9 +25,6 @@ namespace RPCServer
     void OnStopped(std::function<void ()> slot);
     void OnPreCommand(std::function<void (const CRPCCommand&)> slot);
 }
-
-class CBlockIndex;
-class CNetAddr;
 
 /** Wrapper for UniValue::VType, which includes typeAny:
  * Used to denote don't care type. Only used by RPCTypeCheckObj */
@@ -50,7 +45,7 @@ public:
     std::string URI;
     std::string authUser;
 
-    JSONRPCRequest() { id = NullUniValue; params = NullUniValue; fHelp = false; }
+    JSONRPCRequest() : id(NullUniValue), params(NullUniValue), fHelp(false) {}
     void parse(const UniValue& valRequest);
 };
 
@@ -151,7 +146,7 @@ private:
 public:
     CRPCTable();
     const CRPCCommand* operator[](const std::string& name) const;
-    std::string help(const std::string& name) const;
+    std::string help(const std::string& name, const JSONRPCRequest& helpreq) const;
 
     /**
      * Execute a method.
@@ -186,20 +181,15 @@ extern uint256 ParseHashO(const UniValue& o, std::string strKey);
 extern std::vector<unsigned char> ParseHexV(const UniValue& v, std::string strName);
 extern std::vector<unsigned char> ParseHexO(const UniValue& o, std::string strKey);
 
-extern int64_t nWalletUnlockTime;
 extern CAmount AmountFromValue(const UniValue& value);
-extern UniValue ValueFromAmount(const CAmount& amount);
 extern double GetPoSKernelPS();
-extern std::string HelpRequiringPassphrase();
 extern std::string HelpExampleCli(const std::string& methodname, const std::string& args);
 extern std::string HelpExampleRpc(const std::string& methodname, const std::string& args);
-
-extern void EnsureWalletIsUnlocked();
 
 bool StartRPC();
 void InterruptRPC();
 void StopRPC();
-std::string JSONRPCExecBatch(const UniValue& vReq);
+std::string JSONRPCExecBatch(const JSONRPCRequest& jreq, const UniValue& vReq);
 
 // Retrieves any serialization flags requested in command line argument
 int RPCSerializationFlags();

@@ -32,8 +32,7 @@ static const unsigned int DEFAULT_MAX_MEMPOOL_SIZE = 300;
 static const unsigned int DEFAULT_INCREMENTAL_RELAY_FEE = 10000;
 /** Default for -bytespersigop */
 static const unsigned int DEFAULT_BYTES_PER_SIGOP = 20;
-/** Min feerate for defining dust. Historically this has been the same as the
- * minRelayTxFee, however changing the dust limit changes which transactions are
+/** Min feerate for defining dust. Historically this has been based on the
  * standard and should be done with care and ideally rarely. It makes sense to
  * only increase the dust limit after prior releases were already not creating
  * outputs below the new threshold */

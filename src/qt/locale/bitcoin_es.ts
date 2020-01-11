@@ -3703,11 +3703,6 @@
         <translation>Preguntar por direcciones pares al buscar DNS, si baja en las direcciones (predeterminado: 1 a menos que -connect/-noconnect)</translation>
     </message>
     <message>
-        <source>Sets the serialization of raw transaction or block hex returned in non-verbose mode, non-segwit(0) or segwit(1) (default: %d)</source>
-        <translation>https://www.transifex.com/joyful-world/breaking-english/
-Establecer la serialización de las transacciones sin procesar o el bloque hex devuelto en non-verbose mode, non-segwit(O) o segwit(1) (default: %d)</translation>
-    </message>
-    <message>
         <source>Support filtering of blocks and transaction with bloom filters (default: %u)</source>
         <translation>Admite filtrado de bloques, y transacciones con filtros Bloom. Reduce la carga de red. ( por defecto :%u)</translation>
     </message>
@@ -3814,10 +3809,6 @@ Establecer la serialización de las transacciones sin procesar o el bloque hex d
     <message>
         <source>Relay non-P2SH multisig (default: %u)</source>
         <translation>Relay non-P2SH multisig (default: %u)</translation>
-    </message>
-    <message>
-        <source>Send transactions with full-RBF opt-in enabled (default: %u)</source>
-        <translation>Enviar transacciones con full-RBF opt-in habilitado (predeterminado: %u)</translation>
     </message>
     <message>
         <source>Set key pool size to &lt;n&gt; (default: %u)</source>

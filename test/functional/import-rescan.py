@@ -19,9 +19,8 @@ importing nodes pick up the new transactions regardless of whether rescans
 happened previously.
 """
 
-from test_framework.authproxy import JSONRPCException
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import (start_nodes, connect_nodes, sync_blocks, assert_equal, set_node_times)
+from test_framework.util import (assert_raises_rpc_error, connect_nodes, sync_blocks, assert_equal, set_node_times)
 
 import collections
 import enum
@@ -35,27 +34,32 @@ Rescan = enum.Enum("Rescan", "no yes late_timestamp")
 class Variant(collections.namedtuple("Variant", "call data rescan prune")):
     """Helper for importing one key and verifying scanned transactions."""
 
+    def try_rpc(self, func, *args, **kwargs):
+        if self.expect_disabled:
+            assert_raises_rpc_error(-4, "Rescan is disabled in pruned mode", func, *args, **kwargs)
+        else:
+            return func(*args, **kwargs)
+
     def do_import(self, timestamp):
         """Call one key import RPC."""
 
         if self.call == Call.single:
             if self.data == Data.address:
-                response, error = try_rpc(self.node.importaddress, self.address["address"], self.label,
-                                          self.rescan == Rescan.yes)
+                response = self.try_rpc(self.node.importaddress, self.address["address"], self.label,
+                                               self.rescan == Rescan.yes)
             elif self.data == Data.pub:
-                response, error = try_rpc(self.node.importpubkey, self.address["pubkey"], self.label,
-                                          self.rescan == Rescan.yes)
+                response = self.try_rpc(self.node.importpubkey, self.address["pubkey"], self.label,
+                                               self.rescan == Rescan.yes)
             elif self.data == Data.priv:
-                response, error = try_rpc(self.node.importprivkey, self.key, self.label, self.rescan == Rescan.yes)
+                response = self.try_rpc(self.node.importprivkey, self.key, self.label, self.rescan == Rescan.yes)
             assert_equal(response, None)
-            assert_equal(error, {'message': 'Rescan is disabled in pruned mode',
-                                 'code': -4} if self.expect_disabled else None)
+
         elif self.call == Call.multi:
             response = self.node.importmulti([{
                 "scriptPubKey": {
                     "address": self.address["address"]
                 },
-                "timestamp": timestamp + RESCAN_WINDOW + (1 if self.rescan == Rescan.late_timestamp else 0),
+                "timestamp": timestamp + TIMESTAMP_WINDOW + (1 if self.rescan == Rescan.late_timestamp else 0),
                 "pubkeys": [self.address["pubkey"]] if self.data == Data.pub else [],
                 "keys": [self.key] if self.data == Data.priv else [],
                 "label": self.label,
@@ -107,12 +111,11 @@ ImportNode = collections.namedtuple("ImportNode", "prune rescan")
 IMPORT_NODES = [ImportNode(*fields) for fields in itertools.product((False, True), repeat=2)]
 
 # Rescans start at the earliest block up to 2 hours before the key timestamp.
-RESCAN_WINDOW = 2 * 60 * 60
+TIMESTAMP_WINDOW = 2 * 60 * 60
 
 
 class ImportRescanTest(BitcoinTestFramework):
-    def __init__(self):
-        super().__init__()
+    def set_test_params(self):
         self.num_nodes = 2 + len(IMPORT_NODES)
 
     def setup_network(self):
@@ -121,7 +124,8 @@ class ImportRescanTest(BitcoinTestFramework):
             if import_node.prune:
                 extra_args[i] += ["-prune=1"]
 
-        self.nodes = start_nodes(self.num_nodes, self.options.tmpdir, extra_args)
+        self.add_nodes(self.num_nodes, extra_args)
+        self.start_nodes()
         for i in range(1, self.num_nodes):
             connect_nodes(self.nodes[i], 0)
 
@@ -140,7 +144,7 @@ class ImportRescanTest(BitcoinTestFramework):
         self.nodes[0].generate(1)
         assert_equal(self.nodes[0].getrawmempool(), [])
         timestamp = self.nodes[0].getblockheader(self.nodes[0].getbestblockhash())["time"]
-        set_node_times(self.nodes, timestamp + RESCAN_WINDOW + 1)
+        set_node_times(self.nodes, timestamp + TIMESTAMP_WINDOW + 1)
         self.nodes[0].generate(1)
         sync_blocks(self.nodes)
 
@@ -179,14 +183,6 @@ class ImportRescanTest(BitcoinTestFramework):
                 variant.check(variant.sent_txid, variant.sent_amount, 1)
             else:
                 variant.check()
-
-
-def try_rpc(func, *args, **kwargs):
-    try:
-        return func(*args, **kwargs), None
-    except JSONRPCException as e:
-        return None, e.error
-
 
 if __name__ == "__main__":
     ImportRescanTest().main()
