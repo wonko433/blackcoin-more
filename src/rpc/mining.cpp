@@ -27,6 +27,9 @@
 #include "util.h"
 #include "utilstrencodings.h"
 #include "validationinterface.h"
+#ifdef ENABLE_WALLET
+#include "wallet/wallet.h"
+#endif
 #include "warnings.h"
 
 #include <memory>
@@ -219,13 +222,17 @@ UniValue getmininginfo(const JSONRPCRequest& request)
 UniValue getstakinginfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
-        throw runtime_error(
+        throw std::checkruntime_error(
             "getstakinginfo\n"
             "Returns an object containing staking-related information.");
 
     uint64_t nWeight = 0;
-    if (pwalletMain)
-        nWeight = pwalletMain->GetStakeWeight();
+#ifdef ENABLE_WALLET
+    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+
+    if (pwallet)
+        nWeight = pwallet->GetStakeWeight();
+#endif
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
     bool staking = nLastCoinStakeSearchInterval && nWeight;
@@ -233,7 +240,7 @@ UniValue getstakinginfo(const JSONRPCRequest& request)
 
     UniValue obj(UniValue::VOBJ);
 
-    obj.push_back(Pair("enabled", GetBoolArg("-staking", true)));
+    obj.push_back(Pair("enabled", gArgs.GetBoolArg("-staking", true)));
     obj.push_back(Pair("staking", staking));
     obj.push_back(Pair("errors", GetWarnings("statusbar")));
 
@@ -766,7 +773,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
             + HelpExampleCli("estimatefee", "")
             );
 
-    CFeeRate feeRate = CFeeRate(DEFAULT_TRANSACTION_MINFEE);
+    CFeeRate feeRate = CFeeRate(10000);
 
     return ValueFromAmount(feeRate.GetFeePerK());
 }
@@ -774,7 +781,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 UniValue checkkernel(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-            throw runtime_error(
+            throw std::runtime_error(
                 "checkkernel [{\"txid\":txid,\"vout\":n},...] [createblocktemplate=false]\n"
                 "Check if one of given inputs is a kernel input at the moment.\n"
             );
@@ -839,10 +846,16 @@ UniValue checkkernel(const JSONRPCRequest& request)
             return result;
 
         int64_t nFees;
-        if (!pwalletMain->IsLocked())
-            pwalletMain->TopUpKeyPool();
+#ifdef ENABLE_WALLET
+    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+#endif
+        if (!pwallet)
+            return result;
 
-        CReserveKey pMiningKey(pwalletMain);
+        if (!pwallet->IsLocked())
+            pwallet->TopUpKeyPool();
+
+        CReserveKey pMiningKey(pwallet);
         std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(pMiningKey.reserveScript, &nFees, true));
         if (!pblocktemplate.get())
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");

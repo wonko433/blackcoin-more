@@ -2308,7 +2308,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         const CBlockIndex *pindex = nullptr;
         CValidationState state;
-        if (!ProcessNetBlockHeaders(pfrom, {cmpctblock.header}, state, chainparams, &pindex, connman)) {
+        if (!ProcessNetBlockHeaders(pfrom, {cmpctblock.header}, state, chainparams, &pindex)) {
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 if (nDoS > 0) {
@@ -2564,7 +2564,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             // disk-space attacks), but this should be safe due to the
             // protections in the compact block handler -- see related comment
             // in compact block optimistic reconstruction handling.
-            ProcessNetBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, pfrom, connman);
+            ProcessNetBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, pfrom, *connman);
             if (fNewBlock) {
                 pfrom->nLastBlockTime = GetTime();
             } else {
@@ -2620,7 +2620,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             mapBlockSource.emplace(hash, std::make_pair(pfrom->GetId(), true));
         }
         bool fNewBlock = false;
-        ProcessNetBlock(chainparams, pblock, forceProcessing, &fNewBlock, pfrom, connman);
+        ProcessNetBlock(chainparams, pblock, forceProcessing, &fNewBlock, pfrom, *connman);
         if (fNewBlock) {
             pfrom->nLastBlockTime = GetTime();
         } else {

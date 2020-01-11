@@ -191,7 +191,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTime, co
     } else {
         //found in cache
         const CStakeCache& stake = it->second;
-        if (CheckStakeKernelHash(pindexPrev, nBits, stake.nTime, stake.amount, prevout, nTime)) {
+        if (CheckStakeKernelHash(pindexPrev, nBits, stake.coinPrevTime, stake.amount, prevout, nTime)) {
             // Cache could potentially cause false positive stakes in the event of deep reorgs, so check without cache also return CheckKernel(pindexPrev, nBits, nTime, prevout, view); }
             return CheckKernel(pindexPrev, nBits, nTime, prevout, view);
         }
