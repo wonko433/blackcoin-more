@@ -142,13 +142,8 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
         assert(genesis.hashMerkleRoot == uint256S("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
 
-<<<<<<< HEAD
-        // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("dnsseed.vasin.nl", true);
-=======
         vSeeds.push_back(CDNSSeedData("dns.blackcoin.nl", "dnsseed.blackcoin.nl"));
         vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
->>>>>>> f3fce92eb0... Added blackcoin.nl DNS seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);

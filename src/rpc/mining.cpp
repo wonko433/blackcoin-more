@@ -222,7 +222,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
 UniValue getstakinginfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
-        throw std::checkruntime_error(
+        throw std::runtime_error(
             "getstakinginfo\n"
             "Returns an object containing staking-related information.");
 
@@ -786,7 +786,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
                 "Check if one of given inputs is a kernel input at the moment.\n"
             );
 
-        RPCTypeCheck(request.params, boost::assign::list_of(UniValue::VARR)(UniValue::VBOOL));
+        RPCTypeCheck(request.params, {UniValue::VARR, UniValue::VBOOL}, false);
 
         UniValue inputs = request.params[0].get_array();
         bool fCreateBlockTemplate = request.params.size() > 1 ? request.params[1].get_bool() : false;
@@ -845,9 +845,9 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (!fCreateBlockTemplate)
             return result;
 
-        int64_t nFees;
 #ifdef ENABLE_WALLET
-    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+        int64_t nFees;
+        CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
         if (!pwallet)
             return result;
 
@@ -856,7 +856,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
 
         CReserveKey pMiningKey(pwallet);
         std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(pMiningKey.reserveScript, &nFees, true));
-#endif
+
         if (!pblocktemplate.get())
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
@@ -876,7 +876,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
             throw JSONRPCError(RPC_MISC_ERROR, "GetReservedKey failed");
 
         result.push_back(Pair("blocktemplatesignkey", HexStr(pubkey)));
-
+#endif
         return result;
 }
 

@@ -13,4 +13,3 @@ static GlobalConfig gConfig;
 const Config &GetConfig() { return gConfig; }
 void GlobalConfig::SetCashAddrEncoding(bool c) { useCashAddr = c; }
 bool GlobalConfig::UseCashAddrEncoding() const { return useCashAddr; }
-const CChainParams &DummyConfig::GetChainParams() const { return Params(CBaseChainParams::REGTEST); }

@@ -35,7 +35,6 @@ private:
 class DummyConfig : public Config
 {
 public:
-    const CChainParams &GetChainParams() const override;
     void SetCashAddrEncoding(bool) override {}
     bool UseCashAddrEncoding() const override { return false; }
 };

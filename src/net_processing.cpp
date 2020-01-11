@@ -2502,7 +2502,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             // we have a chain with at least nMinimumChainWork), and we ignore
             // compact blocks with less work than our tip, it is safe to treat
             // reconstructed compact blocks as having been requested.
-            ProcessNetBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, pfrom, connman);
+            ProcessNetBlock(chainparams, pblock, /*fForceProcessing=*/true, &fNewBlock, pfrom, *connman);
             if (fNewBlock) {
                 pfrom->nLastBlockTime = GetTime();
             } else {
