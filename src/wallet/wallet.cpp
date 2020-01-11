@@ -687,12 +687,11 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
 
             for (unsigned int i = 0; i < pcoin->tx->vout.size(); i++) {
                 isminetype mine = IsMine(pcoin->tx->vout[i]);
+                bool solvable = (mine & (ISMINE_SPENDABLE | ISMINE_WATCH_SOLVABLE)) != ISMINE_NO;
+                bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || ((mine & ISMINE_WATCH_SOLVABLE) != ISMINE_NO);
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
                     !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0))
-                	vCoins.push_back(COutput(pcoin, i, nDepth,
-                	                                                 ((mine & ISMINE_SPENDABLE) != ISMINE_NO) ||
-                	                                                  (mine & ISMINE_WATCH_SOLVABLE) != ISMINE_NO,
-                                                                      (mine & (ISMINE_SPENDABLE | ISMINE_WATCH_SOLVABLE)) != ISMINE_NO));
+                	vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted()));
             }
         }
     }
@@ -785,7 +784,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         stakeCache.clear();
     }
 
-    if (GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
+    if (gArgs.GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
         for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins)
         {
             boost::this_thread::interruption_point();
@@ -2992,7 +2991,6 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
 
     assert(txNew.nLockTime <= (unsigned int)chainActive.Height());
     assert(txNew.nLockTime < LOCKTIME_THRESHOLD);
-    FeeCalculation feeCalc;
     CAmount nFeeNeeded;
     unsigned int nBytes;
     {
@@ -3267,14 +3265,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
         }
     }
 
-    LogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d Tgt:%d (requested %d) Reason:\"%s\" Decay %.5f: Estimation: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out) Fail: (%g - %g) %.2f%% %.1f/(%.1f %d mem %.1f out)\n",
-              nFeeRet, nBytes, nFeeNeeded, feeCalc.returnedTarget, feeCalc.desiredTarget, StringForFeeReason(feeCalc.reason), feeCalc.est.decay,
-              feeCalc.est.pass.start, feeCalc.est.pass.end,
-              100 * feeCalc.est.pass.withinTarget / (feeCalc.est.pass.totalConfirmed + feeCalc.est.pass.inMempool + feeCalc.est.pass.leftMempool),
-              feeCalc.est.pass.withinTarget, feeCalc.est.pass.totalConfirmed, feeCalc.est.pass.inMempool, feeCalc.est.pass.leftMempool,
-              feeCalc.est.fail.start, feeCalc.est.fail.end,
-              100 * feeCalc.est.fail.withinTarget / (feeCalc.est.fail.totalConfirmed + feeCalc.est.fail.inMempool + feeCalc.est.fail.leftMempool),
-              feeCalc.est.fail.withinTarget, feeCalc.est.fail.totalConfirmed, feeCalc.est.fail.inMempool, feeCalc.est.fail.leftMempool);
+    LogPrintf("Fee Calculation: Fee:%d Bytes:%u Needed:%d\n", nFeeRet, nBytes, nFeeNeeded);
     return true;
 }
 
@@ -3470,7 +3461,7 @@ bool CWallet::SetAddressBook(const CTxDestination& address, const std::string& s
     }
     NotifyAddressBookChanged(this, address, strName, ::IsMine(*this, address) != ISMINE_NO,
                              strPurpose, (fUpdated ? CT_UPDATED : CT_NEW) );
-    if (!strPurpose.empty() && !CWalletDB(*dbw).WritePurpose(CBitcoinAddress(address).ToString(), strPurpose))
+    if (!strPurpose.empty() && !CWalletDB(*dbw).WritePurpose(address, strPurpose))
         return false;
     return CWalletDB(*dbw).WriteName(address, strName);
 }
@@ -3481,7 +3472,6 @@ bool CWallet::DelAddressBook(const CTxDestination& address)
         LOCK(cs_wallet); // mapAddressBook
 
         // Delete destdata tuples associated with address
-        std::string strAddress = CBitcoinAddress(address).ToString();
         for (const std::pair<std::string, std::string> &item : mapAddressBook[address].destdata)
         {
             CWalletDB(*dbw).EraseDestData(address, item.first);
@@ -4050,7 +4040,7 @@ uint64_t CWallet::GetStakeWeight() const
     uint64_t nWeight = 0;
 
     LOCK2(cs_main, cs_wallet);
-    BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setCoins)
+    for (std::pair<const CWalletTx*,unsigned int> pcoin : setCoins)
     {
         if (pcoin.first->GetDepthInMainChain() >= Params().GetConsensus().nCoinbaseMaturity)
             nWeight += pcoin.first->tx->vout[pcoin.second].nValue;
