@@ -65,7 +65,7 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
     return nNewTime - nOldTime;
 }
 
-// miner's coin base reward (POW)
+// miner's coin base reward (PoW)
 CAmount GetProofOfWorkReward()
 {
     CAmount nSubsidy = 10000 * COIN;
@@ -588,10 +588,8 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                     SetThreadPriority(THREAD_PRIORITY_LOWEST);
                     MilliSleep(500);
                 }
-                
-		}
-                    MilliSleep(nMinerSleep);
-
+            }
+                MilliSleep(nMinerSleep);
         }
     }
     catch (const boost::thread_interrupted&)

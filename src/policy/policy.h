@@ -28,11 +28,10 @@ static const unsigned int MAX_P2SH_SIGOPS = 15;
 static const unsigned int MAX_STANDARD_TX_SIGOPS = MAX_BLOCK_SIGOPS/5;
 /** Default for -maxmempool, maximum megabytes of mempool memory usage */
 static const unsigned int DEFAULT_MAX_MEMPOOL_SIZE = 300;
-/** Default for -incrementalrelayfee, which sets the minimum feerate increase for mempool limiting **/
-static const unsigned int DEFAULT_INCREMENTAL_RELAY_FEE = 10000;
 /** Default for -bytespersigop */
 static const unsigned int DEFAULT_BYTES_PER_SIGOP = 20;
 /** Min feerate for defining dust. Historically this has been based on the
+ * minRelayTxFee, however changing the dust limit changes which transactions are
  * standard and should be done with care and ideally rarely. It makes sense to
  * only increase the dust limit after prior releases were already not creating
  * outputs below the new threshold */
@@ -78,7 +77,6 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason);
      */
 bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs);
 
-extern CFeeRate incrementalRelayFee;
 extern CFeeRate dustRelayFee;
 extern unsigned int nBytesPerSigOp;
 
