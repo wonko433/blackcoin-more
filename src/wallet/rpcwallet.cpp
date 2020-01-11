@@ -212,7 +212,7 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
 
     UniValue ret(UniValue::VSTR);
 
-    ret = EncodeDestination(GetLabelDestination(pwallet, account));
+    ret = EncodeDestination(GetLabelDestination(pwallet, strAccount));
     return ret;
 }
 
@@ -289,7 +289,7 @@ UniValue setaccount(const JSONRPCRequest& request)
         // Detect when changing the account of an address that is the 'unused current key' of another account:
         if (pwallet->mapAddressBook.count(dest)) {
             std::string strOldAccount = pwallet->mapAddressBook[dest].name;
-            if (address == GetAccountAddress(pwallet, strOldAccount)) {
+            if (dest == GetAccountAddress(pwallet, strOldAccount)) {
                 GetAccountAddress(pwallet, strOldAccount, true);
             }
         }
@@ -329,7 +329,7 @@ UniValue getaccount(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Blackcoin address");
 
     std::string strAccount;
-    std::map<CTxDestination, CAddressBookData>::iterator mi = pwallet->mapAddressBook.find(address);
+    std::map<CTxDestination, CAddressBookData>::iterator mi = pwallet->mapAddressBook.find(dest);
     if (mi != pwallet->mapAddressBook.end() && !(*mi).second.name.empty()) {
         strAccount = (*mi).second.name;
     }
@@ -478,6 +478,7 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     EnsureWalletIsUnlocked(pwallet);
 
+    CCoinControl coin_control;
     SendMoney(pwallet, dest, nAmount, fSubtractFeeFromAmount, wtx, coin_control);
 
     return wtx.GetHash().GetHex();
@@ -580,7 +581,7 @@ UniValue signmessage(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to key");
 
     CKey key;
-    if (!pwallet->GetKey(keyID, key)) {
+    if (!pwallet->GetKey(*keyID, key)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Private key not available");
     }
 
@@ -1018,6 +1019,7 @@ UniValue sendmany(const JSONRPCRequest& request)
     CAmount nFeeRequired = 0;
     int nChangePosRet = -1;
     std::string strFailReason;
+    CCoinControl coin_control;
     bool fCreated = pwallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePosRet, strFailReason, coin_control);
     if (!fCreated)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
@@ -2435,7 +2437,7 @@ UniValue getwalletinfo(const JSONRPCRequest& request)
     obj.push_back(Pair("walletname", pwallet->GetName()));
     obj.push_back(Pair("walletversion", pwallet->GetVersion()));
     obj.push_back(Pair("balance",       ValueFromAmount(pwallet->GetBalance())));
-    obj.push_back(Pair("staked_balance",      ValueFromAmount(pwalletMain->GetStake())));
+    obj.push_back(Pair("staked_balance",      ValueFromAmount(pwallet->GetStake())));
     obj.push_back(Pair("unconfirmed_balance", ValueFromAmount(pwallet->GetUnconfirmedBalance())));
     obj.push_back(Pair("immature_balance",    ValueFromAmount(pwallet->GetImmatureBalance())));
     obj.push_back(Pair("txcount",       (int)pwallet->mapWallet.size()));
@@ -2878,12 +2880,11 @@ UniValue generate(const JSONRPCRequest& request)
 UniValue burn(const JSONRPCRequest& request)
 {
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
-
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "burn <amount> [hex string]\n"
             "<amount> is a real and is rounded to the nearest 0.00000001"
-            + HelpRequiringPassphrase());
+            + HelpRequiringPassphrase(pwallet));
 
     CScript scriptPubKey;
 
@@ -2902,9 +2903,10 @@ UniValue burn(const JSONRPCRequest& request)
     CAmount nAmount = AmountFromValue(request.params[0], true);
     CWalletTx wtx;
 
-    EnsureWalletIsUnlocked();
+    EnsureWalletIsUnlocked(pwallet);
 
-    SendMoneyToScript(scriptPubKey, nAmount, false, wtx);
+    CCoinControl coin_control;
+    SendMoneyToScript(pwallet, scriptPubKey, nAmount, false, wtx, coin_control);
 
     return wtx.GetHash().GetHex();
 }
@@ -2914,11 +2916,10 @@ UniValue burn(const JSONRPCRequest& request)
 UniValue burnwallet(const JSONRPCRequest& request)
 {
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
-
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "burnwallet <hex string> [force]"
-            + HelpRequiringPassphrase());
+            + HelpRequiringPassphrase(pwallet));
 
     CScript scriptPubKey;
 
@@ -2938,7 +2939,7 @@ UniValue burnwallet(const JSONRPCRequest& request)
     if (request.params.size() > 1)
         fForce = request.params[1].get_bool();
 
-    EnsureWalletIsUnlocked();
+    EnsureWalletIsUnlocked(pwallet);
 
     if (!fForce) {
         if (scriptPubKey.size() <= 32)

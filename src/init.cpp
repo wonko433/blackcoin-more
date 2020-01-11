@@ -1354,8 +1354,8 @@ bool AppInitMain(Config& config, boost::thread_group& threadGroup, CScheduler& s
     }
 
 #ifdef ENABLE_WALLET
-    if (mapMultiArgs.count("-reservebalance")) {
-        if (!ParseMoney(GetArg("-reservebalance", ""), nReserveBalance)) {
+    if (gArgs.IsArgSet("-reservebalance")) {
+        if (!ParseMoney(gArgs.GetArg("-reservebalance", ""), nReserveBalance)) {
             InitError(_("Invalid amount for -reservebalance=<amount>"));
             return false;
         }

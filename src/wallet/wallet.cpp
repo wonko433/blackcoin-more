@@ -660,7 +660,7 @@ void CWallet::RemoveFromSpends(const uint256& wtxid)
 	if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
         return;
 
-    BOOST_FOREACH(const CTxIn& txin, thisTx.tx->vin)
+    for(const CTxIn& txin : thisTx.tx->vin)
         RemoveFromSpends(txin.prevout, wtxid);
 }
 
@@ -714,7 +714,7 @@ bool CWallet::SelectCoinsForStaking(CAmount& nTargetValue, std::set<std::pair<co
     setCoinsRet.clear();
     nValueRet = 0;
 
-    BOOST_FOREACH(COutput output, vCoins)
+    for (COutput output : vCoins)
     {
         const CWalletTx *pcoin = output.tx;
         int i = output.i;
@@ -874,7 +874,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     if (nCredit == 0 || nCredit > nBalance - nReserveBalance)
         return false;
 
-    BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins)
+    for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins)
     {
         // Attempt to add more inputs
         // Only add coins of the same key/address as kernel
@@ -920,7 +920,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
     // Sign
     int nIn = 0;
-    BOOST_FOREACH(const CWalletTx* pcoin, vwtxPrev)
+    for (const CWalletTx* pcoin : vwtxPrev)
     {
         if (!SignSignature(*this, *pcoin, txNew, nIn++, SIGHASH_ALL))
             return error("CreateCoinStake : failed to sign coinstake");
@@ -1152,10 +1152,10 @@ bool CWallet::AccountMove(std::string strFrom, std::string strTo, CAmount nAmoun
 
 bool CWallet::GetLabelDestination(CTxDestination &dest, const std::string& label, bool bForceNew)
 {
-    WalletBatch batch(*database);
+    CWalletDB walletdb(*dbw);
 
     CAccount account;
-    batch.ReadAccount(label, account);
+    walletdb.ReadAccount(label, account);
 
     if (!bForceNew) {
         if (!account.vchPubKey.IsValid())
@@ -1881,7 +1881,7 @@ void CWalletTx::GetAmounts(std::list<COutputEntry>& listReceived,
         // In either case, we need to get the destination address
         CTxDestination address;
 
-        if (!ExtractDestination(txout.scriptPubKey, address) && !txout.IsUnspendable())
+        if (!ExtractDestination(txout.scriptPubKey, address) && !txout.scriptPubKey.IsUnspendable())
         {
             LogPrintf("CWalletTx::GetAmounts: Unknown transaction type found, txid %s\n",
                      this->GetHash().ToString());
@@ -3128,8 +3128,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                 // Fill vin
                 //
                 for (const auto& coin : setCoins)
-                    txNew.vin.push_back(CTxIn(coin.outpoint,CScript(),
-                                              nSequence));
+                    txNew.vin.push_back(CTxIn(coin.outpoint,CScript()));
 
                 // Fill in dummy signatures for fee calculation.
                 if (!DummySignTx(txNew, setCoins)) {
@@ -3137,14 +3136,14 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                     return false;
                 }
 
-                nBytes = txNew.GetTotalSize();
+                nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
 
                 // Remove scriptSigs to eliminate the fee calculation dummy signatures
                 for (auto& vin : txNew.vin) {
                     vin.scriptSig = CScript();
                 }
 
-                nFeeNeeded = GetMinimumFee(nBytes, coin_control, ::mempool, &feeCalc);
+                nFeeNeeded = GetMinimumFee(nBytes, coin_control, ::mempool);
 
                 // If we made it here and we aren't even able to meet the relay fee on the next pass, give up
                 // because we must be at the maximum allowed fee.
@@ -3167,7 +3166,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CWalletT
                     // change output. Only try this once.
                     if (nChangePosInOut == -1 && nSubtractFeeFromAmount == 0 && pick_new_inputs) {
                         unsigned int tx_size_with_change = nBytes + change_prototype_size + 2; // Add 2 as a buffer in case increasing # of outputs changes compact size
-                        CAmount fee_needed_with_change = GetMinimumFee(tx_size_with_change, coin_control, ::mempool, nullptr);
+                        CAmount fee_needed_with_change = GetMinimumFee(tx_size_with_change, coin_control, ::mempool);
                         CAmount minimum_value_for_change = GetDustThreshold(change_prototype_txout, ::dustRelayFee);
                         if (nFeeRet >= fee_needed_with_change + minimum_value_for_change) {
                             pick_new_inputs = false;
@@ -3351,34 +3350,21 @@ CAmount CWallet::GetRequiredFee(unsigned int nTxBytes)
     return std::max(minTxFee.GetFee(nTxBytes), ::minRelayTxFee.GetFee(nTxBytes));
 }
 
-CAmount CWallet::GetMinimumFee(unsigned int nTxBytes, const CCoinControl& coin_control, const CTxMemPool& pool, FeeCalculation *feeCalc)
+CAmount CWallet::GetMinimumFee(unsigned int nTxBytes, const CCoinControl& coin_control, const CTxMemPool& pool)
 {
-    /* User control of how to calculate fee uses the following parameter precedence:
-       1. coin_control.m_feerate
-       The first parameter that is set is used.
-    */
     CAmount fee_needed;
-    if (coin_control.m_feerate) { // 1.
-        fee_needed = coin_control.m_feerate->GetFee(nTxBytes);
-        if (feeCalc) feeCalc->reason = FeeReason::PAYTXFEE;
-        // Allow to override automatic min/max check over coin control instance
-        if (coin_control.fOverrideFeeRate) return fee_needed;
-    }
-    else if (::payTxFee != CFeeRate(0)) { // 3. TODO: remove magic value of 0 for global payTxFee
+    if (::payTxFee != CFeeRate(0)) {
         fee_needed = ::payTxFee.GetFee(nTxBytes);
-        if (feeCalc) feeCalc->reason = FeeReason::PAYTXFEE;
     }
 
     // prevent user from paying a fee below minRelayTxFee or minTxFee
     CAmount required_fee = GetRequiredFee(nTxBytes);
     if (required_fee > fee_needed) {
         fee_needed = required_fee;
-        if (feeCalc) feeCalc->reason = FeeReason::REQUIRED;
     }
     // But always obey the maximum
     if (fee_needed > maxTxFee) {
         fee_needed = maxTxFee;
-        if (feeCalc) feeCalc->reason = FeeReason::MAXTXFEE;
     }
     if (fee_needed < DEFAULT_TRANSACTION_FEE)
     	fee_needed = DEFAULT_TRANSACTION_FEE;

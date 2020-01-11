@@ -237,10 +237,10 @@ UniValue validateaddress(const JSONRPCRequest& request)
         if (pwallet && pwallet->mapAddressBook.count(dest)) {
             ret.push_back(Pair("account", pwallet->mapAddressBook[dest].name));
         }
-        CKeyID keyID;
+        const CKeyID *keyID = boost::get<CKeyID>(&dest);
         if (pwallet) {
             const auto& meta = pwallet->mapKeyMetadata;
-            auto it = address.GetKeyID(keyID) ? meta.find(keyID) : meta.end();
+            auto it = keyID ? meta.find(*keyID) : meta.end();
             if (it == meta.end()) {
                 it = meta.find(CScriptID(scriptPubKey));
             }
@@ -290,6 +290,7 @@ CScript _createmultisig_redeemScript(CWallet * const pwallet, const UniValue& pa
             if (!keyID) {
                 throw std::runtime_error(
                     strprintf("%s does not refer to a key",ks));
+            }
             CPubKey vchPubKey;
             if (!pwallet->GetPubKey(*keyID, vchPubKey)) {
                 throw std::runtime_error(
@@ -320,7 +321,6 @@ CScript _createmultisig_redeemScript(CWallet * const pwallet, const UniValue& pa
     if (result.size() > MAX_SCRIPT_ELEMENT_SIZE)
         throw std::runtime_error(
                 strprintf("redeemScript exceeds size limit: %d > %d", result.size(), MAX_SCRIPT_ELEMENT_SIZE));
-
     return result;
 }
 

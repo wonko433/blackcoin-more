@@ -1151,23 +1151,22 @@ void BitcoinGUI::toggleHidden()
 
 void BitcoinGUI::updateWeight()
 {
-    if(!pwalletMain)
+    if(!pwallet)
         return;
 
     TRY_LOCK(cs_main, lockMain);
     if (!lockMain)
         return;
 
-    TRY_LOCK(pwalletMain->cs_wallet, lockWallet);
+    TRY_LOCK(pwallet->cs_wallet, lockWallet);
     if (!lockWallet)
         return;
 
 #ifdef ENABLE_WALLET
-    if (pwalletMain)
-    nWeight = pwalletMain->GetStakeWeight();
+    if (pwallet)
+    nWeight = pwallet->GetStakeWeight();
 #endif
 }
-
 
 void BitcoinGUI::updateStakingIcon()
 {
