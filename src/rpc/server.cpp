@@ -103,7 +103,7 @@ void RPCTypeCheckObj(const UniValue& o,
             {
                 if (typesExpected.count(k) == 0)
                 {
-                    string err = strprintf("Unexpected keys %s", k);
+                    std::string err = strprintf("Unexpected keys %s", k);
                     throw JSONRPCError(RPC_TYPE_ERROR, err);
                 }
             }
@@ -259,22 +259,6 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     // this reply will get back to the client.
     StartShutdown();
     return "Blackcoin server stopping";
-}
-
-UniValue uptime(const JSONRPCRequest& jsonRequest)
-{
-    if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
-        throw runtime_error(
-                "uptime\n"
-                        "\nReturns the total uptime of the server.\n"
-                        "\nResult:\n"
-                        "ttt        (numeric) The number of seconds that the server has been running\n"
-                        "\nExamples:\n"
-                + HelpExampleCli("uptime", "")
-                + HelpExampleRpc("uptime", "")
-        );
-
-    return GetTime() - GetStartupTime();
 }
 
 UniValue uptime(const JSONRPCRequest& jsonRequest)

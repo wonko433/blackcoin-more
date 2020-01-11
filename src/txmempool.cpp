@@ -328,7 +328,7 @@ void CTxMemPoolEntry::UpdateAncestorState(int64_t modifySize, CAmount modifyFee,
     assert(int(nSigOpCountWithAncestors) >= 0);
 }
 
-CTxMemPool::~CTxMemPool()
+CTxMemPool::CTxMemPool() : nTransactionsUpdated(0)
 {
     _clear(); //lock free clear
 

@@ -336,6 +336,7 @@ struct CNodeState {
 
 /** Map maintaining per-node state. Requires cs_main. */
 std::map<NodeId, CNodeState> mapNodeState;
+std::map<CService, CNodeHeaders> mapServiceHeaders;
 
 // Requires cs_main.
 CNodeState *State(NodeId pnode) {
@@ -343,6 +344,26 @@ CNodeState *State(NodeId pnode) {
     if (it == mapNodeState.end())
         return nullptr;
     return &it->second;
+}
+
+static CNodeHeaders &ServiceHeaders(const CService& address) {
+    unsigned short port =
+            gArgs.GetBoolArg("-headerspamfilterignoreport", DEFAULT_HEADER_SPAM_FILTER_IGNORE_PORT) ? 0 : address.GetPort();
+    CService addr(address, port);
+    return mapServiceHeaders[addr];
+}
+
+static void CleanAddressHeaders(const CAddress& addr) {
+    CSubNet subNet(addr);
+    for (std::map<CService, CNodeHeaders>::iterator it=mapServiceHeaders.begin(); it!=mapServiceHeaders.end();){
+        if(subNet.Match(it->first))
+        {
+            it = mapServiceHeaders.erase(it);
+        }
+        else{
+            it++;
+        }
+    }
 }
 
 bool ProcessNetBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=nullptr, CBlockHeader *first_invalid=nullptr)
@@ -353,9 +374,10 @@ bool ProcessNetBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block
     {
         LOCK(cs_main);
         CNodeState *nodestate = State(pfrom->GetId());
+        CNodeHeaders& headers = ServiceHeaders(nodestate->address);
         const CBlockIndex *pindexLast = ppindex == nullptr ? nullptr : *ppindex;
-        nodestate->headers.addHeaders(pindexFirst, pindexLast);
-        return nodestate->headers.updateState(state, ret);
+        headers.addHeaders(pindexFirst, pindexLast);
+        return headers.updateState(state, ret);
     }
     return ret;
 }
@@ -2865,6 +2887,8 @@ static bool SendRejectsAndCheckIfBanned(CNode* pnode, CConnman* connman)
             else
             {
                 connman->Ban(pnode->addr, BanReasonNodeMisbehaving);
+                // Remove all data from the header spam filter when the address is banned
+                CleanAddressHeaders(pnode->addr);
             }
         }
         return true;

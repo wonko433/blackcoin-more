@@ -26,13 +26,25 @@ unsigned int HaveKeys(const std::vector<valtype>& pubkeys, const CKeyStore& keys
     return nResult;
 }
 
-isminetype IsMine(const CKeyStore &keystore, const CTxDestination& dest)
+isminetype IsMine(const CKeyStore& keystore, const CScript& scriptPubKey)
 {
-    CScript script = GetScriptForDestination(dest);
-    return IsMine(keystore, script);
+    bool isInvalid = false;
+    return IsMine(keystore, scriptPubKey, isInvalid);
 }
 
-isminetype IsMine(const CKeyStore &keystore, const CScript& scriptPubKey)
+isminetype IsMine(const CKeyStore& keystore, const CTxDestination& dest)
+{
+    bool isInvalid = false;
+    return IsMine(keystore, dest, isInvalid);
+}
+
+isminetype IsMine(const CKeyStore &keystore, const CTxDestination& dest, bool& isInvalid)
+{
+    CScript script = GetScriptForDestination(dest);
+    return IsMine(keystore, script, isInvalid);
+}
+
+isminetype IsMine(const CKeyStore &keystore, const CScript& scriptPubKey, bool& isInvalid)
 {
     isInvalid = false;
 

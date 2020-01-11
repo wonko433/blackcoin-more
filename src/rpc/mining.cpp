@@ -848,7 +848,6 @@ UniValue checkkernel(const JSONRPCRequest& request)
         int64_t nFees;
 #ifdef ENABLE_WALLET
     CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
-#endif
         if (!pwallet)
             return result;
 
@@ -857,6 +856,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
 
         CReserveKey pMiningKey(pwallet);
         std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(pMiningKey.reserveScript, &nFees, true));
+#endif
         if (!pblocktemplate.get())
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 

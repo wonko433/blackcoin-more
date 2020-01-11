@@ -28,7 +28,14 @@ enum isminetype
 /** used for bitflags of isminetype */
 typedef uint8_t isminefilter;
 
+/* isInvalid becomes true when the script is found invalid by consensus or policy. This will terminate the recursion
+ * and return a ISMINE_NO immediately, as an invalid script should never be considered as "mine". Currently the only
+ * use of isInvalid is indicate uncompressed keys when SCRIPT_VERIFY_COMPRESSED_PUBKEYTYPE is specified,
+ * but could also be used in similar cases in the future
+ */
+isminetype IsMine(const CKeyStore& keystore, const CScript& scriptPubKey, bool& isInvalid);
 isminetype IsMine(const CKeyStore& keystore, const CScript& scriptPubKey);
+isminetype IsMine(const CKeyStore& keystore, const CTxDestination& dest, bool& isInvalid);
 isminetype IsMine(const CKeyStore& keystore, const CTxDestination& dest);
 
 #endif // BITCOIN_SCRIPT_ISMINE_H

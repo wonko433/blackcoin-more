@@ -42,9 +42,6 @@
 #include "utilstrencodings.h"
 #include "validationinterface.h"
 #include "versionbits.h"
-#ifdef ENABLE_WALLET
-#include "wallet/wallet.h"
-#endif
 #include "warnings.h"
 
 #include <atomic>
@@ -88,8 +85,6 @@ arith_uint256 nMinimumChainWork;
 
 CFeeRate minRelayTxFee = CFeeRate(DEFAULT_MIN_RELAY_TX_FEE);
 CAmount maxTxFee = DEFAULT_TRANSACTION_MAXFEE;
-
-CTxMemPool mempool();
 
 static void CheckBlockIndex(const Consensus::Params& consensusParams);
 
@@ -678,13 +673,8 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
             }
         }
 
-        // This transaction should only count for fee estimation if
-        // the node is not behind and it is not dependent on any other
-        // transactions in the mempool
-        bool validForFeeEstimation = IsCurrentForFeeEstimation() && pool.HasNoInputsOf(tx);
-
         // Store transaction in memory
-        pool.addUnchecked(hash, entry, setAncestors, validForFeeEstimation);
+        pool.addUnchecked(hash, entry, setAncestors);
 
         // trim mempool and check if tx was trimmed
         if (!fOverrideMempoolLimit) {
@@ -1231,13 +1221,6 @@ enum DisconnectResult
     DISCONNECT_FAILED   // Something else went wrong.
 };
 
-enum DisconnectResult
-{
-    DISCONNECT_OK,      // All good.
-    DISCONNECT_UNCLEAN, // Rolled back, but UTXO set was inconsistent with block.
-    DISCONNECT_FAILED   // Something else went wrong.
-};
-
 /**
  * Restore the UTXO in a Coin at a given COutPoint
  * @param undo The Coin to be restored.
@@ -1431,7 +1414,7 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
     flags |= SCRIPT_VERIFY_LOW_S;
 
     // Start enforcing CHECKLOCKTIMEVERIFY, (BIP65) since protocolv3
-    if (chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
+    if (consensusparams.IsProtocolV3(pindex->GetBlockTime())) {
         flags |= SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY;
         flags |= SCRIPT_VERIFY_NULLDUMMY;
     }
@@ -1443,8 +1426,6 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
 
     return flags;
 }
-
-
 
 static int64_t nTimeCheck = 0;
 static int64_t nTimeForks = 0;
@@ -1838,16 +1819,6 @@ void PruneAndFlush() {
     fCheckForPruning = true;
     const CChainParams& chainparams = Params();
     FlushStateToDisk(chainparams, state, FLUSH_STATE_NONE);
-}
-
-static void DoWarning(const std::string& strWarning)
-{
-    static bool fWarned = false;
-    SetMiscWarning(strWarning);
-    if (!fWarned) {
-        AlertNotify(strWarning);
-        fWarned = true;
-    }
 }
 
 static void DoWarning(const std::string& strWarning)
@@ -2803,6 +2774,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
 {
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
+    const Consensus::Params& consensusParams = params.GetConsensus();
 
     // Blackcoin ToDo: pass fProofOfStake as a parameter for ContextualCheckBlockHeader() function
     bool fProofOfStake = false;
@@ -2810,7 +2782,6 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
         fProofOfStake = true;
 
     // Check difficulty
-    const Consensus::Params& consensusParams = params.GetConsensus();
     if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
         return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
 
@@ -2876,44 +2847,6 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
         !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
         return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
-    }
-
-    return true;
-}
-
-bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainParams& chainparams)
-{
-    uint256 hashBlock = pblock->GetHash();
-
-    if(!pblock->IsProofOfStake())
-        return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex());
-
-    CValidationState state;
-    // verify hash target and signature of coinstake tx
-    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state, *pcoinsTip))
-        return error("CheckStake() : proof-of-stake checking failed");
-
-    //// debug print
-    LogPrintf("%s\n", pblock->ToString());
-    LogPrintf("out %s\n", FormatMoney(pblock->vtx[1]->GetValueOut()));
-
-    // Found a solution
-    {
-        LOCK(cs_main);
-        if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("CheckStake() : generated block is stale");
-
-        // Track how many getdata requests this block gets
-        {
-            LOCK(wallet.cs_wallet);
-            wallet.mapRequestCount[hashBlock] = 0;
-        }
-
-        // Process this block the same as if we had received it from another node
-        std::shared_ptr<const CBlock> staked_pblock =
-                    std::make_shared<const CBlock>(*pblock);
-        if (!ProcessNewBlock(chainparams, staked_pblock, true, NULL))
-            return error("CheckStake() : ProcessNewBlock, block not accepted");
     }
 
     return true;
@@ -3663,53 +3596,6 @@ bool ReplayBlocks(const CChainParams& params, CCoinsView* view)
         if (mapBlockIndex.count(hashHeads[1]) == 0) {
             return error("ReplayBlocks(): reorganization from unknown block requested");
         }
-        pindexOld = mapBlockIndex[hashHeads[1]];
-        pindexFork = LastCommonAncestor(pindexOld, pindexNew);
-        assert(pindexFork != nullptr);
-    }
-
-    // Rollback along the old branch.
-    while (pindexOld != pindexFork) {
-        if (pindexOld->nHeight > 0) { // Never disconnect the genesis block.
-            CBlock block;
-            if (!ReadBlockFromDisk(block, pindexOld, params.GetConsensus())) {
-                return error("RollbackBlock(): ReadBlockFromDisk() failed at %d, hash=%s", pindexOld->nHeight, pindexOld->GetBlockHash().ToString());
-            }
-            LogPrintf("Rolling back %s (%i)\n", pindexOld->GetBlockHash().ToString(), pindexOld->nHeight);
-            DisconnectResult res = DisconnectBlock(block, pindexOld, cache);
-            if (res == DISCONNECT_FAILED) {
-                return error("RollbackBlock(): DisconnectBlock failed at %d, hash=%s", pindexOld->nHeight, pindexOld->GetBlockHash().ToString());
-            }
-            // If DISCONNECT_UNCLEAN is returned, it means a non-existing UTXO was deleted, or an existing UTXO was
-            // overwritten. It corresponds to cases where the block-to-be-disconnect never had all its operations
-            // applied to the UTXO set. However, as both writing a UTXO and deleting a UTXO are idempotent operations,
-            // the result is still a version of the UTXO set with the effects of that block undone.
-        }
-        pindexOld = pindexOld->pprev;
-    }
-
-    // Roll forward from the forking point to the new tip.
-    int nForkHeight = pindexFork ? pindexFork->nHeight : 0;
-    for (int nHeight = nForkHeight + 1; nHeight <= pindexNew->nHeight; ++nHeight) {
-        const CBlockIndex* pindex = pindexNew->GetAncestor(nHeight);
-        LogPrintf("Rolling forward %s (%i)\n", pindex->GetBlockHash().ToString(), nHeight);
-        if (!RollforwardBlock(pindex, cache, params)) return false;
-    }
-
-    cache.SetBestBlock(pindexNew->GetBlockHash());
-    cache.Flush();
-    uiInterface.ShowProgress("", 100);
-    return true;
-}
-
-bool RewindBlockIndex(const CChainParams& params)
-{
-    LOCK(cs_main);
-
-    // Note that during -reindex-chainstate we are called with an empty chainActive!
-
-    int nHeight = 1;
-    while (nHeight <= chainActive.Height()) {
         pindexOld = mapBlockIndex[hashHeads[1]];
         pindexFork = LastCommonAncestor(pindexOld, pindexNew);
         assert(pindexFork != nullptr);
