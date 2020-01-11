@@ -153,8 +153,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         pblock->nVersion = gArgs.GetArg("-blockversion", pblock->nVersion);
 
     pblock->nTime = GetAdjustedTime();
+    const int64_t nGetPastTimeLimit = pindexPrev->GetPastTimeLimit();
 
-    nLockTimeCutoff = pblock->GetBlockTime();
+    nLockTimeCutoff = (STANDARD_LOCKTIME_VERIFY_FLAGS & LOCKTIME_MEDIAN_TIME_PAST)
+                       ? nGetPastTimeLimit
+                       : pblock->GetBlockTime();
 
     int nPackagesSelected = 0;
     int nDescendantsUpdated = 0;

@@ -26,9 +26,9 @@ using namespace std;
 uint256 ComputeStakeModifier(const CBlockIndex* pindexPrev, const uint256& kernel);
 
 struct CStakeCache{
-    CStakeCache(uint32_t blockFromTime_, CAmount amount_) : blockFromTime(blockFromTime_), amount(amount_){
+    CStakeCache(uint32_t coinPrevTime_, CAmount amount_) : coinPrevTime(coinPrevTime_), amount(amount_){
     }
-    uint32_t blockFromTime;
+    uint32_t coinPrevTime;
     CAmount amount;
 };
 

@@ -786,18 +786,18 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     }
 
     if (GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
-        BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins)
+        for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins)
         {
             boost::this_thread::interruption_point();
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
-            CacheKernel(stakeCache, prevoutStake, pindexPrev, *pcoinsTip); //this will do a 2 disk loads per op
+            CacheKernel(stakeCache, prevoutStake, pindexPrev, *pcoinsTip); // this will do a 2 disk loads per op
         }
 
     }
 
     int64_t nCredit = 0;
     CScript scriptPubKeyKernel;
-    BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins)
+    for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins)
     {
         static int nMaxStakeSearchInterval = 60;
         bool fKernelFound = false;

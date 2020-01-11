@@ -107,13 +107,15 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, uns
     if (UintToArith256(hashProofOfStake) > bnTarget)
         return false;
 
-    // if (fDebug && !fPrintProofOfStake)
+    /*
+    if (fDebug && !fPrintProofOfStake)
     {
         LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
             nStakeModifier.GetHex().c_str(),
             prevTime, prevout.hash.ToString(), prevout.n, nTimeTx,
             hashProofOfStake.ToString());
     }
+    */
 
     return true;
 }
@@ -132,7 +134,7 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, const CTransaction& tx, unsigned
     
     Coin coinPrev;
 
-    if(!view.GetCoin(txin.prevout, coinPrev)){
+    if (!view.GetCoin(txin.prevout, coinPrev)) {
         return state.DoS(100, error("CheckProofOfStake() : Stake prevout does not exist %s", txin.prevout.hash.ToString()));
     }
 
@@ -142,7 +144,7 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, const CTransaction& tx, unsigned
     }
 
     CBlockIndex* blockFrom = pindexPrev->GetAncestor(coinPrev.nHeight);
-    if(!blockFrom) {
+    if (!blockFrom) {
         return state.DoS(100, error("CheckProofOfStake() : Block at height %i for prevout can not be loaded", coinPrev.nHeight));
     }
 
@@ -156,53 +158,55 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, const CTransaction& tx, unsigned
     return true;
 }
 
-bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTimeBlock, const COutPoint& prevout, CCoinsViewCache& view){
+bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTime, const COutPoint& prevout, CCoinsViewCache& view){
     std::map<COutPoint, CStakeCache> tmp;
-    return CheckKernel(pindexPrev, nBits, nTimeBlock, prevout, view, tmp);
+    return CheckKernel(pindexPrev, nBits, nTime, prevout, view, tmp);
 }
 
 bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, uint32_t nTime, const COutPoint& prevout, CCoinsViewCache& view, const std::map<COutPoint, CStakeCache>& cache)
 {
     uint256 hashProofOfStake, targetProofOfStake;
-    auto it=cache.find(prevout);
+    auto it = cache.find(prevout);
 
-    if(it == cache.end()) {
+    if (it == cache.end()) {
         Coin coinPrev;
-        if(!view.GetCoin(prevout, coinPrev)){
+        if (!view.GetCoin(prevout, coinPrev)) {
             return false;
         }
 
-        if(pindexPrev->nHeight + 1 - coinPrev.nHeight < Params().GetConsensus().nCoinbaseMaturity){
+        if (pindexPrev->nHeight + 1 - coinPrev.nHeight < Params().GetConsensus().nCoinbaseMaturity){
             return false;
         }
 
         CBlockIndex* blockFrom = pindexPrev->GetAncestor(coinPrev.nHeight);
-        if(!blockFrom) {
+        if (!blockFrom) {
             return false;
         }
 
-        if(coinPrev.IsSpent()){
+        if (coinPrev.IsSpent()){
             return false;
         }
 
-        return CheckStakeKernelHash(pindexPrev, nBits, coinPrev.nTime, coinPrev.out.nValue, prevout, nTime);
+        return CheckStakeKernelHash(pindexPrev, nBits, nTime, coinPrev.out.nValue, prevout, nTime);
     } else {
         //found in cache
         const CStakeCache& stake = it->second;
-if (CheckStakeKernelHash(pindexPrev, nBits,stake.blockFromTime, stake.amount, prevout, nTime)) { // Cache could potentially cause false positive stakes in the event of deep reorgs, so check without cache also return CheckKernel(pindexPrev, nBits, nTime, prevout, view); }
+        if (CheckStakeKernelHash(pindexPrev, nBits, stake.nTime, stake.amount, prevout, nTime)) {
+            // Cache could potentially cause false positive stakes in the event of deep reorgs, so check without cache also return CheckKernel(pindexPrev, nBits, nTime, prevout, view); }
+            return CheckKernel(pindexPrev, nBits, nTime, prevout, view);
+        }
     }
-}
-return false;
+    return false;
 }
 
 void CacheKernel(std::map<COutPoint, CStakeCache>& cache, const COutPoint& prevout, CBlockIndex* pindexPrev, CCoinsViewCache& view){
-    if(cache.find(prevout) != cache.end()){
+    if (cache.find(prevout) != cache.end()) {
         //already in cache
         return;
     }
 
     Coin coinPrev;
-    if(!view.GetCoin(prevout, coinPrev)){
+    if (!view.GetCoin(prevout, coinPrev)) {
         return;
     }
 
@@ -211,7 +215,7 @@ void CacheKernel(std::map<COutPoint, CStakeCache>& cache, const COutPoint& prevo
     }
 
     CBlockIndex* blockFrom = pindexPrev->GetAncestor(coinPrev.nHeight);
-    if(!blockFrom) {
+    if (!blockFrom) {
         return;
     }
 
