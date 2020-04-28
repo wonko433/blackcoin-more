@@ -120,7 +120,7 @@ public:
         consensus.nStakeMinAge = 8 * 60 * 60; // 8 hours
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000026797d24ded64a79e72");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000029f1452903d2f781416");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x36442d872ca6a66c65caef4d9468b8add290accc8cf7ec386eee50e62721ed3d"); //2400000
