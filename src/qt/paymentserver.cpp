@@ -208,18 +208,20 @@ static std::string ipcParseURI(const QString &arg, const CChainParams &params, b
     return r.address.toStdString();
 }
 
-static bool ipcCanParseCashAddrURI(const QString &arg, const std::string &network)
+static bool ipcCanParseCashAddrURI(const QString& arg,
+    const std::string& network)
 {
-    const CChainParams &params(Params(network));
-    std::string addr = ipcParseURI(arg, params, true);
-    return IsValidDestinationString(addr, params);
+    auto tempChainParams = CreateChainParams(network);
+    std::string addr = ipcParseURI(arg, *tempChainParams, true);
+    return IsValidDestinationString(addr, *tempChainParams);
 }
 
-static bool ipcCanParseLegacyURI(const QString &arg, const std::string &network)
+static bool ipcCanParseLegacyURI(const QString& arg,
+    const std::string& network)
 {
-    const CChainParams &params(Params(network));
-    std::string addr = ipcParseURI(arg, params, false);
-    return IsValidDestinationString(addr, params);
+    auto tempChainParams = CreateChainParams(network);
+    std::string addr = ipcParseURI(arg, *tempChainParams, false);
+    return IsValidDestinationString(addr, *tempChainParams);
 }
 
 //
