@@ -179,7 +179,7 @@ void Shutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("bitcoin-shutoff");
+    RenameThread("blackcoin-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
