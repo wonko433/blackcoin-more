@@ -26,8 +26,7 @@ public:
         status(Offline),
         depth(0),
         open_for(0),
-        cur_num_blocks(-1),
-        cur_num_conflicts(-1)
+        cur_num_blocks(-1)
     {
     }
 

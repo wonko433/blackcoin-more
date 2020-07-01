@@ -5,9 +5,8 @@ src/blackmore
 src/blackmored
 src/blackmore-cli
 src/blackmore-tx
-src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
-src/qt/test/test_bitcoin-qt
+src/test/test_blackmore
+src/qt/test/test_blackmore-qt
 
 # autoreconf
 Makefile.in
@@ -26,6 +25,7 @@ build-aux/m4/ltversion.m4
 build-aux/missing
 build-aux/compile
 build-aux/test-driver
+config.cache
 config.log
 config.status
 configure
@@ -33,6 +33,7 @@ libtool
 src/config/bitcoin-config.h
 src/config/bitcoin-config.h.in
 src/config/stamp-h1
+src/obj
 share/setup.nsi
 share/qt/Info.plist
 
@@ -43,6 +44,12 @@ src/qt/moc_*.cpp
 src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
+
+src/qt/blackmore-qt.config
+src/qt/blackmore-qt.creator
+src/qt/blackmore-qt.creator.user
+src/qt/blackmore-qt.files
+src/qt/blackmore-qt.includes
 
 .deps
 .dirstamp
@@ -55,10 +62,10 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-*.patch
 *.a
 *.pb.cc
 *.pb.h
+*.dat
 
 *.log
 *.trs
@@ -67,6 +74,10 @@ src/qt/test/moc*.cpp
 *.json.h
 *.raw.h
 
+# Only ignore unexpected patches
+*.patch
+!depends/patches/**/*.patch
+
 #libtool object files
 *.lo
 *.la
@@ -74,12 +85,18 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-blackmore-qt
+!depends/Makefile
+src/qt/blackmore-qt
 Blackmore-Qt.app
+background.tiff*
+
+# Qt Creator
+Makefile.am.user
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+blackmore-qt_test
+src/test/buildenv.py
 
 # Resources cpp
 qrc_*.cpp
@@ -87,6 +104,9 @@ qrc_*.cpp
 # Mac specific
 .DS_Store
 build
+
+# Previous releases
+releases
 
 #lcov
 *.gcno
@@ -102,6 +122,8 @@ linux-build
 win32-build
 test/config.ini
 test/cache/*
+qa/pull-tester/run-bitcoind-for-test.sh
+qa/pull-tester/tests_config.py
 
 !src/leveldb*/Makefile
 
@@ -109,3 +131,14 @@ test/cache/*
 
 libbitcoinconsensus.pc
 contrib/devtools/split-debug.sh
+
+#Visual Studio
+.vscode/*
+.vs/*
+
+# clang-check
+*.plist
+
+osx_volname
+dist/
+*.background.tiff
