@@ -27,7 +27,7 @@ private:
 } // anon ns
 
 void GUIUtilTests::dummyAddressTest() {
-    CChainParams &params = Params(CBaseChainParams::MAIN);
+    const CChainParams &params = config.GetChainParams();
     UtilCfgDummy cfg;
     std::string dummyaddr;
 
