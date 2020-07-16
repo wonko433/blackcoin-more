@@ -490,11 +490,11 @@ void SendCoinsDialog::useAvailableBalance(SendCoinsEntry* entry)
     // Get CCoinControl instance if CoinControl is enabled or create a new one.
     CCoinControl coin_control;
     if (model->getOptionsModel()->getCoinControlFeatures()) {
-        coin_control = *CoinControlDialog::coinControl();
+        coin_control = *CoinControlDialog::coinControl;
     }
 
     // Calculate available amount to send.
-    CAmount amount = model->wallet().getAvailableBalance(coin_control);
+    CAmount amount = model->getBalance(&coin_control);
     for (int i = 0; i < ui->entries->count(); ++i) {
         SendCoinsEntry* e = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(i)->widget());
         if (e && !e->isHidden() && e != entry) {
@@ -610,7 +610,6 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         else
         {
             // Valid address
-            const CTxDestination dest = addr.Get();
             if (!model->IsSpendable(dest)) {
                 ui->labelCoinControlChangeLabel->setText(tr("Warning: Unknown change address"));
 
