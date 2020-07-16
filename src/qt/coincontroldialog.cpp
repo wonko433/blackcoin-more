@@ -495,7 +495,7 @@ void CoinControlDialog::updateLabels(WalletModel *model, QDialog* dialog)
                 nBytes -= 34;
 
         // Fee
-        nPayFee = CWallet::GetMinimumFee(nBytes, *coinControl, ::mempool, nullptr /* FeeCalculation */);
+        nPayFee = CWallet::GetMinimumFee(nBytes, *coinControl, ::mempool);
 
         if (nPayAmount > 0)
         {
