@@ -1149,28 +1149,35 @@ void BitcoinGUI::toggleHidden()
     showNormalIfMinimized(true);
 }
 
-void BitcoinGUI::updateWeight()
+void BitcoinGUI::updateWeight(CWalletRef pwalletMain)
 {
-    if(!pwallet)
+    if(!pwalletMain)
         return;
 
     TRY_LOCK(cs_main, lockMain);
     if (!lockMain)
         return;
 
-    TRY_LOCK(pwallet->cs_wallet, lockWallet);
+    TRY_LOCK(pwalletMain->cs_wallet, lockWallet);
     if (!lockWallet)
         return;
 
 #ifdef ENABLE_WALLET
-    if (pwallet)
-    nWeight = pwallet->GetStakeWeight();
+    if (pwalletMain)
+    nWeight = pwalletMain->GetStakeWeight();
 #endif
 }
 
 void BitcoinGUI::updateStakingIcon()
 {
-	updateWeight();
+    if(ShutdownRequested())
+        return;
+
+    CWalletRef pwalletMain = vpwallets.empty() ? 0 : vpwallets[0];
+    if(!pwalletMain)
+        return;
+
+    updateWeight(pwalletMain);
 
     if (nLastCoinStakeSearchInterval && nWeight)
     {

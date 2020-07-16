@@ -702,12 +702,12 @@ int main(int argc, char *argv[])
     int rv = EXIT_SUCCESS;
     try
     {
-        app.createWindow(networkStyle.data());
+        app.createWindow(&config, networkStyle.data());
         // Perform base initialization before spinning up initialization/shutdown thread
         // This is acceptable because this function only contains steps that are quick to execute,
         // so the GUI thread won't be held up.
         if (BitcoinCore::baseInitialize()) {
-            app.requestInitialize();
+            app.requestInitialize(config);
 #if defined(Q_OS_WIN) && QT_VERSION >= 0x050000
             WinShutdownMonitor::registerShutdownBlockReason(QObject::tr("%1 didn't yet exit safely...").arg(QObject::tr(PACKAGE_NAME)), (HWND)app.getMainWinId());
 #endif
