@@ -2908,7 +2908,7 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, CValidatio
         bool bFirst = true;
         for (const CBlockHeader& header : headers) {
             CBlockIndex *pindex = nullptr; // Use a temp pindex instead of ppindex to avoid a const_cast
-            if (!AcceptBlockHeader(header, state, chainparams, &pindex)) {
+            if (!AcceptBlockHeader(header, state, chainparams, &pindex, header.nStatus & CBlockIndex::BLOCK_PROOF_OF_STAKE)) {
                 if (first_invalid) *first_invalid = header;
                 return false;
             }
