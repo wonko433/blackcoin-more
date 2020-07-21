@@ -159,10 +159,6 @@ enum BlockStatus: uint32_t {
     BLOCK_FAILED_VALID       =   32, //!< stage after last reached validness failed
     BLOCK_FAILED_CHILD       =   64, //!< descends from failed block
     BLOCK_FAILED_MASK        =   BLOCK_FAILED_VALID | BLOCK_FAILED_CHILD,
-
-    BLOCK_PROOF_OF_STAKE     =   128, //! is proof-of-stake block
-    BLOCK_STAKE_ENTROPY      =   256,
-    BLOCK_STAKE_MODIFIER     =   512,
 };
 
 /** The block chain is a tree shaped structure starting with the
@@ -208,6 +204,15 @@ public:
 
     //! Verification status of this block. See enum BlockStatus
     unsigned int nStatus;
+
+    //! Proof-of-stake related block index fields
+    unsigned int nFlags;
+    enum
+    {
+        BLOCK_PROOF_OF_STAKE = (1 << 0),
+        BLOCK_STAKE_ENTROPY  = (1 << 1),
+        BLOCK_STAKE_MODIFIER = (1 << 2),
+    };
 
     //! hash modifier of proof-of-stake
     uint256 nStakeModifier;
@@ -347,12 +352,12 @@ public:
 
     bool IsProofOfStake() const
     {
-        return (nStatus & BLOCK_PROOF_OF_STAKE);
+        return (nFlags & BLOCK_PROOF_OF_STAKE);
     }
 
     void SetProofOfStake()
     {
-        nStatus |= BLOCK_PROOF_OF_STAKE;
+        nFlags |= BLOCK_PROOF_OF_STAKE;
     }
 
     std::string ToString() const
