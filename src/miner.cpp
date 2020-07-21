@@ -577,6 +577,8 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                     return;
 
                 std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
+                pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
+
                 // Trying to sign a block
                 if (SignBlock(pblock, *pwallet, nFees))
                 {
