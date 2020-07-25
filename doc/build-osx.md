@@ -16,11 +16,21 @@ Then install [Homebrew](https://brew.sh).
 Dependencies
 ----------------------
 
-    brew install automake berkeley-db6 libtool boost --c++11 miniupnpc openssl pkg-config protobuf qt libevent
+    brew install automake berkeley-db6 libtool boost miniupnpc openssl pkg-config protobuf python3 qt libevent
+
+See [dependencies.md](dependencies.md) for a complete overview.
 
 If you want to build the disk image with `make deploy` (.dmg / optional), you need RSVG
 
     brew install librsvg
+
+NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
+
+Berkeley DB
+-----------
+It is recommended to use Berkeley DB 6.2.
+
+**Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
 Build Blackcoin More
 ------------------------
@@ -92,6 +102,6 @@ Uncheck everything except Qt Creator during the installation process.
 Notes
 -----
 
-* Tested on OS X 10.8 through 10.12 on 64-bit Intel processors only.
+* Tested on OS X 10.8 through 10.13 on 64-bit Intel processors only.
 
 * Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)

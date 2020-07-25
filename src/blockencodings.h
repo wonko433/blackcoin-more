@@ -1,11 +1,11 @@
-// Copyright (c) 2016 The Bitcoin Core developers
+// Copyright (c) 2016-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_BLOCK_ENCODINGS_H
 #define BITCOIN_BLOCK_ENCODINGS_H
 
-#include "primitives/block.h"
+#include <primitives/block.h>
 
 #include <memory>
 
@@ -16,7 +16,7 @@ struct TransactionCompressor {
 private:
     CTransactionRef& tx;
 public:
-    TransactionCompressor(CTransactionRef& txIn) : tx(txIn) {}
+    explicit TransactionCompressor(CTransactionRef& txIn) : tx(txIn) {}
 
     ADD_SERIALIZE_METHODS;
 
@@ -75,7 +75,7 @@ public:
     std::vector<CTransactionRef> txn;
 
     BlockTransactions() {}
-    BlockTransactions(const BlockTransactionsRequest& req) :
+    explicit BlockTransactions(const BlockTransactionsRequest& req) :
         blockhash(req.blockhash), txn(req.indexes.size()) {}
 
     ADD_SERIALIZE_METHODS;

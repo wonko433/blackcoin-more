@@ -1,22 +1,22 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "paymentserver.h"
+#include <qt/paymentserver.h>
 
-#include "bitcoinunits.h"
-#include "guiutil.h"
-#include "optionsmodel.h"
+#include <qt/bitcoinunits.h>
+#include <qt/guiutil.h>
+#include <qt/optionsmodel.h>
 
-#include "chainparams.h"
-#include "config.h"
-#include "dstencode.h"
-#include "policy/policy.h"
-#include "ui_interface.h"
-#include "util.h"
-#include "wallet/wallet.h"
+#include <base58.h>
+#include <chainparams.h>
+#include <policy/policy.h>
+#include <ui_interface.h>
+#include <util.h>
+#include <wallet/wallet.h>
 
 #include <cstdlib>
+#include <memory>
 
 #include <openssl/x509_vfy.h>
 
@@ -191,40 +191,6 @@ void PaymentServer::LoadRootCAs(X509_STORE* _store)
     //   "certificate stapling" with server-side caching is more efficient
 }
 
-static std::string ipcParseURI(const QString &arg, const CChainParams &params, bool useCashAddr)
-{
-    const QString scheme = GUIUtil::bitcoinURIScheme(params, useCashAddr);
-    if (!arg.startsWith(scheme + ":", Qt::CaseInsensitive))
-    {
-        return {};
-    }
-
-    SendCoinsRecipient r;
-    if (!GUIUtil::parseBitcoinURI(scheme, arg, &r))
-    {
-        return {};
-    }
-
-    return r.address.toStdString();
-}
-
-static bool ipcCanParseCashAddrURI(const QString& arg,
-    const std::string& network)
-{
-    auto tempChainParams = CreateChainParams(network);
-    std::string addr = ipcParseURI(arg, *tempChainParams, true);
-    return IsValidDestinationString(addr, *tempChainParams);
-}
-
-static bool ipcCanParseLegacyURI(const QString& arg,
-    const std::string& network)
-{
-    auto tempChainParams = CreateChainParams(network);
-    std::string addr = ipcParseURI(arg, *tempChainParams, false);
-    return IsValidDestinationString(addr, *tempChainParams);
-}
-
-//
 // Sending to the server is done synchronously, at startup.
 // If the server isn't already running, startup continues,
 // and the items in savedPaymentRequest will be handled
@@ -235,77 +201,58 @@ static bool ipcCanParseLegacyURI(const QString& arg,
 //
 void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
 {
-    std::array<const std::string *, 3> networks = {
-        &CBaseChainParams::MAIN, &CBaseChainParams::TESTNET, &CBaseChainParams::REGTEST};
-
-    const std::string *chosenNetwork = nullptr;
-
     for (int i = 1; i < argc; i++)
     {
         QString arg(argv[i]);
         if (arg.startsWith("-"))
             continue;
 
-        const std::string *itemNetwork = nullptr;
-
-        // Try to parse as a URI
-        for (auto net : networks)
+        // If the bitcoin: URI contains a payment request, we are not able to detect the
+        // network as that would require fetching and parsing the payment request.
+        // That means clicking such an URI which contains a testnet payment request
+        // will start a mainnet instance and throw a "wrong network" error.
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI
         {
-            if (ipcCanParseCashAddrURI(arg, *net))
-            {
-                itemNetwork = net;
-                break;
-            }
+            savedPaymentRequests.append(arg);
 
-            if (ipcCanParseLegacyURI(arg, *net))
+            SendCoinsRecipient r;
+            if (GUIUtil::parseBitcoinURI(arg, &r) && !r.address.isEmpty())
             {
-                itemNetwork = net;
-                break;
-            }
-        }
+                auto tempChainParams = CreateChainParams(CBaseChainParams::MAIN);
 
-        if (!itemNetwork && QFile::exists(arg))
-        {
-            // Filename
-            PaymentRequestPlus request;
-            if (readPaymentRequestFromFile(arg, request))
-            {
-                for (auto net : networks)
-                {
-                    if (*net == request.getDetails().network())
-                    {
-                        itemNetwork = net;
+                if (IsValidDestinationString(r.address.toStdString(), *tempChainParams)) {
+                    SelectParams(CBaseChainParams::MAIN);
+                } else {
+                    tempChainParams = CreateChainParams(CBaseChainParams::TESTNET);
+                    if (IsValidDestinationString(r.address.toStdString(), *tempChainParams)) {
+                        SelectParams(CBaseChainParams::TESTNET);
                     }
                 }
             }
         }
-
-        if (itemNetwork == nullptr)
+        else if (QFile::exists(arg)) // Filename
         {
-            // Printing to debug.log is about the best we can do here, the GUI
-            // hasn't started yet so we can't pop up a message box.
-            qWarning() << "PaymentServer::ipcSendCommandLine: Payment request "
-                          "file or URI does not exist or is invalid: "
-                       << arg;
-            continue;
-        }
+            savedPaymentRequests.append(arg);
 
-        if (chosenNetwork && chosenNetwork != itemNetwork)
+            PaymentRequestPlus request;
+            if (readPaymentRequestFromFile(arg, request))
+            {
+                if (request.getDetails().network() == "main")
+                {
+                    SelectParams(CBaseChainParams::MAIN);
+                }
+                else if (request.getDetails().network() == "test")
+                {
+                    SelectParams(CBaseChainParams::TESTNET);
+                }
+            }
+        }
+        else
         {
-            qWarning() << "PaymentServer::ipcSendCommandLine: Payment request "
-                          "from network "
-                       << QString(itemNetwork->c_str()) << " does not match already chosen network "
-                       << QString(chosenNetwork->c_str());
-            continue;
+            // Printing to debug.log is about the best we can do here, the
+            // GUI hasn't started yet so we can't pop up a message box.
+            qWarning() << "PaymentServer::ipcSendCommandLine: Payment request file does not exist: " << arg;
         }
-
-        savedPaymentRequests.append(arg);
-        chosenNetwork = itemNetwork;
-    }
-
-    if (chosenNetwork)
-    {
-        SelectParams(*chosenNetwork);
     }
 }
 
@@ -416,8 +363,7 @@ void PaymentServer::initNetManager()
 {
     if (!optionsModel)
         return;
-    if (netManager != nullptr)
-        delete netManager;
+    delete netManager;
 
     // netManager is used to fetch paymentrequests given in blackcoin: URIs
     netManager = new QNetworkAccessManager(this);
@@ -496,7 +442,22 @@ bool PaymentServer::handleURI(const QString &scheme, const QString &s)
         }
         else
         {
-            Q_EMIT receivedPaymentRequest(recipient);
+            SendCoinsRecipient recipient;
+            if (GUIUtil::parseBitcoinURI(s, &recipient))
+            {
+                if (!IsValidDestinationString(recipient.address.toStdString())) {
+                    Q_EMIT message(tr("URI handling"), tr("Invalid payment address %1").arg(recipient.address),
+                        CClientUIInterface::MSG_ERROR);
+                }
+                else
+                    Q_EMIT receivedPaymentRequest(recipient);
+            }
+            else
+                Q_EMIT message(tr("URI handling"),
+                    tr("URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters."),
+                    CClientUIInterface::ICON_WARNING);
+
+            return;
         }
     }
     else
@@ -694,7 +655,7 @@ void PaymentServer::fetchRequest(const QUrl& url)
     netManager->get(netRequest);
 }
 
-void PaymentServer::fetchPaymentACK(CWallet* wallet, SendCoinsRecipient recipient, QByteArray transaction)
+void PaymentServer::fetchPaymentACK(CWallet* wallet, const SendCoinsRecipient& recipient, QByteArray transaction)
 {
     const payments::PaymentDetails& details = recipient.paymentRequest.getDetails();
     if (!details.has_payment_url())
@@ -714,27 +675,25 @@ void PaymentServer::fetchPaymentACK(CWallet* wallet, SendCoinsRecipient recipien
     // Create a new refund address, or re-use:
     QString account = tr("Refund from %1").arg(recipient.authenticatedMerchant);
     std::string strAccount = account.toStdString();
-    std::set<CTxDestination> refundAddresses = wallet->GetAccountAddresses(strAccount);
-    if (!refundAddresses.empty()) {
-        CScript s = GetScriptForDestination(*refundAddresses.begin());
+    CPubKey newKey;
+    if (wallet->GetKeyFromPool(newKey)) {
+        // BIP70 requests encode the scriptPubKey directly, so we are not restricted to address
+        // types supported by the receiver. As a result, we choose the address format we also
+        // use for change. Despite an actual payment and not change, this is a close match:
+        // it's the output type we use subject to privacy issues, but not restricted by what
+        // other software supports.
+        const OutputType change_type = g_change_type != OUTPUT_TYPE_NONE ? g_change_type : g_address_type;
+        wallet->LearnRelatedScripts(newKey, change_type);
+        CTxDestination dest = GetDestinationForKey(newKey, change_type);
+        wallet->SetAddressBook(dest, strAccount, "refund");
+
+        CScript s = GetScriptForDestination(dest);
         payments::Output* refund_to = payment.add_refund_to();
         refund_to->set_script(&s[0], s.size());
-    }
-    else {
-        CPubKey newKey;
-        if (wallet->GetKeyFromPool(newKey)) {
-            CKeyID keyID = newKey.GetID();
-            wallet->SetAddressBook(keyID, strAccount, "refund");
-
-            CScript s = GetScriptForDestination(keyID);
-            payments::Output* refund_to = payment.add_refund_to();
-            refund_to->set_script(&s[0], s.size());
-        }
-        else {
-            // This should never happen, because sending coins should have
-            // just unlocked the wallet and refilled the keypool.
-            qWarning() << "PaymentServer::fetchPaymentACK: Error getting refund key, refund_to not set";
-        }
+    } else {
+        // This should never happen, because sending coins should have
+        // just unlocked the wallet and refilled the keypool.
+        qWarning() << "PaymentServer::fetchPaymentACK: Error getting refund key, refund_to not set";
     }
 
     int length = payment.ByteSize();

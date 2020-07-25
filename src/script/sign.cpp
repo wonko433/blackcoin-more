@@ -1,16 +1,16 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "script/sign.h"
+#include <script/sign.h>
 
-#include "key.h"
-#include "keystore.h"
-#include "policy/policy.h"
-#include "primitives/transaction.h"
-#include "script/standard.h"
-#include "uint256.h"
+#include <key.h>
+#include <keystore.h>
+#include <policy/policy.h>
+#include <primitives/transaction.h>
+#include <script/standard.h>
+#include <uint256.h>
 
 
 typedef std::vector<unsigned char> valtype;
@@ -366,4 +366,19 @@ bool DummySignatureCreator::CreateSig(std::vector<unsigned char>& vchSig, const 
     vchSig[6 + 33] = 0x01;
     vchSig[6 + 33 + 32] = SIGHASH_ALL;
     return true;
+}
+
+bool IsSolvable(const CKeyStore& store, const CScript& script)
+{
+    // This check is to make sure that the script we created can actually be solved for and signed by us
+    // if we were to have the private keys. This is just to make sure that the script is valid and that,
+    // if found in a transaction, we would still accept and relay that transaction.
+    DummySignatureCreator creator(&store);
+    SignatureData sigs;
+    if (ProduceSignature(creator, script, sigs)) {
+        // VerifyScript check is just defensive, and should never fail.
+        assert(VerifyScript(sigs.scriptSig, script, STANDARD_SCRIPT_VERIFY_FLAGS, creator.Checker()));
+        return true;
+    }
+    return false;
 }

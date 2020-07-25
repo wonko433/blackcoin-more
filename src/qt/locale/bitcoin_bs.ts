@@ -32,6 +32,10 @@
     </context>
 <context>
     <name>Intro</name>
+    <message>
+        <source>Bitcoin</source>
+        <translation>Blackcoin</translation>
+    </message>
     </context>
 <context>
     <name>ModalOverlay</name>

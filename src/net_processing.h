@@ -1,16 +1,14 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_NET_PROCESSING_H
 #define BITCOIN_NET_PROCESSING_H
 
-#include "net.h"
-#include "validationinterface.h"
-#include "consensus/params.h"
-
-class CChainParams;
+#include <net.h>
+#include <validationinterface.h>
+#include <consensus/params.h>
 
 /** Default for -maxorphantx, maximum number of orphan transactions kept in memory */
 static const unsigned int DEFAULT_MAX_ORPHAN_TRANSACTIONS = 100;
@@ -24,17 +22,6 @@ static const unsigned int DEFAULT_BLOCK_RECONSTRUCTION_EXTRA_TXN = 100;
  *  Timeout = base + per_header * (expected number of headers) */
 static constexpr int64_t HEADERS_DOWNLOAD_TIMEOUT_BASE = 15 * 60 * 1000000; // 15 minutes
 static constexpr int64_t HEADERS_DOWNLOAD_TIMEOUT_PER_HEADER = 1000; // 1ms/header
-
-/** Default for -headerspamfilter, use header spam filter */
-static const bool DEFAULT_HEADER_SPAM_FILTER = true;
-/** Default for -headerspamfiltermaxsize, maximum size of the list of indexes in the header spam filter */
-static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE = 500;
-/** Default for -headerspamfiltermaxavg, maximum average size of an index occurrence in the header spam filter */
-static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_AVG = 10;
-/** Default for -headerspamfilterignoreport, ignore the port in the ip address when looking for header spam,
- multiple nodes on the same ip will be treated as the one when computing the filter*/
-static const unsigned int DEFAULT_HEADER_SPAM_FILTER_IGNORE_PORT = true;
-
 /** Protect at least this many outbound peers from disconnection due to slow/
  * behind headers chain.
  */
@@ -47,6 +34,16 @@ static constexpr int64_t STALE_CHECK_INTERVAL = 10 * 60; // 10 minutes
 static constexpr int64_t EXTRA_PEER_CHECK_INTERVAL = 45;
 /** Minimum time an outbound-peer-eviction candidate must be connected for, in order to evict, in seconds */
 static constexpr int64_t MINIMUM_CONNECT_TIME = 30;
+
+/** Default for -headerspamfilter, use header spam filter */
+static const bool DEFAULT_HEADER_SPAM_FILTER = true;
+/** Default for -headerspamfiltermaxsize, maximum size of the list of indexes in the header spam filter */
+static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE = 500;
+/** Default for -headerspamfiltermaxavg, maximum average size of an index occurrence in the header spam filter */
+static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_AVG = 10;
+/** Default for -headerspamfilterignoreport, ignore the port in the ip address when looking for header spam,
+ multiple nodes on the same ip will be treated as the one when computing the filter*/
+static const unsigned int DEFAULT_HEADER_SPAM_FILTER_IGNORE_PORT = true;
 
 class PeerLogicValidation : public CValidationInterface, public NetEventsInterface {
 private:

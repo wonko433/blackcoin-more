@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,10 +6,10 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include <config/bitcoin-config.h>
 #endif
 
-#include "amount.h"
+#include <amount.h>
 
 #include <QLabel>
 #include <QMainWindow>
@@ -31,7 +31,6 @@ class WalletModel;
 class HelpMessageDialog;
 class ModalOverlay;
 class CWallet;
-class Config;
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -53,10 +52,7 @@ public:
     static const QString DEFAULT_WALLET;
     static const std::string DEFAULT_UIPLATFORM;
 
-    explicit BitcoinGUI(const Config *,
-        const PlatformStyle *platformStyle,
-        const NetworkStyle *networkStyle,
-        QWidget *parent = 0);
+    explicit BitcoinGUI(const PlatformStyle *platformStyle, const NetworkStyle *networkStyle, QWidget *parent = 0);
     ~BitcoinGUI();
 
     /** Set the client model.
@@ -136,7 +132,6 @@ private:
     uint64_t nWeight;
 
     const PlatformStyle *platformStyle;
-    const Config *cfg;
 
     /** Create the main UI actions. */
     void createActions();

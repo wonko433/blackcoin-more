@@ -85,13 +85,9 @@ src/qt/blackmore-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-!depends/Makefile
-src/qt/blackmore-qt
+blackmore-qt
 Blackmore-Qt.app
 background.tiff*
-
-# Qt Creator
-Makefile.am.user
 
 # Unit-tests
 Makefile.test

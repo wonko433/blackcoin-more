@@ -1,12 +1,12 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2017 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_GUIUTIL_H
 #define BITCOIN_QT_GUIUTIL_H
 
-#include "amount.h"
-#include "fs.h"
+#include <amount.h>
+#include <fs.h>
 
 #include <QEvent>
 #include <QHeaderView>
@@ -19,8 +19,6 @@
 
 class QValidatedLineEdit;
 class SendCoinsRecipient;
-class CChainParams;
-class Config;
 
 QT_BEGIN_NAMESPACE
 class QAbstractItemView;
@@ -42,20 +40,14 @@ namespace GUIUtil
     // Return a monospace font
     QFont fixedPitchFont();
 
-    // Generate an invalid, but convincing address.
-    std::string DummyAddress(const CChainParams &params, const Config &cfg);
-
     // Set up widgets for address and amounts
     void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    QString bitcoinURIScheme(const CChainParams &, bool useCashAddr);
-    QString bitcoinURIScheme(const Config &);
-    // Parse "blackcoin:" URI into recipient object, return true on successful
-    // parsing
-    bool parseBitcoinURI(const QString &scheme, const QUrl &uri, SendCoinsRecipient *out);
-    bool parseBitcoinURI(const QString &scheme, QString uri, SendCoinsRecipient *out);
-    QString formatBitcoinURI(const Config &cfg, const SendCoinsRecipient &info);
+    // Parse "bitcoin:" URI into recipient object, return true on successful parsing
+    bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
+    QString formatBitcoinURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(const QString& address, const CAmount& amount);
@@ -206,6 +198,10 @@ namespace GUIUtil
     QString formatTimeOffset(int64_t nTimeOffset);
 
     QString formatNiceTimeOffset(qint64 secs);
+
+    QString formatBytes(uint64_t bytes);
+
+    qreal calculateIdealFontSize(int width, const QString& text, QFont font, qreal minPointSize = 4, qreal startPointSize = 14);
 
     class ClickableLabel : public QLabel
     {
