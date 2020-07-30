@@ -13,23 +13,6 @@ void CBasicKeyStore::ImplicitlyLearnRelatedKeyScripts(const CPubKey& pubkey)
     CKeyID key_id = pubkey.GetID();
     // We must actually know about this key already.
     assert(HaveKey(key_id) || mapWatchKeys.count(key_id));
-    // This adds the redeemscripts necessary to detect P2WPKH and P2SH-P2WPKH
-    // outputs. Technically P2WPKH outputs don't have a redeemscript to be
-    // spent. However, our current IsMine logic requires the corresponding
-    // P2SH-P2WPKH redeemscript to be present in the wallet in order to accept
-    // payment even to P2WPKH outputs.
-    // Also note that having superfluous scripts in the keystore never hurts.
-    // They're only used to guide recursion in signing and IsMine logic - if
-    // a script is present but we can't do anything with it, it has no effect.
-    // "Implicitly" refers to fact that scripts are derived automatically from
-    // existing keys, and are present in memory, even without being explicitly
-    // loaded (e.g. from a file).
-    if (pubkey.IsCompressed()) {
-        CScript script = GetScriptForDestination(WitnessV0KeyHash(key_id));
-        // This does not use AddCScript, as it may be overridden.
-        CScriptID id(script);
-        mapScripts[id] = std::move(script);
-    }
 }
 
 bool CBasicKeyStore::GetPubKey(const CKeyID &address, CPubKey &vchPubKeyOut) const
@@ -177,21 +160,8 @@ bool CBasicKeyStore::HaveWatchOnly() const
 CKeyID GetKeyForDestination(const CKeyStore& store, const CTxDestination& dest)
 {
     // Only supports destinations which map to single public keys, i.e. P2PKH,
-    // P2WPKH, and P2SH-P2WPKH.
     if (auto id = boost::get<CKeyID>(&dest)) {
         return *id;
-    }
-    if (auto witness_id = boost::get<WitnessV0KeyHash>(&dest)) {
-        return CKeyID(*witness_id);
-    }
-    if (auto script_id = boost::get<CScriptID>(&dest)) {
-        CScript script;
-        CTxDestination inner_dest;
-        if (store.GetCScript(*script_id, script) && ExtractDestination(script, inner_dest)) {
-            if (auto inner_witness_id = boost::get<WitnessV0KeyHash>(&inner_dest)) {
-                return CKeyID(*inner_witness_id);
-            }
-        }
     }
     return CKeyID();
 }

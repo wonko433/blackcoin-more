@@ -80,7 +80,6 @@ public:
     {
         UniValue obj(UniValue::VOBJ);
         obj.pushKV("isscript", false);
-        obj.pushKV("iswitness", false);
         return obj;
     }
 
@@ -88,39 +87,8 @@ public:
     {
         UniValue obj(UniValue::VOBJ);
         obj.pushKV("isscript", true);
-        obj.pushKV("iswitness", false);
         return obj;
     }
-
-    UniValue operator()(const WitnessV0KeyHash& id) const
-    {
-        UniValue obj(UniValue::VOBJ);
-        obj.pushKV("isscript", false);
-        obj.pushKV("iswitness", true);
-        obj.pushKV("witness_version", 0);
-        obj.pushKV("witness_program", HexStr(id.begin(), id.end()));
-        return obj;
-    }
-
-    UniValue operator()(const WitnessV0ScriptHash& id) const
-    {
-        UniValue obj(UniValue::VOBJ);
-        obj.pushKV("isscript", true);
-        obj.pushKV("iswitness", true);
-        obj.pushKV("witness_version", 0);
-        obj.pushKV("witness_program", HexStr(id.begin(), id.end()));
-        return obj;
-    }
-
-    UniValue operator()(const WitnessUnknown& id) const
-    {
-        UniValue obj(UniValue::VOBJ);
-        obj.pushKV("iswitness", true);
-        obj.pushKV("witness_version", (int)id.version);
-        obj.pushKV("witness_program", HexStr(id.program, id.program + id.length));
-        return obj;
-    }
-};
 
 UniValue DescribeAddress(const CTxDestination& dest)
 {

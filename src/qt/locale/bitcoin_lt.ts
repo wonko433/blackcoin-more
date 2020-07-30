@@ -1875,11 +1875,11 @@
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Vietiniai segwit adresai (dar žinomi kaip Bech32 arba BIP-173) vėliau sumažina jūsų sandorių mokesčius ir siūlo geresnę apsaugą nuo klaidų, tačiau senosios piniginės jų nepalaiko. Jei nebus pažymėti, vietoj to bus sukurtas adresas, suderinamas su senesnėmis piniginėmis.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Generuoti vietinį segwit (Bech32) adresą</translation>
     </message>
     <message>

@@ -842,11 +842,6 @@ UniValue SignTransaction(CMutableTransaction& mtx, const UniValue& prevTxsUnival
 
         UpdateInput(txin, sigdata);
 
-        // amount must be specified for valid segwit signature
-        if (amount == MAX_MONEY && !txin.scriptWitness.IsNull()) {
-            throw JSONRPCError(RPC_TYPE_ERROR, strprintf("Missing amount for %s", coin.out.ToString()));
-        }
-
         ScriptError serror = SCRIPT_ERR_OK;
         if (!VerifyScript(txin.scriptSig, prevPubKey, STANDARD_SCRIPT_VERIFY_FLAGS, TransactionSignatureChecker(&txConst, i, amount), &serror)) {
             if (serror == SCRIPT_ERR_INVALID_STACK_OPERATION) {
@@ -1547,7 +1542,7 @@ UniValue finalizepsbt(const JSONRPCRequest& request)
             "finalizepsbt \"psbt\" ( extract )\n"
             "Finalize the inputs of a PSBT. If the transaction is fully signed, it will produce a\n"
             "network serialized transaction which can be broadcast with sendrawtransaction. Otherwise a PSBT will be\n"
-            "created which has the final_scriptSig and final_scriptWitness fields filled for inputs that are complete.\n"
+            "created which has the final_scriptSig fields filled for inputs that are complete.\n"
             "Implements the Finalizer and Extractor roles.\n"
             "\nArguments:\n"
             "1. \"psbt\"                 (string) A base64 string of a PSBT\n"
@@ -1672,7 +1667,7 @@ UniValue converttopsbt(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
-                            "converttopsbt \"hexstring\" ( permitsigdata iswitness )\n"
+                            "converttopsbt \"hexstring\" ( permitsigdata )\n"
                             "\nConverts a network serialized transaction to a PSBT. This should be used only with createrawtransaction and fundrawtransaction\n"
                             "createpsbt and walletcreatefundedpsbt should be used for new applications.\n"
                             "\nArguments:\n"
@@ -1701,7 +1696,7 @@ UniValue converttopsbt(const JSONRPCRequest& request)
     // Remove all scriptSigs from inputs
     for (CTxIn& input : tx.vin) {
         if (!input.scriptSig.empty() && !permitsigdata) {
-            throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Inputs must not have scriptSigs and scriptWitnesses");
+            throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Inputs must not have scriptSigs");
         }
         input.scriptSig.clear();
     }

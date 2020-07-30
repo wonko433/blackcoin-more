@@ -89,12 +89,12 @@ typedef std::pair<CPubKey, std::vector<unsigned char>> SigPair;
 
 // This struct contains information from a transaction input and also contains signatures for that input.
 // The information contained here can be used to create a signature and is also filled by ProduceSignature
-// in order to construct final scriptSigs and scriptWitnesses.
+// in order to construct final scriptSigs.
 struct SignatureData {
-    bool complete = false; ///< Stores whether the scriptSig and scriptWitness are complete
+    bool complete = false; ///< Stores whether the scriptSig are complete
     CScript scriptSig; ///< The scriptSig of an input. Contains complete signatures or the traditional partial signatures format
     CScript redeem_script; ///< The redeemScript (if any) for the input
-    std::map<CKeyID, SigPair> signatures; ///< BIP 174 style partial signatures for the input. May contain all signatures necessary for producing a final scriptSig or scriptWitness.
+    std::map<CKeyID, SigPair> signatures; ///< BIP 174 style partial signatures for the input. May contain all signatures necessary for producing a final scriptSig.
     std::map<CKeyID, CPubKey> misc_pubkeys;
 
     SignatureData() {}
@@ -557,10 +557,10 @@ struct PartiallySignedTransaction
                     CMutableTransaction mtx;
                     UnserializeFromVector(os, mtx);
                     tx = std::move(mtx);
-                    // Make sure that all scriptSigs and scriptWitnesses are empty
+                    // Make sure that all scriptSigs are empty
                     for (const CTxIn& txin : tx->vin) {
                         if (!txin.scriptSig.empty()) {
-                            throw std::ios_base::failure("Unsigned tx does not have empty scriptSigs and scriptWitnesses.");
+                            throw std::ios_base::failure("Unsigned tx does not have empty scriptSigs.");
                         }
                     }
                     break;

@@ -1922,11 +1922,11 @@
         <translation>クリア</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Segwitアドレス(Bech32もしくはBIP-173アドレス)を利用すると手数料が安くなり、また誤入力防止機能も強化されますが、Segwitアドレスをサポートしない古いウォレットとの互換性は失われます。チェックを外すと、古いウォレットとの互換性を保った古いアドレスが代わりに生成されます。</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Segwitアドレス(Bech32アドレス)を生成する</translation>
     </message>
     <message>

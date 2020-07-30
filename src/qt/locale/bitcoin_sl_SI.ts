@@ -1861,7 +1861,7 @@
         <translation>Počisti</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Ustvari domači segwit (Bech32) naslov</translation>
     </message>
     <message>

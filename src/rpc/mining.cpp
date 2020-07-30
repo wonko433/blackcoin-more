@@ -399,8 +399,8 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
             "}\n"
 
             "\nExamples:\n"
-            + HelpExampleCli("getblocktemplate", "{\"rules\": [\"segwit\"]}")
-            + HelpExampleRpc("getblocktemplate", "{\"rules\": [\"segwit\"]}")
+            + HelpExampleCli("getblocktemplate", "{\"rules\": [\"\"]}")
+            + HelpExampleRpc("getblocktemplate", "{\"rules\": [\"\"]}")
          );
 
     LOCK(cs_main);
@@ -579,7 +579,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
         entry.pushKV("data", EncodeHexTx(tx));
         entry.pushKV("txid", txHash.GetHex());
-        entry.pushKV("hash", tx.GetWitnessHash().GetHex());
+        entry.pushKV("hash", txHash.GetHex());
 
         UniValue deps(UniValue::VARR);
         for (const CTxIn &in : tx.vin)
@@ -660,7 +660,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
         // If VB is supported by the client, nMaxVersionPreVB is -1, so we won't get here
         // Because BIP 34 changed how the generation transaction is serialized, we can only use version/force back to v2 blocks
         // This is safe to do [otherwise-]unconditionally only because we are throwing an exception above if a non-force deployment gets activated
-        // Note that this can probably also be removed entirely after the first BIP9 non-force deployment (ie, probably segwit) gets activated
+        // Note that this can probably also be removed entirely after the first BIP9 non-force deployment gets activated
         aMutable.push_back("version/force");
     }
 

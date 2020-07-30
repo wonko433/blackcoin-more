@@ -1939,11 +1939,11 @@ Försök igen.</translation>
         <translation>Rensa</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Bech32-addresser (BIP-173) är billigare att spendera från och har bättre skytt mot skrivfel mot konstnaden att äldre plånböcker inte förstår dem. När inte valet är gjort kommer en address som är kompatibel med äldre plånböcker att skapas istället.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Skapa Bech32-adress</translation>
     </message>
     <message>

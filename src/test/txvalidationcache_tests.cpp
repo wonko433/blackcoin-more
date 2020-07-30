@@ -326,7 +326,7 @@ BOOST_FIXTURE_TEST_CASE(checkinputs_test, TestChain100Setup)
 
         CValidationState state;
         PrecomputedTransactionData txdata(tx);
-        // This transaction is now invalid under segwit, because of the second input.
+        // This transaction is now invalid because the second signature is missing.
         BOOST_CHECK(!CheckInputs(tx, state, pcoinsTip.get(), true, SCRIPT_VERIFY_P2SH, true, true, txdata, nullptr));
 
         std::vector<CScriptCheck> scriptchecks;

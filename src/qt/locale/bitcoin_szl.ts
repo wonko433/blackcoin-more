@@ -1470,7 +1470,7 @@
         <translation>Wypucuj</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Natywne adresy segwit (aka Bech32 abo BIP-173) zmyńszajōm niyskorzij twoje ôpłŏcki za transakcyje i dadzōm lepsze zabezpieczynie przed chybami, ale stare portmanyje jejich niy podpiyrajōm. Jeźli ôdznaczōne, zrychtowanŏ ôstanie adresa kōmpatybilnŏ ze starszymi portmanyjami.</translation>
     </message>
     <message>

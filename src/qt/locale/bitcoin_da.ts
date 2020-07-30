@@ -1922,11 +1922,11 @@
         <translation>Ryd</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Rene segwit-adresser (kendt som Bech32 eller BIP-173) reducerer dine transaktionsgebyrer i det lange løb og giver bedre beskyttelse imod tastefejl, men gamle tegnebøger understøtter dem ikke. Hvis dette ikke vælges, vil i stedet en adresse, der fungerer med ældre tegnebøger, oprettes.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Generér rene segwit-adresser (Bech32)</translation>
     </message>
     <message>

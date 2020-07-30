@@ -19,11 +19,6 @@ unsigned nMaxDatacarrierBytes = MAX_OP_RETURN_RELAY;
 
 CScriptID::CScriptID(const CScript& in) : uint160(Hash160(in.begin(), in.end())) {}
 
-WitnessV0ScriptHash::WitnessV0ScriptHash(const CScript& in)
-{
-    CSHA256().Write(in.data(), in.size()).Finalize(begin());
-}
-
 const char* GetTxnOutputType(txnouttype t)
 {
     switch (t)
@@ -231,30 +226,6 @@ public:
         *script << OP_HASH160 << ToByteVector(scriptID) << OP_EQUAL;
         return true;
     }
-
-    /*
-    bool operator()(const WitnessV0KeyHash& id) const
-    {
-        script->clear();
-        *script << OP_0 << ToByteVector(id);
-        return true;
-    }
-
-    bool operator()(const WitnessV0ScriptHash& id) const
-    {
-        script->clear();
-        *script << OP_0 << ToByteVector(id);
-        return true;
-    }
-
-    bool operator()(const WitnessUnknown& id) const
-    {
-        script->clear();
-        *script << CScript::EncodeOP_N(id.version) << std::vector<unsigned char>(id.program, id.program + id.length);
-        return true;
-    }
-	*/
-
 };
 } // namespace
 

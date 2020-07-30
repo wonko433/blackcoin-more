@@ -1922,11 +1922,11 @@
         <translation>지우기</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Bech32 주소 (BIP-173)는 더 적은 수수료와 오입금으로부터 방지해 줍니다. Bech32가 비활성화 되어있으면 P2SH 기반의 세그윗 주소가 대신 생성됩니다.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Bech32 세그윗 주소 생성</translation>
     </message>
     <message>

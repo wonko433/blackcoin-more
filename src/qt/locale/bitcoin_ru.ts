@@ -1981,11 +1981,11 @@
         <translation>Отчистить</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>"Родные" segwit адреса (Bech32 или BIP-173) в дальнейшем уменьшат комиссии ваших транзакций и предоставят улучшенную защиту от опечаток, однако старые кошельки не поддерживают эти адреса. Если не выбрано, будет создан совместимый со старыми кошелёк.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Создать "родной" segwit (Bech32) адрес </translation>
     </message>
     <message>

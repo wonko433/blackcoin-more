@@ -1921,11 +1921,11 @@
         <translation>Vaciar</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Las direcciones segwit nativas (también conocidas como Bech32 o BIP-173) reducen las comisiones de transacción más adelante y ofrecen una mejor protección contra errores tipográficos, pero las billeteras antiguas no las admiten. Cuando no está marcada, se creará una dirección compatible con billeteras más antiguas.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Generar dirección segwit nativa (Bech32)</translation>
     </message>
     <message>

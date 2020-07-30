@@ -1918,11 +1918,11 @@
         <translation>Curăţă</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Adresele native segwit (aka Bech32 sau BIP-173) vor reduce mai tarziu comisioanele de tranzactionare si vor oferi o mai buna protectie impotriva introducerii gresite, dar portofelele vechi nu sunt compatibile. Daca optiunea nu e bifata, se va crea o adresa compatibila cu portofelele vechi.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Genereaza adresa nativa segwit (Bech32)</translation>
     </message>
     <message>

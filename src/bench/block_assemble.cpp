@@ -26,10 +26,10 @@ static std::shared_ptr<CBlock> PrepareBlock(const CScript& coinbase_scriptPubKey
 {
     auto block = std::make_shared<CBlock>(
         BlockAssembler{Params()}
-            .CreateNewBlock(coinbase_scriptPubKey, /* fMineWitnessTx */ true)
+            .CreateNewBlock(coinbase_scriptPubKey)
             ->block);
 
-    block->nTime = ::chainActive.Tip()->GetMedianTimePast() + 1;
+    block->nTime = ::chainActive.Tip()->GetPastTimeLimit() + 1;
     block->hashMerkleRoot = BlockMerkleRoot(*block);
 
     return block;
@@ -54,16 +54,8 @@ static CTxIn MineBlock(const CScript& coinbase_scriptPubKey)
 static void AssembleBlock(benchmark::State& state)
 {
     const std::vector<unsigned char> op_true{OP_TRUE};
-    CScriptWitness witness;
-    witness.stack.push_back(op_true);
-
-    uint256 witness_program;
-    CSHA256().Write(&op_true[0], op_true.size()).Finalize(witness_program.begin());
-
-    const CScript SCRIPT_PUB{CScript(OP_0) << std::vector<unsigned char>{witness_program.begin(), witness_program.end()}};
 
     // Switch to regtest so we can mine faster
-    // Also segwit is active, so we can include witness transactions
     SelectParams(CBaseChainParams::REGTEST);
 
     InitScriptExecutionCache();
@@ -82,8 +74,6 @@ static void AssembleBlock(benchmark::State& state)
         CValidationState state;
         ActivateBestChain(state, chainparams);
         assert(::chainActive.Tip() != nullptr);
-        const bool witness_enabled{IsWitnessEnabled(::chainActive.Tip(), chainparams.GetConsensus())};
-        assert(witness_enabled);
     }
 
     // Collect some loose transactions that spend the coinbases of our mined blocks
@@ -92,7 +82,6 @@ static void AssembleBlock(benchmark::State& state)
     for (size_t b{0}; b < NUM_BLOCKS; ++b) {
         CMutableTransaction tx;
         tx.vin.push_back(MineBlock(SCRIPT_PUB));
-        tx.vin.back().scriptWitness = witness;
         tx.vout.emplace_back(1337, SCRIPT_PUB);
         if (NUM_BLOCKS - b >= COINBASE_MATURITY)
             txs.at(b) = MakeTransactionRef(tx);

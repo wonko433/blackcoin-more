@@ -230,7 +230,9 @@ public:
 
 CScript P2PKHGetScript(const CPubKey& pubkey) { return GetScriptForDestination(pubkey.GetID()); }
 CScript P2PKGetScript(const CPubKey& pubkey) { return GetScriptForRawPubKey(pubkey); }
+/*
 CScript P2WPKHGetScript(const CPubKey& pubkey) { return GetScriptForDestination(WitnessV0KeyHash(pubkey.GetID())); }
+*/
 
 /** A parsed multi(...) descriptor. */
 class MultisigDescriptor : public Descriptor
@@ -321,7 +323,9 @@ public:
 };
 
 CScript ConvertP2SH(const CScript& script) { return GetScriptForDestination(CScriptID(script)); }
+/*
 CScript ConvertP2WSH(const CScript& script) { return GetScriptForDestination(WitnessV0ScriptHash(script)); }
+*/
 
 /** A parsed combo(P) descriptor. */
 class ComboDescriptor final : public Descriptor
@@ -351,6 +355,7 @@ public:
             output_scripts = std::vector<CScript>{std::move(p2pk), std::move(p2pkh)};
             out.pubkeys.emplace(keyid, key);
         }
+		/*
         if (key.IsCompressed()) {
             CScript p2wpkh = GetScriptForDestination(WitnessV0KeyHash(keyid));
             CScriptID p2wpkh_id(p2wpkh);
@@ -359,6 +364,7 @@ public:
             output_scripts.push_back(std::move(p2wpkh));
             output_scripts.push_back(std::move(p2sh_p2wpkh));
         }
+		*/
         return true;
     }
 };

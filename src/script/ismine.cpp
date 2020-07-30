@@ -37,7 +37,7 @@ enum class IsMineResult
     NO = 0,          //! Not ours
     WATCH_ONLY = 1,  //! Included in watch-only balance
     SPENDABLE = 2,   //! Included in all balances
-    INVALID = 3,     //! Not spendable by anyone (uncompressed pubkey in segwit, P2SH inside P2SH or witness, witness inside witness)
+    INVALID = 3,     //! Not spendable by anyone (P2SH inside P2SHs)
 };
 
 bool PermitsUncompressed(IsMineSigVersion sigversion)

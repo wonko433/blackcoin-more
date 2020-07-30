@@ -1905,7 +1905,7 @@
         <translation>Temizle</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Yerli segwit (Bech32) adresi oluştur</translation>
     </message>
     <message>

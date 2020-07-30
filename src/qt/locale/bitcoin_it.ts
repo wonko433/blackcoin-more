@@ -1923,11 +1923,11 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Cancella</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Gli indirizzi nativi segwit (noti anche come Bech32 o BIP-173) riducono le spese di transazione e offrono una migliore protezione dagli errori di battitura, ma i vecchi portafogli non li supportano. Se deselezionata, verrà creato un indirizzo compatibile con i portafogli meno recenti.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>Genera indirizzo nativo segwit (Bech32)</translation>
     </message>
     <message>

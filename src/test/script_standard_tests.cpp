@@ -420,82 +420,6 @@ BOOST_AUTO_TEST_CASE(script_standard_IsMine)
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 
-    // (P2PKH inside) P2SH inside P2WSH (invalid)
-    {
-        CBasicKeyStore keystore;
-
-        CScript redeemscript = GetScriptForDestination(pubkeys[0].GetID());
-        CScript witnessscript = GetScriptForDestination(CScriptID(redeemscript));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        keystore.AddCScript(witnessscript);
-        keystore.AddCScript(redeemscript);
-        keystore.AddCScript(scriptPubKey);
-        keystore.AddKey(keys[0]);
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // P2WPKH inside P2WSH (invalid)
-    {
-        CBasicKeyStore keystore;
-
-        CScript witnessscript = GetScriptForDestination(WitnessV0KeyHash(pubkeys[0].GetID()));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        keystore.AddCScript(witnessscript);
-        keystore.AddCScript(scriptPubKey);
-        keystore.AddKey(keys[0]);
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // (P2PKH inside) P2WSH inside P2WSH (invalid)
-    {
-        CBasicKeyStore keystore;
-
-        CScript witnessscript_inner = GetScriptForDestination(pubkeys[0].GetID());
-        CScript witnessscript = GetScriptForDestination(WitnessV0ScriptHash(witnessscript_inner));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        keystore.AddCScript(witnessscript_inner);
-        keystore.AddCScript(witnessscript);
-        keystore.AddCScript(scriptPubKey);
-        keystore.AddKey(keys[0]);
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // P2WPKH compressed
-    {
-        CBasicKeyStore keystore;
-        keystore.AddKey(keys[0]);
-
-        scriptPubKey = GetScriptForDestination(WitnessV0KeyHash(pubkeys[0].GetID()));
-
-        // Keystore implicitly has key and P2SH redeemScript
-        keystore.AddCScript(scriptPubKey);
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
-    }
-
-    // P2WPKH uncompressed
-    {
-        CBasicKeyStore keystore;
-        keystore.AddKey(uncompressedKey);
-
-        scriptPubKey = GetScriptForDestination(WitnessV0KeyHash(uncompressedPubkey.GetID()));
-
-        // Keystore has key, but no P2SH redeemScript
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has key and P2SH redeemScript
-        keystore.AddCScript(scriptPubKey);
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
     // scriptPubKey multisig
     {
         CBasicKeyStore keystore;
@@ -551,30 +475,6 @@ BOOST_AUTO_TEST_CASE(script_standard_IsMine)
 
         scriptPubKey.clear();
         scriptPubKey << OP_RETURN << ToByteVector(pubkeys[0]);
-
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // witness unspendable
-    {
-        CBasicKeyStore keystore;
-        keystore.AddKey(keys[0]);
-
-        scriptPubKey.clear();
-        scriptPubKey << OP_0 << ToByteVector(ParseHex("aabb"));
-
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // witness unknown
-    {
-        CBasicKeyStore keystore;
-        keystore.AddKey(keys[0]);
-
-        scriptPubKey.clear();
-        scriptPubKey << OP_16 << ToByteVector(ParseHex("aabb"));
 
         result = IsMine(keystore, scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);

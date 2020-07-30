@@ -1655,11 +1655,11 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>நீக்கு</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>நேட்டிவ் செக்யூரிட் முகவரிகள் (ach Bech32 அல்லது BIP-173) உங்கள் பரிவர்த்தனைக் கட்டணத்தை பின்னர் குறைக்க மற்றும் எழுத்துப்பிழைகள் எதிராக சிறந்த பாதுகாப்பு வழங்க, ஆனால் பழைய பணப்பைகள் அவர்களுக்கு ஆதரவு இல்லை. Unchecked போது, ​​பழைய பணப்பைகள் இணக்கமான ஒரு முகவரியை பதிலாக உருவாக்கப்படும்.</translation>
     </message>
     <message>
-        <source>Generate native segwit (Bech32) address</source>
+        <source>Generate Bech32 address</source>
         <translation>சொந்த segwit (Bech32) முகவரியை உருவாக்குங்கள்</translation>
     </message>
     <message>

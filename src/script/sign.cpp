@@ -223,13 +223,12 @@ bool SignPSBTInput(const SigningProvider& provider, PartiallySignedTransaction& 
     // Get UTXO
     CTxOut utxo;
 
-    // Verify input sanity, which checks that at most one of witness or non-witness utxos is provided.
+    // Verify input sanity
     if (!input.IsSane()) {
         return false;
     }
 
     if (input.utxo) {
-        // If we're taking our information from a non-witness UTXO, verify that it matches the prevout.
         COutPoint prevout = tx.vin[index].prevout;
         if (input.utxo->GetHash() != prevout.hash) {
             return false;
@@ -275,7 +274,7 @@ struct Stacks
 
     Stacks() = delete;
     Stacks(const Stacks&) = delete;
-    explicit Stacks(const SignatureData& data) : witness(data.scriptWitness.stack) {
+    explicit Stacks(const SignatureData& data) {
         EvalScript(script, data.scriptSig, SCRIPT_VERIFY_STRICTENC, BaseSignatureChecker(), SigVersion::BASE);
     }
 };
@@ -471,7 +470,7 @@ bool PartiallySignedTransaction::IsSane() const
 
 bool PSBTInput::IsNull() const
 {
-    return utxo.IsNull() && partial_sigs.empty() && unknown.empty() && hd_keypaths.empty() && redeem_script.empty() && witness_script.empty();
+    return utxo.IsNull() && partial_sigs.empty() && unknown.empty() && hd_keypaths.empty() && redeem_script.empty();
 }
 
 void PSBTInput::FillSignatureData(SignatureData& sigdata) const
