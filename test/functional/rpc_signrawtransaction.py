@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2017 The Bitcoin Core developers
+# Copyright (c) 2015-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test transaction signing using the signrawtransaction RPC."""
+"""Test transaction signing using the signrawtransaction* RPCs."""
 
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import *
+from test_framework.util import assert_equal, assert_raises_rpc_error
 
 
 class SignRawTransactionsTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
+        self.extra_args = [["-deprecatedrpc=signrawtransaction"]]
+
+    def skip_test_if_missing_module(self):
+        self.skip_if_no_wallet()
 
     def successful_signing_test(self):
         """Create and sign a valid raw transaction with one input.
@@ -33,14 +37,25 @@ class SignRawTransactionsTest(BitcoinTestFramework):
         outputs = {'mpLQjfK79b7CCV4VMJWEWAj5Mpx8Up5zxB': 0.1}
 
         rawTx = self.nodes[0].createrawtransaction(inputs, outputs)
-        rawTxSigned = self.nodes[0].signrawtransaction(rawTx, inputs, privKeys)
+        rawTxSigned = self.nodes[0].signrawtransactionwithkey(rawTx, privKeys, inputs)
 
         # 1) The transaction has a complete set of signatures
-        assert 'complete' in rawTxSigned
-        assert_equal(rawTxSigned['complete'], True)
+        assert rawTxSigned['complete']
 
         # 2) No script verification error occurred
         assert 'errors' not in rawTxSigned
+
+        # Perform the same test on signrawtransaction
+        rawTxSigned2 = self.nodes[0].signrawtransaction(rawTx, inputs, privKeys)
+        assert_equal(rawTxSigned, rawTxSigned2)
+
+    def test_with_lock_outputs(self):
+        """Test correct error reporting when trying to sign a locked output"""
+        self.nodes[0].encryptwallet("password")
+        self.restart_node(0)
+        rawTx = '020000000156b958f78e3f24e0b2f4e4db1255426b0902027cb37e3ddadb52e37c3557dddb0000000000ffffffff01c0a6b929010000001600149a2ee8c77140a053f36018ac8124a6ececc1668a00000000'
+
+        assert_raises_rpc_error(-13, "Please enter the wallet passphrase with walletpassphrase first", self.nodes[0].signrawtransactionwithwallet, rawTx)
 
     def script_verification_error_test(self):
         """Create and sign a raw transaction with valid (vin 0), invalid (vin 1) and one missing (vin 2) input script.
@@ -84,11 +99,10 @@ class SignRawTransactionsTest(BitcoinTestFramework):
         # Make sure decoderawtransaction throws if there is extra data
         assert_raises_rpc_error(-22, "TX decode failed", self.nodes[0].decoderawtransaction, rawTx + "00")
 
-        rawTxSigned = self.nodes[0].signrawtransaction(rawTx, scripts, privKeys)
+        rawTxSigned = self.nodes[0].signrawtransactionwithkey(rawTx, privKeys, scripts)
 
         # 3) The transaction has no complete set of signatures
-        assert 'complete' in rawTxSigned
-        assert_equal(rawTxSigned['complete'], False)
+        assert not rawTxSigned['complete']
 
         # 4) Two script verification errors occurred
         assert 'errors' in rawTxSigned
@@ -106,28 +120,11 @@ class SignRawTransactionsTest(BitcoinTestFramework):
         assert_equal(rawTxSigned['errors'][0]['vout'], inputs[1]['vout'])
         assert_equal(rawTxSigned['errors'][1]['txid'], inputs[2]['txid'])
         assert_equal(rawTxSigned['errors'][1]['vout'], inputs[2]['vout'])
-        assert not rawTxSigned['errors'][0]['witness']
-
-        rawTxSigned = self.nodes[0].signrawtransaction(p2wpkh_raw_tx)
-
-        # 7) The transaction has no complete set of signatures
-        assert 'complete' in rawTxSigned
-        assert_equal(rawTxSigned['complete'], False)
-
-        # 8) Two script verification errors occurred
-        assert 'errors' in rawTxSigned
-        assert_equal(len(rawTxSigned['errors']), 2)
-
-        # 9) Script verification errors have certain properties
-        assert 'txid' in rawTxSigned['errors'][0]
-        assert 'vout' in rawTxSigned['errors'][0]
-        assert 'scriptSig' in rawTxSigned['errors'][0]
-        assert 'sequence' in rawTxSigned['errors'][0]
-        assert 'error' in rawTxSigned['errors'][0]
 
     def run_test(self):
         self.successful_signing_test()
         self.script_verification_error_test()
+        self.test_with_lock_outputs()
 
 
 if __name__ == '__main__':

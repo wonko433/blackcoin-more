@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2016-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,6 +9,7 @@
 #endif
 #include <script/script.h>
 #include <script/sign.h>
+#include <script/standard.h>
 #include <streams.h>
 
 #include <array>
@@ -72,9 +73,9 @@ static void VerifyScriptBench(benchmark::State& state)
     CScript scriptPubKey = CScript() << ToByteVector(pubkeyHash);
     CScript scriptSig;
     CScript txScriptPubkey = CScript() << OP_DUP << OP_HASH160 << ToByteVector(pubkeyHash) << OP_EQUALVERIFY << OP_CHECKSIG;
-    CTransaction txCredit = BuildCreditingTransaction(scriptPubKey);
+    const CMutableTransaction& txCredit = BuildCreditingTransaction(scriptPubKey);
     CMutableTransaction txSpend = BuildSpendingTransaction(scriptSig, txCredit);
-    key.Sign(SignatureHash(txScriptPubkey, txSpend, 0, SIGHASH_ALL, txCredit.vout[0].nValue, SIGVERSION_BASE), 0);
+    key.Sign(SignatureHash(txScriptPubkey, txSpend, 0, SIGHASH_ALL, txCredit.vout[0].nValue, SigVersion::BASE), 0);
 
     // Benchmark.
     while (state.KeepRunning()) {

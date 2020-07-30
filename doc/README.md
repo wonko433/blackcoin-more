@@ -9,7 +9,7 @@ To download Blackcoin More, visit [blackcoinmore.org](https://blackcoinmore.org)
 
 Running
 ---------------------
-The following are some helpful notes on how to run Blackcoin on your native platform.
+The following are some helpful notes on how to run Blackcoin More on your native platform.
 
 ### Unix
 
@@ -22,9 +22,9 @@ Unpack the files into a directory and run:
 
 Unpack the files into a directory, and then run blackmore-qt.exe.
 
-### OS X
+### macOS
 
-Drag Blackcoin-More to your applications folder, and then run Blackcoin-More.
+Drag Blackcoin More to your applications folder, and then run Blackcoin More.
 
 ### Need Help?
 
@@ -37,13 +37,14 @@ for help and more information.
 
 Building
 ---------------------
-The following are developer notes on how to build Blackcoin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Blackcoin More on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
-- [OS X Build Notes](build-osx.md)
+- [macOS Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
+- [NetBSD Build Notes](build-netbsd.md)
 - [Gitian Building Guide](gitian-building.md)
 
 Development
@@ -76,6 +77,7 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 - [Tor Support](tor.md)
 - [Init Scripts (systemd/upstart/openrc)](init.md)
 - [ZMQ](zmq.md)
+- [PSBT support](psbt.md)
 
 License
 ---------------------

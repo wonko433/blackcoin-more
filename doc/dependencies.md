@@ -7,7 +7,6 @@ These are the dependencies currently used by Blackcoin More. You can find instru
 | --- | --- | --- | --- | --- | --- |
 | Berkeley DB | [6.2.38.NC](https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/downloads/index.html) | 6.2.x | No |  |  |
 | Boost | [1.68.0](https://www.boost.org/users/download/) | [1.47.0](https://github.com/bitcoin/bitcoin/pull/8920) | No |  |  |
-| ccache | [3.5](https://ccache.samba.org/download.html) |  | No |  |  |
 | Clang |  | [3.3+](https://llvm.org/releases/download.html) (C++11 support) |  |  |  |
 | D-Bus | [1.12.12](https://cgit.freedesktop.org/dbus/dbus/tree/NEWS?h=dbus-1.12) |  | No | Yes |  |
 | Expat | [2.2.7](https://libexpat.github.io/) |  | No | Yes |  |
@@ -24,7 +23,7 @@ These are the dependencies currently used by Blackcoin More. You can find instru
 | protobuf | [2.6.1](https://github.com/google/protobuf/releases) |  | No |  |  |
 | Python (tests) |  | [3.4](https://www.python.org/downloads) |  |  |  |
 | qrencode | [3.4.4](https://fukuchi.org/works/qrencode) |  | No |  |  |
-| Qt | [5.9.7](https://download.qt.io/official_releases/qt/) | [5.2](https://github.com/bitcoin/bitcoin/pull/14725) | No |  |  |
+| Qt | [5.9.7](https://download.qt.io/official_releases/qt/) | [5.5.1](https://github.com/bitcoin/bitcoin/issues/13478) | No |  |  |
 | XCB |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L87) (Linux only) |
 | xkbcommon |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L86) (Linux only) |
 | ZeroMQ | [4.3.1](https://github.com/zeromq/libzmq/releases) | 4.0.0 | No |  |  |

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2017 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,9 +12,6 @@
 #include <QLabel>
 #include <QPainter>
 #include <QString>
-
-class OptionsModel;
-class Config;
 
 namespace Ui {
     class ReceiveRequestDialog;
@@ -55,7 +52,7 @@ public:
     explicit ReceiveRequestDialog(const Config *cfg, QWidget *parent = 0);
     ~ReceiveRequestDialog();
 
-    void setModel(OptionsModel *model);
+    void setModel(WalletModel *model);
     void setInfo(const SendCoinsRecipient &info);
 
 private Q_SLOTS:
@@ -66,7 +63,7 @@ private Q_SLOTS:
 
 private:
     Ui::ReceiveRequestDialog *ui;
-    OptionsModel *model;
+    WalletModel *model;
     SendCoinsRecipient info;
     const Config *cfg;
 };

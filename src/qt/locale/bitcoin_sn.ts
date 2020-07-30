@@ -99,7 +99,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -166,7 +166,7 @@
     <name>Intro</name>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     </context>
 <context>
@@ -195,7 +195,7 @@
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Nyora kero ye Bitcoin (sekuti %1)</translation>
+        <translation>Nyora kero ye Blackcoin (sekuti %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -251,6 +251,10 @@
     <message>
         <source>Label</source>
         <translation>Zita</translation>
+    </message>
+    <message>
+        <source>Wallet</source>
+        <translation>Chikwama</translation>
     </message>
     </context>
 <context>

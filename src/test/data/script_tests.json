@@ -168,6 +168,18 @@
 ["1 0 BOOLOR", "NOP", "P2SH,STRICTENC", "OK"],
 ["0 1 BOOLOR", "NOP", "P2SH,STRICTENC", "OK"],
 ["0 0 BOOLOR", "NOT", "P2SH,STRICTENC", "OK"],
+["0x01 0x80", "DUP BOOLOR", "P2SH,STRICTENC", "EVAL_FALSE", "negative-0 negative-0 BOOLOR"],
+["0x01 0x00", "DUP BOOLOR", "P2SH,STRICTENC", "EVAL_FALSE", " non-minimal-0  non-minimal-0 BOOLOR"],
+["0x01 0x81", "DUP BOOLOR", "P2SH,STRICTENC", "OK", "-1 -1 BOOLOR"],
+["0x01 0x80", "DUP BOOLAND", "P2SH,STRICTENC", "EVAL_FALSE", "negative-0 negative-0 BOOLAND"],
+["0x01 0x00", "DUP BOOLAND", "P2SH,STRICTENC", "EVAL_FALSE", " non-minimal-0  non-minimal-0 BOOLAND"],
+["0x01 0x81", "DUP BOOLAND", "P2SH,STRICTENC", "OK", "-1 -1 BOOLAND"],
+["0x01 0x00", "NOT", "P2SH,STRICTENC", "OK", "non-minimal-0 NOT"],
+["0x01 0x80", "NOT", "P2SH,STRICTENC", "OK", "negative-0 NOT"],
+["0x01 0x81", "NOT", "P2SH,STRICTENC", "EVAL_FALSE", "negative 1 NOT"],
+["0x01 0x80 0", "NUMEQUAL", "P2SH", "OK", "-0 0 NUMEQUAL"],
+["0x01 0x00 0", "NUMEQUAL", "P2SH", "OK", "non-minimal-0 0 NUMEQUAL"],
+["0x02 0x00 0x00 0", "NUMEQUAL", "P2SH", "OK", "non-minimal-0 0 NUMEQUAL"],
 ["16 17 BOOLOR", "NOP", "P2SH,STRICTENC", "OK"],
 ["11 10 1 ADD", "NUMEQUAL", "P2SH,STRICTENC", "OK"],
 ["11 10 1 ADD", "NUMEQUALVERIFY 1", "P2SH,STRICTENC", "OK"],
@@ -700,7 +712,7 @@
 ["0x17 0x3014020002107777777777777777777777777777777701", "0 CHECKSIG NOT", "", "OK", "Zero-length R is correctly encoded"],
 ["0x17 0x3014021077777777777777777777777777777777020001", "0 CHECKSIG NOT", "", "OK", "Zero-length S is correctly encoded for DERSIG"],
 ["0x27 0x302402107777777777777777777777777777777702108777777777777777777777777777777701", "0 CHECKSIG NOT", "", "OK", "Negative S is correctly encoded"],
- 
+
 ["2147483648", "CHECKSEQUENCEVERIFY", "CHECKSEQUENCEVERIFY", "OK", "CSV passes if stack top bit 1 << 31 is set"],
 
 ["", "DEPTH", "P2SH,STRICTENC",   "EVAL_FALSE", "Test the test: we should have an empty stack after scriptSig evaluation"],
@@ -1855,5 +1867,16 @@
 ["0", "CHECKSEQUENCEVERIFY", "CHECKSEQUENCEVERIFY", "UNSATISFIED_LOCKTIME", "CSV fails if stack top bit 1 << 31 is set and the tx version < 2"],
 ["4294967296", "CHECKSEQUENCEVERIFY", "CHECKSEQUENCEVERIFY", "UNSATISFIED_LOCKTIME",
   "CSV fails if stack top bit 1 << 31 is not set, and tx version < 2"],
+
+["NULLFAIL should cover all signatures and signatures only"],
+["0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG", "OK", "BIP66 and NULLFAIL-compliant"],
+["0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG,NULLFAIL", "OK", "BIP66 and NULLFAIL-compliant"],
+["1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG,NULLFAIL", "OK", "BIP66 and NULLFAIL-compliant, not NULLDUMMY-compliant"],
+["1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG,NULLFAIL,NULLDUMMY", "SIG_NULLDUMMY", "BIP66 and NULLFAIL-compliant, not NULLDUMMY-compliant"],
+["0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0x09 0x300602010102010101", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG", "OK", "BIP66-compliant but not NULLFAIL-compliant"],
+["0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0x09 0x300602010102010101", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG,NULLFAIL", "NULLFAIL", "BIP66-compliant but not NULLFAIL-compliant"],
+["0 0x09 0x300602010102010101 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG", "OK", "BIP66-compliant but not NULLFAIL-compliant"],
+["0 0x09 0x300602010102010101 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0", "0x01 0x14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0x01 0x14 CHECKMULTISIG NOT", "DERSIG,NULLFAIL", "NULLFAIL", "BIP66-compliant but not NULLFAIL-compliant"],
+
 ["The End"]
 ]

@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Đây là các địa chỉ Bitcoin để gửi bạn gửi tiền. Trước khi gửi bạn nên kiểm tra lại số tiền bạn muốn gửi và địa chỉ bitcoin của người nhận.</translation>
+        <translation>Đây là các địa chỉ Blackcoin để gửi bạn gửi tiền. Trước khi gửi bạn nên kiểm tra lại số tiền bạn muốn gửi và địa chỉ Blackcoin của người nhận.</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Đây là các địa chỉ Bitcoin để bạn nhận tiền. Với mỗi giao dịch, bạn nên dùng một địa chỉ Bitcoin mới để nhận tiền.</translation>
+        <translation>Đây là các địa chỉ Blackcoin để bạn nhận tiền. Với mỗi giao dịch, bạn nên dùng một địa chỉ Blackcoin mới để nhận tiền.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -428,7 +428,7 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n liên kết hoạt động với mạng lưới Bitcoin</numerusform></translation>
+        <translation><numerusform>%n liên kết hoạt động với mạng lưới Blackcoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -472,7 +472,7 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh Bitcoin.</translation>
+        <translation>Hiển thị tin nhắn trợ giúp %1 để có được danh sách với các tùy chọn dòng lệnh Blackcoin.</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
@@ -624,23 +624,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Command-line options</source>
         <translation>&amp;Tùy chọn dòng lệnh</translation>
     </message>
-    <message>
-        <source>Usage:</source>
-        <translation>Mức sử dụng</translation>
-    </message>
-    <message>
-        <source>command-line options</source>
-        <translation>tùy chọn dòng lệnh</translation>
-    </message>
-    <message>
-        <source>Set language, for example "de_DE" (default: system locale)</source>
-        <translation>Chọn ngôn ngữ, ví dụ "de_DE" (mặc định: Vị trí hệ thống)</translation>
-    </message>
-    <message>
-        <source>Set SSL root certificates for payment request (default: -system-)</source>
-        <translation>Đặt chứng nhận SSL gốc cho yêu cầu giao dịch (mặc định: -hệ thống-)</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -653,7 +637,7 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -980,6 +964,10 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>Tin nhắn</translation>
     </message>
     <message>
+        <source>Wallet</source>
+        <translation>Ví</translation>
+    </message>
+    <message>
         <source>Error encoding URI into QR Code.</source>
         <translation>Lỗi khi encode từ URI thành QR Code</translation>
     </message>
@@ -1102,10 +1090,6 @@ Ví của bạn chưa được mã hóa.</translation>
         <translation>%1 đến %2</translation>
     </message>
     <message>
-        <source>Total Amount %1</source>
-        <translation>Tổng cộng %1</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation>hoặc</translation>
     </message>
@@ -1219,16 +1203,8 @@ Ví của bạn chưa được mã hóa.</translation>
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Options:</source>
-        <translation>Lựa chọn:</translation>
-    </message>
-    <message>
         <source>Bitcoin Core</source>
         <translation>Blackcoin More</translation>
-    </message>
-    <message>
-        <source>(default: %u)</source>
-        <translation>(mặc định: %u)</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1241,10 +1217,6 @@ Ví của bạn chưa được mã hóa.</translation>
     <message>
         <source>Warning</source>
         <translation>Chú ý</translation>
-    </message>
-    <message>
-        <source>(default: %s)</source>
-        <translation>(mặc định: %s)</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

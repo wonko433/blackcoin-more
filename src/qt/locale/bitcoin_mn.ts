@@ -26,6 +26,10 @@
         <translation>Одоо сонгогдсон байгаа хаягуудыг жагсаалтаас устгах</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>Хайлт хийхийн тулд хаяг эсвэл шошгыг оруул</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Сонгогдсон таб дээрхи дата-г экспортлох</translation>
     </message>
@@ -225,10 +229,6 @@
         <source>version</source>
         <translation>хувилбар</translation>
     </message>
-    <message>
-        <source>Usage:</source>
-        <translation>Хэрэглээ:</translation>
-    </message>
     </context>
 <context>
     <name>Intro</name>
@@ -408,9 +408,21 @@
         <source>Copy &amp;Address</source>
         <translation>Хаягийг &amp;Хуулбарлах</translation>
     </message>
+    <message>
+        <source>Amount</source>
+        <translation>Хэмжээ</translation>
+    </message>
+    <message>
+        <source>Wallet</source>
+        <translation>Түрүйвч</translation>
+    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>Огноо</translation>
+    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
@@ -531,6 +543,18 @@
     </context>
 <context>
     <name>TransactionDesc</name>
+    <message>
+        <source>Date</source>
+        <translation>Огноо</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>үл мэдэгдэх</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Хэмжээ</translation>
+    </message>
     </context>
 <context>
     <name>TransactionDescDialog</name>
@@ -541,9 +565,21 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>Огноо</translation>
+    </message>
     </context>
 <context>
     <name>TransactionView</name>
+    <message>
+        <source>Confirmed</source>
+        <translation>Баталгаажлаа</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Огноо</translation>
+    </message>
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
@@ -553,20 +589,24 @@
     </context>
 <context>
     <name>WalletModel</name>
+    <message>
+        <source>Send Coins</source>
+        <translation>Зоос явуулах</translation>
+    </message>
     </context>
 <context>
     <name>WalletView</name>
+    <message>
+        <source>&amp;Export</source>
+        <translation>&amp;Экспортдлох</translation>
+    </message>
+    <message>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Сонгогдсон таб дээрхи дата-г экспортлох</translation>
+    </message>
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Options:</source>
-        <translation>Сонголтууд:</translation>
-    </message>
-    <message>
-        <source>Wallet options:</source>
-        <translation>Түрүйвчийн сонголтууд:</translation>
-    </message>
     <message>
         <source>Information</source>
         <translation>Мэдээллэл</translation>

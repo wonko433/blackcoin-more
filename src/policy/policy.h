@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -43,17 +43,19 @@ static const unsigned int DUST_RELAY_TX_FEE = 10000;
  * with. However scripts violating these flags may still be present in valid
  * blocks and we must accept those blocks.
  */
-// Blackcoin ToDo: check if SCRIPT_VERIFY_LOW_S and SCRIPT_VERIFY_CONST_SCRIPTCODE work
+// Blackcoin ToDo: check if SCRIPT_VERIFY_DERSIG, SCRIPT_VERIFY_NULLDUMMY, SCRIPT_VERIFY_LOW_S and SCRIPT_VERIFY_CONST_SCRIPTCODE work
 static constexpr unsigned int STANDARD_SCRIPT_VERIFY_FLAGS = MANDATORY_SCRIPT_VERIFY_FLAGS |
-                                                         SCRIPT_VERIFY_STRICTENC |
-                                                         SCRIPT_VERIFY_MINIMALDATA |
-                                                         SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS |
-                                                         SCRIPT_VERIFY_CLEANSTACK |
-                                                         SCRIPT_VERIFY_MINIMALIF |
-                                                         SCRIPT_VERIFY_NULLFAIL |
-                                                         SCRIPT_VERIFY_CHECKSEQUENCEVERIFY |
-                                                         SCRIPT_VERIFY_LOW_S |
-                                                         SCRIPT_VERIFY_CONST_SCRIPTCODE;
+                                                             SCRIPT_VERIFY_DERSIG |
+                                                             SCRIPT_VERIFY_STRICTENC |
+                                                             SCRIPT_VERIFY_MINIMALDATA |
+                                                             SCRIPT_VERIFY_NULLDUMMY |
+                                                             SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS |
+                                                             SCRIPT_VERIFY_CLEANSTACK |
+                                                             SCRIPT_VERIFY_MINIMALIF |
+                                                             SCRIPT_VERIFY_NULLFAIL |
+                                                             SCRIPT_VERIFY_CHECKSEQUENCEVERIFY |
+                                                             SCRIPT_VERIFY_LOW_S |
+                                                             SCRIPT_VERIFY_CONST_SCRIPTCODE;
 
 /** For convenience, standard but not mandatory verify flags. */
 static constexpr unsigned int STANDARD_NOT_MANDATORY_VERIFY_FLAGS = STANDARD_SCRIPT_VERIFY_FLAGS & ~MANDATORY_SCRIPT_VERIFY_FLAGS;

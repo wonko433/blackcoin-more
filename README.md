@@ -14,7 +14,8 @@ What is Blackcoin More?
 Blackcoin More is the name of open source software which enables use of the Blackcoin protocol. 
 By building upon Bitcoin Core 0.15.0.1, with some patches from newer Bitcoin Core versions to offer performance enhancements, Blackcoin More is an alternate approach to the original client that provides wider compatibility with third party services and a more advanced base.
 
-For more information, as well as an immediately useable, binary version of the Blackcoin More software, see https://blackcoinmore.org.
+For more information, as well as an immediately useable, binary version of
+the Blackcoin More software, see https://blackcoinmore.org.
 
 License
 -------
@@ -54,7 +55,7 @@ There are also [regression and integration tests](/test), written
 in Python, that are run automatically on the build server.
 These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and OS X, and that unit/sanity tests are run automatically.
+The Travis CI system makes sure that every pull request is built for Windows, Linux, and macOS, and that unit/sanity tests are run automatically.
 
 ### Manual Quality Assurance (QA) Testing
 
