@@ -79,6 +79,9 @@ endif
 # blockencodings.h
 BITCOIN_CORE_H = \
   addrdb.h \
+  addressindex.h \
+  spentindex.h \
+  timestampindex.h \
   addrman.h \
   amount.h \
   arith_uint256.h \
