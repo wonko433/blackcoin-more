@@ -5,6 +5,7 @@
 
 #include "base58.h"
 #include "clientversion.h"
+#include "dstencode.h"
 #include "init.h"
 #include "main.h"
 #include "net.h"
@@ -45,20 +46,23 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "getinfo\n"
-            "Returns an object containing various state info.\n"
+            "\nDEPRECATED. Returns an object containing various state info.\n"
             "\nResult:\n"
             "{\n"
             "  \"version\": xxxxx,           (numeric) the server version\n"
             "  \"protocolversion\": xxxxx,   (numeric) the protocol version\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total bitcoin balance of the wallet\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total confirmed balance of the wallet\n"
             "  \"blocks\": xxxxxx,           (numeric) the current number of blocks processed in the server\n"
             "  \"timeoffset\": xxxxx,        (numeric) the time offset\n"
             "  \"connections\": xxxxx,       (numeric) the number of connections\n"
             "  \"proxy\": \"host:port\",     (string, optional) the proxy used by the server\n"
-            "  \"difficulty\": xxxxxx,       (numeric) the current difficulty\n"
+            "  \"difficulty\": {             (json object)\n"
+                        "    \"proof-of-work\": xxxxxx,  (numeric) the current proof-of-work difficulty\n"
+                        "    \"proof-of-stake\": xxxxxx  (numeric) the current proof-of-stake difficulty\n"
+            "  },\n"
             "  \"testnet\": true|false,      (boolean) if the server is using testnet or not\n"
-            "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
+            "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since Unix epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
             "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
             "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee set in " + CURRENCY_UNIT + "/kB\n"
@@ -79,6 +83,10 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     proxyType proxy;
     GetProxy(NET_IPV4, proxy);
 
+    UniValue diff(UniValue::VOBJ);
+    diff.push_back(Pair("proof-of-work",  (double)GetDifficulty()));
+    diff.push_back(Pair("proof-of-stake", (double)GetDifficulty(GetLastBlockIndex(chainActive.Tip(), true))));
+
     UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("version", CLIENT_VERSION));
     obj.push_back(Pair("protocolversion", PROTOCOL_VERSION));
@@ -92,7 +100,7 @@ UniValue getinfo(const UniValue& params, bool fHelp)
     obj.push_back(Pair("timeoffset",    GetTimeOffset()));
     obj.push_back(Pair("connections",   (int)vNodes.size()));
     obj.push_back(Pair("proxy",         (proxy.IsValid() ? proxy.proxy.ToStringIPPort() : string())));
-    obj.push_back(Pair("difficulty",    (double)GetDifficulty()));
+    obj.push_back(Pair("difficulty",    diff));
     obj.push_back(Pair("testnet",       Params().TestnetToBeDeprecatedFieldRPC()));
 #ifdef ENABLE_WALLET
     if (pwalletMain) {
@@ -137,8 +145,9 @@ public:
             obj.push_back(Pair("script", GetTxnOutputType(whichType)));
             obj.push_back(Pair("hex", HexStr(subscript.begin(), subscript.end())));
             UniValue a(UniValue::VARR);
-            BOOST_FOREACH(const CTxDestination& addr, addresses)
-                a.push_back(CBitcoinAddress(addr).ToString());
+            for (const CTxDestination &addr : addresses) {
+                a.push_back(EncodeDestination(addr));
+            }
             obj.push_back(Pair("addresses", a));
             if (whichType == TX_MULTISIG)
                 obj.push_back(Pair("sigsrequired", nRequired));
@@ -181,15 +190,13 @@ UniValue validateaddress(const UniValue& params, bool fHelp)
     LOCK(cs_main);
 #endif
 
-    CBitcoinAddress address(params[0].get_str());
-    bool isValid = address.IsValid();
+    CTxDestination dest = DecodeDestination(params[0].get_str());
+    bool isValid = IsValidDestination(dest);
 
     UniValue ret(UniValue::VOBJ);
     ret.push_back(Pair("isvalid", isValid));
-    if (isValid)
-    {
-        CTxDestination dest = address.Get();
-        string currentAddress = address.ToString();
+    if (isValid) {
+        std::string currentAddress = EncodeDestination(dest);
         ret.push_back(Pair("address", currentAddress));
 
         CScript scriptPubKey = GetScriptForDestination(dest);
@@ -203,11 +210,21 @@ UniValue validateaddress(const UniValue& params, bool fHelp)
         ret.pushKVs(detail);
         if (pwalletMain && pwalletMain->mapAddressBook.count(dest))
             ret.push_back(Pair("account", pwalletMain->mapAddressBook[dest].name));
-        CKeyID keyID;
-        if (pwalletMain && address.GetKeyID(keyID) && pwalletMain->mapKeyMetadata.count(keyID) && !pwalletMain->mapKeyMetadata[keyID].hdKeypath.empty())
-        {
-            ret.push_back(Pair("hdkeypath", pwalletMain->mapKeyMetadata[keyID].hdKeypath));
-            ret.push_back(Pair("hdmasterkeyid", pwalletMain->mapKeyMetadata[keyID].hdMasterKeyID.GetHex()));
+        if (pwalletMain) {
+            const auto &meta = pwalletMain->mapKeyMetadata;
+            const CKeyID *keyID = boost::get<CKeyID>(&dest);
+            auto it = keyID ? meta.find(*keyID) : meta.end();
+            if (it == meta.end()) {
+                it = meta.find(CScriptID(scriptPubKey));
+            }
+            if (it != meta.end()) {
+                ret.push_back(Pair("timestamp", it->second.nCreateTime));
+                if (!it->second.hdKeypath.empty()) {
+                    ret.push_back(Pair("hdkeypath", it->second.hdKeypath));
+                    ret.push_back(Pair("hdmasterkeyid",
+                                       it->second.hdMasterKeyID.GetHex()));
+                }
+            }
         }
 #endif
     }
@@ -238,17 +255,18 @@ CScript _createmultisig_redeemScript(const UniValue& params)
         const std::string& ks = keys[i].get_str();
 #ifdef ENABLE_WALLET
         // Case 1: Bitcoin address and we have full public key:
-        CBitcoinAddress address(ks);
-        if (pwalletMain && address.IsValid())
-        {
-            CKeyID keyID;
-            if (!address.GetKeyID(keyID))
-                throw runtime_error(
-                    strprintf("%s does not refer to a key",ks));
+        CTxDestination dest = DecodeDestination(ks);
+        if (pwalletMain && IsValidDestination(dest)) {
+            const CKeyID *keyID = boost::get<CKeyID>(&dest);
+            if (!keyID) {
+                throw std::runtime_error(
+                    strprintf("%s does not refer to a key", ks));
+            }
             CPubKey vchPubKey;
-            if (!pwalletMain->GetPubKey(keyID, vchPubKey))
-                throw runtime_error(
-                    strprintf("no full public key for address %s",ks));
+            if (!pwalletMain->GetPubKey(*keyID, vchPubKey)) {
+                throw std::runtime_error(
+                    strprintf("no full public key for address %s", ks));
+            }
             if (!vchPubKey.IsFullyValid())
                 throw runtime_error(" Invalid public key: "+ks);
             pubkeys[i] = vchPubKey;
@@ -312,48 +330,10 @@ UniValue createmultisig(const UniValue& params, bool fHelp)
     // Construct using pay-to-script-hash:
     CScript inner = _createmultisig_redeemScript(params);
     CScriptID innerID(inner);
-    CBitcoinAddress address(innerID);
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("address", address.ToString()));
+    result.push_back(Pair("address", EncodeDestination(innerID)));
     result.push_back(Pair("redeemScript", HexStr(inner.begin(), inner.end())));
-
-    return result;
-}
-
-UniValue createwitnessaddress(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() < 1 || params.size() > 1)
-    {
-        string msg = "createwitnessaddress \"script\"\n"
-            "\nCreates a witness address for a particular script.\n"
-            "It returns a json object with the address and witness script.\n"
-
-            "\nArguments:\n"
-            "1. \"script\"       (string, required) A hex encoded script\n"
-
-            "\nResult:\n"
-            "{\n"
-            "  \"address\":\"multisigaddress\",  (string) The value of the new address (P2SH of witness script).\n"
-            "  \"witnessScript\":\"script\"      (string) The string value of the hex-encoded witness script.\n"
-            "}\n"
-        ;
-        throw runtime_error(msg);
-    }
-
-    if (!IsHex(params[0].get_str())) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Script must be hex-encoded");
-    }
-
-    std::vector<unsigned char> code = ParseHex(params[0].get_str());
-    CScript script(code.begin(), code.end());
-    CScript witscript = GetScriptForWitness(script);
-    CScriptID witscriptid(witscript);
-    CBitcoinAddress address(witscriptid);
-
-    UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("address", address.ToString()));
-    result.push_back(Pair("witnessScript", HexStr(witscript.begin(), witscript.end())));
 
     return result;
 }
@@ -362,10 +342,10 @@ UniValue verifymessage(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
-            "verifymessage \"bitcoinaddress\" \"signature\" \"message\"\n"
+            "verifymessage \"blackcoinaddress\" \"signature\" \"message\"\n"
             "\nVerify a signed message\n"
             "\nArguments:\n"
-            "1. \"bitcoinaddress\"  (string, required) The bitcoin address to use for the signature.\n"
+            "1. \"blackcoinaddress\"  (string, required) The blackcoin address to use for the signature.\n"
             "2. \"signature\"       (string, required) The signature provided by the signer in base 64 encoding (see signmessage).\n"
             "3. \"message\"         (string, required) The message that was signed.\n"
             "\nResult:\n"
@@ -387,13 +367,15 @@ UniValue verifymessage(const UniValue& params, bool fHelp)
     string strSign     = params[1].get_str();
     string strMessage  = params[2].get_str();
 
-    CBitcoinAddress addr(strAddress);
-    if (!addr.IsValid())
+    CTxDestination destination = DecodeDestination(strAddress);
+    if (!IsValidDestination(destination)) {
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
+    }
 
-    CKeyID keyID;
-    if (!addr.GetKeyID(keyID))
+    const CKeyID *keyID = boost::get<CKeyID>(&destination);
+    if (!keyID) {
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to key");
+    }
 
     bool fInvalid = false;
     vector<unsigned char> vchSig = DecodeBase64(strSign.c_str(), &fInvalid);
@@ -409,7 +391,7 @@ UniValue verifymessage(const UniValue& params, bool fHelp)
     if (!pubkey.RecoverCompact(ss.GetHash(), vchSig))
         return false;
 
-    return (pubkey.GetID() == keyID);
+    return (pubkey.GetID() == *keyID);
 }
 
 UniValue signmessagewithprivkey(const UniValue& params, bool fHelp)
@@ -1018,7 +1000,6 @@ static const CRPCCommand commands[] =
     { "control",            "getinfo",                &getinfo,                true  }, /* uses wallet if enabled */
     { "util",               "validateaddress",        &validateaddress,        true  }, /* uses wallet if enabled */
     { "util",               "createmultisig",         &createmultisig,         true  },
-    { "util",               "createwitnessaddress",   &createwitnessaddress,   true  },
     { "util",               "verifymessage",          &verifymessage,          true  },
     { "util",               "signmessagewithprivkey", &signmessagewithprivkey, true  },
 

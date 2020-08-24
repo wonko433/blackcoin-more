@@ -38,6 +38,7 @@ public:
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(this->nVersion);
+        nVersion = this->nVersion;
         READWRITE(hashPrevBlock);
         READWRITE(hashMerkleRoot);
         READWRITE(nTime);
@@ -62,6 +63,8 @@ public:
 
     uint256 GetHash() const;
 
+    uint256 GetPoWHash() const;
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;
@@ -69,11 +72,15 @@ public:
 };
 
 
+
 class CBlock : public CBlockHeader
 {
 public:
     // network and disk
     std::vector<CTransaction> vtx;
+
+    // network and disk
+    std::vector<unsigned char> vchBlockSig;
 
     // memory only
     mutable bool fChecked;
@@ -95,13 +102,26 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
         READWRITE(*(CBlockHeader*)this);
         READWRITE(vtx);
+        READWRITE(vchBlockSig);
     }
 
     void SetNull()
     {
         CBlockHeader::SetNull();
         vtx.clear();
+        vchBlockSig.clear();
         fChecked = false;
+    }
+
+    // two types of block: proof-of-work or proof-of-stake
+    bool IsProofOfStake() const
+    {
+        return (vtx.size() > 1 && vtx[1].IsCoinStake());
+    }
+
+    bool IsProofOfWork() const
+    {
+        return !IsProofOfStake();
     }
 
     CBlockHeader GetBlockHeader() const
@@ -115,6 +135,8 @@ public:
         block.nNonce         = nNonce;
         return block;
     }
+
+
 
     std::string ToString() const;
 };
@@ -153,8 +175,5 @@ struct CBlockLocator
         return vHave.empty();
     }
 };
-
-/** Compute the consensus-critical block weight (see BIP 141). */
-int64_t GetBlockWeight(const CBlock& tx);
 
 #endif // BITCOIN_PRIMITIVES_BLOCK_H

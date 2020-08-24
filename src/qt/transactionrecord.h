@@ -20,9 +20,16 @@ class TransactionStatus
 {
 public:
     TransactionStatus():
-        countsForBalance(false), sortKey(""),
-        matures_in(0), status(Offline), depth(0), open_for(0), cur_num_blocks(-1)
-    { }
+        countsForBalance(false),
+        sortKey(""),
+        matures_in(0),
+        status(Offline),
+        depth(0),
+        open_for(0),
+        cur_num_blocks(-1),
+        cur_num_conflicts(-1)
+    {
+    }
 
     enum Status {
         Confirmed,          /**< Have 6 or more confirmations (normal tx) or fully mature (mined tx) **/
@@ -61,6 +68,9 @@ public:
 
     /** Current number of blocks (to know whether cached status is still valid) */
     int cur_num_blocks;
+
+    /** Number of conflicts received into wallet as of last status update */
+    int64_t cur_num_conflicts;
 };
 
 /** UI model for a transaction. A core transaction can be represented by multiple UI transactions if it has
@@ -81,7 +91,7 @@ public:
     };
 
     /** Number of confirmation recommended for accepting a transaction */
-    static const int RecommendedNumConfirmations = 6;
+    static const int RecommendedNumConfirmations = 10;
 
     TransactionRecord():
             hash(), time(0), type(Other), address(""), debit(0), credit(0), idx(0)
@@ -138,7 +148,7 @@ public:
 
     /** Return whether a status update is needed.
      */
-    bool statusUpdateNeeded();
+    bool statusUpdateNeeded(int64_t nConflictsReceived);
 };
 
 #endif // BITCOIN_QT_TRANSACTIONRECORD_H

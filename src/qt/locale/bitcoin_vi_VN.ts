@@ -41,7 +41,30 @@
         <source>&amp;Delete</source>
         <translation>&amp;Xó&amp;a</translation>
     </message>
-</context>
+    <message>
+        <source>Choose the address to send coins to</source>
+        <translation>Chọn địa chỉ để gửi coin đến</translation>
+    </message>
+    <message>
+        <source>Choose the address to receive coins with</source>
+        <translation>Chọn địa chỉ để nhận coin</translation>
+    </message>
+    <message>
+        <source>C&amp;hoose</source>
+        <translation>Chọn</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation>Địa chỉ gửi đến</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation>Địa chỉ nhận</translation>
+    </message>
+    </context>
+<context>
+    <name>AddressTableModel</name>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -60,7 +83,7 @@
         <source>Repeat new passphrase</source>
         <translation>Điền lại passphrase</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -164,7 +187,7 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Gửi coins đến tài khoản Bitcoin</translation>
+        <translation>Gửi coins đến tài khoản Blackcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -184,7 +207,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -212,11 +235,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Dùng địa chỉ Bitcoin của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
+        <translation>Dùng địa chỉ Blackcoin của bạn ký các tin nhắn để xác minh những nội dung tin nhắn đó là của bạn.</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Bitcoin xác định.</translation>
+        <translation>Kiểm tra các tin nhắn để chắc chắn rằng chúng được ký bằng các địa chỉ Blackcoin xác định.</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -236,7 +259,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ Bitcoin: URLs)</translation>
+        <translation>Yêu cầu thanh toán(tạo mã QR và địa chỉ blackcoin: URLs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -248,31 +271,11 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Mở bitcoin:URL hoặc yêu cầu thanh toán</translation>
+        <translation>Mở blackcoin:URL hoặc yêu cầu thanh toán</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>7Tùy chọn dòng lệnh</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n giờ</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n ngày</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n tuần</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 and %2</source>
-        <translation>%1 và %2</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n năm</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -352,7 +355,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Ví tiền &lt;b&gt; đã được mã hóa&lt;/b&gt;và hiện &lt;b&gt;đang khóa&lt;/b&gt;</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -366,10 +369,6 @@
     <message>
         <source>Amount:</source>
         <translation>Lượng:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Tầm quan trọng:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -411,11 +410,7 @@
         <source>Confirmed</source>
         <translation>Đã xác nhận</translation>
     </message>
-    <message>
-        <source>Priority</source>
-        <translation>Tầm quan trọng</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -430,7 +425,7 @@
         <source>&amp;Address</source>
         <translation>Địa chỉ</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -485,6 +480,17 @@
     </message>
     </context>
 <context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>Ẩn</translation>
+    </message>
+    </context>
+<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -531,7 +537,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
-        <translation>Kết nối đến máy chủ Bitcoin thông qua SOCKS5 proxy.</translation>
+        <translation>Kết nối đến máy chủ Blackcoin thông qua SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -598,6 +604,9 @@
     </message>
     </context>
 <context>
+    <name>PaymentServer</name>
+    </context>
+<context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
@@ -609,6 +618,20 @@
     <message>
         <source>Amount</source>
         <translation>Lượng</translation>
+    </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 và %2</translation>
+    </message>
+    </context>
+<context>
+    <name>QObject::QObject</name>
+    </context>
+<context>
+    <name>QRImageWidget</name>
+    <message>
+        <source>&amp;Save Image...</source>
+        <translation>$Lưu hình ảnh...</translation>
     </message>
     </context>
 <context>
@@ -637,6 +660,58 @@
         <source>User Agent</source>
         <translation>User Agent</translation>
     </message>
+    <message>
+        <source>1 &amp;hour</source>
+        <translation>1&amp;giờ</translation>
+    </message>
+    <message>
+        <source>1 &amp;day</source>
+        <translation>1&amp;ngày</translation>
+    </message>
+    <message>
+        <source>1 &amp;week</source>
+        <translation>1&amp;tuần</translation>
+    </message>
+    <message>
+        <source>1 &amp;year</source>
+        <translation>1&amp;năm</translation>
+    </message>
+    <message>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>Sử dụng phím lên và xuống để di chuyển lịch sử, và &lt;b&gt;Ctrl-L&lt;/b&gt; để xóa màn hình</translation>
+    </message>
+    <message>
+        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <translation>Gõ &lt;b&gt;help&lt;/b&gt; để xem nhưng câu lệnh có sẵn</translation>
+    </message>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    <message>
+        <source>never</source>
+        <translation>không bao giờ</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Đồng ý</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Không</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
@@ -644,16 +719,123 @@
         <source>&amp;Amount:</source>
         <translation>Lượng:</translation>
     </message>
+    <message>
+        <source>&amp;Label:</source>
+        <translation>&amp;Nhãn</translation>
+    </message>
+    <message>
+        <source>&amp;Message:</source>
+        <translation>&amp;Tin nhắn:</translation>
+    </message>
+    <message>
+        <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
+        <translation>Sử dụng form này để yêu cầu thanh toán. Tất cả các trường &lt;b&gt;không bắt buộc&lt;b&gt;</translation>
+    </message>
+    <message>
+        <source>Clear all fields of the form.</source>
+        <translation>Xóa tất cả các trường trong biểu mẫu</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Xóa</translation>
+    </message>
+    <message>
+        <source>Requested payments history</source>
+        <translation>Lịch sử yêu cầu thanh toán</translation>
+    </message>
+    <message>
+        <source>&amp;Request payment</source>
+        <translation>&amp;Yêu cầu thanh toán</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Hiển thị</translation>
+    </message>
+    <message>
+        <source>Remove the selected entries from the list</source>
+        <translation>Xóa khỏi danh sách</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Xóa</translation>
+    </message>
+    <message>
+        <source>Copy message</source>
+        <translation>Copy tin nhắn</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
+        <source>QR Code</source>
+        <translation>QR Code</translation>
+    </message>
+    <message>
+        <source>Copy &amp;URI</source>
+        <translation>Copy &amp;URI</translation>
+    </message>
+    <message>
         <source>Copy &amp;Address</source>
         <translation>&amp;Copy Địa Chỉ</translation>
+    </message>
+    <message>
+        <source>&amp;Save Image...</source>
+        <translation>$Lưu hình ảnh...</translation>
+    </message>
+    <message>
+        <source>Request payment to %1</source>
+        <translation>Yêu cầu thanh toán cho %1</translation>
+    </message>
+    <message>
+        <source>Payment information</source>
+        <translation>Thông tin thanh toán</translation>
+    </message>
+    <message>
+        <source>URI</source>
+        <translation>URI</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Lượng</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Tin nhắn</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Lỗi khi encode từ URI thành QR Code</translation>
+    </message>
+</context>
+<context>
+    <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Message</source>
+        <translation>Tin nhắn</translation>
+    </message>
+    <message>
+        <source>(no message)</source>
+        <translation>(không tin nhắn)</translation>
     </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
+    <message>
+        <source>Send Coins</source>
+        <translation>Gửi Coins</translation>
+    </message>
+    <message>
+        <source>Coin Control Features</source>
+        <translation>Tính năng Control Coin</translation>
+    </message>
+    <message>
+        <source>Inputs...</source>
+        <translation>Nhập...</translation>
+    </message>
+    <message>
+        <source>automatically selected</source>
+        <translation>Tự động chọn</translation>
+    </message>
     <message>
         <source>Insufficient funds!</source>
         <translation>Không đủ tiền</translation>
@@ -671,10 +853,6 @@
         <translation>Lượng:</translation>
     </message>
     <message>
-        <source>Priority:</source>
-        <translation>Tầm quan trọng:</translation>
-    </message>
-    <message>
         <source>Fee:</source>
         <translation>Phí:</translation>
     </message>
@@ -686,6 +864,82 @@
         <source>Change:</source>
         <translation>Thay đổi:</translation>
     </message>
+    <message>
+        <source>Transaction Fee:</source>
+        <translation>Phí giao dịch</translation>
+    </message>
+    <message>
+        <source>Choose...</source>
+        <translation>Chọn...</translation>
+    </message>
+    <message>
+        <source>collapse fee-settings</source>
+        <translation>Thu gọn fee-settings</translation>
+    </message>
+    <message>
+        <source>per kilobyte</source>
+        <translation>trên KB</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>Ẩn</translation>
+    </message>
+    <message>
+        <source>total at least</source>
+        <translation>Tổng cộng ít nhất</translation>
+    </message>
+    <message>
+        <source>(read the tooltip)</source>
+        <translation>(Đọc hướng dẫn)</translation>
+    </message>
+    <message>
+        <source>normal</source>
+        <translation>Bình thường</translation>
+    </message>
+    <message>
+        <source>fast</source>
+        <translation>Nhanh</translation>
+    </message>
+    <message>
+        <source>Send to multiple recipients at once</source>
+        <translation>Gửi đến nhiều người nhận trong một lần</translation>
+    </message>
+    <message>
+        <source>Add &amp;Recipient</source>
+        <translation>Thêm &amp;Người nhận</translation>
+    </message>
+    <message>
+        <source>Clear all fields of the form.</source>
+        <translation>Xóa tất cả các trường trong biểu mẫu</translation>
+    </message>
+    <message>
+        <source>Clear &amp;All</source>
+        <translation>Xóa &amp;Tất cả</translation>
+    </message>
+    <message>
+        <source>Balance:</source>
+        <translation>Tài khoản</translation>
+    </message>
+    <message>
+        <source>Confirm the send action</source>
+        <translation>Xác nhận sự gửi</translation>
+    </message>
+    <message>
+        <source>%1 to %2</source>
+        <translation>%1 đến %2</translation>
+    </message>
+    <message>
+        <source>Total Amount %1</source>
+        <translation>Tổng cộng %1</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>hoặc</translation>
+    </message>
+    <message>
+        <source>Confirm send coins</source>
+        <translation>Xác nhận gửi coins</translation>
+    </message>
     </context>
 <context>
     <name>SendCoinsEntry</name>
@@ -693,12 +947,27 @@
         <source>A&amp;mount:</source>
         <translation>Lượng:</translation>
     </message>
+    <message>
+        <source>&amp;Label:</source>
+        <translation>&amp;Nhãn</translation>
+    </message>
     </context>
+<context>
+    <name>SendConfirmationDialog</name>
+    <message>
+        <source>Yes</source>
+        <translation>Đồng ý</translation>
+    </message>
+</context>
 <context>
     <name>ShutdownWindow</name>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
+    <message>
+        <source>Clear &amp;All</source>
+        <translation>Xóa &amp;Tất cả</translation>
+    </message>
     </context>
 <context>
     <name>SplashScreen</name>
@@ -707,10 +976,40 @@
     <name>TrafficGraphWidget</name>
     </context>
 <context>
+    <name>TransactionDesc</name>
+    <message>
+        <source>Message</source>
+        <translation>Tin nhắn</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Lượng</translation>
+    </message>
+    </context>
+<context>
     <name>TransactionDescDialog</name>
     </context>
 <context>
+    <name>TransactionTableModel</name>
+    </context>
+<context>
+    <name>TransactionView</name>
+    </context>
+<context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <source>Send Coins</source>
+        <translation>Gửi Coins</translation>
+    </message>
+</context>
+<context>
+    <name>WalletView</name>
     </context>
 <context>
     <name>bitcoin-core</name>
@@ -720,7 +1019,7 @@
     </message>
     <message>
         <source>Bitcoin Core</source>
-        <translation>Bitcoin Core</translation>
+        <translation>Blackcoin More</translation>
     </message>
     <message>
         <source>(default: %u)</source>

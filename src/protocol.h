@@ -10,7 +10,7 @@
 #ifndef BITCOIN_PROTOCOL_H
 #define BITCOIN_PROTOCOL_H
 
-#include "netbase.h"
+#include "netaddress.h"
 #include "serialize.h"
 #include "uint256.h"
 #include "version.h"
@@ -217,6 +217,8 @@ extern const char *SENDHEADERS;
  * @since protocol version 70013 as described by BIP133
  */
 extern const char *FEEFILTER;
+
+// Disable BIP152
 /**
  * Contains a 1-byte bool and 8-byte LE version number.
  * Indicates that a node is willing to provide blocks via "cmpctblock" messages.
@@ -224,25 +226,25 @@ extern const char *FEEFILTER;
  * "cmpctblock" message rather than an "inv", depending on message contents.
  * @since protocol version 70014 as described by BIP 152
  */
-extern const char *SENDCMPCT;
+// extern const char *SENDCMPCT;
 /**
  * Contains a CBlockHeaderAndShortTxIDs object - providing a header and
  * list of "short txids".
  * @since protocol version 70014 as described by BIP 152
  */
-extern const char *CMPCTBLOCK;
+// extern const char *CMPCTBLOCK;
 /**
  * Contains a BlockTransactionsRequest
  * Peer should respond with "blocktxn" message.
  * @since protocol version 70014 as described by BIP 152
  */
-extern const char *GETBLOCKTXN;
+// extern const char *GETBLOCKTXN;
 /**
  * Contains a BlockTransactions.
  * Sent in response to a "getblocktxn" message.
  * @since protocol version 70014 as described by BIP 152
  */
-extern const char *BLOCKTXN;
+// extern const char *BLOCKTXN;
 };
 
 /* Get a vector of all valid message types (see above) */
@@ -264,9 +266,6 @@ enum ServiceFlags : uint64_t {
     // Bitcoin Core nodes used to support this by default, without advertising this bit,
     // but no longer do as of protocol version 70011 (= NO_BLOOM_VERSION)
     NODE_BLOOM = (1 << 2),
-    // Indicates that a node can be asked for blocks and transactions including
-    // witness data.
-    NODE_WITNESS = (1 << 3),
 
     // Bits 24-31 are reserved for temporary experiments. Just pick a bit that
     // isn't getting used, or one not being used much, and notify the
@@ -312,21 +311,21 @@ public:
     unsigned int nTime;
 };
 
-/** getdata message types */
-const uint32_t MSG_WITNESS_FLAG = 1 << 30;
+/** getdata message type flags */
 const uint32_t MSG_TYPE_MASK    = 0xffffffff >> 2;
+
+/** getdata message types */
 enum GetDataMsg
 {
     UNDEFINED = 0,
-    MSG_TX,
+    MSG_TX = 1,
     MSG_BLOCK,
-    MSG_TYPE_MAX = MSG_BLOCK,
     // The following can only occur in getdata. Invs always use TX or BLOCK.
     MSG_FILTERED_BLOCK,
+    /*
+    // Disable BIP152
     MSG_CMPCT_BLOCK,
-    MSG_WITNESS_BLOCK = MSG_BLOCK | MSG_WITNESS_FLAG,
-    MSG_WITNESS_TX = MSG_TX | MSG_WITNESS_FLAG,
-    MSG_FILTERED_WITNESS_BLOCK = MSG_FILTERED_BLOCK | MSG_WITNESS_FLAG,
+    */
 };
 
 /** inv message data */

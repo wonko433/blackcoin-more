@@ -140,6 +140,8 @@ public:
     {
         return ReadLE64(data);
     }
+
+    uint64_t GetLow64() const;
 };
 
 /* uint256 from const char *.
@@ -163,4 +165,17 @@ inline uint256 uint256S(const std::string& str)
     return rv;
 }
 
+inline uint160 uint160S(const char *str)
+{
+    uint160 rv;
+    rv.SetHex(str);
+    return rv;
+}
+
+inline uint160 uint160S(const std::string &str)
+{
+    uint160 rv;
+    rv.SetHex(str);
+    return rv;
+}
 #endif // BITCOIN_UINT256_H

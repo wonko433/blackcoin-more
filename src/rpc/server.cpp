@@ -20,7 +20,6 @@
 #include <boost/foreach.hpp>
 #include <boost/iostreams/concepts.hpp>
 #include <boost/iostreams/stream.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/signals2/signal.hpp>
 #include <boost/thread.hpp>
 #include <boost/algorithm/string/case_conv.hpp> // for to_upper()
@@ -36,7 +35,7 @@ static CCriticalSection cs_rpcWarmup;
 static RPCTimerInterface* timerInterface = NULL;
 /* Map of name to timer.
  * @note Can be changed to std::unique_ptr when C++11 */
-static std::map<std::string, boost::shared_ptr<RPCTimerBase> > deadlineTimers;
+static std::map<std::string, std::shared_ptr<RPCTimerBase> > deadlineTimers;
 
 static struct CRPCSignals
 {
@@ -102,6 +101,18 @@ void RPCTypeCheckObj(const UniValue& o,
                 uvTypeName(t.second.type), t.first, uvTypeName(v.type()));
             throw JSONRPCError(RPC_TYPE_ERROR, err);
         }
+
+        if (fStrict)
+        {
+            for (const std::string &k : o.getKeys())
+            {
+                if (typesExpected.count(k) == 0)
+                {
+                    string err = strprintf("Unexpected keys %s", k);
+                    throw JSONRPCError(RPC_TYPE_ERROR, err);
+                }
+            }
+        }
     }
 
     if (fStrict)
@@ -117,12 +128,14 @@ void RPCTypeCheckObj(const UniValue& o,
     }
 }
 
-CAmount AmountFromValue(const UniValue& value)
+CAmount AmountFromValue(const UniValue& value, bool allowZero)
 {
     if (!value.isNum() && !value.isStr())
         throw JSONRPCError(RPC_TYPE_ERROR, "Amount is not a number or string");
     CAmount amount;
     if (!ParseFixedPoint(value.getValStr(), 8, &amount))
+        throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount");
+    if (amount == 0 && !allowZero)
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount");
     if (!MoneyRange(amount))
         throw JSONRPCError(RPC_TYPE_ERROR, "Amount out of range");
@@ -146,6 +159,8 @@ uint256 ParseHashV(const UniValue& v, string strName)
         strHex = v.get_str();
     if (!IsHex(strHex)) // Note: IsHex("") is false
         throw JSONRPCError(RPC_INVALID_PARAMETER, strName+" must be hexadecimal string (not '"+strHex+"')");
+    if (64 != strHex.length())
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("%s must be of length %d (not %d)", strName, 64, strHex.length()));
     uint256 result;
     result.SetHex(strHex);
     return result;
@@ -253,11 +268,27 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Bitcoin server.");
+            "\nStop Blackcoin server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Bitcoin server stopping";
+    return "Blackcoin server stopping";
+}
+
+UniValue uptime(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+                "uptime\n"
+                        "\nReturns the total uptime of the server.\n"
+                        "\nResult:\n"
+                        "ttt        (numeric) The number of seconds that the server has been running\n"
+                        "\nExamples:\n"
+                + HelpExampleCli("uptime", "")
+                + HelpExampleRpc("uptime", "")
+        );
+
+    return GetTime() - GetStartupTime();
 }
 
 /**
@@ -269,6 +300,7 @@ static const CRPCCommand vRPCCommands[] =
     /* Overall control/query calls */
     { "control",            "help",                   &help,                   true  },
     { "control",            "stop",                   &stop,                   true  },
+    { "control",            "uptime",                 &uptime,                 true, },
 };
 
 CRPCTable::CRPCTable()
@@ -458,7 +490,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> bitcoin-cli " + methodname + " " + args + "\n";
+    return "> blackmore-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)
@@ -490,7 +522,12 @@ void RPCRunLater(const std::string& name, boost::function<void(void)> func, int6
         throw JSONRPCError(RPC_INTERNAL_ERROR, "No timer handler registered for RPC");
     deadlineTimers.erase(name);
     LogPrint("rpc", "queue run of timer %s in %i seconds (using %s)\n", name, nSeconds, timerInterface->Name());
-    deadlineTimers.insert(std::make_pair(name, boost::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000))));
+    deadlineTimers.insert(std::make_pair(name, std::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000))));
+}
+
+int RPCSerializationFlags()
+{
+    return 0;
 }
 
 CRPCTable tableRPC;

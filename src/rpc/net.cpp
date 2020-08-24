@@ -284,7 +284,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:8333\",  (string) The bitcoin server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:8333\",  (string) The blackcoin server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
@@ -344,7 +344,7 @@ UniValue getnettotals(const UniValue& params, bool fHelp)
             "{\n"
             "  \"totalbytesrecv\": n,   (numeric) Total bytes received\n"
             "  \"totalbytessent\": n,   (numeric) Total bytes sent\n"
-            "  \"timemillis\": t,       (numeric) Total cpu time\n"
+            "  \"timemillis\": t,       (numeric) Current UNIX time in milliseconds\n"
             "  \"uploadtarget\":\n"
             "  {\n"
             "    \"timeframe\": n,                         (numeric) Length of the measuring timeframe in seconds\n"
@@ -484,7 +484,7 @@ UniValue setban(const UniValue& params, bool fHelp)
                             "\nExamples:\n"
                             + HelpExampleCli("setban", "\"192.168.0.6\" \"add\" 86400")
                             + HelpExampleCli("setban", "\"192.168.0.0/24\" \"add\"")
-                            + HelpExampleRpc("setban", "\"192.168.0.6\", \"add\" 86400")
+                            + HelpExampleRpc("setban", "\"192.168.0.6\", \"add\", 86400")
                             );
 
     CSubNet subNet;
@@ -494,10 +494,13 @@ UniValue setban(const UniValue& params, bool fHelp)
     if (params[0].get_str().find("/") != string::npos)
         isSubnet = true;
 
-    if (!isSubnet)
-        netAddr = CNetAddr(params[0].get_str());
+    if (!isSubnet) {
+        CNetAddr resolved;
+        LookupHost(params[0].get_str().c_str(), resolved, false);
+        netAddr = resolved;
+    }
     else
-        subNet = CSubNet(params[0].get_str());
+        LookupSubNet(params[0].get_str().c_str(), subNet);
 
     if (! (isSubnet ? subNet.IsValid() : netAddr.IsValid()) )
         throw JSONRPCError(RPC_CLIENT_NODE_ALREADY_ADDED, "Error: Invalid IP/Subnet");

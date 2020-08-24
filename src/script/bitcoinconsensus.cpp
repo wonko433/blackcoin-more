@@ -85,7 +85,8 @@ static int verify_script(const unsigned char *scriptPubKey, unsigned int scriptP
         // Regardless of the verification result, the tx did not error.
         set_error(err, bitcoinconsensus_ERR_OK);
 
-        return VerifyScript(tx.vin[nIn].scriptSig, CScript(scriptPubKey, scriptPubKey + scriptPubKeyLen), nIn < tx.wit.vtxinwit.size() ? &tx.wit.vtxinwit[nIn].scriptWitness : NULL, flags, TransactionSignatureChecker(&tx, nIn, amount), NULL);
+        PrecomputedTransactionData txdata(tx);
+        return VerifyScript(tx.vin[nIn].scriptSig, CScript(scriptPubKey, scriptPubKey + scriptPubKeyLen), flags, TransactionSignatureChecker(&tx, nIn, amount, txdata), NULL);
     } catch (const std::exception&) {
         return set_error(err, bitcoinconsensus_ERR_TX_DESERIALIZE); // Error deserializing
     }
@@ -104,7 +105,7 @@ int bitcoinconsensus_verify_script(const unsigned char *scriptPubKey, unsigned i
                                    const unsigned char *txTo        , unsigned int txToLen,
                                    unsigned int nIn, unsigned int flags, bitcoinconsensus_error* err)
 {
-    if (flags & bitcoinconsensus_SCRIPT_FLAGS_VERIFY_WITNESS) {
+    if (flags & bitcoinconsensus_SCRIPT_FLAGS_VERIFY_ALL) {
         return set_error(err, bitcoinconsensus_ERR_AMOUNT_REQUIRED);
     }
 

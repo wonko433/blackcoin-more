@@ -41,6 +41,73 @@
         <source>&amp;Delete</source>
         <translation>&amp;Hapus</translation>
     </message>
+    <message>
+        <source>Choose the address to send coins to</source>
+        <translation>Pilih alamat untuk mengirim koin</translation>
+    </message>
+    <message>
+        <source>Choose the address to receive coins with</source>
+        <translation>Piih alamat untuk menerima koin</translation>
+    </message>
+    <message>
+        <source>C&amp;hoose</source>
+        <translation>&amp;Pilih</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation>Alamat-alamat pengirim</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation>Alamat-alamat penerima</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ini adalah alamat- alamat Blackcoin Anda untuk mengirimkan pembayaran. Selalu periksa jumlah dan alamat penerima sebelum mengirimkan koin.</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Ini adalah alamat- alamat Blackcoin Anda untuk menerima pembayaran. Dianjurkan untuk menggunakan alamat penerima yang baru setiap melakukan transaksi.</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Address</source>
+        <translation>&amp;Salin Alamat</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Label</source>
+        <translation>Salin&amp; Label</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Ubah</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation>Ekspor Daftar Alamat</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>File yang berformat(*.csv)</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Mengekspor Gagal</translation>
+    </message>
+    </context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Alamat</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(tidak ada label)</translation>
+    </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
@@ -59,6 +126,94 @@
     <message>
         <source>Repeat new passphrase</source>
         <translation>Ulangi kata kunci baru</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Masukan kata sandi baru ke dompet.&lt;br/&gt;Mohon gunakan kata sandi &lt;b&gt;sepuluh karakter acak atau lebih&lt;/b&gt;, atau &lt;b&gt; delapan atau lebih beberapa kata &lt;/​​b&gt;.</translation>
+    </message>
+    <message>
+        <source>Encrypt wallet</source>
+        <translation>Enkripsi dompet</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>Operasi ini memerlukan kata sandi dompet Anda untuk membuka dompet.</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation>Buka dompet</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>Operasi ini memerlukan kata sandi dompet Anda untuk mendekripsikan dompet.</translation>
+    </message>
+    <message>
+        <source>Decrypt wallet</source>
+        <translation>Dekripsi dompet</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation>Ganti kata sandi</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase to the wallet.</source>
+        <translation>Masukkan kata sandi lama dan kata sandi baru ke dompet.</translation>
+    </message>
+    <message>
+        <source>Confirm wallet encryption</source>
+        <translation>Konfirmasi pengenkripsian dompet</translation>
+    </message>
+    <message>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Peringatan: Jika Anda enkripsi dompet Anda dan lupa kata sandi anda, Anda akan &lt;b&gt;KEHILANGAN SEMUA BITCOIN ANDA&lt;/b&gt;!</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to encrypt your wallet?</source>
+        <translation>Apakah Anda yakin ingin enkripsi dompet Anda?</translation>
+    </message>
+    <message>
+        <source>Wallet encrypted</source>
+        <translation>Dompet terenkripsi</translation>
+    </message>
+    <message>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>%1 sekarang akan ditutup untuk menyelesaikan proses enkripsi. Ingatlah bahwa mengenkripsi dompet Anda tidak dapat sepenuhnya melindungi komputer Anda dari pencurian malware yang menginfeksi komputer Anda.</translation>
+    </message>
+    <message>
+        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
+        <translation>PENTING: Backup sebelumnya yang Anda buat dari file dompet Anda harus diganti dengan file dompet terenkripsi yang baru dibuat. Demi keamanan, backup file dompet sebelumnya yang tidak dienkripsi sebelumnya akan menjadi tidak berguna begitu Anda mulai menggunakan dompet terenkripsi yang baru.</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed</source>
+        <translation>Pengenkripsian dompet gagal</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Pengenkripsian dompet gagal karena kesalahan internal. Dompet Anda tidak dienkripsi.</translation>
+    </message>
+    <message>
+        <source>The supplied passphrases do not match.</source>
+        <translation>Kata sandi yang dimasukkan tidak cocok.</translation>
+    </message>
+    <message>
+        <source>Wallet unlock failed</source>
+        <translation>Membuka dompet gagal</translation>
+    </message>
+    <message>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>Kata sandi yang dimasukkan untuk dekripsi dompet salah.</translation>
+    </message>
+    <message>
+        <source>Wallet decryption failed</source>
+        <translation>Dekripsi dompet gagal</translation>
+    </message>
+    <message>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>Kata sandi berhasil diganti.</translation>
+    </message>
+    <message>
+        <source>Warning: The Caps Lock key is on!</source>
+        <translation>Peringatan: Tombol Caps Lock aktif!</translation>
     </message>
 </context>
 <context>
@@ -111,6 +266,14 @@
         <translation>Keluar dari aplikasi</translation>
     </message>
     <message>
+        <source>&amp;About %1</source>
+        <translation>&amp;Tentang%1</translation>
+    </message>
+    <message>
+        <source>Show information about %1</source>
+        <translation>Tampilkan informasi perihal %1</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
         <translation>Mengenai &amp;Qt</translation>
     </message>
@@ -121,6 +284,10 @@
     <message>
         <source>&amp;Options...</source>
         <translation>&amp;Pilihan...</translation>
+    </message>
+    <message>
+        <source>Modify configuration options for %1</source>
+        <translation>Pengubahan opsi konfigurasi untuk %1</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
@@ -147,12 +314,28 @@
         <translation>Buka &amp;URI</translation>
     </message>
     <message>
+        <source>Click to disable network activity.</source>
+        <translation>Klik untuk menonaktifkan aktivitas jaringan.</translation>
+    </message>
+    <message>
+        <source>Network activity disabled.</source>
+        <translation>Aktivitas jaringan dinonaktifkan.</translation>
+    </message>
+    <message>
+        <source>Click to enable network activity again.</source>
+        <translation>Klik untuk mengaktifkan aktivitas jaringan lagi.</translation>
+    </message>
+    <message>
+        <source>Syncing Headers (%1%)...</source>
+        <translation>Menyinkronkan Header (%1%) ...</translation>
+    </message>
+    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Mengindex ulang blok di dalam disk...</translation>
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Kirim koin ke alamat Bitcoin</translation>
+        <translation>Kirim koin ke alamat Blackcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -176,7 +359,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -204,11 +387,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Tanda tangani sebuah pesan menggunakan alamat Bitcoin Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
+        <translation>Tanda tangani sebuah pesan menggunakan alamat Blackcoin Anda untuk membuktikan bahwa Anda adalah pemilik alamat tersebut</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Bitcoin tertentu</translation>
+        <translation>Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Blackcoin tertentu</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -228,7 +411,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Permintaan pembayaran (membuat kode QR dan bitcoin: URIs)</translation>
+        <translation>Permintaan pembayaran (membuat kode QR dan blackcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -240,7 +423,7 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Buka URI bitcoin: atau permintaan pembayaran</translation>
+        <translation>Buka URI blackcoin: atau permintaan pembayaran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -248,35 +431,19 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n koneksi aktif ke jaringan Bitcoin</numerusform></translation>
+        <translation><numerusform>%n koneksi aktif ke jaringan Blackcoin</numerusform></translation>
     </message>
     <message>
-        <source>No block source available...</source>
-        <translation>Sumber blok tidak tersedia...</translation>
+        <source>Indexing blocks on disk...</source>
+        <translation>Pengindeksan blok pada disk ...</translation>
+    </message>
+    <message>
+        <source>Processing blocks on disk...</source>
+        <translation>Memproses blok pada disk ...</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
         <translation><numerusform>%n blok dari riwayat transaksi diproses.</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n jam</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n hari</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n minggu</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 and %2</source>
-        <translation>%1 dan %2</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n tahun</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -305,6 +472,18 @@
     <message>
         <source>Up to date</source>
         <translation>Terbaru</translation>
+    </message>
+    <message>
+        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah Blackcoin yang memungkinkan</translation>
+    </message>
+    <message>
+        <source>%1 client</source>
+        <translation>%1 klien</translation>
+    </message>
+    <message>
+        <source>Connecting to peers...</source>
+        <translation>Menghubungkan ke peer...</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -356,7 +535,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Dompet saat ini &lt;b&gt;terenkripsi&lt;/b&gt; dan &lt;b&gt;terkunci&lt;/b&gt;</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -374,10 +553,6 @@
     <message>
         <source>Amount:</source>
         <translation>Jumlah:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Prioritas:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -432,10 +607,22 @@
         <translation>Terkonfirmasi</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation>Prioritas</translation>
+        <source>Copy address</source>
+        <translation>Salin alamat</translation>
     </message>
-</context>
+    <message>
+        <source>Copy label</source>
+        <translation>Salin label</translation>
+    </message>
+    <message>
+        <source>Copy fee</source>
+        <translation>Salin biaya</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(tidak ada label)</translation>
+    </message>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -458,7 +645,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Alamat</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -561,6 +748,17 @@
     </message>
 </context>
 <context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>Formulir</translation>
+    </message>
+    <message>
+        <source>Last block time</source>
+        <translation>Waktu blok terakhir</translation>
+    </message>
+    </context>
+<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -578,7 +776,7 @@
         <source>Select payment request file</source>
         <translation>Pilih data permintaan pembayaran</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -667,7 +865,7 @@
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Otomatis membuka port client Bitcoin di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
+        <translation>Otomatis membuka port client Blackcoin di router. Hanya berjalan apabila router anda mendukung UPnP dan di-enable.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -675,7 +873,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
-        <translation>Hubungkan ke jaringan Bitcoin melalui SOCKS5 proxy.</translation>
+        <translation>Hubungkan ke jaringan Blackcoin melalui SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -782,7 +980,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Bitcoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
+        <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Blackcoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -822,6 +1020,9 @@
     </message>
     </context>
 <context>
+    <name>PaymentServer</name>
+    </context>
+<context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
@@ -836,7 +1037,7 @@
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Masukkan alamat Bitcoin (contoh %1)</translation>
+        <translation>Masukkan alamat Blackcoin (contoh %1)</translation>
     </message>
     <message>
         <source>%1 h</source>
@@ -850,6 +1051,16 @@
         <source>N/A</source>
         <translation>T/S</translation>
     </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 dan %2</translation>
+    </message>
+    </context>
+<context>
+    <name>QObject::QObject</name>
+    </context>
+<context>
+    <name>QRImageWidget</name>
     </context>
 <context>
     <name>RPCConsole</name>
@@ -1070,7 +1281,11 @@
         <source>Remove</source>
         <translation>Menghapus</translation>
     </message>
-</context>
+    <message>
+        <source>Copy label</source>
+        <translation>Salin label</translation>
+    </message>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -1089,7 +1304,30 @@
         <source>&amp;Save Image...</source>
         <translation>&amp;Simpan Gambaran...</translation>
     </message>
-</context>
+    <message>
+        <source>Address</source>
+        <translation>Alamat</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Jumlah</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    </context>
+<context>
+    <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(tidak ada label)</translation>
+    </message>
+    </context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1125,10 +1363,6 @@
         <translation>Nilai:</translation>
     </message>
     <message>
-        <source>Priority:</source>
-        <translation>Prioritas:</translation>
-    </message>
-    <message>
         <source>Fee:</source>
         <translation>Biaya:</translation>
     </message>
@@ -1155,10 +1389,6 @@
     <message>
         <source>Recommended:</source>
         <translation>Disarankan</translation>
-    </message>
-    <message>
-        <source>Confirmation time:</source>
-        <translation>Waktu konfirmasi:</translation>
     </message>
     <message>
         <source>normal</source>
@@ -1199,6 +1429,14 @@
     <message>
         <source>S&amp;end</source>
         <translation>K&amp;irim</translation>
+    </message>
+    <message>
+        <source>Copy fee</source>
+        <translation>Salin biaya</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(tidak ada label)</translation>
     </message>
 </context>
 <context>
@@ -1255,7 +1493,10 @@
         <source>Memo:</source>
         <translation>Catatan Peringatan:</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>SendConfirmationDialog</name>
+    </context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -1303,7 +1544,7 @@
     </message>
     <message>
         <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Bitcoin ini</translation>
+        <translation>Tandai pesan untuk menyetujui kamu pemiliki alamat Blackcoin ini</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1329,7 +1570,7 @@
         <source>Reset all verify message fields</source>
         <translation>Hapus semua bidang verifikasi pesan</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1345,14 +1586,68 @@
     </message>
 </context>
 <context>
+    <name>TransactionDesc</name>
+    <message>
+        <source>Amount</source>
+        <translation>Jumlah</translation>
+    </message>
+    </context>
+<context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Jendela ini menampilkan deskripsi rinci dari transaksi tersebut</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>TransactionTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(tidak ada label)</translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>Copy address</source>
+        <translation>Salin alamat</translation>
+    </message>
+    <message>
+        <source>Copy label</source>
+        <translation>Salin label</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Berkas yang berformat(*.csv)</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Alamat</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Mengekspor Gagal</translation>
+    </message>
+    </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
+<context>
+    <name>WalletModel</name>
+    </context>
+<context>
+    <name>WalletView</name>
     </context>
 <context>
     <name>bitcoin-core</name>
@@ -1381,32 +1676,16 @@
         <translation>Berjalan dibelakang sebagai daemin dan menerima perintah</translation>
     </message>
     <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Terima hubungan dari luar (standar: 1 kalau -proxy atau -connect tidak dipilih)</translation>
-    </message>
-    <message>
         <source>Bitcoin Core</source>
-        <translation>Bitcoin Core</translation>
+        <translation>Blackcoin More</translation>
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
         <translation>Jalankan perintah ketika perubahan transaksi dompet (%s di cmd digantikan oleh TxID)</translation>
     </message>
     <message>
-        <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Peringatan: Jaringan tidak semua bersetuju! Beberapa penambang dapat persoalan.</translation>
-    </message>
-    <message>
-        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>Peringatan: Kami tidak bersetujuh dengan peer-peer kami! Kemungkinan Anda harus upgrade, atau node-node lain yang harus diupgrade.</translation>
-    </message>
-    <message>
         <source>Block creation options:</source>
         <translation>Pilihan pembuatan blok:</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Jangan menghubungkan node(-node) selain yang di daftar</translation>
     </message>
     <message>
         <source>Connection options:</source>
@@ -1511,10 +1790,6 @@
     <message>
         <source>Transaction amount too small</source>
         <translation>Nilai transaksi terlalu kecil</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must be positive</source>
-        <translation>Nilai transaksi harus positif</translation>
     </message>
     <message>
         <source>Transaction too large</source>

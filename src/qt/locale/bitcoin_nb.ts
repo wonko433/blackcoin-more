@@ -41,6 +41,73 @@
         <source>&amp;Delete</source>
         <translation>&amp;Slett</translation>
     </message>
+    <message>
+        <source>Choose the address to send coins to</source>
+        <translation>Velg adressen å sende mynter til</translation>
+    </message>
+    <message>
+        <source>Choose the address to receive coins with</source>
+        <translation>Velg adressen til å motta mynter med</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation>Utsendingsadresser</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation>Mottaksadresser</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Dette er dine Blackcoin-adresser for sending av betalinger. Sjekk alltid beløpet og mottakeradressen før sending av mynter.</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Dette er dine Blackcoin-adresser for å sende betalinger med. Det er anbefalt å bruke en ny mottaksadresse for hver transaksjon.</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Address</source>
+        <translation>&amp;Kopier Adresse</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Label</source>
+        <translation>Kopier &amp;Merkelapp</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Rediger</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation>Eksporter adresseliste</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Kommaseparert fil (*.csv)</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Eksportering feilet</translation>
+    </message>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <translation>Det oppstod en feil under lagring av adresselisten til %1. Vennligst prøv på nytt.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Merkelapp</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(ingen merkelapp)</translation>
+    </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
@@ -60,7 +127,27 @@
         <source>Repeat new passphrase</source>
         <translation>Gjenta ny adgangsfrase</translation>
     </message>
-</context>
+    <message>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Oppgi adgangsfrasen til lommeboken.&lt;br/&gt;Vennligst bruk en adgangsfrase med &lt;b&gt;ti eller flere tilfeldige tegn&lt;/b&gt;, eller &lt;b&gt;åtte eller flere ord&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Encrypt wallet</source>
+        <translation>Krypter lommebok</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation>Lås opp lommebok</translation>
+    </message>
+    <message>
+        <source>Decrypt wallet</source>
+        <translation>Dekrypter lommebok</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation>Endre adgangsfrase</translation>
+    </message>
+    </context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -115,6 +202,10 @@
         <translation> &amp;Om %1</translation>
     </message>
     <message>
+        <source>Show information about %1</source>
+        <translation>Vis informasjon om %1</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
         <translation>Om &amp;Qt</translation>
     </message>
@@ -125,6 +216,10 @@
     <message>
         <source>&amp;Options...</source>
         <translation>&amp;Innstillinger...</translation>
+    </message>
+    <message>
+        <source>Modify configuration options for %1</source>
+        <translation>Endre innstilinger for %1</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
@@ -156,7 +251,7 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Send til en Bitcoin-adresse</translation>
+        <translation>Send til en Blackcoin-adresse</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -180,7 +275,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -208,11 +303,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Signer en melding med Bitcoin-adressene dine for å bevise at du eier dem</translation>
+        <translation>Signer en melding med Blackcoin-adressene dine for å bevise at du eier dem</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Bekreft meldinger for å være sikker på at de ble signert av en angitt Bitcoin-adresse</translation>
+        <translation>Bekreft meldinger for å være sikker på at de ble signert av en angitt Blackcoin-adresse</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -232,7 +327,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Forespør betalinger (genererer QR-koder og bitcoin: URIer)</translation>
+        <translation>Forespør betalinger (genererer QR-koder og blackcoin: URIer)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -244,7 +339,7 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Åpne en Bitcoin: URI eller betalingsetterspørring</translation>
+        <translation>Åpne en blackcoin: URI eller betalingsetterspørring</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -252,35 +347,11 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiv forbindelse til Bitcoin-nettverket</numerusform><numerusform>%n aktive forbindelser til Bitcoin-nettverket</numerusform></translation>
-    </message>
-    <message>
-        <source>No block source available...</source>
-        <translation>Ingen kilde for blokker tilgjengelig...</translation>
+        <translation><numerusform>%n aktiv forbindelse til Blackcoin-nettverket</numerusform><numerusform>%n aktive forbindelser til Blackcoin-nettverket</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
         <translation><numerusform>Lastet %n blokk med transaksjonshistorikk.</numerusform><numerusform>Lastet %n blokker med transaksjonshistorikk.</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hour(s)</source>
-        <translation><numerusform>%n time</numerusform><numerusform>%n timer</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dager</numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n week(s)</source>
-        <translation><numerusform>%n uke</numerusform><numerusform>%n uker</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 and %2</source>
-        <translation>%1 og %2</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n year(s)</source>
-        <translation><numerusform>%n år</numerusform><numerusform>%n år</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -364,7 +435,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Lommeboken er &lt;b&gt;kryptert&lt;/b&gt; og for tiden &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -382,10 +453,6 @@
     <message>
         <source>Amount:</source>
         <translation>Beløp:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Prioritet:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -440,10 +507,10 @@
         <translation>Bekreftet</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation>Prioritet</translation>
+        <source>(no label)</source>
+        <translation>(ingen merkelapp)</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -466,7 +533,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Adresse</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -577,6 +644,21 @@
     </message>
 </context>
 <context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>Skjema</translation>
+    </message>
+    <message>
+        <source>Last block time</source>
+        <translation>Tidspunkt for siste blokk</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>Skjul</translation>
+    </message>
+    </context>
+<context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
@@ -594,7 +676,7 @@
         <source>Select payment request file</source>
         <translation>Velg fil for betalingsetterspørring</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -683,7 +765,7 @@
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Åpne automatisk Bitcoin klientporten på ruteren. Dette virker kun om din ruter støtter UPnP og dette er påslått.</translation>
+        <translation>Åpne automatisk Blackcoin klientporten på ruteren. Dette virker kun om din ruter støtter UPnP og dette er påslått.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -691,7 +773,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
-        <translation>Koble til Bitcoin-nettverket gjennom en SOCKS5 proxy.</translation>
+        <translation>Koble til Blackcoin-nettverket gjennom en SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -731,7 +813,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Koble til Bitcoin-nettverket gjennom en separat SOCKS5 mellomtjener for Tor skjulte tjenester.</translation>
+        <translation>Koble til Blackcoin-nettverket gjennom en separat SOCKS5 mellomtjener for Tor skjulte tjenester.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
@@ -740,6 +822,10 @@
     <message>
         <source>&amp;Window</source>
         <translation>&amp;Vindu</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Skjul søppel ikon</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
@@ -767,7 +853,7 @@
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Velg standard delt enhet for visning i grensesnittet og for sending av bitcoins.</translation>
+        <translation>Velg standard delt enhet for visning i grensesnittet og for sending av blackcoins.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -818,7 +904,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informasjonen som vises kan være foreldet. Din lommebok synkroniseres automatisk med Bitcoin-nettverket etter at tilkobling er opprettet, men denne prosessen er ikke ferdig enda.</translation>
+        <translation>Informasjonen som vises kan være foreldet. Din lommebok synkroniseres automatisk med Blackcoin-nettverket etter at tilkobling er opprettet, men denne prosessen er ikke ferdig enda.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -886,6 +972,9 @@
     </message>
 </context>
 <context>
+    <name>PaymentServer</name>
+    </context>
+<context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
@@ -895,11 +984,7 @@
         <source>Node/Service</source>
         <translation>Node/Tjeneste</translation>
     </message>
-    <message>
-        <source>Ping Time</source>
-        <translation>Ping-tid</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
@@ -908,7 +993,7 @@
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Oppgi en Bitcoin-adresse (f.eks. %1)</translation>
+        <translation>Oppgi en Blackcoin-adresse (f.eks. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -938,7 +1023,17 @@
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
-</context>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 og %2</translation>
+    </message>
+    </context>
+<context>
+    <name>QObject::QObject</name>
+    </context>
+<context>
+    <name>QRImageWidget</name>
+    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -1050,6 +1145,14 @@
         <translation>Brukeragent</translation>
     </message>
     <message>
+        <source>Decrease font size</source>
+        <translation>Forminsk font størrelsen</translation>
+    </message>
+    <message>
+        <source>Increase font size</source>
+        <translation>Forstørr font størrelse</translation>
+    </message>
+    <message>
         <source>Services</source>
         <translation>Tjenester</translation>
     </message>
@@ -1126,14 +1229,6 @@
         <translation>Tøm konsoll</translation>
     </message>
     <message>
-        <source>&amp;Disconnect Node</source>
-        <translation>&amp;Koble fra node</translation>
-    </message>
-    <message>
-        <source>Ban Node for</source>
-        <translation>Steng node ute for</translation>
-    </message>
-    <message>
         <source>1 &amp;hour</source>
         <translation>1 &amp;time</translation>
     </message>
@@ -1148,10 +1243,6 @@
     <message>
         <source>1 &amp;year</source>
         <translation>1 &amp;år</translation>
-    </message>
-    <message>
-        <source>&amp;Unban Node</source>
-        <translation>Fjern &amp;Utestengning av Node</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
@@ -1234,7 +1325,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
-        <translation>En valgfri melding å tilknytte betalingsetterspørringen, som vil bli vist når forespørselen er åpnet. Meldingen vil ikke bli sendt med betalingen over Bitcoin-nettverket.</translation>
+        <translation>En valgfri melding å tilknytte betalingsetterspørringen, som vil bli vist når forespørselen er åpnet. Meldingen vil ikke bli sendt med betalingen over Blackcoin-nettverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1280,7 +1371,7 @@
         <source>Remove</source>
         <translation>Fjern</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -1299,12 +1390,31 @@
         <source>&amp;Save Image...</source>
         <translation>&amp;Lagre Bilde...</translation>
     </message>
-</context>
+    <message>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Merkelapp</translation>
+    </message>
+    </context>
+<context>
+    <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Merkelapp</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(ingen merkelapp)</translation>
+    </message>
+    </context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Send Bitcoins</translation>
+        <translation>Send Blackcoins</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -1333,10 +1443,6 @@
     <message>
         <source>Amount:</source>
         <translation>Beløp:</translation>
-    </message>
-    <message>
-        <source>Priority:</source>
-        <translation>Prioritet:</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -1388,7 +1494,7 @@
     </message>
     <message>
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation>Betaling av bare minimumsavgiften går helt fint så lenge det er mindre transaksjonsvolum enn plass i blokkene. Men vær klar over at dette kan ende opp i en transaksjon som aldri blir bekreftet når det er mer etterspørsel etter Bitcoin-transaksjoner enn nettverket kan behandle.</translation>
+        <translation>Betaling av bare minimumsavgiften går helt fint så lenge det er mindre transaksjonsvolum enn plass i blokkene. Men vær klar over at dette kan ende opp i en transaksjon som aldri blir bekreftet når det er mer etterspørsel etter Blackcoin-transaksjoner enn nettverket kan behandle.</translation>
     </message>
     <message>
         <source>(read the tooltip)</source>
@@ -1405,10 +1511,6 @@
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
         <translation>(Smartgebyr ikke innført ennå. Dette tar vanligvis noen blokker...)</translation>
-    </message>
-    <message>
-        <source>Confirmation time:</source>
-        <translation>Bekreftelsestid:</translation>
     </message>
     <message>
         <source>normal</source>
@@ -1450,6 +1552,10 @@
         <source>S&amp;end</source>
         <translation>S&amp;end</translation>
     </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(ingen merkelapp)</translation>
+    </message>
 </context>
 <context>
     <name>SendCoinsEntry</name>
@@ -1475,7 +1581,7 @@
     </message>
     <message>
         <source>The Bitcoin address to send the payment to</source>
-        <translation>Bitcoin-adressen betalingen skal sendes til</translation>
+        <translation>Blackcoin-adressen betalingen skal sendes til</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1495,7 +1601,7 @@
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Gebyret vil bli trukket fra beløpet som blir sendt. Mottakeren vil motta mindre bitcoins enn det du skriver inn i beløpsfeltet. Hvis det er valgt flere mottakere, deles gebyret likt.</translation>
+        <translation>Gebyret vil bli trukket fra beløpet som blir sendt. Mottakeren vil motta mindre blackcoins enn det du skriver inn i beløpsfeltet. Hvis det er valgt flere mottakere, deles gebyret likt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -1519,7 +1625,7 @@
     </message>
     <message>
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
-        <translation>En melding som var tilknyttet bitcoinen: URI vil bli lagret med transaksjonen for din oversikt. Denne meldingen vil ikke bli sendt over Bitcoin-nettverket.</translation>
+        <translation>En melding som var tilknyttet blackcoin: URI vil bli lagret med transaksjonen for din oversikt. Denne meldingen vil ikke bli sendt over Blackcoin-nettverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -1529,7 +1635,10 @@
         <source>Memo:</source>
         <translation>Memo:</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>SendConfirmationDialog</name>
+    </context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -1549,11 +1658,11 @@
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan signere meldinger/avtaler med adresser for å bevise at du kan motta bitcoins sendt til dem. Vær forsiktig med å signere noe vagt eller tilfeldig, siden phishing-angrep kan prøve å lure deg til å signere din identitet over til dem. Bare signer fullt detaljerte utsagn som du er enig i.</translation>
+        <translation>Du kan signere meldinger/avtaler med adresser for å bevise at du kan motta blackcoins sendt til dem. Vær forsiktig med å signere noe vagt eller tilfeldig, siden phishing-angrep kan prøve å lure deg til å signere din identitet over til dem. Bare signer fullt detaljerte utsagn som du er enig i.</translation>
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
-        <translation>Bitcoin-adressen meldingen skal signeres med</translation>
+        <translation>Blackcoin-adressen meldingen skal signeres med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1585,7 +1694,7 @@
     </message>
     <message>
         <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Signer meldingen for å bevise at du eier denne Bitcoin-adressen</translation>
+        <translation>Signer meldingen for å bevise at du eier denne Blackcoin-adressen</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1609,11 +1718,11 @@
     </message>
     <message>
         <source>The Bitcoin address the message was signed with</source>
-        <translation>Bitcoin-adressen meldingen ble signert med</translation>
+        <translation>Blackcoin-adressen meldingen ble signert med</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Verifiser meldingen for å være sikker på at den ble signert av den angitte Bitcoin-adressen</translation>
+        <translation>Verifiser meldingen for å være sikker på at den ble signert av den angitte Blackcoin-adressen</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -1623,7 +1732,7 @@
         <source>Reset all verify message fields</source>
         <translation>Tilbakestill alle felter for meldingsverifikasjon</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1639,12 +1748,45 @@
     </message>
 </context>
 <context>
+    <name>TransactionDesc</name>
+    </context>
+<context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Her vises en detaljert beskrivelse av transaksjonen</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>TransactionTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation>Merkelapp</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(ingen merkelapp)</translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Kommaseparert fil (*.csv)</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Merkelapp</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Eksportering feilet</translation>
+    </message>
+    </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
@@ -1652,6 +1794,15 @@
         <translation>Enhet å vise beløper i. Klikk for å velge en annen enhet.</translation>
     </message>
 </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
+<context>
+    <name>WalletModel</name>
+    </context>
+<context>
+    <name>WalletView</name>
+    </context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -1687,10 +1838,6 @@
         <translation>Beskjæring: siste lommeboksynkronisering går utenfor beskjærte data. Du må bruke -reindex (laster ned hele blokkjeden igjen for beskjærte noder)</translation>
     </message>
     <message>
-        <source>Reduce storage requirements by pruning (deleting) old blocks. This mode is incompatible with -txindex and -rescan. Warning: Reverting this setting requires re-downloading the entire blockchain. (default: 0 = disable pruning blocks, &gt;%u = target size in MiB to use for block files)</source>
-        <translation>Reduser lagringsbehovet ved beskjæring (sletting) av gamle blokker. Denne modusen er ikke kompatibel med -txindex og -rescan. Advarsel: Tilbakestilling av denne innstillingen krever at hele blokkjeden må lastes ned på nytt. (Standardverdi: 0 = deaktiver beskjæring av blokker, &gt;%u = mål for størrelse i MiB å bruke for blokkfiler)</translation>
-    </message>
-    <message>
         <source>Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.</source>
         <translation>Omsøk er ikke mulig i beskjært modus. Du vil måtte bruke -reindex som vil laste nede hele blokkjeden på nytt.</translation>
     </message>
@@ -1715,12 +1862,8 @@
         <translation>Kunne ikke starte HTTP server. Se debug logg for detaljer.</translation>
     </message>
     <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Ta imot tilkoblinger fra utsiden (standardverdi: 1 hvis uten -proxy eller -connect)</translation>
-    </message>
-    <message>
         <source>Bitcoin Core</source>
-        <translation>Bitcoin Core</translation>
+        <translation>Blackcoin More</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
@@ -1729,10 +1872,6 @@
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Slett alle transaksjoner i lommeboken og gjenopprett kun de delene av blokkjeden gjennom -rescan ved oppstart</translation>
-    </message>
-    <message>
-        <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
-        <translation>Distribuert under MIT programvarelisensen, se medfølgende fil COPYING eller &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</translation>
     </message>
     <message>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
@@ -1747,24 +1886,8 @@
         <translation>Blokkdatabasen inneholder en blokk som ser ut til å være fra fremtiden. Dette kan være fordi dato og tid på din datamaskin er satt feil. Gjenopprett kun blokkdatabasen når du er sikker på at dato og tid er satt riktig.</translation>
     </message>
     <message>
-        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>Dette er en forhåndssluppet testversjon - bruk på egen risiko - ikke for bruk til blokkutvinning eller bedriftsapplikasjoner</translation>
-    </message>
-    <message>
         <source>Use UPnP to map the listening port (default: 1 when listening and no -proxy)</source>
         <translation>Bruk UPnP for lytteport (standardverdi: 1 ved lytting og uten -proxy)</translation>
-    </message>
-    <message>
-        <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Advarsel: Nettverket ser ikke ut til å være enig! Noen minere ser ut til å ha problemer.</translation>
-    </message>
-    <message>
-        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>Advarsel: Vi ser ikke ut til å være enige med våre noder! Du må oppgradere, eller andre noder må oppgradere.</translation>
-    </message>
-    <message>
-        <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
-        <translation>Hvitelist noder som kobler til fra den oppgitte nettmasken eller IP-adressen. Kan oppgis flere ganger.</translation>
     </message>
     <message>
         <source>-maxmempool must be at least %d MB</source>
@@ -1777,10 +1900,6 @@
     <message>
         <source>Block creation options:</source>
         <translation>Valg for opprettelse av blokker:</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Koble kun til angitt(e) node(r)</translation>
     </message>
     <message>
         <source>Connection options:</source>
@@ -1827,6 +1946,10 @@
         <translation>Feil under oppstart av lommeboken sitt databasemiljø %s!</translation>
     </message>
     <message>
+        <source>Error loading %s</source>
+        <translation>Feil ved lasting av %s</translation>
+    </message>
+    <message>
         <source>Error loading block database</source>
         <translation>Feil ved lasting av blokkdatabase</translation>
     </message>
@@ -1867,6 +1990,14 @@
         <translation>Bare koble til noder i nettverket &lt;net&gt; (IPv4, IPv6 eller onion)</translation>
     </message>
     <message>
+        <source>Print this help message and exit</source>
+        <translation>Skriv ut denne hjelpemeldingen og avslutt</translation>
+    </message>
+    <message>
+        <source>Print version and exit</source>
+        <translation>Skriv ut denne versjonen og avslutt</translation>
+    </message>
+    <message>
         <source>Prune cannot be configured with a negative value.</source>
         <translation>Beskjæringsmodus kan ikke konfigureres med en negativ verdi.</translation>
     </message>
@@ -1885,6 +2016,10 @@
     <message>
         <source>Specify wallet file (within data directory)</source>
         <translation>Angi lommebokfil (inne i datamappe)</translation>
+    </message>
+    <message>
+        <source>The source code is available from %s.</source>
+        <translation>Kildekoden er tilgjengelig fra %s.</translation>
     </message>
     <message>
         <source>Unsupported argument -benchmark ignored, use -debug=bench.</source>
@@ -1967,10 +2102,6 @@
         <translation>Maksimal størrelse på data i databærende transaksjoner vi videresender og ufører graving på (standardverdi: %u)</translation>
     </message>
     <message>
-        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
-        <translation>Søk etter nodeadresser via DNS-oppslag, hvis vi har få adresser å koble til (standard: 1 med mindre -connect)</translation>
-    </message>
-    <message>
         <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
         <translation>Bruk tilfeldig identitet for hver proxytilkobling. Dette muliggjør TOR stream isolasjon (standardverdi: %u)</translation>
     </message>
@@ -1981,10 +2112,6 @@
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
         <translation>Transaksjonsbeløpet er for lite til å sendes etter at gebyret er fratrukket</translation>
-    </message>
-    <message>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit &lt;https://www.openssl.org/&gt; and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>Dette produktet inneholder programvare utviklet av OpenSSL Project for bruk i OpenSSL Toolkit &lt;https://www.openssl.org/&gt; og kryptografisk programvare skrevet av Eric Young og UPnP-programvare skrevet av Thomas Bernard.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -2095,10 +2222,6 @@
         <translation>Transaksjonen er for liten</translation>
     </message>
     <message>
-        <source>Transaction amounts must be positive</source>
-        <translation>Transaksjonsbeløpet må være positivt</translation>
-    </message>
-    <message>
         <source>Transaction too large for fee policy</source>
         <translation>Transaksjon for stor for gebyrpolitikken</translation>
     </message>
@@ -2159,10 +2282,6 @@
         <translation>-maxtxfee er satt veldig høyt! Så stort gebyr kan bli betalt ved en enkelt transaksjon.</translation>
     </message>
     <message>
-        <source>-paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>-paytxfee er satt veldig høyt! Dette er transaksjonsgebyret du betaler når du sender transaksjoner.</translation>
-    </message>
-    <message>
         <source>Do not keep transactions in the mempool longer than &lt;n&gt; hours (default: %u)</source>
         <translation>Ikke hold transaksjoner i minnet lenger enn &lt;n&gt; timer (standard: %u)</translation>
     </message>
@@ -2205,10 +2324,6 @@
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
         <translation>Bruk separate SOCKS5 proxyer for å nå noder via Tor skjulte tjenester (standardverdi: %s)</translation>
-    </message>
-    <message>
-        <source>Username and hashed password for JSON-RPC connections. The field &lt;userpw&gt; comes in the format: &lt;USERNAME&gt;:&lt;SALT&gt;$&lt;HASH&gt;. A canonical python script is included in share/rpcuser. This option can be specified multiple times</source>
-        <translation>Brukernavn og hashet passord for JSON-RPC tilkoblinger. Feltet &lt;userpw&gt; kommer i formatet: &lt;USERNAME&gt;:&lt;SALT&gt;$&lt;HASH&gt;. Et Python-skript er inkludert i share/rpcuser. Dette alternativet kan angis flere ganger</translation>
     </message>
     <message>
         <source>(default: %s)</source>

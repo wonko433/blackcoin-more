@@ -333,8 +333,8 @@ uint64_t ReadCompactSize(Stream& is)
  * 0:         [0x00]  256:        [0x81 0x00]
  * 1:         [0x01]  16383:      [0xFE 0x7F]
  * 127:       [0x7F]  16384:      [0xFF 0x00]
- * 128:  [0x80 0x00]  16511: [0x80 0xFF 0x7F]
- * 255:  [0x80 0x7F]  65535: [0x82 0xFD 0x7F]
+ * 128:  [0x80 0x00]  16511:      [0xFF 0x7F]
+ * 255:  [0x80 0x7F]  65535: [0x82 0xFE 0x7F]
  * 2^32:           [0x8E 0xFE 0xFE 0xFF 0x00]
  */
 
@@ -384,7 +384,10 @@ I ReadVarInt(Stream& is)
 
 #define FLATDATA(obj) REF(CFlatData((char*)&(obj), (char*)&(obj) + sizeof(obj)))
 #define VARINT(obj) REF(WrapVarInt(REF(obj)))
+/*
+// Disable BIP152
 #define COMPACTSIZE(obj) REF(CCompactSize(REF(obj)))
+*/
 #define LIMITED_STRING(obj,n) REF(LimitedString< n >(REF(obj)))
 
 /** 
@@ -455,6 +458,8 @@ public:
     }
 };
 
+/*
+// Disable BIP152
 class CCompactSize
 {
 protected:
@@ -476,6 +481,7 @@ public:
         n = ReadCompactSize<Stream>(s);
     }
 };
+*/
 
 template<size_t Limit>
 class LimitedString

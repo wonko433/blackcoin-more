@@ -19,6 +19,8 @@
 
 #include <univalue.h>
 
+static const unsigned int DEFAULT_RPC_SERIALIZE_VERSION = 1;
+
 class CRPCCommand;
 
 namespace RPCServer
@@ -160,7 +162,6 @@ public:
     */
     std::vector<std::string> listCommands() const;
 
-
     /**
      * Appends a CRPCCommand to the dispatch table.
      * Returns false if RPC server is already running (dump concurrency protection).
@@ -181,9 +182,10 @@ extern std::vector<unsigned char> ParseHexV(const UniValue& v, std::string strNa
 extern std::vector<unsigned char> ParseHexO(const UniValue& o, std::string strKey);
 
 extern int64_t nWalletUnlockTime;
-extern CAmount AmountFromValue(const UniValue& value);
+extern CAmount AmountFromValue(const UniValue& value, bool allowZero = false);
 extern UniValue ValueFromAmount(const CAmount& amount);
 extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
+extern double GetPoSKernelPS();
 extern std::string HelpRequiringPassphrase();
 extern std::string HelpExampleCli(const std::string& methodname, const std::string& args);
 extern std::string HelpExampleRpc(const std::string& methodname, const std::string& args);
@@ -194,5 +196,8 @@ bool StartRPC();
 void InterruptRPC();
 void StopRPC();
 std::string JSONRPCExecBatch(const UniValue& vReq);
+
+// Retrieves any serialization flags requested in command line argument
+int RPCSerializationFlags();
 
 #endif // BITCOIN_RPCSERVER_H

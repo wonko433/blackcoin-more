@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin developers
+// Copyright (c) 2009-2016 The Bitcoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -31,7 +31,7 @@
      *   DUP CHECKSIG DROP ... repeated 100 times... OP_1
      */
 
-bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType, const bool witnessEnabled)
+bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
 {
     std::vector<std::vector<unsigned char> > vSolutions;
     if (!Solver(scriptPubKey, whichType, vSolutions))
@@ -50,13 +50,19 @@ bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType, const bool w
                (!fAcceptDatacarrier || scriptPubKey.size() > nMaxDatacarrierBytes))
           return false;
 
-    else if (!witnessEnabled && (whichType == TX_WITNESS_V0_KEYHASH || whichType == TX_WITNESS_V0_SCRIPTHASH))
-        return false;
-
     return whichType != TX_NONSTANDARD;
 }
 
-bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnessEnabled)
+int64_t FutureDrift(int64_t nTime)
+{
+	// loose policy for FutureDrift in regtest mode
+	if (Params().GetConsensus().fPowNoRetargeting && chainActive.Height() <= Params().GetConsensus().nLastPOWBlock) {
+	         return nTime + 24 * 60 * 60;
+	}
+    return Params().GetConsensus().IsProtocolV2(nTime) ? nTime + 15 : nTime + 10 * 60;
+}
+
+bool IsStandardTx(const CTransaction& tx, std::string& reason)
 {
     if (tx.nVersion > CTransaction::MAX_STANDARD_VERSION || tx.nVersion < 1) {
         reason = "version";
@@ -67,8 +73,8 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
     // almost as much to process as they cost the sender in fees, because
     // computing signature hashes is O(ninputs*txsize). Limiting transactions
     // to MAX_STANDARD_TX_SIZE mitigates CPU exhaustion attacks.
-    unsigned int sz = GetTransactionWeight(tx);
-    if (sz >= MAX_STANDARD_TX_WEIGHT) {
+    unsigned int sz = tx.GetSerializeSize(SER_NETWORK, CTransaction::CURRENT_VERSION);
+    if (sz >= MAX_STANDARD_TX_SIZE) {
         reason = "tx-size";
         return false;
     }
@@ -95,24 +101,33 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
     unsigned int nDataOut = 0;
     txnouttype whichType;
     BOOST_FOREACH(const CTxOut& txout, tx.vout) {
-        if (!::IsStandard(txout.scriptPubKey, whichType, witnessEnabled)) {
+        if (!::IsStandard(txout.scriptPubKey, whichType)) {
             reason = "scriptpubkey";
             return false;
         }
 
         if (whichType == TX_NULL_DATA)
             nDataOut++;
+        else if (txout.nValue == 0) {
+        	reason = "dust";
+            return false;
+        }
+        if (!txout.scriptPubKey.HasCanonicalPushes()) {
+            reason = "scriptpubkey-non-canonical-push";
+            return false;
+        }
         else if ((whichType == TX_MULTISIG) && (!fIsBareMultisigStd)) {
             reason = "bare-multisig";
             return false;
-        } else if (txout.IsDust(::minRelayTxFee)) {
+        } else if (txout.nValue == 0) {
             reason = "dust";
             return false;
         }
     }
 
-    // only one OP_RETURN txout is permitted
-    if (nDataOut > 1) {
+    // not more than one data txout per non-data txout is permitted
+    // only one data txout is permitted too
+    if (nDataOut > 1 && nDataOut > tx.vout.size()/2) {
         reason = "multi-op-return";
         return false;
     }
@@ -140,7 +155,7 @@ bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
         {
             std::vector<std::vector<unsigned char> > stack;
             // convert the scriptSig into a stack, so we can inspect the redeemScript
-            if (!EvalScript(stack, tx.vin[i].scriptSig, SCRIPT_VERIFY_NONE, BaseSignatureChecker(), SIGVERSION_BASE))
+            if (!EvalScript(stack, tx.vin[i].scriptSig, SCRIPT_VERIFY_NONE, BaseSignatureChecker(), 0))
                 return false;
             if (stack.empty())
                 return false;
@@ -155,13 +170,3 @@ bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
 }
 
 unsigned int nBytesPerSigOp = DEFAULT_BYTES_PER_SIGOP;
-
-int64_t GetVirtualTransactionSize(int64_t nWeight, int64_t nSigOpCost)
-{
-    return (std::max(nWeight, nSigOpCost * nBytesPerSigOp) + WITNESS_SCALE_FACTOR - 1) / WITNESS_SCALE_FACTOR;
-}
-
-int64_t GetVirtualTransactionSize(const CTransaction& tx, int64_t nSigOpCost)
-{
-    return GetVirtualTransactionSize(GetTransactionWeight(tx), nSigOpCost);
-}

@@ -11,25 +11,25 @@
 
 #include <stdint.h>
 #include <memory>
-#include "boost/multi_index_container.hpp"
-#include "boost/multi_index/ordered_index.hpp"
 
 class CBlockIndex;
 class CChainParams;
 class CReserveKey;
 class CScript;
 class CWallet;
+class CBlock;
 
 namespace Consensus { struct Params; };
 
 static const bool DEFAULT_PRINTPRIORITY = false;
+
+CAmount GetProofOfWorkReward();
 
 struct CBlockTemplate
 {
     CBlock block;
     std::vector<CAmount> vTxFees;
     std::vector<int64_t> vTxSigOpsCost;
-    std::vector<unsigned char> vchCoinbaseCommitment;
 };
 
 // Container for tracking updates to ancestor feerate as we include (parent)
@@ -40,13 +40,13 @@ struct CTxMemPoolModifiedEntry {
         iter = entry;
         nSizeWithAncestors = entry->GetSizeWithAncestors();
         nModFeesWithAncestors = entry->GetModFeesWithAncestors();
-        nSigOpCostWithAncestors = entry->GetSigOpCostWithAncestors();
+        nSigOpCountWithAncestors = entry->GetSigOpCountWithAncestors();
     }
 
     CTxMemPool::txiter iter;
     uint64_t nSizeWithAncestors;
     CAmount nModFeesWithAncestors;
-    int64_t nSigOpCostWithAncestors;
+    int64_t nSigOpCountWithAncestors;
 };
 
 /** Comparator for CTxMemPool::txiter objects.
@@ -73,7 +73,7 @@ struct modifiedentry_iter {
 // except operating on CTxMemPoolModifiedEntry.
 // TODO: refactor to avoid duplication of this logic.
 struct CompareModifiedEntry {
-    bool operator()(const CTxMemPoolModifiedEntry &a, const CTxMemPoolModifiedEntry &b)
+    bool operator()(const CTxMemPoolModifiedEntry &a, const CTxMemPoolModifiedEntry &b) const
     {
         double f1 = (double)a.nModFeesWithAncestors * b.nSizeWithAncestors;
         double f2 = (double)b.nModFeesWithAncestors * a.nSizeWithAncestors;
@@ -88,7 +88,7 @@ struct CompareModifiedEntry {
 // This is sufficient to sort an ancestor package in an order that is valid
 // to appear in a block.
 struct CompareTxIterByAncestorCount {
-    bool operator()(const CTxMemPool::txiter &a, const CTxMemPool::txiter &b)
+    bool operator()(const CTxMemPool::txiter &a, const CTxMemPool::txiter &b) const
     {
         if (a->GetCountWithAncestors() != b->GetCountWithAncestors())
             return a->GetCountWithAncestors() < b->GetCountWithAncestors();
@@ -124,7 +124,7 @@ struct update_for_parent_inclusion
     {
         e.nModFeesWithAncestors -= iter->GetFee();
         e.nSizeWithAncestors -= iter->GetTxSize();
-        e.nSigOpCostWithAncestors -= iter->GetSigOpCost();
+        e.nSigOpCountWithAncestors -= iter->GetSigOpCount();
     }
 
     CTxMemPool::txiter iter;
@@ -140,15 +140,12 @@ private:
     CBlock* pblock;
 
     // Configuration parameters for the block size
-    bool fIncludeWitness;
-    unsigned int nBlockMaxWeight, nBlockMaxSize;
-    bool fNeedSizeAccounting;
+    unsigned int nBlockMaxSize;
 
     // Information on the current status of the block
-    uint64_t nBlockWeight;
     uint64_t nBlockSize;
     uint64_t nBlockTx;
-    uint64_t nBlockSigOpsCost;
+    uint64_t nBlockSigOps;
     CAmount nFees;
     CTxMemPool::setEntries inBlock;
 
@@ -164,7 +161,7 @@ private:
 public:
     BlockAssembler(const CChainParams& chainparams);
     /** Construct a new block template with coinbase to scriptPubKeyIn */
-    CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn);
+    CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, int64_t* pFees = 0, bool fProofOfStake = false);
 
 private:
     // utility functions
@@ -175,7 +172,7 @@ private:
 
     // Methods for how to add transactions to a block.
     /** Add transactions based on tx "priority" */
-    void addPriorityTxs();
+    void addPriorityTxs(int64_t nBlockTime, bool fProofOfStake);
     /** Add transactions based on feerate including unconfirmed ancestors */
     void addPackageTxs();
 
@@ -189,7 +186,7 @@ private:
     /** Remove confirmed (inBlock) entries from given set */
     void onlyUnconfirmed(CTxMemPool::setEntries& testSet);
     /** Test if a new package would "fit" in the block */
-    bool TestPackage(uint64_t packageSize, int64_t packageSigOpsCost);
+    bool TestPackage(uint64_t packageSize, int64_t packageSigOps);
     /** Perform checks on each transaction in a package:
       * locktime, premature-witness, serialized size (if necessary)
       * These checks should always succeed, and they're here
@@ -207,6 +204,8 @@ private:
 
 /** Modify the extranonce in a block */
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
-int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
+int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
+/** Run the miner threads */
+void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams);
 
 #endif // BITCOIN_MINER_H

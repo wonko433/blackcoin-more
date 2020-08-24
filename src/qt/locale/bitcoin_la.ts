@@ -25,7 +25,10 @@
         <source>&amp;Delete</source>
         <translation>&amp;Dele</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>AddressTableModel</name>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -44,7 +47,7 @@
         <source>Repeat new passphrase</source>
         <translation>Itera novam tesseram</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>BanTableModel</name>
     </context>
@@ -112,7 +115,7 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Mitte nummos ad inscriptionem Bitcoin</translation>
+        <translation>Mitte nummos ad inscriptionem Blackcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -136,7 +139,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
+        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -164,11 +167,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Signa nuntios cum tuis inscriptionibus Bitcoin ut demonstres te eas possidere</translation>
+        <translation>Signa nuntios cum tuis inscriptionibus Blackcoin ut demonstres te eas possidere</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus Bitcoin</translation>
+        <translation>Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus Blackcoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -189,10 +192,6 @@
     <message>
         <source>&amp;Command-line options</source>
         <translation>Optiones mandati initiantis</translation>
-    </message>
-    <message>
-        <source>No block source available...</source>
-        <translation>Nulla fons frustorum absens...</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -242,7 +241,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Cassidile &lt;b&gt;cifratum&lt;/b&gt; est et iam nunc &lt;b&gt;seratum&lt;/b&gt;</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -276,7 +275,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Inscriptio</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>FreespaceChecker</name>
     </context>
@@ -304,6 +303,17 @@
     <message>
         <source>Error</source>
         <translation>Error</translation>
+    </message>
+    </context>
+<context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>Schema</translation>
+    </message>
+    <message>
+        <source>Last block time</source>
+        <translation>Hora postremi frusti</translation>
     </message>
     </context>
 <context>
@@ -337,7 +347,7 @@
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Aperi per se portam clientis Bitcoin in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
+        <translation>Aperi per se portam clientis Blackcoin in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -416,7 +426,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete Bitcoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
+        <translation>Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete Blackcoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
     </message>
     <message>
         <source>Immature:</source>
@@ -426,6 +436,9 @@
         <source>Mined balance that has not yet matured</source>
         <translation>Fossum pendendum quod nondum maturum est</translation>
     </message>
+    </context>
+<context>
+    <name>PaymentServer</name>
     </context>
 <context>
     <name>PeerTableModel</name>
@@ -440,6 +453,12 @@
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
+    </context>
+<context>
+    <name>QObject::QObject</name>
+    </context>
+<context>
+    <name>QRImageWidget</name>
     </context>
 <context>
     <name>RPCConsole</name>
@@ -531,6 +550,9 @@
     </message>
     </context>
 <context>
+    <name>RecentRequestsTableModel</name>
+    </context>
+<context>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
@@ -572,7 +594,7 @@
         <source>S&amp;end</source>
         <translation>&amp;Mitte</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -607,6 +629,9 @@
         <source>Pay To:</source>
         <translation>Pensa Ad:</translation>
     </message>
+    </context>
+<context>
+    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>
@@ -647,7 +672,7 @@
     </message>
     <message>
         <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Signa nuntium ut demonstres hanc inscriptionem Bitcoin a te possessa esse</translation>
+        <translation>Signa nuntium ut demonstres hanc inscriptionem Blackcoin a te possessa esse</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -667,7 +692,7 @@
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Verifica nuntium ut cures signatum esse cum specifica inscriptione Bitcoin</translation>
+        <translation>Verifica nuntium ut cures signatum esse cum specifica inscriptione Blackcoin</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -677,7 +702,7 @@
         <source>Reset all verify message fields</source>
         <translation>Reconstitue omnes campos verificandi nuntii</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -689,14 +714,32 @@
     <name>TrafficGraphWidget</name>
     </context>
 <context>
+    <name>TransactionDesc</name>
+    </context>
+<context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Haec tabula monstrat descriptionem verbosam transactionis</translation>
     </message>
-</context>
+    </context>
+<context>
+    <name>TransactionTableModel</name>
+    </context>
+<context>
+    <name>TransactionView</name>
+    </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
+<context>
+    <name>WalletModel</name>
+    </context>
+<context>
+    <name>WalletView</name>
     </context>
 <context>
     <name>bitcoin-core</name>
@@ -725,12 +768,8 @@
         <translation>Operare infere sicut daemon et mandata accipe</translation>
     </message>
     <message>
-        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Accipe conexiones externas (praedefinitum: 1 nisi -proxy neque -connect)</translation>
-    </message>
-    <message>
         <source>Bitcoin Core</source>
-        <translation>Bitcoin Nucleus</translation>
+        <translation>Blackcoin More</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>
@@ -741,16 +780,8 @@
         <translation>Facere mandatum quotiescumque cassidilis transactio mutet (%s in mandato sbstituitur ab TxID)</translation>
     </message>
     <message>
-        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>Hoc est prae-dimittum experimentala aedes - utere eo periculo tuo proprio - nolite utere fodendo vel applicationibus mercatoriis</translation>
-    </message>
-    <message>
         <source>Block creation options:</source>
         <translation>Optiones creandi frustorum:</translation>
-    </message>
-    <message>
-        <source>Connect only to the specified node(s)</source>
-        <translation>Conecte sole ad nodos specificatos (vel nodum specificatum)</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -815,10 +846,6 @@
     <message>
         <source>Transaction amount too small</source>
         <translation>Magnitudo transactionis nimis parva</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must be positive</source>
-        <translation>Necesse est magnitudines transactionum positivas esse.</translation>
     </message>
     <message>
         <source>Transaction too large</source>

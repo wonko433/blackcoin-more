@@ -18,6 +18,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 
+extern bool fWalletUnlockStakingOnly;
 AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AskPassphraseDialog),
@@ -40,6 +41,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
     ui->passEdit2->installEventFilter(this);
     ui->passEdit3->installEventFilter(this);
 
+    ui->stakingCheckBox->setChecked(fWalletUnlockStakingOnly);
+    ui->stakingCheckBox->hide();
+
     switch(mode)
     {
         case Encrypt: // Ask passphrase x2
@@ -48,7 +52,12 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
             ui->passEdit1->hide();
             setWindowTitle(tr("Encrypt wallet"));
             break;
+        case UnlockStaking:
+            ui->stakingCheckBox->setChecked(true);
+            ui->stakingCheckBox->show();
         case Unlock: // Ask passphrase
+        	ui->stakingCheckBox->setChecked(false);
+        	ui->stakingCheckBox->show();
             ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
             ui->passLabel2->hide();
             ui->passEdit2->hide();
@@ -70,6 +79,7 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
             break;
     }
     textChanged();
+    connect(ui->toggleShowPasswordButton, SIGNAL(toggled(bool)), this, SLOT(toggleShowPassword(bool)));
     connect(ui->passEdit1, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
     connect(ui->passEdit2, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
     connect(ui->passEdit3, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));
@@ -77,7 +87,8 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
 
 AskPassphraseDialog::~AskPassphraseDialog()
 {
-    secureClearPassFields();
+    // Attempt to overwrite text so that they do not linger around in memory
+	secureClearPassFields();
     delete ui;
 }
 
@@ -151,6 +162,7 @@ void AskPassphraseDialog::accept()
             QDialog::reject(); // Cancelled
         }
         } break;
+    case UnlockStaking:
     case Unlock:
         if(!model->setWalletLocked(false, oldpass))
         {
@@ -159,6 +171,7 @@ void AskPassphraseDialog::accept()
         }
         else
         {
+        	fWalletUnlockStakingOnly = ui->stakingCheckBox->isChecked();
             QDialog::accept(); // Success
         }
         break;
@@ -206,6 +219,7 @@ void AskPassphraseDialog::textChanged()
     case Encrypt: // New passphrase x2
         acceptable = !ui->passEdit2->text().isEmpty() && !ui->passEdit3->text().isEmpty();
         break;
+    case UnlockStaking:
     case Unlock: // Old passphrase x1
     case Decrypt:
         acceptable = !ui->passEdit1->text().isEmpty();
@@ -232,6 +246,15 @@ bool AskPassphraseDialog::event(QEvent *event)
         }
     }
     return QWidget::event(event);
+}
+
+void AskPassphraseDialog::toggleShowPassword(bool show)
+{
+    ui->toggleShowPasswordButton->setDown(show);
+    const auto mode = show ? QLineEdit::Normal : QLineEdit::Password;
+    ui->passEdit1->setEchoMode(mode);
+    ui->passEdit2->setEchoMode(mode);
+    ui->passEdit3->setEchoMode(mode);
 }
 
 bool AskPassphraseDialog::eventFilter(QObject *object, QEvent *event)

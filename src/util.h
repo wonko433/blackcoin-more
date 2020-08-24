@@ -5,7 +5,7 @@
 
 /**
  * Server/client environment: argument handling, config file parsing,
- * logging, thread wrappers
+ * logging, thread wrappers, startup time
  */
 #ifndef BITCOIN_UTIL_H
 #define BITCOIN_UTIL_H
@@ -28,6 +28,15 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/signals2/signal.hpp>
 #include <boost/thread/exceptions.hpp>
+
+#ifndef WIN32
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/resource.h>
+#endif
+
+// Application startup time (used for uptime calculation)
+int64_t GetStartupTime();
 
 static const bool DEFAULT_LOGTIMEMICROS = false;
 static const bool DEFAULT_LOGIPS        = false;
@@ -209,6 +218,7 @@ std::string HelpMessageOpt(const std::string& option, const std::string& message
  */
 int GetNumCores();
 
+void SetThreadPriority(int nPriority);
 void RenameThread(const char* name);
 
 /**

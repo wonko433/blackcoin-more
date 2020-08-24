@@ -173,6 +173,11 @@ public:
         return size() == 33;
     }
 
+    std::vector<unsigned char> getvch() const
+    {
+        return std::vector<unsigned char>(begin(), end());
+    }
+
     /**
      * Verify a DER signature (~72 bytes).
      * If this public key is not fully valid, the return value will be false.
@@ -183,6 +188,8 @@ public:
      * Check whether a signature is normalized (lower-S).
      */
     static bool CheckLowS(const std::vector<unsigned char>& vchSig);
+
+    static bool CheckSignatureElement(const unsigned char *vch, int len, bool half);
 
     //! Recover a public key from a compact signature.
     bool RecoverCompact(const uint256& hash, const std::vector<unsigned char>& vchSig);
@@ -210,7 +217,7 @@ struct CExtPubKey {
     void Encode(unsigned char code[BIP32_EXTKEY_SIZE]) const;
     void Decode(const unsigned char code[BIP32_EXTKEY_SIZE]);
     bool Derive(CExtPubKey& out, unsigned int nChild) const;
-
+    
     unsigned int GetSerializeSize(int nType, int nVersion) const
     {
         return BIP32_EXTKEY_SIZE+1; //add one byte for the size (compact int)

@@ -17,7 +17,6 @@
 #include "chainparams.h"
 #include "key.h"
 #include "pubkey.h"
-#include "script/script.h"
 #include "script/standard.h"
 #include "support/allocators/zeroafterfree.h"
 
@@ -167,5 +166,8 @@ public:
 
 typedef CBitcoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
 typedef CBitcoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+
+std::string EncodeLegacyAddr(const CTxDestination &dest, const CChainParams &);
+CTxDestination DecodeLegacyAddr(const std::string &str, const CChainParams &);
 
 #endif // BITCOIN_BASE58_H

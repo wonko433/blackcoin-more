@@ -27,7 +27,7 @@ public:
     CScriptID(const uint160& in) : uint160(in) {}
 };
 
-static const unsigned int MAX_OP_RETURN_RELAY = 83; //!< bytes (+1 for OP_RETURN, +2 for the pushdata opcodes)
+static const unsigned int MAX_OP_RETURN_RELAY = 15000; //!< bytes (+1 for OP_RETURN, +2 for the pushdata opcodes)
 extern bool fAcceptDatacarrier;
 extern unsigned nMaxDatacarrierBytes;
 
@@ -36,11 +36,16 @@ extern unsigned nMaxDatacarrierBytes;
  * them to be valid. (but old blocks may not comply with) Currently just P2SH,
  * but in the future other flags may be added, such as a soft-fork to enforce
  * strict DER encoding.
- * 
+ *
  * Failing one of these tests may trigger a DoS ban - see CheckInputs() for
  * details.
  */
-static const unsigned int MANDATORY_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH;
+static const unsigned int MANDATORY_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH |
+														SCRIPT_VERIFY_DERKEY |
+														 SCRIPT_VERIFY_LOW_S |
+													 SCRIPT_VERIFY_NULLDUMMY |
+										   SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY |
+															SCRIPT_VERIFY_DERSIG;
 
 enum txnouttype
 {
@@ -51,8 +56,6 @@ enum txnouttype
     TX_SCRIPTHASH,
     TX_MULTISIG,
     TX_NULL_DATA,
-    TX_WITNESS_V0_SCRIPTHASH,
-    TX_WITNESS_V0_KEYHASH,
 };
 
 class CNoDestination {
@@ -61,12 +64,12 @@ public:
     friend bool operator<(const CNoDestination &a, const CNoDestination &b) { return true; }
 };
 
-/** 
+/**
  * A txout script template with a specific destination. It is either:
  *  * CNoDestination: no destination set
  *  * CKeyID: TX_PUBKEYHASH destination
  *  * CScriptID: TX_SCRIPTHASH destination
- *  A CTxDestination is the internal data type encoded in a CBitcoinAddress
+ *  A CTxDestination is the internal data type encoded in a bitcoin address
  */
 typedef boost::variant<CNoDestination, CKeyID, CScriptID> CTxDestination;
 
@@ -76,9 +79,11 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
 bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet);
 bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet);
 
+const char *GetTxnOutputType(txnouttype t);
+bool IsValidDestination(const CTxDestination &dest);
+
 CScript GetScriptForDestination(const CTxDestination& dest);
 CScript GetScriptForRawPubKey(const CPubKey& pubkey);
 CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys);
-CScript GetScriptForWitness(const CScript& redeemscript);
 
 #endif // BITCOIN_SCRIPT_STANDARD_H

@@ -72,9 +72,11 @@ public:
     /** Return the BIP70 network string (main, test or regtest) */
     std::string NetworkIDString() const { return strNetworkID; }
     const std::vector<CDNSSeedData>& DNSSeeds() const { return vSeeds; }
-    const std::vector<unsigned char>& Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
+    const std::vector<uint8_t> &Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
+    const std::string &CashAddrPrefix() const { return cashaddrPrefix; }
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
     const CCheckpointData& Checkpoints() const { return checkpointData; }
+    int LastPOWBlock() const { return consensus.nLastPOWBlock; }
 protected:
     CChainParams() {}
 
@@ -83,7 +85,8 @@ protected:
     int nDefaultPort;
     uint64_t nPruneAfterHeight;
     std::vector<CDNSSeedData> vSeeds;
-    std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
+    std::vector<uint8_t> base58Prefixes[MAX_BASE58_TYPES];
+    std::string cashaddrPrefix;
     std::string strNetworkID;
     CBlock genesis;
     std::vector<SeedSpec6> vFixedSeeds;
@@ -111,5 +114,10 @@ CChainParams& Params(const std::string& chain);
  * @throws std::runtime_error when the chain is not supported.
  */
 void SelectParams(const std::string& chain);
+
+/**
+ * Allows modifying the BIP9 regtest parameters.
+ */
+void UpdateRegtestBIP9Parameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 
 #endif // BITCOIN_CHAINPARAMS_H

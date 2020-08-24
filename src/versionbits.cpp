@@ -14,10 +14,6 @@ const struct BIP9DeploymentInfo VersionBitsDeploymentInfo[Consensus::MAX_VERSION
     {
         /*.name =*/ "csv",
         /*.gbt_force =*/ true,
-    },
-    {
-        /*.name =*/ "segwit",
-        /*.gbt_force =*/ false,
     }
 };
 
@@ -41,8 +37,8 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
             cache[pindexPrev] = THRESHOLD_DEFINED;
             break;
         }
-        if (pindexPrev->GetMedianTimePast() < nTimeStart) {
-            // Optimization: don't recompute down further, as we know every earlier block will be before the start time
+        if (pindexPrev->GetPastTimeLimit() < nTimeStart) {
+            // Optimizaton: don't recompute down further, as we know every earlier block will be before the start time
             cache[pindexPrev] = THRESHOLD_DEFINED;
             break;
         }
@@ -62,15 +58,15 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
 
         switch (state) {
             case THRESHOLD_DEFINED: {
-                if (pindexPrev->GetMedianTimePast() >= nTimeTimeout) {
+                if (pindexPrev->GetPastTimeLimit() >= nTimeTimeout) {
                     stateNext = THRESHOLD_FAILED;
-                } else if (pindexPrev->GetMedianTimePast() >= nTimeStart) {
+                } else if (pindexPrev->GetPastTimeLimit() >= nTimeStart) {
                     stateNext = THRESHOLD_STARTED;
                 }
                 break;
             }
             case THRESHOLD_STARTED: {
-                if (pindexPrev->GetMedianTimePast() >= nTimeTimeout) {
+                if (pindexPrev->GetPastTimeLimit() >= nTimeTimeout) {
                     stateNext = THRESHOLD_FAILED;
                     break;
                 }

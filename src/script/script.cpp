@@ -221,30 +221,12 @@ bool CScript::IsPayToScriptHash() const
             (*this)[22] == OP_EQUAL);
 }
 
-bool CScript::IsPayToWitnessScriptHash() const
+bool CScript::IsPayToPublicKey() const
 {
-    // Extra-fast test for pay-to-witness-script-hash CScripts:
-    return (this->size() == 34 &&
-            (*this)[0] == OP_0 &&
-            (*this)[1] == 0x20);
-}
-
-// A witness program is any valid CScript that consists of a 1-byte push opcode
-// followed by a data push between 2 and 40 bytes.
-bool CScript::IsWitnessProgram(int& version, std::vector<unsigned char>& program) const
-{
-    if (this->size() < 4 || this->size() > 42) {
-        return false;
-    }
-    if ((*this)[0] != OP_0 && ((*this)[0] < OP_1 || (*this)[0] > OP_16)) {
-        return false;
-    }
-    if ((size_t)((*this)[1] + 2) == this->size()) {
-        version = DecodeOP_N((opcodetype)(*this)[0]);
-        program = std::vector<unsigned char>(this->begin() + 2, this->end());
-        return true;
-    }
-    return false;
+    // Extra-fast test for pay-to-pubkey CScripts:
+    return (this->size() == 35 &&
+            (*this)[0] == 0x21 &&
+            (*this)[34] == OP_CHECKSIG);
 }
 
 bool CScript::IsPushOnly(const_iterator pc) const
@@ -269,14 +251,29 @@ bool CScript::IsPushOnly() const
     return this->IsPushOnly(begin());
 }
 
-std::string CScriptWitness::ToString() const
+bool CScript::HasCanonicalPushes() const
 {
-    std::string ret = "CScriptWitness(";
-    for (unsigned int i = 0; i < stack.size(); i++) {
-        if (i) {
-            ret += ", ";
-        }
-        ret += HexStr(stack[i]);
+    const_iterator pc = begin();
+    while (pc < end())
+    {
+        opcodetype opcode;
+        std::vector<unsigned char> data;
+        if (!GetOp(pc, opcode, data))
+            return false;
+        if (opcode > OP_16)
+            continue;
+        if (opcode < OP_PUSHDATA1 && opcode > OP_0 && (data.size() == 1 && data[0] <= 16))
+            // Could have used an OP_n code, rather than a 1-byte push.
+            return false;
+        if (opcode == OP_PUSHDATA1 && data.size() < OP_PUSHDATA1)
+            // Could have used a normal n-byte push, rather than OP_PUSHDATA1.
+            return false;
+        if (opcode == OP_PUSHDATA2 && data.size() <= 0xFF)
+            // Could have used an OP_PUSHDATA1.
+            return false;
+        if (opcode == OP_PUSHDATA4 && data.size() <= 0xFFFF)
+            // Could have used an OP_PUSHDATA2.
+            return false;
     }
-    return ret + ")";
+    return true;
 }
