@@ -50,7 +50,7 @@ static const int MAX_URI_LENGTH = 255;
 
 #define QAPP_ORG_NAME "Blackcoin More"
 #define QAPP_ORG_DOMAIN "blackcoinmore.org"
-#define QAPP_APP_NAME_DEFAULT "Blackmore-Qt"
-#define QAPP_APP_NAME_TESTNET "Blackmore-Qt-testnet"
+#define QAPP_APP_NAME_DEFAULT "Bitcoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Bitcoin-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

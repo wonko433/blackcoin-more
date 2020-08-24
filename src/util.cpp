@@ -98,8 +98,8 @@ const int64_t nStartupTime = GetTime();
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "blackmore.conf";
-const char * const BITCOIN_PID_FILENAME = "blackmored.pid";
+const char * const BITCOIN_CONF_FILENAME = "bitcoin.conf";
+const char * const BITCOIN_PID_FILENAME = "bitcoind.pid";
 
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
@@ -454,13 +454,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Blackmore
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Blackmore
-    // Mac: ~/Library/Application Support/Blackmore
-    // Unix: ~/.blackmore
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitcoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitcoin
+    // Mac: ~/Library/Application Support/Bitcoin
+    // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Blackmore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -470,10 +470,10 @@ boost::filesystem::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Blackmore";
+    return pathRet / "Library/Application Support/Bitcoin";
 #else
     // Unix
-    return pathRet / ".blackmore";
+    return pathRet / ".bitcoin";
 #endif
 #endif
 }
