@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Blackmore-Qt</string>
+  <string>Bitcoin-Qt</string>
   
   <key>CFBundleName</key>
-  <string>Blackmore-Qt</string>
+  <string>Bitcoin-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.blackcoin.Blackmore-Qt</string>
+  <string>org.bitcoin.Bitcoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
