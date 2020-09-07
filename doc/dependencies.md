@@ -11,7 +11,7 @@ These are the dependencies currently used by Blackcoin More. You can find instru
 | D-Bus | [1.12.12](https://cgit.freedesktop.org/dbus/dbus/tree/NEWS?h=dbus-1.12) |  | No | Yes |  |
 | Expat | [2.2.7](https://libexpat.github.io/) |  | No | Yes |  |
 | FreeType | [2.9.1](https://download.savannah.gnu.org/releases/freetype) |  | No |  |  |
-| fontconfig | [2.12.6](https://www.freedesktop.org/software/fontconfig/release/) |  | No | Yes |  |
+| fontconfig | [2.12.1](https://www.freedesktop.org/software/fontconfig/release/) |  | No | Yes |  |
 | GCC |  | [4.8+](https://gcc.gnu.org/) (C++11 support) |  |  |  |
 | HarfBuzz-NG |  |  |  |  |  |
 | libevent | [2.1.11-stable](https://github.com/libevent/libevent/releases) | 2.0.22 | No |  |  |
