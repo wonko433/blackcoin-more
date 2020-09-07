@@ -21,5 +21,6 @@ define $(package)_stage_cmds
   $(MAKE) DESTDIR=$($(package)_staging_dir) install
 endef
 
-$(package)_config_opts=--disable-shared --without-docbook --without-tests --without-examples
-$(package)_config_opts_linux=--with-pic
+define $(package)_postprocess_cmds
+  rm lib/*.la
+endef
