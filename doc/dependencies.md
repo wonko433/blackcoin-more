@@ -6,7 +6,7 @@ These are the dependencies currently used by Blackcoin More. You can find instru
 | Dependency | Version used | Minimum required | CVEs | Shared | [Bundled Qt library](https://doc.qt.io/qt-5/configure-options.html#third-party-libraries) |
 | --- | --- | --- | --- | --- | --- |
 | Berkeley DB | [6.2.38.NC](https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/downloads/index.html) | 6.2.x | No |  |  |
-| Boost | [1.68.0](https://www.boost.org/users/download/) | [1.47.0](https://github.com/bitcoin/bitcoin/pull/8920) | No |  |  |
+| Boost | [1.70.0](https://www.boost.org/users/download/) | [1.47.0](https://github.com/bitcoin/bitcoin/pull/8920) | No |  |  |
 | Clang |  | [3.3+](https://llvm.org/releases/download.html) (C++11 support) |  |  |  |
 | D-Bus | [1.12.12](https://cgit.freedesktop.org/dbus/dbus/tree/NEWS?h=dbus-1.12) |  | No | Yes |  |
 | Expat | [2.2.7](https://libexpat.github.io/) |  | No | Yes |  |
