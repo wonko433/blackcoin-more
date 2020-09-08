@@ -470,7 +470,7 @@ bool PartiallySignedTransaction::IsSane() const
 
 bool PSBTInput::IsNull() const
 {
-    return utxo.IsNull() && partial_sigs.empty() && unknown.empty() && hd_keypaths.empty() && redeem_script.empty();
+    return !utxo && partial_sigs.empty() && unknown.empty() && hd_keypaths.empty() && redeem_script.empty();
 }
 
 void PSBTInput::FillSignatureData(SignatureData& sigdata) const
@@ -513,9 +513,7 @@ void PSBTInput::FromSignatureData(const SignatureData& sigdata)
 
 void PSBTInput::Merge(const PSBTInput& input)
 {
-    if (utxo.IsNull() && !input.utxo.IsNull()) {
-        utxo = input.utxo;
-    }
+    if (!utxo && input.utxo) utxo = input.utxo;
 
     partial_sigs.insert(input.partial_sigs.begin(), input.partial_sigs.end());
     hd_keypaths.insert(input.hd_keypaths.begin(), input.hd_keypaths.end());

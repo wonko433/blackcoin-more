@@ -214,9 +214,10 @@ struct PSBTInput
     template <typename Stream>
     inline void Serialize(Stream& s) const {
         // Write the utxo
-        if (!utxo.IsNull()) {
+        if (utxo) {
             SerializeToVector(s, PSBT_IN_UTXO);
-            SerializeToVector(s, utxo);
+            OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
+            SerializeToVector(os, utxo);
         }
 
         if (final_script_sig.empty()) {
@@ -280,13 +281,17 @@ struct PSBTInput
             // Do stuff based on type
             switch(type) {
                 case PSBT_IN_UTXO:
-                    if (!utxo.IsNull()) {
+                {
+                    if (utxo) {
                         throw std::ios_base::failure("Duplicate Key, input utxo already provided");
                     } else if (key.size() != 1) {
                         throw std::ios_base::failure("utxo key is more than one byte type");
                     }
-                    UnserializeFromVector(s, utxo);
+                    // Set the stream to unserialize
+                    OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
+                    UnserializeFromVector(os, utxo);
                     break;
+                }
                 case PSBT_IN_PARTIAL_SIG:
                 {
                     // Make sure that the key is the size of pubkey + 1
@@ -557,6 +562,7 @@ struct PartiallySignedTransaction
                         throw std::ios_base::failure("Global unsigned tx key is more than one byte type");
                     }
                     CMutableTransaction mtx;
+                    // Set the stream to serialize
                     OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
                     UnserializeFromVector(os, mtx);
                     tx = std::move(mtx);
@@ -639,7 +645,7 @@ bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreato
 bool SignSignature(const SigningProvider &provider, const CScript& fromPubKey, CMutableTransaction& txTo, unsigned int nIn, const CAmount& amount, int nHashType);
 bool SignSignature(const SigningProvider &provider, const CTransaction& txFrom, CMutableTransaction& txTo, unsigned int nIn, int nHashType);
 
-bool VerifySignature(const Coin & coin, uint256 txFromHash, const CTransaction& txTo, unsigned int nIn, unsigned int flags);
+bool VerifySignature(const Coin& coin, uint256 txFromHash, const CTransaction& txTo, unsigned int nIn, unsigned int flags);
 
 /** Checks whether a PSBTInput is already signed. */
 bool PSBTInputSigned(PSBTInput& input);
