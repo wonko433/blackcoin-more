@@ -253,14 +253,14 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
                 strprintf("value in (%s) < value out (%s)", FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())));
 
         // Tally transaction fees
-        CAmount nTxFee = nValueIn - tx.GetValueOut();
-        if (nTxFee < 0)
+        CAmount txfee_aux = nValueIn - tx.GetValueOut();
+        if (txfee_aux < 0)
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-negative");
-        nFees += nTxFee;
-        if (!MoneyRange(nFees))
+
+        if (!MoneyRange(txfee_aux))
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
+        txfee = txfee_aux;    
     }
 
-    txfee = txfee_aux;
     return true;
 }

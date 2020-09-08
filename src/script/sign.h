@@ -11,6 +11,7 @@
 #include <pubkey.h>
 #include <script/interpreter.h>
 #include <streams.h>
+#include <coins.h>
 
 class CKey;
 class CKeyID;
@@ -195,7 +196,7 @@ void SerializeHDKeypaths(Stream& s, const std::map<CPubKey, std::vector<uint32_t
 /** A structure for PSBTs which contain per-input information */
 struct PSBTInput
 {
-    CTxOut utxo;
+    CTransactionRef utxo;
     CScript redeem_script;
     CScript final_script_sig;
     std::map<CPubKey, std::vector<uint32_t>> hd_keypaths;
@@ -497,6 +498,7 @@ struct PartiallySignedTransaction
         SerializeToVector(s, PSBT_GLOBAL_UNSIGNED_TX);
 
         // Write serialized tx to a stream
+        OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
         SerializeToVector(os, *tx);
 
         // Write the unknown things
@@ -555,6 +557,7 @@ struct PartiallySignedTransaction
                         throw std::ios_base::failure("Global unsigned tx key is more than one byte type");
                     }
                     CMutableTransaction mtx;
+                    OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
                     UnserializeFromVector(os, mtx);
                     tx = std::move(mtx);
                     // Make sure that all scriptSigs are empty
@@ -636,7 +639,7 @@ bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreato
 bool SignSignature(const SigningProvider &provider, const CScript& fromPubKey, CMutableTransaction& txTo, unsigned int nIn, const CAmount& amount, int nHashType);
 bool SignSignature(const SigningProvider &provider, const CTransaction& txFrom, CMutableTransaction& txTo, unsigned int nIn, int nHashType);
 
-bool VerifySignature(const Coin& coin, uint256 txFromHash, const CTransaction& txTo, unsigned int nIn, unsigned int flags);
+bool VerifySignature(const Coin & coin, uint256 txFromHash, const CTransaction& txTo, unsigned int nIn, unsigned int flags);
 
 /** Checks whether a PSBTInput is already signed. */
 bool PSBTInputSigned(PSBTInput& input);
