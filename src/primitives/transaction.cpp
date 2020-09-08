@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <primitives/transaction.h>
-
+#include <script/interpreter.h>
 #include <hash.h>
 #include <tinyformat.h>
 #include <utilstrencodings.h>
@@ -65,7 +65,7 @@ uint256 CMutableTransaction::GetHash() const
 
 uint256 CMutableTransaction::GetNormalizedHash() const
 {
-    return SignatureHash(CScript(), *this, 0, SIGHASH_ALL, 0);
+    return SignatureHash(CScript(), *this, 0, SIGHASH_ALL, 0, SigVersion::BASE);
 }
 
 uint256 CTransaction::ComputeHash() const
