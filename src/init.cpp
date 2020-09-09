@@ -1366,15 +1366,6 @@ bool AppInitMain()
             return InitError(ResolveErrMsg("externalip", strAddr));
     }
 
-#ifdef ENABLE_WALLET
-    if (gArgs.IsArgSet("-reservebalance")) {
-        if (!ParseMoney(gArgs.GetArg("-reservebalance", ""), nReserveBalance)) {
-            InitError(_("Invalid amount for -reservebalance=<amount>"));
-            return false;
-        }
-    }
-#endif
-
 #if ENABLE_ZMQ
     g_zmq_notification_interface = CZMQNotificationInterface::Create();
 

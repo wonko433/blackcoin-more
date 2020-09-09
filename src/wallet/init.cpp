@@ -142,6 +142,13 @@ bool WalletInit::ParameterInteraction() const
     if (gArgs.GetArg("-prune", 0) && gArgs.GetBoolArg("-rescan", false))
         return InitError(_("Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again."));
 
+    if (gArgs.IsArgSet("-reservebalance"))
+    {
+        CAmount nReserveBalance = 0;
+        if (!ParseMoney(gArgs.GetArg("-reservebalance", ""), nReserveBalance))
+            return InitError(strprintf(_("Invalid amount for -reservebalance=<amount>: '%s'"), gArgs.GetArg("-reservebalance", "")));
+    }
+
     if (::minRelayTxFee.GetFeePerK() > HIGH_TX_FEE_PER_KB)
         InitWarning(AmountHighWarn("-minrelaytxfee") + " " +
                     _("The wallet will avoid paying less than the minimum relay fee."));

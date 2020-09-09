@@ -84,10 +84,8 @@ CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript&
 		/*
         CTxDestination witdest = WitnessV0ScriptHash(script);
         CScript witprog = GetScriptForDestination(witdest);
-		*/
         // Check if the resulting program is solvable (i.e. doesn't use an uncompressed key)
         if (!IsSolvable(keystore, witprog)) return CScriptID(script);
-		/*
         // Add the redeemscript, so that P2WSH and P2SH-P2WSH outputs are recognized as ours.
         keystore.AddCScript(witprog);
         if (type == OutputType::BECH32) {
@@ -96,6 +94,7 @@ CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript&
             return CScriptID(witprog);
         }
 		*/
+		return CScriptID(script);
     }
     default: assert(false);
     }
