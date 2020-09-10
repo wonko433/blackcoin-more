@@ -73,14 +73,14 @@ int64_t GetMaxTransactionTime(CBlock* pblock)
 
 BlockAssembler::Options::Options() {
     blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
-    nBlockMaxSize = DEFAULT_BLOCK_MAX_SIZE;
+    nBlockMaxWeight = DEFAULT_BLOCK_MAX_SIZE;
 }
 
 BlockAssembler::BlockAssembler(const CChainParams& params, const Options& options) : chainparams(params)
 {
     blockMinFeeRate = options.blockMinFeeRate;
     // Limit size to between 1K and MAX_BLOCK_SIZE-1K for sanity:
-    nBlockMaxSize = std::max<size_t>(1000, std::min<size_t>(MAX_BLOCK_SIZE - 1000, options.nBlockMaxSize));
+    nBlockMaxWeight = std::max<size_t>(1000, std::min<size_t>(MAX_BLOCK_SIZE - 1000, options.nBlockMaxWeight));
 }
 
 static BlockAssembler::Options DefaultOptions()
@@ -88,7 +88,7 @@ static BlockAssembler::Options DefaultOptions()
     // Block resource limits
     // If -blockmaxsize is not given, limit to DEFAULT_BLOCK_MAX_SIZE
     BlockAssembler::Options options;
-    options.nBlockMaxSize = gArgs.GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
+    options.nBlockMaxWeight = gArgs.GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
     if (gArgs.IsArgSet("-blockmintxfee")) {
         CAmount n = 0;
         ParseMoney(gArgs.GetArg("-blockmintxfee", ""), n);
@@ -234,7 +234,7 @@ bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& packa
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
         uint64_t nTxSize = ::GetSerializeSize(it->GetTx(), SER_NETWORK, PROTOCOL_VERSION);
-        if (nPotentialBlockSize + nTxSize >= nBlockMaxSize)
+        if (nPotentialBlockSize + nTxSize >= nBlockMaxWeight)
             return false;
         nPotentialBlockSize += nTxSize;
     }
@@ -411,7 +411,7 @@ void BlockAssembler::addPackageTxs(int &nPackagesSelected, int &nDescendantsUpda
             ++nConsecutiveFailed;
 
             if (nConsecutiveFailed > MAX_CONSECUTIVE_FAILURES && nBlockSize >
-                    nBlockMaxSize - 4000) {
+                    nBlockMaxWeight - 4000) {
                 // Give up if we're close to full and haven't succeeded in a while
                 break;
             }
