@@ -89,7 +89,7 @@ public:
         obj.pushKV("isscript", true);
         return obj;
     }
-
+};
 UniValue DescribeAddress(const CTxDestination& dest)
 {
     return boost::apply_visitor(DescribeAddressVisitor(), dest);
