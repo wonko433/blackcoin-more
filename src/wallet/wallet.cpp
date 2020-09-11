@@ -2762,7 +2762,6 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, const CoinEligibil
         // Get long term estimate
         FeeCalculation feeCalc;
         CCoinControl temp;
-        temp.m_confirm_target = 1008;
         CFeeRate long_term_feerate = GetMinimumFeeRate(*this, temp);
 
         // Calculate cost of change
