@@ -23,6 +23,8 @@
 #include <validation.h>
 #include <wallet/fees.h>
 #include <wallet/wallet.h>
+#include <key_io.h>
+#include <algorithm>
 
 namespace interfaces {
 namespace {

@@ -16,6 +16,7 @@
 #include <net.h>
 #include <policy/fees.h>
 #include <pow.h>
+#include <pos.h>
 #include <rpc/blockchain.h>
 #include <rpc/mining.h>
 #include <rpc/server.h>
@@ -26,6 +27,11 @@
 #include <validationinterface.h>
 #include <warnings.h>
 
+#include <timedata.h>
+#ifdef ENABLE_WALLET
+#include <wallet/wallet.h>
+#include <wallet/walletdb.h>
+#endif
 #include <memory>
 #include <stdint.h>
 
@@ -673,8 +679,8 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     result.pushKV("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1);
     result.pushKV("mutable", aMutable);
     result.pushKV("noncerange", "00000000ffffffff");
-    result.pushKV("sigoplimit", (int64_t)MAX_BLOCK_SIGOPS));
-    result.pushKV("sizelimit", (int64_t)MAX_BLOCK_SIZE));
+    result.pushKV("sigoplimit", (int64_t)MAX_BLOCK_SIGOPS);
+    result.pushKV("sizelimit", (int64_t)MAX_BLOCK_SIZE);
     result.pushKV("curtime", pblock->GetBlockTime());
     result.pushKV("bits", strprintf("%08x", pblock->nBits));
     result.pushKV("height", (int64_t)(pindexPrev->nHeight+1));
@@ -743,14 +749,6 @@ static UniValue submitblock(const JSONRPCRequest& request)
         }
     }
 
-    {
-        LOCK(cs_main);
-        const CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
-        if (pindex) {
-            UpdateUncommittedBlockStructures(block, pindex, Params().GetConsensus());
-        }
-    }
-
     bool new_block;
     submitblock_StateCatcher sc(block.GetHash());
     RegisterValidationInterface(&sc);
@@ -784,13 +782,7 @@ static UniValue estimatefee(const JSONRPCRequest& request)
 
     CFeeRate feeRate = CFeeRate(10000);
 
-    if (feeRate != CFeeRate(0)) {
-        result.pushKV("feerate", ValueFromAmount(feeRate.GetFeePerK()));
-    } else {
-        errors.push_back("Insufficient data or no feerate found");
-        result.pushKV("errors", errors);
-    }
-    return result;
+     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
 UniValue checkkernel(const JSONRPCRequest& request)

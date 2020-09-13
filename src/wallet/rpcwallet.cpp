@@ -25,7 +25,7 @@
 #include <util.h>
 #include <utilmoneystr.h>
 #include <wallet/coincontrol.h>
-#include <wallet/feebumper.h>
+
 #include <wallet/rpcwallet.h>
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
