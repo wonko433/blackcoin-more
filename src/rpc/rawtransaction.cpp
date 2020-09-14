@@ -558,7 +558,7 @@ static UniValue decoderawtransaction(const JSONRPCRequest& request)
 
     CMutableTransaction mtx;
 
-    if (!DecodeHexTx(mtx, request.params[0].get_str()))
+    if (!DecodeHexTx(mtx, request.params[0].get_str())) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     }
 
