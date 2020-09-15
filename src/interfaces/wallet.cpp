@@ -21,9 +21,10 @@
 #include <ui_interface.h>
 #include <uint256.h>
 #include <validation.h>
-#include <wallet/feebumper.h>
 #include <wallet/fees.h>
 #include <wallet/wallet.h>
+#include <key_io.h>
+#include <algorithm>
 
 namespace interfaces {
 namespace {

@@ -18,7 +18,6 @@
 class CBlockIndex;
 class CChainParams;
 class CScript;
-class CWallet;
 
 namespace Consensus { struct Params; };
 
@@ -135,7 +134,7 @@ private:
     CBlock* pblock;
 
     // Configuration parameters for the block size
-    unsigned int nBlockMaxSize;
+    unsigned int nBlockMaxWeight;
     CFeeRate blockMinFeeRate;
 
     // Information on the current status of the block
