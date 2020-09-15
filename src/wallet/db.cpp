@@ -704,7 +704,6 @@ bool BerkeleyBatch::Rewrite(BerkeleyDatabase& database, const char* pszSkip)
                     } else {
                         pdbCopy->close(0);
                     }
-                    delete pdbCopy;
                 }
                 if (fSuccess) {
                     Db dbA(env->dbenv.get(), 0);

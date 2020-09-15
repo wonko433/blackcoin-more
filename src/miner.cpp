@@ -25,6 +25,7 @@
 #include <util.h>
 #include <utilmoneystr.h>
 #include <validationinterface.h>
+#include <wallet/wallet.h>
 
 #include <algorithm>
 #include <memory>
@@ -481,8 +482,8 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainPar
     if (!pblock->IsProofOfStake())
         return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex());
 
-    CValidationState state;
     // verify hash target and signature of coinstake tx
+    CValidationState state;
     if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state, *pcoinsTip))
         return error("CheckStake() : proof-of-stake checking failed");
 
@@ -496,10 +497,10 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainPar
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
             return error("CheckStake() : generated block is stale");
 
-        // Track how many getdata requests this block gets
-        {
-            LOCK(wallet.cs_wallet);
-            wallet.mapRequestCount[hashBlock] = 0;
+        for (const CTxIn& vin : pblock->vtx[1]->vin) {
+            if (wallet.IsSpent(vin.prevout.hash, vin.prevout.n)) {
+                return error("CheckStake() : generated block became invalid due to stake UTXO being spent");
+            }
         }
 
         // Process this block the same as if we had received it from another node
@@ -533,14 +534,14 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
         {
             while (pwallet->IsLocked())
             {
-                nLastCoinStakeSearchInterval = 0;
+                pwallet->m_last_coin_stake_search_interval = 0;
                 MilliSleep(10000);
             }
 
             if (!regtestMode) {
                 while (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload())
                 {
-                    nLastCoinStakeSearchInterval = 0;
+                    pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
                     MilliSleep(1000);
                 }
@@ -612,7 +613,8 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
         return true;
     }
 
-    static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
+    if (pwallet->m_last_coin_stake_search_time == 0)
+        pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
 
     CKey key;
     CMutableTransaction txCoinBase(*pblock->vtx[0]);
@@ -622,7 +624,7 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
 
     int64_t nSearchTime = txCoinStake.nTime; // search to current time
 
-    if (nSearchTime > nLastCoinStakeSearchTime)
+    if (nSearchTime > pwallet->m_last_coin_stake_search_time)
     {
         if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
         {
@@ -646,8 +648,8 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
                 return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
             }
         }
-        nLastCoinStakeSearchInterval = nSearchTime - nLastCoinStakeSearchTime;
-        nLastCoinStakeSearchTime = nSearchTime;
+        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+        pwallet->m_last_coin_stake_search_time = nSearchTime;
     }
 
 return false;

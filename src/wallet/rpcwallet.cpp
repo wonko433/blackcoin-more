@@ -25,7 +25,6 @@
 #include <util.h>
 #include <utilmoneystr.h>
 #include <wallet/coincontrol.h>
-#include <wallet/feebumper.h>
 #include <wallet/rpcwallet.h>
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
@@ -81,16 +80,12 @@ bool EnsureWalletIsAvailable(CWallet * const pwallet, bool avoidException)
         "Wallet file not specified (must request wallet RPC through /wallet/<filename> uri-path).");
 }
 
-// optional setting to unlock wallet for staking only
-// serves to disable the trivial sendmoney when OS account compromised
-// provides no real security
-bool fWalletUnlockStakingOnly = false;
-
 void EnsureWalletIsUnlocked(CWallet * const pwallet)
 {
     if (pwallet->IsLocked()) {
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
-    if (fWalletUnlockStakingOnly)
+    }
+    if (pwallet->m_wallet_unlock_staking_only)
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Wallet is unlocked for staking only.");
     }
 }

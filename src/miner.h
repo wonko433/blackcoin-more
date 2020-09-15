@@ -18,7 +18,6 @@
 class CBlockIndex;
 class CChainParams;
 class CScript;
-class CWallet;
 
 namespace Consensus { struct Params; };
 
