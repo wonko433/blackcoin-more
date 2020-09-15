@@ -1246,8 +1246,8 @@ UniValue getblockchaininfo(const JSONRPCRequest& request)
     LOCK(cs_main);
 
     UniValue diff(UniValue::VOBJ);
-    diff.push_back(Pair("proof-of-work",  (double)GetDifficulty()));
-    diff.push_back(Pair("proof-of-stake", (double)GetDifficulty(GetLastBlockIndex(chainActive.Tip(), true))));
+    diff.push_back(Pair("proof-of-work",  (double)GetDifficulty(GetLastBlockIndex(pindexBestHeader, false))));
+    diff.push_back(Pair("proof-of-stake", (double)GetDifficulty(GetLastBlockIndex(pindexBestHeader, true))));
 
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("chain",                 Params().NetworkIDString());
@@ -1717,6 +1717,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             "  \"maxfeerate\": xxxxx,      (numeric) Maximum feerate (in satoshis per virtual byte)\n"
             "  \"maxtxsize\": xxxxx,       (numeric) Maximum transaction size\n"
             "  \"medianfee\": xxxxx,       (numeric) Truncated median fee in the block\n"
+            "  \"medianfeerate\": x.xxx,   (numeric) Truncated median feerate in " + CURRENCY_UNIT + " per byte)\n"
             "  \"mediantime\": xxxxx,      (numeric) The block median time past\n"
             "  \"mediantxsize\": xxxxx,    (numeric) Truncated median transaction size\n"
             "  \"minfee\": xxxxx,          (numeric) Minimum fee in the block\n"
@@ -1780,8 +1781,8 @@ static UniValue getblockstats(const JSONRPCRequest& request)
     const bool do_all = stats.size() == 0; // Calculate everything if nothing selected (default)
     const bool do_mediantxsize = do_all || stats.count("mediantxsize") != 0;
     const bool do_medianfee = do_all || stats.count("medianfee") != 0;
-    const bool do_feerate_percentiles = do_all || stats.count("feerate_percentiles") != 0;
-    const bool loop_inputs = do_all || do_medianfee || do_feerate_percentiles ||
+    const bool do_medianfeerate = do_all || stats.count("medianfeerate") != 0;
+    const bool loop_inputs = do_all || do_medianfee || do_medianfeerate ||
         SetHasKeys(stats, "utxo_size_inc", "totalfee", "avgfee", "avgfeerate", "minfee", "maxfee", "minfeerate", "maxfeerate");
     const bool loop_outputs = do_all || loop_inputs || stats.count("total_out");
     const bool do_calculate_size = do_mediantxsize ||
@@ -1881,13 +1882,14 @@ static UniValue getblockstats(const JSONRPCRequest& request)
     ret_all.pushKV("maxfeerate", maxfeerate);
     ret_all.pushKV("maxtxsize", maxtxsize);
     ret_all.pushKV("medianfee", CalculateTruncatedMedian(fee_array));
+    ret_all.pushKV("medianfeerate", CalculateTruncatedMedian(feerate_array));
     ret_all.pushKV("mediantime", pindex->GetMedianTimePast());
     ret_all.pushKV("mediantxsize", CalculateTruncatedMedian(txsize_array));
     ret_all.pushKV("minfee", (minfee == MAX_MONEY) ? 0 : minfee);
     ret_all.pushKV("minfeerate", (minfeerate == MAX_MONEY) ? 0 : minfeerate);
     ret_all.pushKV("mintxsize", mintxsize == MAX_BLOCK_SIZE ? 0 : mintxsize);
     ret_all.pushKV("outs", outputs);
-    ret_all.pushKV("subsidy", GetBlockSubsidy(pindex->nHeight, Params().GetConsensus()));
+    ret_all.pushKV("subsidy", block.IsProofOfStake() && Params().GetConsensus().IsProtocolV3(block.GetBlockTime()) ? GetProofOfStakeSubsidy() : GetProofOfWorkSubsidy());
     ret_all.pushKV("time", pindex->GetBlockTime());
     ret_all.pushKV("total_out", total_out);
     ret_all.pushKV("total_size", total_size);

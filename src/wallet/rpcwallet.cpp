@@ -3731,7 +3731,9 @@ UniValue rescanblockchain(const JSONRPCRequest& request)
 
 UniValue burn(const JSONRPCRequest& request)
 {
-    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
+    CWallet* const pwallet = wallet.get();
+
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "burn <amount> [hex string]\n"
@@ -3767,7 +3769,9 @@ UniValue burn(const JSONRPCRequest& request)
 // Blackcoin ToDo: fix burnwallet
 UniValue burnwallet(const JSONRPCRequest& request)
 {
-    CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
+    CWallet* const pwallet = wallet.get();
+
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "burnwallet <hex string> [force]"
@@ -4297,7 +4301,7 @@ bool FillPSBT(const CWallet* pwallet, PartiallySignedTransaction& psbtx, int sig
         }
 
         // If we have no utxo, grab it from the wallet.
-        if (input.utxo.IsNull()) {
+        if (!input.utxo) {
             const uint256& txhash = txin.prevout.hash;
             const auto it = pwallet->mapWallet.find(txhash);
             if (it != pwallet->mapWallet.end()) {
