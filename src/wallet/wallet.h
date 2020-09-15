@@ -780,6 +780,12 @@ private:
      */
     const CBlockIndex* m_last_block_processed = nullptr;
 
+    /**
+     * Wallet staking coins.
+     */
+    boost::thread_group* stakeThread = nullptr;
+    void StakeCoins(bool fStake, CConnman* connman);
+
 public:
     /*
      * Main wallet lock.
@@ -1025,6 +1031,7 @@ public:
     // serves to disable the trivial sendmoney when OS account compromised
     // provides no real security
 	std::atomic<bool> m_wallet_unlock_staking_only{false};
+	CAmount m_reserve_balance{DEFAULT_RESERVE_BALANCE};
     int64_t m_last_coin_stake_search_time{0};
     int64_t m_last_coin_stake_search_interval{0};
 
@@ -1241,6 +1248,11 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
+    /* Start staking */
+    void StartStake(CConnman* connman) { StakeCoins(true, connman); }
+
+    /* Stop staking */
+    void StopStake() { StakeCoins(false, 0); }
 };
 
 /** A key allocated from the key pool. */

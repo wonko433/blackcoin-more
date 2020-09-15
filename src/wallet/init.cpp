@@ -15,6 +15,7 @@
 #include <wallet/rpcwallet.h>
 #include <wallet/wallet.h>
 #include <wallet/walletutil.h>
+#include <miner.h>
 
 class WalletInit : public WalletInitInterface {
 public:
@@ -258,8 +259,9 @@ void WalletInit::Start(CScheduler& scheduler) const
         LogPrintf("Staking disabled\n");
     }
     else {
+        CConnman& connman = *g_connman;
         for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-            threadGroup.create_thread(boost::bind(&ThreadStakeMiner, pwallet, chainparams));
+            pwallet->StartStake(&connman);
         }
     }
 
@@ -270,7 +272,8 @@ void WalletInit::Start(CScheduler& scheduler) const
 void WalletInit::Flush() const
 {
     for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-        pwallet->Flush(false);
+		pwallet->StopStake();
+		pwallet->Flush(false);
     }
 }
 

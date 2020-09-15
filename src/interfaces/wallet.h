@@ -204,10 +204,7 @@ public:
     virtual CAmount getRequiredFee(unsigned int tx_bytes) = 0;
 
     //! Get minimum fee.
-    virtual CAmount getMinimumFee(unsigned int tx_bytes,
-        const CCoinControl& coin_control,
-        int* returned_target,
-        FeeReason* reason) = 0;
+    virtual CAmount getMinimumFee(unsigned int tx_bytes, const CCoinControl& coin_control) = 0;
 
     // Return whether HD enabled.
     virtual bool hdEnabled() = 0;
@@ -286,6 +283,7 @@ struct WalletBalances
     CAmount balance = 0;
     CAmount unconfirmed_balance = 0;
     CAmount immature_balance = 0;
+    CAmount stake = 0;
     bool have_watch_only = false;
     CAmount watch_only_balance = 0;
     CAmount unconfirmed_watch_only_balance = 0;

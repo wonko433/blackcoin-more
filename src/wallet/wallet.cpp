@@ -4849,3 +4849,8 @@ std::vector<OutputGroup> CWallet::GroupOutputs(const std::vector<COutput>& outpu
     }
     return groups;
 }
+
+void CWallet::StakeCoins(bool fStake, CConnman* connman)
+{
+    ::StakeCoins(fStake, this, connman, stakeThread);
+}

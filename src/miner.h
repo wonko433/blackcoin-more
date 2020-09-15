@@ -24,6 +24,7 @@ namespace Consensus { struct Params; };
 static const bool DEFAULT_PRINTPRIORITY = false;
 
 static const bool DEFAULT_STAKE = true;
+
 static const bool DEFAULT_STAKE_CACHE = true;
 
 CAmount GetProofOfWorkReward();
@@ -195,6 +196,9 @@ private:
       * of updated descendants. */
     int UpdatePackagesForAdded(const CTxMemPool::setEntries& alreadyAdded, indexed_modified_transaction_set &mapModifiedTx) EXCLUSIVE_LOCKS_REQUIRED(mempool.cs);
 };
+
+/** Generate a new block */
+void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread);
 
 /** Modify the extranonce in a block */
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);

@@ -924,7 +924,7 @@ static UniValue signrawtransactionwithkey(const JSONRPCRequest& request)
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValue::VARR, UniValue::VARR, UniValue::VSTR}, true);
 
     CMutableTransaction mtx;
-    if (!DecodeHexTx(mtx, request.params[0].get_str(), true)) {
+    if (!DecodeHexTx(mtx, request.params[0].get_str())) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     }
 
@@ -1354,18 +1354,11 @@ UniValue decodepsbt(const JSONRPCRequest& request)
         const PSBTInput& input = psbtx.inputs[i];
         UniValue in(UniValue::VOBJ);
         // UTXOs
-        if (!input.utxo.IsNull()) {
-            const CTxOut& txout = input.utxo;
-
-            UniValue out(UniValue::VOBJ);
-
-            out.pushKV("amount", ValueFromAmount(txout.nValue));
-            total_in += txout.nValue;
-
-            UniValue o(UniValue::VOBJ);
-            ScriptToUniv(txout.scriptPubKey, o, true);
-            out.pushKV("scriptPubKey", o);
+        if (input.utxo) {
+			UniValue out(UniValue::VOBJ);
+            TxToUniv(*input.utxo, uint256(), out, false);
             in.pushKV("utxo", out);
+            total_in += input.utxo->vout[psbtx.tx->vin[i].prevout.n].nValue;
         } else {
             have_all_utxos = false;
         }
@@ -1722,7 +1715,7 @@ static const CRPCCommand commands[] =
   //  --------------------- ------------------------        -----------------------     ----------
     { "rawtransactions",    "getrawtransaction",            &getrawtransaction,         {"txid","verbose","blockhash"} },
     { "rawtransactions",    "createrawtransaction",         &createrawtransaction,      {"inputs","outputs","locktime"} },
-    { "rawtransactions",    "decoderawtransaction",         &decoderawtransaction,      {"hexstring" },
+    { "rawtransactions",    "decoderawtransaction",         &decoderawtransaction,      {"hexstring" } },
     { "rawtransactions",    "decodescript",                 &decodescript,              {"hexstring"} },
     { "rawtransactions",    "sendrawtransaction",           &sendrawtransaction,        {"hexstring","allowhighfees"} },
     { "rawtransactions",    "combinerawtransaction",        &combinerawtransaction,     {"txs"} },

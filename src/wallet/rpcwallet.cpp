@@ -2614,8 +2614,15 @@ static UniValue encryptwallet(const JSONRPCRequest& request)
 
 UniValue reservebalance(const JSONRPCRequest& request)
 {
+    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
+    CWallet* const pwallet = wallet.get();
+
+    if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
+        return NullUniValue;
+    }
+
     if (request.fHelp || request.params.size() > 2)
-        throw runtime_error(
+        throw std::runtime_error(
             "reservebalance [<reserve> [amount]]\n"
             "<reserve> is true or false to turn balance reserve on or off.\n"
             "<amount> is a real and rounded to cent.\n"
@@ -2628,24 +2635,24 @@ UniValue reservebalance(const JSONRPCRequest& request)
         if (fReserve)
         {
             if (request.params.size() == 1)
-                throw runtime_error("must provide amount to reserve balance.\n");
+                throw std::runtime_error("must provide amount to reserve balance.\n");
             int64_t nAmount = AmountFromValue(request.params[1]);
             nAmount = (nAmount / CENT) * CENT;  // round to cent
             if (nAmount < 0)
-                throw runtime_error("amount cannot be negative.\n");
+                throw std::runtime_error("amount cannot be negative.\n");
             pwallet->m_reserve_balance = nAmount;
         }
         else
         {
             if (request.params.size() > 1)
-                throw runtime_error("cannot specify amount to turn off reserve.\n");
+                throw std::runtime_error("cannot specify amount to turn off reserve.\n");
             pwallet->m_reserve_balance = 0;
         }
     }
 
     UniValue result(UniValue::VOBJ);
-    result.push_back(Pair("reserve", (pwallet->m_reserve_balance > 0)));
-    result.push_back(Pair("amount", ValueFromAmount(pwallet->m_reserve_balance)));
+    result.pushKV("reserve", (pwallet->m_reserve_balance > 0));
+    result.pushKV("amount", ValueFromAmount(pwallet->m_reserve_balance));
     return result;
 }
 
@@ -3010,6 +3017,12 @@ static UniValue loadwallet(const JSONRPCRequest& request)
 
     wallet->postInitProcess();
 
+    // Mine proof-of-stake blocks in the background
+    if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
+        CConnman& connman = *g_connman;
+        wallet->StartStake(&connman);
+    }
+	
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("name", wallet->GetName());
     obj.pushKV("warning", warning);
@@ -3061,6 +3074,12 @@ static UniValue createwallet(const JSONRPCRequest& request)
     AddWallet(wallet);
 
     wallet->postInitProcess();
+	
+    // Mine proof-of-stake blocks in the background
+    if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
+        CConnman& connman = *g_connman;
+        wallet->StartStake(&connman);
+    }
 
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("name", wallet->GetName());
@@ -3104,6 +3123,9 @@ static UniValue unloadwallet(const JSONRPCRequest& request)
     if (!RemoveWallet(wallet)) {
         throw JSONRPCError(RPC_MISC_ERROR, "Requested wallet already unloaded");
     }
+	
+    // Stop wallet from staking
+    wallet->StopStake();
 
     UnloadWallet(std::move(wallet));
 
@@ -3562,7 +3584,7 @@ UniValue signrawtransactionwithwallet(const JSONRPCRequest& request)
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValue::VARR, UniValue::VSTR}, true);
 
     CMutableTransaction mtx;
-    if (!DecodeHexTx(mtx, request.params[0].get_str(), true)) {
+    if (!DecodeHexTx(mtx, request.params[0].get_str())) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     }
 
