@@ -316,6 +316,10 @@ struct CNodeState {
       * Whether this peer will send us cmpctblocks if we request them.
       */
     bool fProvidesHeaderAndIDs;
+    /**
+     * Dummy variable.
+     */
+    bool fSupportsDesiredCmpctVersion;
 
     /** State used to enforce CHAIN_SYNC_TIMEOUT
       * Only in effect for outbound, non-manual connections, with
