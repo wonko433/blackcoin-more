@@ -79,6 +79,7 @@ class CTxMemPool;
 class CWalletTx;
 struct FeeCalculation;
 enum class FeeEstimateMode;
+namespace boost { class thread_group; }
 
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
