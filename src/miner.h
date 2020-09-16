@@ -27,8 +27,6 @@ static const bool DEFAULT_STAKE = true;
 
 static const bool DEFAULT_STAKE_CACHE = true;
 
-CAmount GetProofOfWorkReward();
-
 struct CBlockTemplate
 {
     CBlock block;

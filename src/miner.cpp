@@ -57,13 +57,6 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
     return nNewTime - nOldTime;
 }
 
-// miner's coin base reward (PoW)
-CAmount GetProofOfWorkReward()
-{
-    CAmount nSubsidy = 10000 * COIN;
-    return nSubsidy;
-}
-
 int64_t GetMaxTransactionTime(CBlock* pblock)
 {
     int64_t maxTransactionTime = 0;
