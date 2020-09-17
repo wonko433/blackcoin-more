@@ -83,6 +83,11 @@ struct FeeCalculation;
 enum class FeeEstimateMode;
 namespace boost { class thread_group; }
 
+namespace boost
+{
+class thread_group;
+} // namespace boost
+
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
 {

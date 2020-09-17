@@ -57,13 +57,6 @@ int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, con
     return nNewTime - nOldTime;
 }
 
-// miner's coin base reward (PoW)
-CAmount GetProofOfWorkReward()
-{
-    CAmount nSubsidy = 10000 * COIN;
-    return nSubsidy;
-}
-
 int64_t GetMaxTransactionTime(CBlock* pblock)
 {
     int64_t maxTransactionTime = 0;
@@ -570,17 +563,28 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                 std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
                 pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
 
-                // Trying to sign a block
-                if (SignBlock(pblock, *pwallet, nFees))
-                {
-                    // increase priority
-                    SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
-                    // Sign the full block
-                    CheckStake(pblock, *pwallet, chainparams);
-                    // return back to low priority
-                    SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                    MilliSleep(500);
-                }
+                if (pwallet->m_last_coin_stake_search_time == 0)
+                    pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
+
+                int64_t nSearchTime = GetAdjustedTime();
+                nSearchTime &= ~Params().GetConsensus().nStakeTimestampMask;
+
+                if (nSearchTime > pwallet->m_last_coin_stake_search_time) 
+				{
+					// Trying to sign a block
+					if (SignBlock(pblock, *pwallet, nFees, nSearchTime))
+					{
+						// increase priority
+						SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
+						// Sign the full block
+						CheckStake(pblock, *pwallet, chainparams);
+						// return back to low priority
+						SetThreadPriority(THREAD_PRIORITY_LOWEST);
+						MilliSleep(500);
+					}
+				pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+				pwallet->m_last_coin_stake_search_time = nSearchTime;
+				}
             }
                 MilliSleep(nMinerSleep);
         }
@@ -598,7 +602,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 }
 
 // novacoin: attempt to generate suitable proof-of-stake
-bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, int64_t nTime)
 {
     CWallet* const pwallet = wallet.get();
     // if we are trying to sign
@@ -614,43 +618,32 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
         return true;
     }
 
-    if (pwallet->m_last_coin_stake_search_time == 0)
-        pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
-
     CKey key;
     CMutableTransaction txCoinBase(*pblock->vtx[0]);
     CMutableTransaction txCoinStake;
-    txCoinStake.nTime = GetAdjustedTime();
-    txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
+    txCoinStake.nTime = nTime;
 
-    int64_t nSearchTime = txCoinStake.nTime; // search to current time
-
-    if (nSearchTime > pwallet->m_last_coin_stake_search_time)
+    if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
     {
-        if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
+        if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
         {
-            if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
-            {
-                // make sure coinstake would meet timestamp protocol
-                // as it would be the same as the block timestamp
-                txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
-                pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
+            // make sure coinstake would meet timestamp protocol
+            // as it would be the same as the block timestamp
+            txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
+            pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
 
-                // we have to make sure that we have no future timestamps in
-                // our transactions set
-                for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
-                    if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
+            // we have to make sure that we have no future timestamps in
+            // our transactions set
+            for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
+                if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
-                pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
+            pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
 
-                pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
+            pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 
-                // append a signature to our block
-                return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
-            }
+            // append a signature to our block
+            return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
         }
-        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
-        pwallet->m_last_coin_stake_search_time = nSearchTime;
     }
 
 return false;
