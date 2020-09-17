@@ -241,7 +241,7 @@ UniValue getstakinginfo(const JSONRPCRequest& request)
 #endif
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
-    bool staking = nLastCoinStakeSearchInterval && nWeight;
+    bool staking = lastCoinStakeSearchInterval && nWeight;
 
     const Consensus::Params& consensusParams = Params().GetConsensus();
     int64_t nTargetSpacing = consensusParams.nTargetSpacing;
@@ -854,7 +854,9 @@ UniValue checkkernel(const JSONRPCRequest& request)
 
 #ifdef ENABLE_WALLET
         int64_t nFees;
-        CWallet * const pwallet = GetWalletForJSONRPCRequest(request);
+        std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
+        CWallet* const pwallet = wallet.get();
+	
         if (!pwallet)
             return result;
 
