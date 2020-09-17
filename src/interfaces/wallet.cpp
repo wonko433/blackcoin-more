@@ -399,18 +399,18 @@ public:
     bool IsWalletFlagSet(uint64_t flag) override { return m_wallet.IsWalletFlagSet(flag); }
     OutputType getDefaultAddressType() override { return m_wallet.m_default_address_type; }
     OutputType getDefaultChangeType() override { return m_wallet.m_default_change_type; }
-	//int64_t getLastCoinStakeSearchInterval() override 
-    //{ 
-    //    return m_wallet.m_last_coin_stake_search_interval;
-    //}
-	//bool getWalletUnlockStakingOnly() override
-    //{
-    //    return m_wallet.m_wallet_unlock_staking_only;
-    //}
-    //void setWalletUnlockStakingOnly(bool unlock) override
-    //{
-    //   m_wallet.m_wallet_unlock_staking_only = unlock;
-    //}
+	int64_t getLastCoinStakeSearchInterval() override 
+    { 
+        return m_wallet.m_last_coin_stake_search_interval;
+    }
+	bool getWalletUnlockStakingOnly() override
+    {
+        return m_wallet.m_wallet_unlock_staking_only;
+    }
+    void setWalletUnlockStakingOnly(bool unlock) override
+    {
+       m_wallet.m_wallet_unlock_staking_only = unlock;
+    }
     std::unique_ptr<Handler> handleUnload(UnloadFn fn) override
     {
         return MakeHandler(m_wallet.NotifyUnload.connect(fn));
