@@ -170,11 +170,11 @@ public:
     WalletBatch(const WalletBatch&) = delete;
     WalletBatch& operator=(const WalletBatch&) = delete;
 
-    bool WriteName(const CTxDestination &address, const std::string &strName);
-    bool EraseName(const CTxDestination &address);
+    bool WriteName(const std::string& strAddress, const std::string &strName);
+    bool EraseName(const std::string& strAddress);
 
-    bool WritePurpose(const CTxDestination &address, const std::string &purpose);
-    bool ErasePurpose(const CTxDestination &address);
+    bool WritePurpose(const std::string& strAddress, const std::string &purpose);
+    bool ErasePurpose(const std::string& strAddress);
 
     bool WriteTx(const CWalletTx& wtx);
     bool EraseTx(uint256 hash);
@@ -207,9 +207,9 @@ public:
     bool EraseAccount(const std::string& strAccount);
 
     /// Write destination data key,value tuple to database
-    bool WriteDestData(const CTxDestination &address, const std::string &key, const std::string &value);
+    bool WriteDestData(const std::string &address, const std::string &key, const std::string &value);
     /// Erase destination data tuple from wallet database
-    bool EraseDestData(const CTxDestination &address, const std::string &key);
+    bool EraseDestData(const std::string &address, const std::string &key);
     CAmount GetAccountCreditDebit(const std::string& strAccount);
     void ListAccountCreditDebit(const std::string& strAccount, std::list<CAccountingEntry>& acentries);
 
