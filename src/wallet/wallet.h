@@ -791,8 +791,8 @@ private:
     /**
      * Wallet staking coins.
      */
-    boost::thread_group* stakeThread = nullptr;
-    void StakeCoins(bool fStake, CConnman* connman);
+    //boost::thread_group* stakeThread = nullptr;
+    //void StakeCoins(bool fStake, CConnman* connman);
 
 public:
     /*
@@ -1257,10 +1257,10 @@ public:
     };
 
     /* Start staking */
-    void StartStake(CConnman* connman) { StakeCoins(true, connman); }
+    //void StartStake(CConnman* connman) { StakeCoins(true, connman); }
 
     /* Stop staking */
-    void StopStake() { StakeCoins(false, 0); }
+    //void StopStake() { StakeCoins(false, 0); }
 };
 
 /** A key allocated from the key pool. */

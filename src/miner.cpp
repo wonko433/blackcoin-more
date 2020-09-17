@@ -604,7 +604,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 // novacoin: attempt to generate suitable proof-of-stake
 bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, int64_t nTime)
 {
-    CWallet* const pwallet = wallet.get();
+    //CWallet* const pwallet = wallet.get();
     // if we are trying to sign
     // something except proof-of-stake block template
     if (!pblock->vtx[0]->vout[0].IsEmpty()){
@@ -649,18 +649,18 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
 return false;
 }
 
-void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
-{
-    if (stakeThread != nullptr)
-    {
-        stakeThread->interrupt_all();
-        delete stakeThread;
-        stakeThread = nullptr;
-    }
-
-    if (fStake)
-    {
-        stakeThread = new boost::thread_group();
-        stakeThread->create_thread(boost::bind(&ThreadStakeMiner, pwallet, connman));
-    }
-}
+//void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
+//{
+//    if (stakeThread != nullptr)
+//    {
+//        stakeThread->interrupt_all();
+//        delete stakeThread;
+//       stakeThread = nullptr;
+//    }
+//
+//    if (fStake)
+//    {
+//        stakeThread = new boost::thread_group();
+//        stakeThread->create_thread(boost::bind(&ThreadStakeMiner, pwallet, connman));
+//    }
+//}
