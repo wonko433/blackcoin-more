@@ -1801,7 +1801,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
     int64_t total_size = 0;
     int64_t utxo_size_inc = 0;
     std::vector<CAmount> fee_array;
-    std::vector<std::pair<CAmount, int64_t>> feerate_array;
+    std::vector<CAmount> feerate_array;
     std::vector<int64_t> txsize_array;
 
     for (const auto& tx : block.vtx) {
@@ -1863,7 +1863,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             totalfee += txfee;
 
             CAmount feerate = txfee / tx_size;
-            if (do_feerate_percentiles) {
+            if (do_medianfeerate) {
                 feerate_array.push_back(feerate);
             }
             maxfeerate = std::max(maxfeerate, feerate);
