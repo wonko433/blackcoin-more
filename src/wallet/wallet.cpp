@@ -29,6 +29,7 @@
 #include <txmempool.h>
 #include <utilmoneystr.h>
 #include <wallet/fees.h>
+#include <miner.h>
 
 #include <algorithm>
 #include <assert.h>
@@ -708,8 +709,8 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
 
             for (unsigned int i = 0; i < pcoin->tx->vout.size(); i++) {
                 isminetype mine = IsMine(pcoin->tx->vout[i]);
-                bool solvable = (mine & (ISMINE_SPENDABLE | ISMINE_WATCH_SOLVABLE)) != ISMINE_NO;
-                bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || ((mine & ISMINE_WATCH_SOLVABLE) != ISMINE_NO);
+                bool solvable = IsSolvable(*this, pcoin->tx->vout[i].scriptPubKey);
+                bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
                     !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0))
                 	vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted()));
@@ -849,7 +850,9 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 if (whichType == TX_PUBKEYHASH) // pay to address type
                 {
                     // convert to pay to public key type
-                    if (!keystore.GetKey(uint160(vSolutions[0]), key))
+                    uint160 hash160(vSolutions[0]);
+                    CKeyID pubKeyHash(hash160);
+                    if (!keystore.GetKey(pubKeyHash, key))
                     {
                         LogPrint(BCLog::COINSTAKE, "CreateCoinStake : failed to get key for kernel type=%d\n", whichType);
                         break;  // unable to find corresponding public key
@@ -860,13 +863,17 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                 if (whichType == TX_PUBKEY)
                 {
 
-                    if (!keystore.GetKey(Hash160(vSolutions[0]), key))
+                    valtype& vchPubKey = vSolutions[0];
+                    CPubKey pubKey(vchPubKey);
+                    uint160 hash160(Hash160(vchPubKey));
+                    CKeyID pubKeyHash(hash160);
+                    if (!keystore.GetKey(pubKeyHash, key))
                     {
                         LogPrint(BCLog::COINSTAKE, "CreateCoinStake : failed to get key for kernel type=%d\n", whichType);
                         break;  // unable to find corresponding public key
                     }
 
-                    if (key.GetPubKey() != vSolutions[0])
+                    if (key.GetPubKey() != pubKey)
                     {
                         LogPrint(BCLog::COINSTAKE, "CreateCoinStake : invalid key for kernel type=%d\n", whichType);
                         break; // keys mismatch
@@ -942,7 +949,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     int nIn = 0;
     for (const CWalletTx* pcoin : vwtxPrev)
     {
-        if (!SignSignature(*this, *pcoin, txNew, nIn++, SIGHASH_ALL))
+        if (!SignSignature(*this, *pcoin->tx, txNew, nIn++, SIGHASH_ALL))
             return error("CreateCoinStake : failed to sign coinstake");
     }
 
@@ -952,7 +959,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         return error("CreateCoinStake : exceeded coinstake size limit");
 
     // Successfully generated coinstake
-    tx = CTransaction(txNew);
+    tx = txNew;
     return true;
 }
 
@@ -2478,20 +2485,6 @@ CAmount CWallet::GetStake() const
     return nTotal;
 }
 
-CAmount CWallet::GetWatchOnlyBalance() const
-{
-    CAmount nTotal = 0;
-    LOCK2(cs_main, cs_wallet);
-    for (const auto& entry : mapWallet)
-    {
-        const CWalletTx* pcoin = &entry.second;
-        if (pcoin->IsTrusted())
-            nTotal += pcoin->GetAvailableWatchOnlyCredit();
-    }
-
-    return nTotal;
-}
-
 CAmount CWallet::GetUnconfirmedWatchOnlyBalance() const
 {
     CAmount nTotal = 0;
@@ -2760,7 +2753,6 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, const CoinEligibil
     std::vector<OutputGroup> utxo_pool;
     if (coin_selection_params.use_bnb) {
         // Get long term estimate
-        FeeCalculation feeCalc;
         CCoinControl temp;
         CFeeRate long_term_feerate = GetMinimumFeeRate(*this, temp);
 
@@ -3339,16 +3331,16 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
         tx = MakeTransactionRef(std::move(txNew));
 
         // Limit size
-        if (tx->GetTotalSize() > MAX_STANDARD_TX_SIZE) {
+        if (tx->GetTotalSize() > MAX_STANDARD_TX_SIZE)
         {
             strFailReason = _("Transaction too large");
             return false;
         }
-    }
 
-    if (nFeeRet > maxTxFee) {
-        strFailReason = _("Fee exceeds maximum configured by -maxtxfee");
-        return false;
+        if (nFeeRet > maxTxFee) {
+            strFailReason = _("Fee exceeds maximum configured by -maxtxfee");
+            return false;
+        }
     }
 
     if (gArgs.GetBoolArg("-walletrejectlongchains", DEFAULT_WALLET_REJECT_LONG_CHAINS)) {
