@@ -114,7 +114,6 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, uns
     if (UintToArith256(hashProofOfStake) > bnTarget)
         return false;
         
-    if (g_logger->WillLogCategory(BCLog::COINSTAKE) && !fPrintProofOfStake)
     /*
     if (fDebug && !fPrintProofOfStake)
     {
