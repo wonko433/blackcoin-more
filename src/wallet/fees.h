@@ -8,7 +8,6 @@
 
 #include <amount.h>
 
-class CBlockPolicyEstimator;
 class CCoinControl;
 class CFeeRate;
 class CTxMemPool;

@@ -488,8 +488,8 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainPar
         return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
-    LogPrintf("%s\n", pblock->ToString());
-    LogPrintf("out %s\n", FormatMoney(pblock->vtx[1]->GetValueOut()));
+    LogPrint(BCLog::COINSTAKE, "%s\n", pblock->ToString());
+    LogPrint(BCLog::COINSTAKE, "out %s\n", FormatMoney(pblock->vtx[1]->GetValueOut()));
 
     // Found a solution
     {
@@ -600,6 +600,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 // novacoin: attempt to generate suitable proof-of-stake
 bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
 {
+    CWallet* const pwallet = wallet.get();
     // if we are trying to sign
     // something except proof-of-stake block template
     if (!pblock->vtx[0]->vout[0].IsEmpty()){

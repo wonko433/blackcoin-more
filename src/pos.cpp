@@ -6,19 +6,26 @@
 // Stake cache by Qtum
 // Copyright (c) 2016-2018 The Qtum developers
 
-#include "pos.h"
+#include <boost/assign/list_of.hpp>
 
-#include "chain.h"
-#include "chainparams.h"
-#include "clientversion.h"
-#include "coins.h"
-#include "hash.h"
-#include "validation.h"
-#include "uint256.h"
-#include "primitives/transaction.h"
+#include <pos.h>
+#include <txdb.h>
+#include <chain.h>
+#include <chainparams.h>
+#include <clientversion.h>
+#include <coins.h>
+#include <hash.h>
+#include <timedata.h>
+#include <validation.h>
+#include <arith_uint256.h>
+#include <uint256.h>
+#include <primitives/transaction.h>
 #include <script/sign.h>
+#include <consensus/consensus.h>
 #include <stdio.h>
-#include "util.h"
+#include <util.h>
+
+using namespace std;
 
 // Stake Modifier (hash modifier of proof-of-stake):
 // The purpose of stake modifier is to prevent a txout (coin) owner from
@@ -106,7 +113,8 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, uns
     // Now check if proof-of-stake hash meets target protocol
     if (UintToArith256(hashProofOfStake) > bnTarget)
         return false;
-
+        
+    if (g_logger->WillLogCategory(BCLog::COINSTAKE) && !fPrintProofOfStake)
     /*
     if (fDebug && !fPrintProofOfStake)
     {

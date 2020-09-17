@@ -41,6 +41,12 @@
 #include <validationinterface.h>
 #include <warnings.h>
 
+#include <serialize.h>
+#include <pubkey.h>
+#include <key.h>
+#include <wallet/wallet.h>
+
+#include <algorithm>
 #include <future>
 #include <sstream>
 

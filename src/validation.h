@@ -34,6 +34,8 @@
 
 #include <atomic>
 
+#include <consensus/consensus.h>
+
 class CBlockIndex;
 class CBlockTreeDB;
 class CChainParams;

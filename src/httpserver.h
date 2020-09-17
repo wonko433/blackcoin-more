@@ -8,6 +8,8 @@
 #include <string>
 #include <stdint.h>
 #include <functional>
+#include <mutex>
+#include <condition_variable>
 
 static const int DEFAULT_HTTP_THREADS=4;
 static const int DEFAULT_HTTP_WORKQUEUE=16;

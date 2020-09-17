@@ -21,6 +21,8 @@
 #include <wallet/crypter.h>
 #include <wallet/coinselection.h>
 #include <wallet/walletdb.h>
+#include <wallet/rpcwallet.h>
+#include <consensus/params.h>
 #include <wallet/walletutil.h>
 
 #include <algorithm>
@@ -79,6 +81,7 @@ class CTxMemPool;
 class CWalletTx;
 struct FeeCalculation;
 enum class FeeEstimateMode;
+namespace boost { class thread_group; }
 
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
