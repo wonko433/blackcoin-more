@@ -66,6 +66,7 @@ src/qt/blackmore-qt.includes
 *.pb.cc
 *.pb.h
 *.dat
+*.o.tmp
 
 *.log
 *.trs
