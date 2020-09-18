@@ -26,28 +26,19 @@
 
 bool WalletBatch::WriteName(const std::string& strAddress, const std::string& strName)
 {
-    if (!IsValidDestination(address)) {
-        return false;
-    }
-    return WriteIC(std::make_pair(std::string("name"), EncodeLegacyAddr(address, Params())), strName);
+    return WriteIC(std::make_pair(std::string("name"), strAddress), strName);
 }
 
 bool WalletBatch::EraseName(const std::string& strAddress)
 {
     // This should only be used for sending addresses, never for receiving addresses,
     // receiving addresses must always have an address book entry if they're not change return.
-    if (!IsValidDestination(address)) {
-        return false;
-    }
-    return EraseIC(std::make_pair(std::string("name"), EncodeLegacyAddr(address, Params())));
+    return EraseIC(std::make_pair(std::string("name"), strAddress));
 }
 
 bool WalletBatch::WritePurpose(const std::string& strAddress, const std::string& strPurpose)
 {
-    if (!IsValidDestination(address)) {
-        return false;
-    }
-    return WriteIC(std::make_pair(std::string("purpose"), EncodeLegacyAddr(address, Params())), strPurpose);
+    return WriteIC(std::make_pair(std::string("purpose"), strAddress), strPurpose);
 }
 
 bool WalletBatch::ErasePurpose(const std::string& strAddress)
@@ -836,18 +827,12 @@ bool WalletBatch::VerifyDatabaseFile(const fs::path& wallet_path, std::string& w
 
 bool WalletBatch::WriteDestData(const std::string &address, const std::string &key, const std::string &value)
 {
-    if (!IsValidDestination(address)) {
-        return false;
-    }
-    return WriteIC(std::make_pair(std::string("destdata"), std::make_pair(EncodeLegacyAddr(address, Params()), key)), value);
+    return WriteIC(std::make_pair(std::string("destdata"), std::make_pair(address, key)), value);
 }
 
 bool WalletBatch::EraseDestData(const std::string &address, const std::string &key)
 {
-    if (!IsValidDestination(address)) {
-        return false;
-    }
-    return EraseIC(std::make_pair(std::string("destdata"), std::make_pair(EncodeLegacyAddr(address, Params()), key)));
+    return EraseIC(std::make_pair(std::string("destdata"), std::make_pair(address, key)));
 }
 
 
