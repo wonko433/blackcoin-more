@@ -37,6 +37,7 @@ static bool GetCScript(const SigningProvider& provider, const SignatureData& sig
     if (CScriptID(sigdata.redeem_script) == scriptid) {
         script = sigdata.redeem_script;
         return true;
+	}
     return false;
 }
 
