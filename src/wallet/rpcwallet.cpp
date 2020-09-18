@@ -3021,7 +3021,7 @@ static UniValue loadwallet(const JSONRPCRequest& request)
     // Mine proof-of-stake blocks in the background
     if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
         CConnman& connman = *g_connman;
-        wallet->StartStake(&connman);
+    //    wallet->StartStake(&connman);
     }
 	
     UniValue obj(UniValue::VOBJ);
@@ -3079,7 +3079,7 @@ static UniValue createwallet(const JSONRPCRequest& request)
     // Mine proof-of-stake blocks in the background
     if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
         CConnman& connman = *g_connman;
-        wallet->StartStake(&connman);
+    //    wallet->StartStake(&connman);
     }
 
     UniValue obj(UniValue::VOBJ);
@@ -3126,7 +3126,7 @@ static UniValue unloadwallet(const JSONRPCRequest& request)
     }
 	
     // Stop wallet from staking
-    wallet->StopStake();
+    //wallet->StopStake();
 
     UnloadWallet(std::move(wallet));
 
