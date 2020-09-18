@@ -832,7 +832,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             {
                 // Found a kernel
                 LogPrint(BCLog::COINSTAKE, "CreateCoinStake : kernel found\n");
-                vector<vector<unsigned char> > vSolutions;
+                std::vector<valtype> vSolutions;
                 txnouttype whichType;
                 CScript scriptPubKeyOut;
                 scriptPubKeyKernel = pcoin.first->tx->vout[pcoin.second].scriptPubKey;
@@ -2234,20 +2234,6 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache) const
         nImmatureCreditCached = pwallet->GetCredit(*tx, ISMINE_SPENDABLE);
         fImmatureCreditCached = true;
         return nImmatureCreditCached;
-    }
-
-    return 0;
-}
-
-CAmount CWalletTx::GetImmatureStakeCredit(bool fUseCache) const
-{
-    if (IsCoinStake() && GetBlocksToMaturity() > 0 && IsInMainChain())
-    {
-        if (fUseCache && fImmatureStakeCreditCached)
-            return nImmatureStakeCreditCached;
-        nImmatureStakeCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE);
-        fImmatureStakeCreditCached = true;
-        return nImmatureStakeCreditCached;
     }
 
     return 0;
