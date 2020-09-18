@@ -494,12 +494,12 @@ std::unique_ptr<Descriptor> ParseScript(Span<const char>& sp, ParseScriptContext
 {
     auto expr = Expr(sp);
     if (Func("pk", expr)) {
-        auto pubkey = ParsePubkey(expr, ctx != ParseScriptContext::P2WSH, out);
+        auto pubkey = ParsePubkey(expr, ctx != ParseScriptContext::P2SH, out);
         if (!pubkey) return nullptr;
         return MakeUnique<SingleKeyDescriptor>(std::move(pubkey), P2PKGetScript, "pk");
     }
     if (Func("pkh", expr)) {
-        auto pubkey = ParsePubkey(expr, ctx != ParseScriptContext::P2WSH, out);
+        auto pubkey = ParsePubkey(expr, ctx != ParseScriptContext::P2SH, out);
         if (!pubkey) return nullptr;
         return MakeUnique<SingleKeyDescriptor>(std::move(pubkey), P2PKHGetScript, "pkh");
     }
@@ -517,7 +517,7 @@ std::unique_ptr<Descriptor> ParseScript(Span<const char>& sp, ParseScriptContext
         while (expr.size()) {
             if (!Const(",", expr)) return nullptr;
             auto arg = Expr(expr);
-            auto pk = ParsePubkey(arg, ctx != ParseScriptContext::P2WSH, out);
+            auto pk = ParsePubkey(arg, ctx != ParseScriptContext::P2SH, out);
             if (!pk) return nullptr;
             script_size += pk->GetSize() + 1;
             providers.emplace_back(std::move(pk));
