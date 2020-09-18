@@ -766,6 +766,8 @@ bool CWallet::SelectCoinsForStaking(CAmount& nTargetValue, std::set<std::pair<co
     return true;
 }
 
+// peercoin: create coin stake transaction
+typedef std::vector<unsigned char> valtype;
 bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, CAmount& nFees, CMutableTransaction& tx, CKey& key)
 {
     CBlockIndex* pindexPrev = pindexBestHeader;
@@ -2466,7 +2468,7 @@ CAmount CWallet::GetStake() const
     {
         const CWalletTx* pcoin = &(*it).second;
         if (pcoin->IsCoinStake() && pcoin->GetBlocksToMaturity() > 0 && pcoin->GetDepthInMainChain() > 0)
-            nTotal += CWallet::GetCredit(*pcoin, ISMINE_SPENDABLE);
+            nTotal += CWallet::GetCredit(*(pcoin->tx), ISMINE_SPENDABLE);
     }
     return nTotal;
 }
@@ -3168,7 +3170,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
                     // Never create dust outputs; if we would, just
                     // add the dust to the fee.
                     // The nChange when BnB is used is always going to go to fees.
-                    if (IsDust(newTxOut, ::dustRelayFee) || bnb_used)
+                    if (IsDust(newTxOut, discard_rate) || bnb_used)
                     {
                         nChangePosInOut = -1;
                         nFeeRet += nChange;
@@ -4102,7 +4104,7 @@ CAmount CWallet::GetWatchOnlyStake() const
     {
         const CWalletTx* pcoin = &(*it).second;
         if (pcoin->IsCoinStake() && pcoin->GetBlocksToMaturity() > 0 && pcoin->GetDepthInMainChain() > 0)
-            nTotal += CWallet::GetCredit(*pcoin, ISMINE_WATCH_ONLY);
+            nTotal += CWallet::GetCredit(*(pcoin->tx), ISMINE_WATCH_ONLY);
     }
     return nTotal;
 }
