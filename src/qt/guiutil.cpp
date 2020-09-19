@@ -49,6 +49,7 @@
 #include <QDoubleValidator>
 #include <QFileDialog>
 #include <QFont>
+#include <QFontDatabase>
 #include <QKeyEvent>
 #include <QLineEdit>
 #include <QSettings>
