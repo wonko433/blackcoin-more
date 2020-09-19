@@ -10,7 +10,6 @@
 #include <httpserver.h>
 #include <validation.h>
 #include <key_io.h>
-#include <miner.h>
 #include <net.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
@@ -30,8 +29,11 @@
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
 #include <wallet/walletutil.h>
+#include <miner.h>
 
 #include <stdint.h>
+
+#include <boost/optional.hpp>
 
 #include <univalue.h>
 
@@ -86,7 +88,7 @@ void EnsureWalletIsUnlocked(CWallet * const pwallet)
     if (pwallet->IsLocked()) {
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
     }
-    if (pwallet->m_wallet_unlock_staking_only)
+    if (pwallet->m_wallet_unlock_staking_only) {
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Wallet is unlocked for staking only.");
     }
 }
