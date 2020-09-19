@@ -651,7 +651,7 @@ void CWallet::AddToSpends(const COutPoint& outpoint, const uint256& wtxid)
 
 void CWallet::RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid)
 {
-    pair<TxSpends::iterator, TxSpends::iterator> range;
+    std::pair<TxSpends::iterator, TxSpends::iterator> range;
     range = mapTxSpends.equal_range(outpoint);
     TxSpends::iterator it = range.first;
     for(; it != range.second; ++ it)
@@ -663,7 +663,8 @@ void CWallet::RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid)
         }
     }
     range = mapTxSpends.equal_range(outpoint);
-    SyncMetaData(range);
+    if(range.first != range.second)
+        SyncMetaData(range);
 }
 
 void CWallet::AddToSpends(const uint256& wtxid)
@@ -681,7 +682,7 @@ void CWallet::AddToSpends(const uint256& wtxid)
 void CWallet::RemoveFromSpends(const uint256& wtxid)
 {
     assert(mapWallet.count(wtxid));
-    CWalletTx& thisTx = mapWallet[wtxid];
+    CWalletTx& thisTx = mapWallet.at(wtxid);
 	if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
         return;
 
@@ -3965,7 +3966,7 @@ std::set<CTxDestination> CWallet::GetLabelAddresses(const std::string& label) co
     return result;
 }
 
-// disable transaction (only for coinstake) 
+// disable transaction (only for coinstake)
 void CWallet::DisableTransaction(const CTransaction &tx)
 {
     if (!tx.IsCoinStake() || !IsFromMe(tx))
@@ -3973,17 +3974,17 @@ void CWallet::DisableTransaction(const CTransaction &tx)
 
     LOCK(cs_wallet);
     uint256 hash = tx.GetHash();
-    if (AbandonTransaction(hash))
+    if(AbandonTransaction(hash))
     {
         RemoveFromSpends(hash);
-        set<CWalletTx*> setCoins;
-        for (const CTxIn& txin : tx.vin)
+        std::set<CWalletTx*> setCoins;
+        for(const CTxIn& txin : tx.vin)
         {
-            CWalletTx &coin = mapWallet[txin.prevout.hash];
+            CWalletTx &coin = mapWallet.at(txin.prevout.hash);
             coin.BindWallet(this);
             NotifyTransactionChanged(this, coin.GetHash(), CT_UPDATED);
         }
-        CWalletTx& wtx = mapWallet[hash];
+        CWalletTx& wtx = mapWallet.at(hash);
         wtx.BindWallet(this);
         NotifyTransactionChanged(this, hash, CT_DELETED);
     }
