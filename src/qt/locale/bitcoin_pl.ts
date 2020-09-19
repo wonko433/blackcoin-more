@@ -2323,10 +2323,6 @@ Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 satoshi za 
         <source>Payment request expired.</source>
         <translation>Żądanie płatności upłynęło.</translation>
     </message>
-    <message numerus="yes">
-        <source>%n block(s)</source>
-        <translation><numerusform>%n blok</numerusform><numerusform>%n bloków</numerusform><numerusform>%n bloków</numerusform><numerusform>%n bloków</numerusform></translation>
-    </message>
     <message>
         <source>Pay only the required fee of %1</source>
         <translation>Zapłać tylko wymaganą opłatę w wysokości %1</translation>
