@@ -1149,7 +1149,7 @@ void BitcoinGUI::updateWalletStatus()
         return;
     }
     WalletModel * const walletModel = walletView->getWalletModel();
-    setEncryptionStatus(walletModel->getEncryptionStatus());
+    setEncryptionStatus(walletModel);
     setHDStatus(walletModel->wallet().hdEnabled());
 }
 #endif // ENABLE_WALLET
@@ -1191,7 +1191,7 @@ void BitcoinGUI::toggleHidden()
 
 void BitcoinGUI::updateStakingIcon()
 {
-    if(ShutdownRequested())
+    if(m_node.shutdownRequested())
         return;
 
     if (!walletFrame) {
