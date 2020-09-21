@@ -350,13 +350,6 @@ public:
         return *this;
     }
 
-    TestBuilder& PushWitSig(const CKey& key, CAmount amount = -1, int nHashType = SIGHASH_ALL, unsigned int lenR = 32, unsigned int lenS = 32, SigVersion sigversion = SigVersion::BASE)
-    {
-        if (amount == -1)
-            amount = nValue;
-        return PushSig(key, nHashType, lenR, lenS, sigversion, amount).AsWit();
-    }
-
     TestBuilder& Push(const CPubKey& pubkey)
     {
         DoPush(std::vector<unsigned char>(pubkey.begin(), pubkey.end()));
