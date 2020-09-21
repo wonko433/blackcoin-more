@@ -387,11 +387,12 @@ void PaymentServer::uiReady()
     savedPaymentRequests.clear();
 }
 
-bool PaymentServer::handleURI(const QString &scheme, const QString &s)
+void PaymentServer::handleURIOrFile(const QString& s)
 {
-    if (!s.startsWith(scheme + ":", Qt::CaseInsensitive))
+    if (saveURIs)
     {
-        return false;
+        savedPaymentRequests.append(s);
+        return;
     }
 
     if (s.startsWith("blackcoin://", Qt::CaseInsensitive))
@@ -404,24 +405,27 @@ bool PaymentServer::handleURI(const QString &scheme, const QString &s)
         QUrlQuery uri((QUrl(s)));
         if (uri.hasQueryItem("r")) // payment request URI
         {
-            qWarning() << "PaymentServer::handleURIOrFile: Invalid URL: " << fetchUrl;
-            Q_EMIT message(tr("URI handling"), tr("Payment request fetch URL is invalid: %1").arg(fetchUrl.toString()),
-                CClientUIInterface::ICON_WARNING);
-        }
+            QByteArray temp;
+            temp.append(uri.queryItemValue("r"));
+            QString decoded = QUrl::fromPercentEncoding(temp);
+            QUrl fetchUrl(decoded, QUrl::StrictMode);
 
-        return true;
-    }
+            if (fetchUrl.isValid())
+            {
+                qDebug() << "PaymentServer::handleURIOrFile: fetchRequest(" << fetchUrl << ")";
+                fetchRequest(fetchUrl);
+            }
+            else
+            {
+                qWarning() << "PaymentServer::handleURIOrFile: Invalid URL: " << fetchUrl;
+                Q_EMIT message(tr("URI handling"),
+                    tr("Payment request fetch URL is invalid: %1").arg(fetchUrl.toString()),
+                    CClientUIInterface::ICON_WARNING);
+            }
 
-    // normal URI
-    SendCoinsRecipient recipient;
-    if (GUIUtil::parseBitcoinURI(scheme, s, &recipient))
-    {
-        if (!IsValidDestinationString(recipient.address.toStdString()))
-        {
-            Q_EMIT message(tr("URI handling"), tr("Invalid payment address %1").arg(recipient.address),
-                CClientUIInterface::MSG_ERROR);
+            return;
         }
-        else
+        else // normal URI
         {
             SendCoinsRecipient recipient;
             if (GUIUtil::parseBitcoinURI(s, &recipient))
@@ -435,42 +439,11 @@ bool PaymentServer::handleURI(const QString &scheme, const QString &s)
             }
             else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid Blackcoin address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
         }
-    }
-    else
-    {
-        Q_EMIT message(tr("URI handling"), tr("URI cannot be parsed! This can be caused by an invalid "
-                                              "Bitcoin address or malformed URI parameters."),
-            CClientUIInterface::ICON_WARNING);
-    }
-
-    return true;
-}
-
-void PaymentServer::handleURIOrFile(const QString &s)
-{
-    if (saveURIs)
-    {
-        savedPaymentRequests.append(s);
-        return;
-    }
-
-    // blackcoin: CashAddr URI
-    QString schemeCash = GUIUtil::bitcoinURIScheme(Params(), true);
-    if (handleURI(schemeCash, s))
-    {
-        return;
-    }
-
-    // blackcoin: Legacy URI
-    QString schemeLegacy = GUIUtil::bitcoinURIScheme(Params(), false);
-    if (handleURI(schemeLegacy, s))
-    {
-        return;
     }
 
     if (QFile::exists(s)) // payment request file
