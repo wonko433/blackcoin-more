@@ -20,11 +20,4 @@ uint256 ComputeMerkleRoot(std::vector<uint256> hashes, bool* mutated = nullptr);
  */
 uint256 BlockMerkleRoot(const CBlock& block, bool* mutated = nullptr);
 
-/*
- * Compute the Merkle branch for the tree of transactions in a block, for a
- * given position.
- * This can be verified using ComputeMerkleRootFromBranch.
- */
-std::vector<uint256> BlockMerkleBranch(const CBlock& block, uint32_t position);
-
 #endif
