@@ -15,10 +15,10 @@
 
 /* Return positive answer if transaction should be shown in list.
  */
-bool TransactionRecord::showTransaction()
+bool TransactionRecord::showTransaction(const interfaces::WalletTx& wtx)
 {
     // Ensures we show generated coins / mined transactions at depth 1
-    if ((wtx.IsCoinBase() || wtx.IsCoinStake()) && !wtx.IsInMainChain())
+    if((wtx.is_coinbase || wtx.is_coinstake) && !wtx.is_in_main_chain)
     {
         return false;
     }
@@ -50,9 +50,17 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
             if(mine)
             {
                 TransactionRecord sub(hash, nTime);
+				if (wtx.is_coinstake) // Combine into single output for coinstake
+                {
+                    sub.idx = 1; // vout index
+                    sub.credit = nNet;
+                }
+                else
+                {
+                    sub.idx = i; // vout index
+                    sub.credit = txout.nValue;
+                }
                 CTxDestination address;
-                sub.idx = i; // vout index
-                sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (wtx.txout_address_is_mine[i])
                 {
@@ -71,15 +79,11 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
                     // Generated
                     sub.type = TransactionRecord::Generated;
                 }
-                if (wtx.is_coinstake)
-                {
-                	if (hashPrev == hash)
-                		continue; // last coinstake output
-                	sub.credit = nNet > 0 ? nNet : wtx.tx->GetValueOut() - nDebit;
-                	hashPrev = hash;
 
-                }
                 parts.append(sub);
+				
+                if (wtx.is_coinstake)
+                    break; // Single output for coinstake
             }
         }
     }

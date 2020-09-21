@@ -88,7 +88,7 @@ void QRImageWidget::contextMenuEvent(QContextMenuEvent *event)
 ReceiveRequestDialog::ReceiveRequestDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReceiveRequestDialog),
-    model(0),
+    model(0)
 {
     ui->setupUi(this);
 
