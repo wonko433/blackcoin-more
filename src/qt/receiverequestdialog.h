@@ -49,7 +49,7 @@ class ReceiveRequestDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ReceiveRequestDialog(const Config *cfg, QWidget *parent = 0);
+    explicit ReceiveRequestDialog(QWidget *parent = 0);
     ~ReceiveRequestDialog();
 
     void setModel(WalletModel *model);
@@ -65,7 +65,6 @@ private:
     Ui::ReceiveRequestDialog *ui;
     WalletModel *model;
     SendCoinsRecipient info;
-    const Config *cfg;
 };
 
 // exported for unittesting

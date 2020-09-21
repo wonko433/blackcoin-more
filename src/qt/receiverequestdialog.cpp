@@ -85,11 +85,10 @@ void QRImageWidget::contextMenuEvent(QContextMenuEvent *event)
     contextMenu->exec(event->globalPos());
 }
 
-ReceiveRequestDialog::ReceiveRequestDialog(const Config *cfg, QWidget *parent) :
+ReceiveRequestDialog::ReceiveRequestDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReceiveRequestDialog),
     model(0),
-    cfg(cfg)
 {
     ui->setupUi(this);
 
@@ -117,26 +116,9 @@ void ReceiveRequestDialog::setModel(WalletModel *_model)
     update();
 }
 
-// Addresses are stored in the database with the encoding that the client was
-// configured with at the time of creation.
-//
-// This converts to clients current configuration.
-QString ToCurrentEncoding(const QString &addr, const Config &cfg)
-{
-    if (!IsValidDestinationString(addr.toStdString(), cfg.GetChainParams()))
-    {
-        // We have something sketchy as input. Do not try to convert.
-        return addr;
-    }
-    CTxDestination dst = DecodeDestination(addr.toStdString(), cfg.GetChainParams());
-    return QString::fromStdString(EncodeDestination(dst, cfg.GetChainParams(), cfg));
-}
-
 void ReceiveRequestDialog::setInfo(const SendCoinsRecipient &_info)
 {
     this->info = _info;
-    // Display addresses with currently configured encoding.
-    this->info.address = ToCurrentEncoding(this->info.address, *cfg);
     update();
 }
 
@@ -149,7 +131,7 @@ void ReceiveRequestDialog::update()
         target = info.address;
     setWindowTitle(tr("Request payment to %1").arg(target));
 
-    QString uri = GUIUtil::formatBitcoinURI(*cfg, info);
+    QString uri = GUIUtil::formatBitcoinURI(_info);
     ui->btnSaveAs->setEnabled(false);
     QString html;
     html += "<html><font face='verdana, arial, helvetica, sans-serif'>";
@@ -222,7 +204,7 @@ void ReceiveRequestDialog::update()
 
 void ReceiveRequestDialog::on_btnCopyURI_clicked()
 {
-    GUIUtil::setClipboard(GUIUtil::formatBitcoinURI(*cfg, info));
+    GUIUtil::setClipboard(GUIUtil::formatBitcoinURI(info));
 }
 
 void ReceiveRequestDialog::on_btnCopyAddress_clicked()
