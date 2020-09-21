@@ -1094,8 +1094,9 @@ void BitcoinGUI::setHDStatus(int hdEnabled)
     labelWalletHDStatusIcon->setEnabled(hdEnabled);
 }
 
-void BitcoinGUI::setEncryptionStatus(int status)
+void BitcoinGUI::setEncryptionStatus(WalletModel *walletModel)
 {
+    int status = walletModel->getEncryptionStatus();
     switch(status)
     {
     case WalletModel::Unencrypted:
@@ -1188,25 +1189,6 @@ void BitcoinGUI::toggleHidden()
     showNormalIfMinimized(true);
 }
 
-void BitcoinGUI::updateWeight(CWalletRef pwalletMain)
-{
-    if(!pwalletMain)
-        return;
-
-    TRY_LOCK(cs_main, lockMain);
-    if (!lockMain)
-        return;
-
-    TRY_LOCK(pwalletMain->cs_wallet, lockWallet);
-    if (!lockWallet)
-        return;
-
-#ifdef ENABLE_WALLET
-    if (pwalletMain)
-    nWeight = pwalletMain->GetStakeWeight();
-#endif
-}
-
 void BitcoinGUI::updateStakingIcon()
 {
     if(ShutdownRequested())
@@ -1226,12 +1208,12 @@ void BitcoinGUI::updateStakingIcon()
 
     if (walletModel->wallet().getLastCoinStakeSearchInterval() && nWeight)
     {
-    	uint64_t nWeight = this->nWeight;
-    	uint64_t nNetworkWeight = 1.1429 * GetPoSKernelPS();
-		
-		const Consensus::Params& consensusParams = Params().GetConsensus();
+        uint64_t nWeight = this->nWeight;
+        uint64_t nNetworkWeight = 1.1429 * GetPoSKernelPS();
+
+        const Consensus::Params& consensusParams = Params().GetConsensus();
         int64_t nTargetSpacing = consensusParams.nTargetSpacing;
-    	unsigned nEstimateTime = 1.0455 * nTargetSpacing * nNetworkWeight / nWeight;
+        unsigned nEstimateTime = 1.0455 * nTargetSpacing * nNetworkWeight / nWeight;
 
         QString text;
         if (nEstimateTime < 60)
@@ -1262,7 +1244,7 @@ void BitcoinGUI::updateStakingIcon()
         labelStakingIcon->setPixmap(platformStyle->SingleColorIcon(":/icons/staking_off").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
         if (g_connman == 0 || g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
             labelStakingIcon->setToolTip(tr("Not staking because wallet is offline"));
-        else if (IsInitialBlockDownload())
+        else if (m_node.isInitialBlockDownload())
             labelStakingIcon->setToolTip(tr("Not staking because wallet is syncing"));
         else if (!nWeight)
             labelStakingIcon->setToolTip(tr("Not staking because you don't have mature coins"));
