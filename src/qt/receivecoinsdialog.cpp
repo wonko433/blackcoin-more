@@ -28,7 +28,6 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
     columnResizingFixer(0),
     model(0),
     platformStyle(_platformStyle),
-    cfg(cfg)
 {
     ui->setupUi(this);
 

@@ -10,6 +10,7 @@
 #include <httpserver.h>
 #include <validation.h>
 #include <key_io.h>
+#include <miner.h>
 #include <net.h>
 #include <outputtype.h>
 #include <policy/feerate.h>

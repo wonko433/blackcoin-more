@@ -98,12 +98,6 @@ int main(int argc, char *argv[])
         fInvalid = true;
     }
 #endif
-    BitcoinAddressValidatorTests test6;
-    if (QTest::qExec(&test6) != 0) {
-        fInvalid = true;
-    }
-
-    fs::remove_all(pathTemp);
 
     fs::remove_all(pathTemp);
 

@@ -30,8 +30,6 @@
 #include <utilmoneystr.h>
 #include <txdb.h>
 #include <wallet/fees.h>
-#include <wallet/walletutil.h>
-#include <pos.h>
 #include <miner.h>
 
 #include <algorithm>

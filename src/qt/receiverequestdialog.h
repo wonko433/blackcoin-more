@@ -67,7 +67,4 @@ private:
     SendCoinsRecipient info;
 };
 
-// exported for unittesting
-QString ToCurrentEncoding(const QString &addr, const Config &);
-
 #endif // BITCOIN_QT_RECEIVEREQUESTDIALOG_H
