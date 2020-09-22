@@ -6,7 +6,16 @@ src/blackmored
 src/blackmore-cli
 src/blackmore-tx
 src/test/test_blackmore
+src/test/test_blackmore_fuzzy
 src/qt/test/test_blackmore-qt
+
+src/bitcoin
+src/bitcoind
+src/bitcoin-cli
+src/bitcoin-tx
+src/test/test_bitcoin
+src/test/test_bitcoin_fuzzy
+src/qt/test/test_bitcoin-qt
 
 # autoreconf
 Makefile.in
