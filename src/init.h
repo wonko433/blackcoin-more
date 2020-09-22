@@ -10,7 +10,6 @@
 #include <string>
 #include <util.h>
 
-class Config;
 class CScheduler;
 class CWallet;
 

@@ -30,6 +30,7 @@
 #include <utilmoneystr.h>
 #include <txdb.h>
 #include <wallet/fees.h>
+#include <wallet/walletutil.h>
 #include <miner.h>
 
 #include <algorithm>
@@ -565,6 +566,13 @@ std::set<uint256> CWallet::GetConflicts(const uint256& txid) const
             result.insert(_it->second);
     }
     return result;
+}
+
+bool CWallet::HasWalletSpend(const uint256& txid) const
+{
+    AssertLockHeld(cs_wallet);
+    auto iter = mapTxSpends.lower_bound(COutPoint(txid, 0));
+    return (iter != mapTxSpends.end() && iter->first.hash == txid);
 }
 
 void CWallet::Flush(bool shutdown)
@@ -1515,10 +1523,11 @@ void CWallet::MarkConflicted(const uint256& hashBlock, const uint256& hashTx)
 }
 
 void CWallet::SyncTransaction(const CTransactionRef& ptx, const CBlockIndex *pindex, int posInBlock, bool update_tx) {
-    const CTransaction& tx = *ptx;
 
-    if (!pindex && posInBlock == -1) {
+    if (!pindex && posInBlock == -1)
+    {
         // wallets need to refund inputs when disconnecting coinstake
+        const CTransaction& tx = *ptx;
         if (tx.IsCoinStake() && IsFromMe(tx))
         {
             DisableTransaction(tx);
@@ -4832,7 +4841,7 @@ std::vector<OutputGroup> CWallet::GroupOutputs(const std::vector<COutput>& outpu
     return groups;
 }
 
-//void CWallet::StakeCoins(bool fStake, CConnman* connman)
-//{
-//    ::StakeCoins(fStake, this, connman, stakeThread);
-//}
+void CWallet::StakeCoins(bool fStake, CConnman* connman)
+{
+    ::StakeCoins(fStake, this, connman, stakeThread);
+}

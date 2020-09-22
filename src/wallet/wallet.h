@@ -9,7 +9,6 @@
 #include <amount.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
-#include <pos.h>
 #include <streams.h>
 #include <tinyformat.h>
 #include <ui_interface.h>
@@ -23,6 +22,7 @@
 #include <wallet/walletdb.h>
 #include <wallet/rpcwallet.h>
 #include <consensus/params.h>
+#include <pos.h>
 #include <wallet/walletutil.h>
 
 #include <algorithm>
@@ -82,11 +82,6 @@ class CWalletTx;
 struct FeeCalculation;
 enum class FeeEstimateMode;
 namespace boost { class thread_group; }
-
-namespace boost
-{
-class thread_group;
-} // namespace boost
 
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
@@ -790,8 +785,8 @@ private:
     /**
      * Wallet staking coins.
      */
-    //boost::thread_group* stakeThread = nullptr;
-    //void StakeCoins(bool fStake, CConnman* connman);
+    boost::thread_group* stakeThread = nullptr;
+    void StakeCoins(bool fStake, CConnman* connman);
 
 public:
     /*
@@ -1122,7 +1117,8 @@ public:
 
     //! get the current wallet format (the oldest client version guaranteed to understand this wallet)
     int GetVersion() { LOCK(cs_wallet); return nWalletVersion; }
-
+  
+    //! disable transaction for coinstake
     void DisableTransaction(const CTransaction &tx);
 
     //! Get wallet transactions that conflict with given transaction (spend same outputs)
@@ -1255,10 +1251,10 @@ public:
     };
 
     /* Start staking */
-    //void StartStake(CConnman* connman) { StakeCoins(true, connman); }
+    void StartStake(CConnman* connman) { StakeCoins(true, connman); }
 
     /* Stop staking */
-    //void StopStake() { StakeCoins(false, 0); }
+    void StopStake() { StakeCoins(false, 0); }
 };
 
 /** A key allocated from the key pool. */
