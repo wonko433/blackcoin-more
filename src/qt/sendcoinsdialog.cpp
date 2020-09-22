@@ -176,8 +176,6 @@ void SendCoinsDialog::on_sendButton_clicked()
     if (model->getOptionsModel()->getCoinControlFeatures())
         ctrl = *CoinControlDialog::coinControl();
 
-    updateCoinControlState(ctrl);
-
     prepareStatus = model->prepareTransaction(currentTransaction, ctrl);
 
     // process prepareStatus and on error generate message shown to user
@@ -657,8 +655,6 @@ void SendCoinsDialog::coinControlUpdateLabels()
 {
     if (!model || !model->getOptionsModel())
         return;
-
-    updateCoinControlState(*CoinControlDialog::coinControl());
 
     // set pay amounts
     CoinControlDialog::payAmounts.clear();
