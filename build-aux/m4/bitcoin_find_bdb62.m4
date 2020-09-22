@@ -35,7 +35,7 @@ AC_DEFUN([BITCOIN_FIND_BDB62],[
       AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
         #include <${searchpath}db_cxx.h>
       ]],[[
-        #if !(DB_VERSION_MAJOR == 4 && DB_VERSION_MINOR == 8)
+        #if !(DB_VERSION_MAJOR == 6 && DB_VERSION_MINOR == 2)
           #error "failed to find bdb 6.2"
         #endif
       ]])],[
