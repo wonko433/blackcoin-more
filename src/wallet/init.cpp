@@ -261,7 +261,7 @@ void WalletInit::Start(CScheduler& scheduler) const
     else {
         CConnman& connman = *g_connman;
         for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-            pwallet->StartStake(&connman);
+            // pwallet->StartStake(&connman);
         }
     }
 
@@ -272,7 +272,7 @@ void WalletInit::Start(CScheduler& scheduler) const
 void WalletInit::Flush() const
 {
     for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-		pwallet->StopStake();
+		//pwallet->StopStake();
 		pwallet->Flush(false);
     }
 }

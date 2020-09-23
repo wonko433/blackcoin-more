@@ -647,7 +647,7 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
 return false;
 }
 
-void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
+/*void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
 {
     if (stakeThread != nullptr)
     {
@@ -661,4 +661,4 @@ void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_
         stakeThread = new boost::thread_group();
         stakeThread->create_thread(boost::bind(&ThreadStakeMiner, pwallet, connman));
     }
-}
+}*/
