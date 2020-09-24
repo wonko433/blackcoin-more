@@ -1612,10 +1612,10 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // Set proof-of-stake hash modifier
     pindex->nStakeModifier = ComputeStakeModifier(pindex->pprev, block.IsProofOfStake() ? block.vtx[1]->vin[0].prevout.hash : block.GetHash());
 
-    // Check difficulty
-    if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
+    // Check difficulty - ToDo Blackcoin 
+    /*if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
         return state.DoS(100, error("ConnectBlock(): incorrect difficulty"),
-                        REJECT_INVALID, "bad-diffbits");
+                        REJECT_INVALID, "bad-diffbits");*/
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
@@ -2980,9 +2980,9 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     const int nHeight = pindexPrev->nHeight + 1;
     const Consensus::Params& consensusParams = params.GetConsensus();
 
-    // Check difficulty
-    if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
-        return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
+    // Check difficulty - ToDo Blackcoin
+    //if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
+    //    return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3008,10 +3008,10 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
         return state.DoS(50, error("%s: block timestamp too far in the future", __func__),
                              REJECT_INVALID, "time-too-new");
 
-    // Preliminary check of pos timestamp
-    if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
+    // Preliminary check of pos timestamp - ToDo Blackcoin
+    /*if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
         return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
-                             REJECT_INVALID, "bad-pos-time");
+                             REJECT_INVALID, "bad-pos-time");*/
 
     // Check maximum reorg depth
     if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
