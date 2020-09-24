@@ -5,6 +5,7 @@
 
 #include <chainparams.h>
 #include <consensus/merkle.h>
+#include <consensus/consensus.h>
 
 #include <tinyformat.h>
 #include <util.h>
@@ -143,11 +144,11 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
         assert(genesis.hashMerkleRoot == uint256S("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
 
-        vSeeds.push_back(CDNSSeedData("dnsseed.blackcoin.nl", "dnsseed.blackcoin.nl")); // hosted at dns.blackcoin.nl
-        vSeeds.push_back(CDNSSeedData("dnsseed2.blackcoin.nl", "dnsseed2.blackcoin.nl")); // hosted at vps.blackcoin.nl
+        vSeeds.emplace_back("dnsseed.blackcoin.nl"); // hosted at dns.blackcoin.nl
+        vSeeds.emplace_back("dnsseed2.blackcoin.nl"); // hosted at vps.blackcoin.nl
         // vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl")); // Disabled for now
-        vSeeds.push_back(CDNSSeedData("ghost.blackcoin.nl", "ghost.blackcoin.nl")); // Michel van Kessel static node
-        vSeeds.push_back(CDNSSeedData("node.blackcoin.io ", "node.blackcoin.io"));  // payBLK static node
+        vSeeds.emplace_back("ghost.blackcoin.nl"); // Michel van Kessel static node
+        vSeeds.emplace_back("node.blackcoin.io");  // payBLK static node
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);

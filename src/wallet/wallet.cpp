@@ -28,7 +28,9 @@
 #include <timedata.h>
 #include <txmempool.h>
 #include <utilmoneystr.h>
+#include <txdb.h>
 #include <wallet/fees.h>
+#include <wallet/walletutil.h>
 #include <miner.h>
 
 #include <algorithm>
@@ -566,6 +568,13 @@ std::set<uint256> CWallet::GetConflicts(const uint256& txid) const
     return result;
 }
 
+bool CWallet::HasWalletSpend(const uint256& txid) const
+{
+    AssertLockHeld(cs_wallet);
+    auto iter = mapTxSpends.lower_bound(COutPoint(txid, 0));
+    return (iter != mapTxSpends.end() && iter->first.hash == txid);
+}
+
 void CWallet::Flush(bool shutdown)
 {
     database->Flush(shutdown);
@@ -648,7 +657,7 @@ void CWallet::AddToSpends(const COutPoint& outpoint, const uint256& wtxid)
 
 void CWallet::RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid)
 {
-    pair<TxSpends::iterator, TxSpends::iterator> range;
+    std::pair<TxSpends::iterator, TxSpends::iterator> range;
     range = mapTxSpends.equal_range(outpoint);
     TxSpends::iterator it = range.first;
     for(; it != range.second; ++ it)
@@ -660,7 +669,8 @@ void CWallet::RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid)
         }
     }
     range = mapTxSpends.equal_range(outpoint);
-    SyncMetaData(range);
+    if(range.first != range.second)
+        SyncMetaData(range);
 }
 
 void CWallet::AddToSpends(const uint256& wtxid)
@@ -678,7 +688,7 @@ void CWallet::AddToSpends(const uint256& wtxid)
 void CWallet::RemoveFromSpends(const uint256& wtxid)
 {
     assert(mapWallet.count(wtxid));
-    CWalletTx& thisTx = mapWallet[wtxid];
+    CWalletTx& thisTx = mapWallet.at(wtxid);
 	if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
         return;
 
@@ -1513,10 +1523,11 @@ void CWallet::MarkConflicted(const uint256& hashBlock, const uint256& hashTx)
 }
 
 void CWallet::SyncTransaction(const CTransactionRef& ptx, const CBlockIndex *pindex, int posInBlock, bool update_tx) {
-    const CTransaction& tx = *ptx;
 
-    if (!pindex && posInBlock == -1) {
+    if (!pindex && posInBlock == -1)
+    {
         // wallets need to refund inputs when disconnecting coinstake
+        const CTransaction& tx = *ptx;
         if (tx.IsCoinStake() && IsFromMe(tx))
         {
             DisableTransaction(tx);
@@ -3962,7 +3973,7 @@ std::set<CTxDestination> CWallet::GetLabelAddresses(const std::string& label) co
     return result;
 }
 
-// disable transaction (only for coinstake) 
+// disable transaction (only for coinstake)
 void CWallet::DisableTransaction(const CTransaction &tx)
 {
     if (!tx.IsCoinStake() || !IsFromMe(tx))
@@ -3970,17 +3981,17 @@ void CWallet::DisableTransaction(const CTransaction &tx)
 
     LOCK(cs_wallet);
     uint256 hash = tx.GetHash();
-    if (AbandonTransaction(hash))
+    if(AbandonTransaction(hash))
     {
         RemoveFromSpends(hash);
-        set<CWalletTx*> setCoins;
-        for (const CTxIn& txin : tx.vin)
+        std::set<CWalletTx*> setCoins;
+        for(const CTxIn& txin : tx.vin)
         {
-            CWalletTx &coin = mapWallet[txin.prevout.hash];
+            CWalletTx &coin = mapWallet.at(txin.prevout.hash);
             coin.BindWallet(this);
             NotifyTransactionChanged(this, coin.GetHash(), CT_UPDATED);
         }
-        CWalletTx& wtx = mapWallet[hash];
+        CWalletTx& wtx = mapWallet.at(hash);
         wtx.BindWallet(this);
         NotifyTransactionChanged(this, hash, CT_DELETED);
     }
@@ -4830,7 +4841,7 @@ std::vector<OutputGroup> CWallet::GroupOutputs(const std::vector<COutput>& outpu
     return groups;
 }
 
-void CWallet::StakeCoins(bool fStake, CConnman* connman)
+/*void CWallet::StakeCoins(bool fStake, CConnman* connman)
 {
     ::StakeCoins(fStake, this, connman, stakeThread);
-}
+}*/

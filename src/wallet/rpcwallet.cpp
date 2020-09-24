@@ -30,8 +30,11 @@
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
 #include <wallet/walletutil.h>
+#include <miner.h>
 
 #include <stdint.h>
+
+#include <boost/optional.hpp>
 
 #include <univalue.h>
 
@@ -86,7 +89,7 @@ void EnsureWalletIsUnlocked(CWallet * const pwallet)
     if (pwallet->IsLocked()) {
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
     }
-    if (pwallet->m_wallet_unlock_staking_only)
+    if (pwallet->m_wallet_unlock_staking_only) {
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Wallet is unlocked for staking only.");
     }
 }
@@ -3021,7 +3024,7 @@ static UniValue loadwallet(const JSONRPCRequest& request)
     // Mine proof-of-stake blocks in the background
     if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
         CConnman& connman = *g_connman;
-        wallet->StartStake(&connman);
+        //wallet->StartStake(&connman);
     }
 	
     UniValue obj(UniValue::VOBJ);
@@ -3079,7 +3082,7 @@ static UniValue createwallet(const JSONRPCRequest& request)
     // Mine proof-of-stake blocks in the background
     if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
         CConnman& connman = *g_connman;
-        wallet->StartStake(&connman);
+        //wallet->StartStake(&connman);
     }
 
     UniValue obj(UniValue::VOBJ);
@@ -3126,7 +3129,7 @@ static UniValue unloadwallet(const JSONRPCRequest& request)
     }
 	
     // Stop wallet from staking
-    wallet->StopStake();
+    //wallet->StopStake();
 
     UnloadWallet(std::move(wallet));
 

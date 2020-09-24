@@ -42,8 +42,12 @@
 #include <torcontrol.h>
 #include <ui_interface.h>
 #include <util.h>
+#include <logging.h>
 #include <utilmoneystr.h>
 #include <validationinterface.h>
+#ifdef ENABLE_WALLET
+#include <wallet/wallet.h>
+#endif
 #include <warnings.h>
 #include <walletinitinterface.h>
 #include <stdint.h>

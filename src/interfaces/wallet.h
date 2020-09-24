@@ -323,6 +323,7 @@ struct WalletTx
     std::map<std::string, std::string> value_map;
     bool is_coinbase;
     bool is_coinstake;
+    bool is_in_main_chain;
 };
 
 //! Updated transaction status.

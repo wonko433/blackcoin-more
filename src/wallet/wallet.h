@@ -9,7 +9,6 @@
 #include <amount.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
-#include <pos.h>
 #include <streams.h>
 #include <tinyformat.h>
 #include <ui_interface.h>
@@ -21,6 +20,9 @@
 #include <wallet/crypter.h>
 #include <wallet/coinselection.h>
 #include <wallet/walletdb.h>
+#include <wallet/rpcwallet.h>
+#include <consensus/params.h>
+#include <pos.h>
 #include <wallet/walletutil.h>
 
 #include <algorithm>
@@ -79,11 +81,7 @@ class CTxMemPool;
 class CWalletTx;
 struct FeeCalculation;
 enum class FeeEstimateMode;
-
-namespace boost
-{
-class thread_group;
-} // namespace boost
+namespace boost { class thread_group; }
 
 /** (client) version numbers for particular wallet features */
 enum WalletFeature
@@ -1119,7 +1117,8 @@ public:
 
     //! get the current wallet format (the oldest client version guaranteed to understand this wallet)
     int GetVersion() { LOCK(cs_wallet); return nWalletVersion; }
-
+  
+    //! disable transaction for coinstake
     void DisableTransaction(const CTransaction &tx);
 
     //! Get wallet transactions that conflict with given transaction (spend same outputs)

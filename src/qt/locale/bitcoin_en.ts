@@ -2944,6 +2944,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <location line="+5"/>
         <source>Confirm send coins</source>
         <translation type="unfinished"></translation>
+    </message>
     <message>
         <location line="+192"/>
         <source>The recipient address is not valid. Please recheck.</source>

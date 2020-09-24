@@ -7,6 +7,7 @@
 #include <consensus/consensus.h>
 #include <primitives/transaction.h>
 #include <script/interpreter.h>
+#include <script/standard.h>
 #include <consensus/validation.h>
 
 // TODO remove the following dependencies
@@ -218,9 +219,9 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         // If prev is coinbase or coinstake, check that it's matured
         if (coin.IsCoinBase() || coin.IsCoinStake()) {
             if (nSpendHeight - coin.nHeight < Params().nCoinbaseMaturity)
-                return state.Invalid(false,
-                    REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
-                    strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
+            return state.Invalid(false,
+                REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
+                strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
         }
 
         // Check transaction timestamp
@@ -233,8 +234,8 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputvalues-outofrange");
         }
     }
-
-    const CAmount value_out = tx.GetValueOut();
+    // ToDo Blackcoin
+    /*const CAmount value_out = tx.GetValueOut();
     if (nValueIn < value_out) {
         return state.DoS(100, false, REJECT_INVALID, "bad-txns-in-belowout", false,
             strprintf("value in (%s) < value out (%s)", FormatMoney(nValueIn), FormatMoney(value_out)));
@@ -244,7 +245,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
     const CAmount txfee_aux = nValueIn - value_out;
     if (!MoneyRange(txfee_aux)) {
         return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
-    }
+    }*/
 
     if (!tx.IsCoinStake())
     {

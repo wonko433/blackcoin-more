@@ -409,7 +409,7 @@ public:
     }
     void setWalletUnlockStakingOnly(bool unlock) override
     {
-        m_wallet.m_wallet_unlock_staking_only = unlock;
+       m_wallet.m_wallet_unlock_staking_only = unlock;
     }
     std::unique_ptr<Handler> handleUnload(UnloadFn fn) override
     {

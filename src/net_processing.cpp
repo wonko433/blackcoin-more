@@ -28,6 +28,9 @@
 #include <util.h>
 #include <utilmoneystr.h>
 #include <utilstrencodings.h>
+#include <checkpoints.h>
+#include <clientversion.h>
+#include <consensus/merkle.h>
 
 #include <memory>
 
