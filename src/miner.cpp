@@ -524,8 +524,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
 
         while (true)
         {
-            while (pwallet->IsLocked())
-            {
+            while (pwallet->IsLocked()) {
                 pwallet->m_last_coin_stake_search_interval = 0;
                 MilliSleep(10000);
             }
@@ -565,7 +564,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                 nSearchTime &= ~Params().GetConsensus().nStakeTimestampMask;
 
                 if (nSearchTime > pwallet->m_last_coin_stake_search_time) {
-					pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
+                    pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
                     // Trying to sign a block
                     if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
                         // increase priority
