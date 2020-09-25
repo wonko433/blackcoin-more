@@ -467,7 +467,7 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
     pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 }
 
-bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainParams& chainparams)
+bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
 {
     uint256 hashBlock = pblock->GetHash();
 
@@ -498,14 +498,14 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet, const CChainPar
         // Process this block the same as if we had received it from another node
         std::shared_ptr<const CBlock> staked_pblock =
                     std::make_shared<const CBlock>(*pblock);
-        if (!ProcessNewBlock(chainparams, staked_pblock, true, NULL))
+        if (!ProcessNewBlock(Params(), staked_pblock, true, NULL))
             return error("CheckStake() : ProcessNewBlock, block not accepted");
     }
 
     return true;
 }
 
-void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
+void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
 {
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     LogPrintf("Staking started\n");
@@ -531,17 +531,14 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
             }
 
             if (!regtestMode) {
-                while (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload())
-                {
+                while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload()) {
                     pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
                     MilliSleep(1000);
                 }
-                if (fTryToSync)
-                {
+                if (fTryToSync) {
                     fTryToSync = false;
-                    if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60)
-                    {
+                    if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60) {
                         MilliSleep(60000);
                         continue;
                     }
@@ -560,7 +557,6 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                     return;
 
                 std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
-                pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
 
                 if (pwallet->m_last_coin_stake_search_time == 0)
                     pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
@@ -568,22 +564,21 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                 int64_t nSearchTime = GetAdjustedTime();
                 nSearchTime &= ~Params().GetConsensus().nStakeTimestampMask;
 
-                if (nSearchTime > pwallet->m_last_coin_stake_search_time) 
-				{
-					// Trying to sign a block
-					if (SignBlock(pblock, *pwallet, nFees, nSearchTime))
-					{
-						// increase priority
-						SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
-						// Sign the full block
-						CheckStake(pblock, *pwallet, chainparams);
-						// return back to low priority
-						SetThreadPriority(THREAD_PRIORITY_LOWEST);
-						MilliSleep(500);
-					}
-				pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
-				pwallet->m_last_coin_stake_search_time = nSearchTime;
-				}
+                if (nSearchTime > pwallet->m_last_coin_stake_search_time) {
+					pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
+                    // Trying to sign a block
+                    if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
+                        // increase priority
+                        SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
+                        // Sign the full block
+                        CheckStake(pblock, *pwallet);
+                        // return back to low priority
+                        SetThreadPriority(THREAD_PRIORITY_LOWEST);
+                        MilliSleep(500);
+                    }
+                    pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+                    pwallet->m_last_coin_stake_search_time = nSearchTime;
+                }
             }
                 MilliSleep(nMinerSleep);
         }
@@ -597,6 +592,22 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
     {
         LogPrintf("ThreadStakeMiner(): runtime error: %s\n", e.what());
         return;
+    }
+}
+
+void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
+{
+    if (stakeThread != nullptr)
+    {
+        stakeThread->interrupt_all();
+        delete stakeThread;
+        stakeThread = nullptr;
+    }
+
+    if (fStake)
+    {
+        stakeThread = new boost::thread_group();
+        stakeThread->create_thread(boost::bind(&ThreadStakeMiner, pwallet, connman));
     }
 }
 
@@ -646,19 +657,3 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
 
 return false;
 }
-
-/*void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
-{
-    if (stakeThread != nullptr)
-    {
-        stakeThread->interrupt_all();
-        delete stakeThread;
-        stakeThread = nullptr;
-    }
-
-    if(fStake)
-    {
-        stakeThread = new boost::thread_group();
-        stakeThread->create_thread(boost::bind(&ThreadStakeMiner, pwallet, connman));
-    }
-}*/
