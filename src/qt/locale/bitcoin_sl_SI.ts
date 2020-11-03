@@ -1,4 +1,6 @@
-<TS language="sl_SI" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sl_SI">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -97,7 +99,7 @@
         <source>Exporting Failed</source>
         <translation>Podatkov ni bilo mogoče izvoziti.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -451,7 +453,12 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktivna povezava v omrežje Blackcoin</numerusform><numerusform>%n aktivni povezavi v omrežje Blackcoin</numerusform><numerusform>%n aktivne povezave v omrežje Blackcoin</numerusform><numerusform>%n aktivnih povezav v omrežje Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n aktivna povezava v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivni povezavi v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivne povezave v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivnih povezav v omrežje Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -463,7 +470,12 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n obdelan blok zgodovine transakcij.</numerusform><numerusform>%n obdelana bloka zgodovine transakcij.</numerusform><numerusform>%n obdelani bloki zgodovine transakcij.</numerusform><numerusform>%n obdelanih blokov zgodovine transakcij.</numerusform></translation>
+        <translation>
+            <numerusform>%n obdelan blok zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelana bloka zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelani bloki zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelanih blokov zgodovine transakcij.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -759,12 +771,12 @@
         <translation>Uredi naslov za pošiljanje</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
         <translation>Vnešeni naslov %1 ni veljaven Blackcoin naslov.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Naslov %1 že obstaja kot naslov za prejemanje z oznako "%2" in ga je nemogoče dodati kot naslov za pošiljanje.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Naslov %1 že obstaja kot naslov za prejemanje z oznako &quot;%2&quot; in ga je nemogoče dodati kot naslov za pošiljanje.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -864,8 +876,8 @@
         <translation>Tudi denarnica bo shranjena v tem direktoriju.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Napaka: Ni mogoče ustvariti mape "%1".</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Napaka: Ni mogoče ustvariti mape &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -873,11 +885,21 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform></translation>
+        <translation>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GiB)</numerusform></translation>
+        <translation>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1303,8 +1325,8 @@
         <translation>Rokovanje z URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' ni veljaven URI. Uporabite raje 'blackcoin:' .</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; ni veljaven URI. Uporabite raje &apos;blackcoin:&apos; .</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1331,7 +1353,7 @@
         <translation>Zahtevek za plačilo zavrnjen</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Zahtevek za plačilo in vaš odjemalec se nahajata na dveh različnih omrežjih.</translation>
     </message>
     <message>
@@ -1450,19 +1472,39 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n sekunda</numerusform><numerusform>%n sekundi</numerusform><numerusform>%n sekunde</numerusform><numerusform>%n sekund</numerusform></translation>
+        <translation>
+            <numerusform>%n sekunda</numerusform>
+            <numerusform>%n sekundi</numerusform>
+            <numerusform>%n sekunde</numerusform>
+            <numerusform>%n sekund</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minuta</numerusform><numerusform>%n minuti</numerusform><numerusform>%n minute</numerusform><numerusform>%n minut</numerusform></translation>
+        <translation>
+            <numerusform>%n minuta</numerusform>
+            <numerusform>%n minuti</numerusform>
+            <numerusform>%n minute</numerusform>
+            <numerusform>%n minut</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n ura</numerusform><numerusform>%n uri</numerusform><numerusform>%n ure</numerusform><numerusform>%n ur</numerusform></translation>
+        <translation>
+            <numerusform>%n ura</numerusform>
+            <numerusform>%n uri</numerusform>
+            <numerusform>%n ure</numerusform>
+            <numerusform>%n ur</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n teden</numerusform><numerusform>%n tedna</numerusform><numerusform>%n tedni</numerusform><numerusform>%n tednov</numerusform></translation>
+        <translation>
+            <numerusform>%n teden</numerusform>
+            <numerusform>%n tedna</numerusform>
+            <numerusform>%n tedni</numerusform>
+            <numerusform>%n tednov</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1470,7 +1512,12 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n leto</numerusform><numerusform>%n leti</numerusform><numerusform>%n leta</numerusform><numerusform>%n let</numerusform></translation>
+        <translation>
+            <numerusform>%n leto</numerusform>
+            <numerusform>%n leti</numerusform>
+            <numerusform>%n leta</numerusform>
+            <numerusform>%n let</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1489,7 +1536,7 @@
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 se še ni varnoi zaprl ...</translation>
     </message>
     <message>
@@ -1504,8 +1551,8 @@
         <translation>Napaka pri razčlenjevanju argumentov: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Napaka: Vnešena podatkovna mapa "%1" ne obstaja.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Napaka: Vnešena podatkovna mapa &quot;%1&quot; ne obstaja.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1786,8 +1833,8 @@
         <translation>Izvajam ukaz brez denarnice</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Izvajam ukaz v denarnici "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Izvajam ukaz v denarnici &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -2426,7 +2473,7 @@
         <translation>&amp;Preveri sporočilo</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Da preverite verodostojnost sporočila, spodaj vnesite: prejemnikov naslov, prejeto sporočilo (pazljivo skopirajte vse prelome vrstic, presledke, tabulatorje ipd.,) in prejeti podpis. Da se izognete napadom tipa man-in-the-middle, vedite, da iz veljavnega podpisa ne sledi nič drugega, kot tisto, kar je navedeno v sporočilu. Podpis samo potrjuje dejstvo, da ima podpisnik v lasti prejemni naslov, ne more pa dokazati vira nobene transakcije!</translation>
     </message>
     <message>
@@ -2446,8 +2493,8 @@
         <translation>Počisti vsa polja za vnos v oknu za preverjanje</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Kliknite na "Podpiši sporočilo" za ustvarjanje podpisa</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Kliknite na &quot;Podpiši sporočilo&quot; za ustvarjanje podpisa</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2516,7 +2563,12 @@
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Odpri za %n več blok</numerusform><numerusform>Odpri za %n več bloka</numerusform><numerusform>Odpri za %n več bloke</numerusform><numerusform>Odpri za %n blokov več</numerusform></translation>
+        <translation>
+            <numerusform>Odpri za %n več blok</numerusform>
+            <numerusform>Odpri za %n več bloka</numerusform>
+            <numerusform>Odpri za %n več bloke</numerusform>
+            <numerusform>Odpri za %n blokov več</numerusform>
+        </translation>
     </message>
     <message>
         <source>conflicted with a transaction with %1 confirmations</source>
@@ -2584,7 +2636,12 @@
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>Dozori v %n bloku</numerusform><numerusform>Dozori v %n blokih</numerusform><numerusform>Dozori v %n blokih</numerusform><numerusform>Dozori v %n blokih</numerusform></translation>
+        <translation>
+            <numerusform>Dozori v %n bloku</numerusform>
+            <numerusform>Dozori v %n blokih</numerusform>
+            <numerusform>Dozori v %n blokih</numerusform>
+            <numerusform>Dozori v %n blokih</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2635,8 +2692,8 @@
         <translation>Trgovec</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Ustvarjeni kovanci morajo zoreti %1 blokov, preden jih lahko porabite. Ko ste ta blok ustvarili, je bil posredovan v omrežje, da bo dodan v verigo blokov. Če se bloku ni uspelo uvrstiti v verigo, se bo njegovo stanje spremenilo v "ni bilo sprejeto" in kovancev ne bo mogoče porabiti. To se včasih zgodi, če kak drug rudar v roku nekaj sekund hkrati z vami odkrije drug blok.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Ustvarjeni kovanci morajo zoreti %1 blokov, preden jih lahko porabite. Ko ste ta blok ustvarili, je bil posredovan v omrežje, da bo dodan v verigo blokov. Če se bloku ni uspelo uvrstiti v verigo, se bo njegovo stanje spremenilo v &quot;ni bilo sprejeto&quot; in kovancev ne bo mogoče porabiti. To se včasih zgodi, če kak drug rudar v roku nekaj sekund hkrati z vami odkrije drug blok.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2690,7 +2747,12 @@
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Odpri za %n več blok</numerusform><numerusform>Odpri za %n več bloka</numerusform><numerusform>Odpri za %n več bloke</numerusform><numerusform>Odpri za %n blokov več</numerusform></translation>
+        <translation>
+            <numerusform>Odpri za %n več blok</numerusform>
+            <numerusform>Odpri za %n več bloka</numerusform>
+            <numerusform>Odpri za %n več bloke</numerusform>
+            <numerusform>Odpri za %n blokov več</numerusform>
+        </translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -2977,7 +3039,7 @@
         <translation>Nova provizija:</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Ne morem podpisati transakcije.</translation>
     </message>
     <message>
@@ -3059,7 +3121,7 @@
         <translation>Napaka pri branju %s! Vsi ključi so bili prebrani pravilno, vendar so lahko vnosi o transakcijah ali vnosi naslovov nepravilni ali manjkajo.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Opozorilo: Preverite, če sta datum in ura na vašem računalniku točna! %s ne bo deloval pravilno, če je nastavljeni čas nepravilen.</translation>
     </message>
     <message>
@@ -3091,8 +3153,8 @@
         <translation>-maxmempool mora biti vsaj %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Naslova -%s ni mogoče razrešiti: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Naslova -%s ni mogoče razrešiti: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3167,20 +3229,20 @@
         <translation>Začetni sanity check neuspešen. %s se zapira.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Vnešena podatkovna mapa za bloke "%s" ne obstaja.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Vnešena podatkovna mapa za bloke &quot;%s&quot; ne obstaja.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3263,7 +3325,7 @@
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
         <translation>Pri opciji -whitebind morate navesti vrata: %s</translation>
     </message>
     <message>
@@ -3275,16 +3337,16 @@
         <translation>Transakcije ni bilo mogoče podpisati.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Določena -walletdir "%s" ne obstaja</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Določena -walletdir &quot;%s&quot; ne obstaja</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Določena -walletdir "%s" je relativna</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Določena -walletdir &quot;%s&quot; je relativna</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Določena -walletdir "%s" ni podatkovna mapa</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Določena -walletdir &quot;%s&quot; ni podatkovna mapa</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
@@ -3351,8 +3413,8 @@
         <translation>Transakcija mora imeti vsaj enega prejemnika.</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Neznano omrežje določeno v -onlynet: '%s'.</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Neznano omrežje določeno v -onlynet: &apos;%s&apos;.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -3363,8 +3425,8 @@
         <translation>Opozorilo: zasebni ključi odkriti v denarnici %s z onemogočenimi zasebnimi ključi.</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Nimam dostopa za pisanje v podatkovni mapi '%s'; preveri dovoljenja.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Nimam dostopa za pisanje v podatkovni mapi &apos;%s&apos;; preveri dovoljenja.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

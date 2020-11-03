@@ -1,4 +1,6 @@
-<TS language="is" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="is">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -618,7 +620,7 @@
         <source>(no label)</source>
         <translation>(ekkert merki)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -654,16 +656,10 @@
         <translation>Breyta sendingarfærslugildi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Færslugildið sem slegið var inn "%1" er ekki leyfilegt Blackcoin færslugildi.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Færslugildið sem slegið var inn &quot;%1&quot; er ekki leyfilegt Blackcoin færslugildi.</translation>
     </message>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -674,7 +670,7 @@
         <source>Error</source>
         <translation>Villa</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -685,10 +681,7 @@
         <source>Last block time</source>
         <translation>Tími síðustu blokkar</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -737,23 +730,14 @@
         <source>Invalid payment address %1</source>
         <translation>Ógilt færslugildi til greiðslu %1</translation>
     </message>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>Upphæð</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -776,7 +760,7 @@
         <source>Last block time</source>
         <translation>Tími síðustu blokkar</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -791,7 +775,7 @@
         <source>Copy label</source>
         <translation>Afrita merki</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -814,7 +798,7 @@
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
         <translation>URI varð of langt, reyndu að minnka texta í merki / skilaboðum.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -825,7 +809,7 @@
         <source>(no label)</source>
         <translation>(ekkert merki)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -875,36 +859,18 @@
         <source>&amp;Label:</source>
         <translation>&amp;Merki:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Fullgerð mynt verður að nýta %1 blokkir. Þegar þú bjóst til þessa blokk, þá var jafnóðum tilkynnt á netinu að hún eigi að bætast við blokkakeðjuna. Ef hún kemst ekki í keðjuna þá mun staða hennar breytast í "ósamþykkt" og ekki verður hægt að nota hana. Þetta gerist annað slagið ef annar hnútpunktur klárar blokk nokkrum sekúndum á undan þinni.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Fullgerð mynt verður að nýta %1 blokkir. Þegar þú bjóst til þessa blokk, þá var jafnóðum tilkynnt á netinu að hún eigi að bætast við blokkakeðjuna. Ef hún kemst ekki í keðjuna þá mun staða hennar breytast í &quot;ósamþykkt&quot; og ekki verður hægt að nota hana. Þetta gerist annað slagið ef annar hnútpunktur klárar blokk nokkrum sekúndum á undan þinni.</translation>
     </message>
     <message>
         <source>Amount</source>
         <translation>Upphæð</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -919,7 +885,7 @@
         <source>(no label)</source>
         <translation>(ekkert merki)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -950,16 +916,7 @@
         <source>Exporting Failed</source>
         <translation>Útflutningur tókst ekki</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -970,7 +927,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Flytja gögn í flipanum í skrá</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -990,7 +947,7 @@
         <translation>Viðvörun</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Viðvörun: Óþekkt blokkarútgáfa í námavinnslu! Það er mögulegt að óþekktum reglum sé fylgt</translation>
     </message>
     <message>

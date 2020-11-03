@@ -1,4 +1,6 @@
-<TS language="mn" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="mn">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -41,10 +43,7 @@
         <source>&amp;Delete</source>
         <translation>&amp;Устгах</translation>
     </message>
-    </context>
-<context>
-    <name>AddressTableModel</name>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -59,10 +58,7 @@
         <source>Repeat new passphrase</source>
         <translation>Шинэ нууц үгийг давтана уу</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -181,7 +177,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Түрүйвч &lt;b&gt;цоожтой&lt;/b&gt; ба одоогоор цоож &lt;b&gt;хаалттай&lt;/b&gt; байна</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -204,7 +200,7 @@
         <source>Confirmed</source>
         <translation>Баталгаажлаа</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -219,17 +215,14 @@
         <source>&amp;Address</source>
         <translation>&amp;Хаяг</translation>
     </message>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
         <translation>хувилбар</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -240,17 +233,14 @@
         <source>Error</source>
         <translation>Алдаа</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Last block time</source>
         <translation>Сүүлийн блокийн хугацаа</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -285,20 +275,14 @@
         <source>This change would require a client restart.</source>
         <translation>Энэ ѳѳрчлѳлтийг оруулахын тулд кли1нт програмыг ахин эхлүүлэх шаардлагтай</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Available:</source>
         <translation>Хэрэглэж болох хэмжээ:</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -314,12 +298,6 @@
         <translation>үл мэдэгдэх</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -374,7 +352,7 @@
         <source>Clear console</source>
         <translation>Консолыг цэвэрлэх</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -401,7 +379,7 @@
         <source>Remove</source>
         <translation>Устгах</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -416,14 +394,14 @@
         <source>Wallet</source>
         <translation>Түрүйвч</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
         <translation>Огноо</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -470,7 +448,7 @@
         <source>S&amp;end</source>
         <translation>Яв&amp;уул</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -505,10 +483,7 @@
         <source>Pay To:</source>
         <translation>Тѳлѳх хаяг:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
+</context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -534,13 +509,7 @@
         <source>Clear &amp;All</source>
         <translation>&amp;Бүгдийг Цэвэрлэ</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -555,21 +524,21 @@
         <source>Amount</source>
         <translation>Хэмжээ</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Гүйлгээний дэлгэрэнгүйг энэ бичил цонх харуулж байна</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
         <translation>Огноо</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -580,20 +549,14 @@
         <source>Date</source>
         <translation>Огноо</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Зоос явуулах</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -604,7 +567,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Сонгогдсон таб дээрхи дата-г экспортлох</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

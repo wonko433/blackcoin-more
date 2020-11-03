@@ -1,4 +1,6 @@
-<TS language="sr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sr">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -443,7 +445,7 @@
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Прегледајте листу коришћених адреса и етикета за пријем уплата</translation>
+        <translation>Прегледајте листу коришћених адреса и етикета за&#xa0;пријем уплата</translation>
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
@@ -455,7 +457,11 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aктивна веза са Биткоин мрежом</numerusform><numerusform>%n aктивних веза са Биткоин мрежом</numerusform><numerusform>%n aктивних веза са Биткоин мрежом</numerusform></translation>
+        <translation>
+            <numerusform>%n aктивна веза са Биткоин мрежом</numerusform>
+            <numerusform>%n aктивних веза са Биткоин мрежом</numerusform>
+            <numerusform>%n aктивних веза са Биткоин мрежом</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +473,11 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Обрађенo %n блокова историјата трансакција.</numerusform><numerusform>Обрађенo %n блокова историјата трансакција.</numerusform><numerusform>Обрађенo је %n блокова историјата трансакција.</numerusform></translation>
+        <translation>
+            <numerusform>Обрађенo %n блокова историјата трансакција.</numerusform>
+            <numerusform>Обрађенo %n блокова историјата трансакција.</numerusform>
+            <numerusform>Обрађенo је %n блокова историјата трансакција.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -833,7 +843,7 @@
         <source>Error</source>
         <translation>Greška</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -864,10 +874,7 @@
         <source>Hide</source>
         <translation>Сакриј</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -914,7 +921,7 @@
         <source>Error</source>
         <translation>Greška</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -933,13 +940,7 @@
         <source>Total:</source>
         <translation>Укупно:</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -951,12 +952,6 @@
         <translation>nepoznato</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -975,7 +970,7 @@
         <source>No</source>
         <translation>Ne</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1026,7 +1021,7 @@
         <source>Wallet</source>
         <translation>Новчаник</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1041,7 +1036,7 @@
         <source>(no label)</source>
         <translation>(без налепнице)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1143,7 +1138,7 @@
         <source>Message:</source>
         <translation>Poruka:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1151,9 +1146,6 @@
         <translation>Da</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -1164,7 +1156,7 @@
         <source>Alt+P</source>
         <translation>Alt+П</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1172,9 +1164,6 @@
         <translation>[testnet]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -1189,14 +1178,14 @@
         <source>Amount</source>
         <translation>Износ</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Ovaj odeljak pokazuje detaljan opis transakcije</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1211,7 +1200,7 @@
         <source>(no label)</source>
         <translation>(без налепнице)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1255,20 +1244,14 @@
         <source>Exporting Failed</source>
         <translation>Извоз Неуспешан</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Слање новца</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1279,7 +1262,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Извези податке из одабране картице у фајлj</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

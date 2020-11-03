@@ -1,4 +1,6 @@
-<TS language="te" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="te">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -141,7 +143,7 @@
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>జోలెకు క్రొత్త సంకేతపదము ఇవ్వండి.&lt;br/&gt; &lt;b&gt;పది లేదా ఎక్కువ యాదృచ్ఛిక అక్షరాలు&lt;/b&gt;, లేక &lt;b&gt;ఎనిమిది కంటే ఎక్కువ పదాలు&lt;/b&gt; కలిగి ఉన్న సంకేతపదము దయచేసి వాడండి.</translation>
+        <translation>జోలెకు క్రొత్త సంకేతపదము ఇవ్వండి.&lt;br/&gt; &lt;b&gt;పది లేదా ఎక్కువ యాదృచ్ఛిక అక్షరాలు&lt;/b&gt;, లేక &lt;b&gt;ఎనిమిది కంటే ఎక్కువ పదాలు&lt;/b&gt; కలిగి ఉన్న&#xa0;సంకేతపదము దయచేసి వాడండి.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
@@ -153,7 +155,7 @@
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>మీరు ఖచ్చితంగా మీ జోలెని సంకేతపరచాలని కోరుకుంటున్నారా?</translation>
+        <translation>మీరు ఖచ్చితంగా మీ జోలెని సంకేతపరచాలని&#xa0;కోరుకుంటున్నారా?</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -163,10 +165,7 @@
         <source>Wallet encryption failed</source>
         <translation>జోలె సంకేతపరచడం విఫలమయ్యింది</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -205,7 +204,7 @@
         <source>Connecting to peers...</source>
         <translation>తోటివాళ్లతో అనుసంధానం కుదురుస్తుంది</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -224,16 +223,7 @@
         <source>(no label)</source>
         <translation>( ఉల్లాకు లేదు )</translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -244,29 +234,14 @@
         <source>Error</source>
         <translation>లోపం</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Error</source>
         <translation>లోపం</translation>
     </message>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -274,18 +249,6 @@
         <translation>తెలియదు</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -304,7 +267,7 @@
         <source>Wallet</source>
         <translation>వాలెట్</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -323,7 +286,7 @@
         <source>(no label)</source>
         <translation>( ఉల్లాకు లేదు )</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -335,24 +298,6 @@
         <translation>( ఉల్లాకు లేదు )</translation>
     </message>
 </context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -383,10 +328,7 @@
         <source>Merchant</source>
         <translation>వర్తకుడు</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -401,7 +343,7 @@
         <source>(no label)</source>
         <translation>( ఉల్లాకు లేదు )</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -428,16 +370,7 @@
         <source>Exporting Failed</source>
         <translation>ఎగుమతి విఫలమయ్యింది</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -448,7 +381,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>ప్రస్తుతం ఉన్న సమాచారాన్ని ఫైల్ లోనికి ఎగుమతి చేసుకోండి </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

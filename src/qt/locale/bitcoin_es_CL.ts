@@ -1,4 +1,6 @@
-<TS language="es_CL" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es_CL">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -451,7 +453,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n conexión activa hacia la red Blackcoin</numerusform><numerusform>%n conexiones activas hacia la red Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n conexión activa hacia la red Blackcoin</numerusform>
+            <numerusform>%n conexiones activas hacia la red Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -463,51 +468,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n bloque procesado del historial de transacciones.</numerusform><numerusform>%n bloques procesados del historial de transacciones.</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>%1 atrás</translation>
-    </message>
-    <message>
-        <source>Last received block was generated %1 ago.</source>
-        <translation>El último bloque recibido fue generado hace %1</translation>
-    </message>
-    <message>
-        <source>Transactions after this will not yet be visible.</source>
-        <translation>Las transacciones posteriores aún no están visibles.</translation>
-    </message>
-    <message>
-        <source>Show the list of used sending addresses and labels</source>
-        <translation>Mostrar la lista de direcciones de envío y etiquetas</translation>
-    </message>
-    <message>
-        <source>Show the list of used receiving addresses and labels</source>
-        <translation>Mostrar la lista de direcciones de recepción y etiquetas</translation>
-    </message>
-    <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>Abrir un identificador URI blackcoin o una petición de pago</translation>
-    </message>
-    <message>
-        <source>&amp;Command-line options</source>
-        <translation>&amp;Opciones de linea de comando</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n conexión activa hacia la red Blackcoin</numerusform><numerusform>%n conexiones activas hacia la red Blackcoin</numerusform></translation>
-    </message>
-    <message>
-        <source>Indexing blocks on disk...</source>
-        <translation>Indexando bloques en disco...</translation>
-    </message>
-    <message>
-        <source>Processing blocks on disk...</source>
-        <translation>Procesando bloques en disco...</translation>
-    </message>
-    <message numerus="yes">
-        <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n bloque procesado del historial de transacciones.</numerusform><numerusform>%n bloques procesados del historial de transacciones.</numerusform></translation>
+        <translation>
+            <numerusform>%n bloque procesado del historial de transacciones.</numerusform>
+            <numerusform>%n bloques procesados del historial de transacciones.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -804,8 +768,8 @@
         <translation>Editar dirección de envio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>La dirección introducida "%1" no es una dirección Blackcoin valida.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>La dirección introducida &quot;%1&quot; no es una dirección Blackcoin valida.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -913,8 +877,8 @@
         <translation>El monedero también será almacenado en este directorio.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Error: El directorio de datos especificado "%1" no pudo ser creado.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Error: El directorio de datos especificado &quot;%1&quot; no pudo ser creado.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -922,11 +886,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB de espacio libre disponible</numerusform><numerusform>%n GB de espacio libre disponible</numerusform></translation>
+        <translation>
+            <numerusform>%n GB de espacio libre disponible</numerusform>
+            <numerusform>%n GB de espacio libre disponible</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(de %n GB requerido)</numerusform><numerusform>(de %n GB requeridos)</numerusform></translation>
+        <translation>
+            <numerusform>(de %n GB requerido)</numerusform>
+            <numerusform>(de %n GB requeridos)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -936,7 +906,7 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Las transacciones recientes aún no pueden ser visibles, y por lo tanto el saldo de su monedero podría ser incorrecto. Esta información será correcta cuando su monedero haya terminado de sincronizarse con la red de blackcoin, como se detalla abajo.</translation>
     </message>
     <message>
@@ -1377,7 +1347,7 @@
         <translation>Solicitud de pago rechazada</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Red de solicitud de pagos no coincide con la red del cliente.</translation>
     </message>
     <message>
@@ -1496,7 +1466,10 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n segundo</numerusform><numerusform>%n segundos</numerusform></translation>
+        <translation>
+            <numerusform>%n segundo</numerusform>
+            <numerusform>%n segundos</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1519,7 +1492,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 aun no se ha cerrado de forma segura...</translation>
     </message>
     <message>
@@ -1530,8 +1503,8 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Error: El directorio de datos "%1" especificado no existe.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Error: El directorio de datos &quot;%1&quot; especificado no existe.</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -2414,8 +2387,8 @@
         <translation>Limpiar todos los campos de la verificación de mensaje</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Click en "Firmar mensaje" para generar una firma</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Click en &quot;Firmar mensaje&quot; para generar una firma</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2937,7 +2910,7 @@
         <translation>Confirmar incremento de comisión</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>No se ha podido firmar la transacción.</translation>
     </message>
     <message>
@@ -2979,7 +2952,7 @@
         <source>The wallet data was successfully saved to %1.</source>
         <translation>Los datos del monedero se han guardado con éxito en %1.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -3031,8 +3004,8 @@
         <translation>-maxmempool debe ser por lo menos de %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>No se puede resolver -%s direccion: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>No se puede resolver -%s direccion: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3099,16 +3072,16 @@
         <translation>La inicialización de la verificación de validez falló. Se está apagando %s.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Monto invalido para -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Monto invalido para -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Monto invalido para -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Monto invalido para -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Monto invalido para -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Monto invalido para -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
@@ -3159,7 +3132,7 @@
         <translation>Verificando bloques...</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Error cargando %s: No puedes deshabilitar HD en un monedero HD ya existente</translation>
     </message>
     <message>
@@ -3175,24 +3148,24 @@
         <translation>Información</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Dirección de -onion o dominio '%s' inválido</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Dirección de -onion o dominio &apos;%s&apos; inválido</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Dirección de -proxy o dominio ' %s' inválido</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Dirección de -proxy o dominio &apos; %s&apos; inválido</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Cantidad inválida para -paytxfee=&lt;amount&gt;: '%s' (debe ser por lo menos %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Cantidad inválida para -paytxfee=&lt;amount&gt;: &apos;%s&apos; (debe ser por lo menos %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Máscara de red inválida especificada en -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Máscara de red inválida especificada en -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Necesita especificar un puerto con -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Necesita especificar un puerto con -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3247,7 +3220,7 @@
         <translation>-maxtxfee tiene un valor muy elevado! Comisiones muy grandes podrían ser pagadas en una única transacción.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Error cargando %s: No puedes habilitar HD en un monedero no HD ya existente</translation>
     </message>
     <message>
@@ -3259,7 +3232,7 @@
         <translation>La longitud total de la cadena de versión de red ( %i ) supera la longitud máxima ( %i ) . Reducir el número o tamaño de uacomments .</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Argumento -socks no soportado. La configuración de la versión SOCKS ya no es posible, sólo los proxies SOCKS5 son compatibles.</translation>
     </message>
     <message>
@@ -3267,7 +3240,7 @@
         <translation>Argumento -whitelistalwaysrelay no soportado ha sido ignorado, utiliza -whitelistrelay y/o -whitelistforcerelay</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Advertencia: Se están minando versiones de bloques desconocidas! Es posible que reglas desconocidas estén activas</translation>
     </message>
     <message>
@@ -3315,8 +3288,8 @@
         <translation>La transacción debe incluir al menos un destinatario.</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>La red especificada en -onlynet: '%s' es desconocida</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>La red especificada en -onlynet: &apos;%s&apos; es desconocida</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

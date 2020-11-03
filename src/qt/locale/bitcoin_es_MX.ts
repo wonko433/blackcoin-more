@@ -1,4 +1,6 @@
-<TS language="es_MX" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es_MX">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -441,7 +443,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>La cartera esta &lt;b&gt;encriptada&lt;/b&gt; y &lt;b&gt;bloqueada&lt;/b&gt; actualmente </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -484,7 +486,7 @@
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -499,14 +501,14 @@
         <source>&amp;Address</source>
         <translation>&amp;Dirección</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>nombre</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -532,17 +534,14 @@
         <source>Error</source>
         <translation>Error</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -565,20 +564,14 @@
         <source>Error</source>
         <translation>Error</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Formulario</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -591,18 +584,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
     <name>RPCConsole</name>
     <message>
         <source>Debug window</source>
         <translation>Depurar ventana</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -629,7 +616,7 @@
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
         <translation>Monto opcional a solicitar. Dejarlo vacion o en cero no solicita un monto especifico.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -652,7 +639,7 @@
         <source>Wallet</source>
         <translation>Cartera</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -667,7 +654,7 @@
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -757,10 +744,7 @@
         <source>Pay To:</source>
         <translation>Pago para:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
+</context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -786,13 +770,7 @@
         <source>Signature</source>
         <translation>Firma</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -807,14 +785,14 @@
         <source>Amount</source>
         <translation>Monto</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Este panel muestras una descripción detallada de la transacción</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -829,7 +807,7 @@
         <source>(no label)</source>
         <translation>(sin etiqueta)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -856,20 +834,14 @@
         <source>Exporting Failed</source>
         <translation>Exportación Fallida</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Enviar monedas</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -880,7 +852,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Exportar la información en la pestaña actual a un archivo</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

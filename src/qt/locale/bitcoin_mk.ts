@@ -1,4 +1,6 @@
-<TS language="mk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="mk">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -41,10 +43,7 @@
         <source>&amp;Delete</source>
         <translation>&amp;Избриши</translation>
     </message>
-    </context>
-<context>
-    <name>AddressTableModel</name>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -59,10 +58,7 @@
         <source>Repeat new passphrase</source>
         <translation>Повторете ја новата тајна фраза</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -211,7 +207,7 @@
         <translation>Адреса: %1
 </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -246,7 +242,7 @@
         <source>Date</source>
         <translation>Дата</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -261,14 +257,14 @@
         <source>&amp;Address</source>
         <translation>&amp;Адреса</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>име</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -279,7 +275,7 @@
         <source>(%1-bit)</source>
         <translation>(%1-бит)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -290,10 +286,7 @@
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -304,7 +297,7 @@
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -339,24 +332,21 @@
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Total:</source>
         <translation>Вкупно:</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>Sent</source>
         <translation>Испратени</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -403,17 +393,14 @@
         <source>%1 GB</source>
         <translation>%1 ГБ</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Сними Слика...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -444,7 +431,7 @@
         <source>&amp;Console</source>
         <translation>&amp;Конзола</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -463,7 +450,7 @@
         <source>Show</source>
         <translation>Прикажи</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -490,14 +477,14 @@
         <source>Wallet</source>
         <translation>Паричник</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
         <translation>Дата</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -524,7 +511,7 @@
         <source>Dust:</source>
         <translation>Прашина:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -539,22 +526,7 @@
         <source>Message:</source>
         <translation>Порака:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -565,33 +537,21 @@
         <source>Amount</source>
         <translation>Сума</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
         <translation>Дата</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
         <source>Date</source>
         <translation>Дата</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -602,7 +562,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Експортирај ги податоците од активното јазиче во датотека</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

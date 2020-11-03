@@ -1,4 +1,6 @@
-<TS language="ka" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ka">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -215,14 +217,14 @@
         <source>Wallet decryption failed</source>
         <translation>საფულის გაშიფვრა ვერ შესრულდა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>BanTableModel</name>
     <message>
         <source>IP/Netmask</source>
         <translation>IP/ქსელის მასკა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -517,7 +519,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>საფულე &lt;b&gt;დაშიფრულია&lt;/b&gt; და ამჟამად &lt;b&gt;დაბლოკილია&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -631,7 +633,7 @@
         <source>&amp;Address</source>
         <translation>მის&amp;ამართი</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -700,7 +702,7 @@
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -727,7 +729,7 @@
         <source>Hide</source>
         <translation>დამალვა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -746,7 +748,7 @@
         <source>Select payment request file</source>
         <translation>გადახდის მოთხოვნის ფაილის არჩევა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -948,13 +950,7 @@
         <source>Your current total balance</source>
         <translation>თქვენი სრული მიმდინარე ბალანსი</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -999,15 +995,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>გამო&amp;სახულების შენახვა...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -1094,7 +1087,7 @@
         <source>default wallet</source>
         <translation>ნაგულისხმევი საფულე</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1200,7 +1193,7 @@
         <source>Wallet</source>
         <translation>საფულე</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1215,7 +1208,7 @@
         <source>(no label)</source>
         <translation>(ნიშნული არ არის)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1381,10 +1374,7 @@
         <source>Memo:</source>
         <translation>შენიშვნა:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
+</context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -1462,7 +1452,7 @@
         <source>Reset all verify message fields</source>
         <translation>ვერიფიკაციის ყველა ველის წაშლა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1495,14 +1485,14 @@
         <source>Amount</source>
         <translation>თანხა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>ტრანსაქციის დაწვრილებითი აღწერილობა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1517,7 +1507,7 @@
         <source>(no label)</source>
         <translation>(ნიშნული არ არის)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1556,20 +1546,14 @@
         <source>Exporting Failed</source>
         <translation>ექპორტი ვერ განხორციელდა</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>მონეტების გაგზავნა</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1580,7 +1564,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>ამ ბარათიდან მონაცემების ექსპორტი ფაილში</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -1656,8 +1640,8 @@
         <translation>ტრანსაქციების ჩახსნა საფულიდან...</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>-onlynet-ში მითითებულია უცნობი ქსელი: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>-onlynet-ში მითითებულია უცნობი ქსელი: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

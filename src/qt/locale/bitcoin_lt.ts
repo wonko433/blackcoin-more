@@ -1,4 +1,6 @@
-<TS language="lt" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="lt">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -756,15 +758,15 @@
         <translation>Keisti siuntimo adresą</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
         <translation>Įvestas adresas „%1“ nėra galiojantis Blackcoin adresas.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
         <translation>Adresas „%1“  jau yra kaip gavėjo adresas su etikete „%2“, todėl jo negalima pridėti kaip siuntimo adresą.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
         <translation>Įvestas adresas „%1“ jau yra adresų knygoje su etikete „%2“.</translation>
     </message>
     <message>
@@ -873,14 +875,14 @@
         <translation>Piniginė taip pat bus saugojama šiame direktyve.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>Klaida: negali būti sukurtas nurodytas duomenų katalogas „%1“.</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>Klaida</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -888,7 +890,7 @@
         <translation>Forma</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Naujausi sandoriai gali būti dar nematomi, todėl jūsų piniginės likutis gali būti neteisingas. Ši informacija bus teisinga, kai jūsų piniginė bus baigta sinchronizuoti su blackcoin tinklu, kaip nurodyta žemiau.</translation>
     </message>
     <message>
@@ -927,7 +929,7 @@
         <source>Hide</source>
         <translation>Slėpti</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1312,7 +1314,7 @@
         <translation>URI tvarkymas</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
         <translation>„blackcoin: //“ nėra galiojantis URI. Vietoj to naudokite „blackcoin:“.</translation>
     </message>
     <message>
@@ -1340,7 +1342,7 @@
         <translation>Mokėjimo prašymas atmestas</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Mokėjimo užklausų tinklas neatitinka klientų tinklo.</translation>
     </message>
     <message>
@@ -1478,7 +1480,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 dar neišėjo saugiai...</translation>
     </message>
     <message>
@@ -1493,7 +1495,7 @@
         <translation>Klaida komanduojant eilutės argumentus: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
         <translation>Klaida: nurodytas duomenų katalogas „%1“ neegzistuoja.</translation>
     </message>
     <message>
@@ -1800,7 +1802,7 @@
         <translation>Vykdyti komandą be jokios piniginės</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
+        <source>Executing command using &quot;%1&quot; wallet</source>
         <translation>Vykdant komandą naudojant „%1“ piniginę</translation>
     </message>
     <message>
@@ -1875,7 +1877,7 @@
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Vietiniai segwit adresai (dar žinomi kaip Bech32 arba BIP-173) vėliau sumažina jūsų sandorių mokesčius ir siūlo geresnę apsaugą nuo klaidų, tačiau senosios piniginės jų nepalaiko. Jei nebus pažymėti, vietoj to bus sukurtas adresas, suderinamas su senesnėmis piniginėmis.</translation>
     </message>
     <message>
@@ -2088,9 +2090,9 @@
         <translation>sumažinti mokesčio nustatymus</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Nurodykite individualų mokestį už kB (1000 baitų) nuo sandorio virtualaus dydžio.
 
 Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 satošių per kB“ už 500 baitų (pusę 1 kB) sandorio dydžio galiausiai sudarytų tik 50 satošių mokestį.</translation>
@@ -2140,7 +2142,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Įgalinti keitimąsi mokesčiu</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Naudojant Replace-by-Fend (BIP-125) galite išsiųsti sandorio mokestį vėliau. Be jo, gali būti rekomenduojamas didesnis mokestis, kad būtų kompensuota padidėjusi sandorio vėlavimo rizika.</translation>
     </message>
     <message>
@@ -2468,7 +2470,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Atstatyti visus patvirtinimo pranešimų laukus</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation>Jei norite generuoti parašą, spustelėkite „Sign Message“</translation>
     </message>
     <message>
@@ -2987,7 +2989,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Patvirtinkite mokestį</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Nepavyko pasirašyti sandorio.</translation>
     </message>
     <message>
@@ -3057,7 +3059,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>-maxmempool turi būti bent %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
         <translation>Negalima išspręsti -%s adreso: „%s“</translation>
     </message>
     <message>

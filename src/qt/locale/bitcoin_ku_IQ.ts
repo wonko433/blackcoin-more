@@ -1,4 +1,6 @@
-<TS language="ku_IQ" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ku_IQ">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -25,20 +27,14 @@
         <source>&amp;Delete</source>
         <translation>&amp;سڕینەوە</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Address</source>
         <translation>ناوونیشان</translation>
     </message>
-    </context>
-<context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -69,7 +65,7 @@
         <source>Information</source>
         <translation>زانیاری</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -96,24 +92,21 @@
         <source>no</source>
         <translation>نەخێر</translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>ناو</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
         <translation>وەشان</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -124,13 +117,7 @@
         <source>Error</source>
         <translation>هەڵە</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -141,37 +128,28 @@
         <source>Error</source>
         <translation>هەڵە</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Total:</source>
         <translation>گشتی</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>Sent</source>
         <translation>نێدرا</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>سەرجەم</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -246,7 +224,7 @@
         <source>No</source>
         <translation>نەخێر</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -269,7 +247,7 @@
         <source>Remove</source>
         <translation>سڕینەوە</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -280,14 +258,14 @@
         <source>Amount</source>
         <translation>سەرجەم</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
         <translation>رێکەت</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -298,14 +276,14 @@
         <source>Fee:</source>
         <translation>تێچوون:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
         <source>Message:</source>
         <translation>پەیام:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -313,18 +291,6 @@
         <translation>بەڵێ</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -335,17 +301,14 @@
         <source>Amount</source>
         <translation>سەرجەم</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
         <translation>رێکەت</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -356,23 +319,14 @@
         <source>Address</source>
         <translation>ناوونیشان</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
         <translation>&amp;هەناردن</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

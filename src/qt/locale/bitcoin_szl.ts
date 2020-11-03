@@ -1,4 +1,6 @@
-<TS language="szl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="szl">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -153,7 +155,7 @@
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Ôdszperuj portmanyj.</translation>
+        <translation>Ôdszperuj portmanyj</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
@@ -243,7 +245,7 @@
     <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>Szkryftnij &amp;wiadōmość</translation>
+        <translation>Szkryftnij &amp;wiadōmość...</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -303,19 +305,19 @@
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>Zrychtuj kopijõ ibrycznõ</translation>
+        <translation>&amp;Zrychtuj kopijõ ibrycznõ...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>Pōmiyń &amp;hasło</translation>
+        <translation>&amp;Pōmiyń &amp;hasło...</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>&amp;Adresy posyłaniŏ</translation>
+        <translation>&amp;Adresy posyłaniŏ...</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>Ad&amp;resy ôdbiyraniŏ</translation>
+        <translation>Ad&amp;resy ôdbiyraniŏ...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
@@ -411,7 +413,7 @@
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm Blackcoin.</translation>
+        <translation>Zweryfikuj wiadōmość, coby wejzdrzeć sie, iże ôstała podpisanŏ podanōm adresōm Blackcoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -451,7 +453,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktywne połōnczynie do necu Blackcoin</numerusform><numerusform>%n aktywnych połōnczyń do necu Blackcoin</numerusform><numerusform>%n aktywnych skuplowań do necu Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n aktywne połōnczynie do necu Blackcoin</numerusform>
+            <numerusform>%n aktywnych połōnczyń do necu Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -463,7 +468,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Przetworzōno %n blok historyji transakcyji.</numerusform><numerusform>Przetworzōno %n blokōw historyji transakcyji.</numerusform><numerusform>Przetworzōno %n blokōw historyji transakcyji.</numerusform></translation>
+        <translation>
+            <numerusform>Przetworzōno %n blok historyji transakcyji.</numerusform>
+            <numerusform>Przetworzōno %n blokōw historyji transakcyji.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -495,7 +503,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Pokŏż pōmoc %1 coby zobŏczyć wykŏz wszyjskich ôpcyji piski nakŏzań.</translation>
+        <translation>Pokŏż pōmoc %1 coby zobŏczyć wykŏz wszyjskich ôpcyji piski nakŏzań</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -756,16 +764,16 @@
         <translation>Edytuj adresã posyłaniŏ</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Wkludzōnŏ adresa "%1" niyma nŏleżnōm adresōm Blackcoin.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Wkludzōnŏ adresa &quot;%1&quot; niyma nŏleżnōm adresōm Blackcoin.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Adresa "%1" już je za adresã ôdbiorczõ z etyketōm "%2" i bez to niy idzie jeji przidać za adresã nadŏwcy.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Adresa &quot;%1&quot; już je za adresã ôdbiorczõ z etyketōm &quot;%2&quot; i bez to niy idzie jeji przidać za adresã nadŏwcy.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Wkludzōnŏ adresa "%1" już je w ksiōnżce adres z ôpisym "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Wkludzōnŏ adresa &quot;%1&quot; już je w ksiōnżce adres z ôpisym &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -846,7 +854,7 @@
     </message>
     <message>
         <source>Use a custom data directory:</source>
-        <translation>Użyj ôbranego folderu datōw</translation>
+        <translation>Użyj ôbranego folderu datōw:</translation>
     </message>
     <message>
         <source>Bitcoin</source>
@@ -869,8 +877,8 @@
         <translation>Portmanyj tyż ôstanie spamiyntany w tym katalogu.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Feler: podany folder datōw "%1" niy mōg ôstać zrychtowany.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Feler: podany folder datōw &quot;%1&quot; niy mōg ôstać zrychtowany.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -878,11 +886,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB swobodnego placu dostympne</numerusform><numerusform>%n GB swobodnego placu dostympne</numerusform><numerusform>%n GB swobodnego placu dostympne</numerusform></translation>
+        <translation>
+            <numerusform>%n GB swobodnego placu dostympne</numerusform>
+            <numerusform>%n GB swobodnego placu dostympne</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(z %n GB przidajnego)</numerusform><numerusform>(z %n GB przidajnych)</numerusform><numerusform>(z %n GB przidajnych)</numerusform></translation>
+        <translation>
+            <numerusform>(z %n GB przidajnego)</numerusform>
+            <numerusform>(z %n GB przidajnych)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -892,7 +906,7 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Świyże transakcyje mogōm niy być jeszcze widzialne, a tedyć saldo portmanyja może być niynŏleżne. Te detale bydōm nŏleżne, kej portmanyj zakōńczy synchrōnizacyjõ z necym blackcoin, zgodnie z miyniōnym ôpisym.</translation>
     </message>
     <message>
@@ -1111,7 +1125,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Skupluj sie z necym Blackcoin ze pōmocōm ôsobnego proxy SOCKS5 dlŏ necu TOR</translation>
+        <translation type="unfinished">Skupluj sie z necym Blackcoin ze pōmocōm ôsobnego proxy SOCKS5 dlŏ necu TOR.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1149,7 +1163,7 @@
         <source>Error</source>
         <translation>Feler</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1180,7 +1194,7 @@
         <source>Your current total balance</source>
         <translation>Twoje terŏźne saldo</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1192,11 +1206,11 @@
         <translation>Bedynōng URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' to niyma nŏleżne URI. Użyj 'blackcoin:'.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; to niyma nŏleżne URI. Użyj &apos;blackcoin:&apos;.</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Nec żōndaniŏ płatu niy ôdpadŏ necu klijynta.</translation>
     </message>
     <message>
@@ -1454,7 +1468,7 @@
         <source>No</source>
         <translation>Niy</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1470,7 +1484,7 @@
         <translation>Wypucuj</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Natywne adresy segwit (aka Bech32 abo BIP-173) zmyńszajōm niyskorzij twoje ôpłŏcki za transakcyje i dadzōm lepsze zabezpieczynie przed chybami, ale stare portmanyje jejich niy podpiyrajōm. Jeźli ôdznaczōne, zrychtowanŏ ôstanie adresa kōmpatybilnŏ ze starszymi portmanyjami.</translation>
     </message>
     <message>
@@ -1544,7 +1558,7 @@
         <source>Wallet</source>
         <translation>Portmanyj</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1563,7 +1577,7 @@
         <source>(no label)</source>
         <translation>(chyba etykety)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1713,7 +1727,7 @@
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
         <translation>Wiadōmość, kerŏ ôstała prziwstōnŏ do URI blackcoin:, kerŏ bydzie przechowowanŏ z transakcyjōm w cylach informacyjnych. Napōmniynie: Ta wiadōmość niy bydzie rozszyrzowanŏ w necu Blackcoin.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1721,9 +1735,6 @@
         <translation>Ja</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -1762,7 +1773,7 @@
         <source>Message verification failed.</source>
         <translation>Weryfikacyjŏ wiadōmości niy podarziła sie.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1823,10 +1834,7 @@
         <source>Amount</source>
         <translation>Kwota</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1857,7 +1865,7 @@
         <source>(no label)</source>
         <translation>(chyba etykety)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1938,12 +1946,6 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
@@ -1953,7 +1955,7 @@
         <source>New fee:</source>
         <translation>Nowŏ ôpłŏcka:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -2040,7 +2042,7 @@
         <translation>Weryfikacyjŏ blokōw...</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Feler w czasie wgrŏwaniŏ %s: Niy idzie zastawić HD w już bydōncym portmanyju HD</translation>
     </message>
     <message>
@@ -2072,7 +2074,7 @@
         <translation>Pozōr: aktywowano było niyznōme nowe prawidła (versionbit %i)</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Feler w czasie wgrŏwaniŏ %s: Niy idzie zapuścić HD w już bydōncym portmanyju niy-HD</translation>
     </message>
     <message>
@@ -2080,7 +2082,7 @@
         <translation>Imyntnŏ dugość kety wersyje (%i) przekrŏczŏ maksymalnõ dopuszczalnõ dugość (%i). Zmyńsz wielość abo miara parametra uacomment.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Znŏdniynto było niypodpiyrany argumynt -socks. Ôbiyranie wersyje SOCKS je już niymożebne, podpiyrane sōm ino proxy SOCKS5.</translation>
     </message>
     <message>
@@ -2088,7 +2090,7 @@
         <translation>Niypodpiyrany argumynt -whitelistalwaysrelay zignorowany, użyj -whitelistrelay i/abo -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Pozōr: wydobywane sōm niyznōme wersyje blokōw! Możliwe, iże ôbowiōnzujōm niyznōme prawidła.</translation>
     </message>
     <message>
@@ -2104,8 +2106,8 @@
         <translation>Sztartowanie wōntkōw necowych...</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Niyznōmy nec ôkryślōny w -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Niyznōmy nec ôkryślōny w -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>

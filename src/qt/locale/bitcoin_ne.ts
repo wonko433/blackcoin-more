@@ -1,4 +1,6 @@
-<TS language="ne" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ne">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -58,10 +60,7 @@
         <translation>ठेगाना कपी गर्नुहोस्
 </translation>
     </message>
-    </context>
-<context>
-    <name>AddressTableModel</name>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -80,7 +79,7 @@
         <source>Repeat new passphrase</source>
         <translation>नयाँ पासफ्रेज दोहोर्याउनुहोस्</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -202,7 +201,7 @@
         <source>Open debugging and diagnostic console</source>
         <translation>डिबगिङ र डायाग्नोस्टिक कन्सोल खोल्नुहोस्</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -214,32 +213,14 @@
         <translation>ठेगाना कपी गर्नुहोस्
 </translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
-    <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
         <translation>इन्टरफेसमा र सिक्का पठाउँदा देखिने डिफल्ट उपविभाजन एकाइ चयन गर्नुहोस् ।</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -288,9 +269,6 @@
     </message>
 </context>
 <context>
-    <name>PaymentServer</name>
-    </context>
-<context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
@@ -300,7 +278,7 @@
         <source>Node/Service</source>
         <translation>नोड/सेव</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -311,13 +289,7 @@
         <source>Enter a Bitcoin address (e.g. %1)</source>
         <translation>कृपया बिटकोइन ठेगाना प्रवेश गर्नुहोस् (उदाहरण %1)</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -328,27 +300,21 @@
         <source>Ping Time</source>
         <translation>पिङ समय</translation>
     </message>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
         <source>Amount</source>
         <translation>रकम</translation>
     </message>
-    </context>
-<context>
-    <name>RecentRequestsTableModel</name>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
         <source>Choose...</source>
         <translation>छनौट गर्नुहोस्...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -367,13 +333,7 @@
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
         <translation>बिटकोइनमा संलग्न गरिएको सन्देश: तपाईंको मध्यस्थको लागि कारोबारको साथमा भण्डारण गरिने URI । नोट: यो सन्देश बिटकोइन नेटवर्क मार्फत पठाइने छैन ।</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -389,29 +349,17 @@
         <translation>वर्तमान हस्ताक्षरलाई प्रणाली क्लिपबोर्डमा कपी गर्नुहोस्</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>सन्देश प्रमाणित गर्न, तल दिइएको स्थानमा प्राप्तकर्ता ठेगाना, सन्देश (लाइन ब्रेक, स्पेस, ट्याब, आदि उस्तै गरी कपी गर्ने कुरा सुनिश्चित गर्नुहोस्) र हस्ताक्षर &amp;apos;s प्रविष्ट गर्नुहोस् । बीचमा-मानिसको-आक्रमणबाट बच्न हस्ताक्षर पढ्दा हस्ताक्षर गरिएको सन्देशमा जे छ त्यो भन्दा धेरै कुरामा ध्यान नदिनुहोस् । यो कार्यले हस्ताक्षर गर्ने पक्षले मात्र यो ठेगानाले प्राप्त गर्छ भन्ने कुरा प्रमाणित गर्छ, यसले कुनै पनि कारोबारको प्रेषककर्तालाई प्रमाणित गर्न सक्दैन भन्ने कुरा याद गर्नुहोस्!</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
         <source>Amount</source>
         <translation>रकम</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
-    <name>TransactionTableModel</name>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -419,16 +367,7 @@
         <translation>ठेगाना कपी गर्नुहोस्
 </translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -440,11 +379,11 @@
         <source>Export the data in the current tab to a file</source>
         <translation>वर्तमान ट्याबको डाटालाई फाइलमा निर्यात गर्नुहोस्</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>ब्लक डाटाबेसमा भविष्यबाट आए जस्तो देखिने एउटा ब्लक हुन्छ । तपाईंको कम्प्युटरको मिति र समय गलत तरिकाले सेट गरिएकाले यस्तो हुन सक्छ । तपाईं आफ्नो कम्प्युटरको मिति र समय सही छ भनेर पक्का हुनुहुन्छ भने मात्र ब्लक डाटाबेस पुनर्निर्माण गर्नुहोस् ।</translation>
     </message>
     <message>
@@ -460,7 +399,7 @@
         <translation>-maxmempool कम्तिमा %d MB को हुनुपर्छ ।</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
         <translation>-%s ठेगाना: &amp;apos;%s&amp;apos; निश्चय गर्न सकिँदैन</translation>
     </message>
     <message>
@@ -512,7 +451,7 @@
         <translation>त्रुटि: आगमन कनेक्सनमा सुन्ने कार्य असफल भयो (सुन्ने कार्यले त्रुटि %s फर्कायो)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>maxtxfee=&amp;lt;रकम&amp;gt;: का लागि अमान्य रकम &amp;apos;%s&amp;apos; (कारोबारलाई अड्कन नदिन अनिवार्य रूपमा कम्तिमा %s को न्यूनतम रिले शुल्क हुनु पर्छ)</translation>
     </message>
     <message>
@@ -523,5 +462,5 @@
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation>तपाईंले काटछाँट नगरेको मोडमा जान पुनः सूचकांक प्रयोग गरेर डाटाबेस पुनर्निर्माण गर्नु पर्ने हुन्छ । यसले सम्पूर्ण ब्लकचेनलाई फेरि डाउनलोड गर्नेछ</translation>
     </message>
-    </context>
+</context>
 </TS>

@@ -1,4 +1,6 @@
-<TS language="gl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="gl">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -65,7 +67,7 @@
         <source>Comma separated file (*.csv)</source>
         <translation>Arquivo separado por comas (*.csv)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -76,7 +78,7 @@
         <source>Address</source>
         <translation>Enderezo</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -112,9 +114,6 @@
         <translation>Aviso: O Bloqueo de Maiúsculas está activo!</translation>
     </message>
 </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -337,7 +336,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>O moedeiro está &lt;b&gt;encriptado&lt;/b&gt; e actualmente &lt;b&gt;bloqueado&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -396,7 +395,7 @@
         <source>no</source>
         <translation>non</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -419,7 +418,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Dirección</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -480,7 +479,7 @@
         <source>Error</source>
         <translation>Erro</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -495,7 +494,7 @@
         <source>calculating...</source>
         <translation>calculando...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -514,7 +513,7 @@
         <source>Select payment request file</source>
         <translation>Seleccionar ficheiro de solicitude de pago</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -688,7 +687,7 @@
         <source>Recent transactions</source>
         <translation>Transaccións recentes</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -711,10 +710,7 @@
         <source>Invalid payment request.</source>
         <translation>Solicitude de pagamento inválida.</translation>
     </message>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -755,15 +751,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Gardar Imaxe...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -842,7 +835,7 @@
         <source>default wallet</source>
         <translation>moedeiro por defecto</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -869,7 +862,7 @@
         <source>&amp;Request payment</source>
         <translation>&amp;Solicitar pago</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -904,7 +897,7 @@
         <source>Wallet</source>
         <translation>Moedeiro</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -915,7 +908,7 @@
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -986,7 +979,7 @@
         <source>Payment request expired.</source>
         <translation>Solicitude de pagamento expirada.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -1041,13 +1034,7 @@
         <source>Memo:</source>
         <translation>Memo:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -1118,7 +1105,7 @@
         <source>Reset all verify message fields</source>
         <translation>Restaurar todos os campos de verificación de mensaxe</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1151,14 +1138,14 @@
         <source>Amount</source>
         <translation>Cantidade</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Este panel amosa unha descripción detallada da transacción</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1169,7 +1156,7 @@
         <source>Label</source>
         <translation>Etiqueta</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1192,20 +1179,14 @@
         <source>Address</source>
         <translation>Enderezo</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Moedas Enviadas</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1216,7 +1197,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Exportar os datos da pestaña actual a un arquivo.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -1288,8 +1269,8 @@
         <translation>Precaución</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Rede descoñecida especificada en -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Rede descoñecida especificada en -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

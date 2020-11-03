@@ -1,4 +1,6 @@
-<TS language="eo" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="eo">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -228,9 +230,6 @@
         <translation>Atentu: la majuskla baskulo estas ŝaltita!</translation>
     </message>
 </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -487,7 +486,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Monujo estas &lt;b&gt;ĉifrita&lt;/b&gt; kaj aktuale &lt;b&gt;ŝlosita&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -598,7 +597,7 @@
         <source>(no label)</source>
         <translation>(neniu etikedo)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -621,7 +620,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Adreso</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -680,9 +679,12 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n gigabajto de libera loko disponeble</numerusform><numerusform>%n gigabajtoj de libera loko disponebla.</numerusform></translation>
+        <translation>
+            <numerusform>%n gigabajto de libera loko disponeble</numerusform>
+            <numerusform>%n gigabajtoj de libera loko disponebla.</numerusform>
+        </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -693,7 +695,7 @@
         <source>Last block time</source>
         <translation>Horo de la lasta bloko</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -712,7 +714,7 @@
         <source>Select payment request file</source>
         <translation>Elektu la dosieron de la pagpeto</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -890,10 +892,7 @@
         <source>Recent transactions</source>
         <translation>Lastaj transakcioj</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -957,15 +956,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Konservi Bildon...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -1076,7 +1072,7 @@
         <source>Clear console</source>
         <translation>Malplenigi konzolon</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -1205,7 +1201,7 @@
         <source>(no message)</source>
         <translation>(neniu mesaĝo)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1417,9 +1413,6 @@
     </message>
 </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1497,8 +1490,8 @@
         <translation>Reagordigi ĉiujn prikontrolajn kampojn</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Klaku "Subskribi Mesaĝon" por krei subskribon</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Klaku &quot;Subskribi Mesaĝon&quot; por krei subskribon</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -1650,8 +1643,8 @@
         <translation>Vendisto</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Kreitaj moneroj devas esti maturaj je %1 blokoj antaŭ ol eblas elspezi ilin. Kiam vi generis tiun ĉi blokon, ĝi estis elsendita al la reto por aldono al la blokĉeno. Se tiu aldono malsukcesas, ĝia stato ŝanĝiĝos al "neakceptita" kaj ne eblos elspezi ĝin. Tio estas malofta, sed povas okazi se alia bloko estas kreita je preskaŭ la sama momento kiel la via.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Kreitaj moneroj devas esti maturaj je %1 blokoj antaŭ ol eblas elspezi ilin. Kiam vi generis tiun ĉi blokon, ĝi estis elsendita al la reto por aldono al la blokĉeno. Se tiu aldono malsukcesas, ĝia stato ŝanĝiĝos al &quot;neakceptita&quot; kaj ne eblos elspezi ĝin. Tio estas malofta, sed povas okazi se alia bloko estas kreita je preskaŭ la sama momento kiel la via.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -1684,7 +1677,7 @@
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Tiu ĉi panelo montras detalan priskribon de la transakcio</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1880,18 +1873,12 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Sendi Bitmonon</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1918,7 +1905,7 @@
         <source>Backup Successful</source>
         <translation>Sukcesis krei sekurkopion</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -2006,8 +1993,8 @@
         <translation>Averto</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Nekonata reto specifita en -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Nekonata reto specifita en -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

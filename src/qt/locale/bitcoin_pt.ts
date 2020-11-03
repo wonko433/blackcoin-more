@@ -1,4 +1,6 @@
-<TS language="pt" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pt">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n ligação ativa à rede Blackcoin</numerusform><numerusform>%n ligações ativas à rede Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n ligação ativa à rede Blackcoin</numerusform>
+            <numerusform>%n ligações ativas à rede Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +472,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Processado %n bloco do histórico de transações.</numerusform><numerusform>Processados %n blocos do histórico de transações.</numerusform></translation>
+        <translation>
+            <numerusform>Processado %n bloco do histórico de transações.</numerusform>
+            <numerusform>Processados %n blocos do histórico de transações.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -764,16 +772,16 @@
         <translation>Editar o endereço de envio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>O endereço introduzido "%1" não é um endereço blackcoin válido.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>O endereço introduzido &quot;%1&quot; não é um endereço blackcoin válido.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>O endereço "%1" já existe como endereço de receção com o rótulo "%2" e não pode ser adicionado como endereço de envio.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>O endereço &quot;%1&quot; já existe como endereço de receção com o rótulo &quot;%2&quot; e não pode ser adicionado como endereço de envio.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>O endereço inserido "%1" já está no livro de endereços com o rótulo "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>O endereço inserido &quot;%1&quot; já está no livro de endereços com o rótulo &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,8 +889,8 @@
         <translation>A carteira também será guardada nesta pasta.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Erro: não pode ser criada a pasta de dados especificada como "%1.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Erro: não pode ser criada a pasta de dados especificada como &quot;%1.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,11 +898,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB de espaço livre disponível</numerusform><numerusform>%n GB de espaço livre disponível</numerusform></translation>
+        <translation>
+            <numerusform>%n GB de espaço livre disponível</numerusform>
+            <numerusform>%n GB de espaço livre disponível</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(de %n GB necessários)</numerusform><numerusform>(de %n GB necessário)</numerusform></translation>
+        <translation>
+            <numerusform>(de %n GB necessários)</numerusform>
+            <numerusform>(de %n GB necessário)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +918,7 @@
         <translation>Formulário</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Transações recentes podem não ser visíveis por agora, portanto o saldo da sua carteira pode estar incorreto. Esta informação será corrigida quando a sua carteira acabar de sincronizar com a rede, como está explicado em baixo.</translation>
     </message>
     <message>
@@ -1108,7 +1122,7 @@
     </message>
     <message>
         <source>Allow incomin&amp;g connections</source>
-        <translation>Permitir ligações de "a receber"</translation>
+        <translation>Permitir ligações de &quot;a receber&quot;</translation>
     </message>
     <message>
         <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
@@ -1337,8 +1351,8 @@
         <translation>Manuseamento de URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' não é um URI válido. Utilize 'blackcoin:'.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; não é um URI válido. Utilize &apos;blackcoin:&apos;.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1365,7 +1379,7 @@
         <translation>Pedido de pagamento rejeitado</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Rede de requisição de pagamento não corresponde com a rede do cliente.</translation>
     </message>
     <message>
@@ -1386,7 +1400,7 @@
     </message>
     <message>
         <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>Quantia solicitada para pagamento de %1 é muito pequena (considerada "pó").</translation>
+        <translation>Quantia solicitada para pagamento de %1 é muito pequena (considerada &quot;pó&quot;).</translation>
     </message>
     <message>
         <source>Refund from %1</source>
@@ -1484,23 +1498,38 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n segundo</numerusform><numerusform>%n segundos</numerusform></translation>
+        <translation>
+            <numerusform>%n segundo</numerusform>
+            <numerusform>%n segundos</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minuto</numerusform><numerusform>%n minutos</numerusform></translation>
+        <translation>
+            <numerusform>%n minuto</numerusform>
+            <numerusform>%n minutos</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n hora</numerusform><numerusform>%n horas</numerusform></translation>
+        <translation>
+            <numerusform>%n hora</numerusform>
+            <numerusform>%n horas</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n dia</numerusform><numerusform>%n dias</numerusform></translation>
+        <translation>
+            <numerusform>%n dia</numerusform>
+            <numerusform>%n dias</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n semana</numerusform><numerusform>%n semanas</numerusform></translation>
+        <translation>
+            <numerusform>%n semana</numerusform>
+            <numerusform>%n semanas</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1508,7 +1537,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n anos</numerusform><numerusform>%n anos</numerusform></translation>
+        <translation>
+            <numerusform>%n anos</numerusform>
+            <numerusform>%n anos</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1527,7 +1559,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 ainda não foi fechado em segurança...</translation>
     </message>
     <message>
@@ -1542,8 +1574,8 @@
         <translation>Erro ao analisar os argumentos da linha de comando: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Erro: a pasta de dados especificada "%1" não existe.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Erro: a pasta de dados especificada &quot;%1&quot; não existe.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1844,8 +1876,8 @@
         <translation>A executar o comando sem qualquer carteira</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>A executar o comando utilizando a carteira "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>A executar o comando utilizando a carteira &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1919,7 +1951,7 @@
         <translation>Limpar</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Endereços nativos SegWit (também conhecidos como Bech32 ou BIP-173) reduzem as taxas da sua transação mais tarde e oferecem melhor proteção contra erros, mas carteiras antigas não os suportam. Quando não selecionado, um endereço compatível com carteiras antigas irá ser criado em vez.</translation>
     </message>
     <message>
@@ -2132,12 +2164,12 @@
         <translation>ocultar definições de taxa</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Especifique uma taxa personalizada por kB (1.000 bytes) do tamanho virtual da transação.
 
-Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por uma transação de 500 bytes (metade de 1 kB) teria uma taxa final de apenas 50 satoshis.</translation>
+Nota: como a taxa é calculada por byte, uma taxa de &quot;100 satoshis por kB&quot; por uma transação de 500 bytes (metade de 1 kB) teria uma taxa final de apenas 50 satoshis.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2192,7 +2224,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Ativar substituir-por-taxa</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Com substituir-por-taxa (BIP-125) pode aumentar a taxa da transação após ela ser enviada. Sem isto, pode ser recomendável uma taxa maior para compensar o risco maior de atraso na transação.</translation>
     </message>
     <message>
@@ -2326,7 +2358,10 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Estimado para iniciar a confirmação dentro de %n bloco.</numerusform><numerusform>Estimado para iniciar a confirmação dentro de %n blocos.</numerusform></translation>
+        <translation>
+            <numerusform>Estimado para iniciar a confirmação dentro de %n bloco.</numerusform>
+            <numerusform>Estimado para iniciar a confirmação dentro de %n blocos.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2521,7 +2556,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>&amp;Verificar Mensagem</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Introduza o endereço de assinatura, mensagem (assegure-se que copia quebras de linha, espaços, tabulações, etc. exatamente) e assinatura abaixo para verificar a mensagem. Tenha atenção para não ler mais na assinatura do que o que estiver na mensagem assinada, para evitar ser enganado por um atacante que se encontre entre si e quem assinou a mensagem.</translation>
     </message>
     <message>
@@ -2541,8 +2576,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Repor todos os campos de verificação de mensagem</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Clique "Assinar Mensagem" para gerar a assinatura</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Clique &quot;Assinar Mensagem&quot; para gerar a assinatura</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2611,7 +2646,10 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Aberto para mais %n bloco</numerusform><numerusform>Aberto para mais %n blocos</numerusform></translation>
+        <translation>
+            <numerusform>Aberto para mais %n bloco</numerusform>
+            <numerusform>Aberto para mais %n blocos</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2687,7 +2725,10 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>matura em %n bloco</numerusform><numerusform>matura em %n blocos</numerusform></translation>
+        <translation>
+            <numerusform>matura em %n bloco</numerusform>
+            <numerusform>matura em %n blocos</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2742,8 +2783,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Comerciante</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>As moedas geradas precisam amadurecer %1 blocos antes que possam ser gastas. Quando gerou este bloco, ele foi transmitido para a rede para ser adicionado à cadeia de blocos. Se este não conseguir entrar na cadeia, seu estado mudará para "não aceite" e não poderá ser gasto. Isto pode acontecer ocasionalmente se outro nó gerar um bloco dentro de alguns segundos do seu.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>As moedas geradas precisam amadurecer %1 blocos antes que possam ser gastas. Quando gerou este bloco, ele foi transmitido para a rede para ser adicionado à cadeia de blocos. Se este não conseguir entrar na cadeia, seu estado mudará para &quot;não aceite&quot; e não poderá ser gasto. Isto pode acontecer ocasionalmente se outro nó gerar um bloco dentro de alguns segundos do seu.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2797,7 +2838,10 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Aberto para mais %n bloco</numerusform><numerusform>Aberto para mais %n blocos</numerusform></translation>
+        <translation>
+            <numerusform>Aberto para mais %n bloco</numerusform>
+            <numerusform>Aberto para mais %n blocos</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3092,7 +3136,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Confirme aumento de taxa</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Não é possível assinar a transação.</translation>
     </message>
     <message>
@@ -3190,7 +3234,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Erro ao ler %s! Todas as chaves foram lidas corretamente, mas os dados de transação ou as entradas no livro de endereços podem não existir ou estarem incorretos.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Por favor verifique que a data e hora do seu computador estão certos! Se o relógio não estiver certo, o %s não funcionará corretamente.</translation>
     </message>
     <message>
@@ -3198,7 +3242,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Por favor, contribua se achar que %s é útil. Visite %s para mais informação sobre o software.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>A base de dados de blocos contém um bloco que aparenta ser do futuro. Isto pode ser causado por uma data incorreta definida no seu computador. Reconstrua apenas a base de dados de blocos caso tenha a certeza de que a data e hora do seu computador estão corretos.</translation>
     </message>
     <message>
@@ -3238,8 +3282,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>- máximo do banco de memória deverá ser pelo menos %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Não é possível resolver -%s endereço '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Não é possível resolver -%s endereço &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3258,7 +3302,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Deseja reconstruir agora a base de dados de blocos.</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Erro ao criar %s: não pode criar carteiras não-HD com esta versão.</translation>
     </message>
     <message>
@@ -3318,21 +3362,21 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Verificação de integridade inicial falhou. O %s está a desligar-se.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Valor inválido para -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Valor inválido para -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Quantidade inválida para -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Quantidade inválida para -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Valor inválido para -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Valor inválido para -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
         <translation>
-A pasta de blocos especificados "%s" não existe.</translation>
+A pasta de blocos especificados &quot;%s&quot; não existe.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3419,8 +3463,8 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Erro: A escuta de ligações de entrada falhou (escuta devolveu erro %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Montante inválido para -maxtxfee=&lt;amount&gt;: '%s' (deverá ser, no mínimo , a taxa mínima de propagação de %s, de modo a evitar transações bloqueadas)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Montante inválido para -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (deverá ser, no mínimo , a taxa mínima de propagação de %s, de modo a evitar transações bloqueadas)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3431,7 +3475,7 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Necessita reconstruir a base de dados, utilizando -reindex para voltar ao modo sem poda. Isto irá descarregar novamente a cadeia de blocos completa</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Erro a carregar %s: não pode desativar o HD numa carteira HD existente</translation>
     </message>
     <message>
@@ -3447,24 +3491,24 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Informação</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Endereço -onion ou hostname inválido: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Endereço -onion ou hostname inválido: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Endereço -proxy ou nome do servidor inválido: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Endereço -proxy ou nome do servidor inválido: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Montante inválido para -paytxfee=&lt;amount&gt;: '%s' (deverá ser no mínimo %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Montante inválido para -paytxfee=&lt;amount&gt;: &apos;%s&apos; (deverá ser no mínimo %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Máscara de rede inválida especificada em -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Máscara de rede inválida especificada em -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Necessário especificar uma porta com -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Necessário especificar uma porta com -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3475,16 +3519,16 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Falhou assinatura da transação</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>O -walletdir "%s" especificado não existe</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>O -walletdir &quot;%s&quot; especificado não existe</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>O -walletdir "%s" especificado é um caminho relativo</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>O -walletdir &quot;%s&quot; especificado é um caminho relativo</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>O -walletdir "%s" especificado não é uma pasta</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>O -walletdir &quot;%s&quot; especificado não é uma pasta</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3539,7 +3583,7 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>-maxtxfee está definido com um valor muito alto! Taxas desta magnitude podem ser pagas numa única transação.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Erro a carregar %s: não pode ativar o HD numa carteira não-HD já existente</translation>
     </message>
     <message>
@@ -3555,7 +3599,7 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Comprimento total da entrada da versão de rede (%i) excede o comprimento máximo (%i). Reduzir o número ou o tamanho de uacomments.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Encontrado um argumento não suportado -socks. Definir a versão do SOCKS já não é possível, apenas proxies SOCKS5 são suportados.</translation>
     </message>
     <message>
@@ -3563,7 +3607,7 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Argumento não suportado -whitelistalwaysrelay ignorado, utilize -whitelistrelay e/ou -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Atenção: Versões desconhecidas de blocos estão a ser mineradas! É possível que regras desconhecias estão a ser efetuadas</translation>
     </message>
     <message>
@@ -3611,15 +3655,15 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>A transação dever pelo menos um destinatário</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Rede desconhecida especificada em -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Rede desconhecida especificada em -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>Fundos insuficientes</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>Não é possível gerar uma chave de alterar endereço. As chaves privadas estão desativadas para essa carteira.</translation>
     </message>
     <message>
@@ -3635,8 +3679,8 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Aviso: chaves privadas detetadas na carteira {%s} com chaves privadas desativadas</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Não foi possível escrever na pasta de dados '%s': verifique as permissões.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Não foi possível escrever na pasta de dados &apos;%s&apos;: verifique as permissões.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

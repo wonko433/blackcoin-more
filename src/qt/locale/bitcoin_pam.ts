@@ -1,4 +1,6 @@
-<TS language="pam" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pam">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -37,10 +39,7 @@
         <source>&amp;Delete</source>
         <translation>&amp;Ilako</translation>
     </message>
-    </context>
-<context>
-    <name>AddressTableModel</name>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -59,10 +58,7 @@
         <source>Repeat new passphrase</source>
         <translation>Pasibayuan ya ing bayung passphrase</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -229,7 +225,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Maka-&lt;b&gt;encrypt&lt;/b&gt; ya ing wallet at kasalukuyan yang maka-&lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -248,7 +244,7 @@
         <source>Confirmed</source>
         <translation>Me-kumpirma</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -263,10 +259,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Address</translation>
     </message>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -292,7 +285,7 @@
         <source>Error</source>
         <translation>Mali</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -303,10 +296,7 @@
         <source>Last block time</source>
         <translation>Tatauling oras na ning block</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -428,13 +418,7 @@
         <source>Your current total balance</source>
         <translation>Ing kekang kasalungsungan kabuuang balanse</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -450,12 +434,6 @@
         <translation>e miya balu</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -518,14 +496,14 @@
         <source>Clear console</source>
         <translation>I-Clear ing console</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>&amp;Label:</source>
         <translation>&amp;Label:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -540,14 +518,14 @@
         <source>Wallet</source>
         <translation>Wallet</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
         <translation>Kaaldauan</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -594,7 +572,7 @@
         <source>Transaction fee</source>
         <translation>Bayad king Transaksion</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -629,13 +607,7 @@
         <source>Pay To:</source>
         <translation>Ibayad kang:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -702,7 +674,7 @@
         <source>Reset all verify message fields</source>
         <translation>Ibalik king dati reng ngan fields na ning pamag beripikang mensayi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -710,9 +682,6 @@
         <translation>[testnet]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -731,21 +700,21 @@
         <source>Amount</source>
         <translation>Alaga</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Ining pane a ini magpakit yang detalyadung description ning transaksion</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
         <translation>Kaaldauan</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -756,23 +725,14 @@
         <source>Date</source>
         <translation>Kaaldauan</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Magpadalang Barya</translation>
     </message>
-    </context>
-<context>
-    <name>WalletView</name>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -816,8 +776,8 @@
         <translation>Kapabaluan</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>E kilalang network ing mepili king -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>E kilalang network ing mepili king -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

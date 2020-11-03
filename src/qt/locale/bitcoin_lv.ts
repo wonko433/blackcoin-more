@@ -1,4 +1,6 @@
-<TS language="lv" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="lv">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -69,7 +71,7 @@
         <source>Exporting Failed</source>
         <translation>Eksportēšana Neizdevās</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -131,10 +133,7 @@
         <source>Wallet encryption failed</source>
         <translation>Maciņa šifrēšana neizdevās</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -345,7 +344,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Maciņš ir &lt;b&gt;šifrēts&lt;/b&gt; un pašlaik &lt;b&gt;slēgts&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -404,7 +403,7 @@
         <source>(no label)</source>
         <translation>(bez nosaukuma)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -419,7 +418,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Adrese</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -476,7 +475,7 @@
         <source>Error</source>
         <translation>Kļūda</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -487,7 +486,7 @@
         <source>Last block time</source>
         <translation>Pēdējā bloka laiks</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -506,7 +505,7 @@
         <source>Select payment request file</source>
         <translation>Izvēlies maksājuma pieprasījuma datni</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -692,13 +691,7 @@
         <source>Your current total balance</source>
         <translation>Jūsu kopējā tekošā bilance</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -743,15 +736,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Saglabāt Attēlu...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -834,7 +824,7 @@
         <source>Clear console</source>
         <translation>Notīrīt konsoli</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -881,7 +871,7 @@
         <source>Remove</source>
         <translation>Noņemt</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -916,7 +906,7 @@
         <source>Wallet</source>
         <translation>Maciņš</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -931,7 +921,7 @@
         <source>(no label)</source>
         <translation>(bez nosaukuma)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1073,10 +1063,7 @@
         <source>Memo:</source>
         <translation>Memo:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
+</context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -1150,7 +1137,7 @@
         <source>Reset all verify message fields</source>
         <translation>Atiestatīt visus laukus</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1183,14 +1170,14 @@
         <source>Amount</source>
         <translation>Daudzums</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Šis panelis parāda transakcijas detaļas</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1205,7 +1192,7 @@
         <source>(no label)</source>
         <translation>(bez nosaukuma)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1228,20 +1215,14 @@
         <source>Exporting Failed</source>
         <translation>Eksportēšana Neizdevās</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Sūtīt Bitkoinus</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1252,7 +1233,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Datus no tekošā ieliktņa eksportēt uz failu</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -1296,8 +1277,8 @@
         <translation>Brīdinājums</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>-onlynet komandā norādīts nepazīstams tīkls: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>-onlynet komandā norādīts nepazīstams tīkls: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

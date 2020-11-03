@@ -1,4 +1,6 @@
-<TS language="bg" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="bg">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -726,8 +728,8 @@
         <translation>Редактиране на адрес за изпращане</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>"%1" не е валиден Blackcoin адрес.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>&quot;%1&quot; не е валиден Blackcoin адрес.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -818,7 +820,7 @@
         <source>Error</source>
         <translation>грешка</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -841,7 +843,7 @@
         <source>Hide</source>
         <translation>Скрий</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -856,7 +858,7 @@
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -1094,7 +1096,7 @@
         <source>Recent transactions</source>
         <translation>Последни транзакции</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1122,7 +1124,7 @@
         <translation>Заявката за плащане беше отхвърлена</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Мрежата от която се извършва заявката за плащане не съвпада с мрежата на клиента.</translation>
     </message>
     <message>
@@ -1247,10 +1249,10 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Грешка:Избраната "%1" директория не съществува.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Грешка:Избраната &quot;%1&quot; директория не съществува.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -1565,7 +1567,7 @@
         <source>(no message)</source>
         <translation>(без съобщение)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1877,8 +1879,8 @@
         <translation>Потвърди &amp;съобщението</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Натиснете "Подписване на съобщение" за да създадете подпис</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Натиснете &quot;Подписване на съобщение&quot; за да създадете подпис</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2042,8 +2044,8 @@
         <translation>Търговец</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Генерираните монети трябва да отлежат %1 блока преди да могат да бъдат похарчени. Когато генерираш блока, той се разпространява в мрежата, за да се добави в блок-веригата. Ако не успее да се добави във веригата, неговия статус  ще се стане "неприет" и няма да може да се похарчи. Това е възможно да се случи случайно, ако друг възел генерира блок няколко секунди след твоя.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Генерираните монети трябва да отлежат %1 блока преди да могат да бъдат похарчени. Когато генерираш блока, той се разпространява в мрежата, за да се добави в блок-веригата. Ако не успее да се добави във веригата, неговия статус  ще се стане &quot;неприет&quot; и няма да може да се похарчи. Това е възможно да се случи случайно, ако друг възел генерира блок няколко секунди след твоя.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2072,7 +2074,7 @@
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Описание на транзакцията</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -2300,9 +2302,6 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -2315,7 +2314,7 @@
         <source>Send Coins</source>
         <translation>Изпращане</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -2350,7 +2349,7 @@
         <source>The wallet data was successfully saved to %1.</source>
         <translation>Информацията за портфейла беше успешно запазена в %1.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -2371,7 +2370,7 @@
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation>Провалено "слушане" на всеки порт. Използвайте -listen=0 ако искате това.</translation>
+        <translation>Провалено &quot;слушане&quot; на всеки порт. Използвайте -listen=0 ако искате това.</translation>
     </message>
     <message>
         <source>Importing...</source>

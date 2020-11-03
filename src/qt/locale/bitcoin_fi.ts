@@ -1,4 +1,6 @@
-<TS language="fi" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fi">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiivinen yhteys Blackcoin-verkkoon</numerusform><numerusform>%n aktiivista yhteyttä Blackcoin-verkkoon</numerusform></translation>
+        <translation>
+            <numerusform>%n aktiivinen yhteys Blackcoin-verkkoon</numerusform>
+            <numerusform>%n aktiivista yhteyttä Blackcoin-verkkoon</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +472,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Käsitelty %n lohko rahansiirtohistoriasta.</numerusform><numerusform>Käsitelty %n lohkoa rahansiirtohistoriasta.</numerusform></translation>
+        <translation>
+            <numerusform>Käsitelty %n lohko rahansiirtohistoriasta.</numerusform>
+            <numerusform>Käsitelty %n lohkoa rahansiirtohistoriasta.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -764,16 +772,16 @@
         <translation>Muokkaa lähettävää osoitetta</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Antamasi osoite "%1" ei ole kelvollinen Blackcoin-osoite.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Antamasi osoite &quot;%1&quot; ei ole kelvollinen Blackcoin-osoite.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Osoite "%1" on jo vastaanotto-osoitteena nimellä "%2", joten sitä ei voi lisätä lähetysosoitteeksi.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Osoite &quot;%1&quot; on jo vastaanotto-osoitteena nimellä &quot;%2&quot;, joten sitä ei voi lisätä lähetysosoitteeksi.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Syötetty osoite "%1" on jo osoitekirjassa nimellä "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Syötetty osoite &quot;%1&quot; on jo osoitekirjassa nimellä &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,8 +889,8 @@
         <translation>Lompakko tallennetaan myös tähän hakemistoon.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Virhe: Annettu datahakemistoa "%1" ei voida luoda.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Virhe: Annettu datahakemistoa &quot;%1&quot; ei voida luoda.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,11 +898,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB tilaa vapaana</numerusform><numerusform>%n GB tilaa vapaana</numerusform></translation>
+        <translation>
+            <numerusform>%n GB tilaa vapaana</numerusform>
+            <numerusform>%n GB tilaa vapaana</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(tarvitaan %n GB)</numerusform><numerusform>(tarvitaan %n GB)</numerusform></translation>
+        <translation>
+            <numerusform>(tarvitaan %n GB)</numerusform>
+            <numerusform>(tarvitaan %n GB)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +918,7 @@
         <translation>Lomake</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Viimeiset tapahtumat eivät välttämättä vielä näy, joten lompakkosi saldo voi olla virheellinen. Tieto korjautuu, kunhan lompakkosi synkronointi blackcoin-verkon kanssa on päättynyt. Tiedot näkyvät alla.</translation>
     </message>
     <message>
@@ -1336,8 +1350,8 @@
         <translation>URI käsittely</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' ei ole kelvollinen URI. Käytä 'blackcoin:' sen sijaan.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; ei ole kelvollinen URI. Käytä &apos;blackcoin:&apos; sen sijaan.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1364,7 +1378,7 @@
         <translation>Maksupyyntö hylätty</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Maksupyyntoverkko ei täsmää asiakasohjelman verkon kanssa.</translation>
     </message>
     <message>
@@ -1502,7 +1516,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 ei vielä sulkeutunut turvallisesti...</translation>
     </message>
     <message>
@@ -1517,8 +1531,8 @@
         <translation>Virhe käsitellessä komentorivin valintaa: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Virhe: Annettua data-hakemistoa "%1" ei ole olemassa.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Virhe: Annettua data-hakemistoa &quot;%1&quot; ei ole olemassa.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1823,8 +1837,8 @@
         <translation>Suoritetaan komento ilman lomakkoa</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Suoritetaan komento käyttäen lompakkoa "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Suoritetaan komento käyttäen lompakkoa &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1898,7 +1912,7 @@
         <translation>Tyhjennä</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Natiivi segwit osoite (nk. Bech32 tai BIP173) rajoittaa siirtomaksuja myöhemmin ja tarjoaa paremman suojan kirjoitusvihreitä vastaan, mutta vanhat lompakot eivät tue ominaisuutta. Jos tätä ei valita, luodaan vanhojen lompakoiden kanssa yhteensopivia osoitteita.</translation>
     </message>
     <message>
@@ -2111,12 +2125,12 @@
         <translation>pudota kulujen asetukset</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Määrittele siirtotapahtuman näennäiskooksi siirtomaksu kilotavua (1,000 tavua) kohti.
 
-Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 tavun (puoli kt) siirrolle "100 sat / kt", johtaa tämä lopulta vain 50 satoshin maksuun.</translation>
+Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 tavun (puoli kt) siirrolle &quot;100 sat / kt&quot;, johtaa tämä lopulta vain 50 satoshin maksuun.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2171,7 +2185,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Käytä Replace-By-Fee:tä</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Replace-By-Fee:tä (BIP-125) käyttämällä voit korottaa siirtotapahtuman palkkiota sen lähettämisen jälkeen. Ilman tätä saatetaan suositella käyttämään suurempaa palkkiota kompensoimaan viiveen kasvamisen riskiä.</translation>
     </message>
     <message>
@@ -2300,7 +2314,10 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Vahvistuminen alkaa arviolta %n lohkon sisällä.</numerusform><numerusform>Vahvistuminen alkaa arviolta %n lohkon sisällä.</numerusform></translation>
+        <translation>
+            <numerusform>Vahvistuminen alkaa arviolta %n lohkon sisällä.</numerusform>
+            <numerusform>Vahvistuminen alkaa arviolta %n lohkon sisällä.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2495,7 +2512,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>&amp;Varmista viesti</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Syötä vastaanottajan osoite, viesti ja allekirjoitus (varmista että kopioit rivinvaihdot, välilyönnit, sarkaimet yms. täsmälleen) alle vahvistaaksesi viestin. Varo lukemasta allekirjoitukseen enempää kuin mitä viestissä itsessään on välttääksesi man-in-the-middle -hyökkäyksiltä. Huomaa, että tämä todentaa ainoastaan allekirjoittavan vastaanottajan osoitteen, tämä ei voi todentaa minkään tapahtuman lähettäjää!</translation>
     </message>
     <message>
@@ -2515,8 +2532,8 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Tyhjennä kaikki varmista-viesti-kentät</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Valitse "Allekirjoita Viesti" luodaksesi allekirjoituksen.</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Valitse &quot;Allekirjoita Viesti&quot; luodaksesi allekirjoituksen.</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2585,7 +2602,10 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Avoinna vielä %n lohkon ajan</numerusform><numerusform>Avoinna vielä %n lohkon ajan</numerusform></translation>
+        <translation>
+            <numerusform>Avoinna vielä %n lohkon ajan</numerusform>
+            <numerusform>Avoinna vielä %n lohkon ajan</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2665,7 +2685,10 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>kypsyy %n lohkon kuluttua</numerusform><numerusform>kypsyy %n lohkon kuluttua</numerusform></translation>
+        <translation>
+            <numerusform>kypsyy %n lohkon kuluttua</numerusform>
+            <numerusform>kypsyy %n lohkon kuluttua</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2716,8 +2739,8 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Kauppias</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Luotujen kolikoiden täytyy kypsyä vielä %1 lohkoa ennenkuin niitä voidaan käyttää. Luotuasi tämän lohkon, se kuulutettiin verkolle lohkoketjuun lisättäväksi. Mikäli lohko ei kuitenkaan pääse ketjuun, sen tilaksi vaihdetaan "ei hyväksytty" ja sitä ei voida käyttää. Toisinaan näin tapahtuu, jos jokin verkon toinen solmu luo lohkon lähes samanaikaisesti sinun lohkosi kanssa.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Luotujen kolikoiden täytyy kypsyä vielä %1 lohkoa ennenkuin niitä voidaan käyttää. Luotuasi tämän lohkon, se kuulutettiin verkolle lohkoketjuun lisättäväksi. Mikäli lohko ei kuitenkaan pääse ketjuun, sen tilaksi vaihdetaan &quot;ei hyväksytty&quot; ja sitä ei voida käyttää. Toisinaan näin tapahtuu, jos jokin verkon toinen solmu luo lohkon lähes samanaikaisesti sinun lohkosi kanssa.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2771,7 +2794,10 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Avoinna vielä %n lohkon ajan</numerusform><numerusform>Avoinna vielä %n lohkon ajan</numerusform></translation>
+        <translation>
+            <numerusform>Avoinna vielä %n lohkon ajan</numerusform>
+            <numerusform>Avoinna vielä %n lohkon ajan</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3070,7 +3096,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Vahvista palkkion korotus</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Siirtoa ei voida allekirjoittaa.</translation>
     </message>
     <message>
@@ -3164,7 +3190,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Virhe luettaessa %s! Avaimet luetttiin oikein, mutta rahansiirtotiedot tai osoitekirjan sisältö saattavat olla puutteellisia tai vääriä.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Tarkistathan että tietokoneesi päivämäärä ja kellonaika ovat oikeassa! Jos kellosi on väärässä, %s ei toimi oikein.</translation>
     </message>
     <message>
@@ -3172,7 +3198,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Ole hyvä ja avusta, jos %s on mielestäsi hyödyllinen. Vieraile %s saadaksesi lisää tietoa ohjelmistosta.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Lohkotietokanta sisältää lohkon, joka vaikuttaa olevan tulevaisuudesta. Tämä saattaa johtua tietokoneesi virheellisesti asetetuista aika-asetuksista. Rakenna lohkotietokanta uudelleen vain jos olet varma, että tietokoneesi päivämäärä ja aika ovat oikein.</translation>
     </message>
     <message>
@@ -3212,8 +3238,8 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>-maxmempool on oltava vähintään %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>-%s -osoitteen '%s' selvittäminen epäonnistui</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>-%s -osoitteen &apos;%s&apos; selvittäminen epäonnistui</translation>
     </message>
     <message>
         <source>Copyright (C) %i-%i</source>
@@ -3228,11 +3254,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Haluatko uudelleenrakentaa lohkotietokannan nyt?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>Virhe luodessa %s: Et voi luoda ei-HD lompakkoja tällä versiolla.</translation>
-    </message>
-    <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Virhe luodessa %s: Et voi luoda ei-HD lompakkoja tällä versiolla.</translation>
     </message>
     <message>
@@ -3288,20 +3310,20 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Alustava järkevyyden tarkistus epäonnistui. %s sulkeutuu.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Virheellinen määrä -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Virheellinen määrä -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Virheellinen määrä -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Virheellinen määrä -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Virheellinen määrä -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Virheellinen määrä -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Määrättyä lohkohakemistoa "%s" ei ole olemassa.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Määrättyä lohkohakemistoa &quot;%s&quot; ei ole olemassa.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3396,7 +3418,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Palataksesi karsimattomaan tilaan joudut uudelleenrakentamaan tietokannan -reindex -valinnalla. Tämä lataa koko lohkoketjun uudestaan.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Virhe ladattaessa %s: Et voi poistaa HD-ominaisuutta jo olemassa olevasta HD-lompakosta.</translation>
     </message>
     <message>
@@ -3412,24 +3434,24 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Tietoa</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Virheellinen -onion osoite tai isäntänimi: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Virheellinen -onion osoite tai isäntänimi: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Virheellinen -proxy osoite tai isäntänimi: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Virheellinen -proxy osoite tai isäntänimi: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Kelvoton määrä argumentille -paytxfee=&lt;amount&gt;: '%s' (pitää olla vähintään %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Kelvoton määrä argumentille -paytxfee=&lt;amount&gt;: &apos;%s&apos; (pitää olla vähintään %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Kelvoton verkkopeite määritelty argumentissa -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Kelvoton verkkopeite määritelty argumentissa -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Pitää määritellä portti argumentilla -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Pitää määritellä portti argumentilla -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3440,16 +3462,16 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Siirron vahvistus epäonnistui</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Määriteltyä lompakon hakemistoa "%s" ei ole olemassa.</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Määriteltyä lompakon hakemistoa &quot;%s&quot; ei ole olemassa.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Määritelty lompakkohakemisto "%s" sijaitsee suhteellisessa polussa</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Määritelty lompakkohakemisto &quot;%s&quot; sijaitsee suhteellisessa polussa</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Määritelty -walletdir "%s" ei ole hakemisto</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Määritelty -walletdir &quot;%s&quot; ei ole hakemisto</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3500,7 +3522,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>-maxtxfee on asetettu erittäin suureksi! Tämänkokoisia kuluja saatetaan maksaa yhdessä rahansiirrossa.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Virhe ladattaessa %s: Et voi ottaa HD:ta käyttöön jo olemassa olevalle ei-HD -lompakolle.</translation>
     </message>
     <message>
@@ -3512,7 +3534,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Verkon versiokenttä (%i) ylittää sallitun pituuden (%i). Vähennä uacomments:in arvoa tai kokoa.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Ei tuettu argumentti -socks löytynyt. SOCKS -version asetusta ei enää tueta, ainoastaan SOCKS5 -välityspalvelimet on tuettu.</translation>
     </message>
     <message>
@@ -3520,7 +3542,7 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Argumenttia -whitelistalwaysrelay ei tueta ja se ohitettiin. Käytä -whitelistrelay ja/tai -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Varoitus: Tuntemattomia lohkoversioita louhitaan! Tuntemattomia sääntöjä saattaa olla voimassa</translation>
     </message>
     <message>
@@ -3568,15 +3590,15 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Lähetyksessä tulee olla ainakin yksi vastaanottaja</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Tuntematon verkko -onlynet parametrina: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Tuntematon verkko -onlynet parametrina: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>Lompakon saldo ei riitä</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>Vaihtorahaosoitetteen avainta ei voitu luoda. Yksityisavaimet on poistettu käytöstä tässä lompakossa.</translation>
     </message>
     <message>
@@ -3584,8 +3606,8 @@ Huom: Koska siirtomaksu lasketaan tavujen mukaan, niin määrittelemällä 500 t
         <translation>Siirtomaksun arviointi epäonnistui. Odota muutama lohko tai käytä -fallbackfee -valintaa..</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Hakemistoon '%s' ei voida kirjoittaa. Tarkista käyttöoikeudet.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Hakemistoon &apos;%s&apos; ei voida kirjoittaa. Tarkista käyttöoikeudet.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

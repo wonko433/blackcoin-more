@@ -1,4 +1,6 @@
-<TS language="sn" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sn">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -37,7 +39,7 @@
         <source>&amp;Edit</source>
         <translation>&amp;Gadzirisa</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -53,9 +55,6 @@
         <translation>(hapana zita)</translation>
     </message>
 </context>
-<context>
-    <name>AskPassphraseDialog</name>
-    </context>
 <context>
     <name>BanTableModel</name>
     <message>
@@ -137,7 +136,7 @@
         <source>Information</source>
         <translation>Ruzivo</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -152,41 +151,14 @@
         <source>(no label)</source>
         <translation>(hapana zita)</translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -221,23 +193,14 @@
         <source>N/A</source>
         <translation>Hapana </translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
         <translation>Hapana </translation>
     </message>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -256,7 +219,7 @@
         <source>Wallet</source>
         <translation>Chikwama</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -271,7 +234,7 @@
         <source>(no label)</source>
         <translation>(hapana zita)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -279,24 +242,6 @@
         <translation>(hapana zita)</translation>
     </message>
 </context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -307,10 +252,7 @@
         <source>Amount</source>
         <translation>Marii </translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -325,7 +267,7 @@
         <source>(no label)</source>
         <translation>(hapana zita)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -340,19 +282,7 @@
         <source>Address</source>
         <translation>Kero</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -363,5 +293,5 @@
         <source>Warning</source>
         <translation>Hokoyo</translation>
     </message>
-    </context>
+</context>
 </TS>

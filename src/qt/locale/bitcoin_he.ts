@@ -1,4 +1,6 @@
-<TS language="he" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="he">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>חיבור אחד פעיל לרשת ביטקוין</numerusform><numerusform>%n חיבורים פעילים לרשת ביטקוין</numerusform><numerusform>%n חיבורים פעילים לרשת ביטקוין</numerusform><numerusform>%n חיבורים פעילים לרשת ביטקוין</numerusform></translation>
+        <translation>
+            <numerusform>חיבור אחד פעיל לרשת ביטקוין</numerusform>
+            <numerusform>%n חיבורים פעילים לרשת ביטקוין</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +472,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n מקטע של היסטוריית העברות עבר עיבוד</numerusform><numerusform>%n מקטעים של היסטוריית העברות עברו עיבוד</numerusform><numerusform>%n מקטעים של היסטוריית העברות עברו עיבוד</numerusform><numerusform>%n מקטעים של היסטוריית העברות עברו עיבוד</numerusform></translation>
+        <translation>
+            <numerusform>%n מקטע של היסטוריית העברות עבר עיבוד</numerusform>
+            <numerusform>%n מקטעים של היסטוריית העברות עברו עיבוד</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -764,16 +772,16 @@
         <translation>עריכת כתובת השליחה</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
         <translation>הכתובת שהוקלדה „%1” היא אינה כתובת ביטקוין תקנית.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>כתובת "%1" כבר קיימת ככתובת מקבלת עם תווית "%2" ולכן לא ניתן להוסיף אותה ככתובת שולחת</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>כתובת &quot;%1&quot; כבר קיימת ככתובת מקבלת עם תווית &quot;%2&quot; ולכן לא ניתן להוסיף אותה ככתובת שולחת</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>הכתובת שהוכנסה "%1" כבר נמצאת בפנקס הכתובות עם התווית "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>הכתובת שהוכנסה &quot;%1&quot; כבר נמצאת בפנקס הכתובות עם התווית &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,7 +889,7 @@
         <translation>הארנק גם מאוחסן בתיקייה הזו.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>שגיאה: לא ניתן ליצור את תיקיית הנתונים שצוינה „%1“.</translation>
     </message>
     <message>
@@ -890,11 +898,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>ג״ב של מקום פנוי זמין</numerusform><numerusform>%n ג״ב של מקום פנוי זמינים</numerusform><numerusform>%n ג״ב של מקום פנוי זמינים</numerusform><numerusform>%n ג״ב של מקום פנוי זמינים</numerusform></translation>
+        <translation>
+            <numerusform>ג״ב של מקום פנוי זמין</numerusform>
+            <numerusform>%n ג״ב של מקום פנוי זמינים</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(מתוך %n ג״ב נדרשים)</numerusform><numerusform>(מתוך %n ג״ב נדרשים)</numerusform><numerusform>(מתוך %n ג״ב נדרשים)</numerusform><numerusform>(מתוך %n ג״ב נדרשים)</numerusform></translation>
+        <translation>
+            <numerusform>(מתוך %n ג״ב נדרשים)</numerusform>
+            <numerusform>(מתוך %n ג״ב נדרשים)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +918,7 @@
         <translation>טופס</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>ייתכן שהעברות שבוצעו לאחרונה לא יופיעו עדיין, ולכן המאזן בארנק שלך יהיה שגוי. המידע הנכון יוצג במלואו כאשר הארנק שלך יסיים להסתנכרן עם רשת הביטקוין, כמפורט למטה.</translation>
     </message>
     <message>
@@ -1055,7 +1069,7 @@
     </message>
     <message>
         <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
-        <translation>משבית מספר תכונות מתקדמות אבל כל הבלוקים עדיין יעברו אימות מלא. שינוי של הגדרה זו מצריך הורדה מחדש של הבלוקצ'יין. נצילות הדיסק עלולה לעלות.</translation>
+        <translation>משבית מספר תכונות מתקדמות אבל כל הבלוקים עדיין יעברו אימות מלא. שינוי של הגדרה זו מצריך הורדה מחדש של הבלוקצ&apos;יין. נצילות הדיסק עלולה לעלות.</translation>
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
@@ -1067,7 +1081,7 @@
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
-        <translation>שינוי הגדרה זו מצריך הורדה מחדש של הבלוקצ'יין</translation>
+        <translation>שינוי הגדרה זו מצריך הורדה מחדש של הבלוקצ&apos;יין</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1336,8 +1350,8 @@
         <translation>טיפול בכתובות</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'//:blackcoin' אינה כתובת URI תקינה. השתמשו במקום ב ':blackcoin'.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;//:blackcoin&apos; אינה כתובת URI תקינה. השתמשו במקום ב &apos;:blackcoin&apos;.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1364,7 +1378,7 @@
         <translation>בקשת התשלום נדחתה</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>רשת בקשת התשלום אינה תואמת לרשת הלקוח.</translation>
     </message>
     <message>
@@ -1483,23 +1497,38 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>שנייה אחת</numerusform><numerusform>%n שניות</numerusform><numerusform>%n שניות</numerusform><numerusform>%n שניות</numerusform></translation>
+        <translation>
+            <numerusform>שנייה אחת</numerusform>
+            <numerusform>%n שניות</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>דקה אחת</numerusform><numerusform>%n דקות</numerusform><numerusform>%n דקות</numerusform><numerusform>%n דקות</numerusform></translation>
+        <translation>
+            <numerusform>דקה אחת</numerusform>
+            <numerusform>%n דקות</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>שעה אחת</numerusform><numerusform>%n שעות</numerusform><numerusform>%n שעות</numerusform><numerusform>%n שעות</numerusform></translation>
+        <translation>
+            <numerusform>שעה אחת</numerusform>
+            <numerusform>%n שעות</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>יום אחד</numerusform><numerusform>%n ימים</numerusform><numerusform>%n ימים</numerusform><numerusform>%n ימים</numerusform></translation>
+        <translation>
+            <numerusform>יום אחד</numerusform>
+            <numerusform>%n ימים</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>שבוע אחד</numerusform><numerusform>%n שבועות</numerusform><numerusform>%n שבועות</numerusform><numerusform>%n שבועות</numerusform></translation>
+        <translation>
+            <numerusform>שבוע אחד</numerusform>
+            <numerusform>%n שבועות</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1507,7 +1536,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>שנה אחת</numerusform><numerusform>%n שנים</numerusform><numerusform>%n שנים</numerusform><numerusform>%n שנים</numerusform></translation>
+        <translation>
+            <numerusform>שנה אחת</numerusform>
+            <numerusform>%n שנים</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1526,7 +1558,7 @@
         <translation>%1 ג״ב</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>הסגירה של %1 לא הושלמה בהצלחה עדיין…</translation>
     </message>
     <message>
@@ -1541,7 +1573,7 @@
         <translation>שגיאה בפענוח ארגומנטים בשורת הפקודה: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
         <translation>שגיאה: תיקיית הנתונים שצוינה „%1” אינה קיימת.</translation>
     </message>
     <message>
@@ -1847,8 +1879,8 @@
         <translation>מבצע פקודה ללא כל ארנק</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>מבצע פקודה באמצעות ארנק "%1" </translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>מבצע פקודה באמצעות ארנק &quot;%1&quot;&#xa0;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1922,7 +1954,7 @@
         <translation>ניקוי</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>כתובות segwit טבעיות (כלומר Bech32 או BIP-173) מפחיתות את עמלת העסקה שלכם בהמשך ומציעות הגנה נגד שגיאות כתיב, אך ארנקים ישנים לא תומכים בהן. אם לא סומן, כתובת תאימה לארנקים ישנים תיווצר במקום.</translation>
     </message>
     <message>
@@ -2124,7 +2156,7 @@
     </message>
     <message>
         <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation>שימוש בעמלת בררת המחדל עלול לגרום לשליחת עסקה שתכלל בבלוק עוד מספר שעות או ימים (או לעולם לא). נא שקלו בחירה ידנית של העמלה או המתינו לאימות מלא של הבלוקצ'יין.</translation>
+        <translation>שימוש בעמלת בררת המחדל עלול לגרום לשליחת עסקה שתכלל בבלוק עוד מספר שעות או ימים (או לעולם לא). נא שקלו בחירה ידנית של העמלה או המתינו לאימות מלא של הבלוקצ&apos;יין.</translation>
     </message>
     <message>
         <source>Warning: Fee estimation is currently not possible.</source>
@@ -2135,12 +2167,12 @@
         <translation>צמצום הגדרות עמלה</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>ציינו עמלה מותאמת אישית פר קילובייט (1000 בתים) של הגודל הוירטואלי של העסקה.
 
-לתשומת לבכם: מאחר והעמלה מחושבת על בסיס פר-בית, עמלה של "100 סטושי פר קילובייט" עבור עסקה בגודל 500 בתים (חצי קילובייט) תפיק בסופו של דבר עמלה של 50 סטושי בלבד.</translation>
+לתשומת לבכם: מאחר והעמלה מחושבת על בסיס פר-בית, עמלה של &quot;100 סטושי פר קילובייט&quot; עבור עסקה בגודל 500 בתים (חצי קילובייט) תפיק בסופו של דבר עמלה של 50 סטושי בלבד.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2195,7 +2227,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>אפשר ״החלפה-על ידי עמלה״</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>באמצעות עמלה-ניתנת-לשינוי (BIP-125) תוכלו להגדיל עמלת עסקה גם לאחר שליחתה. ללא אפשרות זו, עמלה גבוהה יותר יכולה להיות מומלצת כדי להקטין את הסיכון בעיכוב אישור העסקה.</translation>
     </message>
     <message>
@@ -2328,7 +2360,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>אמדן תחילת אימות תוך בלוק %n .</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform></translation>
+        <translation>
+            <numerusform>אמדן תחילת אימות תוך בלוק %n .</numerusform>
+            <numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2523,7 +2558,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>&amp;אימות הודעה</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>יש להזין את כתובת הנמען, ההודעה (נא לוודא שמעתיקים במדויק את תווי קפיצות השורה, רווחים, טאבים וכדומה). והחותימה מתחת אשר מאמתת את ההודעה. יש להזהר שלא לקרוא לתוך החתימה יותר מאשר בהודעה החתומה עצמה, כדי להמנע מניצול לרעה של המתווך שבדרך. יש לשים לב שהדגר רק מוכיח שהצד החותם מקבל עם הכתובת. הדבר אינו מוכיח משלוח כלשהו של עיסקה!</translation>
     </message>
     <message>
@@ -2543,7 +2578,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>איפוס כל שדות אימות ההודעה</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation>יש ללחוץ על „חתימת ההודעה“ כדי לייצר חתימה</translation>
     </message>
     <message>
@@ -2613,7 +2648,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>פתוח לבלוק %n נוסף</numerusform><numerusform>פתוח ל %n בלוקים נוספים</numerusform><numerusform>פתוח ל %n בלוקים נוספים</numerusform><numerusform>פתוח ל %n בלוקים נוספים</numerusform></translation>
+        <translation>
+            <numerusform>פתוח לבלוק %n נוסף</numerusform>
+            <numerusform>פתוח ל %n בלוקים נוספים</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2693,7 +2731,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>הבשלה בעוד בלוק %n</numerusform><numerusform>הבשלה בעוד %n בלוקים</numerusform><numerusform>הבשלה בעוד %n בלוקים</numerusform><numerusform>הבשלה בעוד %n בלוקים</numerusform></translation>
+        <translation>
+            <numerusform>הבשלה בעוד בלוק %n</numerusform>
+            <numerusform>הבשלה בעוד %n בלוקים</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2748,8 +2789,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>סוחר</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>מטבעות מופקים חייבים להבשיל במשך %1 בלוקים לפני שניתן לבזבזם. כשהפקתם בלוק זה, הבלוק שודר לרשת לצורך הוספה לבלוקצ'יין. אם הבלוק לא יתווסף לבלוקצ'יין, מצב הבלוק ישונה ל "לא התקבל" ולא יהיה ניתן לבזבזו. מצב זה עלול לקרות כאשר שרת ביטקוין אחר מפיק בלוק בהפרש של כמה שניות משלכם.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>מטבעות מופקים חייבים להבשיל במשך %1 בלוקים לפני שניתן לבזבזם. כשהפקתם בלוק זה, הבלוק שודר לרשת לצורך הוספה לבלוקצ&apos;יין. אם הבלוק לא יתווסף לבלוקצ&apos;יין, מצב הבלוק ישונה ל &quot;לא התקבל&quot; ולא יהיה ניתן לבזבזו. מצב זה עלול לקרות כאשר שרת ביטקוין אחר מפיק בלוק בהפרש של כמה שניות משלכם.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2803,7 +2844,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>פתוחה למשך בלוק אחד נוסף</numerusform><numerusform>פתוחה למשך %n בלוקים נוספים</numerusform><numerusform>פתוחה למשך %n בלוקים נוספים</numerusform><numerusform>פתוחה למשך %n בלוקים נוספים</numerusform></translation>
+        <translation>
+            <numerusform>פתוחה למשך בלוק אחד נוסף</numerusform>
+            <numerusform>פתוחה למשך %n בלוקים נוספים</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2887,7 +2931,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>User-defined intent/purpose of the transaction.</source>
-        <translation>ייעוד/תכלית מגדר ע"י המשתמש של העסקה.</translation>
+        <translation>ייעוד/תכלית מגדר ע&quot;י המשתמש של העסקה.</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
@@ -3102,7 +3146,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>אישור הקפצת עמלה</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>אי אפשר לחתום על ההעברה.</translation>
     </message>
     <message>
@@ -3204,7 +3248,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>פלט קבוצתי לפי כתובת, בחירת הכל או כלום, במקום בחירה על בסיס פלט. הפרטיות משתפרת כאשר משתמשים בכתובת רק פעם אחת  (אלא אם מישהו שולח לשם אחרי שהוציא משם), אך יכול לעלות בעמלות קצת יותר גבוהות באשר בחירת מטבעות suboptimal יתכן שיתבטא בתוספת הגבלות (ברירת מחדל: %u)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>נא בדקו שהתאריך והשעה במחשב שלכם נכונים! אם השעון שלכם לא מסונכרן, %s לא יעבוד כהלכה.</translation>
     </message>
     <message>
@@ -3212,7 +3256,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>אנא שקלו תרומה אם מצאתם את %s שימושי. בקרו ב %s למידע נוסף על התוכנה.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>מאגר נתוני הבלוקים מכיל בלוק עם תאריך עתידי. הדבר יכול להיגרם מתאריך ושעה שגויים במחשב שלכם. בצעו בנייה מחדש של מאגר נתוני הבלוקים רק אם אתם בטוחים שהתאריך והשעה במחשבכם נכונים</translation>
     </message>
     <message>
@@ -3229,7 +3273,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
-        <translation>הרצה-לאחור של מאגר הנתונים למצב טרום-פיצולי לא הצליחה. תצטרכו להוריד מחדש את הבלוקצ'יין.</translation>
+        <translation>הרצה-לאחור של מאגר הנתונים למצב טרום-פיצולי לא הצליחה. תצטרכו להוריד מחדש את הבלוקצ&apos;יין.</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3252,8 +3296,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>‎-maxmempool חייב להיות לפחות %d מ״ב</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>לא מצליח לפענח -%s כתובת: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>לא מצליח לפענח -%s כתובת: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3272,7 +3316,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>האם לבנות מחדש את מסד נתוני המקטעים?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>שגיאה ביצירת %s: אין אפשרות ליצור ארנקים שאינם HD בגרסה זו.</translation>
     </message>
     <message>
@@ -3332,24 +3376,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>איתחול של תהליך בדיקות השפיות נכשל. %s  בתהליך סגירה.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>סכום שגוי עבור ‎-%s=&lt;amount&gt;:‏ '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>סכום שגוי עבור ‎-%s=&lt;amount&gt;:‏ &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>סכום לא תקין של -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>סכום לא תקין של -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>סכום שגוי עבור ‎-fallbackfee=&lt;amount&gt;:‏ '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>סכום שגוי עבור ‎-fallbackfee=&lt;amount&gt;:‏ &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>התיקיה שהוגדרה "%s" לא קיימת.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>התיקיה שהוגדרה &quot;%s&quot; לא קיימת.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
-        <translation>שדרוג מאגר נתוני txindex </translation>
+        <translation>שדרוג מאגר נתוני txindex&#xa0;</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
@@ -3413,7 +3457,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Upgrading UTXO database</source>
-        <translation>שדרוג מאגר נתוני UTXO </translation>
+        <translation>שדרוג מאגר נתוני UTXO&#xa0;</translation>
     </message>
     <message>
         <source>User Agent comment (%s) contains unsafe characters.</source>
@@ -3432,8 +3476,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>שגיאה: האזנה לתקשורת נכנ סת נכשלה (ההאזנה מחזירה שגיאה (listen returned error %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>כמות שגויה של -maxtxfee=&lt;amount&gt;: '%s' (נדרש לפחות minrelay עמלה של %s כדי למנוע עסקאות מלהתקע</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>כמות שגויה של -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (נדרש לפחות minrelay עמלה של %s כדי למנוע עסקאות מלהתקע</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3441,10 +3485,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
-        <translation>יש צורך בבניה מחדש של מסד הנתונים ע"י שימוש ב -reindex כדי לחזור חזרה לצומת שאינה גזומה.  הפעולה תוריד מחדש את כל שרשרת הבלוקים.</translation>
+        <translation>יש צורך בבניה מחדש של מסד הנתונים ע&quot;י שימוש ב -reindex כדי לחזור חזרה לצומת שאינה גזומה.  הפעולה תוריד מחדש את כל שרשרת הבלוקים.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>שגיאת טעינה %s: אין אפשרות לנטרל  HD על ארנק שהוא כבר ארנק  HD </translation>
     </message>
     <message>
@@ -3460,24 +3504,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>מידע</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>אי תקינות  -onion כתובת או hostname: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>אי תקינות  -onion כתובת או hostname: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>אי תקינות כתובת -proxy או hostname: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>אי תקינות כתובת -proxy או hostname: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>כמות לא תקינה עבור ‎-paytxfee=&lt;amount&gt;‎:‏ '%s' (חייבת להיות לפחות %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>כמות לא תקינה עבור ‎-paytxfee=&lt;amount&gt;‎:‏ &apos;%s&apos; (חייבת להיות לפחות %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>מסכת הרשת שצוינה עם ‎-whitelist שגויה: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>מסכת הרשת שצוינה עם ‎-whitelist שגויה: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>עליך לציין פתחה עם ‎-whitebind:‏ '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>עליך לציין פתחה עם ‎-whitebind:‏ &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3488,16 +3532,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>החתימה על ההעברה נכשלה</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>תיקיית הארנק שצויינה  -walletdir "%s" אינה קיימת</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>תיקיית הארנק שצויינה  -walletdir &quot;%s&quot; אינה קיימת</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>תיקיית הארנק שצויינה -walletdir "%s" הנה נתיב יחסי</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>תיקיית הארנק שצויינה -walletdir &quot;%s&quot; הנה נתיב יחסי</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>תיקיית הארנק שצויינה -walletdir "%s" אינה תיקייה</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>תיקיית הארנק שצויינה -walletdir &quot;%s&quot; אינה תיקייה</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3552,7 +3596,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>-maxtxfee נקבע לעמלות גבוהות מאד! עמלות גבוהות כאלו יכולות משולמות עבר עסקה בודדת.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>שגיאת טעינה %s: אין לשפעל HD בארנק קיים שהוגדר כארנק non-HD </translation>
     </message>
     <message>
@@ -3561,14 +3605,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>מוצר זה כולל תוכנה שפותחה בפרויקט OpenSSL לטובת השימוש ב OpenSSL Toolkit %s ותוכנת קריפטוגרפיה שנכתבה ע"י   Eric Young ותוכנת UPnP שנכתבה ע"יי Thomas Bernard.</translation>
+        <translation>מוצר זה כולל תוכנה שפותחה בפרויקט OpenSSL לטובת השימוש ב OpenSSL Toolkit %s ותוכנת קריפטוגרפיה שנכתבה ע&quot;י   Eric Young ותוכנת UPnP שנכתבה ע&quot;יי Thomas Bernard.</translation>
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
         <translation>האורך הכולל של רצף התווים של גירסת הרשת  (%i) גדול מהאורך המרבי המותר (%i). יש להקטין את המספר או האורך של uacomments.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>המשתנה ‎-socks נמצא אך אין בו תמיכה עוד. הגדרת גרסת SOCKS אינה אפשרית עוד, קיימת תמיכה רק ב־SOCKS5.</translation>
     </message>
     <message>
@@ -3576,7 +3620,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>התעלמות ממשתנה שאינו נתמך  -whitelistalwaysrelay , יש להשתמש ב -whitelistrelay ו/או ב -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>אזהרה: גירסאות בלוקים לא מזוהות נמצאות בתהליך כרייה! יתכן שישנם כללים לא ידועים שנכנסו לתוקף.</translation>
     </message>
     <message>
@@ -3617,22 +3661,22 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
-        <translation>לעסקה יש שרשרת ארוכה מדי של mempool </translation>
+        <translation>לעסקה יש שרשרת ארוכה מדי של mempool&#xa0;</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
         <translation>להעברה חייב להיות לפחות נמען אחד</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>רשת לא ידועה צוינה דרך ‎-onlynet:‏ '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>רשת לא ידועה צוינה דרך ‎-onlynet:‏ &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>אין מספיק כספים</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>לא מצליח ליצור מפתח שינוי כתובות. מפתחות פרטיים מנוטרלים לארנק זה.</translation>
     </message>
     <message>
@@ -3641,14 +3685,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>אמדן גובה עמלה נכשל. Fallbackfee  מנוטרל. יש להמתין מספר בלוקים או לשפעל את  -fallbackfee</translation>
+        <translation>אמדן גובה עמלה נכשל. Fallbackfee&#xa0; מנוטרל. יש להמתין מספר בלוקים או לשפעל את  -fallbackfee</translation>
     </message>
     <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
         <translation>אזהרה: זוהו מפתחות פרטיים בארנק {%s} עם מפתחות פרטיים מושבתים</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
         <translation>לא ניתן לכתוב אל תיקיית הנתונים ‚%s’, נא לבדוק את ההרשאות.</translation>
     </message>
     <message>

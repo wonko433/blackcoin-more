@@ -1,4 +1,6 @@
-<TS language="vi_VN" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="vi_VN">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -93,7 +95,7 @@
         <source>Exporting Failed</source>
         <translation>Xuất không thành công</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -428,7 +430,9 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n liên kết hoạt động với mạng lưới Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n liên kết hoạt động với mạng lưới Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -440,7 +444,9 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Đã xử lý %n khối của lịch sử giao dịch.</numerusform></translation>
+        <translation>
+            <numerusform>Đã xử lý %n khối của lịch sử giao dịch.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -528,7 +534,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Ví tiền &lt;b&gt; đã được mã hóa&lt;/b&gt;và hiện &lt;b&gt;đang khóa&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -587,7 +593,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>(no label)</source>
         <translation>(không nhãn)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -602,14 +608,14 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>&amp;Address</source>
         <translation>Địa chỉ</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>tên</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -643,7 +649,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Error</source>
         <translation>Lỗi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -654,7 +660,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Hide</source>
         <translation>Ẩn</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -665,7 +671,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -740,7 +746,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Error</source>
         <translation>Lỗi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -759,10 +765,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Total:</source>
         <translation>Tổng:</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -773,7 +776,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Sent</source>
         <translation>Đã gửi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -800,17 +803,14 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>%1 GB</source>
         <translation>%1 GB</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>$Lưu hình ảnh...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -865,7 +865,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>No</source>
         <translation>Không</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -916,7 +916,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Copy message</source>
         <translation>Copy tin nhắn</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -990,7 +990,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>(no message)</source>
         <translation>(không tin nhắn)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1112,7 +1112,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>&amp;Label:</source>
         <translation>&amp;Nhãn</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1121,21 +1121,12 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
 </context>
 <context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Clear &amp;All</source>
         <translation>Xóa &amp;Tất cả</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -1146,10 +1137,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Amount</source>
         <translation>Lượng</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1160,7 +1148,7 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>(no label)</source>
         <translation>(không nhãn)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1179,27 +1167,21 @@ Ví của bạn chưa được mã hóa.</translation>
         <source>Exporting Failed</source>
         <translation>Xuất không thành công</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Gửi Coins</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
         <translation>&amp;Xuất</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

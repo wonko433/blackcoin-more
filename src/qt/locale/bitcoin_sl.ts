@@ -1,4 +1,6 @@
-<TS language="sl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sl">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,12 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktivna povezava v omrežje Blackcoin</numerusform><numerusform>%n aktivni povezavi v omrežje Blackcoin</numerusform><numerusform>%n aktivne povezave v omrežje Blackcoin</numerusform><numerusform>%n aktivnih povezav v omrežje Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n aktivna povezava v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivni povezavi v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivne povezave v omrežje Blackcoin</numerusform>
+            <numerusform>%n aktivnih povezav v omrežje Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +474,12 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n obdelan blok zgodovine transakcij.</numerusform><numerusform>%n obdelana bloka zgodovine transakcij.</numerusform><numerusform>%n obdelani bloki zgodovine transakcij.</numerusform><numerusform>%n obdelanih blokov zgodovine transakcij.</numerusform></translation>
+        <translation>
+            <numerusform>%n obdelan blok zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelana bloka zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelani bloki zgodovine transakcij.</numerusform>
+            <numerusform>%n obdelanih blokov zgodovine transakcij.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -764,16 +776,16 @@
         <translation>Uredi naslov za pošiljanje</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
         <translation>Vnešeni naslov %1 ni veljaven Blackcoin naslov.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Naslov %1 že obstaja kot naslov za prejemanje z oznako "%2" in ga je nemogoče dodati kot naslov za pošiljanje.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Naslov %1 že obstaja kot naslov za prejemanje z oznako &quot;%2&quot; in ga je nemogoče dodati kot naslov za pošiljanje.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Vnešeni naslov "%1" je že v imeniku z oznako "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Vnešeni naslov &quot;%1&quot; je že v imeniku z oznako &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,8 +893,8 @@
         <translation>Tudi denarnica bo shranjena v tem direktoriju.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Napaka: Ni mogoče ustvariti mape "%1".</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Napaka: Ni mogoče ustvariti mape &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,11 +902,21 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform><numerusform>%n GiB prostega prostora na voljo</numerusform></translation>
+        <translation>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+            <numerusform>%n GiB prostega prostora na voljo</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GiB)</numerusform><numerusform>(od potrebnih %n GB)</numerusform></translation>
+        <translation>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GiB)</numerusform>
+            <numerusform>(od potrebnih %n GB)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +926,7 @@
         <translation>Oblika</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Zadnje transakcije morda še niso vidne, zato je stanje v denarnici morda napačno. Ti podatki bodo pravilni, ko se bo vaša denarnica končala s sinhronizacijo z blackcoin omrežjem, kot je podrobneje opisano spodaj.</translation>
     </message>
     <message>
@@ -1336,8 +1358,8 @@
         <translation>Rokovanje z URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' ni veljaven URI. Uporabite raje 'blackcoin:' .</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; ni veljaven URI. Uporabite raje &apos;blackcoin:&apos; .</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1364,7 +1386,7 @@
         <translation>Zahtevek za plačilo zavrnjen</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Zahtevek za plačilo in vaš odjemalec se nahajata na dveh različnih omrežjih.</translation>
     </message>
     <message>
@@ -1483,23 +1505,48 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n sekunda</numerusform><numerusform>%n sekundi</numerusform><numerusform>%n sekunde</numerusform><numerusform>%n sekund</numerusform></translation>
+        <translation>
+            <numerusform>%n sekunda</numerusform>
+            <numerusform>%n sekundi</numerusform>
+            <numerusform>%n sekunde</numerusform>
+            <numerusform>%n sekund</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minuta</numerusform><numerusform>%n minuti</numerusform><numerusform>%n minute</numerusform><numerusform>%n minut</numerusform></translation>
+        <translation>
+            <numerusform>%n minuta</numerusform>
+            <numerusform>%n minuti</numerusform>
+            <numerusform>%n minute</numerusform>
+            <numerusform>%n minut</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n ura</numerusform><numerusform>%n uri</numerusform><numerusform>%n ure</numerusform><numerusform>%n ur</numerusform></translation>
+        <translation>
+            <numerusform>%n ura</numerusform>
+            <numerusform>%n uri</numerusform>
+            <numerusform>%n ure</numerusform>
+            <numerusform>%n ur</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n dan</numerusform><numerusform>%n dni</numerusform><numerusform>%n dni</numerusform><numerusform>%n dni</numerusform></translation>
+        <translation>
+            <numerusform>%n dan</numerusform>
+            <numerusform>%n dni</numerusform>
+            <numerusform>%n dni</numerusform>
+            <numerusform>%n dni</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n teden</numerusform><numerusform>%n tedna</numerusform><numerusform>%n tedne</numerusform><numerusform>%n tednov</numerusform></translation>
+        <translation>
+            <numerusform>%n teden</numerusform>
+            <numerusform>%n tedna</numerusform>
+            <numerusform>%n tedne</numerusform>
+            <numerusform>%n tednov</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1507,7 +1554,12 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n leto</numerusform><numerusform>%n leti</numerusform><numerusform>%n leta</numerusform><numerusform>%n let</numerusform></translation>
+        <translation>
+            <numerusform>%n leto</numerusform>
+            <numerusform>%n leti</numerusform>
+            <numerusform>%n leta</numerusform>
+            <numerusform>%n let</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1526,7 +1578,7 @@
         <translation>%1 GiB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 se še ni varno zaprl ...</translation>
     </message>
     <message>
@@ -1541,8 +1593,8 @@
         <translation>Napaka pri razčlenjevanju argumentov: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Napaka: Vnešena podatkovna mapa "%1" ne obstaja.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Napaka: Vnešena podatkovna mapa &quot;%1&quot; ne obstaja.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1847,8 +1899,8 @@
         <translation>Izvajam ukaz brez denarnice</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Izvajam ukaz v denarnici "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Izvajam ukaz v denarnici &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1922,7 +1974,7 @@
         <translation>Počisti</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Nativni naslovi segwit (aka Bech32 ali BIP-173) kasneje znižajo vaše transakcijske stroške in nudijo boljšo zaščito pred tiskarskimi škrati, vendar jih stare denarnice ne podpirajo. Če ne izberete polja, bo namesto tega ustvarjen naslov združljiv s starejšimi denarnicami.</translation>
     </message>
     <message>
@@ -2135,11 +2187,11 @@
         <translation>Skrije nastavitve provizije</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Določite poljubno provizijo na kB (1000 bajtov) navidezne velikosti transakcije.
-Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" za transakcijo velikosti 500 bajtov (polovica enega kB) znašala 50 satoshijev.</translation>
+Opomba: Ker se provizija izračuna na bajt, bi provizija &quot;100 satoshijev na kB&quot; za transakcijo velikosti 500 bajtov (polovica enega kB) znašala 50 satoshijev.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2194,7 +2246,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Omogoči Replace-By-Fee</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Z zamenjavo plačila (BIP-125) lahko po pošiljanju povečate pristojbino za transakcijo. Brez tega se lahko priporoči višja pristojbina za nadomestilo povečanega tveganja zamude pri transakciji.</translation>
     </message>
     <message>
@@ -2327,7 +2379,12 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Predviden začetek potrditev po %n najdenemu bloku.</numerusform><numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform><numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform><numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform></translation>
+        <translation>
+            <numerusform>Predviden začetek potrditev po %n najdenemu bloku.</numerusform>
+            <numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform>
+            <numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform>
+            <numerusform>Predviden začetek potrditev po %n najdenih blokih.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2522,7 +2579,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>&amp;Preveri sporočilo</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Da preverite verodostojnost sporočila, spodaj vnesite: prejemnikov naslov, prejeto sporočilo (pazljivo skopirajte vse prelome vrstic, presledke, tabulatorje ipd.,) in prejeti podpis. Da se izognete napadom tipa man-in-the-middle, vedite, da iz veljavnega podpisa ne sledi nič drugega, kot tisto, kar je navedeno v sporočilu. Podpis samo potrjuje dejstvo, da ima podpisnik v lasti prejemni naslov, ne more pa dokazati vira nobene transakcije!</translation>
     </message>
     <message>
@@ -2542,8 +2599,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Počisti vsa polja za vnos v oknu za preverjanje</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Kliknite na "Podpiši sporočilo" za ustvarjanje podpisa</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Kliknite na &quot;Podpiši sporočilo&quot; za ustvarjanje podpisa</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2612,7 +2669,12 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Odpri za %n blok več</numerusform><numerusform>Odpri za %n bloka več</numerusform><numerusform>Odpri za %n bloke več</numerusform><numerusform>Odpri za %n blokov več</numerusform></translation>
+        <translation>
+            <numerusform>Odpri za %n blok več</numerusform>
+            <numerusform>Odpri za %n bloka več</numerusform>
+            <numerusform>Odpri za %n bloke več</numerusform>
+            <numerusform>Odpri za %n blokov več</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2692,7 +2754,12 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>dozori po %n. najdenem bloku</numerusform><numerusform>dozori po %n. najdenih blokih</numerusform><numerusform>dozori po %n. najdenih blokih</numerusform><numerusform>dozori po %n. najdenih blokih</numerusform></translation>
+        <translation>
+            <numerusform>dozori po %n. najdenem bloku</numerusform>
+            <numerusform>dozori po %n. najdenih blokih</numerusform>
+            <numerusform>dozori po %n. najdenih blokih</numerusform>
+            <numerusform>dozori po %n. najdenih blokih</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2747,8 +2814,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Trgovec</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Ustvarjeni kovanci morajo zoreti %1 blokov, preden jih lahko porabite. Ko ste ta blok ustvarili, je bil posredovan v omrežje, da bo dodan v verigo blokov. Če se bloku ni uspelo uvrstiti v verigo, se bo njegovo stanje spremenilo v "ni bilo sprejeto" in kovancev ne bo mogoče porabiti. To se včasih zgodi, če kak drug rudar v roku nekaj sekund hkrati z vami odkrije drug blok.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Ustvarjeni kovanci morajo zoreti %1 blokov, preden jih lahko porabite. Ko ste ta blok ustvarili, je bil posredovan v omrežje, da bo dodan v verigo blokov. Če se bloku ni uspelo uvrstiti v verigo, se bo njegovo stanje spremenilo v &quot;ni bilo sprejeto&quot; in kovancev ne bo mogoče porabiti. To se včasih zgodi, če kak drug rudar v roku nekaj sekund hkrati z vami odkrije drug blok.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2802,7 +2869,12 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Odpri za %n blok več</numerusform><numerusform>Odpri za %n bloka več</numerusform><numerusform>Odpri za %n več blokov</numerusform><numerusform>Odpri za %n več blokov</numerusform></translation>
+        <translation>
+            <numerusform>Odpri za %n blok več</numerusform>
+            <numerusform>Odpri za %n bloka več</numerusform>
+            <numerusform>Odpri za %n več blokov</numerusform>
+            <numerusform>Odpri za %n več blokov</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3101,7 +3173,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Confirm fee bump</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Ne morem podpisati transakcije.</translation>
     </message>
     <message>
@@ -3203,7 +3275,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Skupinski izhodi po naslovu, pri čemer izberete vse ali nič, namesto da bi izbirali na osnovi izhoda. Zasebnost je izboljšana, saj se naslov uporablja samo enkrat (razen če ga kdo pošlje po porabi za njega), vendar lahko povzroči nekoliko višje pristojbine, saj lahko zaradi dodane omejitve pride do suboptimalne izbire kovancev (privzeto: %u)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Opozorilo: Preverite, če sta datum in ura na vašem računalniku točna! %s ne bo deloval pravilno, če je nastavljeni čas nepravilen.</translation>
     </message>
     <message>
@@ -3211,7 +3283,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Prosimo, prispevajte, če se vam zdi %s uporaben. Za dodatne informacije o programski opremi obiščite %s.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Baza podatkov blokov vsebuje blok, za katerega se zdi, da bo iz prihodnosti. To je lahko posledica napačnega nastavitve datuma in časa vašega računalnika. Znova obnovijte bazo podatkov samo, če ste prepričani, da sta datum in čas računalnika pravilna</translation>
     </message>
     <message>
@@ -3251,8 +3323,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>-maxmempool mora biti vsaj %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Naslova -%s ni mogoče razrešiti: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Naslova -%s ni mogoče razrešiti: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3271,7 +3343,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Želite zdaj obnoviti podatkovno bazo blokov?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Napaka pri ustvarjanju %s: Denarnice, ki ni HD, ne morete ustvariti s to različico.</translation>
     </message>
     <message>
@@ -3331,20 +3403,20 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Začetni sanity check neuspešen. %s se zapira.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Neveljavna količina za -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neveljavna količina za -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Vnešena podatkovna mapa za bloke "%s" ne obstaja.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Vnešena podatkovna mapa za bloke &quot;%s&quot; ne obstaja.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3431,8 +3503,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Napaka: Ni mogoče sprejemati dohodnih povezav (vrnjena napaka: %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Neveljaven znesek za -maxtxfee=&lt;amount&gt;: '%s' (mora biti najmanj provizija za %s, da se prepreči zataknjene transakcije)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Neveljaven znesek za -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (mora biti najmanj provizija za %s, da se prepreči zataknjene transakcije)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3443,7 +3515,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Za vrnitev v nepredviden način morate obnoviti bazo z uporabo -reindex. To bo ponovno naložilo celoten blockchain</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Napaka pri nalaganju %s: HD ne morete onemogočiti v denarnici ki je že HD</translation>
     </message>
     <message>
@@ -3459,23 +3531,23 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Informacije</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Neveljaven -onion naslov ali ime gostitelja: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Neveljaven -onion naslov ali ime gostitelja: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Neveljaven -proxy naslov ali ime gostitelja: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Neveljaven -proxy naslov ali ime gostitelja: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Neveljaven znesek za -paytxfee=&lt;amount&gt;: '%s' (mora biti vsaj %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Neveljaven znesek za -paytxfee=&lt;amount&gt;: &apos;%s&apos; (mora biti vsaj %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Neveljavna omrežna maska je navedena v -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Neveljavna omrežna maska je navedena v -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
         <translation>Pri opciji -whitebind morate navesti vrata: %s</translation>
     </message>
     <message>
@@ -3487,16 +3559,16 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Transakcije ni bilo mogoče podpisati.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Določena -walletdir "%s" ne obstaja</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Določena -walletdir &quot;%s&quot; ne obstaja</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Določena -walletdir "%s" je relativna</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Določena -walletdir &quot;%s&quot; je relativna</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Določena -walletdir "%s" ni podatkovna mapa</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Določena -walletdir &quot;%s&quot; ni podatkovna mapa</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3551,7 +3623,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>-maxtxfee je nastavljen zelo visoko!</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Napaka pri nalaganju %s: načina HD ne morete omogočiti v že obstoječi denarnici, ki ni HD</translation>
     </message>
     <message>
@@ -3563,7 +3635,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Skupna dolžina niza različice omrežja (%i) presega največjo dolžino (%i). Zmanjšajte število ali velikost ur.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Najdeni so nepodprti argumenti-nogavice. Nastavitev različice SOCKS ni več mogoča, podprti so samo pooblaščenci SOCKS5.</translation>
     </message>
     <message>
@@ -3571,7 +3643,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Nepodprti argument -whitelistalwaysrelay je prezrt, uporabite -whitelistrelay in / ali -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Opozorilo: Neznane blokovne različice so minirane! Možno je, da veljajo neznana pravila</translation>
     </message>
     <message>
@@ -3619,16 +3691,16 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Transakcija mora imeti vsaj enega prejemnika.</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Neznano omrežje določeno v -onlynet: '%s'.</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Neznano omrežje določeno v -onlynet: &apos;%s&apos;.</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>Premalo sredstev</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
-        <translation>Can't generate a change-address key. Private keys are disabled for this wallet.</translation>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
+        <translation>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</translation>
     </message>
     <message>
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
@@ -3643,8 +3715,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kB" 
         <translation>Opozorilo: zasebni ključi odkriti v denarnici %s z onemogočenimi zasebnimi ključi.</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Nimam dostopa za pisanje v podatkovni mapi '%s'; preveri dovoljenja.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Nimam dostopa za pisanje v podatkovni mapi &apos;%s&apos;; preveri dovoljenja.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

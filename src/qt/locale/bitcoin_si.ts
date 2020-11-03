@@ -1,4 +1,6 @@
-<TS language="si" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="si">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -21,7 +23,7 @@
         <source>Receiving addresses</source>
         <translation>ලබන ලිපින</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -38,12 +40,6 @@
     </message>
 </context>
 <context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
-<context>
     <name>BitcoinGUI</name>
     <message>
         <source>Warning</source>
@@ -53,7 +49,7 @@
         <source>Information</source>
         <translation>තොරතුර</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -98,39 +94,33 @@
     </message>
 </context>
 <context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>නම</translation>
     </message>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
         <source>Welcome</source>
         <translation>ආයුබෝවන්</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>calculating...</source>
         <translation>ගණනනය කරමින්...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -149,35 +139,14 @@
         <source>Tor</source>
         <translation>Tor</translation>
     </message>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>අගය</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -192,7 +161,7 @@
         <source>Label</source>
         <translation>ලේබලය</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -207,7 +176,7 @@
         <source>(no label)</source>
         <translation>(ලේබලයක් නැත)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -232,24 +201,6 @@
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
     <message>
         <source>Date</source>
@@ -259,10 +210,7 @@
         <source>Amount</source>
         <translation>අගය</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -277,7 +225,7 @@
         <source>(no label)</source>
         <translation>(ලේබලයක් නැත)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -292,19 +240,7 @@
         <source>Address</source>
         <translation>ලිපිනය</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -315,5 +251,5 @@
         <source>Warning</source>
         <translation>අවවාදය</translation>
     </message>
-    </context>
+</context>
 </TS>

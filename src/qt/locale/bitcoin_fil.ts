@@ -1,4 +1,6 @@
-<TS language="fil" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fil">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -755,16 +757,16 @@
         <translation>Baguhin ang address para sa pagpapadala</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Ang address na in-enter "%1" ay hindi wastong Blackcoin address.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Ang address na in-enter &quot;%1&quot; ay hindi wastong Blackcoin address.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Ang address "%1" ay ginagamit bilang address na pagtanggap na may label "%2" kaya hindi ito maaaring gamitin bilang address na pagpapadala.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Ang address &quot;%1&quot; ay ginagamit bilang address na pagtanggap na may label &quot;%2&quot; kaya hindi ito maaaring gamitin bilang address na pagpapadala.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Ang address na in-enter "%1" ay nasa address book na may label "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Ang address na in-enter &quot;%1&quot; ay nasa address book na may label &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -837,7 +839,7 @@
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>Maraming pangangailangan ang itong paunang sinkronisasyon at maaaring ilantad ang mga problema sa hardware ng iyong computer na hindi dating napansin. Tuwing pagaganahin mo ang %1, ito'y magpapatuloy mag-download kung saan ito tumigil.</translation>
+        <translation>Maraming pangangailangan ang itong paunang sinkronisasyon at maaaring ilantad ang mga problema sa hardware ng iyong computer na hindi dating napansin. Tuwing pagaganahin mo ang %1, ito&apos;y magpapatuloy mag-download kung saan ito tumigil.</translation>
     </message>
     <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
@@ -872,14 +874,14 @@
         <translation>Ang walet ay maiimbak din sa direktoryong ito.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Kamalian: Ang tinukoy na direktoyo ng datos "%1" ay hindi magawa.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Kamalian: Ang tinukoy na direktoyo ng datos &quot;%1&quot; ay hindi magawa.</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>Kamalian</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -887,7 +889,7 @@
         <translation>Anyo</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Ang mga bagong transaksyon ay hindi pa makikita kaya ang balanse ng iyong walet ay maaaring hindi tama. Ang impormasyong ito ay maiitama pagkatapos ma-synchronize ng iyong walet sa blackcoin network, ayon sa ibaba.</translation>
     </message>
     <message>
@@ -1311,8 +1313,8 @@
         <translation>URI handling</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>Ang 'blackcoin://' ay hindi wastong URI. Sa halip, gamitin ang 'blackcoin:'.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>Ang &apos;blackcoin://&apos; ay hindi wastong URI. Sa halip, gamitin ang &apos;blackcoin:&apos;.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1339,7 +1341,7 @@
         <translation>Ang hiling ng bayad ay tinanggihan</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Ang network ng hiling ng bayad ay hindi tumutugma sa network ng kliyente.</translation>
     </message>
     <message>
@@ -1477,7 +1479,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 ay hindi pa ligtas na nagsara...</translation>
     </message>
     <message>
@@ -1492,8 +1494,8 @@
         <translation>Kamalian sa pag-parse ng command line arguments: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Kamalian: Wala ang tinukoy na direktoryo ng datos "%1".</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Kamalian: Wala ang tinukoy na direktoryo ng datos &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1798,8 +1800,8 @@
         <translation>Isinasagawa ang command nang walang anumang walet.</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Isinasagawa ang command gamit ang "%1" walet</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Isinasagawa ang command gamit ang &quot;%1&quot; walet</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1873,7 +1875,7 @@
         <translation>Burahin</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Ang mga native segwit address (aka Bech32 o BIP-173) ay makakabawas ng iyong mga bayad sa transaksyon at nagaalok ng mas mahusay na proteksyon laban sa mga typo, ngunit ang mga lumang walet ay hindi sumusuporta nito. Kapag hindi ch-in-eck, gagawa ng mga address na katugma sa mga lumang walet sa halip. </translation>
     </message>
     <message>
@@ -2086,12 +2088,12 @@
         <translation>i-collapse ang fee-settings</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Tumukoy ng custom fee kada kB (1,000 bytes) ng virtual size ng transaksyon.
 
-Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng "100 satoshis kada kB" para sa transaksyon na 500 bytes (kalahati ng 1 kB) ay magkakaroon ng bayad na 50 lamang na satoshi.</translation>
+Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng &quot;100 satoshis kada kB&quot; para sa transaksyon na 500 bytes (kalahati ng 1 kB) ay magkakaroon ng bayad na 50 lamang na satoshi.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2138,7 +2140,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Paganahin ang Replace-By-Fee</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Sa Replace-By-Fee (BIP-125) maaari kang magpataas ng bayad sa transaksyon pagkatapos na maipadala ito. Nang wala ito, maaaring irekumenda ang mas mataas na bayad upang mabawi ang mas mataas na transaction delay risk.</translation>
     </message>
     <message>
@@ -2458,7 +2460,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Tiyakin ang Katotohanan ng Mensahe</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Ipasok ang address ng tatanggap, mensahe (tiyakin na kopyahin mo ang mga break ng linya, puwang, mga tab, atbp.) at pirma sa ibaba upang i-verify ang mensahe. Mag-ingat na huwag magbasa ng higit pa sa pirma kaysa sa kung ano ang nasa nakapirmang mensahe mismo, upang maiwasan na maloko ng man-in-the-middle attack. Tandaan na pinapatunayan lamang nito na nakakatanggap sa address na ito ang partido na pumirma, hindi nito napapatunayan ang pagpapadala ng anumang transaksyon!</translation>
     </message>
     <message>
@@ -2467,7 +2469,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Tiyakin ang katotohanan ng mensahe upang siguruhin na ito'y napirmahan ng tinukoy na Blackcoin address</translation>
+        <translation>Tiyakin ang katotohanan ng mensahe upang siguruhin na ito&apos;y napirmahan ng tinukoy na Blackcoin address</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2478,8 +2480,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>I-reset ang lahat ng mga patlang ng pag-verify ng mensahe</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>I-klik ang "Pirmahan ang Mensahe" upang gumawa ng pirma</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>I-klik ang &quot;Pirmahan ang Mensahe&quot; upang gumawa ng pirma</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2675,8 +2677,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Mangangalakal</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Ang mga nabuong coins ay dapat mayroong %1 blocks sa ibabaw bago sila gastusin. Kapag nabuo mo ang block na ito, nai-broadcast ito sa network na idadagdag sa block chain. Kung nabigo itong makapasok sa chain, magbabago ang katayuan nito sa "hindi tinanggap" at hindi it magagastos. Maaaring mangyari ito paminsan-minsan kung may isang node na bumuo ng isang block sa loob ng ilang segundo sa iyo. </translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Ang mga nabuong coins ay dapat mayroong %1 blocks sa ibabaw bago sila gastusin. Kapag nabuo mo ang block na ito, nai-broadcast ito sa network na idadagdag sa block chain. Kung nabigo itong makapasok sa chain, magbabago ang katayuan nito sa &quot;hindi tinanggap&quot; at hindi it magagastos. Maaaring mangyari ito paminsan-minsan kung may isang node na bumuo ng isang block sa loob ng ilang segundo sa iyo. </translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -3025,7 +3027,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Kumpirmahin ang fee bump</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Hindi mapirmahan ang transaksyon.</translation>
     </message>
     <message>
@@ -3119,7 +3121,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Error sa pagbabasa %s! Nabasa nang tama ang lahat ng mga key, ngunit ang data ng transaksyon o mga entry sa address book ay maaaring nawawala o hindi tama.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Mangyaring suriin na ang petsa at oras ng iyong computer ay tama! Kung mali ang iyong orasan, ang %s ay hindi gagana nang maayos.</translation>
     </message>
     <message>
@@ -3127,7 +3129,7 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Mangyaring tumulong kung natagpuan mo ang %s kapaki-pakinabang. Bisitahin ang %s para sa karagdagang impormasyon tungkol sa software.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Ang block database ay naglalaman ng isang block na tila nagmula sa hinaharap. Maaaring ito ay dahil sa petsa at oras ng iyong computer na nakatakda nang hindi wasto. Muling itayo ang database ng block kung sigurado ka na tama ang petsa at oras ng iyong computer</translation>
     </message>
     <message>
@@ -3167,8 +3169,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>ang -maxmempool ay dapat hindi bababa sa %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Hindi malutas - %s address: ' %s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Hindi malutas - %s address: &apos; %s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3239,20 +3241,20 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Hindi tamang o walang nahanap na genesis block. Maling datadir para sa network?</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Hindi wastong halaga para sa -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Hindi wastong halaga para sa -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Hindi wastong halaga para sa -discardfee=&lt;amount&gt;:'%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Hindi wastong halaga para sa -discardfee=&lt;amount&gt;:&apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Hindi wastong halaga para sa -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Hindi wastong halaga para sa -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Ang tinukoy na direktoryo ng mga block "%s" ay hindi umiiral.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Ang tinukoy na direktoryo ng mga block &quot;%s&quot; ay hindi umiiral.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3327,8 +3329,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Kamalian: Nabigo ang pakikinig sa mga papasok na koneksyon (ang listen ay nagbalik ng error %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Hindi wastong halaga para sa -maxtxfee=&lt;amount&gt;: '%s' (dapat hindi bababa sa minrelay fee na %s upang maiwasan ang mga natigil na mga transaksyon)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Hindi wastong halaga para sa -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (dapat hindi bababa sa minrelay fee na %s upang maiwasan ang mga natigil na mga transaksyon)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3351,24 +3353,24 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Impormasyon</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Hindi wastong -onion address o hostname: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Hindi wastong -onion address o hostname: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Hindi wastong -proxy address o hostname: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Hindi wastong -proxy address o hostname: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Hindi wastong halaga para sa -paytxfee=&lt;amount&gt;:'%s' (dapat hindi mas mababa sa %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Hindi wastong halaga para sa -paytxfee=&lt;amount&gt;:&apos;%s&apos; (dapat hindi mas mababa sa %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Hindi wastong netmask na tinukoy sa -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Hindi wastong netmask na tinukoy sa -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Kailangang tukuyin ang port na may -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Kailangang tukuyin ang port na may -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3379,16 +3381,16 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Nabigo ang pagpirma ng transaksyon</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Ang tinukoy na -walletdir "%s" ay hindi umiiral</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Ang tinukoy na -walletdir &quot;%s&quot; ay hindi umiiral</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Ang tinukoy na -walletdir "%s" ay isang relative path</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Ang tinukoy na -walletdir &quot;%s&quot; ay isang relative path</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Ang tinukoy na -walletdir "%s" ay hindi isang direktoryo</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Ang tinukoy na -walletdir &quot;%s&quot; ay hindi isang direktoryo</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3495,8 +3497,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Ang transaksyon ay dapat mayroong kahit isang tatanggap</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Hindi kilalang network na tinukoy sa -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Hindi kilalang network na tinukoy sa -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -3515,8 +3517,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Babala: Napansin ang mga private key sa walet { %s} na may mga hindi pinaganang private key</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Hindi makapagsulat sa direktoryo ng data ' %s'; suriin ang mga pahintulot.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Hindi makapagsulat sa direktoryo ng data &apos; %s&apos;; suriin ang mga pahintulot.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

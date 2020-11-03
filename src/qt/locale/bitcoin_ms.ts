@@ -1,4 +1,6 @@
-<TS language="ms" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ms">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -460,14 +462,14 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>Up to date</source>
         <translation>Terkini</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
         <source>(no label)</source>
         <translation>(tiada label)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -478,13 +480,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>&amp;Address</source>
         <translation>Alamat</translation>
     </message>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -495,38 +491,14 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>Error</source>
         <translation>Ralat</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Error</source>
         <translation>Ralat</translation>
     </message>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -534,10 +506,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>dompet lalai
 </translation>
     </message>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -556,7 +525,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>Wallet</source>
         <translation>dompet</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -567,7 +536,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>(no label)</source>
         <translation>(tiada label)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -580,30 +549,6 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
-    <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
     <name>TransactionTableModel</name>
     <message>
         <source>Label</source>
@@ -613,7 +558,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>(no label)</source>
         <translation>(tiada label)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -632,16 +577,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <source>Exporting Failed</source>
         <translation>Mengeksport Gagal</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -653,7 +589,7 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>
 Alihkan fail data ke dalam tab semasa</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

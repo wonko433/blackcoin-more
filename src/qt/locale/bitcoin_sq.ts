@@ -1,4 +1,6 @@
-<TS language="sq" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sq">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -177,7 +179,7 @@
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>ç'kyçja e portofolit dështoi</translation>
+        <translation>ç&apos;kyçja e portofolit dështoi</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
@@ -187,10 +189,7 @@
         <source>Wallet decryption failed</source>
         <translation>Dekriptimi i portofolit dështoi</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -295,13 +294,13 @@
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Portofoli po &lt;b&gt; enkriptohet&lt;/b&gt; dhe është &lt;b&gt; i ç'kyçur&lt;/b&gt;</translation>
+        <translation>Portofoli po &lt;b&gt; enkriptohet&lt;/b&gt; dhe është &lt;b&gt; i ç&apos;kyçur&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Portofoli po &lt;b&gt; enkriptohet&lt;/b&gt; dhe është &lt;b&gt; i kyçur&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -336,7 +335,7 @@
         <source>(no label)</source>
         <translation>(pa etiketë)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -365,7 +364,7 @@
     </message>
     <message>
         <source>Could not unlock wallet.</source>
-        <translation>Nuk mund të ç'kyçet portofoli.</translation>
+        <translation>Nuk mund të ç&apos;kyçet portofoli.</translation>
     </message>
     <message>
         <source>New key generation failed.</source>
@@ -378,14 +377,14 @@
         <source>name</source>
         <translation>emri</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
         <translation>versioni</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -400,17 +399,14 @@
         <source>Error</source>
         <translation>Problem</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>Formilarë</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -425,20 +421,14 @@
         <source>Error</source>
         <translation>Problem</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Formilarë</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -454,12 +444,6 @@
         <translation>i/e panjohur</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -493,7 +477,7 @@
         <source>Clear</source>
         <translation>Pastro</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -516,7 +500,7 @@
         <source>Wallet</source>
         <translation>Portofol</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -531,7 +515,7 @@
         <source>(no label)</source>
         <translation>(pa etiketë)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -603,15 +587,9 @@
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Krijoni një etiketë për këtë adresë që t'ja shtoni librit të adresave</translation>
+        <translation>Krijoni një etiketë për këtë adresë që t&apos;ja shtoni librit të adresave</translation>
     </message>
 </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -626,7 +604,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -634,9 +612,6 @@
         <translation>[testo rrjetin]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -667,14 +642,14 @@
         <source>Amount</source>
         <translation>Sasia</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Ky panel tregon një përshkrim të detajuar të transaksionit</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -725,7 +700,7 @@
         <source>(no label)</source>
         <translation>(pa etiketë)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -768,27 +743,21 @@
         <source>Exporting Failed</source>
         <translation>Eksportimi dështoj</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Dërgo Monedha</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Eksporto të dhënat e skedës korrente në një skedar</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

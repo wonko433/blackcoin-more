@@ -1,4 +1,6 @@
-<TS language="de_DE" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de_DE">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -93,7 +95,7 @@
         <source>Exporting Failed</source>
         <translation>Export fehlgeschlagen</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -546,7 +548,7 @@
         <source>(no label)</source>
         <translation>(kein Etikett)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -573,21 +575,21 @@
         <source>Edit sending address</source>
         <translation>Sendeadresse bearbeiten</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>Name</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
         <translation>Version</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -602,7 +604,7 @@
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -613,34 +615,28 @@
         <source>Unknown...</source>
         <translation>Unbekannt...</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Formular</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>Ping</source>
         <translation>Ping</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -655,20 +651,14 @@
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -698,7 +688,7 @@
         <source>Wallet</source>
         <translation>Brieftasche</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -713,7 +703,7 @@
         <source>(no label)</source>
         <translation>(kein Etikett)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -754,24 +744,6 @@
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
     <message>
         <source>Date</source>
@@ -781,10 +753,7 @@
         <source>Amount</source>
         <translation>Betrag</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -799,7 +768,7 @@
         <source>(no label)</source>
         <translation>(kein Etikett)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -842,16 +811,7 @@
         <source>Exporting Failed</source>
         <translation>Export fehlgeschlagen</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -870,7 +830,7 @@
         <source>Backup Successful</source>
         <translation>Sicherung erfolgreich</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

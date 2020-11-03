@@ -1,4 +1,6 @@
-<TS language="ro" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ro">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,11 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n conexiune activă către reţeaua Blackcoin</numerusform><numerusform>%n conexiuni active către reţeaua Blackcoin</numerusform><numerusform>%n de conexiuni active către reţeaua Blackcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n conexiune activă către reţeaua Blackcoin</numerusform>
+            <numerusform>%n conexiuni active către reţeaua Blackcoin</numerusform>
+            <numerusform>%n de conexiuni active către reţeaua Blackcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +473,11 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>S-a procesat %n bloc din istoricul tranzacţiilor.</numerusform><numerusform>S-au procesat %n blocuri din istoricul tranzacţiilor.</numerusform><numerusform>S-au procesat %n de blocuri din istoricul tranzacţiilor.</numerusform></translation>
+        <translation>
+            <numerusform>S-a procesat %n bloc din istoricul tranzacţiilor.</numerusform>
+            <numerusform>S-au procesat %n blocuri din istoricul tranzacţiilor.</numerusform>
+            <numerusform>S-au procesat %n de blocuri din istoricul tranzacţiilor.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -760,16 +770,16 @@
         <translation>Editează adresa de trimitere</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Adresa introdusă "%1" nu este o adresă Blackcoin validă.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Adresa introdusă &quot;%1&quot; nu este o adresă Blackcoin validă.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Adresa "%1" exista deja ca si adresa de primire cu eticheta "%2" si deci nu poate fi folosita ca si adresa de trimitere.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Adresa &quot;%1&quot; exista deja ca si adresa de primire cu eticheta &quot;%2&quot; si deci nu poate fi folosita ca si adresa de trimitere.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Adresa introdusa "%1" este deja in lista de adrese cu eticheta "%2"</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Adresa introdusa &quot;%1&quot; este deja in lista de adrese cu eticheta &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -877,8 +887,8 @@
         <translation>Portofelul va fi de asemeni stocat in acest director.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Eroare: Directorul datelor specificate "%1" nu poate fi creat.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Eroare: Directorul datelor specificate &quot;%1&quot; nu poate fi creat.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -886,11 +896,19 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB de spaţiu liber disponibil</numerusform><numerusform>%n GB de spaţiu liber disponibil</numerusform><numerusform>%n GB de spaţiu liber disponibil</numerusform></translation>
+        <translation>
+            <numerusform>%n GB de spaţiu liber disponibil</numerusform>
+            <numerusform>%n GB de spaţiu liber disponibil</numerusform>
+            <numerusform>%n GB de spaţiu liber disponibil</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(din %n GB necesar)</numerusform><numerusform>(din %n GB necesari)</numerusform><numerusform>(din %n GB necesari)</numerusform></translation>
+        <translation>
+            <numerusform>(din %n GB necesar)</numerusform>
+            <numerusform>(din %n GB necesari)</numerusform>
+            <numerusform>(din %n GB necesari)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -900,7 +918,7 @@
         <translation>Form</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Tranzactiile recente pot sa nu fie inca vizibile, de aceea balanta portofelului poate fi incorecta. Aceasta informatie va fi corecta de indata ce portofelul va fi complet sincronizat cu reteaua Blackcoin, asa cum este detaliat mai jos.</translation>
     </message>
     <message>
@@ -1019,7 +1037,7 @@
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
-        <translation>Minimizează fereastra în locul părăsirii programului în momentul închiderii ferestrei. Cînd acestă opţiune e activă, aplicaţia se va opri doar în momentul selectării comenzii 'Închide aplicaţia' din menu.</translation>
+        <translation>Minimizează fereastra în locul părăsirii programului în momentul închiderii ferestrei. Cînd acestă opţiune e activă, aplicaţia se va opri doar în momentul selectării comenzii &apos;Închide aplicaţia&apos; din menu.</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
@@ -1332,8 +1350,8 @@
         <translation>Gestionare URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' nu este un URI valid. Folositi 'blackcoin:' in loc.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; nu este un URI valid. Folositi &apos;blackcoin:&apos; in loc.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1360,7 +1378,7 @@
         <translation>Cerere de plată refuzată</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Cererea de plată din reţea nu se potriveşte cu clientul din reţea</translation>
     </message>
     <message>
@@ -1515,23 +1533,43 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n secunda</numerusform><numerusform>%n secunde</numerusform><numerusform>%n secunde</numerusform></translation>
+        <translation>
+            <numerusform>%n secunda</numerusform>
+            <numerusform>%n secunde</numerusform>
+            <numerusform>%n secunde</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minut</numerusform><numerusform>%n minute</numerusform><numerusform>%n minute</numerusform></translation>
+        <translation>
+            <numerusform>%n minut</numerusform>
+            <numerusform>%n minute</numerusform>
+            <numerusform>%n minute</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n ora</numerusform><numerusform>%n ore</numerusform><numerusform>%n ore</numerusform></translation>
+        <translation>
+            <numerusform>%n ora</numerusform>
+            <numerusform>%n ore</numerusform>
+            <numerusform>%n ore</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n zi</numerusform><numerusform>%n zile</numerusform><numerusform>%n zile</numerusform></translation>
+        <translation>
+            <numerusform>%n zi</numerusform>
+            <numerusform>%n zile</numerusform>
+            <numerusform>%n zile</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n saptamana</numerusform><numerusform>%n saptamani</numerusform><numerusform>%n saptamani</numerusform></translation>
+        <translation>
+            <numerusform>%n saptamana</numerusform>
+            <numerusform>%n saptamani</numerusform>
+            <numerusform>%n saptamani</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1539,7 +1577,11 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n an</numerusform><numerusform>%n ani</numerusform><numerusform>%n ani</numerusform></translation>
+        <translation>
+            <numerusform>%n an</numerusform>
+            <numerusform>%n ani</numerusform>
+            <numerusform>%n ani</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1558,7 +1600,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 nu a fost inchis in siguranta...</translation>
     </message>
     <message>
@@ -1573,8 +1615,8 @@
         <translation>Eroare la analiza argumentelor linie de comanda: %1</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Eroare: Directorul de date specificat "%1" nu există.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Eroare: Directorul de date specificat &quot;%1&quot; nu există.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1879,8 +1921,8 @@
         <translation>Executarea comenzii fara nici un portofel.</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Executarea comenzii folosind portofelul "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Executarea comenzii folosind portofelul &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1954,7 +1996,7 @@
         <translation>Curăţă</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Adresele native segwit (aka Bech32 sau BIP-173) vor reduce mai tarziu comisioanele de tranzactionare si vor oferi o mai buna protectie impotriva introducerii gresite, dar portofelele vechi nu sunt compatibile. Daca optiunea nu e bifata, se va crea o adresa compatibila cu portofelele vechi.</translation>
     </message>
     <message>
@@ -2167,12 +2209,12 @@
         <translation>inchide setarile de taxare</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Specificati o taxa anume pe kB (1000 byte) din marimea virtuala a tranzactiei. 
 
-Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o tranzactie de 500 byte (jumatate de kB) va produce o taxa de doar 50 satoshi.</translation>
+Nota: Cum taxa este calculata per byte, o taxa de &quot;100 satoshi per kB&quot; pentru o tranzactie de 500 byte (jumatate de kB) va produce o taxa de doar 50 satoshi.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2227,7 +2269,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Autorizeaza Replace-By-Fee</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Cu Replace-By-Fee (BIP-125) se poate creste taxa unei tranzactii dupa ce a fost trimisa. Fara aceasta optiune, o taxa mai mare e posibil sa fie recomandata pentru a compensa riscul crescut de intarziere a tranzactiei.</translation>
     </message>
     <message>
@@ -2360,7 +2402,11 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Se estimeaza inceperea confirmarii in %n bloc.</numerusform><numerusform>Se estimeaza inceperea confirmarii in %n blocuri.</numerusform><numerusform>Se estimeaza inceperea confirmarii in %n blocuri.</numerusform></translation>
+        <translation>
+            <numerusform>Se estimeaza inceperea confirmarii in %n bloc.</numerusform>
+            <numerusform>Se estimeaza inceperea confirmarii in %n blocuri.</numerusform>
+            <numerusform>Se estimeaza inceperea confirmarii in %n blocuri.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2555,7 +2601,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>&amp;Verifică mesaj</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Introduceţi adresa de semnatură, mesajul (asiguraţi-vă că aţi copiat spaţiile, taburile etc. exact) şi semnatura dedesubt pentru a verifica mesajul. Aveţi grijă să nu citiţi mai mult în semnatură decît mesajul în sine, pentru a evita să fiţi păcăliţi de un atac de tip man-in-the-middle. De notat ca aceasta dovedeste doar ca semnatarul primeste odata cu adresa, nu dovedesta insa trimiterea vreunei tranzactii.</translation>
     </message>
     <message>
@@ -2575,8 +2621,8 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Resetează toate cîmpurile mesajelor semnate</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Faceţi clic pe "Semneaza msaj" pentru a genera semnătura</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Faceţi clic pe &quot;Semneaza msaj&quot; pentru a genera semnătura</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2645,7 +2691,11 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Deschis pentru inca un bloc</numerusform><numerusform>Deschis pentru inca %n blocuri</numerusform><numerusform>Deschis pentru inca %n blocuri</numerusform></translation>
+        <translation>
+            <numerusform>Deschis pentru inca un bloc</numerusform>
+            <numerusform>Deschis pentru inca %n blocuri</numerusform>
+            <numerusform>Deschis pentru inca %n blocuri</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2725,7 +2775,11 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>se matureaza intr-un bloc</numerusform><numerusform>se matureaza in %n blocuri</numerusform><numerusform>se matureaza in %n blocuri</numerusform></translation>
+        <translation>
+            <numerusform>se matureaza intr-un bloc</numerusform>
+            <numerusform>se matureaza in %n blocuri</numerusform>
+            <numerusform>se matureaza in %n blocuri</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2780,8 +2834,8 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Comerciant</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Monedele generate se pot cheltui doar dupa inca %1 blocuri.  După ce a fost generat, s-a propagat în reţea, urmând să fie adăugat in blockchain.  Dacă nu poate fi inclus in lanţ, starea sa va deveni "neacceptat" si nu va putea fi folosit la tranzacţii.  Acest fenomen se întâmplă atunci cand un alt nod a generat un bloc la o diferenţa de câteva secunde.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Monedele generate se pot cheltui doar dupa inca %1 blocuri.  După ce a fost generat, s-a propagat în reţea, urmând să fie adăugat in blockchain.  Dacă nu poate fi inclus in lanţ, starea sa va deveni &quot;neacceptat&quot; si nu va putea fi folosit la tranzacţii.  Acest fenomen se întâmplă atunci cand un alt nod a generat un bloc la o diferenţa de câteva secunde.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -3130,7 +3184,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Confirma cresterea comisionului</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Nu s-a reuşit semnarea tranzacţiei</translation>
     </message>
     <message>
@@ -3232,7 +3286,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Gruparea a iesirilor pe adrese, selectand totul sau nimic, in loc de selectarea bazata per-iesire. Intimitatea este imbunatatita deoarece o adresa este folosita doar o singura data (cu exceptia cuiva care trimite catre aceiasi adresa dup ce cheltuie din ea), dar se pot genera taxe mai mari deoarece poate rezulta o selectare suboptimala a monedelor datorata limitarii impuse (implicit: %u)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Vă rugăm verificaţi dacă data/timpul calculatorului dvs. sînt corecte! Dacă ceasul calcultorului este gresit, %s nu va funcţiona corect.</translation>
     </message>
     <message>
@@ -3240,7 +3294,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Va rugam sa contribuiti daca apreciati ca %s va este util. Vizitati %s pentru mai multe informatii despre software.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Baza de date a blocurilor contine un bloc ce pare a fi din viitor. Acest lucru poate fi cauzat de setarea incorecta a datei si orei in computerul dvs. Reconstruiti baza de date a blocurilor doar daca sunteti sigur ca data si ora calculatorului dvs sunt corecte.</translation>
     </message>
     <message>
@@ -3280,8 +3334,8 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>-maxmempool trebuie sa fie macar %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Nu se poate rezolva adresa -%s: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Nu se poate rezolva adresa -%s: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3300,7 +3354,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Doriţi să reconstruiţi baza de date blocuri acum?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Eroare la crearea %s: Nu se pot crea portofele non-HD cu aceasta versiune.</translation>
     </message>
     <message>
@@ -3360,20 +3414,20 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Nu s-a reuşit iniţierea verificării sănătăţii. %s se inchide.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Sumă nevalidă pentru -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Sumă nevalidă pentru -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Sumă nevalidă pentru -discardfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Sumă nevalidă pentru -discardfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Suma nevalidă pentru -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Suma nevalidă pentru -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Directorul de blocuri "%s" specificat nu exista.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Directorul de blocuri &quot;%s&quot; specificat nu exista.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3460,8 +3514,8 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Eroare: Ascultarea conexiunilor de intrare nu a reuşit (ascultarea a reurnat eroarea %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Sumă nevalidă pentru -maxtxfee=&lt;amount&gt;: '%s' (trebuie să fie cel puţin taxa minrelay de %s pentru a preveni blocarea tranzactiilor)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Sumă nevalidă pentru -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (trebuie să fie cel puţin taxa minrelay de %s pentru a preveni blocarea tranzactiilor)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3472,7 +3526,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Trebuie reconstruita intreaga baza de date folosind -reindex pentru a va intoarce la modul non-redus. Aceasta va determina descarcarea din nou a intregului blockchain</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Eroare la incarcarea %s: Nu se poate dezactiva HD la un portofel care este deja HD.</translation>
     </message>
     <message>
@@ -3488,24 +3542,24 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Informaţie</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Adresa sau hostname -onion invalide: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Adresa sau hostname -onion invalide: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Adresa sau hostname -proxy invalide: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Adresa sau hostname -proxy invalide: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Sumă nevalidă pentru -paytxfee=&lt;suma&gt;: '%s' (trebuie să fie cel puţin %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Sumă nevalidă pentru -paytxfee=&lt;suma&gt;: &apos;%s&apos; (trebuie să fie cel puţin %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Mască reţea nevalidă specificată în -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Mască reţea nevalidă specificată în -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Trebuie să specificaţi un port cu -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Trebuie să specificaţi un port cu -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3516,12 +3570,12 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Nu s-a reuşit semnarea tranzacţiei</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Nu exista -walletdir "%s" specificat</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Nu exista -walletdir &quot;%s&quot; specificat</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>-walletdir "%s" specificat este o cale relativa</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>-walletdir &quot;%s&quot; specificat este o cale relativa</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3576,7 +3630,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>-maxtxfee este setata foarte sus! Se pot plati taxe de aceasta marime pe o singura tranzactie.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Eroare la incarcarea %s: Nu se poate activa HD la un portofel care este deja non-HD.</translation>
     </message>
     <message>
@@ -3592,7 +3646,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Lungimea totala a sirului versiunii retelei (%i) depaseste lungimea maxima (%i). Reduceti numarul sa dimensiunea uacomments. </translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>S-a gasit un argument -socks nesuportat. Setarea versiunii SOCKS nu mai este posibila, sunt suportate doar proxiurile SOCKS5.</translation>
     </message>
     <message>
@@ -3600,7 +3654,7 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Se ignora argumentul nesuportat -whitelistalwaysrelay, folositi -whitelistrelay si/sau -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Atentie: se mineaza blocuri cu versiune necunoscuta! Este posibil sa fie in vigoare reguli necunoscute.</translation>
     </message>
     <message>
@@ -3648,15 +3702,15 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Tranzactia trebuie sa aiba cel putin un destinatar</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Reţeaua specificată în -onlynet este necunoscută: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Reţeaua specificată în -onlynet este necunoscută: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>Fonduri insuficiente</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>Nu se poate genera o adresa pentru rest. Cheile private sunt dezactivate pentru acest portofel.</translation>
     </message>
     <message>
@@ -3672,8 +3726,8 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <translation>Atentie: S-au detectat chei private in portofelul {%s} cu cheile private dezactivate</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Nu se poate scrie in directorul de date '%s"; verificati permisiunile.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Nu se poate scrie in directorul de date &apos;%s&quot;; verificati permisiunile.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

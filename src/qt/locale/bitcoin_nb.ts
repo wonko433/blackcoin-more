@@ -1,4 +1,6 @@
-<TS language="nb" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nb">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiv forbindelse til Blackcoin-nettverket</numerusform><numerusform>%n aktive forbindelser til Blackcoin-nettverket</numerusform></translation>
+        <translation>
+            <numerusform>%n aktiv forbindelse til Blackcoin-nettverket</numerusform>
+            <numerusform>%n aktive forbindelser til Blackcoin-nettverket</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -465,17 +470,12 @@
         <source>Processing blocks on disk...</source>
         <translation>Prosesserer blokker på disk...</translation>
     </message>
-    <message>
-        <source>Indexing blocks on disk...</source>
-        <translation>Indekserer blokker på disken...</translation>
-    </message>
-    <message>
-        <source>Processing blocks on disk...</source>
-        <translation>Behandler blokker på disken…</translation>
-    </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Lastet %n blokk med transaksjonshistorikk.</numerusform><numerusform>Lastet %n blokker med transaksjonshistorikk.</numerusform></translation>
+        <translation>
+            <numerusform>Lastet %n blokk med transaksjonshistorikk.</numerusform>
+            <numerusform>Lastet %n blokker med transaksjonshistorikk.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -772,8 +772,8 @@
         <translation>Rediger utsendingsadresse</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Den angitte adressen "%1" er ikke en gyldig Blackcoin-adresse.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Den angitte adressen &quot;%1&quot; er ikke en gyldig Blackcoin-adresse.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,8 +881,8 @@
         <translation>Lommeboken vil også bli lagret i denne mappen.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Feil: Den oppgitte datamappen "%1" kan ikke opprettes.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Feil: Den oppgitte datamappen &quot;%1&quot; kan ikke opprettes.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,11 +890,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB med ledig lagringsplass</numerusform><numerusform>%n GB med ledig lagringsplass</numerusform></translation>
+        <translation>
+            <numerusform>%n GB med ledig lagringsplass</numerusform>
+            <numerusform>%n GB med ledig lagringsplass</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(av %n GB som trengs)</numerusform><numerusform>(av %n GB som trengs)</numerusform></translation>
+        <translation>
+            <numerusform>(av %n GB som trengs)</numerusform>
+            <numerusform>(av %n GB som trengs)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +910,7 @@
         <translation>Skjema</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Det kan hende nylige transaksjoner ikke vises enda, og at lommeboksaldoen dermed blir uriktig. Denne informasjonen vil rette seg når synkronisering av lommeboka mot blackcoin-nettverket er fullført, som anvist nedenfor.</translation>
     </message>
     <message>
@@ -1348,7 +1354,7 @@
         <translation>Betalingsforespørsel avslått</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Betalingsforespørselsnettverket samsvarer ikke med klientnettverket.</translation>
     </message>
     <message>
@@ -1467,23 +1473,38 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n sekund</numerusform><numerusform>%n sekunder</numerusform></translation>
+        <translation>
+            <numerusform>%n sekund</numerusform>
+            <numerusform>%n sekunder</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minutt</numerusform><numerusform>%n minutter</numerusform></translation>
+        <translation>
+            <numerusform>%n minutt</numerusform>
+            <numerusform>%n minutter</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n time</numerusform><numerusform>%n timer</numerusform></translation>
+        <translation>
+            <numerusform>%n time</numerusform>
+            <numerusform>%n timer</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dager</numerusform></translation>
+        <translation>
+            <numerusform>%n dag</numerusform>
+            <numerusform>%n dager</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n uke</numerusform><numerusform>%n uker</numerusform></translation>
+        <translation>
+            <numerusform>%n uke</numerusform>
+            <numerusform>%n uker</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1491,7 +1512,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n år</numerusform><numerusform>%n år</numerusform></translation>
+        <translation>
+            <numerusform>%n år</numerusform>
+            <numerusform>%n år</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1510,7 +1534,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 har ikke avsluttet trygt enda…</translation>
     </message>
     <message>
@@ -1521,8 +1545,8 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Feil: Den spesifiserte datamappen "%1" finnes ikke.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Feil: Den spesifiserte datamappen &quot;%1&quot; finnes ikke.</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -2147,7 +2171,7 @@
         <translation>Aktiver Replace-By-Fee</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Med Replace-By-Fee (BIP-125) kan du øke transaksjonens gebyr etter at den er sendt. Uten dette aktivert anbefales et høyere gebyr for å kompensere for risikoen for at transaksjonen blir forsinket. </translation>
     </message>
     <message>
@@ -2236,14 +2260,6 @@
         <translation>Totalbeløp</translation>
     </message>
     <message>
-        <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>Du kan øke gebyret senere (signaliserer Replace-By-Fee, BIP-125).</translation>
-    </message>
-    <message>
-        <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>Signaliserer ikke Replace-By-Fee, BIP-125</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
         <translation>Bekreft forsendelse av mynter</translation>
     </message>
@@ -2289,7 +2305,10 @@
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Antatt bekreftelsesbegynnelse innen %n blokk.</numerusform><numerusform>Antatt bekreftelsesbegynnelse innen %n blokker.</numerusform></translation>
+        <translation>
+            <numerusform>Antatt bekreftelsesbegynnelse innen %n blokk.</numerusform>
+            <numerusform>Antatt bekreftelsesbegynnelse innen %n blokker.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2484,7 +2503,7 @@
         <translation>&amp;Verifiser Melding</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Skriv inn mottakerens adresse, melding (forsikre deg om at du kopier linjeskift, mellomrom, faner osv. nøyaktig) og underskrift nedenfor for å bekrefte meldingen. Vær forsiktig så du ikke leser mer ut av signaturen enn hva som er i den signerte meldingen i seg selv, for å unngå å bli lurt av et man-in-the-middle-angrep. Merk at dette bare beviser at den som signerer kan motta med adressen, dette beviser ikke hvem som har sendt transaksjoner!</translation>
     </message>
     <message>
@@ -2504,8 +2523,8 @@
         <translation>Tilbakestill alle felter for meldingsverifikasjon</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Klikk "Signer melding" for å generere signatur</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Klikk &quot;Signer melding&quot; for å generere signatur</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2574,7 +2593,10 @@
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Åpen for %n blokk til</numerusform><numerusform>Åpen for %n flere blokker</numerusform></translation>
+        <translation>
+            <numerusform>Åpen for %n blokk til</numerusform>
+            <numerusform>Åpen for %n flere blokker</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2654,7 +2676,10 @@
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>modner om %n blokk</numerusform><numerusform>modner om %n blokker</numerusform></translation>
+        <translation>
+            <numerusform>modner om %n blokk</numerusform>
+            <numerusform>modner om %n blokker</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2709,8 +2734,8 @@
         <translation>Forretningsdrivende</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Genererte blackcoins må modne %1 blokker før de kan brukes. Da du genererte denne blokken ble den kringkastet på nettverket for å bli lagt til i kjeden av blokker. Hvis den ikke kommer med i kjeden vil den endre seg til "ikke akseptert", og vil ikke kunne brukes. Dette vil noen ganger skje hvis en annen node genererer en blokk innen noen sekunder av din.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Genererte blackcoins må modne %1 blokker før de kan brukes. Da du genererte denne blokken ble den kringkastet på nettverket for å bli lagt til i kjeden av blokker. Hvis den ikke kommer med i kjeden vil den endre seg til &quot;ikke akseptert&quot;, og vil ikke kunne brukes. Dette vil noen ganger skje hvis en annen node genererer en blokk innen noen sekunder av din.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2764,7 +2789,10 @@
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Åpen for én blokk til</numerusform><numerusform>Åpen for %n blokker til</numerusform></translation>
+        <translation>
+            <numerusform>Åpen for én blokk til</numerusform>
+            <numerusform>Åpen for %n blokker til</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3063,7 +3091,7 @@
         <translation>Bekreft gebyrøkning</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Kan ikke signere transaksjon</translation>
     </message>
     <message>
@@ -3161,7 +3189,7 @@
         <translation>Feil under lesing av %s! Alle nøkler har blitt lest rett, men transaksjonsdata eller adressebokoppføringer kan mangle eller være uriktige.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Sjekk at din datamaskins dato og klokke er stilt rett! Hvis klokka er feil, vil ikke %s fungere ordentlig.</translation>
     </message>
     <message>
@@ -3169,7 +3197,7 @@
         <translation>Bidra hvis du finner %s nyttig. Besøk %s for mer informasjon om programvaren.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Blokkdatabasen inneholder en blokk som ser ut til å være fra fremtiden. Dette kan være fordi dato og tid på din datamaskin er satt feil. Gjenopprett kun blokkdatabasen når du er sikker på at dato og tid er satt riktig.</translation>
     </message>
     <message>
@@ -3209,8 +3237,8 @@
         <translation>-maxmempool må være minst %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Kunne ikke slå opp -%s-adresse: "%s"</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Kunne ikke slå opp -%s-adresse: &quot;%s&quot;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3229,11 +3257,7 @@
         <translation>Ønsker du å gjenopprette blokkdatabasen nå?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>Feil under oppretting av %s: Du kan ikke lage en lommebok uten HD med denne versjonen.</translation>
-    </message>
-    <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Feil under oppretting av %s: Du kan ikke lage en lommebok uten HD med denne versjonen.</translation>
     </message>
     <message>
@@ -3289,16 +3313,16 @@
         <translation>Sunnhetssjekk ved oppstart mislyktes. %s skrus av.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig beløp for -%s=&lt;amount&gt;: "%s"</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ugyldig beløp for -%s=&lt;amount&gt;: &quot;%s&quot;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig beløp for -discardfee=&lt;amount&gt;: "%s"</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ugyldig beløp for -discardfee=&lt;amount&gt;: &quot;%s&quot;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ugyldig beløp for -fallbackfee=&lt;amount&gt;: "%s"</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ugyldig beløp for -fallbackfee=&lt;amount&gt;: &quot;%s&quot;</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3385,8 +3409,8 @@
         <translation>Feil: Lytting etter innkommende tilkoblinger feilet (lytting returnerte feil %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Ugyldig beløp for -maxtxfee=&lt;amount&gt;: '%s' (må være minst minimum relé gebyr på %s for å hindre fastlåste transaksjoner)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Ugyldig beløp for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (må være minst minimum relé gebyr på %s for å hindre fastlåste transaksjoner)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3397,7 +3421,7 @@
         <translation>Du må gjenoppbygge databasen ved hjelp av -reindex for å gå tilbake til ubeskåret modus. Dette vil laste ned hele blokkjeden på nytt.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Feil ved innlasting av %s: Du kan ikke skru av HD på ei HD-lommebok som allerede finnes</translation>
     </message>
     <message>
@@ -3413,24 +3437,24 @@
         <translation>Informasjon</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Ugyldig -onion adresse eller vertsnavn: "%s"</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Ugyldig -onion adresse eller vertsnavn: &quot;%s&quot;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Ugyldig -mellomtjeneradresse eller vertsnavn: "%s"</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Ugyldig -mellomtjeneradresse eller vertsnavn: &quot;%s&quot;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Ugyldig beløp for -paytxfee=&lt;amount&gt;: '%s' (må være minst %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Ugyldig beløp for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (må være minst %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Ugyldig nettmaske spesifisert i -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Ugyldig nettmaske spesifisert i -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Må oppgi en port med -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Må oppgi en port med -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3441,28 +3465,16 @@
         <translation>Signering av transaksjon feilet</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Oppgitt -walletdir "%s" eksisterer ikke</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Oppgitt -walletdir &quot;%s&quot; eksisterer ikke</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Oppgitt -walletdir "%s" er en relativ sti</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Oppgitt -walletdir &quot;%s&quot; er en relativ sti</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Oppgitt -walletdir "%s" er ikke en katalog</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Oppgitt -walletdir "%s" eksisterer ikke</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Oppgitt -walletdir "%s" er en relativ sti</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Oppgitt -walletdir "%s" er ikke en katalog</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Oppgitt -walletdir &quot;%s&quot; er ikke en katalog</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3517,7 +3529,7 @@
         <translation>-maxtxfee er satt veldig høyt! Så stort gebyr kan bli betalt ved en enkelt transaksjon.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Feil ved innlasting av %s: Du kan ikke skru på HD på ei ikke-HD-lommebok som allerede finnes</translation>
     </message>
     <message>
@@ -3533,7 +3545,7 @@
         <translation>Total lengde av nettverks-versionstreng (%i) er over maks lengde (%i). Reduser tallet eller størrelsen av uacomments.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Argumentet -socks er ikke støttet. Det er ikke lenger mulig å sette SOCKS-versjon; bare SOCKS5-proxyer er støttet.</translation>
     </message>
     <message>
@@ -3541,7 +3553,7 @@
         <translation>Argumentet -whitelistalwaysrelay støttes ikke, og blir ignorert, bruk -whitelistrelay og/eller -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Advarsel: Ukjente blokkversjoner blir utvunnet! Det er mulig ukjente regler er i spill</translation>
     </message>
     <message>
@@ -3589,8 +3601,8 @@
         <translation>Transaksjonen må ha minst én mottaker</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Ukjent nettverk angitt i -onlynet '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Ukjent nettverk angitt i -onlynet &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

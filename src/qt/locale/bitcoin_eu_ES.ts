@@ -1,4 +1,6 @@
-<TS language="eu_ES" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="eu_ES">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -211,10 +213,7 @@
         <source>Wallet decryption failed</source>
         <translation>Zorroaren desenkriptazioak huts egin du</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -309,7 +308,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Zorroa &lt;b&gt;enkriptatuta&lt;/b&gt; eta &lt;b&gt;blokeatuta&lt;/b&gt; dago une honetan</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -336,7 +335,7 @@
         <source>(no label)</source>
         <translation>(izendapenik ez)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -373,28 +372,19 @@
     </message>
 </context>
 <context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
     <name>Intro</name>
     <message>
         <source>Error</source>
         <translation>Akatsa</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>Inprimakia</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -405,20 +395,14 @@
         <source>Error</source>
         <translation>Akatsa</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Inprimakia</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -430,15 +414,6 @@
         <translation>ezezaguna</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -457,7 +432,7 @@
         <source>Copy label</source>
         <translation>Etiketa kopiatu</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -480,7 +455,7 @@
         <source>Message</source>
         <translation>Mezua</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -499,7 +474,7 @@
         <source>(no label)</source>
         <translation>(izendapenik ez)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -575,12 +550,6 @@
     </message>
 </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Alt+A</source>
@@ -594,7 +563,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -602,9 +571,6 @@
         <translation>[testnet]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -639,14 +605,14 @@
         <source>Amount</source>
         <translation>Kopurua</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Panel honek transakzien deskribapen xehea azaltzen du</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -800,20 +766,14 @@
         <source>Exporting Failed</source>
         <translation>Esportazioak huts egin du</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Txanponak bidali</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -824,7 +784,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Uneko fitxategian datuak esportatu</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

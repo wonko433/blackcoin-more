@@ -1,4 +1,6 @@
-<TS language="ar" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ar">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -451,7 +453,14 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform><numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform><numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform><numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform><numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform><numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform></translation>
+        <translation>
+            <numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform>
+            <numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform>
+            <numerusform>%n اتصال نشطة بشبكة بتكوين</numerusform>
+            <numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform>
+            <numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform>
+            <numerusform>%n اتصالات نشطة بشبكة بتكوين</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -463,7 +472,14 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform><numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform><numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform><numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform><numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform><numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform></translation>
+        <translation>
+            <numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform>
+            <numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform>
+            <numerusform>تمت معالجة %n كتلة من محفوظات المعاملة.</numerusform>
+            <numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform>
+            <numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform>
+            <numerusform>تمت معالجة %n كتلات من محفوظات المعاملة.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -761,8 +777,8 @@
         <translation>تعديل عنوان الارسال</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>العنوان المدخل "%1" ليس عنوان بيت كوين صحيح.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>العنوان المدخل &quot;%1&quot; ليس عنوان بيت كوين صحيح.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -831,7 +847,7 @@
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>عند النقر على "موافق" ، سيبدأ %1 في تنزيل ومعالجة سلسلة الكتل %4 الكاملة (%2 جيجابايت) بدءًا من المعاملات الأقدم في %3 عند تشغيل %4 في البداية.</translation>
+        <translation>عند النقر على &quot;موافق&quot; ، سيبدأ %1 في تنزيل ومعالجة سلسلة الكتل %4 الكاملة (%2 جيجابايت) بدءًا من المعاملات الأقدم في %3 عند تشغيل %4 في البداية.</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
@@ -870,7 +886,7 @@
         <translation>سوف يتم تخزين المحفظة في هذا الدليل.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>خطأ: لا يمكن تكوين دليل بيانات مخصص ل %1</translation>
     </message>
     <message>
@@ -879,11 +895,25 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform><numerusform>%n جيجابايت من المساحة المتوفرة</numerusform></translation>
+        <translation>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+            <numerusform>%n جيجابايت من المساحة المتوفرة</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(من %n جيجابايت اللازمة)</numerusform><numerusform>(من %n جيجابايت اللازمة)</numerusform><numerusform>(من %n جيجابايت اللازمة)</numerusform><numerusform>(من %n جيجابايت اللازمة)</numerusform><numerusform>(من %n جيجابايت اللازمة)</numerusform><numerusform>(من %n جيجابايت اللازمة)</numerusform></translation>
+        <translation>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+            <numerusform>(من %n جيجابايت اللازمة)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -893,7 +923,7 @@
         <translation>نمودج</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>قد لا تكون المعاملات الأخيرة مرئية بعد، وبالتالي قد يكون رصيد محفظتك غير صحيح. ستكون هذه المعلومات صحيحة بمجرد الانتهاء من محفظتك مع شبكة البيتكوين، كما هو مفصل أدناه.</translation>
     </message>
     <message>
@@ -1301,7 +1331,7 @@
         <translation>تم رفض طلب الدفع</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>لا تتطابق شبكة طلب الدفع مع شبكة العميل.</translation>
     </message>
     <message>
@@ -1424,7 +1454,14 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n يوم</numerusform><numerusform>%n يوم</numerusform><numerusform>%n يوم</numerusform><numerusform>%n أيام</numerusform><numerusform>%n أيام</numerusform><numerusform>%n أيام</numerusform></translation>
+        <translation>
+            <numerusform>%n يوم</numerusform>
+            <numerusform>%n يوم</numerusform>
+            <numerusform>%n يوم</numerusform>
+            <numerusform>%n أيام</numerusform>
+            <numerusform>%n أيام</numerusform>
+            <numerusform>%n أيام</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1443,7 +1480,7 @@
         <translation>%1 قيقا بايت</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 لم يخرج بعد بأمان...</translation>
     </message>
     <message>
@@ -1454,8 +1491,8 @@
 <context>
     <name>QObject::QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>خطأ: دليل البيانات المحدد "%1" غير موجود.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>خطأ: دليل البيانات المحدد &quot;%1&quot; غير موجود.</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -2064,7 +2101,7 @@
         <translation>تفعيل الإستبدال بواسطة الرسوم</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>مع الإستبدال بواسطة الرسوم (BIP-125) يمكنك زيادة رسوم المعاملة بعد إرسالها. وبدون ذلك، قد نوصي برسوم أعلى للتعويض عن مخاطر تأخير المعاملة المتزايدة.</translation>
     </message>
     <message>
@@ -2384,8 +2421,8 @@
         <translation>إعادة تعيين جميع حقول التحقق من الرسالة</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>اضغط  "توقيع الرسالة" لتوليد التوقيع</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>اضغط  &quot;توقيع الرسالة&quot; لتوليد التوقيع</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2454,7 +2491,14 @@
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>مفتوح ل %n كتلة إضافية</numerusform><numerusform>مفتوح ل %n كتلة إضافية</numerusform><numerusform>مفتوح ل %n كتلة إضافية</numerusform><numerusform>مفتوح ل %n كتلات إضافية</numerusform><numerusform>مفتوح ل %n كتلة إضافية</numerusform><numerusform>مفتوح ل %n كتلة إضافية</numerusform></translation>
+        <translation>
+            <numerusform>مفتوح ل %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح ل %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح ل %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح ل %n كتلات إضافية</numerusform>
+            <numerusform>مفتوح ل %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح ل %n كتلة إضافية</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2463,18 +2507,6 @@
     <message>
         <source>conflicted with a transaction with %1 confirmations</source>
         <translation>تعارضت مع معاملة لديها %1 تأكيدات</translation>
-    </message>
-    <message>
-        <source>in memory pool</source>
-        <translation>في تجمع الذاكرة</translation>
-    </message>
-    <message>
-        <source>not in memory pool</source>
-        <translation>ليس في تجمع الذاكرة</translation>
-    </message>
-    <message>
-        <source>abandoned</source>
-        <translation>مهجور</translation>
     </message>
     <message>
         <source>in memory pool</source>
@@ -2640,7 +2672,14 @@
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>مفتوح لـ %n كتلة إضافية</numerusform><numerusform>مفتوح لـ %n كتلة إضافية</numerusform><numerusform>مفتوح لـ %n كتلة إضافية</numerusform><numerusform>مفتوح لـ %n كتلة إضافية</numerusform><numerusform>مفتوح لـ %n كتلة إضافية</numerusform><numerusform>مفتوح لـ %n كتلة إضافية</numerusform></translation>
+        <translation>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+            <numerusform>مفتوح لـ %n كتلة إضافية</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2661,18 +2700,6 @@
     <message>
         <source>Confirmed (%1 confirmations)</source>
         <translation>مؤكد (%1 تأكيدات)</translation>
-    </message>
-    <message>
-        <source>Unconfirmed</source>
-        <translation>غير مؤكد</translation>
-    </message>
-    <message>
-        <source>Abandoned</source>
-        <translation>مهجور</translation>
-    </message>
-    <message>
-        <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>قيد التأكيد (%1 من %2 تأكيد موصى به)</translation>
     </message>
     <message>
         <source>Conflicted</source>
@@ -2947,7 +2974,7 @@
         <translation>تأكيد زيادة الرسوم</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>لا يمكن توقيع المعاملة.</translation>
     </message>
     <message>
@@ -2985,7 +3012,7 @@
         <source>The wallet data was successfully saved to %1.</source>
         <translation>تم حفظ بيانات المحفظة بنجاح إلى %1.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -3009,20 +3036,8 @@
         <translation>قبول أوامر وحدة التحكم وأوامر JSON-RPC</translation>
     </message>
     <message>
-        <source>Error: A fatal internal error occurred, see debug.log for details</source>
-        <translation>خطأ: حدث خطأ داخلي فادح، راجع debug.log للحصول على التفاصيل</translation>
-    </message>
-    <message>
-        <source>Pruning blockstore...</source>
-        <translation>تجريد مخزن الكتل...</translation>
-    </message>
-    <message>
         <source>Run in the background as a daemon and accept commands</source>
         <translation>تشغيل في الخلفية بشكل مخفي لقبول الأوامر</translation>
-    </message>
-    <message>
-        <source>Unable to start HTTP server. See debug log for details.</source>
-        <translation>غير قادر على بدء خادم ال HTTP. راجع سجل تصحيح الأخطاء للحصول على التفاصيل.</translation>
     </message>
     <message>
         <source>Bitcoin Core</source>
@@ -3070,7 +3085,7 @@
         <translation>هل تريد إعادة بناء قاعدة بيانات الكتل الآن؟</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>خطأ في إنشاء %s: لا يمكنك إنشاء محافظ بلا خاصية الهرمية الحتمية non-HD باستخدام هذا الإصدار.</translation>
     </message>
     <message>
@@ -3098,40 +3113,12 @@
         <translation>خطأ في فتح قاعدة بيانات الكتل</translation>
     </message>
     <message>
-        <source>Copyright (C) %i-%i</source>
-        <translation>حقوق الطبع والنشر (C) %i-%i</translation>
-    </message>
-    <message>
-        <source>Corrupted block database detected</source>
-        <translation>تم الكشف عن قاعدة بيانات كتل تالفة</translation>
-    </message>
-    <message>
         <source>Debugging/Testing options:</source>
         <translation>خيارات التصحيح / الاختبار:</translation>
     </message>
     <message>
         <source>Do not load the wallet and disable wallet RPC calls</source>
         <translation>لا تقم بتحميل المحفظة وتعطيل استدعاءات RPC للمحفظة</translation>
-    </message>
-    <message>
-        <source>Do you want to rebuild the block database now?</source>
-        <translation>هل تريد إعادة بناء قاعدة بيانات الكتل الآن؟</translation>
-    </message>
-    <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>خطأ في إنشاء %s: لا يمكنك إنشاء محافظ بلا خاصية الهرمية الحتمية non-HD باستخدام هذا الإصدار.</translation>
-    </message>
-    <message>
-        <source>Error loading %s</source>
-        <translation>خطأ في تحميل %s</translation>
-    </message>
-    <message>
-        <source>Error loading block database</source>
-        <translation>خطأ في تحميل قاعدة بيانات الكتل</translation>
-    </message>
-    <message>
-        <source>Error opening block database</source>
-        <translation>خطأ في فتح قاعدة بيانات الكتل</translation>
     </message>
     <message>
         <source>Error: Disk space is low!</source>
@@ -3218,7 +3205,7 @@
         <translation>تحتاج إلى إعادة إنشاء قاعدة البيانات باستخدام -reindex للعودة إلى الوضعية الغير مجردة. هذا سوف يعيد تحميل سلسلة الكتل بأكملها</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>خطأ أثناء تحميل %s: لا يمكنك تعطيل خاصية الهرمية الحتمية HD في محفظة مفعلة بخاصية الهرمية الحتمية HD مسبقاً</translation>
     </message>
     <message>
@@ -3232,14 +3219,6 @@
     <message>
         <source>Randomize credentials for every proxy connection. This enables Tor stream isolation (default: %u)</source>
         <translation>عشوائية وثائق الاعتماد لكل اتصال عبر وكيل. يتيح ذلك عزل تيار تور (القيمة الافتراضية: %u)</translation>
-    </message>
-    <message>
-        <source>The transaction amount is too small to send after the fee has been deducted</source>
-        <translation>قيمة المعاملة صغيرة جدًا ولا يمكن إرسالها بعد خصم الرسوم</translation>
-    </message>
-    <message>
-        <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
-        <translation>تحتاج إلى إعادة إنشاء قاعدة البيانات باستخدام -reindex للعودة إلى الوضعية الغير مجردة. هذا سوف يعيد تحميل سلسلة الكتل بأكملها</translation>
     </message>
     <message>
         <source>(default: %u)</source>
@@ -3256,18 +3235,6 @@
     <message>
         <source>Connect through SOCKS5 proxy</source>
         <translation>الاتصال من خلال وكيل SOCKS5</translation>
-    </message>
-    <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
-        <translation>خطأ أثناء تحميل %s: لا يمكنك تعطيل خاصية الهرمية الحتمية HD في محفظة مفعلة بخاصية الهرمية الحتمية HD مسبقاً</translation>
-    </message>
-    <message>
-        <source>Error reading from database, shutting down.</source>
-        <translation>خطأ في القراءة من قاعدة البيانات ، والتوقف.</translation>
-    </message>
-    <message>
-        <source>Error upgrading chainstate database</source>
-        <translation>خطأ في ترقية قاعدة بيانات chainstate</translation>
     </message>
     <message>
         <source>Imports blocks from external blk000??.dat file on startup</source>
@@ -3338,7 +3305,7 @@
         <translation>إزالة جميع المعاملات من المحفظة...</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>خطأ أثناء تحميل %s: لا يمكنك تفعيل خاصية الهرمية الحتمية HD في محفظة لا تملك خاصية الهرمية الحتمية non-HD مسبقاً</translation>
     </message>
     <message>
@@ -3370,28 +3337,12 @@
         <translation>يجب أن تحتوي المعاملة على مستلم واحد على الأقل</translation>
     </message>
     <message>
-        <source>Starting network threads...</source>
-        <translation>بدء مؤشرات شبكة الاتصال...</translation>
-    </message>
-    <message>
-        <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>سوف تتجنب المحفظة دفع أقل من الحد الأدنى لرسوم التتابع.</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must not be negative</source>
-        <translation>يجب ألا تكون قيمة المعاملة سلبية</translation>
-    </message>
-    <message>
-        <source>Transaction must have at least one recipient</source>
-        <translation>يجب أن تحتوي المعاملة على مستلم واحد على الأقل</translation>
-    </message>
-    <message>
         <source>Insufficient funds</source>
         <translation>اموال غير كافية</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>لايمكن الكتابة على دليل البيانات '%s'؛ تحقق من السماحيات.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>لايمكن الكتابة على دليل البيانات &apos;%s&apos;؛ تحقق من السماحيات.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

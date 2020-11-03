@@ -1,4 +1,6 @@
-<TS language="it_IT" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="it_IT">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -15,7 +17,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copia l'indirizzo selezionato nella clipboard di sistema</translation>
+        <translation>Copia l&apos;indirizzo selezionato nella clipboard di sistema</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +29,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Cancella l'indirizzo attualmente selezionato dalla lista.</translation>
+        <translation>Cancella l&apos;indirizzo attualmente selezionato dalla lista.</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -47,11 +49,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Scegli l'indirizzo a cui inviare denaro</translation>
+        <translation>Scegli l&apos;indirizzo a cui inviare denaro</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Scegli l'indirizzo dove accreditare i coins</translation>
+        <translation>Scegli l&apos;indirizzo dove accreditare i coins</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -67,7 +69,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Questi sono i suoi indirizzi Blackcoin per ricevere i pagamenti. Controlla sempre l'importo e gli indirizzi prima di inviare i coins.</translation>
+        <translation>Questi sono i suoi indirizzi Blackcoin per ricevere i pagamenti. Controlla sempre l&apos;importo e gli indirizzi prima di inviare i coins.</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
@@ -97,7 +99,7 @@
         <source>Exporting Failed</source>
         <translation>Esportazione Fallita</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -355,7 +357,7 @@
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Backup del portafoglio in un'altra posizione</translation>
+        <translation>Backup del portafoglio in un&apos;altra posizione</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -483,7 +485,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Mostra il %1 messaggio d'aiuto per ottenere una lista con le possibili opzioni per la riga di comando di Blackcoin</translation>
+        <translation>Mostra il %1 messaggio d&apos;aiuto per ottenere una lista con le possibili opzioni per la riga di comando di Blackcoin</translation>
     </message>
     <message>
         <source>Date: %1
@@ -675,11 +677,11 @@
     </message>
     <message>
         <source>The label associated with this address list entry</source>
-        <translation>L'etichetta associata con questa voce dell'elenco indirizzi</translation>
+        <translation>L&apos;etichetta associata con questa voce dell&apos;elenco indirizzi</translation>
     </message>
     <message>
         <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>L'indirizzo associato con questa voce dell'elenco indirizzi. Può essere modificato per inviare indirizzi.</translation>
+        <translation>L&apos;indirizzo associato con questa voce dell&apos;elenco indirizzi. Può essere modificato per inviare indirizzi.</translation>
     </message>
     <message>
         <source>&amp;Address</source>
@@ -691,15 +693,15 @@
     </message>
     <message>
         <source>Edit receiving address</source>
-        <translation>Modifica l'indirizzo di ricezione</translation>
+        <translation>Modifica l&apos;indirizzo di ricezione</translation>
     </message>
     <message>
         <source>Edit sending address</source>
-        <translation>Modifica l'indirizzo di invio</translation>
+        <translation>Modifica l&apos;indirizzo di invio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>L'indirizzo inserito "%1" non è un indirizzo Blackcoin valido.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>L&apos;indirizzo inserito &quot;%1&quot; non è un indirizzo Blackcoin valido.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -760,23 +762,20 @@
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
-        <translation>Il portafoglio sara' </translation>
+        <translation>Il portafoglio sara&apos; </translation>
     </message>
     <message>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Number of blocks left</source>
         <translation>Numero di blocchi rimanente</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -795,7 +794,7 @@
         <source>This change would require a client restart.</source>
         <translation>Questa modifica richiede un riavvio del client</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -810,7 +809,7 @@
         <source>Recent transactions</source>
         <translation>Transazioni recenti</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -821,27 +820,21 @@
         <source>Refund from %1</source>
         <translation>Rimborso da %1</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>Sent</source>
         <translation>Inviato</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>Importo</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -852,7 +845,7 @@
         <source>default wallet</source>
         <translation>Portafoglio predefinito</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -882,7 +875,7 @@
         <source>Wallet</source>
         <translation>Portafoglio</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -897,7 +890,7 @@
         <source>(no label)</source>
         <translation>(nessuna etichetta)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -954,24 +947,6 @@
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
     <message>
         <source>Date</source>
@@ -981,10 +956,7 @@
         <source>Amount</source>
         <translation>Importo</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -999,7 +971,7 @@
         <source>(no label)</source>
         <translation>(nessuna etichetta)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1042,19 +1014,7 @@
         <source>Exporting Failed</source>
         <translation>Esportazione Fallita</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

@@ -1,4 +1,6 @@
-<TS language="sv" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sv">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -135,10 +137,6 @@ Försök igen.</translation>
     <message>
         <source>Repeat new passphrase</source>
         <translation>Upprepa ny lösenfras</translation>
-    </message>
-    <message>
-        <source>Show password</source>
-        <translation>Visa lösenord</translation>
     </message>
     <message>
         <source>Show password</source>
@@ -316,7 +314,7 @@ Försök igen.</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Byt lösenfras …</translation>
+        <translation>&amp;Byt lösenfras&#xa0;…</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
@@ -460,7 +458,10 @@ Försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiva anslutningar till Blackcoin-nätverket.</numerusform><numerusform>%n aktiva anslutningar till Blackcoin-nätverket.</numerusform></translation>
+        <translation>
+            <numerusform>%n aktiva anslutningar till Blackcoin-nätverket.</numerusform>
+            <numerusform>%n aktiva anslutningar till Blackcoin-nätverket.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -472,7 +473,10 @@ Försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Bearbetade %n block av transaktionshistoriken.</numerusform><numerusform>Bearbetade %n block av transaktionshistoriken.</numerusform></translation>
+        <translation>
+            <numerusform>Bearbetade %n block av transaktionshistoriken.</numerusform>
+            <numerusform>Bearbetade %n block av transaktionshistoriken.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -512,7 +516,7 @@ Försök igen.</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
-        <translation>Ansluter till noder …</translation>
+        <translation>Ansluter till noder&#xa0;…</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -769,16 +773,16 @@ Försök igen.</translation>
         <translation>Redigera avsändaradress</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Den angivna adressen "%1" är inte en giltig Blackcoin-adress.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Den angivna adressen &quot;%1&quot; är inte en giltig Blackcoin-adress.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Adressen "%1" finns redan som en mottagaradress med etikett "%2" och kan därför inte anges som sändaradress.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Adressen &quot;%1&quot; finns redan som en mottagaradress med etikett &quot;%2&quot; och kan därför inte anges som sändaradress.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Den angivna adressen "%1" finns redan i adressboken med etikett "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Den angivna adressen &quot;%1&quot; finns redan i adressboken med etikett &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -886,8 +890,8 @@ Försök igen.</translation>
         <translation>Plånboken sparas också i den här katalogen.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Fel: Angiven datakatalog "%1" kan inte skapas.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Fel: Angiven datakatalog &quot;%1&quot; kan inte skapas.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -895,11 +899,17 @@ Försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB fritt utrymme kvar</numerusform><numerusform>%n GB ledigt utrymme kvar</numerusform></translation>
+        <translation>
+            <numerusform>%n GB fritt utrymme kvar</numerusform>
+            <numerusform>%n GB ledigt utrymme kvar</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(av %n GB behövs)</numerusform><numerusform>(av %n GB behövs)</numerusform></translation>
+        <translation>
+            <numerusform>(av %n GB behövs)</numerusform>
+            <numerusform>(av %n GB behövs)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -909,7 +919,7 @@ Försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserats med Blackcoin-nätverket enligt informationen nedan.</translation>
     </message>
     <message>
@@ -1025,18 +1035,6 @@ Försök igen.</translation>
     <message>
         <source>&amp;Hide tray icon</source>
         <translation>&amp;Dölj ikonen</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Använd separata SOCKS&amp;5-proxy för att nå noder via Tors dolda tjänster:</translation>
-    </message>
-    <message>
-        <source>Hide the icon from the system tray.</source>
-        <translation>Göm ikonen från aktivitetsfältet.</translation>
-    </message>
-    <message>
-        <source>&amp;Hide tray icon</source>
-        <translation>&amp;Göm ikonen</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
@@ -1353,8 +1351,8 @@ Försök igen.</translation>
         <translation>URI-hantering</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' är inte en accepterad URI. Använd 'blackcoin:' istället.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&apos; är inte en accepterad URI. Använd &apos;blackcoin:&apos; istället.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1381,7 +1379,7 @@ Försök igen.</translation>
         <translation>Betalningsbegäran avslogs</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>Betalningsbegärans nätverk matchar inte klientens nätverk.</translation>
     </message>
     <message>
@@ -1500,23 +1498,38 @@ Försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n sekund</numerusform><numerusform>%n sekunder</numerusform></translation>
+        <translation>
+            <numerusform>%n sekund</numerusform>
+            <numerusform>%n sekunder</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minut</numerusform><numerusform>%n minuter</numerusform></translation>
+        <translation>
+            <numerusform>%n minut</numerusform>
+            <numerusform>%n minuter</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n timme</numerusform><numerusform>%n timmar</numerusform></translation>
+        <translation>
+            <numerusform>%n timme</numerusform>
+            <numerusform>%n timmar</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dagar</numerusform></translation>
+        <translation>
+            <numerusform>%n dag</numerusform>
+            <numerusform>%n dagar</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n vecka</numerusform><numerusform>%n veckor</numerusform></translation>
+        <translation>
+            <numerusform>%n vecka</numerusform>
+            <numerusform>%n veckor</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1524,7 +1537,10 @@ Försök igen.</translation>
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n år</numerusform><numerusform>%n år</numerusform></translation>
+        <translation>
+            <numerusform>%n år</numerusform>
+            <numerusform>%n år</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1543,7 +1559,7 @@ Försök igen.</translation>
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 avslutades inte ännu säkert...</translation>
     </message>
     <message>
@@ -1558,8 +1574,8 @@ Försök igen.</translation>
         <translation>Kunde inte tolka argumentet: %1.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Fel: Angiven datakatalog "%1" finns inte.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Fel: Angiven datakatalog &quot;%1&quot; finns inte.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1864,8 +1880,8 @@ Försök igen.</translation>
         <translation>Utför instruktion utan plånbok</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Utför instruktion med plånbok "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Utför instruktion med plånbok &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1939,7 +1955,7 @@ Försök igen.</translation>
         <translation>Rensa</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Bech32-addresser (BIP-173) är billigare att spendera från och har bättre skytt mot skrivfel mot konstnaden att äldre plånböcker inte förstår dem. När inte valet är gjort kommer en address som är kompatibel med äldre plånböcker att skapas istället.</translation>
     </message>
     <message>
@@ -2152,12 +2168,12 @@ Försök igen.</translation>
         <translation>Fäll ihop avgiftsinställningarna</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Ange en egen avgift per kB (1 000 bytes) av transaktionens virtuella storlek.
 
-Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut för en transaktion på 500 bytes (en halv kB) om man valt "100 satoshi per kB" som egen avgift.</translation>
+Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut för en transaktion på 500 bytes (en halv kB) om man valt &quot;100 satoshi per kB&quot; som egen avgift.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2212,16 +2228,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Aktivera Replace-By-Fee</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Med Replace-By-Fee (BIP-125) kan du höja transaktionsavgiften efter att transaktionen skickats. Om du väljer bort det kan en högre avgift rekommenderas för att kompensera för ökad risk att transaktionen fördröjs.</translation>
-    </message>
-    <message>
-        <source>Enable Replace-By-Fee</source>
-        <translation>Möjliggör ersättande avgift</translation>
-    </message>
-    <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>Med ersättande avgift (BIP-125) kan du höja transaktionsavgiften efter att transaktionen redan skickats. Om du väljer bort det kan en högre avgift rekommenderas för att kompensera för ökad risk för förhöjd transaktionstid.</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2308,14 +2316,6 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Totalt belopp</translation>
     </message>
     <message>
-        <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>Du kan välja att höja avgiften senare (med ersättande avgift, BIP-125).</translation>
-    </message>
-    <message>
-        <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>Använder inte ersättande avgift, BIP-125.</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
         <translation>Bekräfta att pengar ska skickas</translation>
     </message>
@@ -2361,7 +2361,10 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform></translation>
+        <translation>
+            <numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform>
+            <numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2556,7 +2559,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>&amp;Verifiera meddelande</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanslag, TAB-tecken, osv. exakt) och signatur nedan, för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva det signerade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att den signerande parten tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
     </message>
     <message>
@@ -2576,8 +2579,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Rensa alla fält</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Klicka "Signera meddelande" för att skapa en signatur</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Klicka &quot;Signera meddelande&quot; för att skapa en signatur</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2646,7 +2649,10 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Öppet för %n mer block</numerusform><numerusform>Öppet för %n fler block</numerusform></translation>
+        <translation>
+            <numerusform>Öppet för %n mer block</numerusform>
+            <numerusform>Öppet för %n fler block</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2726,7 +2732,10 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>mognar om %n mer block</numerusform><numerusform>mognar om %n fler block</numerusform></translation>
+        <translation>
+            <numerusform>mognar om %n mer block</numerusform>
+            <numerusform>mognar om %n fler block</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2781,8 +2790,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Handlare</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Skapade pengar måste mogna i %1 block innan de kan spenderas. När du skapade detta block sändes det till nätverket för att läggas till i blockkedjan. Om blocket inte kommer in i kedjan kommer dess status att ändras till "ej accepterat" och går inte att spendera. Detta kan ibland hända om en annan nod skapar ett block nästan samtidigt som dig.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Skapade pengar måste mogna i %1 block innan de kan spenderas. När du skapade detta block sändes det till nätverket för att läggas till i blockkedjan. Om blocket inte kommer in i kedjan kommer dess status att ändras till &quot;ej accepterat&quot; och går inte att spendera. Detta kan ibland hända om en annan nod skapar ett block nästan samtidigt som dig.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2836,7 +2845,10 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Öppet för %n mer block</numerusform><numerusform>Öppet för %n fler block</numerusform></translation>
+        <translation>
+            <numerusform>Öppet för %n mer block</numerusform>
+            <numerusform>Öppet för %n fler block</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3135,7 +3147,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Bekräfta avgiftshöjning</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Kan ej signera transaktion.</translation>
     </message>
     <message>
@@ -3237,7 +3249,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Gruppera utgående transaktioner med adress, där samtliga eller inga används, istället för att välja vid varje utgående transaktion. Detta ökar din integritet genom att en adress enbart används en gång (om inte någon skickar till den efteråt), men kan öka dina utgifter då valet av ingående transaktioner görs suboptimalt (standardvärde: %u)</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Kontrollera att din dators datum och tid är korrekt! Om klockan går fel kommer %s inte att fungera korrekt.</translation>
     </message>
     <message>
@@ -3245,7 +3257,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Var snäll och bidra om du finner %s användbar. Besök %s för mer information om mjukvaran.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Blockdatabasen innehåller ett block som verkar vara från framtiden. Detta kan vara på grund av att din dators datum och tid är felaktiga. Bygg bara om blockdatabasen om du är säker på att datorns datum och tid är korrekt</translation>
     </message>
     <message>
@@ -3285,8 +3297,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>-maxmempool måste vara minst %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Kan inte matcha -%s adress: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Kan inte matcha -%s adress: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3305,7 +3317,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Vill du bygga om blockdatabasen nu?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Fel vid skapande av %s: Det är inte möjligt att skapa icke-HD plånböcker med denna version.</translation>
     </message>
     <message>
@@ -3365,20 +3377,20 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Initieringschecken fallerade. %s stängs av.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -%s=&lt;amount&gt;:'%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ogiltigt belopp för -%s=&lt;amount&gt;:&apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -discardfee=&lt;amount&gt;:'%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ogiltigt belopp för -discardfee=&lt;amount&gt;:&apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Ogiltigt belopp för -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ogiltigt belopp för -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Den specificerade mappen för block "%s" existerar inte.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Den specificerade mappen för block &quot;%s&quot; existerar inte.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3390,7 +3402,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
     <message>
         <source>Loading banlist...</source>
-        <translation>Läser in listan över bannlysningar …</translation>
+        <translation>Läser in listan över bannlysningar&#xa0;…</translation>
     </message>
     <message>
         <source>Not enough file descriptors available.</source>
@@ -3403,10 +3415,6 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     <message>
         <source>Prune mode is incompatible with -txindex.</source>
         <translation>Beskärningsläge är inkompatibel med -txindex.</translation>
-    </message>
-    <message>
-        <source>Replaying blocks...</source>
-        <translation>Spelar om block...</translation>
     </message>
     <message>
         <source>Replaying blocks...</source>
@@ -3469,8 +3477,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Fel: Avlyssning av inkommande anslutningar misslyckades (Avlyssningen returnerade felkod %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Ogiltigt belopp för -maxtxfee=&lt;amount&gt;: '%s' (måste vara åtminstone minrelay avgift %s för att förhindra att transaktioner fastnar)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Ogiltigt belopp för -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (måste vara åtminstone minrelay avgift %s för att förhindra att transaktioner fastnar)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3481,7 +3489,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Du måste bygga om databasen genom att använda -reindex för att återgå till obeskuret läge. Detta kommer att ladda ner hela blockkedjan på nytt.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Fel vid inläsning av %s: Du kan inte inaktivera HD på en existerande HD-plånbok</translation>
     </message>
     <message>
@@ -3497,24 +3505,24 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Information</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Ogiltig -onion adress eller värdnamn: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Ogiltig -onion adress eller värdnamn: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Ogiltig -proxy adress eller värdnamn: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Ogiltig -proxy adress eller värdnamn: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Ogiltigt belopp för -paytxfee=&lt;amount&gt;:'%s' (måste vara minst %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Ogiltigt belopp för -paytxfee=&lt;amount&gt;:&apos;%s&apos; (måste vara minst %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Ogiltig nätmask angiven i -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Ogiltig nätmask angiven i -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Port måste anges med -whitelist: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Port måste anges med -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3525,28 +3533,16 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Signering av transaktion misslyckades</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Angiven -walletdir "%s" finns inte</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Angiven -walletdir &quot;%s&quot; finns inte</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Angiven -walletdir "%s" är en relativ sökväg</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Angiven -walletdir &quot;%s&quot; är en relativ sökväg</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Angiven -walletdir "%s" är inte en katalog</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Angiven -walletdir "%s" finns inte</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Angiven -walletdir "%s" är en relativ sökväg</translation>
-    </message>
-    <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Angiven -walletdir "%s" är inte en katalog</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Angiven -walletdir &quot;%s&quot; är inte en katalog</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3601,7 +3597,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>-maxtxfee är väldigt högt satt! Så höga avgifter kan komma att betalas för en enstaka transaktion.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Fel vid inläsning av %s: Du kan inte aktivera HD på en existerande icke-HD plånbok</translation>
     </message>
     <message>
@@ -3617,7 +3613,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Total längd på strängen för nätverksversion (%i) överskrider maxlängden (%i). Minska numret eller storleken på uacomments.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Argumentet -socks hittades och stöds inte. Det är inte längre möjligt att sätta SOCKS-version längre, bara SOCKS5-proxy stöds.</translation>
     </message>
     <message>
@@ -3625,7 +3621,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Argumentet -whitelistalwaysrelay stöds inte utan ignoreras, använd -whitelistrelay och/eller -whitelistforcerelay.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Varning: Okända blockversioner bryts! Det är möjligt att okända regler används</translation>
     </message>
     <message>
@@ -3673,15 +3669,15 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Transaktionen måste ha minst en mottagare</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Okänt nätverk angavs i -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Okänt nätverk angavs i -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>Otillräckligt med blackcoins</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>Kan inte generera en nyckel för växeladress. Privata nycklar är inaktiverade för denna plånbok.</translation>
     </message>
     <message>
@@ -3697,8 +3693,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Varning: Privata nycklar upptäcktes i plånbok (%s) vilken har dessa inaktiverade</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Kan inte skriva till mapp "%s", var vänlig se över filbehörigheter.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Kan inte skriva till mapp &quot;%s&quot;, var vänlig se över filbehörigheter.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

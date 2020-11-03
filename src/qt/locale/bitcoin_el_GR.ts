@@ -1,4 +1,6 @@
-<TS language="el_GR" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="el_GR">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -323,7 +325,7 @@
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>'Ανοιγμα &amp;URI</translation>
+        <translation>&apos;Ανοιγμα &amp;URI</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -411,7 +413,7 @@
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Blackcoin</translation>
+        <translation>Υπογράψτε ένα μήνυμα για ν&apos; αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Blackcoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -541,7 +543,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Το πορτοφόλι είναι &lt;b&gt;κρυπτογραφημένο&lt;/b&gt; και &lt;b&gt;κλειδωμένο&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -688,16 +690,16 @@
         <translation> Επεξεργασία διεύθυνσης αποστολής</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Η διεύθυνση "%1" δεν είναι έγκυρη blackcoin διεύθυνση.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Η διεύθυνση &quot;%1&quot; δεν είναι έγκυρη blackcoin διεύθυνση.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Η διεύθυνση "%1"  υπάρχει ήδη ως διεύθυνσης λήψης με ετικέτα "%2" και γιαυτό τον λόγο δεν μπορεί να προστεθεί ως διεύθυνση αποστολής.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Η διεύθυνση &quot;%1&quot;  υπάρχει ήδη ως διεύθυνσης λήψης με ετικέτα &quot;%2&quot; και γιαυτό τον λόγο δεν μπορεί να προστεθεί ως διεύθυνση αποστολής.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Η διεύθυνση "%1" βρίσκεται ήδη στο βιβλίο διευθύνσεων με ετικέτα "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Η διεύθυνση &quot;%1&quot; βρίσκεται ήδη στο βιβλίο διευθύνσεων με ετικέτα &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -773,8 +775,8 @@
         <translation>Blackcoin</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Σφάλμα: Ο καθορισμένος φάκελος δεδομένων "%1" δεν μπορεί να δημιουργηθεί.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Σφάλμα: Ο καθορισμένος φάκελος δεδομένων &quot;%1&quot; δεν μπορεί να δημιουργηθεί.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -782,11 +784,17 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform><numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform></translation>
+        <translation>
+            <numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform>
+            <numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(από το %n GB που απαιτείται)</numerusform><numerusform>(από τα %n GB που απαιτούνται)</numerusform></translation>
+        <translation>
+            <numerusform>(από το %n GB που απαιτείται)</numerusform>
+            <numerusform>(από τα %n GB που απαιτούνται)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -807,7 +815,7 @@
         <source>Hide</source>
         <translation>Απόκρυψη</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -826,7 +834,7 @@
         <source>Select payment request file</source>
         <translation>Επιλέξτε πληρωμή αρχείου αίτησης</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -1123,7 +1131,7 @@
         <source>Payment request rejected</source>
         <translation>Η αίτηση πληρωμής απορρίφθηκε</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -1199,15 +1207,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Αποθήκευση εικόνας...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -1496,7 +1501,7 @@
         <source>Wallet</source>
         <translation>Πορτοφόλι</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1515,7 +1520,7 @@
         <source>(no label)</source>
         <translation>(χωρίς ετικέτα)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1709,7 +1714,7 @@
         <source>Memo:</source>
         <translation>Σημείωση:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1802,7 +1807,7 @@
         <source>Reset all verify message fields</source>
         <translation>Επαναφορά όλων των πεδίων επαλήθευσης μηνύματος</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1887,14 +1892,14 @@
         <source>Amount</source>
         <translation>Ποσό</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Αυτό το παράθυρο δείχνει μια λεπτομερή περιγραφή της συναλλαγής</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1917,7 +1922,7 @@
         <source>(no label)</source>
         <translation>(χωρίς ετικέτα)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1968,7 +1973,7 @@
         <source>Exporting Failed</source>
         <translation>Αποτυχία Εξαγωγής</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
@@ -1976,9 +1981,6 @@
         <translation>Μονάδα μέτρησης προβολής ποσών. Κάντε κλικ για επιλογή άλλης μονάδας.</translation>
     </message>
 </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
 <context>
     <name>WalletModel</name>
     <message>
@@ -1989,7 +1991,7 @@
         <source>Increase:</source>
         <translation>Αύξηση:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -2088,8 +2090,8 @@
         <translation>Μεταφορά όλων των συναλλαγών από το πορτοφόλι</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Έχει οριστεί άγνωστo δίκτυο στο -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Έχει οριστεί άγνωστo δίκτυο στο -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

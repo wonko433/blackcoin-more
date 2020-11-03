@@ -1,4 +1,6 @@
-<TS language="tr_TR" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr_TR">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -95,7 +97,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Adres listesini %1'e kaydederken bir hata oluştu. Lütfen tekrar deneyin.</translation>
+        <translation>Adres listesini %1&apos;e kaydederken bir hata oluştu. Lütfen tekrar deneyin.</translation>
     </message>
 </context>
 <context>
@@ -169,7 +171,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Uyarı: Eğer cüzdanınızı şifreleyip parolanızı kaybederseniz (unutursanız) , &lt;b&gt;BÜTÜN BLACKCOIN'LERINIZI KAYBEDECEKSINIZ&lt;/b&gt;!</translation>
+        <translation>Uyarı: Eğer cüzdanınızı şifreleyip parolanızı kaybederseniz (unutursanız) , &lt;b&gt;BÜTÜN BLACKCOIN&apos;LERINIZI KAYBEDECEKSINIZ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -204,9 +206,6 @@
         <translation>Dikkat! Caps Lock tuşunuz açık!</translation>
     </message>
 </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -271,7 +270,7 @@
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>URI'yi aç</translation>
+        <translation>URI&apos;yi aç</translation>
     </message>
     <message>
         <source>Network activity disabled.</source>
@@ -288,18 +287,6 @@
     <message>
         <source>Send coins to a Bitcoin address</source>
         <translation>Blackcoin adresine madeni para gönderin</translation>
-    </message>
-    <message>
-        <source>Backup wallet to another location</source>
-        <translation>Cüzdanınızı başka bir lokasyona yedekleyin</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Hata giderme konsolunu aç</translation>
-    </message>
-    <message>
-        <source>&amp;Verify message...</source>
-        <translation>Onay mesajı...</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -379,7 +366,7 @@
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
         <translation>HD anahtar üretimi &lt;b&gt;pasif&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -442,7 +429,7 @@
         <source>(no label)</source>
         <translation>(etiket yok)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -470,8 +457,8 @@
         <translation>Gönderim adresini düzenleyin</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Girilen adres "%1" Blackcoin adresiyle eşleşmiyor.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Girilen adres &quot;%1&quot; Blackcoin adresiyle eşleşmiyor.</translation>
     </message>
     <message>
         <source>New key generation failed.</source>
@@ -484,7 +471,7 @@
         <source>name</source>
         <translation>isim</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -515,7 +502,7 @@
         <source>Error</source>
         <translation>Hata</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -542,10 +529,7 @@
         <source>Hide</source>
         <translation>Gizle</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -696,7 +680,7 @@
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Ödeme isteği URL'si hatalı: %1</translation>
+        <translation>Ödeme isteği URL&apos;si hatalı: %1</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
@@ -706,7 +690,7 @@
         <source>Network request error</source>
         <translation>Ağ hatası</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -758,7 +742,7 @@
         <source>Save QR Code</source>
         <translation>QR kodu kaydet</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -950,7 +934,7 @@
     </message>
     <message>
         <source>Copy URI</source>
-        <translation>URI'yi kopyala</translation>
+        <translation>URI&apos;yi kopyala</translation>
     </message>
     <message>
         <source>Copy label</source>
@@ -960,7 +944,7 @@
         <source>Copy message</source>
         <translation>Mesajı kopyala</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -969,7 +953,7 @@
     </message>
     <message>
         <source>Copy &amp;URI</source>
-        <translation>URI'yi kopyala</translation>
+        <translation>URI&apos;yi kopyala</translation>
     </message>
     <message>
         <source>Copy &amp;Address</source>
@@ -1003,7 +987,7 @@
         <source>Wallet</source>
         <translation>Cüzdan</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1026,7 +1010,7 @@
         <source>(no message)</source>
         <translation>(mesaj yok)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1087,7 +1071,7 @@
     </message>
     <message>
         <source>%1 to %2</source>
-        <translation>%1'den %2'e</translation>
+        <translation>%1&apos;den %2&apos;e</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -1128,7 +1112,7 @@
         <source>Message:</source>
         <translation>Mesaj:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1136,9 +1120,6 @@
         <translation>Evet</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -1178,12 +1159,6 @@
         <translation>Mesaj onaylandı.</translation>
     </message>
 </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -1244,9 +1219,6 @@
     </message>
 </context>
 <context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
@@ -1284,7 +1256,7 @@
         <source>(no label)</source>
         <translation>(etiket yok)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1359,13 +1331,7 @@
         <source>Exporting Failed</source>
         <translation>Dışa Aktarma Başarısız</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
@@ -1376,7 +1342,7 @@
         <source>New fee:</source>
         <translation>Yeni ücret:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1395,7 +1361,7 @@
         <source>Backup Successful</source>
         <translation>Yedekleme tamamlandı</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -1435,8 +1401,8 @@
         <translation>Bilgi</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Hatalı -onion adresi ya da host adı: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Hatalı -onion adresi ya da host adı: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
@@ -1483,8 +1449,8 @@
         <translation>İşlemin en az bir alıcıya sahip olmalı</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Belirsiz ağ belirtildi -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Belirsiz ağ belirtildi -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

@@ -1,4 +1,6 @@
-<TS language="hi" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hi">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -36,10 +38,6 @@
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>इस सांचे का विवरण दूसरी नत्थी में भेजें </translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>डेटा को मौजूदा टैब से एक फ़ाइल में निर्यात करें</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -191,10 +189,7 @@
         <source>Wallet decryption failed</source>
         <translation>वॉलेट डिक्रिप्शन विफल</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -302,7 +297,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>वॉलेट एन्क्रिप्टेड है तथा अभी लॉक्ड है</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -325,7 +320,7 @@
         <source>(no label)</source>
         <translation>अचिन्हित </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -340,17 +335,14 @@
         <source>&amp;Address</source>
         <translation>&amp;पता</translation>
     </message>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
         <translation>संस्करण</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -361,17 +353,14 @@
         <source>Error</source>
         <translation>भूल</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>फार्म</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -394,20 +383,14 @@
         <source>Error</source>
         <translation>भूल</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>फार्म</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -425,12 +408,6 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
@@ -441,7 +418,7 @@
         <source>&amp;Information</source>
         <translation>जानकारी</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -452,7 +429,7 @@
         <source>&amp;Label:</source>
         <translation>लेबल:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -475,7 +452,7 @@
         <source>Wallet</source>
         <translation>वॉलेट</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -490,7 +467,7 @@
         <source>(no label)</source>
         <translation>अचिन्हित </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -548,13 +525,7 @@
         <source>Pay To:</source>
         <translation>प्राप्तकर्ता:</translation>
     </message>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -573,7 +544,7 @@
         <source>Signature</source>
         <translation>हस्ताक्षर</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -581,9 +552,6 @@
         <translation>[टेस्टनेट]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -598,14 +566,14 @@
         <source>Amount</source>
         <translation>राशि</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation> ये खिड़की आपको लेन-देन का विस्तृत विवरण देगी !</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -620,7 +588,7 @@
         <source>(no label)</source>
         <translation>अचिन्हित </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -647,20 +615,14 @@
         <source>Exporting Failed</source>
         <translation>भेजना असफल </translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>सिक्के भेजें|</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -671,11 +633,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>इस सांचे का विवरण दूसरी नत्थी में भेजें </translation>
     </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>डेटा को मौजूदा टैब से एक फ़ाइल में निर्यात करें</translation>
-    </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

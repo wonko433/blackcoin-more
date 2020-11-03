@@ -1,4 +1,6 @@
-<TS language="uz@Cyrl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uz@Cyrl">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -45,10 +47,7 @@
         <source>&amp;Delete</source>
         <translation>&amp;Ўчириш</translation>
     </message>
-    </context>
-<context>
-    <name>AddressTableModel</name>
-    </context>
+</context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
@@ -67,10 +66,7 @@
         <source>Repeat new passphrase</source>
         <translation>Янги махфий сузни такрорланг</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -247,7 +243,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n та Blackcoin тармоғига фаол уланиш мавжуд</numerusform></translation>
+        <translation>
+            <numerusform>%n та Blackcoin тармоғига фаол уланиш мавжуд</numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -297,7 +296,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Ҳамён &lt;b&gt;кодланган&lt;/b&gt; ва вақтинча &lt;b&gt;қулфланган&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -356,7 +355,7 @@
         <source>Confirmed</source>
         <translation>Тасдиқланди</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -379,7 +378,7 @@
         <source>&amp;Address</source>
         <translation>&amp;Манзил</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -437,14 +436,14 @@
         <translation>Blackcoin</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Хато: кўрсатилган "%1" маълумотлар директориясини яратиб бўлмайди.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Хато: кўрсатилган &quot;%1&quot; маълумотлар директориясини яратиб бўлмайди.</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>Хатолик</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -455,7 +454,7 @@
         <source>Last block time</source>
         <translation>Сўнгги блок вақти</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -474,7 +473,7 @@
         <source>Select payment request file</source>
         <translation>Тўлов сўрови файлини танлаш</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -658,15 +657,12 @@
     </message>
 </context>
 <context>
-    <name>PaymentServer</name>
-    </context>
-<context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
         <translation>Фойдаланувчи вакил</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -723,15 +719,12 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
         <translation>Расмни &amp;сақлаш</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -937,7 +930,7 @@
         <source>Remove</source>
         <translation>Ўчириш</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -960,14 +953,14 @@
         <source>Wallet</source>
         <translation>Ҳамён</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
         <translation>Сана</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1066,7 +1059,7 @@
         <source>Transaction fee</source>
         <translation>Ўтказма тўлови</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -1109,7 +1102,7 @@
         <source>Pay To:</source>
         <translation>Тўлов олувчи:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1117,9 +1110,6 @@
         <translation>Ҳа</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -1146,7 +1136,7 @@
         <source>Clear &amp;All</source>
         <translation>Барчасини &amp; Тозалаш</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SplashScreen</name>
     <message>
@@ -1154,9 +1144,6 @@
         <translation>[testnet]</translation>
     </message>
 </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -1175,21 +1162,21 @@
         <source>Amount</source>
         <translation>Миқдори</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Ушбу ойна операциянинг батафсил таърифини кўрсатади</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
         <translation>Сана</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1200,20 +1187,14 @@
         <source>Date</source>
         <translation>Сана</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Тангаларни жунат</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1224,7 +1205,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Жорий ички ойна ичидаги маълумотларни файлга экспорт қилиш</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

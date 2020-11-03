@@ -1,4 +1,6 @@
-<TS language="ko" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ko">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -455,7 +457,9 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>블랙코인 네트워크에 %n개의 연결이 활성화되어 있습니다.</numerusform></translation>
+        <translation>
+            <numerusform>블랙코인 네트워크에 %n개의 연결이 활성화되어 있습니다.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -467,7 +471,9 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>%n 블록 만큼의 거래 기록이 처리됨.</numerusform></translation>
+        <translation>
+            <numerusform>%n 블록 만큼의 거래 기록이 처리됨.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -764,16 +770,16 @@
         <translation>보내는 주소 편집</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>입력한 "%1" 주소는 올바른 블랙코인 주소가 아닙니다.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>입력한 &quot;%1&quot; 주소는 올바른 블랙코인 주소가 아닙니다.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>주소 "%1"은 이미 "%2"로 받는 주소로  존재하여 보내는 주소로 저장할 수 없습니다.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>주소 &quot;%1&quot;은 이미 &quot;%2&quot;로 받는 주소로  존재하여 보내는 주소로 저장할 수 없습니다.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>입력된 주소 "%1"은 "%2"로 이미 주소록에 있습니다.</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>입력된 주소 &quot;%1&quot;은 &quot;%2&quot;로 이미 주소록에 있습니다.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -881,8 +887,8 @@
         <translation>지갑도 이 디렉토리에 저장됩니다.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>오류: "%1" 지정한 데이터 디렉토리를 생성할 수 없습니다.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>오류: &quot;%1&quot; 지정한 데이터 디렉토리를 생성할 수 없습니다.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -890,11 +896,15 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB 사용가능</numerusform></translation>
+        <translation>
+            <numerusform>%n GB 사용가능</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(%n GB가 필요)</numerusform></translation>
+        <translation>
+            <numerusform>(%n GB가 필요)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -904,7 +914,7 @@
         <translation>유형</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>최근 거래는 아직 보이지 않을 것입니다, 그러므로 당신의 지갑의 잔액이 틀릴 수도 있습니다. 이 정보는 블랙코인 네트워크와 완전한 동기화가 완료되면 아래의 설명과 같이 정확해집니다.</translation>
     </message>
     <message>
@@ -1336,8 +1346,8 @@
         <translation>URI 핸들링</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://"은 잘못된 URI입니다. 'blackcoin:'을 사용하십시오.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin://&quot;은 잘못된 URI입니다. &apos;blackcoin:&apos;을 사용하십시오.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
@@ -1364,7 +1374,7 @@
         <translation>지불 요청이 거부됨</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>지급 요청 네트워크가 클라이언트 네트워크와 일치되지 않습니다.</translation>
     </message>
     <message>
@@ -1483,23 +1493,33 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n 초</numerusform></translation>
+        <translation>
+            <numerusform>%n 초</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n 분</numerusform></translation>
+        <translation>
+            <numerusform>%n 분</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n 시간</numerusform></translation>
+        <translation>
+            <numerusform>%n 시간</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>&amp;n 일</numerusform></translation>
+        <translation>
+            <numerusform>&amp;n 일</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n 주</numerusform></translation>
+        <translation>
+            <numerusform>%n 주</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1507,7 +1527,9 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n 년</numerusform></translation>
+        <translation>
+            <numerusform>%n 년</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1526,7 +1548,7 @@
         <translation>%1 기가바이트</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1가 아직 안전하게 종료되지 않았습니다...</translation>
     </message>
     <message>
@@ -1541,8 +1563,8 @@
         <translation>%1 명령 파싱 실패 </translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>에러: 지정한 데이터 폴더 "%1"은 존재하지 않습니다.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>에러: 지정한 데이터 폴더 &quot;%1&quot;은 존재하지 않습니다.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1847,8 +1869,8 @@
         <translation>지갑 없이 명령 실행</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>"%1" 지갑을 사용하여 명령 실행</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>&quot;%1&quot; 지갑을 사용하여 명령 실행</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1922,7 +1944,7 @@
         <translation>지우기</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Bech32 주소 (BIP-173)는 더 적은 수수료와 오입금으로부터 방지해 줍니다. Bech32가 비활성화 되어있으면 P2SH 기반의 세그윗 주소가 대신 생성됩니다.</translation>
     </message>
     <message>
@@ -2135,12 +2157,12 @@
         <translation>수수료 설정 접기</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>거래 가상 크기의 kB (1,000 바이트)당 수수료을 지정하십시오.
 
-참고 : 수수료는 바이트 단위로 계산되므로 거래 크기가 500 바이트 (1kB의 절반)일때에 수수료가 "100 satoshis / kB"이면 궁극적으로 50사토시의 수수료만 발생합니다.</translation>
+참고 : 수수료는 바이트 단위로 계산되므로 거래 크기가 500 바이트 (1kB의 절반)일때에 수수료가 &quot;100 satoshis / kB&quot;이면 궁극적으로 50사토시의 수수료만 발생합니다.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2195,7 +2217,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Replace-By-Fee 옵션 활성화</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Replace-By-Fee (BIP-125) 옵션은 보낸 거래의 수수료 상향을 지원해 줍니다.
 이 옵션이 없을 경우 거래 지연을 방지하기 위해 더 높은 수수료가 요구됩니다.</translation>
     </message>
@@ -2329,7 +2351,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>%n 블록 안에 승인이 시작될 것으로 추정됩니다.</numerusform></translation>
+        <translation>
+            <numerusform>%n 블록 안에 승인이 시작될 것으로 추정됩니다.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2524,7 +2548,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>메시지 검증(&amp;V)</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>메시지를 검증하기 위해 아래 칸에 각각 지갑 주소와 메시지, 전자서명을 입력하세요. (메시지 원본의 띄어쓰기, 들여쓰기, 행 나눔 등이 정확하게 입력되어야 하므로 원본을 복사해서 입력하세요) 이 기능은 메시지 검증이 주 목적이며, 네트워크 침입자에 의해 변조되지 않도록 전자서명 해독에 불필요한 시간을 소모하지 마세요. </translation>
     </message>
     <message>
@@ -2544,8 +2568,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>모든 검증 메시지 필드 재설정</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>서명을 만들려면 "메시지 서명"을 누르십시오</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>서명을 만들려면 &quot;메시지 서명&quot;을 누르십시오</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2614,7 +2638,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n개의 더 많은 블록 열기</numerusform></translation>
+        <translation>
+            <numerusform>%n개의 더 많은 블록 열기</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2694,7 +2720,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>%n개의 더 많은 블록을 숙성</numerusform></translation>
+        <translation>
+            <numerusform>%n개의 더 많은 블록을 숙성</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2749,8 +2777,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>상인</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>신규 채굴된 코인이 사용되기 위해서는 %1 개의 블록이 경과되어야 합니다. 블록을 생성할 때 블록체인에 추가되도록 네트워크에 전파되는 과정을 거치는데, 블록체인에 포함되지 못하고 실패한다면 해당 블록의 상태는 '미승인'으로 표현되고 블랙코인 또한 사용될 수 없습니다. 이 현상은 다른 노드가 비슷한 시간대에 동시에 블록을 생성할 때 종종 발생할 수 있습니다. </translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>신규 채굴된 코인이 사용되기 위해서는 %1 개의 블록이 경과되어야 합니다. 블록을 생성할 때 블록체인에 추가되도록 네트워크에 전파되는 과정을 거치는데, 블록체인에 포함되지 못하고 실패한다면 해당 블록의 상태는 &apos;미승인&apos;으로 표현되고 블랙코인 또한 사용될 수 없습니다. 이 현상은 다른 노드가 비슷한 시간대에 동시에 블록을 생성할 때 종종 발생할 수 있습니다. </translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2804,7 +2832,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>%n개의 더 많은 블록 열기</numerusform></translation>
+        <translation>
+            <numerusform>%n개의 더 많은 블록 열기</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3103,7 +3133,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>수수료 상향 승인</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>거래에 서명 할 수 없습니다.</translation>
     </message>
     <message>
@@ -3205,7 +3235,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>각각의 아웃풋마다 주소를 정하지 말고 아웃풋들을 묶어 모든 주소를 정하거나 아예 정하지 마십시오. 각각의 주소를 한번만 사용하면 프라이버시가 더 지켜집니다 (주소를 한번 사용하고 나서 다시 이 주소에 보내지 않는 이상). 하지만 이 제한사항은 차선의 코인 선택으로 나아갈 수 있고 이 때문에 조금 더 높은 수수료가 발생할수도 있습니다 (태만: %u).</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>컴퓨터의 날짜와 시간이 올바른지 확인하십시오! 시간이 잘못되면 %s은 제대로 동작하지 않습니다.</translation>
     </message>
     <message>
@@ -3213,7 +3243,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>%s가 유용하다고 생각한다면 프로젝트에 공헌해주세요. 이 소프트웨어에 대한 보다 자세한 정보는 %s를 방문해주십시오.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>블록 데이터베이스에 미래의 블록이 포함되어 있습니다. 이것은 사용자의 컴퓨터의 날짜와 시간이 올바르게 설정되어 있지 않을때 나타날 수 있습니다. 만약 사용자의 컴퓨터의 날짜와 시간이 올바르다고 확신할 때에만 블록 데이터 베이스의 재구성을 하십시오</translation>
     </message>
     <message>
@@ -3253,8 +3283,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>-maxmempool은 최소한 %d MB가 필요합니다</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>%s 주소를 확인할 수 없습니다: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>%s 주소를 확인할 수 없습니다: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3273,7 +3303,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>블록 데이터베이스를 다시 생성하시겠습니까?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
+        <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>%s 생성 오류: 이 버전의 클라이언트로 non-HD 지갑 생성이 불가합니다.</translation>
     </message>
     <message>
@@ -3333,20 +3363,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>무결성 확인 초기화가 실패했습니다. %s가 종료됩니다.</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
-        <translation>유효하지 않은 금액 -%s=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>유효하지 않은 금액 -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>-discardfee=&lt;amount&gt;에 대한 양이 잘못되었습니다: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>-discardfee=&lt;amount&gt;에 대한 양이 잘못되었습니다: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>유효하지 않은 금액 -fallbackfee=&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>유효하지 않은 금액 -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>디렉토리 "%s"에 지정한 블록들이 존재하지 않습니다.</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>디렉토리 &quot;%s&quot;에 지정한 블록들이 존재하지 않습니다.</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3433,8 +3463,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>오류: 들어오는 연결을 리슨(Listen)하는데 실패했습니다 (오류 리턴 %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>유효하지 않은 금액 -maxtxfee=&lt;amount&gt;: '%s' (거래가 막히는 상황을 방지하게 위해 적어도 %s 의 중계 수수료를 지정해야 합니다)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>유효하지 않은 금액 -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (거래가 막히는 상황을 방지하게 위해 적어도 %s 의 중계 수수료를 지정해야 합니다)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3445,7 +3475,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>축소 모드를 해제하고 데이터베이스를 재구성 하기 위해 -reindex를 사용해야 합니다. 이 명령은 모든 블록체인을 다시 다운로드 할 것 입니다.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
+        <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>%s 불러오기 오류: 이미 HD 지갑이 존재하는 상태에서 HD 지갑을 비활성화 할 수 없습니다</translation>
     </message>
     <message>
@@ -3461,24 +3491,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>정보</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>올바르지 않은 -onion 주소 또는 호스트 이름: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>올바르지 않은 -onion 주소 또는 호스트 이름: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>올바르지 않은 -proxy 주소 또는 호스트 이름: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>올바르지 않은 -proxy 주소 또는 호스트 이름: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>유효하지 않은 금액 -paytxfee=&lt;amount&gt;: "%s" (최소 %s 이상이어야 됨)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>유효하지 않은 금액 -paytxfee=&lt;amount&gt;: &quot;%s&quot; (최소 %s 이상이어야 됨)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>유효하지 않은 넷마스크가 -whitelist: '%s" 를 통해 지정됨</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>유효하지 않은 넷마스크가 -whitelist: &apos;%s&quot; 를 통해 지정됨</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>-whitebind를 이용하여 포트를 지정해야 합니다: '%s"</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>-whitebind를 이용하여 포트를 지정해야 합니다: &apos;%s&quot;</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3489,16 +3519,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>거래를 서명하는것을 실패하였습니다.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 존재하지 않습니다.</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>애러: 지정한 지갑 폴더 &quot;%s&quot;은 존재하지 않습니다.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 상대 경로입니다.</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>애러: 지정한 지갑 폴더 &quot;%s&quot;은 상대 경로입니다.</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>애러: 지정한 지갑 폴더 "%s"은 디렉토리가 아닙니다.</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>애러: 지정한 지갑 폴더 &quot;%s&quot;은 디렉토리가 아닙니다.</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3553,7 +3583,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>-maxtxfee값이 너무 큽니다!  하나의 거래에 너무 큰 수수료가 지불 됩니다.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
+        <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>%s 불러오기 오류: 비-HD 지갑이 존재하는 상태에서 HD 지갑을 활성화 할 수 없습니다</translation>
     </message>
     <message>
@@ -3569,7 +3599,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>네트워크 버전 문자 (%i)의 길이가 최대길이 (%i)를 초과합니다. UA코멘트의 갯수나 길이를 줄이세요.</translation>
     </message>
     <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>지원하지 않는 인수 -socks를 찾았습니다. 설정된 SOCKS의 버전은 더이상 사용할 수 없으며, SOCK5 프록시만을 지원합니다.</translation>
     </message>
     <message>
@@ -3577,7 +3607,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>지원하지 않는 인수 -whitelistalwaysrelay 는 무시됩니다,  -whitelistrelay 나 -whitelistforcerelay 를 사용해 주세요.</translation>
     </message>
     <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
+        <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>경고: 알려지지 않은 버전의 블록이 채굴되었습니다. 알려지지 않은 규칙이 적용되었을 가능성이 있습니다.</translation>
     </message>
     <message>
@@ -3625,15 +3655,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>거래에는 최소한 한명의 수령인이 있어야 합니다.</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>-onlynet에 지정한 네트워크를 알 수 없습니다: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>-onlynet에 지정한 네트워크를 알 수 없습니다: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
         <translation>자금이 부족합니다!</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
+        <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>거스름돈 주소 생성불가. 이 지갑에서는 개인키가 비활성화 되어 있습니다.</translation>
     </message>
     <message>
@@ -3649,8 +3679,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>주의: {%s}지갑에서 비활성화된 개인키 발견</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>"%s" 데이터 폴더에 쓰기 불가능. 권한을 확인하십시오.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>&quot;%s&quot; 데이터 폴더에 쓰기 불가능. 권한을 확인하십시오.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

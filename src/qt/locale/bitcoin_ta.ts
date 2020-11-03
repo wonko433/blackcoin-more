@@ -1,4 +1,6 @@
-<TS language="ta" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ta">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -89,7 +91,7 @@
         <source>Exporting Failed</source>
         <translation>ஏற்றுமதி தோல்வியடைந்தது</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -747,7 +749,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <source>Error</source>
         <translation>தவறு</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -755,7 +757,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>படிவம்</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>சமீபத்திய பரிவர்த்தனைகள் இன்னும் காணப்படாமல் இருக்கலாம், எனவே உங்கள் பணப்பையின் சமநிலை தவறாக இருக்கலாம். கீழே விவரிக்கப்பட்டுள்ளபடி, உங்கள் பணப்பை பிட்ஃபோனை நெட்வொர்க்குடன் ஒத்திசைக்க முடிந்ததும் இந்த தகவல் சரியாக இருக்கும்.</translation>
     </message>
     <message>
@@ -794,7 +796,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <source>Hide</source>
         <translation>மறை</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1159,8 +1161,8 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>URI கையாளுதல்</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin: //' சரியான URI அல்ல. அதற்கு பதிலாக 'பிட்கின்:' பயன்படுத்தவும்.
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;blackcoin: //&apos; சரியான URI அல்ல. அதற்கு பதிலாக &apos;பிட்கின்:&apos; பயன்படுத்தவும்.
 </translation>
     </message>
     <message>
@@ -1180,7 +1182,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>கட்டணம் கோரிக்கை நிராகரிக்கப்பட்டது</translation>
     </message>
     <message>
-        <source>Payment request network doesn't match client network.</source>
+        <source>Payment request network doesn&apos;t match client network.</source>
         <translation>வாடிக்கையாளர் நெட்வொர்க்குடன் கட்டண கோரிக்கை பிணையம் பொருந்தவில்லை.</translation>
     </message>
     <message>
@@ -1312,7 +1314,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <source>Error parsing command line arguments: %1.</source>
         <translation>கட்டளை வரி வாதங்களைப் பாகுபடுத்துவதில் பிழை: %1.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -1655,7 +1657,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>நீக்கு</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>நேட்டிவ் செக்யூரிட் முகவரிகள் (ach Bech32 அல்லது BIP-173) உங்கள் பரிவர்த்தனைக் கட்டணத்தை பின்னர் குறைக்க மற்றும் எழுத்துப்பிழைகள் எதிராக சிறந்த பாதுகாப்பு வழங்க, ஆனால் பழைய பணப்பைகள் அவர்களுக்கு ஆதரவு இல்லை. Unchecked போது, ​​பழைய பணப்பைகள் இணக்கமான ஒரு முகவரியை பதிலாக உருவாக்கப்படும்.</translation>
     </message>
     <message>
@@ -1867,12 +1869,12 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>கட்டண சரிவுகளை சரி செய்ய வேண்டும்</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>பரிமாற்றத்தின் மெய்நிகர் அளவுக்கு kB (1,000 பைட்டுகளுக்கு) ஒரு தனிபயன் கட்டணத்தை குறிப்பிடவும்.
 
-குறிப்பு: கட்டணம் ஒவ்வொரு பைட் அடிப்படையில் கணக்கிடப்பட்டதால், 500 பைட்டுகள் (1 kB இன் பாதி) பரிவர்த்தனை அளவுக்கு "kB க்காக 100 satoshis" என்ற கட்டணம் இறுதியில் 50 சாத்தோஷிகளுக்கு கட்டணம் மட்டுமே கிடைக்கும்.</translation>
+குறிப்பு: கட்டணம் ஒவ்வொரு பைட் அடிப்படையில் கணக்கிடப்பட்டதால், 500 பைட்டுகள் (1 kB இன் பாதி) பரிவர்த்தனை அளவுக்கு &quot;kB க்காக 100 satoshis&quot; என்ற கட்டணம் இறுதியில் 50 சாத்தோஷிகளுக்கு கட்டணம் மட்டுமே கிடைக்கும்.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -1979,7 +1981,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Message:</source>
         <translation>செய்தி:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -1987,9 +1989,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>ஆம்</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -2004,10 +2003,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Signature</source>
         <translation>கையொப்பம்</translation>
     </message>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
+</context>
 <context>
     <name>TrafficGraphWidget</name>
     <message>
@@ -2033,10 +2029,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Amount</source>
         <translation>தொகை</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -2051,7 +2044,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>(no label)</source>
         <translation>(லேபிள் இல்லை)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -2098,20 +2091,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Exporting Failed</source>
         <translation>ஏற்றுமதி தோல்வியடைந்தது</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>நாணயங்களை அனுப்பவும்</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -2122,7 +2109,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Export the data in the current tab to a file</source>
         <translation>தற்போதைய தாவலில் தரவை ஒரு கோப்பிற்கு ஏற்றுமதி செய்க</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

@@ -1,4 +1,6 @@
-<TS language="et_EE" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="et_EE">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -25,7 +27,7 @@
         <source>&amp;Edit</source>
         <translation>&amp;Muuda</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -99,10 +101,7 @@
         <source>Wallet passphrase was successfully changed.</source>
         <translation>Rahakoti parooli vahetus õnnestus.</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -181,7 +180,7 @@
         <source>Information</source>
         <translation>Informatsioon</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -228,7 +227,7 @@
         <source>(no label)</source>
         <translation>(silt puudub)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -246,7 +245,7 @@
         <source>name</source>
         <translation>nimi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -272,13 +271,7 @@
         <source>Error</source>
         <translation>Viga</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -313,7 +306,7 @@
         <source>Error</source>
         <translation>Viga</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -328,10 +321,7 @@
         <source>Recent transactions</source>
         <translation>Hiljutised transaktsioonid</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -349,10 +339,7 @@
         <source>Amount</source>
         <translation>Kogus</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
+</context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -367,7 +354,7 @@
         <source>Save QR Code</source>
         <translation>Salvesta QR Kood</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -450,7 +437,7 @@
         <source>No</source>
         <translation>Ei</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -504,7 +491,7 @@
         <source>Wallet</source>
         <translation>Rahakott</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -523,7 +510,7 @@
         <source>(no label)</source>
         <translation>(silt puudub)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -553,7 +540,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendConfirmationDialog</name>
     <message>
@@ -561,9 +548,6 @@
         <translation>Jah</translation>
     </message>
 </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -643,10 +627,7 @@
         <source>Amount</source>
         <translation>Kogus</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -665,7 +646,7 @@
         <source>(no label)</source>
         <translation>(silt puudub)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -732,16 +713,7 @@
         <source>Range:</source>
         <translation>Vahemik:</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -756,7 +728,7 @@
         <source>Backup Failed</source>
         <translation>Varundamine Ebaõnnestus</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

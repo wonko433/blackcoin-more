@@ -1,4 +1,6 @@
-<TS language="he_IL" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="he_IL">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -346,7 +348,7 @@
         <source>Amount: %1
 </source>
         <translation>כמות: %1
- </translation>
+&#xa0;</translation>
     </message>
     <message>
         <source>Wallet: %1
@@ -510,7 +512,7 @@
     <message>
         <source>change from %1 (%2)</source>
         <translation>עודף מ %1 (%2)
- </translation>
+&#xa0;</translation>
     </message>
     <message>
         <source>(change)</source>
@@ -553,16 +555,16 @@
         <translation>ערוך כתובת שליחה</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>הכתובת שהוזנה "%1" אינה כתובת ביטקוין חוקית</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>הכתובת שהוזנה &quot;%1&quot; אינה כתובת ביטקוין חוקית</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>הכתובת "%1" כבר קיימת בתור כתובת קבלה עם התוית "%2" ולכן לא יכולה להתווסף ככתובת שליחה</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>הכתובת &quot;%1&quot; כבר קיימת בתור כתובת קבלה עם התוית &quot;%2&quot; ולכן לא יכולה להתווסף ככתובת שליחה</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>הכתובת שהוזנה "%1" כבר קיימת בספר הכתובות עם התוית "%2" </translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>הכתובת שהוזנה &quot;%1&quot; כבר קיימת בספר הכתובות עם התוית &quot;%2&quot; </translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -579,7 +581,7 @@
         <source>name</source>
         <translation>שם</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -604,7 +606,7 @@
     <message>
         <source>Welcome to %1.</source>
         <translation>ברוך הבא ל %1.
- </translation>
+&#xa0;</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
@@ -612,11 +614,11 @@
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>כשתקיש "כן", %1 יתחיל לרדת ולעבד את כל l % שרשרת הבלוקים  (%2GB) החל בתנועות הראשונות ב %3 כאשר %4 יופעל ראשון.</translation>
+        <translation>כשתקיש &quot;כן&quot;, %1 יתחיל לרדת ולעבד את כל l % שרשרת הבלוקים  (%2GB) החל בתנועות הראשונות ב %3 כאשר %4 יופעל ראשון.</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>הסנכרון הראשוני הזה הוא תובעני, ועשוי לחשוף בעיות חומרה במחשב שלך שלא שמת לב להן בעבר. בכל פעם שאתה מריץ  %1, הוא ימשיך בהורדה מאותה נקודה בה עצר בפעם הקודמת.</translation>
+        <translation>הסנכרון הראשוני הזה הוא תובעני, ועשוי לחשוף בעיות חומרה במחשב שלך שלא שמת לב להן בעבר. בכל פעם שאתה מריץ &#xa0;%1, הוא ימשיך בהורדה מאותה נקודה בה עצר בפעם הקודמת.</translation>
     </message>
     <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
@@ -634,7 +636,7 @@
         <source>Error</source>
         <translation>שגיאה</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -673,7 +675,7 @@
         <source>Hide</source>
         <translation>הסתר</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -713,7 +715,7 @@
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
-        <translation>צמצם במקום לצאת מהתוכנה כשהחלון סגור. כאפשרות זאת מופעלת, התוכנה תיסגר רק לאחר בחירת "יציאה" בתפריט.</translation>
+        <translation>צמצם במקום לצאת מהתוכנה כשהחלון סגור. כאפשרות זאת מופעלת, התוכנה תיסגר רק לאחר בחירת &quot;יציאה&quot; בתפריט.</translation>
     </message>
     <message>
         <source>&amp;Network</source>
@@ -731,33 +733,21 @@
         <source>Error</source>
         <translation>שגיאה</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>טופס</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
         <translation>סכום</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -768,7 +758,7 @@
         <source>default wallet</source>
         <translation>ארנק ברירת מחדל</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -798,7 +788,7 @@
         <source>Wallet</source>
         <translation>ארנק</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -813,7 +803,7 @@
         <source>(no label)</source>
         <translation>(ללא תוית)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -866,24 +856,6 @@
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
     <message>
         <source>Date</source>
@@ -893,10 +865,7 @@
         <source>Amount</source>
         <translation>סכום</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -911,7 +880,7 @@
         <source>(no label)</source>
         <translation>(ללא תוית)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -946,16 +915,7 @@
         <source>Exporting Failed</source>
         <translation>ייצוא נכשל</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -966,7 +926,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>יצא את המידע בעמוד הנוכחי לקובץ</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

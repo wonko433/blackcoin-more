@@ -1,4 +1,6 @@
-<TS language="am" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="am">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -67,7 +69,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>እነኚ የቢትኮይን ክፍያ የመቀበያ አድራሻዎችዎ ናቸው:: ለእያንዳንዱ ግብይት አዲስ የመቀበያ አድራሻ እንዲጠቀሙ ይመከራል:: </translation>
+        <translation>እነኚ የቢትኮይን ክፍያ የመቀበያ አድራሻዎችዎ ናቸው:: ለእያንዳንዱ ግብይት አዲስ የመቀበያ አድራሻ እንዲጠቀሙ ይመከራል::&#xa0;</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -217,7 +219,7 @@
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>ማስጠንቀቂያ: የ "Caps Lock" ቁልፍ በርቷል!</translation>
+        <translation>ማስጠንቀቂያ: የ &quot;Caps Lock&quot; ቁልፍ በርቷል!</translation>
     </message>
 </context>
 <context>
@@ -289,59 +291,14 @@
         <source>&amp;Options...</source>
         <translation>&amp;አማራጮች...</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
         <source>(no label)</source>
         <translation>(መለያ ስም የለም)</translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
-    <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -352,7 +309,7 @@
         <source>Label</source>
         <translation>መለያ ስም</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -363,7 +320,7 @@
         <source>(no label)</source>
         <translation>(መለያ ስም የለም)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -371,30 +328,6 @@
         <translation>(መለያ ስም የለም)</translation>
     </message>
 </context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
-    <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -405,7 +338,7 @@
         <source>(no label)</source>
         <translation>(መለያ ስም የለም)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -424,16 +357,7 @@
         <source>Exporting Failed</source>
         <translation>ወደ ውጪ መላክ አልተሳካም</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -444,8 +368,5 @@
         <source>Export the data in the current tab to a file</source>
         <translation>በአሁኑ ማውጫ ውስጥ ያለውን መረጃ ወደ አንድ ፋይል ላክ</translation>
     </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    </context>
+</context>
 </TS>
