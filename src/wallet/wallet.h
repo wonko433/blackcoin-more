@@ -56,9 +56,9 @@ constexpr CAmount DEFAULT_PAY_TX_FEE = 0;
 //! -fallbackfee default
 static const CAmount DEFAULT_FALLBACK_FEE = 20000;
 //! -discardfee default
-static const CAmount DEFAULT_DISCARD_FEE = 10000;
+static const CAmount DEFAULT_DISCARD_FEE = 100000;
 //! -mintxfee default
-static const CAmount DEFAULT_TRANSACTION_MINFEE = 10000;
+static const CAmount DEFAULT_TRANSACTION_MINFEE = 100000;
 //! Default for -spendzeroconfchange
 static const bool DEFAULT_SPEND_ZEROCONF_CHANGE = true;
 //! Default for -walletrejectlongchains

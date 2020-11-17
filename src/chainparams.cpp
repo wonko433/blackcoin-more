@@ -146,7 +146,7 @@ public:
 
         vSeeds.emplace_back("dnsseed.blackcoin.nl"); // hosted at dns.blackcoin.nl
         vSeeds.emplace_back("dnsseed2.blackcoin.nl"); // hosted at vps.blackcoin.nl
-        // vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl")); // Disabled for now
+        vSeeds.emplace_back("node.blackcoin.nl");  // BlackSight static node
         vSeeds.emplace_back("ghost.blackcoin.nl"); // Michel van Kessel static node
         vSeeds.emplace_back("node.blackcoin.io");  // payBLK static node
 
@@ -160,6 +160,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -256,6 +257,7 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
@@ -274,7 +276,7 @@ public:
         };
 
         /* enable fallback fee on testnet */
-        m_fallback_fee_enabled = true;
+        m_fallback_fee_enabled = false;
     }
 };
 
@@ -359,6 +361,11 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         bech32_hrp = "blrt";
+
+        fMiningRequiresPeers = false;
+        fDefaultConsistencyChecks = true;
+        fRequireStandard = false;
+        fMineBlocksOnDemand = true;
 
         /* enable fallback fee on regtest */
         m_fallback_fee_enabled = true;

@@ -114,7 +114,7 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, uns
     if (UintToArith256(hashProofOfStake) > bnTarget)
         return false;
         
-    /*
+    
     if (fDebug && !fPrintProofOfStake)
     {
         LogPrintf("CheckStakeKernelHash() : nStakeModifier=%s, txPrev.nTime=%u, txPrev.vout.hash=%s, txPrev.vout.n=%u, nTime=%u, hashProof=%s\n",
@@ -122,7 +122,7 @@ bool CheckStakeKernelHash(const CBlockIndex* pindexPrev, unsigned int nBits, uns
             prevTime, prevout.hash.ToString(), prevout.n, nTimeTx,
             hashProofOfStake.ToString());
     }
-    */
+    
 
     return true;
 }
