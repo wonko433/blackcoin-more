@@ -595,11 +595,6 @@ public:
      *  already in it.  */
     void CalculateDescendants(txiter it, setEntries& setDescendants) const EXCLUSIVE_LOCKS_REQUIRED(cs);
 
-    /** The minimum fee to get into the mempool, which may itself not be enough
-      *  for larger-sized transactions.
-      */
-    CFeeRate GetMinFee(size_t sizelimit) const;
-
     /** Remove transactions from the mempool until its dynamic size is <= sizelimit.
       *  pvNoSpendsRemaining, if set, will be populated with the list of outpoints
       *  which are not in mempool which no longer have any spends in this mempool.

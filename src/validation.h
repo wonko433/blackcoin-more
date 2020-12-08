@@ -56,8 +56,10 @@ struct LockPoints;
 static const bool DEFAULT_WHITELISTRELAY = true;
 /** Default for -whitelistforcerelay. */
 static const bool DEFAULT_WHITELISTFORCERELAY = true;
+/** Minimum fee for transactions */
+static const unsigned int MIN_TX_FEE = 10000;
 /** Default for -minrelaytxfee, minimum relay fee for transactions */
-static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 100000;
+static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = MIN_TX_FEE;
 //! -maxtxfee default
 static const CAmount DEFAULT_TRANSACTION_MAXFEE = 1 * COIN;
 //! Discourage users to set fees higher than this amount (in satoshis) per kB

@@ -217,8 +217,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         assert(!coin.IsSpent());
 
         // If prev is coinbase or coinstake, check that it's matured
-        if (coin.IsCoinBase() || coin.IsCoinStake()) {
-            if (nSpendHeight - coin.nHeight < Params().nCoinbaseMaturity)
+        if ((coin.IsCoinBase() || coin.IsCoinStake()) && nSpendHeight - coin.nHeight < params.nCoinbaseMaturity) {
             return state.Invalid(false,
                 REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
                 strprintf("tried to spend coinbase at depth %d", nSpendHeight - coin.nHeight));
@@ -235,22 +234,56 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         }
     }
 
-    if (!tx.IsCoinStake())
+    if (tx.IsCoinStake())
+    {
+        // Blackcoin ToDo: check stake reward
+        // CAmount nStakeReward = tx.GetValueOut() - nValueIn;
+        // if (Params().GetConsensus().IsProtocolV3(tx.nTime) && nStakeReward > GetProofOfStakeSubsidy())
+            // return state.DoS(100, false, REJECT_INVALID, "bad-txns-coinstake-too-large");
+    }
+    else
     {
         const CAmount value_out = tx.GetValueOut();
         if (nValueIn < value_out) {
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-in-belowout", false,
                 strprintf("value in (%s) < value out (%s)", FormatMoney(nValueIn), FormatMoney(value_out)));
         }
-
         // Tally transaction fees
         const CAmount txfee_aux = nValueIn - value_out;
         if (!MoneyRange(txfee_aux)) {
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
         }
-
-        txfee = txfee_aux;
+        // peercoin: enforce transaction fees for every block
+        if (txfee_aux < GetMinFee(tx))
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-not-enough");
+        txfee = txfee_aux; 
     }
 
     return true;
+}
+
+// Blackcoin: GetMinFee
+CAmount GetMinFee(const CTransaction& tx)
+{
+    size_t nBytes = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
+    return GetMinFee(nBytes, tx.nTime);
+}
+
+CAmount GetMinFee(size_t nBytes, uint32_t nTime)
+{
+    CAmount nMinFee;
+
+	/*
+	// Peercoin
+    if (IsProtocolV07(nTime)) // RFC-0007
+        nMinFee = (nBytes < 100) ? MIN_TX_FEE : (CAmount)(nBytes * (PERKB_TX_FEE / 1000));
+    else
+        nMinFee = (1 + (CAmount)nBytes / 1000) * PERKB_TX_FEE;
+    */
+	
+	nMinFee = (1 + (CAmount)nBytes / 1000) * MIN_TX_FEE;
+
+    if (!MoneyRange(nMinFee))
+        nMinFee = MAX_MONEY;
+    return nMinFee;
 }
