@@ -6,7 +6,7 @@ $(package)_sha256_hash=F77620140ECB4CDC67F37FB444F8A6BEA70B5B6461F12F1CBE2CEC60F
 $(package)_dependencies=expat
 
 define $(package)_set_vars
-  $(package)_config_opts=--disable-tests --disable-doxygen-docs --disable-xml-docs --disable-shared --without-x
+  $(package)_config_opts=--disable-tests --disable-doxygen-docs --disable-xml-docs --disable-static --without-x
 endef
 
 define $(package)_config_cmds
@@ -20,8 +20,4 @@ endef
 define $(package)_stage_cmds
   $(MAKE) -C dbus DESTDIR=$($(package)_staging_dir) install-libLTLIBRARIES install-dbusincludeHEADERS install-nodist_dbusarchincludeHEADERS && \
   $(MAKE) DESTDIR=$($(package)_staging_dir) install-pkgconfigDATA
-endef
-
-define $(package)_postprocess_cmds
-  rm lib/*.la
 endef

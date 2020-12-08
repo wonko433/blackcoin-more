@@ -251,7 +251,7 @@ std::atomic_bool g_is_mempool_loaded{false};
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Blackcoin Signed Message:\n";
+const std::string strMessageMagic = "BlackCoin Signed Message:\n";
 
 // Internal stuff
 namespace {
