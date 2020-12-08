@@ -469,9 +469,6 @@ BOOST_AUTO_TEST_CASE(MempoolSizeLimitTest)
     BOOST_CHECK(!pool.exists(tx2.GetHash()));
     BOOST_CHECK(!pool.exists(tx3.GetHash()));
 
-    CFeeRate maxFeeRateRemoved(25000, ::GetSerializeSize(CTransaction(tx3), SER_NETWORK, PROTOCOL_VERSION) + ::GetSerializeSize(CTransaction(tx2), SER_NETWORK, PROTOCOL_VERSION));
-    BOOST_CHECK_EQUAL(pool.GetMinFee(1).GetFeePerK(), maxFeeRateRemoved.GetFeePerK() + 10000);
-
     CMutableTransaction tx4 = CMutableTransaction();
     tx4.vin.resize(2);
     tx4.vin[0].prevout.SetNull();

@@ -3808,16 +3808,14 @@ bool PeerLogicValidation::SendMessages(CNode* pto)
         // Message: feefilter
         //
         // We don't want white listed peers to filter txs to us if we have -whitelistforcerelay
+        // Blackcoin: use minRelayTxFee
         if (pto->nVersion >= FEEFILTER_VERSION && gArgs.GetBoolArg("-feefilter", DEFAULT_FEEFILTER) &&
             !(pto->fWhitelisted && gArgs.GetBoolArg("-whitelistforcerelay", DEFAULT_WHITELISTFORCERELAY))) {
-            CAmount currentFilter = mempool.GetMinFee(gArgs.GetArg("-maxmempool", DEFAULT_MAX_MEMPOOL_SIZE) * 1000000).GetFeePerK();
+            CAmount currentFilter = ::minRelayTxFee.GetFeePerK();
             int64_t timeNow = GetTimeMicros();
             if (timeNow > pto->nextSendTimeFeeFilter) {
-                static CFeeRate default_feerate(DEFAULT_MIN_RELAY_TX_FEE);
-                static FeeFilterRounder filterRounder(default_feerate);
-                CAmount filterToSend = filterRounder.round(currentFilter);
                 // We always have a fee filter of at least minRelayTxFee
-                filterToSend = std::max(filterToSend, ::minRelayTxFee.GetFeePerK());
+                CAmount filterToSend = ::minRelayTxFee.GetFeePerK();
                 if (filterToSend != pto->lastSentFeeFilter) {
                     connman->PushMessage(pto, msgMaker.Make(NetMsgType::FEEFILTER, filterToSend));
                     pto->lastSentFeeFilter = filterToSend;
