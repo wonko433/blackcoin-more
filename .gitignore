@@ -8,6 +8,7 @@ src/blackmore-tx
 src/test/test_blackmore
 src/test/test_blackmore_fuzzy
 src/qt/test/test_blackmore-qt
+src/bench/bench_blackmore
 
 src/bitcoin
 src/bitcoind
