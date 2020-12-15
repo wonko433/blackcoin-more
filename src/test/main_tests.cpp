@@ -15,7 +15,7 @@ BOOST_FIXTURE_TEST_SUITE(main_tests, TestingSetup)
 
 BOOST_AUTO_TEST_CASE(block_subsidy_test)
 {
-// ToDo: write test for block subsidy (PoW/PoS)
+// Blackcoin ToDo: write test for block subsidy (PoW/PoS)
 }
 
 static bool ReturnFalse() { return false; }

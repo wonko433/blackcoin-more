@@ -561,6 +561,19 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         *pfMissingInputs = false;
     }
 
+	/*
+	// Blackcoin ToDo: decide whether to add this additional check or not
+	int dust_tx_count = 0;
+    CAmount min_dust = 100000;
+    for (const CTxOut& txout : tx.vout) {
+        // LogPrintf("tx_out value %d, minimum value %d dust count %d", txout.nValue, min_dust, dust_tx_count);
+        if (txout.nValue < min_dust)
+            dust_tx_count = dust_tx_count + 1;
+        if (dust_tx_count > 10)
+            return state.DoS(0, false, REJECT_DUST, "too many dust vouts");
+    }
+	*/
+
     if (!CheckTransaction(tx, state))
         return false; // state filled in by CheckTransaction
 
@@ -1616,7 +1629,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // Set proof-of-stake hash modifier
     pindex->nStakeModifier = ComputeStakeModifier(pindex->pprev, block.IsProofOfStake() ? block.vtx[1]->vin[0].prevout.hash : block.GetHash());
 
-    // Check difficulty - ToDo Blackcoin 
+    // Blackcoin ToDo: enable!
+    // Check difficulty 
     /*if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
         return state.DoS(100, error("ConnectBlock(): incorrect difficulty"),
                         REJECT_INVALID, "bad-diffbits");*/
@@ -2986,9 +3000,10 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     // Check proof of work
     const Consensus::Params& consensusParams = params.GetConsensus();
 
-    // Check difficulty - ToDo Blackcoin
-    //if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
-    //    return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
+    // Blackcoin ToDo: enable!
+    // Check difficulty
+    // if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
+    //     return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3014,14 +3029,15 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
         return state.DoS(50, error("%s: block timestamp too far in the future", __func__),
                              REJECT_INVALID, "time-too-new");
 
-    // Preliminary check of pos timestamp - ToDo Blackcoin
-    /*if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
-        return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
+    // Blackcoin ToDo: enable!
+    // Preliminary check of pos timestamp
+    /* if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
+         return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
                              REJECT_INVALID, "bad-pos-time");*/
 
     // Check maximum reorg depth
     if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
-       return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, nHeight));
+        return state.DoS(1, error("%s: forked chain older than max reorganization depth (height %d)", __func__, nHeight));
 
     return true;
 }
