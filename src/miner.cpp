@@ -480,6 +480,7 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
         return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
+    LogPrint(BCLog::COINSTAKE, "CheckStake() : new proof-of-stake block found  \n  hash: %s \n", hashBlock.GetHex());
     LogPrint(BCLog::COINSTAKE, "%s\n", pblock->ToString());
     LogPrint(BCLog::COINSTAKE, "out %s\n", FormatMoney(pblock->vtx[1]->GetValueOut()));
 
