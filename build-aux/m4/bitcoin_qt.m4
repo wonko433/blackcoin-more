@@ -460,14 +460,14 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITH_PKGCONFIG],[
           PKG_CHECK_MODULES([QT], [$qt5_modules], [QT_INCLUDES="$QT_CFLAGS"; have_qt=yes; QT_LIB_PREFIX=Qt5; bitcoin_qt_got_major_vers=5], [have_qt=no])
         fi
       fi
-      if test x$have_qt != xyes; then
+      if test "x$have_qt" != xyes; then
         have_qt=no
         BITCOIN_QT_FAIL([Qt dependencies not found])
       fi
     ])
     BITCOIN_QT_CHECK([
       PKG_CHECK_MODULES([QT_TEST], [${QT_LIB_PREFIX}Test], [QT_TEST_INCLUDES="$QT_TEST_CFLAGS"; have_qt_test=yes], [have_qt_test=no])
-      if test x$use_dbus != xno; then
+      if test "x$use_dbus" != xno; then
         PKG_CHECK_MODULES([QT_DBUS], [${QT_LIB_PREFIX}DBus], [QT_DBUS_INCLUDES="$QT_DBUS_CFLAGS"; have_qt_dbus=yes], [have_qt_dbus=no])
       fi
     ])
@@ -488,7 +488,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   CXXFLAGS="$PIC_FLAGS $CXXFLAGS"
   TEMP_LIBS="$LIBS"
   BITCOIN_QT_CHECK([
-    if test x$qt_include_path != x; then
+    if test "x$qt_include_path" != x; then
       QT_INCLUDES="-I$qt_include_path -I$qt_include_path/QtCore -I$qt_include_path/QtGui -I$qt_include_path/QtWidgets -I$qt_include_path/QtNetwork -I$qt_include_path/QtTest -I$qt_include_path/QtDBus"
       CPPFLAGS="$QT_INCLUDES $CPPFLAGS"
     fi
@@ -503,7 +503,7 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
       _BITCOIN_QT_CHECK_QT5
       _BITCOIN_QT_CHECK_QT58
     fi
-    if test x$bitcoin_cv_qt5 = xyes || test x$bitcoin_qt_want_version = xqt5; then
+    if test "x$bitcoin_cv_qt5" = xyes || test "x$bitcoin_qt_want_version" = xqt5; then
       QT_LIB_PREFIX=Qt5
       bitcoin_qt_got_major_vers=5
     else
@@ -514,11 +514,11 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
 
   BITCOIN_QT_CHECK([
     LIBS=
-    if test x$qt_lib_path != x; then
+    if test "x$qt_lib_path" != x; then
       LIBS="$LIBS -L$qt_lib_path"
     fi
 
-    if test x$TARGET_OS = xwindows; then
+    if test "x$TARGET_OS" = xwindows; then
       AC_CHECK_LIB([imm32],      [main],, BITCOIN_QT_FAIL(libimm32 not found))
     fi
   ])
@@ -542,15 +542,15 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
 
   BITCOIN_QT_CHECK([
     LIBS=
-    if test x$qt_lib_path != x; then
+    if test "x$qt_lib_path" != x; then
       LIBS="-L$qt_lib_path"
     fi
     AC_CHECK_LIB([${QT_LIB_PREFIX}Test],      [main],, have_qt_test=no)
     AC_CHECK_HEADER([QTest],, have_qt_test=no)
     QT_TEST_LIBS="$LIBS"
-    if test x$use_dbus != xno; then
+    if test "x$use_dbus" != xno; then
       LIBS=
-      if test x$qt_lib_path != x; then
+      if test "x$qt_lib_path" != x; then
         LIBS="-L$qt_lib_path"
       fi
       AC_CHECK_LIB([${QT_LIB_PREFIX}DBus],      [main],, have_qt_dbus=no)
