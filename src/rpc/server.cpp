@@ -3,23 +3,23 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "rpc/server.h"
+#include <rpc/server.h>
 
-#include "base58.h"
-#include "init.h"
-#include "random.h"
-#include "sync.h"
-#include "ui_interface.h"
-#include "util.h"
-#include "utilstrencodings.h"
+#include <base58.h>
+#include <init.h>
+#include <random.h>
+#include <sync.h>
+#include <ui_interface.h>
+#include <util.h>
+#include <utilstrencodings.h>
 
 #include <univalue.h>
 
 #include <boost/bind.hpp>
 #include <boost/filesystem.hpp>
-#include <boost/foreach.hpp>
 #include <boost/iostreams/concepts.hpp>
 #include <boost/iostreams/stream.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/signals2/signal.hpp>
 #include <boost/thread.hpp>
 #include <boost/algorithm/string/case_conv.hpp> // for to_upper()
@@ -32,10 +32,10 @@ static bool fRPCInWarmup = true;
 static std::string rpcWarmupStatus("RPC server started");
 static CCriticalSection cs_rpcWarmup;
 /* Timer-creating functions */
-static RPCTimerInterface* timerInterface = NULL;
+static RPCTimerInterface* timerInterface = nullptr;
 /* Map of name to timer.
  * @note Can be changed to std::unique_ptr when C++11 */
-static std::map<std::string, std::shared_ptr<RPCTimerBase> > deadlineTimers;
+static std::map<std::string, boost::shared_ptr<RPCTimerBase> > deadlineTimers;
 
 static struct CRPCSignals
 {
@@ -70,7 +70,7 @@ void RPCTypeCheck(const UniValue& params,
                   bool fAllowNull)
 {
     unsigned int i = 0;
-    BOOST_FOREACH(UniValue::VType t, typesExpected)
+    for(UniValue::VType t: typesExpected)
     {
         if (params.size() <= i)
             break;
@@ -117,7 +117,7 @@ void RPCTypeCheckObj(const UniValue& o,
 
     if (fStrict)
     {
-        BOOST_FOREACH(const string& k, o.getKeys())
+        for(const string& k: o.getKeys())
         {
             if (typesExpected.count(k) == 0)
             {
@@ -138,7 +138,7 @@ CAmount AmountFromValue(const UniValue& value, bool allowZero)
     if (amount == 0 && !allowZero)
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount");
     if (!MoneyRange(amount))
-        throw JSONRPCError(RPC_TYPE_ERROR, "Amount out of range");
+        throw JSONRPCError(RPC_TYPE_ERROR, strprintf("Amount out of range (%d)", amount));
     return amount;
 }
 
@@ -198,7 +198,7 @@ std::string CRPCTable::help(const std::string& strCommand) const
         vCommands.push_back(make_pair(mi->second->category + mi->first, mi->second));
     sort(vCommands.begin(), vCommands.end());
 
-    BOOST_FOREACH(const PAIRTYPE(string, const CRPCCommand*)& command, vCommands)
+    for(const PAIRTYPE(string, const CRPCCommand*)& command: vCommands)
     {
         const CRPCCommand *pcmd = command.second;
         string strMethod = pcmd->name;
@@ -319,7 +319,7 @@ const CRPCCommand *CRPCTable::operator[](const std::string &name) const
 {
     map<string, const CRPCCommand*>::const_iterator it = mapCommands.find(name);
     if (it == mapCommands.end())
-        return NULL;
+        return nullptr;
     return (*it).second;
 }
 
@@ -368,6 +368,11 @@ void SetRPCWarmupStatus(const std::string& newStatus)
 {
     LOCK(cs_rpcWarmup);
     rpcWarmupStatus = newStatus;
+}
+
+void SetRPCWarmupStatusProgress(const std::string& newStatus, int nProgress)
+{
+    SetRPCWarmupStatus(newStatus + strprintf("%d", nProgress) + (nProgress <= 100 ? "%" : ""));
 }
 
 void SetRPCWarmupFinished()
@@ -496,7 +501,7 @@ std::string HelpExampleCli(const std::string& methodname, const std::string& arg
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
-        "\"method\": \"" + methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/\n";
+        "\"method\": \"" + methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:15715/\n";
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)
@@ -513,7 +518,7 @@ void RPCSetTimerInterface(RPCTimerInterface *iface)
 void RPCUnsetTimerInterface(RPCTimerInterface *iface)
 {
     if (timerInterface == iface)
-        timerInterface = NULL;
+        timerInterface = nullptr;
 }
 
 void RPCRunLater(const std::string& name, boost::function<void(void)> func, int64_t nSeconds)
@@ -522,7 +527,7 @@ void RPCRunLater(const std::string& name, boost::function<void(void)> func, int6
         throw JSONRPCError(RPC_INTERNAL_ERROR, "No timer handler registered for RPC");
     deadlineTimers.erase(name);
     LogPrint("rpc", "queue run of timer %s in %i seconds (using %s)\n", name, nSeconds, timerInterface->Name());
-    deadlineTimers.insert(std::make_pair(name, std::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000))));
+    deadlineTimers.insert(std::make_pair(name, boost::shared_ptr<RPCTimerBase>(timerInterface->NewTimer(func, nSeconds*1000))));
 }
 
 int RPCSerializationFlags()

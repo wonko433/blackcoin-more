@@ -6,9 +6,9 @@
 #ifndef BITCOIN_RPCSERVER_H
 #define BITCOIN_RPCSERVER_H
 
-#include "amount.h"
-#include "rpc/protocol.h"
-#include "uint256.h"
+#include <amount.h>
+#include <rpc/protocol.h>
+#include <uint256.h>
 
 #include <list>
 #include <map>
@@ -62,6 +62,7 @@ bool IsRPCRunning();
  * immediately with RPC_IN_WARMUP.
  */
 void SetRPCWarmupStatus(const std::string& newStatus);
+void SetRPCWarmupStatusProgress(const std::string& newStatus, int nProgress);
 /* Mark warmup as done.  RPC calls will be processed from now on.  */
 void SetRPCWarmupFinished();
 
@@ -161,6 +162,7 @@ public:
     * @returns List of registered commands.
     */
     std::vector<std::string> listCommands() const;
+
 
     /**
      * Appends a CRPCCommand to the dispatch table.
