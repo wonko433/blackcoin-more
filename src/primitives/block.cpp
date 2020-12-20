@@ -3,19 +3,20 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "primitives/block.h"
+#include <primitives/block.h>
 
-#include "hash.h"
-#include "crypto/scrypt.h"
-#include "tinyformat.h"
-#include "utilstrencodings.h"
-#include "crypto/common.h"
+#include <hash.h>
+#include <crypto/scrypt.h>
+#include <tinyformat.h>
+#include <utilstrencodings.h>
+#include <crypto/common.h>
 
 uint256 CBlockHeader::GetHash() const
 {
-    if (nVersion > 6)
-            return SerializeHash(*this);
-        return GetPoWHash();
+  if (nVersion > 6)
+      return SerializeHash(*this);
+  else
+      return GetPoWHash();
 }
 
 uint256 CBlockHeader::GetPoWHash() const
