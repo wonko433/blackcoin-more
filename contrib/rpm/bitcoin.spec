@@ -34,7 +34,7 @@ Source23:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/
 
 #selinux
 Source30:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.te
-# Source31 - what about bitcoin-tx and bench_bitcoin ???
+# Source31 - what about bitcoin-tx and bench_blackmore ???
 Source31:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.fc
 Source32:	https://raw.githubusercontent.com/bitcoin/bitcoin/v%{version}/contrib/rpm/bitcoin.if
 
@@ -142,9 +142,9 @@ Group:		Applications/System
 This package provides several command line utilities for interacting with a
 bitcoin-core daemon.
 
-The bitcoin-cli utility allows you to communicate and control a bitcoin daemon
+The blackmore-cli utility allows you to communicate and control a bitcoin daemon
 over RPC, the bitcoin-tx utility allows you to create a custom transaction, and
-the bench_bitcoin utility can be used to perform some benchmarks.
+the bench_blackmore utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the bitcoin-server package.
 
@@ -423,7 +423,7 @@ rm -rf %{buildroot}
 %doc COPYING bitcoin.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/bitcoin-cli
 %attr(0755,root,root) %{_bindir}/bitcoin-tx
-%attr(0755,root,root) %{_bindir}/bench_bitcoin
+%attr(0755,root,root) %{_bindir}/bench_blackmore
 %attr(0644,root,root) %{_mandir}/man1/bitcoin-cli.1*
 %attr(0644,root,root) %{_mandir}/man5/bitcoin.conf.5*
 
