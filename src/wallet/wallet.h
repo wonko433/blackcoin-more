@@ -6,16 +6,17 @@
 #ifndef BITCOIN_WALLET_WALLET_H
 #define BITCOIN_WALLET_WALLET_H
 
-#include "amount.h"
-#include "streams.h"
-#include "tinyformat.h"
-#include "ui_interface.h"
-#include "utilstrencodings.h"
-#include "validationinterface.h"
-#include "script/ismine.h"
-#include "wallet/crypter.h"
-#include "wallet/walletdb.h"
-#include "wallet/rpcwallet.h"
+#include <amount.h>
+#include <streams.h>
+#include <tinyformat.h>
+#include <ui_interface.h>
+#include <utilstrencodings.h>
+#include <validationinterface.h>
+#include <script/ismine.h>
+#include <wallet/crypter.h>
+#include <wallet/walletdb.h>
+#include <wallet/rpcwallet.h>
+#include <primitives/transaction.h>
 #include "pos.h"
 
 #include <algorithm>
@@ -27,6 +28,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+
+#include <boost/shared_ptr.hpp>
 
 extern CWallet* pwalletMain;
 
@@ -45,7 +48,7 @@ static const unsigned int DEFAULT_KEYPOOL_SIZE = 100;
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 10000;
 //! -fallbackfee default
-static const CAmount DEFAULT_FALLBACK_FEE = 10000;
+static const CAmount DEFAULT_FALLBACK_FEE = 20000;
 //! -mintxfee default
 static const CAmount DEFAULT_TRANSACTION_MINFEE = 10000;
 //! minimum change amount
@@ -59,7 +62,7 @@ static const bool DEFAULT_WALLET_REJECT_LONG_CHAINS = false;
 //! -txconfirmtarget default
 static const unsigned int DEFAULT_TX_CONFIRM_TARGET = 2;
 //! Largest (in bytes) free transaction we're willing to create
-static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 1000;
+static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 10000;
 static const bool DEFAULT_WALLETBROADCAST = true;
 
 //! if set, all keys will be derived by using BIP32
@@ -86,6 +89,7 @@ enum WalletFeature
     FEATURE_HD = 130000, // Hierarchical key derivation after BIP32 (HD Wallet)
     FEATURE_LATEST = FEATURE_COMPRPUBKEY // HD is optional, use FEATURE_COMPRPUBKEY as latest version
 };
+
 
 /** A key pool entry */
 class CKeyPool
@@ -223,7 +227,7 @@ public:
     void setAbandoned() { hashBlock = ABANDON_HASH; }
 };
 
-/** 
+/**
  * A transaction with a bunch of additional info that only the owner cares about.
  * It includes any unrecorded transactions needed to link it back to the block chain.
  */
@@ -383,7 +387,7 @@ public:
 
     //! filter decides which addresses will count towards the debit
     CAmount GetDebit(const isminefilter& filter) const;
-    CAmount GetCredit(const isminefilter& filter) const;
+    CAmount GetCredit(const isminefilter& filter, bool fCheckMaturity=true) const;
     CAmount GetImmatureCredit(bool fUseCache=true) const;
     CAmount GetImmatureStakeCredit(bool fUseCache=true) const;
     CAmount GetAvailableCredit(bool fUseCache=true) const;
@@ -405,6 +409,7 @@ public:
     // True if only scriptSigs are different
     bool IsEquivalentTo(const CWalletTx& tx) const;
 
+
     bool InMempool() const;
     bool IsTrusted() const;
 
@@ -415,9 +420,6 @@ public:
 
     std::set<uint256> GetConflicts() const;
 };
-
-
-
 
 class COutput
 {
@@ -436,7 +438,13 @@ public:
     std::string ToString() const;
 };
 
-
+struct sortByCoinAgeDescending
+{
+    inline bool operator() (const COutput& cOutput1, const COutput& cOutput2)
+    {
+        return (cOutput1.tx->nTime > cOutput2.tx->nTime);
+    }
+};
 
 
 /** Private key that includes an expiration date in case it never gets used. */
@@ -547,7 +555,7 @@ private:
 };
 
 
-/** 
+/**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
  * and provides the ability to create new transactions.
  */
@@ -589,7 +597,6 @@ private:
     void RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid);
     void AddToSpends(const uint256& wtxid);
     void RemoveFromSpends(const uint256& wtxid);
-
 
     /* Mark a transaction (and its in-wallet descendants) as conflicting with a particular block. */
     void MarkConflicted(const uint256& hashBlock, const uint256& hashTx);
@@ -654,7 +661,6 @@ public:
         nTimeFirstKey = 0;
         fBroadcastTransactions = false;
         nConflictsReceived = 0;
-
         fAbortRescan = false;
         fScanningWallet = false;
     }
@@ -752,7 +758,7 @@ public:
 
     void GetKeyBirthTimes(std::map<CKeyID, int64_t> &mapKeyBirth) const;
 
-    /** 
+    /**
      * Increment the next transaction order id
      * @return next transaction order id
      */
@@ -864,7 +870,7 @@ public:
         LOCK(cs_wallet);
         mapRequestCount[hash] = 0;
     };
-    
+
     unsigned int GetKeyPoolSize()
     {
         AssertLockHeld(cs_wallet); // setKeyPool
@@ -892,8 +898,8 @@ public:
 
     //! Verify the wallet database and perform salvage if required
     static bool Verify();
-    
-    /** 
+
+    /**
      * Address book entry changed.
      * @note called with lock cs_wallet held.
      */
@@ -902,7 +908,7 @@ public:
             const std::string &purpose,
             ChangeType status)> NotifyAddressBookChanged;
 
-    /** 
+    /**
      * Wallet transaction added, removed or updated.
      * @note called with lock cs_wallet held.
      */
@@ -983,7 +989,7 @@ public:
 };
 
 
-/** 
+/**
  * Account information.
  * Stored in wallet with key "acc"+string account name.
  */
