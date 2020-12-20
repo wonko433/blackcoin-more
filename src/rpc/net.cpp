@@ -2,22 +2,22 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "rpc/server.h"
+#include <rpc/server.h>
 
-#include "chainparams.h"
-#include "clientversion.h"
-#include "main.h"
-#include "net.h"
-#include "netbase.h"
-#include "protocol.h"
-#include "sync.h"
-#include "timedata.h"
-#include "ui_interface.h"
-#include "util.h"
-#include "utilstrencodings.h"
-#include "version.h"
-
-#include <boost/foreach.hpp>
+#include <chainparams.h>
+#include <clientversion.h>
+#include <main.h>
+#include <miner.h>
+#include <net.h>
+#include <netbase.h>
+#include <rpc/protocol.h>
+#include <sync.h>
+#include <timedata.h>
+#include <ui_interface.h>
+#include <util.h>
+#include <utilstrencodings.h>
+#include <version.h>
+#include <wallet/wallet.h>
 
 #include <univalue.h>
 
@@ -57,7 +57,7 @@ UniValue ping(const UniValue& params, bool fHelp)
     // Request that each node send a ping during next message processing pass
     LOCK2(cs_main, cs_vNodes);
 
-    BOOST_FOREACH(CNode* pNode, vNodes) {
+    for(CNode* pNode: vNodes) {
         pNode->fPingQueued = true;
     }
 
@@ -70,7 +70,7 @@ static void CopyNodeStats(std::vector<CNodeStats>& vstats)
 
     LOCK(cs_vNodes);
     vstats.reserve(vNodes.size());
-    BOOST_FOREACH(CNode* pnode, vNodes) {
+    for(CNode* pnode: vNodes) {
         CNodeStats stats;
         pnode->copyStats(stats);
         vstats.push_back(stats);
@@ -134,7 +134,7 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
 
     UniValue ret(UniValue::VARR);
 
-    BOOST_FOREACH(const CNodeStats& stats, vstats) {
+    for(const CNodeStats& stats: vstats) {
         UniValue obj(UniValue::VOBJ);
         CNodeStateStats statestats;
         bool fStateStats = GetNodeStateStats(stats.nodeid, statestats);
@@ -168,7 +168,7 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
             obj.push_back(Pair("synced_headers", statestats.nSyncHeight));
             obj.push_back(Pair("synced_blocks", statestats.nCommonHeight));
             UniValue heights(UniValue::VARR);
-            BOOST_FOREACH(int height, statestats.vHeightInFlight) {
+            for(int height: statestats.vHeightInFlight) {
                 heights.push_back(height);
             }
             obj.push_back(Pair("inflight", heights));
@@ -176,14 +176,14 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
         obj.push_back(Pair("whitelisted", stats.fWhitelisted));
 
         UniValue sendPerMsgCmd(UniValue::VOBJ);
-        BOOST_FOREACH(const mapMsgCmdSize::value_type &i, stats.mapSendBytesPerMsgCmd) {
+        for(const mapMsgCmdSize::value_type &i: stats.mapSendBytesPerMsgCmd) {
             if (i.second > 0)
                 sendPerMsgCmd.push_back(Pair(i.first, i.second));
         }
         obj.push_back(Pair("bytessent_per_msg", sendPerMsgCmd));
 
         UniValue recvPerMsgCmd(UniValue::VOBJ);
-        BOOST_FOREACH(const mapMsgCmdSize::value_type &i, stats.mapRecvBytesPerMsgCmd) {
+        for(const mapMsgCmdSize::value_type &i: stats.mapRecvBytesPerMsgCmd) {
             if (i.second > 0)
                 recvPerMsgCmd.push_back(Pair(i.first, i.second));
         }
@@ -210,8 +210,8 @@ UniValue addnode(const UniValue& params, bool fHelp)
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
             "\nExamples:\n"
-            + HelpExampleCli("addnode", "\"192.168.0.6:8333\" \"onetry\"")
-            + HelpExampleRpc("addnode", "\"192.168.0.6:8333\", \"onetry\"")
+            + HelpExampleCli("addnode", "\"192.168.0.6:15714\" \"onetry\"")
+            + HelpExampleRpc("addnode", "\"192.168.0.6:15714\", \"onetry\"")
         );
 
     string strNode = params[0].get_str();
@@ -219,7 +219,7 @@ UniValue addnode(const UniValue& params, bool fHelp)
     if (strCommand == "onetry")
     {
         CAddress addr;
-        OpenNetworkConnection(addr, false, NULL, strNode.c_str());
+        OpenNetworkConnection(addr, false, nullptr, strNode.c_str());
         return NullUniValue;
     }
 
@@ -254,12 +254,12 @@ UniValue disconnectnode(const UniValue& params, bool fHelp)
             "\nArguments:\n"
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "\nExamples:\n"
-            + HelpExampleCli("disconnectnode", "\"192.168.0.6:8333\"")
-            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:8333\"")
+            + HelpExampleCli("disconnectnode", "\"192.168.0.6:15714\"")
+            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:15714\"")
         );
 
     CNode* pNode = FindNode(params[0].get_str());
-    if (pNode == NULL)
+    if (pNode == nullptr)
         throw JSONRPCError(RPC_CLIENT_NODE_NOT_CONNECTED, "Node not found in connected nodes");
 
     pNode->fDisconnect = true;
@@ -284,7 +284,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:8333\",  (string) The blackcoin server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:15714\",  (string) The blackcoin server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
@@ -452,7 +452,7 @@ UniValue getnetworkinfo(const UniValue& params, bool fHelp)
     UniValue localAddresses(UniValue::VARR);
     {
         LOCK(cs_mapLocalHost);
-        BOOST_FOREACH(const PAIRTYPE(CNetAddr, LocalServiceInfo) &item, mapLocalHost)
+        for(const PAIRTYPE(CNetAddr, LocalServiceInfo) &item: mapLocalHost)
         {
             UniValue rec(UniValue::VOBJ);
             rec.push_back(Pair("address", item.first.ToString()));

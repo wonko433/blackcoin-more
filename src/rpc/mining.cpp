@@ -3,34 +3,35 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "base58.h"
-#include "amount.h"
-#include "chain.h"
-#include "chainparams.h"
-#include "consensus/consensus.h"
-#include "consensus/params.h"
-#include "consensus/validation.h"
-#include "core_io.h"
-#include "dstencode.h"
-#include "init.h"
-#include "main.h"
-#include "miner.h"
-#include "net.h"
-#include "pow.h"
-#include "pos.h"
+#include <base58.h>
+#include <amount.h>
+#include <chain.h>
+#include <chainparams.h>
+#include <consensus/consensus.h>
+#include <consensus/params.h>
+#include <consensus/validation.h>
+#include <core_io.h>
+#include <dstencode.h>
+#include <init.h>
+#include <main.h>
+#include <miner.h>
+#include <net.h>
+#include <pow.h>
+#include <pos.h>
 #include "rpc/server.h"
-#include "txmempool.h"
-#include "timedata.h"
-#include "util.h"
-#include "utilstrencodings.h"
-#include "validationinterface.h"
+#include <rpc/server.h>
+#include <txmempool.h>
+#include <util.h>
+#include <utilstrencodings.h>
+#include <validationinterface.h>
 #ifdef ENABLE_WALLET
-#include "wallet/wallet.h"
+#include <wallet/wallet.h>
 #endif
 
 #include <stdint.h>
 
 #include <boost/assign/list_of.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include <univalue.h>
 
@@ -136,7 +137,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
         }
         CValidationState state;
         uint256 hash = pblock->GetHash();
-        if (!ProcessNewBlock(state, Params(), NULL, pblock, true, NULL, false))
+        if (!ProcessNewBlock(state, Params(), nullptr, pblock, true, nullptr, false))
             throw JSONRPCError(RPC_INTERNAL_ERROR, "ProcessNewBlock, block not accepted");
         ++nHeight;
         blockHashes.push_back(hash.GetHex());
@@ -194,7 +195,7 @@ UniValue generatetoaddress(const UniValue& params, bool fHelp)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. numblocks    (numeric, required) How many blocks are generated immediately.\n"
-            "2. address    (string, required) The address to send the newly generated bitcoin to.\n"
+            "2. address    (string, required) The address to send the newly generated blackcoin to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -502,10 +503,10 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Blackcoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Blackcoin is downloading blocks...");
 
     if (chainActive.Tip()->nHeight > Params().GetConsensus().nLastPOWBlock)
     	throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
@@ -566,7 +567,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5))
     {
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
-        pindexPrev = NULL;
+        pindexPrev = nullptr;
 
         // Store the pindexBest used before CreateNewBlock, to avoid races
         nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
@@ -577,7 +578,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         if(pblocktemplate)
         {
             delete pblocktemplate;
-            pblocktemplate = NULL;
+            pblocktemplate = nullptr;
         }
         CScript scriptDummy = CScript() << OP_TRUE;
         pblocktemplate = BlockAssembler(Params()).CreateNewBlock(scriptDummy, 0, false);
@@ -599,7 +600,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
     UniValue transactions(UniValue::VARR);
     map<uint256, int64_t> setTxIndex;
     int i = 0;
-    BOOST_FOREACH (CTransaction& tx, pblock->vtx) {
+    for(CTransaction& tx: pblock->vtx) {
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
 
@@ -612,7 +613,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
         entry.push_back(Pair("hash", txHash.GetHex()));
 
         UniValue deps(UniValue::VARR);
-        BOOST_FOREACH (const CTxIn &in, tx.vin)
+        for(const CTxIn &in: tx.vin)
         {
             if (setTxIndex.count(in.prevout.hash))
                 deps.push_back(setTxIndex[in.prevout.hash]);
@@ -774,7 +775,7 @@ UniValue submitblock(const UniValue& params, bool fHelp)
     CValidationState state;
     submitblock_StateCatcher sc(hash);
     RegisterValidationInterface(&sc);
-    bool fAccepted = ProcessNewBlock(state, Params(), NULL, &block, true, NULL, false);
+    bool fAccepted = ProcessNewBlock(state, Params(), nullptr, &block, true, nullptr, false);
     UnregisterValidationInterface(&sc);
     if (fBlockPresent)
     {
@@ -958,7 +959,7 @@ UniValue estimatesmartfee(const UniValue& params, bool fHelp)
             "1. nblocks     (numeric)\n"
             "\nResult:\n"
             "{\n"
-            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in BTC)\n"
+            "  \"feerate\" : x.x,     (numeric) estimate fee-per-kilobyte (in BLK)\n"
             "  \"blocks\" : n         (numeric) block number where estimate was found\n"
             "}\n"
             "\n"

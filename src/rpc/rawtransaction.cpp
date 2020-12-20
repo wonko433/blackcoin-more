@@ -3,30 +3,30 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "base58.h"
-#include "chain.h"
-#include "coins.h"
-#include "consensus/validation.h"
-#include "core_io.h"
-#include "dstencode.h"
-#include "init.h"
-#include "keystore.h"
-#include "main.h"
-#include "merkleblock.h"
-#include "net.h"
-#include "policy/policy.h"
-#include "primitives/transaction.h"
-#include "rpc/server.h"
-#include "script/script.h"
-#include "script/script_error.h"
-#include "script/sign.h"
-#include "script/standard.h"
-#include "timedata.h"
-#include "txmempool.h"
-#include "uint256.h"
-#include "utilstrencodings.h"
+#include <base58.h>
+#include <chain.h>
+#include <coins.h>
+#include <consensus/validation.h>
+#include <core_io.h>
+#include <dstencode.h>
+#include <init.h>
+#include <keystore.h>
+#include <main.h>
+#include <merkleblock.h>
+#include <net.h>
+#include <policy/policy.h>
+#include <primitives/transaction.h>
+#include <rpc/server.h>
+#include <script/script.h>
+#include <script/script_error.h>
+#include <script/sign.h>
+#include <script/standard.h>
+#include <timedata.h>
+#include <txmempool.h>
+#include <uint256.h>
+#include <utilstrencodings.h>
 #ifdef ENABLE_WALLET
-#include "wallet/wallet.h"
+#include <wallet/wallet.h>
 #endif
 
 #include <stdint.h>
@@ -194,6 +194,7 @@ UniValue getrawtransaction(const UniValue& params, bool fHelp)
         fVerbose = (params[1].get_int() != 0);
 
     CTransaction tx;
+
     uint256 hashBlock;
     if (!GetTransaction(hash, tx, Params().GetConsensus(), hashBlock, true))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "No information available about transaction");
@@ -247,7 +248,7 @@ UniValue gettxoutproof(const UniValue& params, bool fHelp)
 
     LOCK(cs_main);
 
-    CBlockIndex* pblockindex = NULL;
+    CBlockIndex* pblockindex = nullptr;
 
     uint256 hashBlock;
     if (params.size() > 1)
@@ -262,7 +263,7 @@ UniValue gettxoutproof(const UniValue& params, bool fHelp)
             pblockindex = chainActive[coins.nHeight];
     }
 
-    if (pblockindex == NULL)
+    if (pblockindex == nullptr)
     {
         CTransaction tx;
         if (!GetTransaction(oneTxid, tx, Params().GetConsensus(), hashBlock, false) || hashBlock.IsNull())
@@ -277,7 +278,7 @@ UniValue gettxoutproof(const UniValue& params, bool fHelp)
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Can't read block from disk");
 
     unsigned int ntxFound = 0;
-    BOOST_FOREACH(const CTransaction&tx, block.vtx)
+    for(const CTransaction&tx: block.vtx)
         if (setTxids.count(tx.GetHash()))
             ntxFound++;
     if (ntxFound != setTxids.size())
@@ -319,7 +320,7 @@ UniValue verifytxoutproof(const UniValue& params, bool fHelp)
     if (!mapBlockIndex.count(merkleBlock.header.GetHash()) || !chainActive.Contains(mapBlockIndex[merkleBlock.header.GetHash()]))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found in chain");
 
-    BOOST_FOREACH(const uint256& hash, vMatch)
+    for(const uint256& hash: vMatch)
         res.push_back(hash.GetHex());
     return res;
 }
@@ -482,7 +483,7 @@ UniValue decoderawtransaction(const UniValue& params, bool fHelp)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"12tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) bitcoin address\n"
+            "           \"B2tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) blackcoin address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -525,7 +526,7 @@ UniValue decodescript(const UniValue& params, bool fHelp)
             "  \"type\":\"type\", (string) The output type\n"
             "  \"reqSigs\": n,    (numeric) The required signatures\n"
             "  \"addresses\": [   (json array of string)\n"
-            "     \"address\"     (string) bitcoin address\n"
+            "     \"address\"     (string) blackcoin address\n"
             "     ,...\n"
             "  ],\n"
             "  \"p2sh\",\"address\" (string) address of P2SH script wrapping this redeem script (not returned if the script is already a P2SH).\n"
@@ -648,7 +649,7 @@ UniValue signrawtransaction(const UniValue& params, bool fHelp)
         );
 
 #ifdef ENABLE_WALLET
-    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : NULL);
+    LOCK2(cs_main, pwalletMain ? &pwalletMain->cs_wallet : nullptr);
 #else
     LOCK(cs_main);
 #endif
@@ -684,7 +685,7 @@ UniValue signrawtransaction(const UniValue& params, bool fHelp)
         CCoinsViewMemPool viewMempool(&viewChain, mempool);
         view.SetBackend(viewMempool); // temporarily switch cache backend to db+mempool view
 
-        BOOST_FOREACH(const CTxIn& txin, mergedTx.vin) {
+        for(const CTxIn& txin: mergedTx.vin) {
             const uint256& prevHash = txin.prevout.hash;
             CCoins coins;
             view.AccessCoins(prevHash); // this is certainly allowed to fail
@@ -827,7 +828,7 @@ UniValue signrawtransaction(const UniValue& params, bool fHelp)
             ProduceSignature(MutableTransactionSignatureCreator(&keystore, &mergedTx, i, amount, nHashType), prevPubKey, sigdata);
 
         // ... and merge in other signatures:
-        BOOST_FOREACH(const CMutableTransaction& txv, txVariants) {
+        for(const CMutableTransaction& txv: txVariants) {
             if (txv.vin.size() > i) {
                 sigdata = CombineSignatures(prevPubKey, TransactionSignatureChecker(&txConst, i, amount), sigdata, DataFromTransaction(txv, i));
             }
@@ -923,7 +924,7 @@ static const CRPCCommand commands[] =
     { "rawtransactions",    "decodescript",           &decodescript,           true  },
     { "rawtransactions",    "sendrawtransaction",     &sendrawtransaction,     false },
     { "rawtransactions",    "signrawtransaction",     &signrawtransaction,     false }, /* uses wallet if enabled */
-	{ "rawtransactions",    "getnormalizedtxid",      &getnormalizedtxid,      true },
+    { "rawtransactions",    "getnormalizedtxid",      &getnormalizedtxid,      true  },
 
     { "blockchain",         "gettxoutproof",          &gettxoutproof,          true  },
     { "blockchain",         "verifytxoutproof",       &verifytxoutproof,       true  },

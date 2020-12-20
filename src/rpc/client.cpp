@@ -3,9 +3,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "rpc/client.h"
-#include "rpc/protocol.h"
-#include "util.h"
+#include <rpc/client.h>
+#include <rpc/protocol.h>
+#include <util.h>
 
 #include <set>
 #include <stdint.h>
@@ -144,6 +144,7 @@ static CRPCConvertTable rpcCvtTable;
 UniValue ParseNonRFCJSONValue(const std::string& strVal)
 {
     UniValue jVal;
+
     if (!jVal.read(std::string("[")+strVal+std::string("]")) ||
         !jVal.isArray() || jVal.size()!=1)
         throw runtime_error(string("Error parsing JSON:")+strVal);
