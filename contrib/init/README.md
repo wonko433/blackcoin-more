@@ -1,11 +1,11 @@
 Sample configuration files for:
 
-SystemD: bitcoind.service
-Upstart: bitcoind.conf
-OpenRC:  bitcoind.openrc
-         bitcoind.openrcconf
-CentOS:  bitcoind.init
-OS X:    org.bitcoin.bitcoind.plist
+SystemD: blackmored.service
+Upstart: blackmored.conf
+OpenRC:  blackmored.openrc
+         bblackmored.openrcconf
+CentOS:  blackmored.init
+OS X:    org.blackcoin.blackmored.plist
 
 have been made available to assist packagers in creating node packages here.
 
