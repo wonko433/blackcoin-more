@@ -12,7 +12,7 @@ Restart=on-failure
 # Because it's a daemon process
 Type=forking
 
-PIDFile=/var/lib/.bitmored/blackmored.pid
+PIDFile=/var/lib/.blackmored/blackmored.pid
 
 ProtectHome=true
 ProtectSystem=full
