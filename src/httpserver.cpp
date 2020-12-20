@@ -2,15 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "httpserver.h"
+#include <httpserver.h>
 
-#include "chainparamsbase.h"
-#include "compat.h"
-#include "util.h"
-#include "netbase.h"
-#include "rpc/protocol.h" // For HTTP status codes
-#include "sync.h"
-#include "ui_interface.h"
+#include <chainparamsbase.h>
+#include <compat.h>
+#include <util.h>
+#include <netbase.h>
+#include <rpc/protocol.h> // For HTTP status codes
+#include <sync.h>
+#include <ui_interface.h>
 
 #include <deque>
 #include <stdio.h>
@@ -36,6 +36,9 @@
 #endif
 #endif
 
+#include <boost/algorithm/string/case_conv.hpp> // for to_lower()
+#include <boost/foreach.hpp>
+
 /** Maximum size of http request (request line + headers) */
 static const size_t MAX_HEADERS_SIZE = 8192;
 
@@ -43,8 +46,8 @@ static const size_t MAX_HEADERS_SIZE = 8192;
 class HTTPWorkItem : public HTTPClosure
 {
 public:
-    HTTPWorkItem(std::unique_ptr<HTTPRequest> _req, const std::string &_path, const HTTPRequestHandler& _func):
-        req(std::move(_req)), path(_path), func(_func)
+    HTTPWorkItem(std::unique_ptr<HTTPRequest> req, const std::string &path, const HTTPRequestHandler& func):
+        req(std::move(req)), path(path), func(func)
     {
     }
     void operator()()
@@ -93,8 +96,8 @@ private:
     };
 
 public:
-    WorkQueue(size_t _maxDepth) : running(true),
-                                 maxDepth(_maxDepth),
+    WorkQueue(size_t maxDepth) : running(true),
+                                 maxDepth(maxDepth),
                                  numThreads(0)
     {
     }
@@ -159,8 +162,8 @@ public:
 struct HTTPPathHandler
 {
     HTTPPathHandler() {}
-    HTTPPathHandler(std::string _prefix, bool _exactMatch, HTTPRequestHandler _handler):
-        prefix(_prefix), exactMatch(_exactMatch), handler(_handler)
+    HTTPPathHandler(std::string prefix, bool exactMatch, HTTPRequestHandler handler):
+        prefix(prefix), exactMatch(exactMatch), handler(handler)
     {
     }
     std::string prefix;
@@ -188,7 +191,7 @@ static bool ClientAllowed(const CNetAddr& netaddr)
 {
     if (!netaddr.IsValid())
         return false;
-    for(const CSubNet& subnet : rpc_allow_subnets)
+    for(const CSubNet& subnet: rpc_allow_subnets)
         if (subnet.Match(netaddr))
             return true;
     return false;
@@ -206,7 +209,7 @@ static bool InitHTTPAllowList()
     rpc_allow_subnets.push_back(CSubNet(localv6));         // always allow IPv6 localhost
     if (mapMultiArgs.count("-rpcallowip")) {
         const std::vector<std::string>& vAllow = mapMultiArgs["-rpcallowip"];
-        for (std::string strAllow : vAllow) {
+        for(std::string strAllow: vAllow) {
             CSubNet subnet;
             LookupSubNet(strAllow.c_str(), subnet);
             if (!subnet.IsValid()) {
@@ -219,7 +222,7 @@ static bool InitHTTPAllowList()
         }
     }
     std::string strAllowed;
-    for (const CSubNet& subnet : rpc_allow_subnets)
+    for(const CSubNet& subnet: rpc_allow_subnets)
         strAllowed += subnet.ToString() + " ";
     LogPrint("http", "Allowing HTTP connections from: %s\n", strAllowed);
     return true;
@@ -423,7 +426,7 @@ bool InitHTTPServer()
     evhttp_set_timeout(http, GetArg("-rpcservertimeout", DEFAULT_HTTP_SERVER_TIMEOUT));
     evhttp_set_max_headers_size(http, MAX_HEADERS_SIZE);
     evhttp_set_max_body_size(http, MAX_SIZE);
-    evhttp_set_gencb(http, http_request_cb, NULL);
+    evhttp_set_gencb(http, http_request_cb, nullptr);
 
     if (!HTTPBindAddresses(http)) {
         LogPrintf("Unable to bind any endpoint for RPC server\n");
@@ -466,11 +469,11 @@ void InterruptHTTPServer()
     LogPrint("http", "Interrupting HTTP server\n");
     if (eventHTTP) {
         // Unlisten sockets
-        for (evhttp_bound_socket *socket : boundSockets) {
+        for(evhttp_bound_socket *socket: boundSockets) {
             evhttp_del_accept_socket(eventHTTP, socket);
         }
         // Reject requests on current connections
-        evhttp_set_gencb(eventHTTP, http_reject_request_cb, NULL);
+        evhttp_set_gencb(eventHTTP, http_reject_request_cb, nullptr);
     }
     if (eventBase) {
         // Force-exit event loop after predefined time
@@ -502,8 +505,8 @@ void StopHTTPServer()
         if (threadResult.valid() && threadResult.wait_for(std::chrono::milliseconds(2000)) == std::future_status::timeout) {
             LogPrintf("HTTP event loop did not exit within allotted time, sending loopbreak\n");
             event_base_loopbreak(eventBase);
+            threadHTTP.join();
         }
-        threadHTTP.join();
     }
     if (eventHTTP) {
         evhttp_free(eventHTTP);
@@ -530,8 +533,8 @@ static void httpevent_callback_fn(evutil_socket_t, short, void* data)
         delete self;
 }
 
-HTTPEvent::HTTPEvent(struct event_base* base, bool _deleteWhenTriggered, const std::function<void(void)>& _handler):
-    deleteWhenTriggered(_deleteWhenTriggered), handler(_handler)
+HTTPEvent::HTTPEvent(struct event_base* base, bool deleteWhenTriggered, const std::function<void(void)>& handler):
+    deleteWhenTriggered(deleteWhenTriggered), handler(handler)
 {
     ev = event_new(base, -1, 0, httpevent_callback_fn, this);
     assert(ev);
@@ -542,12 +545,12 @@ HTTPEvent::~HTTPEvent()
 }
 void HTTPEvent::trigger(struct timeval* tv)
 {
-    if (tv == NULL)
+    if (tv == nullptr)
         event_active(ev, 0, 0); // immediately trigger event in main thread
     else
         evtimer_add(ev, tv); // trigger after timeval passed
 }
-HTTPRequest::HTTPRequest(struct evhttp_request* _req) : req(_req),
+HTTPRequest::HTTPRequest(struct evhttp_request* req) : req(req),
                                                        replySent(false)
 {
 }

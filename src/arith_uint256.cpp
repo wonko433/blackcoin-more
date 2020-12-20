@@ -3,11 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "arith_uint256.h"
+#include <arith_uint256.h>
 
-#include "uint256.h"
-#include "utilstrencodings.h"
-#include "crypto/common.h"
+#include <uint256.h>
+#include <utilstrencodings.h>
+#include <crypto/common.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -216,8 +216,8 @@ arith_uint256& arith_uint256::SetCompact(uint32_t nCompact, bool* pfNegative, bo
         *pfNegative = nWord != 0 && (nCompact & 0x00800000) != 0;
     if (pfOverflow)
         *pfOverflow = nWord != 0 && ((nSize > 34) ||
-                                     (nWord > 0xff && nSize > 33) ||
-                                     (nWord > 0xffff && nSize > 32));
+                                        (nWord > 0xff && nSize > 33) ||
+                                        (nWord > 0xffff && nSize > 32));
     return *this;
 }
 

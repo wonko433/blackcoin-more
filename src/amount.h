@@ -6,7 +6,7 @@
 #ifndef BITCOIN_AMOUNT_H
 #define BITCOIN_AMOUNT_H
 
-#include "serialize.h"
+#include <serialize.h>
 
 #include <stdlib.h>
 #include <string>
@@ -21,8 +21,7 @@ extern const std::string CURRENCY_UNIT;
 
 /** No amount larger than this (in satoshi) is valid.
  *
- * Note that this constant is *not* the total money supply, which in Bitcoin
- * currently happens to be less than 21,000,000 BTC for various reasons, but
+ * Note that this constant is *not* the total money supply, but
  * rather a sanity check. As this sanity check is used by consensus-critical
  * validation code, the exact value of the MAX_MONEY constant is consensus
  * critical; in unusual circumstances like a(nother) overflow bug that allowed
@@ -52,7 +51,7 @@ public:
     /**
      * Return the fee in satoshis for a size of 1000 bytes
      */
-    CAmount GetFeePerK() const { return GetFee(1000); }
+    CAmount GetFeePerK() const { return GetFee(10000); }
     friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK < b.nSatoshisPerK; }
     friend bool operator>(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK > b.nSatoshisPerK; }
     friend bool operator==(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK == b.nSatoshisPerK; }

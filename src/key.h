@@ -1,21 +1,21 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2009-2016 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_KEY_H
 #define BITCOIN_KEY_H
 
-#include "pubkey.h"
-#include "serialize.h"
-#include "support/allocators/secure.h"
-#include "uint256.h"
+#include <pubkey.h>
+#include <serialize.h>
+#include <support/allocators/secure.h>
+#include <uint256.h>
 
 #include <stdexcept>
 #include <vector>
 
 
-/** 
+/**
  * secp256k1:
  * const unsigned int PRIVATE_KEY_SIZE = 279;
  * const unsigned int PUBLIC_KEY_SIZE  = 65;
@@ -45,7 +45,7 @@ private:
     //! The actual byte data
     unsigned char vch[32];
 
-    //! Check whether the 32-byte array pointed to be vch is valid keydata.
+    //! Check whether the 32-byte array pointed to by vch is valid keydata.
     bool static Check(const unsigned char* vch);
 
 public:
@@ -110,7 +110,7 @@ public:
 
     /**
      * Convert the private key to a CPrivKey (serialized OpenSSL private key data).
-     * This is expensive. 
+     * This is expensive.
      */
     CPrivKey GetPrivKey() const;
 
