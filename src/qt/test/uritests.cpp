@@ -4,12 +4,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "uritests.h"
+#include <qt/test/uritests.h>
 
-#include "chainparams.h"
-#include "config.h"
-#include "guiutil.h"
-#include "walletmodel.h"
+#include <chainparams.h>
+#include <config.h>
+#include <guiutil.h>
+#include <walletmodel.h>
 
 #include <QUrl>
 
@@ -19,7 +19,7 @@ void URITests::uriTestsBase58()
     QString scheme =
         QString::fromStdString(Params(CBaseChainParams::MAIN).CashAddrPrefix());
     QUrl uri;
-    uri.setUrl(QString("blackcoin175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?req-dontexist="));
+    uri.setUrl(QString("blackcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?req-dontexist="));
     QVERIFY(!GUIUtil::parseBitcoinURI(scheme, uri, &rv));
 
     uri.setUrl(QString("blackcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?dontexist="));
@@ -57,9 +57,7 @@ void URITests::uriTestsBase58()
     QVERIFY(rv.address == QString("175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W"));
     QVERIFY(rv.label == QString());
 
-    QVERIFY(GUIUtil::parseBitcoinURI(scheme, "blackcoin://175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?"
-                                     "message=Wikipedia Example Address",
-                                     &rv));
+    QVERIFY(GUIUtil::parseBitcoinURI(scheme, "blackcoin://175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?message=Wikipedia Example Address", &rv));
     QVERIFY(rv.address == QString("175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W"));
     QVERIFY(rv.label == QString());
 
