@@ -1,4 +1,6 @@
-<TS language="af" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="af">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -7,7 +9,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Skep 'n nuwe adres</translation>
+        <translation>Skep &apos;n nuwe adres</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -31,7 +33,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Voer die inligting op hierdie bladsy uit na 'n leer</translation>
+        <translation>Voer die inligting op hierdie bladsy uit na &apos;n leer</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -67,7 +69,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Hierdie is die adresse waar u Blackcoins sal ontvang. Ons beveel aan dat u 'n nuwe adres kies vir elke transaksie</translation>
+        <translation>Hierdie is die adresse waar u Blackcoins sal ontvang. Ons beveel aan dat u &apos;n nuwe adres kies vir elke transaksie.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -133,7 +135,7 @@
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Tik die nuwe wagwoord vir u beursie.&lt;br/&gt;Gerbuik asseblief 'n wagwoord met &lt;b&gt;tien of meer lukrake karakters&lt;/b&gt;, of &lt;b&gt;agt of meer woorde&lt;/b&gt;.</translation>
+        <translation>Tik die nuwe wagwoord vir u beursie.&lt;br/&gt;Gerbuik asseblief &apos;n wagwoord met &lt;b&gt;tien of meer lukrake karakters&lt;/b&gt;, of &lt;b&gt;agt of meer woorde&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -189,7 +191,7 @@
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Weens 'n interne fout het kodifikasie het nie geslaag nie.  U beursie is nie gekodifiseer nie</translation>
+        <translation>Weens &apos;n interne fout het kodifikasie het nie geslaag nie.  U beursie is nie gekodifiseer nie.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
@@ -247,7 +249,7 @@
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Vertoon 'n algemene oorsig van die beursie</translation>
+        <translation>Vertoon &apos;n algemene oorsig van die beursie</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
@@ -283,7 +285,7 @@
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>&amp;Opsies</translation>
+        <translation>&amp;Opsies...</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
@@ -291,15 +293,15 @@
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Kodifiseer Beursie</translation>
+        <translation>&amp;Kodifiseer Beursie...</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Rugsteun-kopie van Beursie</translation>
+        <translation>&amp;Rugsteun-kopie van Beursie...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Verander Wagwoord</translation>
+        <translation>&amp;Verander Wagwoord...</translation>
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
@@ -307,11 +309,11 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Ontvanger adresse</translation>
+        <translation>&amp;Ontvanger adresse...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>Oop &amp; URI...</translation>
+        <translation>Oop &amp;URI...</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -331,11 +333,11 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Stuur munte na 'n Blackcoin adres</translation>
+        <translation>Stuur munte na &apos;n Blackcoin adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Maak 'n rugsteun-kopié van beursie na 'n ander stoorplek</translation>
+        <translation>Maak &apos;n rugsteun-kopié van beursie na &apos;n ander stoorplek</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -375,7 +377,7 @@
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Kodifiseer die private sleutes wat aan jou beursie gekoppel is.</translation>
+        <translation>Kodifiseer die private sleutes wat aan jou beursie gekoppel is</translation>
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
@@ -399,7 +401,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Versoek betalings (genereer QR-kodes en blackcoin: URI's)</translation>
+        <translation>Versoek betalings (genereer QR-kodes en blackcoin: URI&apos;s)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -411,7 +413,7 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Skep 'n blackcoin: URI of betalingsversoek</translation>
+        <translation>Skep &apos;n blackcoin: URI of betalingsversoek</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -473,7 +475,7 @@
         <source>Incoming transaction</source>
         <translation>Inkomende transaksie</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -516,21 +518,21 @@
         <source>(no label)</source>
         <translation>(geen etiket)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
         <translation>Wysig Adres</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
         <translation>naam</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -568,17 +570,14 @@
         <source>Error</source>
         <translation>Fout</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Hide</source>
         <translation>Versteek</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -629,7 +628,7 @@
         <source>Client restart required to activate changes.</source>
         <translation>Kliënt moet herbegin word om veranderinge te aktiveer.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -664,17 +663,14 @@
         <source>Recent transactions</source>
         <translation>Onlangse transaksies</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
         <translation>Gebruikeragent</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -699,7 +695,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation>n.v.t.</translation>
+        <translation>n.v.t</translation>
     </message>
     <message>
         <source>%1 ms</source>
@@ -709,18 +705,12 @@
         <source>%1 and %2</source>
         <translation>%1 en %2</translation>
     </message>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
-        <translation>n.v.t.</translation>
+        <translation>n.v.t</translation>
     </message>
     <message>
         <source>Client version</source>
@@ -778,10 +768,7 @@
         <source>User Agent</source>
         <translation>Gebruikeragent</translation>
     </message>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -792,7 +779,7 @@
         <source>Label</source>
         <translation>Merk</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -807,7 +794,7 @@
         <source>(no label)</source>
         <translation>(geen etiket)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -856,33 +843,12 @@
     </message>
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
     <message>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -897,7 +863,7 @@
         <source>(no label)</source>
         <translation>(geen etiket)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -924,16 +890,7 @@
         <source>Exporting Failed</source>
         <translation>Uitvoer was onsuksesvol</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -942,9 +899,9 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Voer die inligting op hierdie bladsy uit na 'n leer</translation>
+        <translation>Voer die inligting op hierdie bladsy uit na &apos;n leer</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
