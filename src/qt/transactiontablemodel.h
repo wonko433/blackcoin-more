@@ -5,7 +5,7 @@
 #ifndef BITCOIN_QT_TRANSACTIONTABLEMODEL_H
 #define BITCOIN_QT_TRANSACTIONTABLEMODEL_H
 
-#include "bitcoinunits.h"
+#include <qt/bitcoinunits.h>
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -17,7 +17,8 @@ class WalletModel;
 
 class CWallet;
 
-/** UI model for the transaction table of a wallet.
+/**
+ * UI model for the transaction table of a wallet.
  */
 class TransactionTableModel : public QAbstractTableModel
 {
