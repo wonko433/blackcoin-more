@@ -6,8 +6,11 @@
 #ifndef BITCOIN_SCRIPT_SCRIPT_H
 #define BITCOIN_SCRIPT_SCRIPT_H
 
-#include "crypto/common.h"
-#include "prevector.h"
+#include <crypto/common.h>
+#include <prevector.h>
+#include <pubkey.h>
+#include <uint256.h>
+#include <utilstrencodings.h>
 
 #include <assert.h>
 #include <climits>
@@ -648,5 +651,7 @@ public:
     CReserveScript() {}
     virtual ~CReserveScript() {}
 };
+
+
 
 #endif // BITCOIN_SCRIPT_SCRIPT_H

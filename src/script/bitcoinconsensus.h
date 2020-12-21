@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 #if defined(BUILD_BITCOIN_INTERNAL) && defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include <config/bitcoin-config.h>
   #if defined(_WIN32)
     #if defined(DLL_EXPORT)
       #if defined(HAVE_FUNC_ATTRIBUTE_DLLEXPORT)
@@ -52,9 +52,9 @@ enum
     bitcoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG              = (1U << 2), // enforce strict DER (BIP66) compliance
     bitcoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9), // enable CHECKLOCKTIMEVERIFY (BIP65)
     bitcoinconsensus_SCRIPT_FLAGS_VERIFY_ALL =
-        bitcoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH |
-        bitcoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG |
-        bitcoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY,
+    bitcoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH |
+    bitcoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG |
+    bitcoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY,
 };
 
 /// Returns 1 if the input nIn of the serialized transaction pointed to by
