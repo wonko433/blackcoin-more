@@ -54,7 +54,7 @@ static int64_t GetStakeCombineThreshold() { return 100 * COIN; }
 static int64_t GetStakeSplitThreshold() { return 2 * GetStakeCombineThreshold(); }
 
 /**
- * Fees smaller than this (in satoshi) are considered zero fee (for transaction creation)
+ * Fees smaller than this (in blacktoshi) are considered zero fee (for transaction creation)
  * Override with -mintxfee
  */
 CFeeRate CWallet::minTxFee = CFeeRate(DEFAULT_TRANSACTION_MINFEE);

@@ -1,5 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
+// Copyright (c) 2018 The NavCoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +19,6 @@
 #include <net.h>
 #include <pow.h>
 #include <pos.h>
-#include "rpc/server.h"
 #include <rpc/server.h>
 #include <txmempool.h>
 #include <util.h>
@@ -107,6 +107,7 @@ UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGen
     int nHeightStart = 0;
     int nHeightEnd = 0;
     int nHeight = 0;
+
     {   // Don't keep cs_main locked
         LOCK(cs_main);
         nHeightStart = chainActive.Height();
@@ -297,7 +298,7 @@ UniValue getstakinginfo(const UniValue& params, bool fHelp)
 }
 
 
-// NOTE: Unlike wallet RPC (which use BTC values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use BLK values), mining RPCs follow GBT (BIP 22) in using blacktoshi amounts
 UniValue prioritisetransaction(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)

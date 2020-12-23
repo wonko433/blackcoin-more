@@ -254,19 +254,18 @@ CScript _createmultisig_redeemScript(const UniValue& params)
     {
         const std::string& ks = keys[i].get_str();
 #ifdef ENABLE_WALLET
-        // Case 1: Bitcoin address and we have full public key:
+        // Case 1: Blackoin address and we have full public key:
         CTxDestination dest = DecodeDestination(ks);
-        if (pwalletMain && IsValidDestination(dest)) {
+        if (pwalletMain && IsValidDestination(dest)) 
+        {
             const CKeyID *keyID = boost::get<CKeyID>(&dest);
-            if (!keyID) {
-                throw std::runtime_error(
-                    strprintf("%s does not refer to a key", ks));
-            }
+            if (!keyID)
+                throw runtime_error(
+                    strprintf("%s does not refer to a key",ks));
             CPubKey vchPubKey;
-            if (!pwalletMain->GetPubKey(*keyID, vchPubKey)) {
-                throw std::runtime_error(
-                    strprintf("no full public key for address %s", ks));
-            }
+            if (!pwalletMain->GetPubKey(*keyID, vchPubKey))
+                throw runtime_error(
+                    strprintf("no full public key for address %s",ks));
             if (!vchPubKey.IsFullyValid())
                 throw runtime_error(" Invalid public key: "+ks);
             pubkeys[i] = vchPubKey;

@@ -137,7 +137,7 @@ public:
 };
 
 /**
- * Bitcoin RPC command dispatcher.
+ * Blackcoin RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -186,7 +186,7 @@ extern std::vector<unsigned char> ParseHexO(const UniValue& o, std::string strKe
 extern int64_t nWalletUnlockTime;
 extern CAmount AmountFromValue(const UniValue& value, bool allowZero = false);
 extern UniValue ValueFromAmount(const CAmount& amount);
-extern double GetDifficulty(const CBlockIndex* blockindex = NULL);
+extern double GetDifficulty(const CBlockIndex* blockindex = nullptr);
 extern double GetPoSKernelPS();
 extern std::string HelpRequiringPassphrase();
 extern std::string HelpExampleCli(const std::string& methodname, const std::string& args);
