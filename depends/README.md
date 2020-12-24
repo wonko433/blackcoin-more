@@ -22,23 +22,24 @@ created. To use it for Bitcoin:
 
 Common `host-platform-triplets` for cross compilation are:
 
-- `i686-pc-linux-gnu` for Linux 32 bit
+- `i686-pc-linux-gnu` for Linux 32 bit // NOT TESTED
 - `x86_64-pc-linux-gnu` for x86 Linux
 - `x86_64-w64-mingw32` for Win64
 - `x86_64-apple-darwin16` for macOS
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
 - `aarch64-linux-gnu` for Linux ARM 64 bit
-- `powerpc64-linux-gnu` for Linux POWER 64-bit (big endian)
-- `powerpc64le-linux-gnu` for Linux POWER 64-bit (little endian)
-- `riscv32-linux-gnu` for Linux RISC-V 32 bit
-- `riscv64-linux-gnu` for Linux RISC-V 64 bit
-- `s390x-linux-gnu` for Linux S390X
-- `armv7a-linux-android` for Android ARM 32 bit
-- `aarch64-linux-android` for Android ARM 64 bit
-- `i686-linux-android` for Android x86 32 bit
-- `x86_64-linux-android` for Android x86 64 bit
+- `powerpc64-linux-gnu` for Linux POWER 64-bit (big endian) // NOT TESTED
+- `powerpc64le-linux-gnu` for Linux POWER 64-bit (little endian) // NOT TESTED
+- `riscv32-linux-gnu` for Linux RISC-V 32 bit // NOT TESTED
+- `riscv64-linux-gnu` for Linux RISC-V 64 bit // NOT TESTED
+- `s390x-linux-gnu` for Linux S390X // NOT TESTED
+- `armv7a-linux-android` for Android ARM 32 bit // NOT TESTED
+- `aarch64-linux-android` for Android ARM 64 bit // NOT TESTED
+- `i686-linux-android` for Android x86 32 bit // NOT TESTED
+- `x86_64-linux-android` for Android x86 64 bit // NOT TESTED
 
 The paths are automatically configured and no other options are needed unless targeting [Android](#Android).
+For Blackcoin More, Android has not been testeb.
 
 ### Install the required dependencies: Ubuntu & Debian
 
