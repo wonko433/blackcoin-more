@@ -9,10 +9,10 @@
 #define BITCOIN_WALLET_WALLETDB_H
 
 #include <amount.h>
-#include <key.h>
 #include <primitives/transaction.h>
 #include <script/standard.h> // for CTxDestination
 #include <wallet/db.h>
+#include <key.h>
 
 #include <list>
 #include <stdint.h>
@@ -158,15 +158,15 @@ public:
 
     /// This writes directly to the database, and will not update the CWallet's cached accounting entries!
     /// Use wallet.AddAccountingEntry instead, to write *and* update its caches.
-    bool WriteAccountingEntry(const uint64_t nAccEntryNum, const CAccountingEntry &acentry);
-    bool WriteAccountingEntry_Backend(const CAccountingEntry &acentry);
-    bool ReadAccount(const std::string &strAccount, CAccount &account);
-    bool WriteAccount(const std::string &strAccount, const CAccount &account);
+    bool WriteAccountingEntry_Backend(const CAccountingEntry& acentry);
+    bool ReadAccount(const std::string& strAccount, CAccount& account);
+    bool WriteAccount(const std::string& strAccount, const CAccount& account);
 
     /// Write destination data key,value tuple to database
     bool WriteDestData(const CTxDestination &address, const std::string &key, const std::string &value);
     /// Erase destination data tuple from wallet database
     bool EraseDestData(const CTxDestination &address, const std::string &key);
+
     CAmount GetAccountCreditDebit(const std::string& strAccount);
     void ListAccountCreditDebit(const std::string& strAccount, std::list<CAccountingEntry>& acentries);
 
@@ -184,6 +184,8 @@ public:
 private:
     CWalletDB(const CWalletDB&);
     void operator=(const CWalletDB&);
+
+    bool WriteAccountingEntry(const uint64_t nAccEntryNum, const CAccountingEntry& acentry);
 };
 
 void ThreadFlushWalletDB(const std::string& strFile);

@@ -17,7 +17,7 @@
 #include <wallet/walletdb.h>
 #include <wallet/rpcwallet.h>
 #include <primitives/transaction.h>
-#include "pos.h"
+#include <pos.h>
 
 #include <algorithm>
 #include <atomic>

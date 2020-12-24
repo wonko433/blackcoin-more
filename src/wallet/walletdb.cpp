@@ -375,14 +375,16 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
         {
             string strAddress;
             ssKey >> strAddress;
-            ssValue >>
-                pwallet->mapAddressBook[DecodeDestination(strAddress)].name;
-        } else if (strType == "purpose") {
+            ssValue >> pwallet->mapAddressBook[DecodeDestination(strAddress)].name;
+        }
+        else if (strType == "purpose") 
+        {
             std::string strAddress;
             ssKey >> strAddress;
-            ssValue >>
-                pwallet->mapAddressBook[DecodeDestination(strAddress)].purpose;
-        } else if (strType == "tx") {
+            ssValue >> pwallet->mapAddressBook[DecodeDestination(strAddress)].purpose;
+        }
+        else if (strType == "tx")
+        {
             uint256 hash;
             ssKey >> hash;
             CWalletTx wtx;
@@ -868,7 +870,7 @@ DBErrors CWalletDB::ZapWalletTx(CWallet* pwallet, vector<CWalletTx>& vWtx)
 void ThreadFlushWalletDB(const string& strFile)
 {
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("bitcoin-wallet");
+    RenameThread("blackcoin-wallet");
 
     static bool fOneThread;
     if (fOneThread)

@@ -65,10 +65,11 @@ CFeeRate CWallet::minTxFee = CFeeRate(DEFAULT_TRANSACTION_MINFEE);
  */
 CFeeRate CWallet::fallbackFee = CFeeRate(DEFAULT_FALLBACK_FEE);
 
-const uint256 CMerkleTx::ABANDON_HASH(uint256S("0000000000000000000000000000000000000000000000000000000000000001"));
 
 CAmount nReserveBalance = 0;
 CAmount nMinimumInputValue = 0;
+
+const uint256 CMerkleTx::ABANDON_HASH(uint256S("0000000000000000000000000000000000000000000000000000000000000001"));
 
 /** @defgroup mapWallet
  *
@@ -326,7 +327,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
             {
                 // Found a kernel
                 LogPrint("coinstake", "CreateCoinStake : kernel found\n");
-                vector<vector<unsigned char> > vSolutions;
+                vector<std::vector<unsigned char>> vSolutions;
                 txnouttype whichType;
                 CScript scriptPubKeyOut;
                 scriptPubKeyKernel = pcoin.first->vout[pcoin.second].scriptPubKey;
@@ -1855,7 +1856,8 @@ CAmount CWalletTx::GetCredit(const isminefilter& filter, bool fCheckMaturity) co
     if (fCheckMaturity && (IsCoinBase() || IsCoinStake()) && GetBlocksToMaturity() > 0)
         return 0;
 
-    int64_t credit = 0;
+    CAmount credit = 0;
+
     if (filter & ISMINE_SPENDABLE)
     {
         // GetBalance can assume transactions in mapWallet won't change
@@ -2564,7 +2566,7 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
     // enough, that fee sniping isn't a problem yet, but by implementing a fix
     // now we ensure code won't be written that makes assumptions about
     // nLockTime that preclude a fix later.
-    txNew.nLockTime = chainActive.Height();	
+    txNew.nLockTime = chainActive.Height();
     txNew.nTime = GetAdjustedTime();
 
     // Secondly occasionally randomly pick a nLockTime even further back, so
@@ -2677,11 +2679,7 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                         CPubKey vchPubKey;
                         bool ret;
                         ret = reservekey.GetReservedKey(vchPubKey);
-                        if (!ret)
-                        {
-                            strFailReason = _("Keypool ran out, please call keypoolrefill first");
-                            return false;
-                        }
+                        assert(ret); // should never fail, as we just unlocked
 
                         scriptChange = GetScriptForDestination(vchPubKey.GetID());
                     }
@@ -2801,6 +2799,9 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                 }
 
                 CAmount nFeeNeeded = GetMinimumFee(nBytes, nTxConfirmTarget, mempool);
+
+                nFeeNeeded = nFeeNeeded > 10000 ? nFeeNeeded : 10000;
+
                 if (coinControl && nFeeNeeded > 0 && coinControl->nMinimumTotalFee > nFeeNeeded) {
                     nFeeNeeded = coinControl->nMinimumTotalFee;
                 }
@@ -2929,8 +2930,6 @@ CAmount CWallet::GetMinimumFee(unsigned int nTxBytes, unsigned int nConfirmTarge
      // But always obey the maximum
      if (nFeeNeeded > maxTxFee)
          nFeeNeeded = maxTxFee;
-    if(nFeeNeeded < DEFAULT_TRANSACTION_FEE)
-    	nFeeNeeded = DEFAULT_TRANSACTION_FEE;
     return nFeeNeeded;
 }
 
@@ -3039,7 +3038,8 @@ bool CWallet::DelAddressBook(const CTxDestination& address)
     {
         LOCK(cs_wallet); // mapAddressBook
 
-        if(fFileBacked) {
+        if(fFileBacked)
+        {
             // Delete destdata tuples associated with address
             for(const std::pair<std::string, std::string> &item : mapAddressBook[address].destdata) {
                 CWalletDB(strWalletFile).EraseDestData(address, item.first);
