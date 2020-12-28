@@ -235,14 +235,7 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         }
     }
 
-    if (tx.IsCoinStake())
-    {
-        // Blackcoin ToDo: check stake reward
-        // CAmount nStakeReward = tx.GetValueOut() - nValueIn;
-        // if (Params().GetConsensus().IsProtocolV3(tx.nTime) && nStakeReward > GetProofOfStakeSubsidy())
-            // return state.DoS(100, false, REJECT_INVALID, "bad-txns-coinstake-too-large");
-    }
-    else
+    if (!tx.IsCoinStake())
     {
         const CAmount value_out = tx.GetValueOut();
         if (nValueIn < value_out) {
@@ -254,12 +247,12 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
         if (!MoneyRange(txfee_aux)) {
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
         }
-        // peercoin: enforce transaction fees for every block
-		/*
-		// Blackcoin ToDo: enable this check
-        if (txfee_aux < GetMinFee(tx))
-            return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-not-enough");
-		*/
+
+        if (!Params().IsProtocolV3(tx.nTime)) {
+            // enforce transaction fees for every block
+            if (txfee_aux < GetMinFee(tx))
+                return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-not-enough");
+        }
         txfee = txfee_aux; 
     }
 
