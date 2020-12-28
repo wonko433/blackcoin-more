@@ -6,11 +6,16 @@
 #ifndef BITCOIN_MINER_H
 #define BITCOIN_MINER_H
 
-#include "primitives/block.h"
-#include "txmempool.h"
+#include <primitives/block.h>
+#include <txmempool.h>
+#include <pos.h>
 
 #include <stdint.h>
+#include <string>
 #include <memory>
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/ordered_index.hpp>
+#include <wallet/wallet.h>
 
 class CBlockIndex;
 class CChainParams;
@@ -22,6 +27,7 @@ class CBlock;
 namespace Consensus { struct Params; };
 
 static const bool DEFAULT_PRINTPRIORITY = false;
+static const int DEFAULT_GENERATE_THREADS = 1;
 
 CAmount GetProofOfWorkReward();
 

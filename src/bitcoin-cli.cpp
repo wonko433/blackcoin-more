@@ -4,15 +4,15 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include <config/bitcoin-config.h>
 #endif
 
-#include "chainparamsbase.h"
-#include "clientversion.h"
-#include "rpc/client.h"
-#include "rpc/protocol.h"
-#include "util.h"
-#include "utilstrencodings.h"
+#include <chainparamsbase.h>
+#include <clientversion.h>
+#include <rpc/client.h>
+#include <rpc/protocol.h>
+#include <util.h>
+#include <utilstrencodings.h>
 
 #include <boost/filesystem/operations.hpp>
 #include <stdio.h>
@@ -82,9 +82,9 @@ static int AppInitRPC(int argc, char* argv[])
         std::string strUsage = strprintf(_("%s RPC client version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  bitcoin-cli [options] <command> [params]  " + strprintf(_("Send command to %s"), _(PACKAGE_NAME)) + "\n" +
-                  "  bitcoin-cli [options] help                " + _("List commands") + "\n" +
-                  "  bitcoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                  "  blackmore-cli [options] <command> [params]  " + strprintf(_("Send command to %s"), _(PACKAGE_NAME)) + "\n" +
+                  "  blackmore-cli [options] help                " + _("List commands") + "\n" +
+                  "  blackmore-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }
@@ -133,8 +133,8 @@ static void http_request_done(struct evhttp_request *req, void *ctx)
 {
     HTTPReply *reply = static_cast<HTTPReply*>(ctx);
 
-    if (req == NULL) {
-        /* If req is NULL, it means an error occurred while connecting, but
+    if (req == nullptr) {
+        /* If req is nullptr, it means an error occurred while connecting, but
          * I'm not sure how to find out which one. We also don't really care.
          */
         reply->status = 0;
@@ -165,14 +165,14 @@ UniValue CallRPC(const string& strMethod, const UniValue& params)
         throw runtime_error("cannot create event_base");
 
     // Synchronously look up hostname
-    struct evhttp_connection *evcon = evhttp_connection_base_new(base, NULL, host.c_str(), port); // TODO RAII
-    if (evcon == NULL)
+    struct evhttp_connection *evcon = evhttp_connection_base_new(base, nullptr, host.c_str(), port); // TODO RAII
+    if (evcon == nullptr)
         throw runtime_error("create connection failed");
     evhttp_connection_set_timeout(evcon, GetArg("-rpcclienttimeout", DEFAULT_HTTP_CLIENT_TIMEOUT));
 
     HTTPReply response;
     struct evhttp_request *req = evhttp_request_new(http_request_done, (void*)&response); // TODO RAII
-    if (req == NULL)
+    if (req == nullptr)
         throw runtime_error("create http request failed");
 
     // Get credentials

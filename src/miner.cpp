@@ -3,30 +3,36 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "miner.h"
+#include <miner.h>
 
-#include "amount.h"
-#include "chain.h"
-#include "chainparams.h"
-#include "coins.h"
-#include "consensus/consensus.h"
-#include "consensus/merkle.h"
-#include "consensus/validation.h"
-#include "crypto/scrypt.h"
-#include "hash.h"
-#include "main.h"
-#include "net.h"
-#include "policy/policy.h"
-#include "pos.h"
-#include "pow.h"
-#include "primitives/transaction.h"
-#include "script/standard.h"
-#include "timedata.h"
-#include "txmempool.h"
-#include "util.h"
-#include "utilmoneystr.h"
-#include "validationinterface.h"
-#include "wallet/wallet.h"
+#include <amount.h>
+#include <base58.h>
+#include <chain.h>
+#include <chainparams.h>
+#include <coins.h>
+#include <consensus/consensus.h>
+#include <consensus/merkle.h>
+#include <consensus/validation.h>
+#include <core_io.h>
+#include <crypto/scrypt.h>
+#include <hash.h>
+#include <init.h>
+#include <main.h>
+#include <net.h>
+#include <policy/policy.h>
+#include <pos.h>
+#include <pow.h>
+#include <primitives/transaction.h>
+#include <script/sign.h>
+#include <script/standard.h>
+#include <timedata.h>
+#include <txmempool.h>
+#include <util.h>
+#include <utiltime.h>
+#include <utilmoneystr.h>
+#include <validationinterface.h>
+#include <versionbits.h>
+#include <wallet/wallet.h>
 
 #include <algorithm>
 #include <boost/thread.hpp>
@@ -37,7 +43,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// BitcoinMiner
+// Blackcoin-Staker
 //
 
 //
@@ -125,7 +131,7 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, in
     pblocktemplate.reset(new CBlockTemplate());
 
     if(!pblocktemplate.get())
-        return NULL;
+        return nullptr;
 
     CBlock *pblock = &pblocktemplate->block; // pointer for convenience
 
@@ -198,7 +204,7 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, in
 
 bool BlockAssembler::isStillDependent(CTxMemPool::txiter iter)
 {
-    BOOST_FOREACH(CTxMemPool::txiter parent, mempool.GetMemPoolParents(iter))
+    for(CTxMemPool::txiter parent: mempool.GetMemPoolParents(iter))
     {
         if (!inBlock.count(parent)) {
             return true;
@@ -236,7 +242,7 @@ bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOps)
 bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& package)
 {
     uint64_t nPotentialBlockSize = nBlockSize; // only used with fNeedSizeAccounting
-    BOOST_FOREACH (const CTxMemPool::txiter it, package) {
+    for(const CTxMemPool::txiter it: package) {
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
         uint64_t nTxSize = ::GetSerializeSize(it->GetTx(), SER_NETWORK, PROTOCOL_VERSION);
@@ -314,11 +320,11 @@ void BlockAssembler::AddToBlock(CTxMemPool::txiter iter)
 void BlockAssembler::UpdatePackagesForAdded(const CTxMemPool::setEntries& alreadyAdded,
         indexed_modified_transaction_set &mapModifiedTx)
 {
-    BOOST_FOREACH(const CTxMemPool::txiter it, alreadyAdded) {
+    for(const CTxMemPool::txiter it: alreadyAdded) {
         CTxMemPool::setEntries descendants;
         mempool.CalculateDescendants(it, descendants);
         // Insert all descendants (not yet in block) into the modified set
-        BOOST_FOREACH(CTxMemPool::txiter desc, descendants) {
+        for(CTxMemPool::txiter desc: descendants) {
             if (alreadyAdded.count(desc))
                 continue;
             modtxiter mit = mapModifiedTx.find(desc);
@@ -547,7 +553,7 @@ void BlockAssembler::addPriorityTxs(int64_t nBlockTime, bool fProofOfStake)
 
             // This tx was successfully added, so
             // add transactions that depend on this one to the priority queue to try again
-            BOOST_FOREACH(CTxMemPool::txiter child, mempool.GetMemPoolChildren(iter))
+            for(CTxMemPool::txiter child: mempool.GetMemPoolChildren(iter))
             {
                 waitPriIter wpiter = waitPriMap.find(child);
                 if (wpiter != waitPriMap.end()) {

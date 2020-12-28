@@ -5,7 +5,7 @@
 #ifndef BITCOIN_QT_RECENTREQUESTSTABLEMODEL_H
 #define BITCOIN_QT_RECENTREQUESTSTABLEMODEL_H
 
-#include "walletmodel.h"
+#include <qt/walletmodel.h>
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -53,8 +53,7 @@ private:
     Qt::SortOrder order;
 };
 
-/**
- * Model for list of recently generated payment requests / blackcoin: URIs.
+/** Model for list of recently generated payment requests / blackcoin: URIs.
  * Part of wallet model.
  */
 class RecentRequestsTableModel: public QAbstractTableModel
