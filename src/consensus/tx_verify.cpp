@@ -255,8 +255,11 @@ bool Consensus::CheckTxInputs(const CTransaction& tx, CValidationState& state, c
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-outofrange");
         }
         // peercoin: enforce transaction fees for every block
+		/*
+		// Blackcoin ToDo: enable this check
         if (txfee_aux < GetMinFee(tx))
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-fee-not-enough");
+		*/
         txfee = txfee_aux; 
     }
 
