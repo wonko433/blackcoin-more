@@ -561,9 +561,9 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         *pfMissingInputs = false;
     }
 
-	/*
-	// Blackcoin ToDo: decide whether to add this additional check or not
-	int dust_tx_count = 0;
+    /*
+    // Blackcoin ToDo: decide whether to add this additional check or not
+    int dust_tx_count = 0;
     CAmount min_dust = 100000;
     for (const CTxOut& txout : tx.vout) {
         // LogPrintf("tx_out value %d, minimum value %d dust count %d", txout.nValue, min_dust, dust_tx_count);
@@ -572,7 +572,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         if (dust_tx_count > 10)
             return state.DoS(0, false, REJECT_DUST, "too many dust vouts");
     }
-	*/
+    */
 
     if (!CheckTransaction(tx, state))
         return false; // state filled in by CheckTransaction
@@ -3000,10 +3000,14 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     // Check proof of work
     const Consensus::Params& consensusParams = params.GetConsensus();
 
-    // Blackcoin ToDo: enable!
-    // Check difficulty
-    // if (block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
-    //     return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
+    // Preliminary check difficulty in pos-only stage
+    if (chainActive.Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
+        return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
+
+    // Preliminary check of pos timestamp
+    if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
+        return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
+                             REJECT_INVALID, "bad-pos-time");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3028,12 +3032,6 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     if (fProofOfStake && block.GetBlockTime() > FutureDrift(nAdjustedTime))
         return state.DoS(50, error("%s: block timestamp too far in the future", __func__),
                              REJECT_INVALID, "time-too-new");
-
-    // Blackcoin ToDo: enable!
-    // Preliminary check of pos timestamp
-    /* if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
-         return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
-                             REJECT_INVALID, "bad-pos-time");*/
 
     // Check maximum reorg depth
     if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
