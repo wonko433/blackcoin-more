@@ -43,7 +43,7 @@ CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type)
     case OutputType::LEGACY: return key.GetID();
     case OutputType::BECH32: {
         if (!key.IsCompressed()) return key.GetID();
-		/*
+        /*
         CTxDestination witdest = WitnessV0KeyHash(key.GetID());
         CScript witprog = GetScriptForDestination(witdest);
         if (type == OutputType::P2SH_SEGWIT) {
@@ -51,7 +51,7 @@ CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type)
         } else {
             return witdest;
         }
-		*/
+        */
     }
     default: assert(false);
     }
@@ -60,7 +60,7 @@ CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type)
 std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key)
 {
     CKeyID keyid = key.GetID();
-	/*
+    /*
     if (key.IsCompressed()) {
         CTxDestination segwit = WitnessV0KeyHash(keyid);
         CTxDestination p2sh = CScriptID(GetScriptForDestination(segwit));
@@ -68,8 +68,8 @@ std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key)
     } else {
         return std::vector<CTxDestination>{std::move(keyid)};
     }
-	*/
-	return std::vector<CTxDestination>{std::move(keyid)};
+    */
+    return std::vector<CTxDestination>{std::move(keyid)};
 }
 
 CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript& script, OutputType type)
@@ -81,7 +81,7 @@ CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript&
     case OutputType::LEGACY:
         return CScriptID(script);
     case OutputType::BECH32: {
-		/*
+        /*
         CTxDestination witdest = WitnessV0ScriptHash(script);
         CScript witprog = GetScriptForDestination(witdest);
         // Check if the resulting program is solvable (i.e. doesn't use an uncompressed key)
@@ -93,8 +93,8 @@ CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript&
         } else {
             return CScriptID(witprog);
         }
-		*/
-		return CScriptID(script);
+        */
+        return CScriptID(script);
     }
     default: assert(false);
     }
