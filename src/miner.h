@@ -27,7 +27,7 @@ static const bool DEFAULT_PRINTPRIORITY = false;
 
 static const bool DEFAULT_STAKE = true;
 
-static const bool DEFAULT_STAKE_CACHE = true;
+static const bool DEFAULT_STAKE_CACHE = false;
 
 struct CBlockTemplate
 {
