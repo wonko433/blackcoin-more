@@ -7,6 +7,7 @@
 #define BITCOIN_VALIDATIONINTERFACE_H
 
 #include <boost/signals2/signal.hpp>
+#include <boost/shared_ptr.hpp>
 
 class CBlock;
 class CBlockIndex;

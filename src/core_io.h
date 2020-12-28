@@ -11,6 +11,8 @@
 class CBlock;
 class CScript;
 class CTransaction;
+class CTxIn;
+class CTxOut;
 class uint256;
 class UniValue;
 

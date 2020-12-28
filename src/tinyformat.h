@@ -67,7 +67,9 @@
 //                                  weekday, month, day, hour, min);
 //   std::cout << date;
 //
-// These are the three primary interface functions.
+// These are the three primary interface functions.  There is also a
+// convenience function printfln() which appends a newline to the usual result
+// of printf() for super simple logging.
 //
 //
 // User defined format functions
@@ -85,6 +87,18 @@
 // desired user defined function with n arguments.  To generate all 16 user
 // defined function bodies, use the macro TINYFORMAT_FOREACH_ARGNUM.  For an
 // example, see the implementation of printf() at the end of the source file.
+//
+// Sometimes it's useful to be able to pass a list of format arguments through
+// to a non-template function.  The FormatList class is provided as a way to do
+// this by storing the argument list in a type-opaque way.  Continuing the
+// example from above, we construct a FormatList using makeFormatList():
+//
+//   FormatListRef formatList = tfm::makeFormatList(weekday, month, day, hour, min);
+//
+// The format list can now be passed into any non-template function and used
+// via a call to the vformat() function:
+//
+//   tfm::vformat(std::cout, "%s, %s %d, %.2d:%.2d\n", formatList);
 //
 //
 // Additional API information
@@ -118,6 +132,7 @@ namespace tfm = tinyformat;
 
 //------------------------------------------------------------------------------
 // Implementation details.
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <sstream>
@@ -145,6 +160,14 @@ namespace tfm = tinyformat;
 //  std::showpos is broken on old libstdc++ as provided with OSX.  See
 //  http://gcc.gnu.org/ml/libstdc++/2007-11/msg00075.html
 #   define TINYFORMAT_OLD_LIBSTDCPLUSPLUS_WORKAROUND
+#endif
+
+#ifdef __APPLE__
+// Workaround OSX linker warning: Xcode uses different default symbol
+// visibilities for static libs vs executables (see issue #25)
+#   define TINYFORMAT_HIDDEN __attribute__((visibility("hidden")))
+#else
+#   define TINYFORMAT_HIDDEN
 #endif
 
 namespace tinyformat {
@@ -296,7 +319,7 @@ inline void formatValue(std::ostream& out, const char* /*fmtBegin*/,
 // Overloaded version for char types to support printing as an integer
 #define TINYFORMAT_DEFINE_FORMATVALUE_CHAR(charType)                  \
 inline void formatValue(std::ostream& out, const char* /*fmtBegin*/,  \
-                        const char* fmtEnd, charType value)           \
+                        const char* fmtEnd, int /**/, charType value) \
 {                                                                     \
     switch(*(fmtEnd-1))                                               \
     {                                                                 \
@@ -841,7 +864,6 @@ inline const char* FormatIterator::streamStateFromFormat(std::ostream& out,
 }
 
 
-
 //------------------------------------------------------------------------------
 // Private format function on top of which the public interface is implemented.
 // We enforce a mimimum of one value to be formatted to prevent bugs looking like
@@ -960,6 +982,7 @@ void printf(const char* fmt, TINYFORMAT_VARARGS(n))                       \
 
 TINYFORMAT_FOREACH_ARGNUM(TINYFORMAT_MAKE_FORMAT_FUNCS)
 #undef TINYFORMAT_MAKE_FORMAT_FUNCS
+
 #endif
 
 

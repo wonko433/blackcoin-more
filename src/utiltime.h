@@ -8,6 +8,8 @@
 
 #include <stdint.h>
 #include <string>
+#include <vector>
+#include <chrono>
 
 int64_t GetTime();
 int64_t GetTimeMillis();

@@ -361,7 +361,7 @@ static bool HTTPBindAddresses(struct evhttp* http)
 /** Simple wrapper to set thread name and run work queue */
 static void HTTPWorkQueueRun(WorkQueue<HTTPClosure>* queue)
 {
-    RenameThread("bitcoin-httpworker");
+    RenameThread("blackcoin-httpworker");
     queue->Run();
 }
 
@@ -474,13 +474,6 @@ void InterruptHTTPServer()
         }
         // Reject requests on current connections
         evhttp_set_gencb(eventHTTP, http_reject_request_cb, nullptr);
-    }
-    if (eventBase) {
-        // Force-exit event loop after predefined time
-        struct timeval tv;
-        tv.tv_sec = 10;
-        tv.tv_usec = 0;
-        event_base_loopexit(eventBase, &tv);
     }
     if (workQueue)
         workQueue->Interrupt();

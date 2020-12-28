@@ -377,7 +377,7 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
             ssKey >> strAddress;
             ssValue >> pwallet->mapAddressBook[DecodeDestination(strAddress)].name;
         }
-        else if (strType == "purpose") 
+        else if (strType == "purpose")
         {
             std::string strAddress;
             ssKey >> strAddress;

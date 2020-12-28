@@ -11,12 +11,13 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include <config/bitcoin-config.h>
 #endif
 
-#include "compat.h"
-#include "tinyformat.h"
-#include "utiltime.h"
+#include <compat.h>
+#include <tinyformat.h>
+#include <uint256.h>
+#include <utiltime.h>
 
 #include <atomic>
 #include <exception>
@@ -149,6 +150,8 @@ inline bool IsSwitchChar(char c)
 #endif
 }
 
+void SetThreadPriority(int nPriority);
+
 /**
  * Return string argument or default value
  *
@@ -218,7 +221,6 @@ std::string HelpMessageOpt(const std::string& option, const std::string& message
  */
 int GetNumCores();
 
-void SetThreadPriority(int nPriority);
 void RenameThread(const char* name);
 
 /**
@@ -226,7 +228,7 @@ void RenameThread(const char* name);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("bitcoin-%s", name);
+    std::string s = strprintf("blackcoin-%s", name);
     RenameThread(s.c_str());
     try
     {

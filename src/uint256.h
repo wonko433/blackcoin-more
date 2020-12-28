@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
-#include "crypto/common.h"
+#include <crypto/common.h>
 
 /** Template base class for fixed-sized opaque blobs. */
 template<unsigned int BITS>
@@ -41,6 +41,7 @@ public:
     {
         memset(data, 0, sizeof(data));
     }
+
 
     inline int Compare(const base_blob& other) const { return memcmp(data, other.data, sizeof(data)); }
 
@@ -119,6 +120,7 @@ public:
     uint160(const base_blob<160>& b) : base_blob<160>(b) {}
     explicit uint160(const std::vector<unsigned char>& vch) : base_blob<160>(vch) {}
 };
+
 
 /** 256-bit opaque blob.
  * @note This type is called uint256 for historical reasons only. It is an

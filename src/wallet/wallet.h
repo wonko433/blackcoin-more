@@ -37,12 +37,13 @@ extern CWallet* pwalletMain;
  * Settings
  */
 extern CFeeRate payTxFee;
-extern CAmount nReserveBalance;
-extern CAmount nMinimumInputValue;
 extern unsigned int nTxConfirmTarget;
 extern bool bSpendZeroConfChange;
 extern bool fSendFreeTransactions;
+extern CAmount nReserveBalance;
 extern bool fWalletUnlockStakingOnly;
+
+extern CAmount nMinimumInputValue;
 
 static const unsigned int DEFAULT_KEYPOOL_SIZE = 100;
 //! -paytxfee default

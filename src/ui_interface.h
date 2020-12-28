@@ -8,10 +8,11 @@
 
 #include <stdint.h>
 #include <string>
-#include <amount.h>
 
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
+
+#include <amount.h>
 
 class CBasicKeyStore;
 class CWallet;
@@ -75,6 +76,12 @@ public:
         MSG_ERROR = (ICON_ERROR | BTN_OK | MODAL)
     };
 
+    /** Update the balance in the wallet header. */
+    boost::signals2::signal<void (const CAmount &avail, const CAmount &pending, const CAmount &immat)> SetBalance;
+
+    /** Update the staked stats in the wallet header */
+    boost::signals2::signal<void (const CAmount &all, const CAmount &today, const CAmount &week)> SetStaked;
+
     /** Show message box. */
     boost::signals2::signal<bool (const std::string& message, const std::string& caption, unsigned int style), boost::signals2::last_value<bool> > ThreadSafeMessageBox;
 
@@ -106,10 +113,6 @@ public:
 
     /** Banlist did change. */
     boost::signals2::signal<void (void)> BannedListChanged;
-    	
-    /** Update the staked stats in the wallet header */
-
-    boost::signals2::signal<void(const CAmount& all, const CAmount& today, const CAmount& week)> SetStaked;
 };
 
 /** Show warning message **/

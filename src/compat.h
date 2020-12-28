@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include <config/bitcoin-config.h>
 #endif
 
 #ifdef WIN32
@@ -27,14 +27,12 @@
 #define FD_SETSIZE 1024 // max number of fds in fd_set
 
 #include <winsock2.h>     // Must be included before mswsock.h and windows.h
-
 #include <mswsock.h>
 #include <windows.h>
 #include <ws2tcpip.h>
 #else
 #include <sys/fcntl.h>
 #include <sys/mman.h>
-#include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <net/if.h>
@@ -51,7 +49,7 @@
 #define MSG_DONTWAIT        0
 #else
 typedef u_int SOCKET;
-#include "errno.h"
+#include <errno.h>
 #define WSAGetLastError()   errno
 #define WSAEINVAL           EINVAL
 #define WSAEALREADY         EALREADY
@@ -79,17 +77,6 @@ typedef u_int SOCKET;
 #define MSG_NOSIGNAL 0
 #endif
 
-#ifndef WIN32
-// PRIO_MAX is not defined on Solaris
-#ifndef PRIO_MAX
-#define PRIO_MAX 20
-#endif
-#define THREAD_PRIORITY_LOWEST          PRIO_MAX
-#define THREAD_PRIORITY_BELOW_NORMAL    2
-#define THREAD_PRIORITY_NORMAL          0
-#define THREAD_PRIORITY_ABOVE_NORMAL    (-2)
-#endif
-
 #if HAVE_DECL_STRNLEN == 0
 size_t strnlen( const char *start, size_t max_len);
 #endif // HAVE_DECL_STRNLEN
@@ -101,5 +88,17 @@ bool static inline IsSelectableSocket(SOCKET s) {
     return (s < FD_SETSIZE);
 #endif
 }
+
+#ifndef WIN32
+// PRIO_MAX is not defined on Solaris
+#ifndef PRIO_MAX
+#define PRIO_MAX 20
+#endif
+#define THREAD_PRIORITY_LOWEST          PRIO_MAX
+#define THREAD_PRIORITY_BELOW_NORMAL    2
+#define THREAD_PRIORITY_NORMAL          0
+#define THREAD_PRIORITY_ABOVE_NORMAL    (-2)
+#endif
+
 
 #endif // BITCOIN_COMPAT_H
