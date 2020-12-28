@@ -1,7 +1,28 @@
 # Changelog
 
-## v2.14.99.1 (?)
+## v2.17.2.0 (?)
 - ?
+
+## v2.13.2.7 (2020-11-24)
+- Dust mitigation in mempool (by JJ12880 from Radium Core) 
+- Compile on MacOS Catalina
+- Cross-compile MacOS with Xcode 11.3.1
+- Updated dependencies for Windows x64, Linux x64, MacOS, ARM64, ARMv7
+- Sign/verify compatibility with legacy clients 
+- Increased dbcache to 450MB
+- Disabled stake cache for now
+- Updated fixed seeds for mainnet and testnet
+
+## v2.13.2.6 (2020-07-21)
+- Fix staking memory leak (by JJ12880 from Radium Core)
+- Updated fixed seeds
+- Added secondary Blackcoin DNS seeder
+
+## v2.13.2.5 (2020-04-28)
+- Updated Berkeley DB to 6.2.38
+- Updated OpenSSL to 1.0.2u
+- Updated fixed seeds
+- Changed default port on regtest to 35714
 
 ## v2.13.2.4 (2019-11-11)
 - Updated fixed seeds
