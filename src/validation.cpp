@@ -3004,6 +3004,11 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     if (chainActive.Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
         return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect difficulty value");
 
+    // Preliminary check of pos timestamp
+    if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
+        return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
+                             REJECT_INVALID, "bad-pos-time");
+
     // Check against checkpoints
     if (fCheckpointsEnabled) {
         // Don't accept any forks from the main chain prior to last checkpoint.
@@ -3027,12 +3032,6 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     if (fProofOfStake && block.GetBlockTime() > FutureDrift(nAdjustedTime))
         return state.DoS(50, error("%s: block timestamp too far in the future", __func__),
                              REJECT_INVALID, "time-too-new");
-
-    // Blackcoin ToDo: enable!
-    // Preliminary check of pos timestamp
-    /* if (fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
-         return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
-                             REJECT_INVALID, "bad-pos-time");*/
 
     // Check maximum reorg depth
     if (chainActive.Height() - nHeight >= consensusParams.nMaxReorganizationDepth)
