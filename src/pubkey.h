@@ -6,9 +6,9 @@
 #ifndef BITCOIN_PUBKEY_H
 #define BITCOIN_PUBKEY_H
 
-#include "hash.h"
-#include "serialize.h"
-#include "uint256.h"
+#include <hash.h>
+#include <serialize.h>
+#include <uint256.h>
 
 #include <stdexcept>
 #include <vector>
@@ -217,7 +217,7 @@ struct CExtPubKey {
     void Encode(unsigned char code[BIP32_EXTKEY_SIZE]) const;
     void Decode(const unsigned char code[BIP32_EXTKEY_SIZE]);
     bool Derive(CExtPubKey& out, unsigned int nChild) const;
-    
+
     unsigned int GetSerializeSize(int nType, int nVersion) const
     {
         return BIP32_EXTKEY_SIZE+1; //add one byte for the size (compact int)

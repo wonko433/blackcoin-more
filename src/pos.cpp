@@ -6,18 +6,20 @@
 // Stake cache by Qtum
 // Copyright (c) 2016-2018 The Qtum developers
 
-#include "pos.h"
+#include <pos.h>
 
-#include "chain.h"
-#include "chainparams.h"
-#include "clientversion.h"
-#include "coins.h"
-#include "hash.h"
-#include "main.h"
-#include "uint256.h"
-#include "primitives/transaction.h"
+#include <base58.h>
+#include <chain.h>
+#include <chainparams.h>
+#include <clientversion.h>
+#include <coins.h>
+#include <hash.h>
+#include <main.h>
+#include <uint256.h>
+#include <primitives/block.h>
+#include <primitives/transaction.h>
 #include <stdio.h>
-#include "util.h"
+#include <util.h>
 
 // Stake Modifier (hash modifier of proof-of-stake):
 // The purpose of stake modifier is to prevent a txout (coin) owner from

@@ -3,20 +3,21 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "chain.h"
-#include "chainparams.h"
-#include "primitives/block.h"
-#include "primitives/transaction.h"
-#include "main.h"
-#include "httpserver.h"
-#include "rpc/server.h"
-#include "streams.h"
-#include "sync.h"
-#include "txmempool.h"
-#include "utilstrencodings.h"
-#include "version.h"
+#include <chain.h>
+#include <chainparams.h>
+#include <primitives/block.h>
+#include <primitives/transaction.h>
+#include <main.h>
+#include <httpserver.h>
+#include <rpc/server.h>
+#include <streams.h>
+#include <sync.h>
+#include <txmempool.h>
+#include <utilstrencodings.h>
+#include <version.h>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/dynamic_bitset.hpp>
 
 #include <univalue.h>
 
@@ -138,7 +139,7 @@ static bool rest_headers(HTTPRequest* req,
     if (path.size() != 2)
         return RESTERR(req, HTTP_BAD_REQUEST, "No header count specified. Use /rest/headers/<count>/<hash>.<ext>.");
 
-    long count = strtol(path[0].c_str(), NULL, 10);
+    long count = strtol(path[0].c_str(), nullptr, 10);
     if (count < 1 || count > 2000)
         return RESTERR(req, HTTP_BAD_REQUEST, "Header count out of range: " + path[0]);
 
@@ -152,7 +153,7 @@ static bool rest_headers(HTTPRequest* req,
     {
         LOCK(cs_main);
         BlockMap::const_iterator it = mapBlockIndex.find(hash);
-        const CBlockIndex *pindex = (it != mapBlockIndex.end()) ? it->second : NULL;
+        const CBlockIndex *pindex = (it != mapBlockIndex.end()) ? it->second : nullptr;
         while (pindex != NULL && chainActive.Contains(pindex)) {
             headers.push_back(pindex);
             if (headers.size() == (unsigned long)count)
@@ -162,7 +163,7 @@ static bool rest_headers(HTTPRequest* req,
     }
 
     CDataStream ssHeader(SER_NETWORK, PROTOCOL_VERSION);
-    BOOST_FOREACH(const CBlockIndex *pindex, headers) {
+    for(const CBlockIndex *pindex: headers) {
         ssHeader << pindex->GetBlockHeader();
     }
 
@@ -182,7 +183,7 @@ static bool rest_headers(HTTPRequest* req,
     }
     case RF_JSON: {
         UniValue jsonHeaders(UniValue::VARR);
-        BOOST_FOREACH(const CBlockIndex *pindex, headers) {
+        for(const CBlockIndex *pindex: headers) {
             jsonHeaders.push_back(blockheaderToJSON(pindex));
         }
         string strJSON = jsonHeaders.write() + "\n";
@@ -213,7 +214,7 @@ static bool rest_block(HTTPRequest* req,
         return RESTERR(req, HTTP_BAD_REQUEST, "Invalid hash: " + hashStr);
 
     CBlock block;
-    CBlockIndex* pblockindex = NULL;
+    CBlockIndex* pblockindex = nullptr;
     {
         LOCK(cs_main);
         if (mapBlockIndex.count(hash) == 0)
@@ -500,8 +501,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
     vector<unsigned char> bitmap;
     vector<CCoin> outs;
     std::string bitmapStringRepresentation;
-    std::vector<bool> hits;
-    bitmap.resize((vOutPoints.size() + 7) / 8);
+    boost::dynamic_bitset<unsigned char> hits(vOutPoints.size());
     {
         LOCK2(cs_main, mempool.cs);
 
@@ -517,11 +517,10 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
         for (size_t i = 0; i < vOutPoints.size(); i++) {
             CCoins coins;
             uint256 hash = vOutPoints[i].hash;
-            bool hit = false;
             if (view.GetCoins(hash, coins)) {
                 mempool.pruneSpent(hash, coins);
                 if (coins.IsAvailable(vOutPoints[i].n)) {
-                    hit = true;
+                    hits[i] = true;
                     // Safe to index into vout here because IsAvailable checked if it's off the end of the array, or if
                     // n is valid but points to an already spent output (IsNull).
                     CCoin coin;
@@ -533,11 +532,10 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
                 }
             }
 
-            hits.push_back(hit);
-            bitmapStringRepresentation.append(hit ? "1" : "0"); // form a binary string representation (human-readable for json output)
-            bitmap[i / 8] |= ((uint8_t)hit) << (i % 8);
+            bitmapStringRepresentation.append(hits[i] ? "1" : "0"); // form a binary string representation (human-readable for json output)
         }
     }
+    boost::to_block_range(hits, std::back_inserter(bitmap));
 
     switch (rf) {
     case RF_BINARY: {
@@ -572,7 +570,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
         objGetUTXOResponse.push_back(Pair("bitmap", bitmapStringRepresentation));
 
         UniValue utxos(UniValue::VARR);
-        BOOST_FOREACH (const CCoin& coin, outs) {
+        for(const CCoin& coin: outs) {
             UniValue utxo(UniValue::VOBJ);
             utxo.push_back(Pair("txvers", (int32_t)coin.nTxVer));
             utxo.push_back(Pair("height", (int32_t)coin.nHeight));
