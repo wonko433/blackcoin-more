@@ -1631,9 +1631,9 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
     // Blackcoin ToDo: enable!
     // Check difficulty 
-    /*if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
+    if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
         return state.DoS(100, error("ConnectBlock(): incorrect difficulty"),
-                        REJECT_INVALID, "bad-diffbits");*/
+                        REJECT_INVALID, "bad-diffbits");
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
