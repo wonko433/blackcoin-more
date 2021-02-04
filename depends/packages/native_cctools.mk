@@ -87,7 +87,7 @@ define $(package)_config_cmds
 endef
 
 define $(package)_build_cmds
-  $(MAKE) -j$(JOBS)
+  $(MAKE)
 endef
 
 ifeq ($(strip $(FORCE_USE_SYSTEM_CLANG)),)
