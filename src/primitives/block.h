@@ -48,7 +48,7 @@ public:
         READWRITE(nBits);
         READWRITE(nNonce);
 
-		// peercoin: do not serialize nFlags when computing hash
+        // peercoin: do not serialize nFlags when computing hash
         if (!(s.GetType() & SER_GETHASH) && s.GetType() & SER_POSMARKER)
             READWRITE(nFlags);
     }

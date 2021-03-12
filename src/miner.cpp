@@ -548,6 +548,8 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             //
             // Create new block
             //
+			/*
+			// Blackcoin ToDo: accept or remove!
             if (pwallet->HaveAvailableCoinsForStaking())
             {
                 int64_t nFees = 0;
@@ -580,7 +582,33 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                     pwallet->m_last_coin_stake_search_time = nSearchTime;
                 }
             }
-                MilliSleep(nMinerSleep);
+			*/
+
+            if (pwallet->HaveAvailableCoinsForStaking())
+            {
+                int64_t nFees = 0;
+                // First just create an empty block. No need to process transactions until we know we can create a block
+                std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reservekey.reserveScript, &nFees, true));
+                if (!pblocktemplate.get())
+                    return;
+
+                std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
+
+				if (pblock->IsProofOfStake()) {
+                    pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
+                    // Trying to sign a block
+                    if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
+                        // increase priority
+                        SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
+                        // Sign the full block
+                        CheckStake(pblock, *pwallet);
+                        // return back to low priority
+                        SetThreadPriority(THREAD_PRIORITY_LOWEST);
+                        MilliSleep(3000);
+                    }
+				}
+            }
+            MilliSleep(nMinerSleep);
         }
     }
     catch (const boost::thread_interrupted&)
