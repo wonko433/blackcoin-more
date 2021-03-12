@@ -119,7 +119,7 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason)
 
         if (whichType == TX_NULL_DATA)
             nDataOut++;
-        else if (txout.nValue == 0) {
+        else if (IsDust(txout, ::dustRelayFee)) {
         	reason = "dust";
             return false;
         }
