@@ -1109,10 +1109,9 @@ void BitcoinGUI::setEncryptionStatus(WalletModel *walletModel)
         break;
     case WalletModel::Unlocked:
         labelWalletEncryptionIcon->show();
-		if(walletModel->getWalletUnlockStakingOnly())
+        if(walletModel->getWalletUnlockStakingOnly())
         {
-			// Blackcoin ToDo: use lock_staking icon
-            labelWalletEncryptionIcon->setPixmap(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
+            labelWalletEncryptionIcon->setPixmap(QIcon(":/icons/lock_staking").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
             labelWalletEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>unlocked for staking only</b>"));
         }
         else
