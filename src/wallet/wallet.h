@@ -1033,7 +1033,10 @@ public:
     // provides no real security
 	std::atomic<bool> m_wallet_unlock_staking_only{false};
 	CAmount m_reserve_balance{DEFAULT_RESERVE_BALANCE};
+	/*
+	// Blackcoin ToDo: accept or remove!
     int64_t m_last_coin_stake_search_time{0};
+	*/
     int64_t m_last_coin_stake_search_interval{0};
 
     bool NewKeyPool();

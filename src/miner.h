@@ -205,6 +205,6 @@ void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned
 int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev);
 
 /** Sign proof-of-stake block */
-bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, int64_t nTime);
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees);
 
 #endif // BITCOIN_MINER_H
