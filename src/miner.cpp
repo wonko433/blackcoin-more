@@ -548,8 +548,8 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             //
             // Create new block
             //
-			/*
-			// Blackcoin ToDo: accept or remove!
+            /*
+            // Blackcoin ToDo: accept or remove!
             if (pwallet->HaveAvailableCoinsForStaking())
             {
                 int64_t nFees = 0;
@@ -582,7 +582,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                     pwallet->m_last_coin_stake_search_time = nSearchTime;
                 }
             }
-			*/
+            */
 
             if (pwallet->HaveAvailableCoinsForStaking())
             {
@@ -594,7 +594,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
 
                 std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
 
-				if (pblock->IsProofOfStake()) {
+                if (pblock->IsProofOfStake()) {
                     pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
                     // Trying to sign a block
                     if (SignBlock(pblock, *pwallet, nFees)) {
@@ -606,7 +606,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         MilliSleep(3000);
                     }
-				}
+                }
             }
             MilliSleep(nMinerSleep);
         }
