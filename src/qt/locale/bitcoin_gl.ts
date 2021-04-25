@@ -174,18 +174,6 @@
         <translation>&amp;Cambiar contrasinal...</translation>
     </message>
     <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Direccións para recibir</translation>
-    </message>
-    <message>
-        <source>Wallet:</source>
-        <translation>Moedeiro:</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>moedeiro por defecto</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Reindexando bloques no disco...</translation>
     </message>
@@ -216,10 +204,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Moedeiro</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -314,8 +298,8 @@
         <translation>Actualizado</translation>
     </message>
     <message>
-        <source>%1 client</source>
-        <translation>%1 cliente</translation>
+        <source>&amp;Window</source>
+        <translation>&amp;Xanela</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -1195,6 +1179,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

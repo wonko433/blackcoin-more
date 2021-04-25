@@ -78,6 +78,10 @@
         <translation>Copiar dirección</translation>
     </message>
     <message>
+        <source>&amp;Copy Address</source>
+        <translation>Copiar dirección</translation>
+    </message>
+    <message>
         <source>Copy &amp;Label</source>
         <translation>Copiar &amp;Etiqueta</translation>
     </message>
@@ -140,10 +144,6 @@
         <translation>Mostrar contraseña</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Introduzca la nueva contraseña para el monedero. &lt;br/&gt;Por favor use una contraseña de &lt;b&gt;diez o más caracteres aleatorios&lt;/b&gt;, u &lt;b&gt;ocho o más palabras&lt;/b&gt;.</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>Cifrar monedero</translation>
     </message>
@@ -170,24 +170,8 @@
         <translation>Cambiar frase secreta</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Introduzca la contraseña anterior y la contraseña nueva para este monedero.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Confirmar cifrado de billetera</translation>
-    </message>
-    <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Atención: Si cifra su monedero y pierde la contraseña, perderá ¡&lt;b&gt;TODOS SUS BLACKCOINS&lt;/b&gt;!</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>¿Está seguro que desea cifrar su monedero?</translation>
-    </message>
-    <message>
-        <source>Wallet encrypted</source>
-        <translation>Monedero cifrado</translation>
     </message>
     </context>
 <context>
@@ -202,14 +186,6 @@
     <message>
         <source>Synchronizing with network...</source>
         <translation>Sincronizando con la red...</translation>
-    </message>
-    <message>
-        <source>&amp;Overview</source>
-        <translation>&amp;Vista general</translation>
-    </message>
-    <message>
-        <source>Node</source>
-        <translation>Nodo</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -244,26 +220,6 @@
         <translation>&amp;Opciones...</translation>
     </message>
     <message>
-        <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Cifrar monedero…</translation>
-    </message>
-    <message>
-        <source>&amp;Backup Wallet...</source>
-        <translation>Copia de &amp;respaldo del monedero...</translation>
-    </message>
-    <message>
-        <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Cambiar la contraseña…</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Recepción de direcciones</translation>
-    </message>
-    <message>
-        <source>Open &amp;URI...</source>
-        <translation>Abrir URI...</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Reindexando bloques en el disco...</translation>
     </message>
@@ -294,10 +250,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Billetera</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -1003,16 +955,8 @@
         <translation>&amp;Copiar Dirección</translation>
     </message>
     <message>
-        <source>&amp;Save Image...</source>
-        <translation>Guardar Imagen...</translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation>Direccion</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Cantidad</translation>
     </message>
     <message>
         <source>Label</source>
@@ -1025,10 +969,6 @@
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
     <message>
         <source>Label</source>
         <translation>Nombre</translation>
@@ -1328,10 +1268,6 @@
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>Nombre</translation>
     </message>
@@ -1345,14 +1281,6 @@
     <message>
         <source>Comma separated file (*.csv)</source>
         <translation>Separar los archivos con comas (*.csv)</translation>
-    </message>
-    <message>
-        <source>Confirmed</source>
-        <translation>Confirmado</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Fecha</translation>
     </message>
     <message>
         <source>Label</source>
@@ -1369,6 +1297,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

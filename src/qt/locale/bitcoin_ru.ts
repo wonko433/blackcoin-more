@@ -196,6 +196,10 @@
         <translation>ВАЖНО: любые предыдущие резервные копия вашего кошелька, выполненные вами, необходимо заменить новым сгенерированным, зашифрованным файлом кошелька. В целях безопасности, предыдущие резервные копии незашифрованного файла кошелька утратят пригодность после начала использования нового зашифрованного кошелька.</translation>
     </message>
     <message>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Бумажник зашифрован. Помните, что шифрование не способно полностью защитить Ваши биткоины, которые могут быть украдены вредоносным ПО</translation>
+    </message>
+    <message>
         <source>Wallet encryption failed</source>
         <translation>Шифрование кошелька завершилось неудачно.</translation>
     </message>
@@ -206,6 +210,10 @@
     <message>
         <source>The supplied passphrases do not match.</source>
         <translation>Пароли не совпадают.</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Сбой шифрования кошелька из-за внутренней ошибки. Ваш кошелёк не был зашифрован.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
@@ -252,14 +260,6 @@
     <message>
         <source>&amp;Overview</source>
         <translation>&amp;Обзор</translation>
-    </message>
-    <message>
-        <source>Node</source>
-        <translation>Узел</translation>
-    </message>
-    <message>
-        <source>Show general overview of wallet</source>
-        <translation>Отобразить главное окно кошелька</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
@@ -386,168 +386,28 @@
         <translation>Blackcoin More</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Кошелек</translation>
+        <source>Wallet:</source>
+        <translation>Кошелёк</translation>
     </message>
     <message>
-        <source>&amp;Send</source>
-        <translation>&amp;Отправить</translation>
+        <source>Reindexing blocks on disk...</source>
+        <translation>Переиндексация блоков на диске...</translation>
     </message>
     <message>
-        <source>&amp;Receive</source>
-        <translation>&amp;Получить</translation>
-    </message>
-    <message>
-        <source>&amp;Show / Hide</source>
-        <translation>&amp;Показать / Спрятать</translation>
-    </message>
-    <message>
-        <source>Show or hide the main Window</source>
-        <translation>Показать или скрыть главное окно</translation>
-    </message>
-    <message>
-        <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Зашифровать приватные ключи, принадлежащие вашему кошельку</translation>
-    </message>
-    <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Подписывайте сообщения Blackcoin адресами чтобы подтвердить что это написали именно Вы</translation>
-    </message>
-    <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Проверяйте сообщения чтобы убедиться что они подписаны конкретными Blackcoin адресами</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;Настройки</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Помощь</translation>
-    </message>
-    <message>
-        <source>Tabs toolbar</source>
-        <translation>Панель вкладок</translation>
-    </message>
-    <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Запросить платеж</translation>
-    </message>
-    <message>
-        <source>Show the list of used sending addresses and labels</source>
-        <translation>Показать список использованных адресов и меток получателей</translation>
-    </message>
-    <message>
-        <source>Show the list of used receiving addresses and labels</source>
-        <translation>Показать список использованных адресов и меток получателей</translation>
-    </message>
-    <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>Открыть биткойн: URI или запрос платежа</translation>
-    </message>
-    <message>
-        <source>&amp;Command-line options</source>
-        <translation>Опции командной строки</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n активное подключение к сети Blackcoin</numerusform><numerusform>%n активных подключения к сети Blackcoin</numerusform><numerusform>%n активных подключений к сети Blackcoin</numerusform><numerusform>%n активных подключений к сети Blackcoin</numerusform></translation>
-    </message>
-    <message>
-        <source>Indexing blocks on disk...</source>
-        <translation>Выполняется индексирование блоков на диске...</translation>
-    </message>
-    <message>
-        <source>Processing blocks on disk...</source>
-        <translation>Выполняется обработка блоков на диске...</translation>
-    </message>
-    <message numerus="yes">
-        <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Обработан %n блок истории транзакций.</numerusform><numerusform>Обработано %n блока истории транзакций.</numerusform><numerusform>Обработано %n блоков истории транзакций.</numerusform><numerusform>Обработано %n блоков истории транзакций.</numerusform></translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>Выполнено %1</translation>
-    </message>
-    <message>
-        <source>Last received block was generated %1 ago.</source>
-        <translation>Последний полученный блок был сгенерирован %1 назад.</translation>
-    </message>
-    <message>
-        <source>Transactions after this will not yet be visible.</source>
-        <translation>После этого транзакции больше не будут видны.</translation>
+        <source>&amp;Debug window</source>
+        <translation>&amp;Окно отладки</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <source>Warning</source>
-        <translation>Предупреждение</translation>
+        <source>&amp;Window</source>
+        <translation>&amp;Окно</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Информация</translation>
-    </message>
-    <message>
-        <source>Up to date</source>
-        <translation>Готов</translation>
-    </message>
-    <message>
-        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Показать помощь по %1, чтобы получить список доступных параметров командной строки</translation>
-    </message>
-    <message>
-        <source>Connecting to peers...</source>
-        <translation>Подключение к пирам...</translation>
-    </message>
-    <message>
-        <source>Catching up...</source>
-        <translation>Синхронизация...</translation>
-    </message>
-    <message>
-        <source>Date: %1
-</source>
-        <translation>Дата: %1
-</translation>
-    </message>
-    <message>
-        <source>Amount: %1
-</source>
-        <translation>Объем: %1
-</translation>
-    </message>
-    <message>
-        <source>Wallet: %1
-</source>
-        <translation>Кошелек: %1
-</translation>
-    </message>
-    <message>
-        <source>Type: %1
-</source>
-        <translation>Тип: %1
-</translation>
-    </message>
-    <message>
-        <source>Label: %1
-</source>
-        <translation>Ярлык: %1
-</translation>
-    </message>
-    <message>
-        <source>Address: %1
-</source>
-        <translation>Адрес: %1
-</translation>
-    </message>
-    <message>
-        <source>Sent transaction</source>
-        <translation>Отправленная транзакция</translation>
+        <source>Minimize</source>
+        <translation>Сворачивать</translation>
     </message>
     </context>
 <context>
@@ -601,6 +461,10 @@
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
+    <message>
+        <source>Clear</source>
+        <translation>Очистить</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
@@ -685,6 +549,9 @@
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     </context>
 <context>
@@ -704,8 +571,12 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Received with address</source>
-        <translation>Получено с адресом</translation>
+        <source>Error initializing block database</source>
+        <translation>Ошибка инициализации БД блоков</translation>
+    </message>
+    <message>
+        <source>The wallet will avoid paying less than the minimum relay fee.</source>
+        <translation>Кошелёк будет избегать оплат меньших, нежели минимальная комиссия передачи.</translation>
     </message>
     <message>
         <source>Transaction amounts must not be negative</source>

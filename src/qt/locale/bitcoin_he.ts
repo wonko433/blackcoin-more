@@ -188,10 +188,6 @@
         <translation>הארנק מוצפן</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 ייסגר כעת כדי לסיים את תהליך ההצפנה. נא לשים לב כי הצפנת הארנק שלך לא יכול להגן על הביטקוינים שלך מפני גניבה או נוזקה שתוקפת את מחשבך.</translation>
-    </message>
-    <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation>חשוב: כל הגיבויים הקודמים שערכת לארנק שלך אמורים להתחלף עם קובץ הארנק המוצפן שנוצר כרגע. מטעמי אבטחה, הגיבויים הקודמים של קובץ הארנק שאינו מוגן הופכים לחסרי תועלת ברגע התחלת השימוש בארנק החדש והמוצפן.</translation>
     </message>
@@ -254,10 +250,6 @@
         <translation>&amp;סקירה</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>מפרק</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>הצגת סקירה כללית של הארנק</translation>
     </message>
@@ -314,24 +306,12 @@
         <translation>ה&amp;חלפת מילת הצופן…</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>כתובת ה&amp;שליחה…</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>כתובות ה&amp;קבלה…</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>פתיחת &amp;כתובת משאב…</translation>
     </message>
     <message>
         <source>Wallet:</source>
         <translation>ארנק:</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>ארנק בררת מחדל</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -384,10 +364,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>ביטקוין</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>ארנק</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -500,6 +476,14 @@
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>יש להציג את הודעת העזרה של %1 כדי להציג רשימה עם אפשרויות שורת פקודה לביטקוין</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>ארנק בררת מחדל</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;חלון</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -943,11 +927,7 @@
         <source>Hide</source>
         <translation>הסתר</translation>
     </message>
-    <message>
-        <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>לא ידוע. הכותרות מתעדכנות (%1)…</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -994,10 +974,6 @@
         <translation>גודל מ&amp;טמון מסד הנתונים</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>מ״ב</translation>
-    </message>
-    <message>
         <source>Number of script &amp;verification threads</source>
         <translation>מספר תהליכי ה&amp;אימות של הסקריפט</translation>
     </message>
@@ -1028,10 +1004,6 @@
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
         <translation>כתובות צד־שלישי (כגון: סייר מקטעים) שמופיעים בלשונית ההעברות בתור פריטים בתפריט ההקשר. %s בכתובת מוחלף בגיבוב ההעברה. מספר כתובות יופרדו בפס אנכי |.</translation>
-    </message>
-    <message>
-        <source>Active command-line options that override above options:</source>
-        <translation>אפשרויות פעילות בשורת הפקודה שדורסות את האפשרויות שלהלן:</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
@@ -1815,10 +1787,6 @@
         <translation>&amp;שחרור חסימה</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>ארנק בררת מחדל</translation>
-    </message>
-    <message>
         <source>Welcome to the %1 RPC console.</source>
         <translation>ברוך בואך למסוף ה־RPC של %1.</translation>
     </message>
@@ -2151,14 +2119,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>הסתר</translation>
     </message>
     <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation>זה בסדר לשלם את העמלה המינימלית כל עוד נפח הטרנזקציות קטן מנפח הבלוקים. אבל יש להיזהר כיוון שבמידה והעומס ברשת גדל, העיסקה עלולה לא להיות מאושרת לעולם.</translation>
-    </message>
-    <message>
-        <source>(read the tooltip)</source>
-        <translation>(קראו את ה tooltip)</translation>
-    </message>
-    <message>
         <source>Recommended:</source>
         <translation>מומלץ:</translation>
     </message>
@@ -2247,10 +2207,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>%1 (%2 בלוקים)</translation>
     </message>
     <message>
-        <source>%1 to %2</source>
-        <translation>%1 ל %2</translation>
-    </message>
-    <message>
         <source>Are you sure you want to send?</source>
         <translation>לשלוח?</translation>
     </message>
@@ -2321,14 +2277,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Payment request expired.</source>
         <translation>בקשת התשלום פגה.</translation>
-    </message>
-    <message>
-        <source>Pay only the required fee of %1</source>
-        <translation>תשלום של העמלה הנדרשת בלבד על סך %1</translation>
-    </message>
-    <message numerus="yes">
-        <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>אמדן תחילת אימות תוך בלוק %n .</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform><numerusform>אמדן תחילת אימות תוך %n בלוקים.</numerusform></translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -3061,6 +3009,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
 </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -3106,8 +3057,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>אי אפשר לחתום על ההעברה.</translation>
     </message>
     <message>
-        <source>Could not commit transaction</source>
-        <translation>שילוב העסקה נכשל</translation>
+        <source>default wallet</source>
+        <translation>ארנק בררת מחדל</translation>
     </message>
 </context>
 <context>
@@ -3270,10 +3221,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>האם לבנות מחדש את מסד נתוני המקטעים?</translation>
-    </message>
-    <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>שגיאה ביצירת %s: אין אפשרות ליצור ארנקים שאינם HD בגרסה זו.</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
@@ -3538,62 +3485,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Warning</source>
         <translation>אזהרה</translation>
-    </message>
-    <message>
-        <source>Warning: unknown new rules activated (versionbit %i)</source>
-        <translation>אזהרה: חוקים חדשים שאינם מוכרים שופעלו (versionbit %i)</translation>
-    </message>
-    <message>
-        <source>Zapping all transactions from wallet...</source>
-        <translation>שולה את כל העסקאות מתוך הארנק...</translation>
-    </message>
-    <message>
-        <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
-        <translation>-maxtxfee נקבע לעמלות גבוהות מאד! עמלות גבוהות כאלו יכולות משולמות עבר עסקה בודדת.</translation>
-    </message>
-    <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
-        <translation>שגיאת טעינה %s: אין לשפעל HD בארנק קיים שהוגדר כארנק non-HD </translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you may pay when fee estimates are not available.</source>
-        <translation>זוהי עמלת העסקה שתוכל לשלם כאשר אמדן גובה העמלה אינו זמין.</translation>
-    </message>
-    <message>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>מוצר זה כולל תוכנה שפותחה בפרויקט OpenSSL לטובת השימוש ב OpenSSL Toolkit %s ותוכנת קריפטוגרפיה שנכתבה ע"י   Eric Young ותוכנת UPnP שנכתבה ע"יי Thomas Bernard.</translation>
-    </message>
-    <message>
-        <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
-        <translation>האורך הכולל של רצף התווים של גירסת הרשת  (%i) גדול מהאורך המרבי המותר (%i). יש להקטין את המספר או האורך של uacomments.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
-        <translation>המשתנה ‎-socks נמצא אך אין בו תמיכה עוד. הגדרת גרסת SOCKS אינה אפשרית עוד, קיימת תמיכה רק ב־SOCKS5.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -whitelistalwaysrelay ignored, use -whitelistrelay and/or -whitelistforcerelay.</source>
-        <translation>התעלמות ממשתנה שאינו נתמך  -whitelistalwaysrelay , יש להשתמש ב -whitelistrelay ו/או ב -whitelistforcerelay.</translation>
-    </message>
-    <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
-        <translation>אזהרה: גירסאות בלוקים לא מזוהות נמצאות בתהליך כרייה! יתכן שישנם כללים לא ידועים שנכנסו לתוקף.</translation>
-    </message>
-    <message>
-        <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>אזהרה: הארנק משובש. הנתונים חולצו! המקור %s נשמר כ %s ב %s; אם היתרהאו העסקות אינן נכונות יש לבצע שיחזור מגיבוי.</translation>
-    </message>
-    <message>
-        <source>%s is set very high!</source>
-        <translation>%s הוגדר מאד גבוה!</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>שגיאת טעינת ארנק %s. שם קובץ  -wallet  כפול הוגדר.</translation>
-    </message>
-    <message>
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>מאגר המפתחות keypool התרוקן. יש לקרוא קודם כל ל keypoolrefill </translation>
     </message>
     <message>
         <source>Starting network threads...</source>

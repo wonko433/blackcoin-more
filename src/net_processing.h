@@ -10,17 +10,15 @@
 #include <validationinterface.h>
 #include <consensus/params.h>
 #include <sync.h>
-#include <consensus/consensus.h>
 
 extern CCriticalSection cs_main;
-class CChainParams;
 
 /** Default for -maxorphantx, maximum number of orphan transactions kept in memory */
 static const unsigned int DEFAULT_MAX_ORPHAN_TRANSACTIONS = 100;
 /** Default number of orphan+recently-replaced txn to keep around for block reconstruction */
 static const unsigned int DEFAULT_BLOCK_RECONSTRUCTION_EXTRA_TXN = 100;
 /** Default for BIP61 (sending reject messages) */
-static constexpr bool DEFAULT_ENABLE_BIP61 = true;
+static constexpr bool DEFAULT_ENABLE_BIP61{true};
 
 /** Default for -headerspamfilter, use header spam filter */
 static const bool DEFAULT_HEADER_SPAM_FILTER = true;
@@ -35,9 +33,11 @@ static const unsigned int DEFAULT_HEADER_SPAM_FILTER_IGNORE_PORT = true;
 class PeerLogicValidation final : public CValidationInterface, public NetEventsInterface {
 private:
     CConnman* const connman;
+    BanMan* const m_banman;
 
+    bool SendRejectsAndCheckIfBanned(CNode* pnode, bool enable_bip61) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 public:
-    explicit PeerLogicValidation(CConnman* connman, CScheduler &scheduler, bool enable_bip61);
+    PeerLogicValidation(CConnman* connman, BanMan* banman, CScheduler &scheduler, bool enable_bip61);
 
     /**
      * Overridden from CValidationInterface.

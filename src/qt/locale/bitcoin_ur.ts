@@ -85,11 +85,7 @@
         <source>Exporting Failed</source>
         <translation>ایکسپورٹ ناکام ہوا</translation>
     </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>پتا فہرست محفوظ کرتے ہوئے %1 نقص کا سامنا ہوا۔ دوبارہ کوشش کریں۔</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -217,20 +213,12 @@
         <translation> پتہ</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>رقم</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>لیبل</translation>
     </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Date</source>
-        <translation>تاریخ</translation>
-    </message>
     <message>
         <source>Label</source>
         <translation>لیبل</translation>
@@ -286,10 +274,6 @@
 <context>
     <name>TransactionTableModel</name>
     <message>
-        <source>Date</source>
-        <translation>تاریخ</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation>لیبل</translation>
     </message>
@@ -299,10 +283,6 @@
     <message>
         <source>Comma separated file (*.csv)</source>
         <translation>کاما سے جدا فائلیں (*.csv)</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>تاریخ</translation>
     </message>
     <message>
         <source>Label</source>
@@ -319,6 +299,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

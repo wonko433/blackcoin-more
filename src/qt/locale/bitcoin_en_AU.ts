@@ -25,6 +25,10 @@
         <source>Synchronizing with network...</source>
         <translation>Synchronising with network...</translation>
     </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Window</translation>
+    </message>
     </context>
 <context>
     <name>CoinControlDialog</name>
@@ -45,7 +49,7 @@
     <name>ModalOverlay</name>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronising with the blackcoin network, as detailed below.</translation>
+        <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronising with the bitcoin network, as detailed below.</translation>
     </message>
     </context>
 <context>
@@ -74,7 +78,7 @@
     <name>OverviewPage</name>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronises with the Blackcoin network after a connection is established, but this process has not completed yet.</translation>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronises with the Bitcoin network after a connection is established, but this process has not completed yet.</translation>
     </message>
     </context>
 <context>
@@ -155,6 +159,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

@@ -5,7 +5,7 @@
 
 #include <uint256.h>
 
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -29,11 +29,11 @@ void base_blob<BITS>::SetHex(const char* psz)
     memset(data, 0, sizeof(data));
 
     // skip leading spaces
-    while (isspace(*psz))
+    while (IsSpace(*psz))
         psz++;
 
     // skip 0x
-    if (psz[0] == '0' && tolower(psz[1]) == 'x')
+    if (psz[0] == '0' && ToLower(psz[1]) == 'x')
         psz += 2;
 
     // hex string to uint
@@ -77,10 +77,3 @@ template std::string base_blob<256>::GetHex() const;
 template std::string base_blob<256>::ToString() const;
 template void base_blob<256>::SetHex(const char*);
 template void base_blob<256>::SetHex(const std::string&);
-
-uint64_t uint256::GetLow64() const
-{
-   assert(sizeof(data) >= 2);
-   const uint32_t *pn = (const uint32_t*)data;
-   return pn[0] | (uint64_t)pn[1] << 32;
-}

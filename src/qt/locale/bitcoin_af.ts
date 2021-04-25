@@ -254,10 +254,6 @@
         <translation>&amp;Oorsig</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Node</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Wys algemene oorsig van die beursie</translation>
     </message>
@@ -314,14 +310,6 @@
         <translation>Verander wagwoord frase...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>Uitstuur adresse...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Ontvang adresse...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Maak &amp;URI oop...</translation>
     </message>
@@ -372,10 +360,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Beursie</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -478,8 +462,8 @@
         <translation>Op datum</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Wys die %1 hulpboodskap om 'n lys met moontlike Blackcoin bevel-lyn opsies te verkry</translation>
+        <source>&amp;Window</source>
+        <translation>&amp;Venster</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -863,7 +847,7 @@
     </message>
     <message>
         <source>Hide</source>
-        <translation>Steek weg</translation>
+        <translation>Versteek</translation>
     </message>
     </context>
 <context>
@@ -1396,6 +1380,10 @@
         <translation>Vee alle velde op die vorm skoon</translation>
     </message>
     <message>
+        <source>Clear all fields of the form.</source>
+        <translation>Vee alle velde op die vorm skoon</translation>
+    </message>
+    <message>
         <source>Clear</source>
         <translation>Skoonmaak</translation>
     </message>
@@ -1604,7 +1592,7 @@ etlike ure of dae (of nooit) sal neem om te bevestig. Oorweeg om
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
-        <translation>Stuur aan vele ontvangers op eens</translation>
+        <translation>Stuur aan veelvuldige ontvangers tegelyk</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
@@ -1638,7 +1626,11 @@ transaksievertragingsrisiko.</translation>
     </message>
     <message>
         <source>Balance:</source>
-        <translation>Balans:</translation>
+        <translation>Saldo:</translation>
+    </message>
+    <message>
+        <source>Confirm the send action</source>
+        <translation>Bevestig stuuraksie</translation>
     </message>
     <message>
         <source>Confirm the send action</source>
@@ -1799,7 +1791,10 @@ Is u seker?</translation>
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>De fooi word afgetrek van die gestuurde bedrag. Die ontvanger sal minder ontvang as wat u in die bedrag opgee. As daar meer as een ontvanger is, word die fooi eweredig verdeel.</translation>
+        <translation>De fooi word afgetrek van die gestuurde bedrag.
+Die ontvanger sal minder ontvang as wat u in die 
+bedrag opgee. As daar meer as een ontvanger is,
+word die fooi eweredig verdeel.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -1842,6 +1837,10 @@ Is u seker?</translation>
     <message>
         <source>&amp;Sign Message</source>
         <translation>&amp;Teken boodskap</translation>
+    </message>
+    <message>
+        <source>Choose previously used address</source>
+        <translation>Kies voorheen gebruikte adres</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2156,6 +2155,9 @@ Is u seker?</translation>
 </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

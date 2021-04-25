@@ -33,8 +33,7 @@ WORK_PATH = $(BASEDIR)/work
 BASE_CACHE ?= $(BASEDIR)/built
 SDK_PATH ?= $(BASEDIR)/SDKs
 NO_QT ?=
-NO_PROTOBUF ?=
-NO_QR ?=
+RAPIDCHECK ?=
 NO_WALLET ?=
 NO_ZMQ ?=
 NO_UPNP ?=
@@ -134,6 +133,8 @@ upnp_packages_$(NO_UPNP) = $(upnp_packages)
 zmq_packages_$(NO_ZMQ) = $(zmq_packages)
 protobuf_packages_$(NO_PROTOBUF) = $(protobuf_packages)
 
+rapidcheck_packages_$(RAPIDCHECK) = $(rapidcheck_packages)
+
 packages += $($(host_arch)_$(host_os)_packages) $($(host_os)_packages) $(qt_packages_) $(wallet_packages_) $(upnp_packages_)
 native_packages += $($(host_arch)_$(host_os)_native_packages) $($(host_os)_native_packages)
 
@@ -141,13 +142,8 @@ ifneq ($(qt_packages_),)
 native_packages += $(qt_native_packages)
 endif
 
-ifneq ($(protobuf_packages_),)
-native_packages += $(protobuf_native_packages)
-packages += $(protobuf_packages)
-endif
-
-ifneq ($(zmq_packages_),)
-packages += $(zmq_packages)
+ifeq ($(rapidcheck_packages_),)
+packages += $(rapidcheck_packages)
 endif
 
 all_packages = $(packages) $(native_packages)

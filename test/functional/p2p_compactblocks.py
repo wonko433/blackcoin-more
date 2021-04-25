@@ -6,7 +6,6 @@
 
 Version 1 compact blocks are pre-segwit (txids)
 """
-
 from decimal import Decimal
 import random
 
@@ -214,7 +213,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         check_announcement_of_new_block(node, test_node, lambda p: "cmpctblock" in p.last_message)
 
         # Try one more time, after sending a version-1, announce=false message.
-        sendcmpct.version = preferred_version-1
+        sendcmpct.version = preferred_version - 1
         sendcmpct.announce = False
         test_node.send_and_ping(sendcmpct)
         check_announcement_of_new_block(node, test_node, lambda p: "cmpctblock" in p.last_message)
@@ -273,7 +272,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         block_hash = int(node.generate(1)[0], 16)
 
         # Store the raw block in our internal format.
-        block = FromHex(CBlock(), node.getblock("%02x" % block_hash, False))
+        block = FromHex(CBlock(), node.getblock("%064x" % block_hash, False))
         for tx in block.vtx:
             tx.calc_sha256()
         block.rehash()
@@ -602,7 +601,7 @@ class CompactBlocksTest(BitcoinTestFramework):
 
         # Generate an old compactblock, and verify that it's not accepted.
         cur_height = node.getblockcount()
-        hashPrevBlock = int(node.getblockhash(cur_height-5), 16)
+        hashPrevBlock = int(node.getblockhash(cur_height - 5), 16)
         block = self.build_block_on_tip(node)
         block.hashPrevBlock = hashPrevBlock
         block.solve()

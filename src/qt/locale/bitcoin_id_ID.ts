@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Menyalin</translation>
+        <translation>&amp;Salin</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
@@ -192,8 +192,8 @@
         <translation>Dompet terenkripsi</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your blackcoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 sekarang akan ditutup untuk menyelesaikan proses enkripsi. Ingatlah bahwa mengenkripsi dompet Anda tidak dapat sepenuhnya melindungi komputer Anda dari pencurian malware yang menginfeksi komputer Anda.</translation>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Wallet anda sekarang telah terenkripsi. Ingat bahwa enkripsi wallet anda tersebut tidak dapat sepenuhnya melindungi dari pencurian atau malware yang menyerang komputer anda. </translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -258,10 +258,6 @@
         <translation>&amp;Kilasan</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Node</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Tampilkan gambaran umum dompet Anda</translation>
     </message>
@@ -318,24 +314,12 @@
         <translation>&amp;Ubah Kata Kunci...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>&amp;Alamat-alamat untuk mengirim...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Alamat-alamat untuk menerima...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Buka &amp;URI</translation>
     </message>
     <message>
         <source>Wallet:</source>
         <translation>Wallet:</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>wallet default</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -388,10 +372,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Dompet</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -510,8 +490,40 @@
         <translation>Terbaru</translation>
     </message>
     <message>
+        <source>&amp;Sending addresses</source>
+        <translation>&amp;Address pengiriman</translation>
+    </message>
+    <message>
+        <source>&amp;Receiving addresses</source>
+        <translation>&amp;Address penerima</translation>
+    </message>
+    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah Blackcoin yang memungkinkan</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>wallet default</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Jendela</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>Minimalkan</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>Zoom</translation>
+    </message>
+    <message>
+        <source>Restore</source>
+        <translation>Pulihkan</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>Jendela Utama</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -576,6 +588,10 @@
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
         <translation>Pembuatan kunci HD &lt;b&gt;dinonaktifkan&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>Private key &lt;b&gt;non aktif&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -788,6 +804,14 @@
         <translation>Alamat "%1" yang dimasukkan sudah ada di dalam buku alamat dengan label "%2".</translation>
     </message>
     <message>
+        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
+        <translation>Alamat "%1" sudah ada sebagai alamat penerimaan dengan label "%2" sehingga tidak bisa ditambah sebagai alamat pengiriman.</translation>
+    </message>
+    <message>
+        <source>The entered address "%1" is already in the address book with label "%2".</source>
+        <translation>Alamat "%1" yang dimasukkan sudah ada di dalam buku alamat dengan label "%2".</translation>
+    </message>
+    <message>
         <source>Could not unlock wallet.</source>
         <translation>Tidak dapat membuka dompet.</translation>
     </message>
@@ -924,6 +948,10 @@
         <translation>Usaha untuk menggunakan blackcoin yang dipengaruhi oleh transaksi yang belum terlihat tidak akan diterima oleh jaringan.</translation>
     </message>
     <message>
+        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Usaha untuk menggunakan bitcoin yang dipengaruhi oleh transaksi yang belum terlihat tidak akan diterima oleh jaringan.</translation>
+    </message>
+    <message>
         <source>Number of blocks left</source>
         <translation>Jumlah blok tersisa</translation>
     </message>
@@ -955,11 +983,7 @@
         <source>Hide</source>
         <translation>Sembunyikan</translation>
     </message>
-    <message>
-        <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>Tidak diketahui. Menyinkronisasikan Headers (%1)...</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1006,10 +1030,6 @@
         <translation>Ukuran cache &amp;database</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
         <source>Number of script &amp;verification threads</source>
         <translation>Jumlah script &amp;verification threads</translation>
     </message>
@@ -1042,8 +1062,8 @@
         <translation>URL pihak ketika (misalnya sebuah block explorer) yang mumcul dalam tab transaksi sebagai konteks menu. %s dalam URL diganti dengan kode transaksi. URL dipisahkan dengan tanda vertikal |.</translation>
     </message>
     <message>
-        <source>Active command-line options that override above options:</source>
-        <translation>Pilihan command-line yang aktif menimpa diatas opsi: </translation>
+        <source>Open the %1 configuration file from the working directory.</source>
+        <translation>Buka file konfigurasi %1 dari direktori kerja.</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
@@ -1080,6 +1100,10 @@
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation>Mengembalikan pengaturan ini membutuhkan pengunduhan seluruh blockchain lagi. </translation>
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1130,6 +1154,10 @@
         <translation>&amp;Hubungkan melalui proxy SOCKS5 (proxy default):</translation>
     </message>
     <message>
+        <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
+        <translation>&amp;Hubungkan melalui proxy SOCKS5 (proxy default):</translation>
+    </message>
+    <message>
         <source>Proxy &amp;IP:</source>
         <translation>IP Proxy:</translation>
     </message>
@@ -1159,7 +1187,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Koneksi ke jaringan blackcoin melalui proxy SOCKS5 yang berbeda untuk layanan Tor tersembunyi.</translation>
+        <translation>Koneksi ke jaringan bitcoin melalui proxy SOCKS5 yang berbeda untuk layanan Tor tersembunyi.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1273,6 +1301,10 @@
         <translation>Hanya lihat:</translation>
     </message>
     <message>
+        <source>Watch-only:</source>
+        <translation>Hanya lihat:</translation>
+    </message>
+    <message>
         <source>Available:</source>
         <translation>Tersedia:</translation>
     </message>
@@ -1341,7 +1373,7 @@
     </message>
     <message>
         <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation>Tidak bisa memulai blackcoin: handler click-to-pay</translation>
+        <translation>Tidak bisa memulai bitcoin: handler click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1349,19 +1381,15 @@
     </message>
     <message>
         <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin://' bukanlah alamat URI yang valid. Silakan gunakan 'blackcoin:'.</translation>
+        <translation>'bitcoin://' bukanlah alamat URI yang valid. Silakan gunakan 'bitcoin:'.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation>URL permintaan pembayaran tidak valid: %1</translation>
     </message>
     <message>
-        <source>Invalid payment address %1</source>
-        <translation>Alamat pembayaran tidak valid %1</translation>
-    </message>
-    <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
-        <translation>URI tidak bisa dimengerti! Hal ini bisa disebabkan karena alamat Blackcoin yang tidak sah atau parameter URI yang tidak tepat.</translation>
+        <translation>URI tidak bisa dimengerti! Hal ini bisa disebabkan karena alamat Bitcoin yang tidak sah atau parameter URI yang tidak tepat.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -2095,15 +2123,18 @@
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     </context>
 <context>
     <name>WalletModel</name>
     <message>
-        <source>Send Coins</source>
-        <translation>Kirim Koin</translation>
+        <source>default wallet</source>
+        <translation>wallet default</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>

@@ -23,8 +23,8 @@ namespace {
  */
 enum class IsMineSigVersion
 {
-    TOP = 0,        //! scriptPubKey execution
-    P2SH = 1        //! P2SH redeemScript
+    TOP = 0,        //!< scriptPubKey execution
+    P2SH = 1,       //!< P2SH redeemScript
 };
 
 /**
@@ -34,10 +34,10 @@ enum class IsMineSigVersion
  */
 enum class IsMineResult
 {
-    NO = 0,          //! Not ours
-    WATCH_ONLY = 1,  //! Included in watch-only balance
-    SPENDABLE = 2,   //! Included in all balances
-    INVALID = 3,     //! Not spendable by anyone (P2SH inside P2SHs)
+    NO = 0,         //!< Not ours
+    WATCH_ONLY = 1, //!< Included in watch-only balance
+    SPENDABLE = 2,  //!< Included in all balances
+    INVALID = 3,    //!< Not spendable by anyone (P2SH inside P2SH)
 };
 
 bool PermitsUncompressed(IsMineSigVersion sigversion)
@@ -59,8 +59,7 @@ IsMineResult IsMineInner(const CKeyStore& keystore, const CScript& scriptPubKey,
     IsMineResult ret = IsMineResult::NO;
 
     std::vector<valtype> vSolutions;
-    txnouttype whichType;
-    Solver(scriptPubKey, whichType, vSolutions);
+    txnouttype whichType = Solver(scriptPubKey, vSolutions);
 
     CKeyID keyID;
     switch (whichType)

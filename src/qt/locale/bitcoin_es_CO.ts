@@ -367,10 +367,6 @@ Exportar los datos en la pestaña actual a un archivo</translation>
         <translation>Blackcoin</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Billetera</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;Enviar</translation>
     </message>
@@ -471,12 +467,8 @@ Exportar los datos en la pestaña actual a un archivo</translation>
         <translation>A hoy</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Muestre el mensaje de ayuda %1 para obtener una lista con posibles opciones de línea de comandos de Blackcoin</translation>
-    </message>
-    <message>
-        <source>%1 client</source>
-        <translation>%1 cliente</translation>
+        <source>&amp;Window</source>
+        <translation>Ventana</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
@@ -943,10 +935,6 @@ Exportar los datos en la pestaña actual a un archivo</translation>
         <translation>&amp; Comience %1 en el inicio de sesión del sistema</translation>
     </message>
     <message>
-        <source>Size of &amp;database cache</source>
-        <translation>Tamaño de la memoria caché de la base de datos</translation>
-    </message>
-    <message>
         <source>Number of script &amp;verification threads</source>
         <translation>Cantidad de secuencias de comandos y verificación</translation>
     </message>
@@ -973,14 +961,6 @@ Exportar los datos en la pestaña actual a un archivo</translation>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
         <translation>Minimice en lugar de salir de la aplicación cuando la ventana esté cerrada. Cuando esta opción está habilitada, la aplicación se cerrará solo después de seleccionar Salir en el menú.</translation>
-    </message>
-    <message>
-        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>URL de terceros (por ejemplo, un explorador de bloques) que aparecen en la pestaña de transacciones como elementos del menú contextual. %s en la URL se reemplaza por hash de transacción. Varias URL están separadas por una barra vertical |.</translation>
-    </message>
-    <message>
-        <source>Open the %1 configuration file from the working directory.</source>
-        <translation>Abrir el archivo de configuración %1 en el directorio de trabajo.</translation>
     </message>
     <message>
         <source>Open Configuration File</source>
@@ -2793,6 +2773,9 @@ Exportar los datos en la pestaña actual a un archivo</translation>
         <translation>Unidad en la que se muestran las cantidades. Haga clic para seleccionar otra unidad.</translation>
     </message>
 </context>
+<context>
+    <name>WalletController</name>
+    </context>
 <context>
     <name>WalletFrame</name>
     <message>

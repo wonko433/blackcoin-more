@@ -140,6 +140,10 @@
         <translation>Покажи парола</translation>
     </message>
     <message>
+        <source>Show password</source>
+        <translation>Покажи парола</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Въведете новата парола към портфейла.&lt;br/&gt;Моля ползвайте парола съставена от &lt;b&gt;десет или повече произволни символа&lt;/b&gt;, или &lt;b&gt;осем или повече думи&lt;/b&gt;.</translation>
     </message>
@@ -250,10 +254,6 @@
         <translation>Преглед</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Възел</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Покажи общ преглед на портфейла</translation>
     </message>
@@ -310,14 +310,6 @@
         <translation>Промени паролата...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>Адреси за пращане...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Адреси за получаване...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Отвори URI</translation>
     </message>
@@ -328,6 +320,10 @@
     <message>
         <source>default wallet</source>
         <translation>Портфейл по подразбиране</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Портфейл</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -376,10 +372,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>портфейл</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -484,6 +476,18 @@
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Покажи %1 помощно съобщение за да получиш лист с възможни Blackcoin команди</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>Портфейл по подразбиране</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Прозорец</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>Минимизирай</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -872,10 +876,6 @@
         <translation>Размер на кеша в &amp;базата данни</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>Мегабайта</translation>
-    </message>
-    <message>
         <source>Number of script &amp;verification threads</source>
         <translation>Брой на скриптове и &amp;нишки за потвърждение</translation>
     </message>
@@ -1022,10 +1022,6 @@
     <message>
         <source>Client will be shut down. Do you want to proceed?</source>
         <translation>Клиентът ще бъде изключен. Искате ли да продължите?</translation>
-    </message>
-    <message>
-        <source>Configuration options</source>
-        <translation>Опции за конфигуриране</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2303,6 +2299,9 @@
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -2315,7 +2314,11 @@
         <source>Send Coins</source>
         <translation>Изпращане</translation>
     </message>
-    </context>
+    <message>
+        <source>default wallet</source>
+        <translation>Портфейл по подразбиране</translation>
+    </message>
+</context>
 <context>
     <name>WalletView</name>
     <message>

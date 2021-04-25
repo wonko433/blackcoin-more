@@ -188,10 +188,6 @@
         <translation>Portofel criptat</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 se va închide acum pentru a termina procesul de criptare. Ţineţi minte că criptarea portofelului nu vă poate proteja în totalitate de furtul monedelor de către programe malware care vă infectează calculatorul.</translation>
-    </message>
-    <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation>IMPORTANT: Orice copie de siguranţă făcută anterior portofelului dumneavoastră ar trebui înlocuită cu cea generată cel mai recent, fişier criptat al portofelului. Pentru siguranţă, copiile de siguranţă vechi ale portofelului ne-criptat vor deveni inutile imediat ce veţi începe folosirea noului fişier criptat al portofelului.</translation>
     </message>
@@ -254,10 +250,6 @@
         <translation>&amp;Imagine de ansamblu</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Nod</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Arată o stare generală de ansamblu a portofelului</translation>
     </message>
@@ -312,14 +304,6 @@
     <message>
         <source>&amp;Change Passphrase...</source>
         <translation>S&amp;chimbă parola...</translation>
-    </message>
-    <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>Adrese de trimitere...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Adrese de p&amp;rimire...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
@@ -384,10 +368,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Portofel</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -514,6 +494,10 @@
         <translation>Se actualizează...</translation>
     </message>
     <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Fereastra</translation>
+    </message>
+    <message>
         <source>Date: %1
 </source>
         <translation>Data: %1
@@ -615,6 +599,10 @@
     <message>
         <source>(un)select all</source>
         <translation>(de)selectare tot</translation>
+    </message>
+    <message>
+        <source>(un)select all</source>
+        <translation>(de)selectează tot</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -988,14 +976,6 @@
     <message>
         <source>Size of &amp;database cache</source>
         <translation>Mărimea bazei de &amp;date cache</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Number of script &amp;verification threads</source>
-        <translation>Numărul de thread-uri de &amp;verificare</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
@@ -3615,6 +3595,21 @@ Nota: Cum taxa este calculata per byte, o taxa de "100 satoshi per kB" pentru o 
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation>Eroare la incarcarea portofelului %s. Este specificat un fisier -wallet duplicat.</translation>
     </message>
+    </context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
+    </context>
+<context>
+    <name>WalletFrame</name>
+    </context>
+<context>
+    <name>WalletModel</name>
+    </context>
+<context>
+    <name>WalletView</name>
     <message>
         <source>Keypool ran out, please call keypoolrefill first</source>
         <translation>Keypool epuizat, folositi intai functia keypoolrefill</translation>

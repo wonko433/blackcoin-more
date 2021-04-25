@@ -1820,12 +1820,8 @@
 <context>
     <name>TransactionDesc</name>
     <message>
-        <source>Open until %1</source>
-        <translation>Ανοιχτό μέχρι %1</translation>
-    </message>
-    <message>
-        <source>0/unconfirmed, %1</source>
-        <translation>0/ανεπιβεβαίωτο, %1</translation>
+        <source>Error</source>
+        <translation>Σφάλμα</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1976,6 +1972,9 @@
         <translation>Μονάδα μέτρησης προβολής ποσών. Κάντε κλικ για επιλογή άλλης μονάδας.</translation>
     </message>
 </context>
+<context>
+    <name>WalletController</name>
+    </context>
 <context>
     <name>WalletFrame</name>
     </context>

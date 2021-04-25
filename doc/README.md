@@ -3,7 +3,7 @@ Blackcoin More
 
 Setup
 ---------------------
-Blackcoin More is experimental Blackcoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Blackcoin transactions (which is currently several GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Blackcoin More is experimental Blackcoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Blackcoin transactions (which is currently several GBs). Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
 To download Blackcoin More, visit [blackcoinmore.org](https://blackcoinmore.org).
 
@@ -43,21 +43,23 @@ The following are developer notes on how to build Blackcoin More on your native 
 - [macOS Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
+- [FreeBSD Build Notes](build-freebsd.md)
 - [OpenBSD Build Notes](build-openbsd.md)
 - [NetBSD Build Notes](build-netbsd.md)
-- [Gitian Building Guide](gitian-building.md)
+- [Gitian Building Guide (External Link)](https://github.com/bitcoin-core/docs/blob/master/gitian-building.md)
 
 Development
 ---------------------
 The Blackcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
+- [Productivity Notes](productivity.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
 - [Source Code Documentation (External Link)](https://dev.visucore.com/bitcoin/doxygen/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
-- [Travis CI](travis-ci.md)
+- [JSON-RPC Interface](JSON-RPC-interface.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Shared Libraries](shared-libraries.md)
 - [BIPS](bips.md)
@@ -71,6 +73,7 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
+- [bitcoin.conf Configuration File](bitcoin-conf.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
 - [Reduce Traffic](reduce-traffic.md)

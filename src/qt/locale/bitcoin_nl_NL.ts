@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Dit zijn uw Blackcoin adressen voor het versturen van betalingen. Controleer altijd het bedrag en het ontvangstadres voordat u munten verstuurd.</translation>
+        <translation>Dit zijn uw Bitcoin adressen voor het versturen van betalingen. Controleer altijd het bedrag en het ontvangstadres voordat u munten verstuurd.</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dit zijn uw Blackcoin adressen voor het ontvangen van betalingen. Het wordt aanbevolen om voor elke transactie een nieuw ontvangstadres te gebruiken.</translation>
+        <translation>Dit zijn uw Bitcoin adressen voor het ontvangen van betalingen. Het wordt aanbevolen om voor elke transactie een nieuw ontvangstadres te gebruiken.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Waarschuwing: Als je je portemonnee versleutelt en je wachtwoord kwijtraakt, raak je &lt;b&gt;AL JE BLACKCOINS KWIJT&lt;/b&gt;!</translation>
+        <translation>Waarschuwing: Als je je portemonnee versleutelt en je wachtwoord kwijtraakt, raak je &lt;b&gt;AL JE BITCOINS KWIJT&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -178,10 +178,6 @@
     <message>
         <source>Wallet encrypted</source>
         <translation>Portemonnee versleuteld</translation>
-    </message>
-    <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 zal nu sluiten om het versleutel proces te voltooien. Onthoudt dat het versleutelen van je portemonnee jouw blackcoins niet volledig van diefstal via malware kan beschermen.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -246,10 +242,6 @@
         <translation>&amp;Overzicht</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Node</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Toon algemeen overzicht van portemonnee</translation>
     </message>
@@ -306,14 +298,6 @@
         <translation>&amp;Wachtwoord Veranderen</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>&amp;Verzendadressen</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Ontvangadressen</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Open &amp;URL...</translation>
     </message>
@@ -339,7 +323,7 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Verstuur coins naar een Blackcoin adres</translation>
+        <translation>Verstuur coins naar een Bitcoin adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -363,11 +347,7 @@
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Portemonnee</translation>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -391,11 +371,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Signeer berichten met je Blackcoin adres om te bewijzen dat ze van jou zijn</translation>
+        <translation>Signeer berichten met je Bitcoin adres om te bewijzen dat ze van jou zijn</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verifieer berichten om er zeker van te zijn dat ze met specifieke Blackcoin adressen ondertekent zijn</translation>
+        <translation>Verifieer berichten om er zeker van te zijn dat ze met specifieke Bitcoin adressen ondertekent zijn</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -415,7 +395,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Betalingen aanvragen (genereert QR codes en blackcoin: URI's)</translation>
+        <translation>Betalingen aanvragen (genereert QR codes en bitcoin: URI's)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -427,7 +407,7 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Open een blackcoin: URI of betaalverzoek</translation>
+        <translation>Open een bitcoin: URI of betaalverzoek</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -471,7 +451,7 @@
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Open het %1 help bericht om een lijst met Blackcoin commando-regel opties te krijgen</translation>
+        <translation>Open het %1 help bericht om een lijst met Bitcoin commando-regel opties te krijgen</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -541,7 +521,7 @@
     </message>
     <message>
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>Een fatale error is voorgekomen. Blackcoin kan niet langer veilig verder gaan en sluit daardoor af.</translation>
+        <translation>Een fatale error is voorgekomen. Bitcoin kan niet langer veilig verder gaan en sluit daardoor af.</translation>
     </message>
 </context>
 <context>
@@ -692,7 +672,7 @@
     <name>Intro</name>
     <message>
         <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -993,6 +973,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>

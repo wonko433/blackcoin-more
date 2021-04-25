@@ -148,6 +148,10 @@
         <translation>نمایش گذرواژه</translation>
     </message>
     <message>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>کلمه رمز جدید را وارد کنید. &lt;br/&gt;لطفا کلمه رمزی که انتخاب میکنید &lt;b&gt;۱۰ یا بیشتر حرف تصادفی باشد &lt;b&gt; یا ۸ کلمه یا بیشتر باشد.</translation>
+    </message>
+    <message>
         <source>Encrypt wallet</source>
         <translation>رمزگذاری کیف پول</translation>
     </message>
@@ -198,6 +202,10 @@
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation>مهم: هر بک‌آپ قبلی که از کیف‌پول خود گرفته‌اید، با نسخه‌ی جدید رمزنگاری‌شده جایگزین خواهد شد. به دلایل امنیتی، پس از رمزنگاری کیف‌پول، بک‌آپ‌های قدیمی شما بلااستفاده خواهد شد.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>کیف بیت کوین رمزنگاری شد. به یاد داشته باشید رمزنگار کردن کیف بیت کوین نمیتواند به صورت کامل بیت کوین شما را در مقابل سرقت آنها توسط بدافزارهایی که ممکن است بر روی کامپیوتر شما نصب شوند، محافظت نماید.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -258,10 +266,6 @@
         <translation>بازبینی</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>گره</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>نمای کلی از wallet را نشان بده</translation>
     </message>
@@ -318,14 +322,6 @@
         <translation>تغییر رمز/پَس فرِیز</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>درحال ارسال آدرس‌ها…</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>دریافت آدرس ها</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>بازکردن آدرس...</translation>
     </message>
@@ -336,6 +332,10 @@
     <message>
         <source>default wallet</source>
         <translation>کیف پول پیش‌فرض</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>کیف:</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -388,10 +388,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>بیت کوین</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>کیف پول</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -508,6 +504,14 @@
     <message>
         <source>Connecting to peers...</source>
         <translation>در حال اتصال به همتاهای شبکه...</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;پنجره</translation>
+    </message>
+    <message>
+        <source>Connecting to peers...</source>
+        <translation>در حال اتصال به همتایان</translation>
     </message>
     <message>
         <source>Catching up...</source>
@@ -926,22 +930,6 @@
         <translation>اجرای خودکار %1 بعد زمان ورود به سیستم.</translation>
     </message>
     <message>
-        <source>Size of &amp;database cache</source>
-        <translation>اندازه کش پایگاه داده.</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>مگابایت</translation>
-    </message>
-    <message>
-        <source>&amp;Hide tray icon</source>
-        <translation> مخفی کردن نماد</translation>
-    </message>
-    <message>
-        <source>Open Configuration File</source>
-        <translation>بازکردن فایل پیکربندی</translation>
-    </message>
-    <message>
         <source>Reset all client options to default.</source>
         <translation>ریست تمامی تنظیمات کلاینت به پیشفرض</translation>
     </message>
@@ -1210,14 +1198,6 @@
 </context>
 <context>
     <name>PeerTableModel</name>
-    <message>
-        <source>Node/Service</source>
-        <translation>گره/خدمت</translation>
-    </message>
-    <message>
-        <source>NodeId</source>
-        <translation>شناسه گره</translation>
-    </message>
     <message>
         <source>Ping</source>
         <translation>پینگ</translation>
@@ -2529,6 +2509,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -2539,38 +2522,26 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>ارسال کوین ها یا سکه ها</translation>
-    </message>
-    <message>
-        <source>Increasing transaction fee failed</source>
-        <translation>افزایش کارمزد تراکنش با خطا مواجه شد</translation>
-    </message>
-    <message>
-        <source>Do you want to increase the fee?</source>
-        <translation>آیا میخواهید اندازه کارمزد را افزایش دهید؟</translation>
+        <translation>فرستادن سکه ها</translation>
     </message>
     <message>
         <source>Current fee:</source>
-        <translation>کارمزد الان:</translation>
+        <translation>دستمزد فعلی</translation>
     </message>
     <message>
         <source>Increase:</source>
-        <translation>افزایش دادن:</translation>
+        <translation>افزایش</translation>
     </message>
     <message>
         <source>New fee:</source>
-        <translation>کارمزد جدید:</translation>
-    </message>
-    <message>
-        <source>Can't sign transaction.</source>
-        <translation>نمیتوان تراکنش را ثبت کرد</translation>
+        <translation>تعرفه جدید</translation>
     </message>
     </context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;صدور</translation>
+        <translation>و صدور</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>

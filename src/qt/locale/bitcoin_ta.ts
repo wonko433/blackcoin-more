@@ -63,7 +63,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>இவை உங்கள் Blackcoin முகவரிகள் பணம் பெறுவதற்கு. ஒவ்வொரு பரிவர்த்தனைக்கும் புதிய பெறுதல் முகவரியைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது.</translation>
+        <translation>இவை உங்கள் Bitcoin முகவரிகள் பணம் பெறுவதற்கு. ஒவ்வொரு பரிவர்த்தனைக்கும் புதிய பெறுதல் முகவரியைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>கமா பிரிக்கப்பட்ட கோப்பு</translation>
+        <translation>கமா பிரிக்கப்பட்ட கோப்பு (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -174,6 +174,10 @@
     <message>
         <source>Wallet encrypted</source>
         <translation>கைப்பை குறியாக்கம் செய்யப்பட்டது</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>உங்கள் பணப்பை இப்போது குறியாக்கப்பட்டுள்ளது. உங்கள் கணினியைப் பாதிக்கும் தீம்பொருளால் திருடப்பட்டதில் இருந்து உங்கள் பணப்பை முழுவதையும் பாதுகாக்க முடியாது என்பதை நினைவில் கொள்க.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -298,10 +302,6 @@
         <translation>நெட்வொர்க் செயல்பாட்டை மீண்டும் இயக்க கிளிக் செய்க.</translation>
     </message>
     <message>
-        <source>Syncing Headers (%1%)...</source>
-        <translation>தலைப்புகளை ஒத்திசைக்கிறது (%1%)</translation>
-    </message>
-    <message>
         <source>Reindexing blocks on disk...</source>
         <translation>வட்டில் தொகுதிகளை மறுஇயக்குகிறது ...</translation>
     </message>
@@ -334,10 +334,6 @@
         <translation>Blackcoin</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>பணப்பை</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;அனுப்பு</translation>
     </message>
@@ -359,8 +355,7 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>
-உங்கள் பிட்டினின் முகவரியுடன் செய்திகளை உங்களிடம் வைத்திருப்பதை நிரூபிக்க</translation>
+        <translation>உங்கள் பிட்டினின் முகவரியுடன் செய்திகளை உங்களிடம் வைத்திருப்பதை நிரூபிக்க</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
@@ -384,7 +379,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>கொடுப்பனவுகளை கோருதல் (QR குறியீடுகள் மற்றும் blackcoin உருவாக்குகிறது: URI கள்)</translation>
+        <translation>கொடுப்பனவுகளை கோருதல் (QR குறியீடுகள் மற்றும் bitcoin உருவாக்குகிறது: URI கள்)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -396,12 +391,11 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>ஒரு Blackcoin திறக்க: URI அல்லது பணம் கோரிக்கை</translation>
+        <translation>ஒரு Bitcoin திறக்க: URI அல்லது பணம் கோரிக்கை</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>&amp; கட்டளை வரி விருப்பங்கள்
-</translation>
+        <translation>&amp; கட்டளை வரி விருப்பங்கள்</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -434,6 +428,34 @@
     <message>
         <source>Up to date</source>
         <translation>தேதி வரை</translation>
+    </message>
+    <message>
+        <source>&amp;Sending addresses</source>
+        <translation>முகவரிகள் அனுப்புகிறது</translation>
+    </message>
+    <message>
+        <source>&amp;Receiving addresses</source>
+        <translation>முகவரிகள் பெறுதல்</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;சாளரம்</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>குறைத்தல்</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>பெரிதாக்கு</translation>
+    </message>
+    <message>
+        <source>Restore</source>
+        <translation>மீட்டமை</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>முதன்மை சாளரம்</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
@@ -481,8 +503,11 @@
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>
-HD முக்கிய தலைமுறை முடக்கப்பட்டுள்ளது</translation>
+        <translation>HD முக்கிய தலைமுறை முடக்கப்பட்டுள்ளது</translation>
+    </message>
+    <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>தனிப்பட்ட விசை முடக்கப்பட்டது</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -533,7 +558,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>(un)select all</source>
-        <translation>அனைத்தையும் தேர்வுநீக்கு</translation>
+        <translation>(அனைத்தையும் தேர்வுநீக்கு)</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -605,7 +630,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Copy bytes</source>
-        <translation>நகல் கட்டணம்</translation>
+        <translation>பைட்டுகள் நகலெடுக்கவும்</translation>
     </message>
     <message>
         <source>Copy dust</source>
@@ -632,10 +657,6 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>(லேபிள் இல்லை)</translation>
     </message>
     <message>
-        <source>change from %1 (%2)</source>
-        <translation>%1 (%2) இலிருந்து மாற்றவும்</translation>
-    </message>
-    <message>
         <source>(change)</source>
         <translation>(மாற்றம்)</translation>
     </message>
@@ -649,6 +670,379 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     <message>
         <source>&amp;Label</source>
         <translation>&amp; சிட்டை</translation>
+    </message>
+    <message>
+        <source>The label associated with this address list entry</source>
+        <translation>இந்த முகவரி பட்டியலுடன் தொடர்புடைய லேபிள்</translation>
+    </message>
+    <message>
+        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
+        <translation>முகவரி முகவரியுடன் தொடர்புடைய முகவரி முகவரி. முகவரிகள் அனுப்புவதற்கு இது மாற்றியமைக்கப்படலாம்.</translation>
+    </message>
+    <message>
+        <source>&amp;Address</source>
+        <translation>&amp;முகவரி</translation>
+    </message>
+    <message>
+        <source>New sending address</source>
+        <translation>முகவரி அனுப்பும் புதியது</translation>
+    </message>
+    <message>
+        <source>Edit receiving address</source>
+        <translation>முகவரியைப் பெறுதல் திருத்து</translation>
+    </message>
+    <message>
+        <source>Edit sending address</source>
+        <translation>முகவரியை அனுப்புவதைத் திருத்து</translation>
+    </message>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>பணப்பை திறக்க முடியவில்லை.</translation>
+    </message>
+    <message>
+        <source>New key generation failed.</source>
+        <translation>புதிய முக்கிய தலைமுறை தோல்வியடைந்தது.</translation>
+    </message>
+</context>
+<context>
+    <name>FreespaceChecker</name>
+    <message>
+        <source>A new data directory will be created.</source>
+        <translation>புதிய தரவு அடைவு உருவாக்கப்படும்.</translation>
+    </message>
+    <message>
+        <source>name</source>
+        <translation>பெயர்</translation>
+    </message>
+    <message>
+        <source>Path already exists, and is not a directory.</source>
+        <translation>பாதை ஏற்கனவே உள்ளது, மற்றும் ஒரு அடைவு இல்லை.</translation>
+    </message>
+    <message>
+        <source>Cannot create data directory here.</source>
+        <translation>இங்கே தரவு அடைவு உருவாக்க முடியாது.</translation>
+    </message>
+</context>
+<context>
+    <name>HelpMessageDialog</name>
+    <message>
+        <source>version</source>
+        <translation>பதிப்பு</translation>
+    </message>
+    <message>
+        <source>Command-line options</source>
+        <translation>கட்டளை வரி விருப்பங்கள்</translation>
+    </message>
+</context>
+<context>
+    <name>Intro</name>
+    <message>
+        <source>Welcome</source>
+        <translation>நல்வரவு</translation>
+    </message>
+    <message>
+        <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
+        <translation>தடுப்பு சங்கிலி சேமிப்பகத்தை (கத்தரித்து) கட்டுப்படுத்த நீங்கள் தேர்ந்தெடுக்கப்பட்டிருந்தால், வரலாற்றுத் தரவுகள் இன்னும் பதிவிறக்கம் செய்யப்பட்டு, செயல்படுத்தப்பட வேண்டும், ஆனால் உங்கள் வட்டுப் பயன்பாட்டை குறைவாக வைத்திருப்பதற்குப் பிறகு நீக்கப்படும்.</translation>
+    </message>
+    <message>
+        <source>Use the default data directory</source>
+        <translation>இயல்புநிலை தரவு கோப்பகத்தைப் பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <source>Use a custom data directory:</source>
+        <translation>தனிப்பயன் தரவு கோப்பகத்தைப் பயன்படுத்தவும்:</translation>
+    </message>
+    <message>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
+    </message>
+    <message>
+        <source>The wallet will also be stored in this directory.</source>
+        <translation>பணத்தாள் இந்த அடைவில் சேமிக்கப்படும்.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>தவறு</translation>
+    </message>
+    </context>
+<context>
+    <name>ModalOverlay</name>
+    <message>
+        <source>Form</source>
+        <translation>படிவம்</translation>
+    </message>
+    <message>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <translation>சமீபத்திய பரிவர்த்தனைகள் இன்னும் காணப்படாமல் இருக்கலாம், எனவே உங்கள் பணப்பையின் சமநிலை தவறாக இருக்கலாம். கீழே விவரிக்கப்பட்டுள்ளபடி, உங்கள் பணப்பை பிட்ஃபோனை நெட்வொர்க்குடன் ஒத்திசைக்க முடிந்ததும் இந்த தகவல் சரியாக இருக்கும்.</translation>
+    </message>
+    <message>
+        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>இதுவரை காட்டப்படாத பரிவர்த்தனைகளால் பாதிக்கப்படும் பிட்னிக்களை செலவிடுவதற்கு முயற்சி பிணையத்தால் ஏற்கப்படாது.</translation>
+    </message>
+    <message>
+        <source>Number of blocks left</source>
+        <translation>மீதமுள்ள தொகுதிகள் உள்ளன</translation>
+    </message>
+    <message>
+        <source>Unknown...</source>
+        <translation>தெரியாதது ...</translation>
+    </message>
+    <message>
+        <source>Last block time</source>
+        <translation>கடைசி தடுப்பு நேரம்</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>முன்னேற்றம்</translation>
+    </message>
+    <message>
+        <source>Progress increase per hour</source>
+        <translation>மணி நேரத்திற்கு முன்னேற்றம் அதிகரிப்பு</translation>
+    </message>
+    <message>
+        <source>calculating...</source>
+        <translation>கணக்கிடுகிறது ...</translation>
+    </message>
+    <message>
+        <source>Estimated time left until synced</source>
+        <translation>ஒத்திசைக்கப்படும் வரை மதிப்பிடப்பட்ட நேரங்கள் உள்ளன</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>மறை</translation>
+    </message>
+    </context>
+<context>
+    <name>OpenURIDialog</name>
+    <message>
+        <source>Open URI</source>
+        <translation>URI-ஐ திற</translation>
+    </message>
+    <message>
+        <source>Open payment request from URI or file</source>
+        <translation>URI அல்லது கோப்பிலிருந்து பணம் செலுத்துவதற்கான கோரிக்கையைத் திறக்கவும்</translation>
+    </message>
+    <message>
+        <source>URI:</source>
+        <translation>URI:</translation>
+    </message>
+    <message>
+        <source>Select payment request file</source>
+        <translation>பணம் கோரிக்கை கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+    <message>
+        <source>Select payment request file to open</source>
+        <translation>திறக்க கட்டணம் கோரிக்கை கோப்பைத் தேர்ந்தெடுக்கவும்</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <source>Options</source>
+        <translation>விருப்பத்தேர்வு</translation>
+    </message>
+    <message>
+        <source>&amp;Main</source>
+        <translation>&amp;தலைமை</translation>
+    </message>
+    <message>
+        <source>Size of &amp;database cache</source>
+        <translation>&amp; தரவுத்தள தேக்ககத்தின் அளவு</translation>
+    </message>
+    <message>
+        <source>Number of script &amp;verification threads</source>
+        <translation>ஸ்கிரிப்ட் &amp; சரிபார்ப்பு நூல்கள் எண்ணிக்கை</translation>
+    </message>
+    <message>
+        <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
+        <translation>ப்ராக்ஸியின் IP முகவரி (எ.கா. IPv4: 127.0.0.1 / IPv6: :: 1)</translation>
+    </message>
+    <message>
+        <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
+        <translation>வழங்கப்பட்ட முன்னிருப்பு SOCKS5 ப்ராக்ஸி இந்த நெட்வொர்க் வகையின் மூலம் சகலருக்கும் சென்றால் பயன்படுத்தப்படுகிறது.</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
+        <translation>Tor மறைக்கப்பட்ட சேவைகளை வழியாக சகலரையும் அணுக தனித்த SOCKS &amp; 5 ப்ராக்ஸி பயன்படுத்தவும்</translation>
+    </message>
+    <message>
+        <source>Hide the icon from the system tray.</source>
+        <translation>கணினி தட்டில் இருந்து ஐகானை மறைக்கவும்.</translation>
+    </message>
+    <message>
+        <source>&amp;Hide tray icon</source>
+        <translation>தட்டில் ஐகானை மறை</translation>
+    </message>
+    <message>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
+        <translation>சாளரத்தை மூடும்போது பயன்பாட்டை வெளியேற்றுவதற்குப் பதிலாக சிறிதாக்கவும். இந்த விருப்பம் இயக்கப்பட்டால், மெனுவில் வெளியேறு தேர்வு செய்த பின் மட்டுமே பயன்பாடு மூடப்படும்.</translation>
+    </message>
+    <message>
+        <source>Open Configuration File</source>
+        <translation>கட்டமைப்பு கோப்பை திற</translation>
+    </message>
+    <message>
+        <source>Reset all client options to default.</source>
+        <translation>அனைத்து வாடிக்கையாளர் விருப்பங்களையும் இயல்புநிலைக்கு மீட்டமைக்கவும்.</translation>
+    </message>
+    <message>
+        <source>&amp;Reset Options</source>
+        <translation>&amp; மீட்டமை விருப்பங்கள்</translation>
+    </message>
+    <message>
+        <source>&amp;Network</source>
+        <translation>&amp;பிணையம்</translation>
+    </message>
+    <message>
+        <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
+        <translation>சில மேம்பட்ட அம்சங்களை முடக்குகிறது ஆனால் அனைத்து தொகுதிகள் இன்னும் முழுமையாக சரிபார்க்கப்படும். இந்த அமைப்பை மறுபரிசீலனை செய்வது முழுமையான blockchain ஐ மீண்டும் பதிவிறக்க வேண்டும். உண்மையான வட்டு பயன்பாடு ஓரளவு அதிகமாக இருக்கலாம்.</translation>
+    </message>
+    <message>
+        <source>Prune &amp;block storage to</source>
+        <translation>பிரவுன் &amp; தடுப்பு சேமிப்பு</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation>ஜிபி</translation>
+    </message>
+    <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain.</source>
+        <translation>இந்த அமைப்பை மறுபரிசீலனை செய்வது முழுமையான blockchain ஐ மீண்டும் பதிவிறக்க வேண்டும்.</translation>
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>மெபி.பை.</translation>
+    </message>
+    <message>
+        <source>(0 = auto, &lt;0 = leave that many cores free)</source>
+        <translation>(0 = தானாக, &lt;0 = பல கருக்கள் விடுபடுகின்றன)</translation>
+    </message>
+    <message>
+        <source>W&amp;allet</source>
+        <translation>&amp;பணப்பை</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>இல்லை</translation>
+    </message>
+    <message>
+        <source>Enable coin &amp;control features</source>
+        <translation>நாணயம் மற்றும் கட்டுப்பாட்டு அம்சங்களை இயக்கவும்</translation>
+    </message>
+    <message>
+        <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
+        <translation>உறுதிப்படுத்தப்படாத மாற்றத்தின் செலவினத்தை நீங்கள் முடக்கினால், பரிவர்த்தனையில் குறைந்தது ஒரு உறுதிப்படுத்தல் வரை பரிமாற்றத்திலிருந்து வரும் மாற்றம் பயன்படுத்தப்படாது. இது உங்கள் இருப்பு எவ்வாறு கணக்கிடப்படுகிறது என்பதைப் பாதிக்கிறது.</translation>
+    </message>
+    <message>
+        <source>&amp;Spend unconfirmed change</source>
+        <translation>&amp; உறுதிப்படுத்தப்படாத மாற்றத்தை செலவழிக்கவும்</translation>
+    </message>
+    <message>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>ரூட்டரில் Bitcoin கிளையன்ட் போர்ட் தானாக திறக்க. இது உங்கள் திசைவி UPnP ஐ ஆதரிக்கும் போது மட்டுமே இயங்குகிறது.</translation>
+    </message>
+    <message>
+        <source>Map port using &amp;UPnP</source>
+        <translation>&amp; UPnP ஐப் பயன்படுத்தி வரைபடம் துறைமுகம்</translation>
+    </message>
+    <message>
+        <source>Accept connections from outside.</source>
+        <translation>வெளியே இருந்து இணைப்புகளை ஏற்கவும்.</translation>
+    </message>
+    <message>
+        <source>Allow incomin&amp;g connections</source>
+        <translation>Incomin &amp; g இணைப்புகளை அனுமதிக்கவும்</translation>
+    </message>
+    <message>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <translation>Bitcoin பிணையத்துடன் SOCKS5 ப்ராக்ஸி மூலம் இணைக்கவும்.</translation>
+    </message>
+    <message>
+        <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
+        <translation>&amp; SOCKS5 ப்ராக்ஸி மூலம் இணைக்கவும் (இயல்புநிலை ப்ராக்ஸி):</translation>
+    </message>
+    <message>
+        <source>Proxy &amp;IP:</source>
+        <translation>ப்ராக்சி ஐ பி:</translation>
+    </message>
+    <message>
+        <source>&amp;Port:</source>
+        <translation>&amp; போர்ட்:</translation>
+    </message>
+    <message>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>ப்ராக்ஸியின் போர்ட் (எ.கா 9050)</translation>
+    </message>
+    <message>
+        <source>Used for reaching peers via:</source>
+        <translation>சகாக்கள் வழியாக வருவதற்குப் பயன்படுத்தப்பட்டது:</translation>
+    </message>
+    <message>
+        <source>IPv4</source>
+        <translation>IPv4</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(லேபிள் இல்லை)</translation>
+    </message>
+    <message>
+        <source>change from %1 (%2)</source>
+        <translation>%1 (%2) இலிருந்து மாற்றவும்</translation>
+    </message>
+    <message>
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>டார் மறைக்கப்பட்ட சேவைகளை தனித்த SOCKS5 ப்ராக்ஸி மூலம் பிட்கோடு நெட்வொர்க்குடன் இணைக்கவும்.</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;சாளரம்</translation>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <source>Show only a tray icon after minimizing the window.</source>
+        <translation>சாளரத்தை குறைப்பதன் பின்னர் ஒரு தட்டு ஐகானை மட்டும் காண்பி.</translation>
+    </message>
+    <message>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp; Taskbar க்கு பதிலாக தட்டில் குறைக்கவும்</translation>
+    </message>
+    <message>
+        <source>M&amp;inimize on close</source>
+        <translation>எம் &amp; நெருக்கமாக உள்ளமை</translation>
+    </message>
+    <message>
+        <source>&amp;Display</source>
+        <translation>&amp;காட்டு</translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation>பயனர் இடைமுகம் &amp; மொழி:</translation>
+    </message>
+    <message>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>&amp; அளவு:</translation>
+    </message>
+    <message>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>இடைமுகத்தில் காண்பிக்க மற்றும் நாணயங்களை அனுப்புகையில் இயல்புநிலை துணைப்பிரிவு யூனிட்டை தேர்வு செய்யவும்.</translation>
+    </message>
+    <message>
+        <source>Whether to show coin control features or not.</source>
+        <translation>நாணயக் கட்டுப்பாட்டு அம்சங்களைக் காட்டலாமா அல்லது இல்லையா.</translation>
+    </message>
+    <message>
+        <source>&amp;Third party transaction URLs</source>
+        <translation>&amp; மூன்றாம் தரப்பு பரிவர்த்தனை URL கள்</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation>இந்த உரையாடலில் அமைக்கப்பட்டுள்ள விருப்பங்கள் கட்டளை வரியில் அல்லது கட்டமைப்பு கோப்பில் மீளமைக்கப்படும்:</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;சரி</translation>
     </message>
     <message>
         <source>The label associated with this address list entry</source>
@@ -1152,7 +1546,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation>Blackcoin தொடங்க முடியாது: கிளிக் க்கு ஊதியம் கையாளுதல்</translation>
+        <translation>Bitcoin தொடங்க முடியாது: கிளிக் க்கு ஊதியம் கையாளுதல்</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1160,8 +1554,15 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'blackcoin: //' சரியான URI அல்ல. அதற்கு பதிலாக 'பிட்கின்:' பயன்படுத்தவும்.
-</translation>
+        <translation>'bitcoin: //' சரியான URI அல்ல. அதற்கு பதிலாக 'பிட்கின்:' பயன்படுத்தவும்.</translation>
+    </message>
+    <message>
+        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
+        <translation>நீங்கள் எதிர்காலத்தில் ஆதரிக்கப்படாத BIP70 URL ஐப் பயன்படுத்துகிறீர்கள்.</translation>
+    </message>
+    <message>
+        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
+        <translation>கட்டண கோரிக்கையை செயல்படுத்த முடியவில்லை, ஏனெனில் BIP70 ஆதரவு தொகுக்கப்படவில்லை.</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
@@ -1198,14 +1599,6 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     <message>
         <source>Invalid payment request.</source>
         <translation>தவறான கட்டண கோரிக்கை.</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>கட்டணம் கோரிக்கை %1 மிக அதிகமாக உள்ளது (%2 பைட்டுகள், அனுமதிக்கப்பட்ட %3 பைட்டுகள்).</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>%1: %2 உடன் தொடர்புகொள்வதில் பிழை</translation>
     </message>
     <message>
         <source>Payment request cannot be parsed!</source>
@@ -1308,10 +1701,6 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
 </context>
 <context>
     <name>QObject::QObject</name>
-    <message>
-        <source>Error parsing command line arguments: %1.</source>
-        <translation>கட்டளை வரி வாதங்களைப் பாகுபடுத்துவதில் பிழை: %1.</translation>
-    </message>
     </context>
 <context>
     <name>QRImageWidget</name>
@@ -1325,8 +1714,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Save QR Code</source>
-        <translation>QR குறியீடு சேமிக்கவும்
-</translation>
+        <translation>QR குறியீடு சேமிக்கவும்</translation>
     </message>
     <message>
         <source>PNG Image (*.png)</source>
@@ -1357,12 +1745,15 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Using BerkeleyDB version</source>
-        <translation>BerkeleyDB பதிப்பைப் பயன்படுத்துதல்
-</translation>
+        <translation>BerkeleyDB பதிப்பைப் பயன்படுத்துதல்</translation>
     </message>
     <message>
         <source>Datadir</source>
         <translation>Datadir</translation>
+    </message>
+    <message>
+        <source>Blocksdir</source>
+        <translation>Blocksdir</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1410,8 +1801,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>&amp;Reset</source>
-        <translation>
-&amp; மீட்டமை</translation>
+        <translation>&amp; மீட்டமை</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1471,8 +1861,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Services</source>
-        <translation>
-சேவைகள்</translation>
+        <translation>சேவைகள்</translation>
     </message>
     <message>
         <source>Ban Score</source>
@@ -1500,8 +1889,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Ping Wait</source>
-        <translation>பிங் காத்திருக்கவும்
-</translation>
+        <translation>பிங் காத்திருக்கவும்</translation>
     </message>
     <message>
         <source>Min Ping</source>
@@ -1632,7 +2020,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
-        <translation>கோரிக்கையை திறக்கும் போது காட்டப்படும் இது பணம் கோரிக்கை இணைக்க ஒரு விருப்ப செய்தி. குறிப்பு: Blackcoin நெட்வொர்க்கில் பணம் செலுத்தியவுடன் செய்தி அனுப்பப்படாது.</translation>
+        <translation>கோரிக்கையை திறக்கும் போது காட்டப்படும் இது பணம் கோரிக்கை இணைக்க ஒரு விருப்ப செய்தி. குறிப்பு: Bitcoin நெட்வொர்க்கில் பணம் செலுத்தியவுடன் செய்தி அனுப்பப்படாது.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1655,11 +2043,11 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
         <translation>நீக்கு</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>நேட்டிவ் செக்யூரிட் முகவரிகள் (ach Bech32 அல்லது BIP-173) உங்கள் பரிவர்த்தனைக் கட்டணத்தை பின்னர் குறைக்க மற்றும் எழுத்துப்பிழைகள் எதிராக சிறந்த பாதுகாப்பு வழங்க, ஆனால் பழைய பணப்பைகள் அவர்களுக்கு ஆதரவு இல்லை. Unchecked போது, ​​பழைய பணப்பைகள் இணக்கமான ஒரு முகவரியை பதிலாக உருவாக்கப்படும்.</translation>
     </message>
     <message>
-        <source>Generate Bech32 address</source>
+        <source>Generate native segwit (Bech32) address</source>
         <translation>சொந்த segwit (Bech32) முகவரியை உருவாக்குங்கள்</translation>
     </message>
     <message>
@@ -1680,8 +2068,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Remove the selected entries from the list</source>
-        <translation>பட்டியலில் இருந்து தேர்ந்தெடுக்கப்பட்ட உள்ளீடுகளை நீக்கவும்
-</translation>
+        <translation>பட்டியலில் இருந்து தேர்ந்தெடுக்கப்பட்ட உள்ளீடுகளை நீக்கவும்</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -1752,8 +2139,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>யு.ஐ.ஐ. முடிவுக்கு நீண்ட காலம், லேபிள் / செய்திக்கு உரைகளை குறைக்க முயற்சிக்கவும்.
-</translation>
+        <translation>யு.ஐ.ஐ. முடிவுக்கு நீண்ட காலம், லேபிள் / செய்திக்கு உரைகளை குறைக்க முயற்சிக்கவும்.</translation>
     </message>
     <message>
         <source>Error encoding URI into QR Code.</source>
@@ -1780,8 +2166,7 @@ HD முக்கிய தலைமுறை முடக்கப்பட்
     </message>
     <message>
         <source>(no message)</source>
-        <translation>(எந்த செய்தியும் இல்லை)
-</translation>
+        <translation>(எந்த செய்தியும் இல்லை)</translation>
     </message>
     <message>
         <source>(no amount requested)</source>
@@ -1876,8 +2261,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>per kilobyte</source>
-        <translation>ஒரு கிலோபைட்
-</translation>
+        <translation>ஒரு கிலோபைட்</translation>
     </message>
     <message>
         <source>Hide</source>
@@ -1901,8 +2285,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Add &amp;Recipient</source>
-        <translation>சேர் &amp; பெறுக
-</translation>
+        <translation>சேர் &amp; பெறுக</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -1911,6 +2294,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Dust:</source>
         <translation>டஸ்ட்</translation>
+    </message>
+    <message>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>தொகுதிகள் உள்ள இடத்தை விட குறைவான பரிவர்த்தனை அளவு இருக்கும் போது, ​​சுரங்க தொழிலாளர்கள் மற்றும் ரிலேடிங் முனைகள் குறைந்தபட்ச கட்டணத்தைச் செயல்படுத்தலாம். இந்த குறைந்தபட்ச கட்டணத்தை மட்டும் செலுத்துவது நன்றாக உள்ளது, ஆனால் நெட்வொர்க்கில் செயல்படுவதை விட bitcoin பரிவர்த்தனைகளுக்கு இன்னும் கோரிக்கை தேவைப்பட்டால் இது ஒருபோதும் உறுதிப்படுத்தாத பரிவர்த்தனைக்கு காரணமாக இருக்கலாம்.</translation>
+    </message>
+    <message>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation>ஒரு மிக குறைந்த கட்டணம் ஒரு உறுதி பரிவர்த்தனை விளைவாக (உதவிக்குறிப்பு வாசிக்க)</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -2055,10 +2446,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 <context>
     <name>TransactionView</name>
     <message>
-        <source>Today</source>
-        <translation>இன்று</translation>
-    </message>
-    <message>
         <source>Copy address</source>
         <translation>முகவரி முகவரியை நகலெடுக்கவும்</translation>
     </message>
@@ -2077,10 +2464,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Comma separated file (*.csv)</source>
         <translation>கமா பிரிக்கப்பட்ட கோப்பு</translation>
-    </message>
-    <message>
-        <source>Confirmed</source>
-        <translation>உறுதியாக</translation>
     </message>
     <message>
         <source>Date</source>
@@ -2103,6 +2486,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
+    <name>WalletController</name>
+    </context>
+<context>
     <name>WalletFrame</name>
     </context>
 <context>
@@ -2114,10 +2500,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </context>
 <context>
     <name>WalletView</name>
-    <message>
-        <source>&amp;Export</source>
-        <translation>&amp;ஏற்றுமதி</translation>
-    </message>
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>தற்போதைய தாவலில் தரவை ஒரு கோப்பிற்கு ஏற்றுமதி செய்க</translation>

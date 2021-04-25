@@ -74,7 +74,7 @@ const char* ScriptErrorString(const ScriptError serror)
         case SCRIPT_ERR_CLEANSTACK:
             return "Extra items left on stack after execution";
         case SCRIPT_ERR_OP_CODESEPARATOR:
-            return "Using OP_CODESEPARATOR in non-witness script";
+            return "Using OP_CODESEPARATOR";
         case SCRIPT_ERR_SIG_FINDANDDELETE:
             return "Signature is found in scriptCode";
         case SCRIPT_ERR_UNKNOWN_ERROR:

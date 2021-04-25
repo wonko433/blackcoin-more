@@ -46,7 +46,7 @@ The paths are automatically configured and no other options are needed unless ta
 
     sudo apt-get install curl librsvg2-bin libtiff-tools bsdmainutils cmake imagemagick libcap-dev libz-dev libbz2-dev python3-setuptools libtinfo5
 
-#### For Win64 cross compilation
+#### For Win32/Win64 cross compilation
 
 - see [build-windows.md](../doc/build-windows.md#cross-compilation-for-ubuntu-and-windows-subsystem-for-linux)
 
@@ -64,10 +64,6 @@ For linux AARCH64 cross compilation:
 
     sudo apt-get install g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
-For linux POWER 64-bit cross compilation (there are no packages for 32-bit):
-
-    sudo apt-get install g++-powerpc64-linux-gnu binutils-powerpc64-linux-gnu g++-powerpc64le-linux-gnu binutils-powerpc64le-linux-gnu
-
 For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 
     sudo apt-get install g++-riscv64-linux-gnu binutils-riscv64-linux-gnu
@@ -75,53 +71,20 @@ For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 RISC-V known issue: gcc-7.3.0 and gcc-7.3.1 result in a broken `test_bitcoin` executable (see https://github.com/bitcoin/bitcoin/pull/13543),
 this is apparently fixed in gcc-8.1.0.
 
-For linux S390X cross compilation:
-
-    sudo apt-get install g++-s390x-linux-gnu binutils-s390x-linux-gnu
-
 ### Dependency Options
-The following can be set when running make: `make FOO=bar`
+The following can be set when running make: make FOO=bar
 
-<dl>
-<dt>SOURCES_PATH</dt>
-<dd>downloaded sources will be placed here</dd>
-<dt>BASE_CACHE</dt>
-<dd>built packages will be placed here</dd>
-<dt>SDK_PATH</dt>
-<dd>Path where sdk's can be found (used by macOS)</dd>
-<dt>FALLBACK_DOWNLOAD_PATH</dt>
-<dd>If a source file can't be fetched, try here before giving up</dd>
-<dt>NO_QT</dt>
-<dd>Don't download/build/cache qt and its dependencies</dd>
-<dt>NO_QR</dt>
-<dd>Don't download/build/cache packages needed for enabling qrencode</dd>
-<dt>NO_ZMQ</dt>
-<dd>Don't download/build/cache packages needed for enabling zeromq</dd>
-<dt>NO_WALLET</dt>
-<dd>Don't download/build/cache libs needed to enable the wallet</dd>
-<dt>NO_BDB</dt>
-<dd>Don't download/build/cache BerkeleyDB</dd>
-<dt>NO_SQLITE</dt>
-<dd>Don't download/build/cache SQLite</dd>
-<dt>NO_UPNP</dt>
-<dd>Don't download/build/cache packages needed for enabling upnp</dd>
-<dt>ALLOW_HOST_PACKAGES</dt>
-<dd>Packages that are missed in dependencies (due to `NO_*` option or
-build script logic) are searched for among the host system packages using
-`pkg-config`. It allows building with packages of other (newer) versions</dd>
-<dt>MULTIPROCESS</dt>
-<dd>build libmultiprocess (experimental, requires cmake)</dd>
-<dt>DEBUG</dt>
-<dd>disable some optimizations and enable more runtime checking</dd>
-<dt>HOST_ID_SALT</dt>
-<dd>Optional salt to use when generating host package ids</dd>
-<dt>BUILD_ID_SALT</dt>
-<dd>Optional salt to use when generating build package ids</dd>
-<dt>FORCE_USE_SYSTEM_CLANG</dt>
-<dd>(EXPERTS ONLY) When cross-compiling for macOS, use Clang found in the
-system's <code>$PATH</code> rather than the default prebuilt release of Clang
-from llvm.org. Clang 8 or later is required.</dd>
-</dl>
+    SOURCES_PATH: downloaded sources will be placed here
+    BASE_CACHE: built packages will be placed here
+    SDK_PATH: Path where sdk's can be found (used by macOS)
+    FALLBACK_DOWNLOAD_PATH: If a source file can't be fetched, try here before giving up
+    NO_QT: Don't download/build/cache qt and its dependencies
+    NO_WALLET: Don't download/build/cache libs needed to enable the wallet
+    NO_UPNP: Don't download/build/cache packages needed for enabling upnp
+    DEBUG: disable some optimizations and enable more runtime checking
+    RAPIDCHECK: build rapidcheck (experimental)
+    HOST_ID_SALT: Optional salt to use when generating host package ids
+    BUILD_ID_SALT: Optional salt to use when generating build package ids
 
 If some packages are not built, for example `make NO_WALLET=1`, the appropriate
 options will be passed to bitcoin's configure. In this case, `--disable-wallet`.

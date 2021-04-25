@@ -67,11 +67,11 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tai yra jūsų Blackcoin adresai išeinantiems mokėjimams. Visada pasitikrinkite sumą ir gavėjo adresą prieš siunčiant lėšas. </translation>
+        <translation>Tai yra jūsų Bitcoin adresai išeinantiems mokėjimams. Visada pasitikrinkite sumą ir gavėjo adresą prieš siunčiant lėšas. </translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Tai yra Jūsų Blackcoin adresai įeinantiems mokėjimams. Kiekvienam mokėjimui rekomenduojama naudoti naują adresą. </translation>
+        <translation>Tai yra Jūsų Bitcoin adresai įeinantiems mokėjimams. Kiekvienam mokėjimui rekomenduojama naudoti naują adresą. </translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Dėmesio: jei užšifruosite savo piniginę ir pamesite slaptafrazę, jūs&lt;b&gt;PRARASITE VISUS SAVO BLACKCOINUS&lt;/b&gt;! </translation>
+        <translation>Dėmesio: jei užšifruosite savo piniginę ir pamesite slaptafrazę, jūs&lt;b&gt;PRARASITE VISUS SAVO BITCOINUS&lt;/b&gt;! </translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -188,8 +188,8 @@
         <translation>Piniginė užšifruota</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>%1 dabar užsidarys šifravimo proceso pabaigai. Atminkite, kad piniginės šifravimas negali pilnai apsaugoti blackcoinų vagysčių kai tinkle esančios kenkėjiškos programos patenka į jūsų kompiuterį.</translation>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Jūsų piniginė yra užšifruota. Prisiminkite kad pinigės užšifravimas neapsaugos jūsų bitcoins nuo kenkėjiškų programų užkrėtusių jūsų kompiuterį.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -254,10 +254,6 @@
         <translation>&amp;Apžvalga</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Taškas</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Rodyti piniginės bendrą apžvalgą</translation>
     </message>
@@ -314,16 +310,28 @@
         <translation>&amp;Keisti slaptafrazę...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>&amp;Siunčiami adresai...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Gaunami adresai...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Atidaryti &amp;URI...</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Piniginė</translation>
+    </message>
+    <message>
+        <source>Click to disable network activity.</source>
+        <translation>Spauskite norėdami išjungti tinklo veiklą.</translation>
+    </message>
+    <message>
+        <source>Network activity disabled.</source>
+        <translation>Tinklo veikla išjungta.</translation>
+    </message>
+    <message>
+        <source>Click to enable network activity again.</source>
+        <translation>Spauskite norėdami įjungti tinklo veiklą.</translation>
+    </message>
+    <message>
+        <source>Syncing Headers (%1%)...</source>
+        <translation>Sinchronizuojamos Antraštės (%1%)...</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -386,10 +394,6 @@
         <translation>Blackcoin</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Piniginė</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;Siųsti</translation>
     </message>
@@ -411,11 +415,11 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Pasirašydami žinutes su savo Blackcoin adresais įrodysite jog esate jų savininkas </translation>
+        <translation>Pasirašydami žinutes su savo Bitcoin adresais įrodysite jog esate jų savininkas </translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Blackcoin adresas</translation>
+        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Bitcoin adresas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -435,11 +439,11 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Reikalauti mokėjimų (sukuria QR kodą ir blackcoin: URI)</translation>
+        <translation>Reikalauti mokėjimų (sukuria QR kodus ir bitcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>Rodyti sąrašą panaudotų adresų ir etikečų</translation>
+        <translation>Rodyti sąrašą panaudotų siuntimo adresų ir žymių</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
@@ -447,11 +451,39 @@
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
-        <translation>Atidaryti blackcoin: URI ar apmokėjimo reikalavimą</translation>
+        <translation>Atidaryti bitcoin: URI ar apmokėjimo reikalavimą</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>Komandinės eilutės parametrai</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n Bitcoin tinklo aktyvus ryšys</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform><numerusform>%n Bitcoin tinklo aktyvūs ryšiai</numerusform></translation>
+    </message>
+    <message>
+        <source>Indexing blocks on disk...</source>
+        <translation>Blokai iš naujo indeksuojami...</translation>
+    </message>
+    <message>
+        <source>Processing blocks on disk...</source>
+        <translation>Blokai apdirbami diske...</translation>
+    </message>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation><numerusform>Apdirbtas %n blokas transakcijų istorijoje.</numerusform><numerusform>Apdirbti %n blokas transakcijų istorijoje.</numerusform><numerusform>Apdirbti %n blokas transakcijų istorijoje.</numerusform><numerusform>Apdirbti %n blokas transakcijų istorijoje.</numerusform></translation>
+    </message>
+    <message>
+        <source>%1 behind</source>
+        <translation>%1 atsilieka</translation>
+    </message>
+    <message>
+        <source>Last received block was generated %1 ago.</source>
+        <translation>Paskutinis gautas blokas buvo sukurtas prieš %1.</translation>
+    </message>
+    <message>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation>Sekančios operacijos dar nebus matomos. </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -490,8 +522,64 @@
         <translation>Atnaujinta</translation>
     </message>
     <message>
+        <source>&amp;Sending addresses</source>
+        <translation>&amp;Siunčiami adresai</translation>
+    </message>
+    <message>
+        <source>&amp;Receiving addresses</source>
+        <translation>&amp;Gaunami adresai</translation>
+    </message>
+    <message>
+        <source>Open Wallet</source>
+        <translation>Atidaryti Piniginę</translation>
+    </message>
+    <message>
+        <source>Open a wallet</source>
+        <translation>Atidaryti Piniginę</translation>
+    </message>
+    <message>
+        <source>Close Wallet...</source>
+        <translation>Uždaryti Piniginę</translation>
+    </message>
+    <message>
+        <source>Close wallet</source>
+        <translation>Uždaryti Piniginę</translation>
+    </message>
+    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>Rodyti %1 pagalbos žinutę su Blackcoin pasirinkimo komandomis</translation>
+        <translation>Rodyti %1 pagalbos žinutę su Bitcoin pasirinkimo komandomis</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>numatyta piniginė</translation>
+    </message>
+    <message>
+        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Atidaroma Piniginė &lt;b&gt;%1&lt;/b&gt;...</translation>
+    </message>
+    <message>
+        <source>Open Wallet Failed</source>
+        <translation>Nepavyko atidaryti piniginę</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Langas</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>Sumažinti</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>Priartinti</translation>
+    </message>
+    <message>
+        <source>Restore</source>
+        <translation>Atkurti</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>Pagrindinis langas</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -558,6 +646,10 @@
         <translation>HD rakto generacija &lt;b&gt;išjungta&lt;/b&gt;</translation>
     </message>
     <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>Privatus raktas &lt;b&gt;išjungtas&lt;/b&gt;</translation>
+    </message>
+    <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Piniginė &lt;b&gt;užšifruota&lt;/b&gt; ir šiuo metu &lt;b&gt;atrakinta&lt;/b&gt;</translation>
     </message>
@@ -567,7 +659,7 @@
     </message>
     <message>
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>Kritinė klaida. Blackcoin nebegali tęsti saugiai ir bus išjungtas.</translation>
+        <translation>Kritinė klaida. Bitcoin nebegali tęsti saugiai ir bus išjungtas.</translation>
     </message>
 </context>
 <context>
@@ -716,9 +808,12 @@
         <source>change from %1 (%2)</source>
         <translation>pakeisti nuo %1 (%2)</translation>
     </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
     <message>
         <source>(change)</source>
-        <translation>(Graža)</translation>
+        <translation>(graža)</translation>
     </message>
 </context>
 <context>
@@ -757,7 +852,7 @@
     </message>
     <message>
         <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Įvestas adresas „%1“ nėra galiojantis Blackcoin adresas.</translation>
+        <translation>Įvestas adresas „%1“ nėra galiojantis Bitcoin adresas.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -771,6 +866,9 @@
         <source>Could not unlock wallet.</source>
         <translation>Nepavyko atrakinti piniginės.</translation>
     </message>
+</context>
+<context>
+    <name>FreespaceChecker</name>
     <message>
         <source>New key generation failed.</source>
         <translation>Naujo rakto generavimas nepavyko.</translation>
@@ -794,6 +892,9 @@
         <source>Path already exists, and is not a directory.</source>
         <translation>Takas jau egzistuoja, ir tai nėra katalogas.</translation>
     </message>
+</context>
+<context>
+    <name>HelpMessageDialog</name>
     <message>
         <source>Cannot create data directory here.</source>
         <translation>Negalima sukurti duomenų katalogo.</translation>
@@ -813,16 +914,12 @@
         <source>About %1</source>
         <translation>&amp;Apie %1</translation>
     </message>
-    <message>
-        <source>Command-line options</source>
-        <translation>Komandinės eilutės parametrai</translation>
-    </message>
 </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>Welcome</source>
-        <translation>Sveiki</translation>
+        <source>Command-line options</source>
+        <translation>Komandinės eilutės parametrai</translation>
     </message>
     <message>
         <source>Welcome to %1.</source>
@@ -882,6 +979,77 @@
     </message>
     </context>
 <context>
+    <name>Intro</name>
+    <message>
+        <source>Welcome</source>
+        <translation>Sveiki</translation>
+    </message>
+    <message>
+        <source>Welcome to %1.</source>
+        <translation>Sveiki atvykę į %1.</translation>
+    </message>
+    <message>
+        <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
+        <translation>Kadangi tai yra pirmas kartas, kai programa paleidžiama, galite pasirinkti, kur %1 išsaugos savo duomenis.</translation>
+    </message>
+    <message>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <translation>Spustelėjus Gerai, %1 pradės atsisiųsti ir apdoroti visą %4 blokų grandinę (%2GB), pradedant nuo ankstesnių operacijų %3, kai iš pradžių buvo paleista %4.</translation>
+    </message>
+    <message>
+        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
+        <translation>Ši pradinė sinchronizacija yra labai sudėtinga ir gali sukelti kompiuterio techninės įrangos problemas, kurios anksčiau buvo nepastebėtos. Kiekvieną kartą, kai paleidžiate %1, jis tęs parsisiuntimą ten, kur jis buvo išjungtas.</translation>
+    </message>
+    <message>
+        <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
+        <translation>Jei pasirinkote apriboti blokavimo grandinės saugojimą (genėjimas), istoriniai duomenys vis tiek turi būti atsisiunčiami ir apdorojami, bet vėliau bus ištrinti, kad diskų naudojimas būtų mažas.</translation>
+    </message>
+    <message>
+        <source>Use the default data directory</source>
+        <translation>Naudoti numatytajį duomenų katalogą</translation>
+    </message>
+    <message>
+        <source>Use a custom data directory:</source>
+        <translation>Naudoti kitą duomenų katalogą:</translation>
+    </message>
+    <message>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
+    </message>
+    <message>
+        <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
+        <translation>Šiame kataloge bus saugomi bent %1 GB duomenų, kurie laikui bėgant didės.</translation>
+    </message>
+    <message>
+        <source>Approximately %1 GB of data will be stored in this directory.</source>
+        <translation>Šiame kataloge bus saugoma maždaug apie %1 GB duomenų.</translation>
+    </message>
+    <message>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+        <translation>%1 bus atsisiųsta ir išsaugota Bitcoin blokų grandinės kopiją.</translation>
+    </message>
+    <message>
+        <source>The wallet will also be stored in this directory.</source>
+        <translation>Piniginė taip pat bus saugojama šiame direktyve.</translation>
+    </message>
+    <message>
+        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <translation>Klaida: negali būti sukurtas nurodytas duomenų katalogas „%1“.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Klaida</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n GB of free space available</source>
+        <translation><numerusform>%n GB laisvos vietos</numerusform><numerusform>%n GB laisvos vietos</numerusform><numerusform>%n GB laisvos vietos</numerusform><numerusform>%n GB laisvos vietos</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform><numerusform>(reikalinga %n GB)</numerusform></translation>
+    </message>
+</context>
+<context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
@@ -889,11 +1057,11 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation>Naujausi sandoriai gali būti dar nematomi, todėl jūsų piniginės likutis gali būti neteisingas. Ši informacija bus teisinga, kai jūsų piniginė bus baigta sinchronizuoti su blackcoin tinklu, kaip nurodyta žemiau.</translation>
+        <translation>Naujausi sandoriai gali būti dar nematomi, todėl jūsų piniginės likutis gali būti neteisingas. Ši informacija bus teisinga, kai jūsų piniginė bus baigta sinchronizuoti su bitcoin tinklu, kaip nurodyta žemiau.</translation>
     </message>
     <message>
         <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Tinklas nepriims bandymų išleisti blackcoinus, kurie yra vis dar nematomi.</translation>
+        <translation>Tinklas nepriims bandymų išleisti bitcoinus, kurie yra vis dar nematomi.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -903,14 +1071,23 @@
         <source>Unknown...</source>
         <translation>Nežinomas...</translation>
     </message>
+</context>
+<context>
+    <name>UnitDisplayStatusBarControl</name>
     <message>
         <source>Last block time</source>
         <translation>Paskutinio bloko laikas</translation>
     </message>
+</context>
+<context>
+    <name>WalletFrame</name>
     <message>
         <source>Progress</source>
         <translation>Progresas</translation>
     </message>
+</context>
+<context>
+    <name>WalletModel</name>
     <message>
         <source>Progress increase per hour</source>
         <translation>Pažangos didėjimas per valandą</translation>
@@ -927,7 +1104,11 @@
         <source>Hide</source>
         <translation>Slėpti</translation>
     </message>
-    </context>
+    <message>
+        <source>Unknown. Syncing Headers (%1, %2%)...</source>
+        <translation>Nežinomas. Sinchronizuojamos Antraštės (%1, %2%)...</translation>
+    </message>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -966,16 +1147,8 @@
         <translation>Automatiškai paleisti %1 po prisijungimo prie sistemos.</translation>
     </message>
     <message>
-        <source>&amp;Start %1 on system login</source>
-        <translation>&amp;Pradėti %1 sistemos prisijungimo metu</translation>
-    </message>
-    <message>
         <source>Size of &amp;database cache</source>
         <translation>&amp;Duomenų bazės talpyklos dydis</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
     </message>
     <message>
         <source>Number of script &amp;verification threads</source>
@@ -1046,6 +1219,10 @@
         <translation>Jei norite grąžinti šį nustatymą, reikia iš naujo atsisiųsti visą bloko grandinę.</translation>
     </message>
     <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
+    </message>
+    <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
         <translation>(0 = automatinis, &lt;0 = palikti tiek nenaudojamų branduolių)</translation>
     </message>
@@ -1071,7 +1248,7 @@
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatiškai atidaryti Blackcoin kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
+        <translation>Automatiškai atidaryti Bitcoin kliento prievadą maršrutizatoriuje. Tai veikia tik tada, kai jūsų maršrutizatorius palaiko UPnP ir ji įjungta.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1087,7 +1264,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
-        <translation>Prisijunkite prie „Blackcoin“ tinklo per SOCKS5 proxy.</translation>
+        <translation>Prisijunkite prie „Bitcoin“ tinklo per SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1123,7 +1300,7 @@
     </message>
     <message>
         <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Prisijunkite prie „Blackcoin“ tinklo per atskirą „SOCKS5“ proxy „Tor“ paslėptas paslaugas.</translation>
+        <translation>Prisijunkite prie „Bitcoin“ tinklo per atskirą „SOCKS5“ proxy „Tor“ paslėptas paslaugas.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1168,6 +1345,10 @@
     <message>
         <source>&amp;Third party transaction URLs</source>
         <translation>&amp;Trečiųjų šalių sandorių URL</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation>Šiame dialogo lange nustatytos parinktys yra panaikintos komandų eilutėje arba konfigūracijos faile:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1230,7 +1411,7 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Rodoma informacija gali būti pasenusi. Piniginė automatiškai sinchronizuojasi su „Blackcoin“ tinklu po ryšio užmezgimo, tačiau šis procesas dar nebaigtas.</translation>
+        <translation>Rodoma informacija gali būti pasenusi. Piniginė automatiškai sinchronizuojasi su „Bitcoin“ tinklu po ryšio užmezgimo, tačiau šis procesas dar nebaigtas.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1305,7 +1486,7 @@
     </message>
     <message>
         <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation>Negalima paleisti blackcoin: paspauskite sumokėti tvarkytojui</translation>
+        <translation>Negalima paleisti bitcoin: paspauskite sumokėti tvarkytojui</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1313,11 +1494,19 @@
     </message>
     <message>
         <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>„blackcoin: //“ nėra galiojantis URI. Vietoj to naudokite „blackcoin:“.</translation>
+        <translation>„bitcoin: //“ nėra galiojantis URI. Vietoj to naudokite „bitcoin:“.</translation>
+    </message>
+    <message>
+        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
+        <translation>Jūs naudojate BIP70 URL, kuris ateityje nebus palaikomas.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation>Mokėjimo užklausos atsiuntimo URL neteisingas: %1</translation>
+    </message>
+    <message>
+        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
+        <translation>Nepavyksta apdoroti mokėjimo užklausos, nes „BIP70“ pagalba nebuvo surinkta.</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
@@ -1325,7 +1514,7 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
-        <translation>URI negalima perskaityti! Tai gali sukelti negaliojantys „Blackcoin“ adresas arba netinkami URI parametrai.</translation>
+        <translation>URI negalima perskaityti! Tai gali sukelti negaliojantys „Bitcoin“ adresas arba netinkami URI parametrai.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1427,7 +1616,7 @@
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Įveskite Blackcoin adresą (pvz., %1)</translation>
+        <translation>Įveskite Bitcoin adresą (pvz., %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1457,9 +1646,33 @@
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation><numerusform>%n sekundė</numerusform><numerusform>%n sekundžių</numerusform><numerusform>%n sekundžių</numerusform><numerusform>%n sekundžių</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation><numerusform>%n minutė</numerusform><numerusform>%n minučių</numerusform><numerusform>%n minučių</numerusform><numerusform>%n minučių</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n valandą</numerusform><numerusform>%n valandas</numerusform><numerusform>%n valandų</numerusform><numerusform>%n valandų</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation><numerusform>%n dieną</numerusform><numerusform>%n dienas</numerusform><numerusform>%n dienų</numerusform><numerusform>%n dienų</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation><numerusform>%n savaitę</numerusform><numerusform>%n savaites</numerusform><numerusform>%n savaičių</numerusform><numerusform>%n savaičių</numerusform></translation>
+    </message>
     <message>
         <source>%1 and %2</source>
         <translation>%1 ir %2</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation><numerusform>%n metus</numerusform><numerusform>%n metus</numerusform><numerusform>%n metų</numerusform><numerusform>%n metų</numerusform></translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1553,6 +1766,14 @@
     <message>
         <source>Datadir</source>
         <translation>Datadir</translation>
+    </message>
+    <message>
+        <source>Blocksdir</source>
+        <translation>Blocksdir</translation>
+    </message>
+    <message>
+        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
+        <translation>Jei norite nurodyti blokų katalogo vietą, naudokite parinktį „%1“.</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1656,7 +1877,7 @@
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation>Sumažinkite šrifto dydį</translation>
+        <translation>Sumažinti šrifto dydį</translation>
     </message>
     <message>
         <source>Increase font size</source>
@@ -1688,7 +1909,7 @@
     </message>
     <message>
         <source>The duration of a currently outstanding ping.</source>
-        <translation>Šiuo metu ping laiko trukmė</translation>
+        <translation>Šiuo metu ping laiko trukmė.</translation>
     </message>
     <message>
         <source>Ping Wait</source>
@@ -1740,8 +1961,7 @@
     </message>
     <message>
         <source>1 &amp;hour</source>
-        <translation>1 &amp;valanda
-</translation>
+        <translation>1 &amp;valanda</translation>
     </message>
     <message>
         <source>1 &amp;day</source>
@@ -1768,16 +1988,12 @@
         <translation>&amp;Atblokuoti</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>numatyta piniginė</translation>
-    </message>
-    <message>
         <source>Welcome to the %1 RPC console.</source>
         <translation>Sveiki atvykę į %1 RPC konsolę.</translation>
     </message>
     <message>
         <source>Use up and down arrows to navigate history, and %1 to clear screen.</source>
-        <translation>Jei norite naršyti istoriją, naudokite rodykles aukštyn ir žemyn, ir %1 - išvalykite ekraną.</translation>
+        <translation>Jei norite naršyti istoriją, naudokite rodykles aukštyn ir žemyn, ir %1 - išvalyti ekraną.</translation>
     </message>
     <message>
         <source>Type %1 for an overview of available commands.</source>
@@ -1785,7 +2001,7 @@
     </message>
     <message>
         <source>For more information on using this console type %1.</source>
-        <translation>Daugiau informacijos apie šio konsolės tipo %1 naudojimą.</translation>
+        <translation>Daugiau informacijos kaip naudotis konsole įveskite %1.</translation>
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
@@ -1852,7 +2068,7 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
-        <translation>Neprivalomas pranešimas, pridedamas prie mokėjimo prašymo, kuris bus rodomas atidarius užklausą. Pastaba: pranešimas nebus išsiųstas su mokėjimu per „Blackcoin“ tinklą.</translation>
+        <translation>Neprivalomas pranešimas, pridedamas prie mokėjimo prašymo, kuris bus rodomas atidarius užklausą. Pastaba: pranešimas nebus išsiųstas su mokėjimu per „Bitcoin“ tinklą.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1875,11 +2091,11 @@
         <translation>Išvalyti</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Vietiniai segwit adresai (dar žinomi kaip Bech32 arba BIP-173) vėliau sumažina jūsų sandorių mokesčius ir siūlo geresnę apsaugą nuo klaidų, tačiau senosios piniginės jų nepalaiko. Jei nebus pažymėti, vietoj to bus sukurtas adresas, suderinamas su senesnėmis piniginėmis.</translation>
     </message>
     <message>
-        <source>Generate Bech32 address</source>
+        <source>Generate native segwit (Bech32) address</source>
         <translation>Generuoti vietinį segwit (Bech32) adresą</translation>
     </message>
     <message>
@@ -2132,6 +2348,14 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Dulkės:</translation>
     </message>
     <message>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>Kai sandorių apimtis yra mažesnė nei erdvės blokuose, kasėjai ir perduodantys mazgai gali užtikrinti minimalų mokestį. Mokėti tik šį minimalų mokestį yra galima, tačiau atkreipkite dėmesį, kad dėl to gali atsirasti niekada nepatvirtinamas sandoris, kai bus daugiau paklausos bitcoin operacijoms, nei tinklas gali apdoroti.</translation>
+    </message>
+    <message>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation>Per mažas mokestis gali lemti niekada nepatvirtinamą sandorį (skaitykite tooltip)</translation>
+    </message>
+    <message>
         <source>Confirmation time target:</source>
         <translation>Patvirtinimo laiko tikslas:</translation>
     </message>
@@ -2148,8 +2372,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Išvalyti &amp;viską</translation>
     </message>
     <message>
-        <source>Balance:</source>
-        <translation>Balansas:</translation>
+        <source>Error loading %s: Wallet requires newer version of %s</source>
+        <translation>Klaida įkeliant %s: Piniginei reikia naujesnės%s versijos</translation>
     </message>
     <message>
         <source>Confirm the send action</source>
@@ -2263,9 +2487,13 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <source>Payment request expired.</source>
         <translation>Mokėjimo prašymas pasibaigė</translation>
     </message>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n bloką.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform><numerusform>Apskaičiuota, kad bus pradėtas patvirtinimas per %n blokus.</numerusform></translation>
+    </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
-        <translation>Įspėjimas: neteisingas Blackcoin adresas</translation>
+        <translation>Įspėjimas: neteisingas Bitcoin adresas</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2308,7 +2536,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>The Bitcoin address to send the payment to</source>
-        <translation>Blackcoin adresas, į kurį siunčiamas mokėjimas</translation>
+        <translation>Bitcoin adresas, į kurį siunčiamas mokėjimas</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2328,7 +2556,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Mokestis bus atimamas iš siunčiamos sumos. Gavėjas gaus mažiau blackcoinų nei įvesite sumos lauke. Jei pasirenkami keli gavėjai, mokestis padalijamas lygiai.</translation>
+        <translation>Mokestis bus atimamas iš siunčiamos sumos. Gavėjas gaus mažiau bitcoinų nei įvesite sumos lauke. Jei pasirenkami keli gavėjai, mokestis padalijamas lygiai.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2356,7 +2584,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
-        <translation>Pranešimas, kuris buvo pridėtas prie blackcoin: URI, kuris bus saugomas kartu su sandoriu jūsų nuoroda. Pastaba: šis pranešimas nebus išsiųstas per „Blackcoin“ tinklą.</translation>
+        <translation>Pranešimas, kuris buvo pridėtas prie bitcoin: URI, kuris bus saugomas kartu su sandoriu jūsų nuoroda. Pastaba: šis pranešimas nebus išsiųstas per „Bitcoin“ tinklą.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2401,7 +2629,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
-        <translation>Blackcoin adresas, kuriuo bus pasirašytas pranešimas su</translation>
+        <translation>Bitcoin adresas, kuriuo bus pasirašytas pranešimas su</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2453,11 +2681,11 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>The Bitcoin address the message was signed with</source>
-        <translation>Blackcoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
+        <translation>Bitcoin adresas, kuriuo buvo pasirašytas pranešimas</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Blackcoin adresas</translation>
+        <translation>Patikrinkite žinutę, jog įsitikintumėte, kad ją pasirašė nurodytas Bitcoin adresas</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2536,6 +2764,10 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
 </context>
 <context>
     <name>TransactionDesc</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Atidaryta %n blokui</numerusform><numerusform>Atidaryta %n blokam</numerusform><numerusform>Atidaryta %n blokam</numerusform><numerusform>Atidaryta %n blokam</numerusform></translation>
+    </message>
     <message>
         <source>Open until %1</source>
         <translation>Atidaryta iki %1</translation>
@@ -2693,6 +2925,10 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Label</source>
         <translation>Žymė</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Atidarykite %n  blokui</numerusform><numerusform>Atidarykite %n blokam</numerusform><numerusform>Atidarykite %n blokų</numerusform><numerusform>Atidarykite %n blokų</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2863,7 +3099,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>Copy raw transaction</source>
-        <translation>Kopijuoti nepdirbtą sandorį</translation>
+        <translation>Kopijuoti neapdirbtą sandorį</translation>
     </message>
     <message>
         <source>Copy full transaction details</source>
@@ -2887,7 +3123,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>Confirmed</source>
-        <translation>Patvirtintas</translation>
+        <translation>Patvirtinta</translation>
     </message>
     <message>
         <source>Watch-only</source>
@@ -2906,8 +3142,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Žymė</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>Adresas</translation>
+        <source>The wallet will avoid paying less than the minimum relay fee.</source>
+        <translation>Piniginė vengs mokėti mažiau nei minimalus perdavimo mokestį.</translation>
     </message>
     <message>
         <source>ID</source>
@@ -2945,6 +3181,17 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Vienetas rodo sumas. Spustelėkite, jei norite pasirinkti kitą vienetą.</translation>
     </message>
 </context>
+<context>
+    <name>WalletController</name>
+    <message>
+        <source>Close wallet</source>
+        <translation>Uždaryti Piniginę</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to close wallet &lt;i&gt;%1&lt;/i&gt;?</source>
+        <translation>Ar tikrai norite uždaryti piniginę &lt;i&gt;%1&lt;/i&gt;?</translation>
+    </message>
+    </context>
 <context>
     <name>WalletFrame</name>
     <message>
@@ -2984,7 +3231,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>Confirm fee bump</source>
-        <translation>Patvirtinkite mokestį</translation>
+        <translation>Patvirtinkite mokesčio pakilimą</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
@@ -2993,6 +3240,10 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     <message>
         <source>Could not commit transaction</source>
         <translation>Nepavyko įvykdyti sandorio</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>numatyta piniginė</translation>
     </message>
 </context>
 <context>
@@ -3037,16 +3288,12 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Blackcoin branduolys</translation>
+        <source>This is the minimum transaction fee you pay on every transaction.</source>
+        <translation>Tai yra minimalus transakcijos mokestis, kurį jūs mokate kiekvieną transakciją.</translation>
     </message>
     <message>
         <source>The %s developers</source>
         <translation>%s kūrėjai</translation>
-    </message>
-    <message>
-        <source>%d of last 100 blocks have unexpected version</source>
-        <translation>%d iš paskutinių 100 blokų turi nenumatyą versiją</translation>
     </message>
     <message>
         <source>%s corrupt, salvage failed</source>
@@ -3102,7 +3349,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>Error loading block database</source>
-        <translation>Klaida atveriant blokų duombazę</translation>
+        <translation>Klaida įkeliant blokų duombazę</translation>
     </message>
     <message>
         <source>Error opening block database</source>
@@ -3122,7 +3369,7 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
     </message>
     <message>
         <source>Loading P2P addresses...</source>
-        <translation>Užkraunami PčP adresai...</translation>
+        <translation>Užkraunami P2P adresai...</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
@@ -3157,8 +3404,8 @@ Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 sat
         <translation>Tikrinami blokai...</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Informacija</translation>
+        <source>Transaction has too long of a mempool chain</source>
+        <translation>Sandoris turi per ilgą mempool grandinę</translation>
     </message>
     <message>
         <source>This is experimental software.</source>

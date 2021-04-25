@@ -32,7 +32,8 @@ regularly to indicate new official, stable release versions of Blackcoin More.
 
 Change log can be found in [CHANGELOG.md](CHANGELOG.md).
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
+The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
+and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
 
 The best place to get started is to join the Development channel on Gitter: https://gitter.im/Blackcoin_Hub/Development
 
