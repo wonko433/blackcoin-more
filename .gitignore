@@ -1,22 +1,15 @@
 *.tar.gz
 
 *.exe
+*.pdb
 src/blackmore
 src/blackmored
 src/blackmore-cli
 src/blackmore-tx
-src/test/test_blackmore
+src/blackmore-wallet
+src/test/blackmore
 src/test/test_blackmore_fuzzy
 src/qt/test/test_blackmore-qt
-
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-tx
-src/bitcoin-wallet
-src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
-src/qt/test/test_bitcoin-qt
 
 # autoreconf
 Makefile.in
@@ -95,9 +88,13 @@ src/qt/blackmore-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
+!depends/Makefile
 blackmore-qt
 Blackmore-Qt.app
 background.tiff*
+
+# Qt Creator
+Makefile.am.user
 
 # Unit-tests
 Makefile.test

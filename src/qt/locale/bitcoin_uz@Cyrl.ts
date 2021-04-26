@@ -162,10 +162,6 @@
         <translation>Хабарни &amp;тасдиқлаш...</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;Жўнатиш</translation>
     </message>
@@ -350,6 +346,12 @@
     </message>
     </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
@@ -466,6 +468,9 @@
         <source>Select payment request file</source>
         <translation>Тўлов сўрови файлини танлаш</translation>
     </message>
+    </context>
+<context>
+    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
@@ -711,9 +716,6 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
@@ -906,10 +908,6 @@
         <translation>Сўралган тўлов тарихи</translation>
     </message>
     <message>
-        <source>&amp;Request payment</source>
-        <translation>Тўловни &amp;сўраш</translation>
-    </message>
-    <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
         <translation>Танланган сўровни кўрсатиш (икки марта босилганда ҳам бир хил амал бажарилсин)</translation>
     </message>
@@ -948,7 +946,7 @@
         <source>Wallet</source>
         <translation>Ҳамён</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1136,13 +1134,6 @@
     </message>
     </context>
 <context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[testnet]</translation>
-    </message>
-</context>
-<context>
     <name>TrafficGraphWidget</name>
     </context>
 <context>
@@ -1219,18 +1210,6 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Blackcoin More</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Маълумот</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Диққат</translation>
-    </message>
-    <message>
         <source>Insufficient funds</source>
         <translation>Кам миқдор</translation>
     </message>
@@ -1249,10 +1228,6 @@
     <message>
         <source>Done loading</source>
         <translation>Юклаш тайёр</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Хатолик</translation>
     </message>
 </context>
 </TS>

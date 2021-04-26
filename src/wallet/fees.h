@@ -10,7 +10,6 @@
 
 class CCoinControl;
 class CFeeRate;
-class CTxMemPool;
 class CWallet;
 struct FeeCalculation;
 

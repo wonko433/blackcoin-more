@@ -13,8 +13,6 @@
 #include <consensus/merkle.h>
 #include <consensus/tx_verify.h>
 #include <consensus/validation.h>
-#include <hash.h>
-#include <net.h>
 #include <policy/feerate.h>
 #include <policy/policy.h>
 #include <pos.h>
@@ -24,8 +22,10 @@
 #include <timedata.h>
 #include <util/moneystr.h>
 #include <util/system.h>
-#include <validationinterface.h>
+#include <util/validation.h>
+#ifdef ENABLE_WALLET
 #include <wallet/wallet.h>
+#endif
 
 #include <algorithm>
 #include <queue>
@@ -120,7 +120,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vTxSigOpsCount.push_back(-1); // updated at end
 
     LOCK2(cs_main, mempool.cs);
-    CBlockIndex* pindexPrev = chainActive.Tip();
+    CBlockIndex* pindexPrev = ::ChainActive().Tip();
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
@@ -507,7 +507,8 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
     LogPrintf("Staking started\n");
 
     // Make this thread recognisable as the mining thread
-    RenameThread("blackcoin-miner");
+    std::string threadName = "blackcoin-stake";
+    util::ThreadRename(threadName.c_str());
 
     CReserveKey reservekey(pwallet);
 

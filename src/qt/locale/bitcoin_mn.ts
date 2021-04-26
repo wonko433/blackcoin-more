@@ -122,10 +122,6 @@
         <translation>Оношилгоо ба засварын консолыг онгойлго</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
-    </message>
-    <message>
         <source>&amp;Show / Hide</source>
         <translation>&amp;Харуул / Нуу</translation>
     </message>
@@ -194,6 +190,12 @@
     </message>
     </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
@@ -238,6 +240,9 @@
     </context>
 <context>
     <name>OpenURIDialog</name>
+    </context>
+<context>
+    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
@@ -298,9 +303,6 @@
         <translation>үл мэдэгдэх</translation>
     </message>
 </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
 <context>
     <name>QRImageWidget</name>
     </context>
@@ -400,7 +402,7 @@
         <source>Wallet</source>
         <translation>Түрүйвч</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -520,9 +522,6 @@
     </message>
     </context>
 <context>
-    <name>SplashScreen</name>
-    </context>
-<context>
     <name>TrafficGraphWidget</name>
     </context>
 <context>
@@ -595,10 +594,6 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Information</source>
-        <translation>Мэдээллэл</translation>
-    </message>
-    <message>
         <source>Insufficient funds</source>
         <translation>Таны дансны үлдэгдэл хүрэлцэхгүй байна</translation>
     </message>
@@ -617,10 +612,6 @@
     <message>
         <source>Done loading</source>
         <translation>Ачааллаж дууслаа</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Алдаа</translation>
     </message>
 </context>
 </TS>

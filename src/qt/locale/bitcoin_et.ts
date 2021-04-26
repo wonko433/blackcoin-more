@@ -70,10 +70,6 @@
         <translation>Need on sinu Blackcoin aadressid maksete saatmiseks. Ennem müntide saatmist kontrolli alati summat ja makse saaja aadressi.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Need on sinu Blackcoin aadressid sisenevate maksete vastu võtmiseks. Soovitav on iga tehingu tarbeks kasutada uut aadressi.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation>&amp;Kopeeri Aadress</translation>
     </message>
@@ -136,8 +132,8 @@
         <translation>Korda uut parooli</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Sisesta uus salafraas rahakotti.&lt;br/&gt;Kasuta salafraasi millles on&lt;b&gt;kümme või rohkem juhuslikku sümbolit&lt;b&gt;,või&lt;b&gt;kaheksa või rohkem sõna&lt;b/&gt;.</translation>
+        <source>Show passphrase</source>
+        <translation>Näita salafraasi</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -164,10 +160,6 @@
         <translation>Muuda parooli</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Sisesta vana salafraas ja uus salafraas rahakotti.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Kinnita rahakoti krüpteerimine.</translation>
     </message>
@@ -182,6 +174,30 @@
     <message>
         <source>Wallet encrypted</source>
         <translation>Rahakott krüpteeritud</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Sisesta rahakotile uus salafraas.&lt;br/&gt;Kasuta salafraasi millles on&lt;b&gt;kümme või rohkem juhuslikku sümbolit&lt;b&gt;,või&lt;b&gt;kaheksa või rohkem sõna&lt;b/&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Sisesta rahakoti vana salafraas ja uus salafraas.</translation>
+    </message>
+    <message>
+        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Pea meeles, et rahakoti krüpteerimine ei välista bitcoinide vargust, kui sinu arvuti on nakatunud pahavaraga.</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Krüpteeritav rahakott</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Rahakott krüpteeritakse.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Rahakott krüpteeritud.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -222,7 +238,11 @@
         <source>IP/Netmask</source>
         <translation>IP/Võrgumask</translation>
     </message>
-    </context>
+    <message>
+        <source>Banned Until</source>
+        <translation>Blokeeritud kuni</translation>
+    </message>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -262,6 +282,10 @@
         <translation>&amp;Teave %1</translation>
     </message>
     <message>
+        <source>Show information about %1</source>
+        <translation>Näita informatsiooni %1 kohta</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
         <translation>Teave &amp;Qt kohta</translation>
     </message>
@@ -272,6 +296,10 @@
     <message>
         <source>&amp;Options...</source>
         <translation>&amp;Valikud...</translation>
+    </message>
+    <message>
+        <source>Modify configuration options for %1</source>
+        <translation>Muuda %1 seadeid</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
@@ -288,6 +316,18 @@
     <message>
         <source>Open &amp;URI...</source>
         <translation>Ava &amp;URI...</translation>
+    </message>
+    <message>
+        <source>Create Wallet...</source>
+        <translation>Loo rahakott</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Loo uus rahakott</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Rahakott:</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
@@ -316,10 +356,6 @@
     <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Kontrolli sõnumit...</translation>
-    </message>
-    <message>
-        <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -600,6 +636,12 @@
     </message>
 </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
@@ -705,6 +747,9 @@
         <translation>Vali maksepäringu fail mida avada</translation>
     </message>
 </context>
+<context>
+    <name>OpenWalletActivity</name>
+    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -945,9 +990,6 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
@@ -956,6 +998,14 @@
     <message>
         <source>&amp;Copy Image</source>
         <translation>&amp;Kopeeri Pilt</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>URI liiga pikk, proovi vähendada märke / sõnumi pikkust.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Tõrge URI'st QR koodi loomisel</translation>
     </message>
     <message>
         <source>Save QR Code</source>
@@ -1177,14 +1227,6 @@
     <message>
         <source>Wallet</source>
         <translation>Rahakott</translation>
-    </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>URI liiga pikk, proovi vähendada märke / sõnumi pikkust.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Tõrge URI'st QR koodi loomisel</translation>
     </message>
 </context>
 <context>
@@ -1570,13 +1612,6 @@
     </message>
 </context>
 <context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[test võrk]</translation>
-    </message>
-</context>
-<context>
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
@@ -1941,10 +1976,6 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Blackcoin More</translation>
-    </message>
-    <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
         <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining'uks ega kaupmeeste programmides</translation>
     </message>
@@ -1973,20 +2004,12 @@
         <translation>Tõrge bloki andmebaasi avamisel</translation>
     </message>
     <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Tõrge: liiga vähe kettaruumi!</translation>
-    </message>
-    <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Pordi kuulamine nurjus. Soovikorral kasuta -listen=0.</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
         <translation>Kontrollin blokke...</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informatsioon</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -2003,10 +2026,6 @@
     <message>
         <source>Transaction too large</source>
         <translation>Tehing liiga suur</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Hoiatus</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
@@ -2035,10 +2054,6 @@
     <message>
         <source>Done loading</source>
         <translation>Laetud</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Viga</translation>
     </message>
 </context>
 </TS>

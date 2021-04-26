@@ -61,7 +61,7 @@ AC_DEFUN([BITCOIN_FIND_BDB62],[
     BDB_CPPFLAGS=${BDB_CFLAGS}
   fi
   AC_SUBST(BDB_CPPFLAGS)
-  
+
   if test "x$BDB_LIBS" = "x"; then
     # TODO: Ideally this could find the library version and make sure it matches the headers being used
     for searchlib in db_cxx-6.2 db_cxx db6_cxx; do

@@ -8,21 +8,7 @@
 #include <policy/policy.h>
 
 #include <consensus/validation.h>
-#include <validation.h>
 #include <coins.h>
-#include <tinyformat.h>
-#include <util/system.h>
-#include <util/strencodings.h>
-
-// Blackcoin
-int64_t FutureDrift(int64_t nTime)
-{
-    // loose policy for FutureDrift in regtest mode
-    if (Params().GetConsensus().fPowNoRetargeting && chainActive.Height() <= Params().GetConsensus().nLastPOWBlock) {
-             return nTime + 24 * 60 * 60;
-    }
-    return Params().GetConsensus().IsProtocolV2(nTime) ? nTime + 15 : nTime + 10 * 60;
-}
 
 CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
 {
@@ -74,7 +60,7 @@ bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType)
     return true;
 }
 
-bool IsStandardTx(const CTransaction& tx, std::string& reason)
+bool IsStandardTx(const CTransaction& tx, bool permit_bare_multisig, const CFeeRate& dust_relay_fee, std::string& reason)
 {
     if (tx.nVersion > CTransaction::MAX_STANDARD_VERSION || tx.nVersion < 1) {
         reason = "version";
@@ -117,21 +103,16 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason)
             reason = "scriptpubkey";
             return false;
         }
-
-        if (whichType == TX_NULL_DATA)
-            nDataOut++;
-        else if (IsDust(txout, ::dustRelayFee)) {
-        	reason = "dust";
-            return false;
-        }
         if (!txout.scriptPubKey.HasCanonicalPushes()) {
             reason = "scriptpubkey-non-canonical-push";
             return false;
         }
-        else if ((whichType == TX_MULTISIG) && (!fIsBareMultisigStd)) {
+        if (whichType == TX_NULL_DATA)
+            nDataOut++;
+        else if ((whichType == TX_MULTISIG) && (!permit_bare_multisig)) {
             reason = "bare-multisig";
             return false;
-        } else if (IsDust(txout, ::dustRelayFee)) {
+        } else if (IsDust(txout, dust_relay_fee)) {
             reason = "dust";
             return false;
         }
@@ -162,6 +143,8 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason)
  * script can be anything; an attacker could use a very
  * expensive-to-check-upon-redemption script like:
  *   DUP CHECKSIG DROP ... repeated 100 times... OP_1
+ *
+ * Note that only the non-witness portion of the transaction is checked here.
  */
 bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
 {
@@ -175,6 +158,10 @@ bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
         std::vector<std::vector<unsigned char> > vSolutions;
         txnouttype whichType = Solver(prev.scriptPubKey, vSolutions);
         if (whichType == TX_NONSTANDARD) {
+            // WITNESS_UNKNOWN failures are typically also caught with a policy
+            // flag in the script interpreter, but it can be helpful to catch
+            // this type of NONSTANDARD transaction earlier in transaction
+            // validation.
             return false;
         } else if (whichType == TX_SCRIPTHASH) {
             std::vector<std::vector<unsigned char> > stack;
@@ -192,6 +179,3 @@ bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
 
     return true;
 }
-
-CFeeRate dustRelayFee = CFeeRate(DUST_RELAY_TX_FEE);
-unsigned int nBytesPerSigOp = DEFAULT_BYTES_PER_SIGOP;

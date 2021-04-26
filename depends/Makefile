@@ -33,6 +33,7 @@ WORK_PATH = $(BASEDIR)/work
 BASE_CACHE ?= $(BASEDIR)/built
 SDK_PATH ?= $(BASEDIR)/SDKs
 NO_QT ?=
+PROTOBUF ?=
 RAPIDCHECK ?=
 NO_WALLET ?=
 NO_ZMQ ?=
@@ -131,15 +132,20 @@ qt_packages_$(NO_QT) = $(qt_packages) $(qt_$(host_os)_packages) $(qt_$(host_arch
 wallet_packages_$(NO_WALLET) = $(wallet_packages)
 upnp_packages_$(NO_UPNP) = $(upnp_packages)
 zmq_packages_$(NO_ZMQ) = $(zmq_packages)
-protobuf_packages_$(NO_PROTOBUF) = $(protobuf_packages)
 
+protobuf_packages_$(PROTOBUF) = $(protobuf_packages)
 rapidcheck_packages_$(RAPIDCHECK) = $(rapidcheck_packages)
 
 packages += $($(host_arch)_$(host_os)_packages) $($(host_os)_packages) $(qt_packages_) $(wallet_packages_) $(upnp_packages_)
 native_packages += $($(host_arch)_$(host_os)_native_packages) $($(host_os)_native_packages)
 
-ifneq ($(qt_packages_),)
-native_packages += $(qt_native_packages)
+ifeq ($(protobuf_packages_),)
+native_packages += $(protobuf_native_packages)
+packages += $(protobuf_packages)
+endif
+
+ifneq ($(zmq_packages_),)
+packages += $(zmq_packages)
 endif
 
 ifeq ($(rapidcheck_packages_),)
@@ -188,8 +194,8 @@ $(host_prefix)/share/config.site : config.site.in $(host_prefix)/.stamp_$(final_
             -e 's|@LDFLAGS@|$(strip $(host_LDFLAGS) $(host_$(release_type)_LDFLAGS))|' \
             -e 's|@allow_host_packages@|$(ALLOW_HOST_PACKAGES)|' \
             -e 's|@no_qt@|$(NO_QT)|' \
-            -e 's|@no_qr@|$(NO_QR)|' \
             -e 's|@no_zmq@|$(NO_ZMQ)|' \
+            -e 's|@enable_bip70@|$(PROTOBUF)|' \
             -e 's|@no_wallet@|$(NO_WALLET)|' \
             -e 's|@no_upnp@|$(NO_UPNP)|' \
             -e 's|@debug@|$(DEBUG)|' \

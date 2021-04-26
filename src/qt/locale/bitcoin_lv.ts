@@ -2,6 +2,10 @@
 <context>
     <name>AddressBookPage</name>
     <message>
+        <source>Right-click to edit address or label</source>
+        <translation>Spiediet labo peles klikšķi, lai labotu adresi vai birku</translation>
+    </message>
+    <message>
         <source>Create a new address</source>
         <translation>Izveidot jaunu adresi</translation>
     </message>
@@ -50,6 +54,26 @@
         <translation>Izvēlies adresi ar kuru saņemt blackcoins</translation>
     </message>
     <message>
+        <source>C&amp;hoose</source>
+        <translation>Izvēlēties</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation>Adrešu nosūtīšana</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation>Adrešu saņemšana</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Šīs ir jūsu Bitcoin adreses, kuras izmantojamas maksājumu veikšanai. Vienmēr pārbaudiet summu un saņēmēja adresi pirms monētu nosūtīšanas.</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Šīs ir jūsu Bitcoin adreses, kuras izmantojamas maksājumu saņemšanai. Izmantojiet 'Izveidot jaunu saņemšanas adresi' pogu 'saņemt' cilnē, lai izveidotu jaunas adreses.</translation>
+    </message>
+    <message>
         <source>&amp;Copy Address</source>
         <translation>&amp;Kopēt adresi</translation>
     </message>
@@ -66,10 +90,18 @@
         <translation>Eksportēt Adrešu Sarakstu</translation>
     </message>
     <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Ar komatiem atdalīts fails (*.csv)</translation>
+    </message>
+    <message>
         <source>Exporting Failed</source>
         <translation>Eksportēšana Neizdevās</translation>
     </message>
-    </context>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <translation>Mēģinot saglabāt adrešu sarakstu %1 radās kļūda. Mēģiniet vēlreiz.</translation>
+    </message>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -104,7 +136,7 @@
         <translation>Jaunā parole vēlreiz</translation>
     </message>
     <message>
-        <source>Show password</source>
+        <source>Show passphrase</source>
         <translation>Rādīt paroli</translation>
     </message>
     <message>
@@ -112,12 +144,24 @@
         <translation>Šifrēt maciņu</translation>
     </message>
     <message>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>Lai veiktu šo darbību, nepieciešama jūsu maciņa slepenā frāze maciņa atvēršanai.</translation>
+    </message>
+    <message>
         <source>Unlock wallet</source>
         <translation>Atslēgt maciņu</translation>
     </message>
     <message>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>Lai veiktu šo darbību, nepieciešama jūsu maciņa slepenā frāze maciņa dekriptēšanai.</translation>
+    </message>
+    <message>
         <source>Decrypt wallet</source>
         <translation>Atšifrēt maciņu</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation>Mainīt paroli</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -126,6 +170,18 @@
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation>Vai tu tiešām vēlies šifrēt savu maciņu?</translation>
+    </message>
+    <message>
+        <source>Wallet encrypted</source>
+        <translation>Maciņš šifrēts</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Maciņu nepieciešams šifrēt.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Maciņš tagad šifrēts</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -148,10 +204,6 @@
     <message>
         <source>&amp;Overview</source>
         <translation>&amp;Pārskats</translation>
-    </message>
-    <message>
-        <source>Node</source>
-        <translation>Node</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -198,16 +250,12 @@
         <translation>Mainīt &amp;Paroli...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>&amp;Sūtīšanas adreses...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Saņemšanas &amp;adreses...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Atvērt &amp;URI...</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Maciņš:</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
@@ -240,10 +288,6 @@
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Maciņš</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -326,6 +370,10 @@
         <translation>Sinhronizēts</translation>
     </message>
     <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Logs</translation>
+    </message>
+    <message>
         <source>Catching up...</source>
         <translation>Sinhronizējos...</translation>
     </message>
@@ -404,6 +452,12 @@
         <source>(no label)</source>
         <translation>(bez nosaukuma)</translation>
     </message>
+    </context>
+<context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -508,6 +562,9 @@
     </message>
     </context>
 <context>
+    <name>OpenWalletActivity</name>
+    </context>
+<context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
@@ -522,10 +579,6 @@
         <translation>&amp;Datubāzes kešatmiņas izmērs</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
         <source>Number of script &amp;verification threads</source>
         <translation>Skriptu &amp;pārbaudes pavedienu skaits</translation>
     </message>
@@ -536,10 +589,6 @@
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
         <translation>Minimizēt nevis aizvērt aplikāciju, kad logs tiek aizvērts. Kad šī iespēja ir ieslēgta, aplikācija tiks aizvērta, izvēloties Aizvērt izvēlnē.</translation>
-    </message>
-    <message>
-        <source>Active command-line options that override above options:</source>
-        <translation>Aktīvās komandrindas opcijas, kuras pārspēko šos iestatījumus:</translation>
     </message>
     <message>
         <source>Reset all client options to default.</source>
@@ -743,9 +792,6 @@
     </message>
 </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
@@ -862,10 +908,6 @@
         <translation>Pieprasīto maksājumu vēsture</translation>
     </message>
     <message>
-        <source>&amp;Request payment</source>
-        <translation>&amp;Pieprasīt maksājumu</translation>
-    </message>
-    <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
         <translation>Parādīt atlasītos pieprasījumus (tas pats, kas dubultklikšķis uz ieraksta)</translation>
     </message>
@@ -916,7 +958,7 @@
         <source>Wallet</source>
         <translation>Maciņš</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -1152,13 +1194,6 @@
     </message>
     </context>
 <context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[testnets]</translation>
-    </message>
-</context>
-<context>
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
@@ -1209,6 +1244,10 @@
 <context>
     <name>TransactionView</name>
     <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Ar komatiem atdalīts fails (*.csv)</translation>
+    </message>
+    <message>
         <source>Confirmed</source>
         <translation>Apstiprināts</translation>
     </message>
@@ -1231,6 +1270,9 @@
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
+    </context>
+<context>
+    <name>WalletController</name>
     </context>
 <context>
     <name>WalletFrame</name>
@@ -1264,20 +1306,12 @@
         <translation>Kļūda ielādējot bloku datubāzi</translation>
     </message>
     <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Kļūda: Zema diska vieta!</translation>
-    </message>
-    <message>
         <source>Importing...</source>
         <translation>Importē...</translation>
     </message>
     <message>
         <source>Verifying blocks...</source>
         <translation>Pārbauda blokus...</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>Informācija</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -1290,10 +1324,6 @@
     <message>
         <source>Transaction too large</source>
         <translation>Transakcija ir pārāk liela</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Brīdinājums</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
@@ -1322,10 +1352,6 @@
     <message>
         <source>Done loading</source>
         <translation>Ielāde pabeigta</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Kļūda</translation>
     </message>
 </context>
 </TS>
