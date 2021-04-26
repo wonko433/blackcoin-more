@@ -45,12 +45,10 @@ BIP125_SEQUENCE_NUMBER = 0xfffffffd  # Sequence number that is BIP 125 opt-in an
 NODE_NETWORK = (1 << 0)
 NODE_GETUTXO = (1 << 1)
 NODE_BLOOM = (1 << 2)
-NODE_WITNESS = (1 << 3)
 NODE_NETWORK_LIMITED = (1 << 10)
 
 MSG_TX = 1
 MSG_BLOCK = 2
-MSG_WITNESS_FLAG = 1 << 30
 MSG_TYPE_MASK = 0xffffffff >> 2
 
 # Serialization/deserialization tools

@@ -198,7 +198,7 @@ void ParsePrevouts(const UniValue& prevTxsUnival, FillableSigningProvider* keyst
 
                 std::vector<unsigned char> redeemScriptData(ParseHexV(rs, "redeemScript"));
                 CScript redeemScript(redeemScriptData.begin(), redeemScriptData.end());
-                keystore->AddCScript(witness_output_script);
+                keystore->AddCScript(redeemScript);
             }
         }
     }

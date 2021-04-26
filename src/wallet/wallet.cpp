@@ -553,7 +553,6 @@ bool CWallet::AddWatchOnlyInMem(const CScript &dest)
     CPubKey pubKey;
     if (ExtractPubKey(dest, pubKey)) {
         mapWatchKeys[pubKey.GetID()] = pubKey;
-        ImplicitlyLearnRelatedKeyScripts(pubKey);
     }
     return true;
 }

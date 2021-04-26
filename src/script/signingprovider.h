@@ -71,8 +71,6 @@ protected:
     KeyMap mapKeys GUARDED_BY(cs_KeyStore);
     ScriptMap mapScripts GUARDED_BY(cs_KeyStore);
 
-    void ImplicitlyLearnRelatedKeyScripts(const CPubKey& pubkey) EXCLUSIVE_LOCKS_REQUIRED(cs_KeyStore);
-
 public:
     virtual bool AddKeyPubKey(const CKey& key, const CPubKey &pubkey);
     virtual bool AddKey(const CKey &key) { return AddKeyPubKey(key, key.GetPubKey()); }

@@ -189,7 +189,7 @@ void UpdatePSBTOutput(const SigningProvider& provider, PartiallySignedTransactio
     MutableTransactionSignatureCreator creator(psbt.tx.get_ptr(), /* index */ 0, out.nValue, SIGHASH_ALL);
     ProduceSignature(provider, creator, out.scriptPubKey, sigdata);
 
-    // Put redeem_script, witness_script, key paths, into PSBTOutput.
+    // Put redeem_script, key paths, into PSBTOutput.
     psbt_out.FromSignatureData(sigdata);
 }
 

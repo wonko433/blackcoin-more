@@ -17,7 +17,7 @@ TransactionError FillPSBT(const CWallet* pwallet, PartiallySignedTransaction& ps
             continue;
         }
 
-        // Verify input looks sane. This will check that we have at most one uxto, witness or non-witness.
+        // Verify input looks sane. This will check that we have at most one uxto.
         if (!input.IsSane()) {
             return TransactionError::INVALID_PSBT;
         }
@@ -39,8 +39,8 @@ TransactionError FillPSBT(const CWallet* pwallet, PartiallySignedTransaction& ps
         }
 
         // Backport of #17156 fix, without #17371 refactor
-        if (input.witness_utxo.IsNull() && input.non_witness_utxo) {
-            if (txin.prevout.n >= input.non_witness_utxo->vout.size()) {
+        if (input.utxo) {
+            if (txin.prevout.n >= input.utxo->vout.size()) {
                 return TransactionError::MISSING_INPUTS;
             }
         }

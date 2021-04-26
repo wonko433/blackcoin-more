@@ -192,11 +192,6 @@ UniValue importprivkey(const JSONRPCRequest& request)
             if (!pwallet->ImportPrivKeys({{vchAddress, key}}, 1)) {
                 throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
             }
-
-            // Add the wpkh script for this key if possible
-            if (pubkey.IsCompressed()) {
-                pwallet->ImportScripts({GetScriptForDestination(WitnessV0KeyHash(vchAddress))}, 0 /* timestamp */);
-            }
         }
     }
     if (fRescan) {

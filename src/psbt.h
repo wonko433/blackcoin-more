@@ -502,7 +502,7 @@ bool SignPSBTInput(const SigningProvider& provider, PartiallySignedTransaction& 
 
 /** Updates a PSBTOutput with information from provider.
  *
- * This fills in the redeem_script, witness_script, and hd_keypaths where possible.
+ * This fills in the redeem_script and hd_keypaths where possible.
  */
 void UpdatePSBTOutput(const SigningProvider& provider, PartiallySignedTransaction& psbt, int index);
 

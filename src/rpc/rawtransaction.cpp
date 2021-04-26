@@ -474,7 +474,7 @@ static UniValue decoderawtransaction(const JSONRPCRequest& request)
 static std::string GetAllOutputTypes()
 {
     std::string ret;
-    for (int i = TX_NONSTANDARD; i <= TX_WITNESS_UNKNOWN; ++i) {
+    for (int i = TX_NONSTANDARD; i <= TX_NULL_DATA; ++i) {
         if (i != TX_NONSTANDARD) ret += ", ";
         ret += GetTxnOutputType(static_cast<txnouttype>(i));
     }

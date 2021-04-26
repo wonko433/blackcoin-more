@@ -1167,7 +1167,6 @@ static bool MaybePunishNode(NodeId nodeid, const CValidationState& state, bool v
     case ValidationInvalidReason::TX_NOT_STANDARD:
     case ValidationInvalidReason::TX_MISSING_INPUTS:
     case ValidationInvalidReason::TX_PREMATURE_SPEND:
-    case ValidationInvalidReason::TX_WITNESS_MUTATED:
     case ValidationInvalidReason::TX_CONFLICT:
     case ValidationInvalidReason::TX_MEMPOOL_POLICY:
         break;
@@ -1603,7 +1602,7 @@ void static ProcessGetData(CNode* pfrom, const CChainParams& chainparams, CConnm
     std::vector<CInv> vNotFound;
     const CNetMsgMaker msgMaker(pfrom->GetSendVersion());
 
-    // Note that if we receive a getdata for a MSG_TX or MSG_WITNESS_TX from a
+    // Note that if we receive a getdata for a MSG_TX from a
     // block-relay-only outbound peer, we will stop processing further getdata
     // messages from this peer (likely resulting in our peer eventually
     // disconnecting us).
@@ -3263,7 +3262,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         vRecv >> vInv;
         if (vInv.size() <= MAX_PEER_TX_IN_FLIGHT + MAX_BLOCKS_IN_TRANSIT_PER_PEER) {
             for (CInv &inv : vInv) {
-                if (inv.type == MSG_TX || inv.type == MSG_WITNESS_TX) {
+                if (inv.type == MSG_TX) {
                     // If we receive a NOTFOUND message for a txid we requested, erase
                     // it from our data structures for this peer.
                     auto in_flight_it = state->m_tx_download.m_tx_in_flight.find(inv.hash);
