@@ -3056,7 +3056,8 @@ static bool FindUndoPos(CValidationState &state, int nFile, FlatFilePos &pos, un
     return true;
 }
 
-static bool CheckBlockSignature(const CBlock& block)
+// Blackcoin ToDo: consensusParams?
+static bool CheckBlockSignature(const CBlock& block, const Consensus::Params& consensusParams)
 {
     if (block.IsProofOfWork())
         return block.vchBlockSig.empty();
@@ -3076,7 +3077,8 @@ static bool CheckBlockSignature(const CBlock& block)
         vector<unsigned char>& vchPubKey = vSolutions[0];
         return CPubKey(vchPubKey).Verify(block.GetHash(), block.vchBlockSig);
     }
-    else {
+	// Blackcoin ToDo: IsProtocolV3 check?
+    else if consensusparams.IsProtocolV3(block.GetBlockTime()){
         // Block signing key also can be encoded in the nonspendable output
         // This allows to not pollute UTXO set with useless outputs e.g. in case of multisig staking
         const CScript& script = txout.scriptPubKey;
@@ -3180,7 +3182,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     }
 
     // Check proof-of-stake block signature
-    if (fCheckSig && !CheckBlockSignature(block))
+	// Blackcoin ToDo: consensusParams?
+    if (fCheckSig && !CheckBlockSignature(block, consensusParams))
         return state.DoS(100, false, REJECT_INVALID, "bad-block-signature", false, "bad proof-of-stake block signature");
 
     // Check transactions

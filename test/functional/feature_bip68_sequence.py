@@ -6,7 +6,7 @@
 
 import time
 
-from test_framework.blocktools import create_block, create_coinbase, add_witness_commitment
+from test_framework.blocktools import create_block, create_coinbase
 from test_framework.messages import COIN, COutPoint, CTransaction, CTxIn, CTxOut, FromHex, ToHex
 from test_framework.script import CScript
 from test_framework.test_framework import BitcoinTestFramework
@@ -378,7 +378,6 @@ class BIP68Test(BitcoinTestFramework):
         block.vtx.extend([tx1, tx2, tx3])
         block.hashMerkleRoot = block.calc_merkle_root()
         block.rehash()
-        add_witness_commitment(block)
         block.solve()
 
         self.nodes[0].submitblock(block.serialize().hex())

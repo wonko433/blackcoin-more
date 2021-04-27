@@ -54,16 +54,6 @@ class KeypoolRestoreTest(BitcoinTestFramework):
             for _ in range(20):
                 addr_extpool = self.nodes[idx].getnewaddress(address_type=output_type)
 
-            # Make sure we're creating the outputs we expect
-            address_details = self.nodes[idx].validateaddress(addr_extpool)
-            if i == 0:
-                assert not address_details["isscript"] and not address_details["iswitness"]
-            elif i == 1:
-                assert address_details["isscript"] and not address_details["iswitness"]
-            else:
-                assert not address_details["isscript"] and address_details["iswitness"]
-
-
             self.log.info("Send funds to wallet")
             self.nodes[0].sendtoaddress(addr_oldpool, 10)
             self.nodes[0].generate(1)

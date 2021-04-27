@@ -67,9 +67,8 @@ std::shared_ptr<CBlock> Block(const uint256& prev_hash)
 
     pubKey.clear();
     {
-        WitnessV0ScriptHash witness_program;
-        CSHA256().Write(&V_OP_TRUE[0], V_OP_TRUE.size()).Finalize(witness_program.begin());
-        pubKey << OP_0 << ToByteVector(witness_program);
+        pubKey << OP_HASH160 << ToByteVector(CScriptID(CScript() << OP_TRUE))
+               << OP_EQUAL;
     }
 
     // Make the coinbase transaction with two outputs:
@@ -248,7 +247,14 @@ BOOST_AUTO_TEST_CASE(mempool_locks_reorg)
         for (int num_txs = 22; num_txs > 0; --num_txs) {
             CMutableTransaction mtx;
             mtx.vin.push_back(CTxIn{COutPoint{last_mined->vtx[0]->GetHash(), 1}, CScript{}});
-            mtx.vin[0].scriptWitness.stack.push_back(V_OP_TRUE);
+            // Two outputs to make sure the transaction is larger than 100 bytes
+            for (int i = 1; i < 3; ++i) {
+                mtx.vout.emplace_back(
+                    CTxOut(50000 * SATOSHI,
+                           CScript() << OP_DUP << OP_HASH160
+                                     << ToByteVector(CScriptID(CScript() << i))
+                                     << OP_EQUALVERIFY << OP_CHECKSIG));
+            }
             mtx.vout.push_back(last_mined->vtx[0]->vout[1]);
             mtx.vout[0].nValue -= 1000;
             txs.push_back(MakeTransactionRef(mtx));

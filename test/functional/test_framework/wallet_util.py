@@ -77,16 +77,11 @@ def get_multisig(node):
         addrs.append(addr['address'])
         pubkeys.append(addr['pubkey'])
     script_code = CScript([OP_2] + [hex_str_to_bytes(pubkey) for pubkey in pubkeys] + [OP_3, OP_CHECKMULTISIG])
-    witness_script = CScript([OP_0, sha256(script_code)])
     return Multisig(privkeys=[node.dumpprivkey(addr) for addr in addrs],
                     pubkeys=pubkeys,
                     p2sh_script=CScript([OP_HASH160, hash160(script_code), OP_EQUAL]).hex(),
                     p2sh_addr=script_to_p2sh(script_code),
-                    redeem_script=script_code.hex(),
-                    p2wsh_script=witness_script.hex(),
-                    p2wsh_addr=script_to_p2wsh(script_code),
-                    p2sh_p2wsh_script=CScript([OP_HASH160, witness_script, OP_EQUAL]).hex(),
-                    p2sh_p2wsh_addr=script_to_p2sh_p2wsh(script_code))
+                    redeem_script=script_code.hex())
 
 def test_address(node, address, **kwargs):
     """Get address info for `address` and test whether the returned values are as expected."""

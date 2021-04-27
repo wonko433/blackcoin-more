@@ -68,37 +68,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     auto bech = bech32::Decode(str);
     if (bech.second.size() > 0 && bech.first == params.Bech32HRP()) {
 		/*
-        // Bech32 decoding
-        int version = bech.second[0]; // The first 5 bit symbol is the witness version (0-16)
-        // The rest of the symbols are converted witness program bytes.
-        data.reserve(((bech.second.size() - 1) * 5) / 8);
-        if (ConvertBits<5, 8, false>([&](unsigned char c) { data.push_back(c); }, bech.second.begin() + 1, bech.second.end())) {
-            if (version == 0) {
-                {
-                    WitnessV0KeyHash keyid;
-                    if (data.size() == keyid.size()) {
-                        std::copy(data.begin(), data.end(), keyid.begin());
-                        return keyid;
-                    }
-                }
-                {
-                    WitnessV0ScriptHash scriptid;
-                    if (data.size() == scriptid.size()) {
-                        std::copy(data.begin(), data.end(), scriptid.begin());
-                        return scriptid;
-                    }
-                }
-                return CNoDestination();
-            }
-            if (version > 16 || data.size() < 2 || data.size() > 40) {
-                return CNoDestination();
-            }
-            WitnessUnknown unk;
-            unk.version = version;
-            std::copy(data.begin(), data.end(), unk.program);
-            unk.length = data.size();
-            return unk;
-        }
+        // Blackcoin ToDo: bech32 decoding
 		*/
     }
     return CNoDestination();

@@ -116,46 +116,21 @@ class AddressTypeTest(BitcoinTestFramework):
         if not multisig and typ == 'legacy':
             # P2PKH
             assert not info['isscript']
-            assert not info['iswitness']
-            assert 'pubkey' in info
-        elif not multisig and typ == 'p2sh-segwit':
-            # P2SH-P2WPKH
-            assert info['isscript']
-            assert not info['iswitness']
-            assert_equal(info['script'], 'witness_v0_keyhash')
             assert 'pubkey' in info
         elif not multisig and typ == 'bech32':
-            # P2WPKH
+            # P2PKH-bech32
             assert not info['isscript']
-            assert info['iswitness']
-            assert_equal(info['witness_version'], 0)
-            assert_equal(len(info['witness_program']), 40)
             assert 'pubkey' in info
             self.test_python_bech32(info["address"])
         elif typ == 'legacy':
             # P2SH-multisig
             assert info['isscript']
             assert_equal(info['script'], 'multisig')
-            assert not info['iswitness']
             assert 'pubkeys' in info
-        elif typ == 'p2sh-segwit':
-            # P2SH-P2WSH-multisig
-            assert info['isscript']
-            assert_equal(info['script'], 'witness_v0_scripthash')
-            assert not info['iswitness']
-            assert info['embedded']['isscript']
-            assert_equal(info['embedded']['script'], 'multisig')
-            assert info['embedded']['iswitness']
-            assert_equal(info['embedded']['witness_version'], 0)
-            assert_equal(len(info['embedded']['witness_program']), 64)
-            assert 'pubkeys' in info['embedded']
         elif typ == 'bech32':
             # P2WSH-multisig
             assert info['isscript']
             assert_equal(info['script'], 'multisig')
-            assert info['iswitness']
-            assert_equal(info['witness_version'], 0)
-            assert_equal(len(info['witness_program']), 64)
             assert 'pubkeys' in info
             self.test_python_bech32(info["address"])
         else:

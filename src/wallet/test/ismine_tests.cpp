@@ -135,87 +135,6 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 
-    // (P2PKH inside) P2SH inside P2WSH (invalid)
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-
-        CScript redeemscript = GetScriptForDestination(PKHash(pubkeys[0]));
-        CScript witnessscript = GetScriptForDestination(ScriptHash(redeemscript));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        BOOST_CHECK(keystore.AddCScript(witnessscript));
-        BOOST_CHECK(keystore.AddCScript(redeemscript));
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // P2WPKH inside P2WSH (invalid)
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-
-        CScript witnessscript = GetScriptForDestination(WitnessV0KeyHash(PKHash(pubkeys[0])));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        BOOST_CHECK(keystore.AddCScript(witnessscript));
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // (P2PKH inside) P2WSH inside P2WSH (invalid)
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-
-        CScript witnessscript_inner = GetScriptForDestination(PKHash(pubkeys[0]));
-        CScript witnessscript = GetScriptForDestination(WitnessV0ScriptHash(witnessscript_inner));
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessscript));
-
-        BOOST_CHECK(keystore.AddCScript(witnessscript_inner));
-        BOOST_CHECK(keystore.AddCScript(witnessscript));
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // P2WPKH compressed
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-
-        scriptPubKey = GetScriptForDestination(WitnessV0KeyHash(PKHash(pubkeys[0])));
-
-        // Keystore implicitly has key and P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
-    }
-
-    // P2WPKH uncompressed
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
-
-        scriptPubKey = GetScriptForDestination(WitnessV0KeyHash(PKHash(uncompressedPubkey)));
-
-        // Keystore has key, but no P2SH redeemScript
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has key and P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
     // scriptPubKey multisig
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
@@ -266,82 +185,6 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
-    // P2WSH multisig with compressed keys
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        BOOST_CHECK(keystore.AddKey(keys[1]));
-
-        CScript witnessScript = GetScriptForMultisig(2, {pubkeys[0], pubkeys[1]});
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessScript));
-
-        // Keystore has keys, but no witnessScript or P2SH redeemScript
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has keys and witnessScript, but no P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(witnessScript));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has keys, witnessScript, P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
-    }
-
-    // P2WSH multisig with uncompressed key
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
-        BOOST_CHECK(keystore.AddKey(keys[1]));
-
-        CScript witnessScript = GetScriptForMultisig(2, {uncompressedPubkey, pubkeys[1]});
-        scriptPubKey = GetScriptForDestination(WitnessV0ScriptHash(witnessScript));
-
-        // Keystore has keys, but no witnessScript or P2SH redeemScript
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has keys and witnessScript, but no P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(witnessScript));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has keys, witnessScript, P2SH redeemScript
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // P2WSH multisig wrapped in P2SH
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-
-        CScript witnessScript = GetScriptForMultisig(2, {pubkeys[0], pubkeys[1]});
-        CScript redeemScript = GetScriptForDestination(WitnessV0ScriptHash(witnessScript));
-        scriptPubKey = GetScriptForDestination(ScriptHash(redeemScript));
-
-        // Keystore has no witnessScript, P2SH redeemScript, or keys
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has witnessScript and P2SH redeemScript, but no keys
-        BOOST_CHECK(keystore.AddCScript(redeemScript));
-        BOOST_CHECK(keystore.AddCScript(witnessScript));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-
-        // Keystore has keys, witnessScript, P2SH redeemScript
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        BOOST_CHECK(keystore.AddKey(keys[1]));
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
-    }
-
     // OP_RETURN
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
@@ -350,32 +193,6 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
 
         scriptPubKey.clear();
         scriptPubKey << OP_RETURN << ToByteVector(pubkeys[0]);
-
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // witness unspendable
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-
-        scriptPubKey.clear();
-        scriptPubKey << OP_0 << ToByteVector(ParseHex("aabb"));
-
-        result = IsMine(keystore, scriptPubKey);
-        BOOST_CHECK_EQUAL(result, ISMINE_NO);
-    }
-
-    // witness unknown
-    {
-        CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-
-        scriptPubKey.clear();
-        scriptPubKey << OP_16 << ToByteVector(ParseHex("aabb"));
 
         result = IsMine(keystore, scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
