@@ -27,7 +27,6 @@
 #include <util/error.h>
 #include <util/fees.h>
 #include <util/moneystr.h>
-#include <util/rbf.h>
 #include <util/translation.h>
 #include <util/validation.h>
 #include <validation.h>

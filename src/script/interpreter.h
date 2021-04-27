@@ -104,7 +104,7 @@ enum
     //
     SCRIPT_VERIFY_NULLFAIL = (1U << 14),
 
-    // Making OP_CODESEPARATOR and FindAndDelete fail any non-segwit scripts
+    // Making OP_CODESEPARATOR and FindAndDelete fail any scripts
     //
     SCRIPT_VERIFY_CONST_SCRIPTCODE = (1U << 16),
 };

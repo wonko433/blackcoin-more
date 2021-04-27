@@ -331,13 +331,14 @@ BOOST_FIXTURE_TEST_CASE(checkinputs_test, TestChain100Setup)
 
         CValidationState state;
         PrecomputedTransactionData txdata(tx);
-        // This transaction is now invalid under segwit, because of the second input.
-        BOOST_CHECK(!CheckInputs(CTransaction(tx), state, &::ChainstateActive().CoinsTip(), SCRIPT_VERIFY_P2SH, true, true, txdata, nullptr));
+        // This transaction is now invalid because the second signature is
+        // missing.
+        BOOST_CHECK(!CheckInputs(CTransaction(tx), state, &::ChainstateActive().CoinsTip(), STANDARD_SCRIPT_VERIFY_FLAGS, true, true, txdata, nullptr));
 
         std::vector<CScriptCheck> scriptchecks;
         // Make sure this transaction was not cached (ie because the first
         // input was valid)
-        BOOST_CHECK(CheckInputs(CTransaction(tx), state, &::ChainstateActive().CoinsTip(), SCRIPT_VERIFY_P2SH, true, true, txdata, &scriptchecks));
+        BOOST_CHECK(CheckInputs(CTransaction(tx), state, &::ChainstateActive().CoinsTip(), STANDARD_SCRIPT_VERIFY_FLAGS, true, true, txdata, &scriptchecks));
         // Should get 2 script checks back -- caching is on a whole-transaction basis.
         BOOST_CHECK_EQUAL(scriptchecks.size(), 2U);
     }

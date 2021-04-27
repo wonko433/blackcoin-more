@@ -339,7 +339,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                 opcode == OP_RSHIFT)
                 return set_error(serror, SCRIPT_ERR_DISABLED_OPCODE); // Disabled opcodes (CVE-2010-5137).
 
-            // With SCRIPT_VERIFY_CONST_SCRIPTCODE, OP_CODESEPARATOR in non-segwit script is rejected even in an unexecuted branch
+            // With SCRIPT_VERIFY_CONST_SCRIPTCODE, OP_CODESEPARATOR is rejected even in an unexecuted branch
             if (opcode == OP_CODESEPARATOR && sigversion == SigVersion::BASE && (flags & SCRIPT_VERIFY_CONST_SCRIPTCODE))
                 return set_error(serror, SCRIPT_ERR_OP_CODESEPARATOR);
 
@@ -906,8 +906,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
 
                 case OP_CODESEPARATOR:
                 {
-                    // If SCRIPT_VERIFY_CONST_SCRIPTCODE flag is set, use of OP_CODESEPARATOR is rejected in pre-segwit
-                    // script, even in an unexecuted branch (this is checked above the opcode case statement).
+                    // If SCRIPT_VERIFY_CONST_SCRIPTCODE flag is set, use of OP_CODESEPARATOR is rejected.
 
                     // Hash starts after the code separator
                     pbegincodehash = pc;
@@ -927,7 +926,7 @@ bool EvalScript(std::vector<std::vector<unsigned char> >& stack, const CScript& 
                     // Subset of script starting at the most recent codeseparator
                     CScript scriptCode(pbegincodehash, pend);
 
-                    // Drop the signature in non-segwit scripts
+                    // Drop the signature
                     if (sigversion == SigVersion::BASE) {
                         int found = FindAndDelete(scriptCode, CScript() << vchSig);
                         if (found > 0 && (flags & SCRIPT_VERIFY_CONST_SCRIPTCODE))

@@ -14,7 +14,6 @@
 #include <node/transaction.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
-#include <policy/rbf.h>
 #include <policy/settings.h>
 #include <primitives/block.h>
 #include <primitives/transaction.h>
@@ -84,7 +83,7 @@ class LockImpl : public Chain::Lock, public UniqueLock<CCriticalSection>
         LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         assert(block != nullptr);
-        return block->GetMedianTimePast();
+        return block->GetPastTimeLimit();
     }
     bool haveBlockOnDisk(int height) override
     {

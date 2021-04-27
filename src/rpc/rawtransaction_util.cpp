@@ -16,10 +16,9 @@
 #include <script/signingprovider.h>
 #include <tinyformat.h>
 #include <univalue.h>
-#include <util/rbf.h>
 #include <util/strencodings.h>
 
-CMutableTransaction ConstructTransaction(const UniValue& inputs_in, const UniValue& outputs_in, const UniValue& locktime, bool rbf)
+CMutableTransaction ConstructTransaction(const UniValue& inputs_in, const UniValue& outputs_in, const UniValue& locktime)
 {
     if (inputs_in.isNull() || outputs_in.isNull())
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, arguments 1 and 2 must be non-null");
@@ -235,7 +234,7 @@ UniValue SignTransaction(CMutableTransaction& mtx, const SigningProvider* keysto
 
         UpdateInput(txin, sigdata);
 
-        // amount must be specified for valid segwit signature
+        // amount must be specified for valid signature
         if (amount == MAX_MONEY) {
             throw JSONRPCError(RPC_TYPE_ERROR, strprintf("Missing amount for %s", coin->second.out.ToString()));
         }

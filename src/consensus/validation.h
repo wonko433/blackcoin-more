@@ -32,11 +32,8 @@ enum class ValidationInvalidReason {
     NONE,                    //!< not actually invalid
     CONSENSUS,               //!< invalid by consensus rules (excluding any below reasons)
     /**
-     * Invalid by a change to consensus rules more recent than SegWit.
-     * Currently unused as there are no such consensus rule changes, and any download
-     * sources realistically need to support SegWit in order to provide useful data,
-     * so differentiating between always-invalid and invalid-by-pre-SegWit-soft-fork
-     * is uninteresting.
+     * Invalid by a recent change to consensus rules.
+     * Currently unused as there are no such consensus rule changes.
      */
     RECENT_CONSENSUS_CHANGE,
     // Only blocks (or headers):
