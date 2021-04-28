@@ -526,13 +526,9 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     std::vector<COutPoint>& coins_to_uncache = args.m_coins_to_uncache;
 
     // Alias what we need out of ws
-    std::set<uint256>& setConflicts = ws.m_conflicts;
-    CTxMemPool::setEntries& allConflicting = ws.m_all_conflicting;
     CTxMemPool::setEntries& setAncestors = ws.m_ancestors;
     std::unique_ptr<CTxMemPoolEntry>& entry = ws.m_entry;
     CAmount& nModifiedFees = ws.m_modified_fees;
-    CAmount& nConflictingFees = ws.m_conflicting_fees;
-    size_t& nConflictingSize = ws.m_conflicting_size;
 
     if (pfMissingInputs) {
         *pfMissingInputs = false;
@@ -560,7 +556,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // ppcoin: coinstake is also only valid in a block, not as a loose transaction
     if (tx.IsCoinStake())
-        return state.DoS(100, false, REJECT_INVALID, "coinstake");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "coinstake");
 
     // Rather not work on nonstandard transactions (unless -testnet/-regtest)
     std::string reason;
@@ -580,7 +576,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // For the same reasons as in the case with non-final transactions
     if (tx.nTime > FutureDrift(GetAdjustedTime())) {
-        return state.DoS(0, false, REJECT_NONSTANDARD, "time-too-new");
+        return state.Invalid(ValidationInvalidReason::TX_NOT_STANDARD, false, REJECT_NONSTANDARD, "time-too-new");
     }
 
     // is it already in the memory pool?
@@ -591,11 +587,11 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     // Check for conflicts with in-memory transactions
     for (const CTxIn &txin : tx.vin)
     {
-        auto itConflicting = pool.mapNextTx.find(txin.prevout);
-        if (itConflicting != pool.mapNextTx.end())
+        auto itConflicting = m_pool.mapNextTx.find(txin.prevout);
+        if (itConflicting != m_pool.mapNextTx.end())
         {
             // Disable replacement feature for good
-            return state.Invalid(false, REJECT_DUPLICATE, "txn-mempool-conflict");
+            return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "txn-mempool-conflict");
         }
     }
 
@@ -804,25 +800,8 @@ bool MemPoolAccept::Finalize(ATMPArgs& args, Workspace& ws)
     CValidationState &state = args.m_state;
     const bool bypass_limits = args.m_bypass_limits;
 
-    CTxMemPool::setEntries& allConflicting = ws.m_all_conflicting;
     CTxMemPool::setEntries& setAncestors = ws.m_ancestors;
-    const CAmount& nModifiedFees = ws.m_modified_fees;
-    const CAmount& nConflictingFees = ws.m_conflicting_fees;
-    const size_t& nConflictingSize = ws.m_conflicting_size;
     std::unique_ptr<CTxMemPoolEntry>& entry = ws.m_entry;
-
-    // Remove conflicting transactions from the mempool
-    for (CTxMemPool::txiter it : allConflicting)
-    {
-        LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s BTC additional fees, %d delta bytes\n",
-                it->GetTx().GetHash().ToString(),
-                hash.ToString(),
-                FormatMoney(nModifiedFees - nConflictingFees),
-                (int)entry->GetTxSize() - (int)nConflictingSize);
-        if (args.m_replaced_transactions)
-            args.m_replaced_transactions->push_back(it->GetSharedTx());
-    }
-    m_pool.RemoveStaged(allConflicting, false, MemPoolRemovalReason::REPLACED);
 
     // Store transaction in memory
     m_pool.addUnchecked(*entry, setAncestors);
@@ -1756,7 +1735,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
-         const COutPoint &prevout = block.vtx[1]->vin[0].prevout;
+        const COutPoint &prevout = block.vtx[1]->vin[0].prevout;
         Coin coin;
         if(!view.GetCoin(prevout, coin)) {
                          return state.DoS(100, error("ConnectBlock(): kernel input unavailable"),
@@ -3050,7 +3029,7 @@ static bool CheckBlockSignature(const CBlock& block, const Consensus::Params& co
         return CPubKey(vchPubKey).Verify(block.GetHash(), block.vchBlockSig);
     }
 	// Blackcoin ToDo: IsProtocolV3 check?
-    else if consensusparams.IsProtocolV3(block.GetBlockTime()){
+    else if (consensusparams.IsProtocolV3(block.GetBlockTime()){
         // Block signing key also can be encoded in the nonspendable output
         // This allows to not pollute UTXO set with useless outputs e.g. in case of multisig staking
         const CScript& script = txout.scriptPubKey;
@@ -3133,30 +3112,30 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check coinbase timestamp
     if (block.GetBlockTime() > FutureDrift(block.vtx[0]->nTime))
-            return state.DoS(50, false, REJECT_INVALID, "bad-cb-time", false, "coinbase timestamp is too early");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-time", "coinbase timestamp is too early");
 
     // Check coinstake timestamp
     if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.vtx[1]->nTime))
-            return state.DoS(50, false, REJECT_INVALID, "bad-cs-time", false, "coinstake timestamp violation");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-time", "coinstake timestamp violation");
 
     if (block.IsProofOfStake()) {
         // Coinbase output must be empty if proof-of-stake block
         if (block.vtx[0]->vout.size() != 1 || !block.vtx[0]->vout[0].IsEmpty())
-            return state.DoS(100, false, REJECT_INVALID, "bad-cb-not-empty", false, "coinbase output not empty for proof-of-stake block");
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-not-empty", "coinbase output not empty for proof-of-stake block");
 
         // Second transaction must be coinstake, the rest must not be
         if (block.vtx.size() < 2 || !block.vtx[1]->IsCoinStake())
-            return state.DoS(100, false, REJECT_INVALID, "bad-cs-missing", false, "second tx is not coinstake");
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-missing", "second tx is not coinstake");
 
         for (unsigned int i = 2; i < block.vtx.size(); i++)
             if (block.vtx[i]->IsCoinStake())
-            return state.DoS(100, false, REJECT_INVALID, "bad-cs-multiple", false, "more than one coinstake");
+                return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-multiple", "more than one coinstake");
     }
 
     // Check proof-of-stake block signature
 	// Blackcoin ToDo: consensusParams?
     if (fCheckSig && !CheckBlockSignature(block, consensusParams))
-        return state.DoS(100, false, REJECT_INVALID, "bad-block-signature", false, "bad proof-of-stake block signature");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-blk-signature", "bad proof-of-stake block signature");
 
     // Check transactions
     // Must check for duplicate inputs (see CVE-2018-17144)
@@ -3403,7 +3382,7 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, CValidatio
     }
     if (NotifyHeaderTip()) {
         if (::ChainstateActive().IsInitialBlockDownload() && ppindex && *ppindex) {
-            LogPrintf("Synchronizing blockheaders, height: %d (~%.2f%%)\n", (*ppindex)->nHeight, 100.0/((*ppindex)->nHeight+(GetAdjustedTime() - (*ppindex)->GetBlockTime()) / Params().GetConsensus().nPowTargetSpacing) * (*ppindex)->nHeight);
+            LogPrintf("Synchronizing blockheaders, height: %d (~%.2f%%)\n", (*ppindex)->nHeight, 100.0/((*ppindex)->nHeight+(GetAdjustedTime() - (*ppindex)->GetBlockTime()) / Params().GetConsensus().nTargetSpacing) * (*ppindex)->nHeight);
         }
     }
     return true;
@@ -3497,8 +3476,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, CVali
 
     // Check for the last proof of work block
     if (block.IsProofOfWork() && nHeight > chainparams.GetConsensus().nLastPOWBlock)
-        return state.DoS(100, error("%s: reject proof-of-work at height %d",  __func__, nHeight),
-                        REJECT_INVALID, "bad-pow-height");
+        return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, error("%s: reject proof-of-work at height %d", __func__, nHeight), REJECT_INVALID, "bad-pow-height");
 
     // Write block to history file
     if (fNewBlock) *fNewBlock = true;

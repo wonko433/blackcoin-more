@@ -933,8 +933,6 @@ public:
         vBlockHashesToAnnounce.push_back(hash);
     }
 
-    void AskFor(const CInv& inv);
-
     void CloseSocketDisconnect();
 
     void copyStats(CNodeStats &stats);

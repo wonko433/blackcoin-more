@@ -38,7 +38,7 @@ enum class ValidationInvalidReason {
     RECENT_CONSENSUS_CHANGE,
     // Only blocks (or headers):
     CACHED_INVALID,          //!< this object was cached as being invalid, but we don't know why
-    BLOCK_INVALID_HEADER,    //!< invalid proof of work or time too old
+    BLOCK_INVALID_HEADER,    //!< invalid proof of work, proof of stake or time too old
     BLOCK_MUTATED,           //!< the block's data didn't match the data committed to by the PoW
     BLOCK_MISSING_PREV,      //!< We don't have the previous block the checked one is built on
     BLOCK_INVALID_PREV,      //!< A block this one builds on is invalid
