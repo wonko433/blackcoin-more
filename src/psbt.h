@@ -39,7 +39,7 @@ static constexpr uint8_t PSBT_SEPARATOR = 0x00;
 /** A structure for PSBTs which contain per-input information */
 struct PSBTInput
 {
-    CTransactionRef utxo;
+    CTxOut utxo;
     CScript redeem_script;
     CScript final_script_sig;
     std::map<CPubKey, KeyOriginInfo> hd_keypaths;
@@ -57,10 +57,9 @@ struct PSBTInput
     template <typename Stream>
     inline void Serialize(Stream& s) const {
         // Write the utxo
-        if (utxo) {
+        if (!utxo.IsNull()) {
             SerializeToVector(s, PSBT_IN_UTXO);
-            OverrideStream<Stream> os(&s, s.GetType(), s.GetVersion());
-            SerializeToVector(os, utxo);
+            SerializeToVector(s, utxo);
         }
 
         if (final_script_sig.empty()) {

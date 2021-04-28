@@ -248,21 +248,21 @@ UniValue getstakinginfo(const JSONRPCRequest& request)
 
     UniValue obj(UniValue::VOBJ);
 
-    obj.push_back(Pair("enabled", gArgs.GetBoolArg("-staking", true)));
-    obj.push_back(Pair("staking", staking));
-    obj.push_back(Pair("errors", GetWarnings("statusbar")));
+    obj.pushKV("enabled", gArgs.GetBoolArg("-staking", true));
+    obj.pushKV("staking", staking);
+    obj.pushKV("errors", GetWarnings("statusbar"));
 
-    obj.push_back(Pair("currentblocksize", (uint64_t)nLastBlockSize));
-    obj.push_back(Pair("currentblocktx", (uint64_t)nLastBlockTx));
-    obj.push_back(Pair("pooledtx", (uint64_t)mempool.size()));
+    obj.pushKV("currentblocksize", (uint64_t)nLastBlockSize);
+    obj.pushKV("currentblocktx", (uint64_t)nLastBlockTx);
+    obj.pushKV("pooledtx", (uint64_t)mempool.size());
 
-    obj.push_back(Pair("difficulty", GetDifficulty(GetLastBlockIndex(chainActive.Tip(), true))));
-    obj.push_back(Pair("search-interval", (int)nLastCoinStakeSearchInterval));
+    obj.pushKV("difficulty", GetDifficulty(GetLastBlockIndex(pindexBestHeader, true)));
+    obj.pushKV("search-interval", (int)nLastCoinStakeSearchInterval);
 
-    obj.push_back(Pair("weight", (uint64_t)nWeight));
-    obj.push_back(Pair("netstakeweight", (uint64_t)nNetworkWeight));
+    obj.pushKV("weight", (uint64_t)nWeight);
+    obj.pushKV("netstakeweight", (uint64_t)nNetworkWeight);
 
-    obj.push_back(Pair("expectedtime", nExpectedTime));
+    obj.pushKV("expectedtime", nExpectedTime);
 
     return obj;
 }
@@ -616,6 +616,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     UniValue result(UniValue::VOBJ);
     result.pushKV("capabilities", aCaps);
 
+    UniValue aRules(UniValue::VARR);
     UniValue vbavailable(UniValue::VOBJ);
     for (int j = 0; j < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j) {
         Consensus::DeploymentPos pos = Consensus::DeploymentPos(j);
@@ -834,11 +835,11 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
             throw JSONRPCError(-9, "Blackcoin is not connected!");
 
-        if (IsInitialBlockDownload())
+        if (::ChainstateActive().IsInitialBlockDownload())
             throw JSONRPCError(-10, "Blackcoin is downloading blocks...");
 
         COutPoint kernel;
-        CBlockIndex* pindexPrev = chainActive.Tip();
+        CBlockIndex* pindexPrev = ::ChainActive().Tip();
         CBlockHeader blockHeader = pindexPrev->GetBlockHeader();
         unsigned int nBits = GetNextTargetRequired(pindexPrev, &blockHeader, Params().GetConsensus(), true);
         int64_t nTime = GetAdjustedTime();
@@ -863,7 +864,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, vout must be positive");
 
             COutPoint cInput(uint256S(txid), nOutput);
-            if (CheckKernel(pindexPrev, nBits, nTime, cInput, *pcoinsTip))
+            if (CheckKernel(pindexPrev, nBits, nTime, cInput, ::ChainstateActive().CoinsTip()))
             {
                 kernel = cInput;
                 break;
@@ -871,16 +872,16 @@ UniValue checkkernel(const JSONRPCRequest& request)
         }
 
         UniValue result(UniValue::VOBJ);
-        result.push_back(Pair("found", !kernel.IsNull()));
+        result.pushKV("found", !kernel.IsNull());
 
         if (kernel.IsNull())
             return result;
 
         UniValue oKernel(UniValue::VOBJ);
-        oKernel.push_back(Pair("txid", kernel.hash.GetHex()));
-        oKernel.push_back(Pair("vout", (int64_t)kernel.n));
-        oKernel.push_back(Pair("time", nTime));
-        result.push_back(Pair("kernel", oKernel));
+        oKernel.pushKV("txid", kernel.hash.GetHex());
+        oKernel.pushKV("vout", (int64_t)kernel.n);
+        oKernel.pushKV("time", nTime);
+        result.pushKV("kernel", oKernel);
 
         if (!fCreateBlockTemplate)
             return result;
@@ -896,8 +897,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (!pwallet->IsLocked())
             pwallet->TopUpKeyPool();
 
-        CReserveKey pMiningKey(pwallet);
-        std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(pMiningKey.reserveScript, &nFees, true));
+        std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(CScript(), &nFees, true));
 
         if (!pblocktemplate.get())
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
@@ -910,14 +910,14 @@ UniValue checkkernel(const JSONRPCRequest& request)
         CDataStream ss(SER_DISK, PROTOCOL_VERSION);
         ss << *pblock;
 
-        result.push_back(Pair("blocktemplate", HexStr(ss.begin(), ss.end())));
-        result.push_back(Pair("blocktemplatefees", nFees));
+        result.pushKV("blocktemplate", HexStr(ss.begin(), ss.end()));
+        result.pushKV("blocktemplatefees", nFees);
 
         CPubKey pubkey;
         if (!pMiningKey.GetReservedKey(pubkey))
             throw JSONRPCError(RPC_MISC_ERROR, "GetReservedKey failed");
 
-        result.push_back(Pair("blocktemplatesignkey", HexStr(pubkey)));
+        result.pushKV("blocktemplatesignkey", HexStr(pubkey));
 #endif
         return result;
 }

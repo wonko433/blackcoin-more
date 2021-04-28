@@ -85,7 +85,7 @@ double GetPoSKernelPS()
     double dStakeKernelsTriedAvg = 0;
     int nStakesHandled = 0, nStakesTime = 0;
 
-    CBlockIndex* pindex = chainActive.Tip();;
+    CBlockIndex* pindex = ::ChainActive().Tip();
     CBlockIndex* pindexPrevStake = NULL;
 
     while (pindex && nStakesHandled < nPoSInterval)
@@ -409,8 +409,8 @@ static UniValue getdifficulty(const JSONRPCRequest& request)
     LOCK(cs_main);
 
     UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("proof-of-work",  GetDifficulty(GetLastBlockIndex(pindexBestHeader, false))));
-    obj.push_back(Pair("proof-of-stake", GetDifficulty(GetLastBlockIndex(pindexBestHeader, true))));
+    obj.pushKV("proof-of-work",  GetDifficulty(GetLastBlockIndex(pindexBestHeader, false)));
+    obj.pushKV("proof-of-stake", GetDifficulty(GetLastBlockIndex(pindexBestHeader, true)));
     return obj;
 }
 
@@ -439,7 +439,7 @@ static std::string EntryDescriptionString()
            "       ... ]\n"
            "    \"spentby\" : [           (array) unconfirmed transactions spending outputs from this transaction\n"
            "        \"transactionid\",    (string) child transaction id\n"
-           "       ... ]\n"
+           "       ... ]\n";
 }
 
 static void entryToJSON(const CTxMemPool& pool, UniValue& info, const CTxMemPoolEntry& e) EXCLUSIVE_LOCKS_REQUIRED(pool.cs)

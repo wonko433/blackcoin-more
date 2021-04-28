@@ -85,4 +85,19 @@ bool IsStandardTx(const CTransaction& tx, bool permit_bare_multisig, const CFeeR
      */
 bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs);
 
+/** Compute the virtual transaction size (size, or more if sigops are too dense). */
+int64_t GetVirtualTransactionSize(int64_t nSize, int64_t nSigOpCount, unsigned int bytes_per_sigop);
+int64_t GetVirtualTransactionSize(const CTransaction& tx, int64_t nSigOpCount, unsigned int bytes_per_sigop);
+int64_t GetVirtualTransactionInputSize(const CTxIn& tx, int64_t nSigOpCount, unsigned int bytes_per_sigop);
+
+static inline int64_t GetVirtualTransactionSize(const CTransaction& tx)
+{
+    return GetVirtualTransactionSize(tx, 0, 0);
+}
+
+static inline int64_t GetVirtualTransactionInputSize(const CTxIn& tx)
+{
+    return GetVirtualTransactionInputSize(tx, 0, 0);
+}
+
 #endif // BITCOIN_POLICY_POLICY_H
