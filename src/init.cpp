@@ -100,8 +100,6 @@ std::unique_ptr<BanMan> g_banman;
 #define MIN_CORE_FILEDESCRIPTORS 150
 #endif
 
-static const char* FEE_ESTIMATES_FILENAME="fee_estimates.dat";
-
 /**
  * The PID file facilities.
  */
@@ -1032,7 +1030,7 @@ bool AppInitParameterInteraction()
     }
     fCheckBlockIndex = gArgs.GetBoolArg("-checkblockindex", chainparams.DefaultConsistencyChecks());
     if (gArgs.GetBoolArg("-checkpoints", false))
-            return InitError(strprintf(_("Error: Unsupported argument -checkpoints found. We rely on it to verify pre-protocolv3 era.")));
+            return InitError(strprintf("Error: Unsupported argument -checkpoints found. We rely on it to verify pre-protocolv3 era."));
 
     hashAssumeValid = uint256S(gArgs.GetArg("-assumevalid", chainparams.GetConsensus().defaultAssumeValid.GetHex()));
     if (!hashAssumeValid.IsNull())

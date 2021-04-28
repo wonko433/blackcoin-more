@@ -1433,14 +1433,16 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
+    /** Implement lookup of key origin information through wallet key metadata. */
+    bool GetKeyOrigin(const CKeyID& keyid, KeyOriginInfo& info) const override;
+
     /* Start staking */
     void StartStake(CConnman* connman = CWallet::defaultConnman);
 
     /* Stop staking */
     void StopStake();
 
-    /** Implement lookup of key origin information through wallet key metadata. */
-    bool GetKeyOrigin(const CKeyID& keyid, KeyOriginInfo& info) const override;
+    static CConnman* defaultConnman;
 };
 
 /**

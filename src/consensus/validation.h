@@ -44,6 +44,7 @@ enum class ValidationInvalidReason {
     BLOCK_INVALID_PREV,      //!< A block this one builds on is invalid
     BLOCK_TIME_FUTURE,          //!< block timestamp was > 2 hours in the future (or our clock is bad)
     BLOCK_CHECKPOINT,        //!< the block failed to meet one of our checkpoints
+    BLOCK_HEADER_SPAM,       //!< reject block header from the spam filter
     // Only loose txn:
     TX_INPUTS_NOT_STANDARD,   //!< inputs (covered by txid) failed policy rules
     TX_NOT_STANDARD,          //!< otherwise didn't meet our local policy rules

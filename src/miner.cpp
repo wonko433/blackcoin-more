@@ -510,8 +510,6 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
     std::string threadName = "stake";
     util::ThreadRename(threadName.c_str());
 
-    CReserveKey reservekey(pwallet);
-
     try {
         bool fTryToSync = true;
         bool regtestMode = Params().GetConsensus().fPoSNoRetargeting;
