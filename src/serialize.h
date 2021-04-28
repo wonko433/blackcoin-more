@@ -953,6 +953,7 @@ public:
         return nSize;
     }
 
+    int GetType() const { return nType; }
     int GetVersion() const { return nVersion; }
 };
 

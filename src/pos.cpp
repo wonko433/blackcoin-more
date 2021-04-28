@@ -23,7 +23,6 @@
 #include <script/sign.h>
 #include <consensus/consensus.h>
 #include <stdio.h>
-#include <util.h>
 
 using namespace std;
 

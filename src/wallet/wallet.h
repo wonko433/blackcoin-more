@@ -912,8 +912,6 @@ public:
 
     const WalletLocation& GetLocation() const { return m_location; }
 
-    const WalletLocation& GetLocation() const { return m_location; }
-
     /** Get a name for this wallet for logging/debugging purposes.
      */
     const std::string& GetName() const { return m_location.GetName(); }
@@ -1174,7 +1172,6 @@ public:
     CFeeRate m_pay_tx_fee{DEFAULT_PAY_TX_FEE};
     bool m_spend_zero_conf_change{DEFAULT_SPEND_ZEROCONF_CHANGE};
     bool m_allow_fallback_fee{true}; //!< will be defined via chainparams
->>>>>>> 0.18
     /**
      * If fee estimation does not have enough data to provide estimates, use this fee instead.
      * Has no effect if not using fee estimation
@@ -1344,7 +1341,7 @@ public:
     bool AbandonTransaction(interfaces::Chain::Lock& locked_chain, const uint256& hashTx);
 
     /* Staking */
-    bool CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64_t nSearchInterval, CAmount& nFees, CMutableTransaction& tx, CKey& key);
+    bool CreateCoinStake(interfaces::Chain::Lock& locked_chain, const FillableSigningProvider &keystore, unsigned int nBits, int64_t nSearchInterval, CAmount& nFees, CMutableTransaction& tx, CKey& key);
     bool SelectCoinsForStaking(CAmount& nTargetValue, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, CAmount& nValueRet) const;
     void AvailableCoinsForStaking(std::vector<COutput>& vCoins) const;
     bool HaveAvailableCoinsForStaking() const;

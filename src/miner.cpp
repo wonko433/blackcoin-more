@@ -221,7 +221,7 @@ bool BlockAssembler::TestPackageTransactions(const CTxMemPool::setEntries& packa
     for (CTxMemPool::txiter it : package) {
         if (!IsFinalTx(it->GetTx(), nHeight, nLockTimeCutoff))
             return false;
-        uint64_t nTxSize = ::GetSerializeSize(it->GetTx(), SER_NETWORK, PROTOCOL_VERSION);
+        uint64_t nTxSize = ::GetSerializeSize(it->GetTx(), PROTOCOL_VERSION);
         if (nPotentialBlockSize + nTxSize >= nBlockMaxSize)
             return false;
         nPotentialBlockSize += nTxSize;
@@ -471,7 +471,7 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
 
     // verify hash target and signature of coinstake tx
     CValidationState state;
-    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state, *pcoinsTip))
+    if (!CheckProofOfStake(::BlockIndex()[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state, ::ChainstateActive().CoinsTip()))
         return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
@@ -481,12 +481,12 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
 
     // Found a solution
     {
-        LOCK(cs_main);
-        if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
+        auto locked_chain = wallet.chain().lock();
+        if (pblock->hashPrevBlock != ::ChainActive().Tip()->GetBlockHash())
             return error("CheckStake() : generated block is stale");
 
         for (const CTxIn& vin : pblock->vtx[1]->vin) {
-            if (wallet.IsSpent(vin.prevout.hash, vin.prevout.n)) {
+            if (wallet.IsSpent(*locked_chain, vin.prevout.hash, vin.prevout.n)) {
                 return error("CheckStake() : generated block became invalid due to stake UTXO being spent");
             }
         }
@@ -507,7 +507,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
     LogPrintf("Staking started\n");
 
     // Make this thread recognisable as the mining thread
-    std::string threadName = "blackcoin-stake";
+    std::string threadName = "stake";
     util::ThreadRename(threadName.c_str());
 
     CReserveKey reservekey(pwallet);
@@ -527,7 +527,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             }
 
             if (!regtestMode) {
-                while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload()) {
+                while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || ::ChainstateActive().IsInitialBlockDownload()) {
                     pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
                     MilliSleep(1000);
@@ -584,7 +584,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             {
                 int64_t nFees = 0;
                 // First just create an empty block. No need to process transactions until we know we can create a block
-                std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reservekey.reserveScript, &nFees, true));
+                std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(CScript(), &nFees, true));
                 if (!pblocktemplate.get())
                     return;
 
@@ -660,10 +660,12 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
     txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
     
     int64_t nSearchTime = txCoinStake.nTime; // search to current time
-
+    
+    auto locked_chain = wallet.chain().lock();
+    LOCK(wallet.cs_wallet);
     if (nSearchTime > nLastCoinStakeSearchTime)
     {
-        if (wallet.CreateCoinStake(wallet, pblock->nBits, 1, nFees, txCoinStake, key))
+        if (wallet.CreateCoinStake(*locked_chain, wallet, pblock->nBits, 1, nFees, txCoinStake, key))
         {
             if (txCoinStake.nTime >= pindexBestHeader->GetPastTimeLimit()+1)
             {

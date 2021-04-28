@@ -1756,7 +1756,6 @@ void CConnman::ThreadOpenConnections(const std::vector<std::string> connect)
                 }
             }
         }
-        assert(nOutbound <= (nMaxOutbound + nMaxFeeler));
 
         // Feeler Connections
         //

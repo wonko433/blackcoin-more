@@ -255,7 +255,9 @@ public:
                        (nHeaders >= maxSize * 3);
         if(banNode)
         {
-            return state.DoS(100, false, REJECT_INVALID, "header-spam", false, "ban node for sending spam");
+            // Clear the points and ban the node
+            points.clear();
+            return state.Invalid(ValidationInvalidReason::BLOCK_HEADER_SPAM, false, REJECT_INVALID, "header-spam", "ban node for sending spam");
         }
 
         return ret;
@@ -1630,7 +1632,7 @@ void static ProcessGetData(CNode* pfrom, const CChainParams& chainparams, CConnm
                 // To protect privacy, do not answer getdata using the mempool when
                 // that TX couldn't have been INVed in reply to a MEMPOOL request.
                 if (txinfo.tx && txinfo.nTime <= pfrom->m_tx_relay->timeLastMempoolReq) {
-                    connman->PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::TX, *txinfo.tx));
+                    connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::TX, *txinfo.tx));
                     push = true;
                 }
             }
@@ -2569,8 +2571,10 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         bool fMissingInputs = false;
         CValidationState state;
 
-        pfrom->setAskFor.erase(inv.hash);
-        mapAlreadyAskedFor.erase(inv.hash);
+        CNodeState* nodestate = State(pfrom->GetId());
+        nodestate->m_tx_download.m_tx_announced.erase(inv.hash);
+        nodestate->m_tx_download.m_tx_in_flight.erase(inv.hash);
+        EraseTxRequest(inv.hash);
 
         std::list<CTransactionRef> lRemovedTxn;
 
@@ -2608,8 +2612,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             }
             if (!fRejectedParents) {
                 const auto current_time = GetTime<std::chrono::microseconds>();
-
->>>>>>> 0.19
                     CInv _inv(MSG_TX, txin.prevout.hash);
                     pfrom->AddInventoryKnown(_inv);
                     if (!AlreadyHave(_inv)) RequestTx(State(pfrom->GetId()), _inv.hash, current_time);
