@@ -103,6 +103,9 @@ struct PSBTInput
 
     template <typename Stream>
     inline void Unserialize(Stream& s) {
+        // Used for duplicate key detection
+        std::set<std::vector<uint8_t>> key_lookup;
+
         // Read loop
         bool found_sep = false;
         while(!s.empty()) {
@@ -124,7 +127,7 @@ struct PSBTInput
             switch(type) {
                 case PSBT_IN_UTXO:
                 {
-                    if (utxo) {
+                    if (!key_lookup.emplace(key).second) {
                         throw std::ios_base::failure("Duplicate Key, input utxo already provided");
                     } else if (key.size() != 1) {
                         throw std::ios_base::failure("utxo key is more than one byte type");
@@ -447,11 +450,6 @@ struct PartiallySignedTransaction
             PSBTInput input;
             s >> input;
             inputs.push_back(input);
-
-            // Make sure the utxo matches the outpoint
-            if (input.utxo->GetHash() != tx->vin[i].prevout.hash) {
-                throw std::ios_base::failure("UTXO does not match outpoint hash");
-            }
             ++i;
         }
         // Make sure that the number of inputs matches the number of inputs in the transaction

@@ -13,6 +13,7 @@
 #include <sync.h>
 
 extern CCriticalSection cs_main;
+class CChainParams;
 
 /** Default for -maxorphantx, maximum number of orphan transactions kept in memory */
 static const unsigned int DEFAULT_MAX_ORPHAN_TRANSACTIONS = 100;

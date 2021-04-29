@@ -36,6 +36,7 @@
 #ifdef ENABLE_WALLET
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
+#include <wallet/rpcwallet.h>
 #endif
 #include <memory>
 #include <stdint.h>
@@ -252,8 +253,7 @@ UniValue getstakinginfo(const JSONRPCRequest& request)
     obj.pushKV("staking", staking);
     obj.pushKV("errors", GetWarnings("statusbar"));
 
-    obj.pushKV("currentblocksize", (uint64_t)nLastBlockSize);
-    obj.pushKV("currentblocktx", (uint64_t)nLastBlockTx);
+    if (BlockAssembler::m_last_block_num_txs) obj.pushKV("currentblocktx", *BlockAssembler::m_last_block_num_txs);
     obj.pushKV("pooledtx", (uint64_t)mempool.size());
 
     obj.pushKV("difficulty", GetDifficulty(GetLastBlockIndex(pindexBestHeader, true)));
@@ -886,7 +886,6 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (!fCreateBlockTemplate)
             return result;
 
-#ifdef ENABLE_WALLET
         int64_t nFees;
         std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
         CWallet* const pwallet = wallet.get();
@@ -913,12 +912,12 @@ UniValue checkkernel(const JSONRPCRequest& request)
         result.pushKV("blocktemplate", HexStr(ss.begin(), ss.end()));
         result.pushKV("blocktemplatefees", nFees);
 
-        CPubKey pubkey;
-        if (!pMiningKey.GetReservedKey(pubkey))
-            throw JSONRPCError(RPC_MISC_ERROR, "GetReservedKey failed");
+        // Reserve a new key pair from key pool
+        if (!CanGetAddresses(true)) {
+            throw JSONRPCError(RPC_MISC_ERROR, "Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.");
+        }
 
-        result.pushKV("blocktemplatesignkey", HexStr(pubkey));
-#endif
+        // result.pushKV("blocktemplatesignkey", HexStr(pubkey));
         return result;
 }
 
