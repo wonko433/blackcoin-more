@@ -19,6 +19,8 @@
 
 #include <boost/thread.hpp>
 
+#include <validation.h>
+
 class CBlockIndex;
 class CChainParams;
 class CScript;
@@ -202,8 +204,10 @@ private:
     int UpdatePackagesForAdded(const CTxMemPool::setEntries& alreadyAdded, indexed_modified_transaction_set &mapModifiedTx) EXCLUSIVE_LOCKS_REQUIRED(mempool.cs);
 };
 
+#ifdef ENABLE_WALLET
 /** Generate a new block */
 void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread);
+#endif
 
 /** Modify the extranonce in a block */
 void IncrementExtraNonce(CBlock* pblock, const CBlockIndex* pindexPrev, unsigned int& nExtraNonce);
