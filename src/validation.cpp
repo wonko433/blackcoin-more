@@ -466,10 +466,7 @@ private:
         CTxMemPool::setEntries m_ancestors;
         std::unique_ptr<CTxMemPoolEntry> m_entry;
 
-        bool m_replacement_transaction;
         CAmount m_modified_fees;
-        CAmount m_conflicting_fees;
-        size_t m_conflicting_size;
 
         const CTransactionRef& m_ptx;
         const uint256& m_hash;
@@ -526,6 +523,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     std::vector<COutPoint>& coins_to_uncache = args.m_coins_to_uncache;
 
     // Alias what we need out of ws
+    std::set<uint256>& setConflicts = ws.m_conflicts;
     CTxMemPool::setEntries& setAncestors = ws.m_ancestors;
     std::unique_ptr<CTxMemPoolEntry>& entry = ws.m_entry;
     CAmount& nModifiedFees = ws.m_modified_fees;
@@ -591,7 +589,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
         if (itConflicting != m_pool.mapNextTx.end())
         {
             // Disable replacement feature for good
-            return state.Invalid(TxValidationResult::TX_MEMPOOL_POLICY, "txn-mempool-conflict");
+            return state.Invalid(ValidationInvalidReason::TX_MEMPOOL_POLICY, false, REJECT_DUPLICATE, "txn-mempool-conflict");
         }
     }
 
@@ -795,7 +793,6 @@ bool MemPoolAccept::ConsensusScriptChecks(ATMPArgs& args, Workspace& ws, Precomp
 
 bool MemPoolAccept::Finalize(ATMPArgs& args, Workspace& ws)
 {
-    const CTransaction& tx = *ws.m_ptx;
     const uint256& hash = ws.m_hash;
     CValidationState &state = args.m_state;
     const bool bypass_limits = args.m_bypass_limits;
@@ -1730,27 +1727,22 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // Blackcoin ToDo: enable!
     // Check difficulty 
     if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
-        return state.DoS(100, error("ConnectBlock(): incorrect difficulty"),
-                        REJECT_INVALID, "bad-diffbits");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-diffbits", "incorrect difficulty");
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime())) {
         const COutPoint &prevout = block.vtx[1]->vin[0].prevout;
         Coin coin;
         if(!view.GetCoin(prevout, coin)) {
-                         return state.DoS(100, error("ConnectBlock(): kernel input unavailable"),
-                                REJECT_INVALID, "bad-cs-kernel");
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-kernel", "kernel input unavailable");
         }
 
-         // Check proof-of-stake min confirmations
-         if (pindex->nHeight - coin.nHeight < chainparams.GetConsensus().nCoinbaseMaturity)
-              return state.DoS(100,
-                  error("ConnectBlock(): tried to stake at depth %d", pindex->nHeight - coin.nHeight),
-                    REJECT_INVALID, "bad-cs-premature");
+        // Check proof-of-stake min confirmations
+        if (pindex->nHeight - coin.nHeight < chainparams.GetConsensus().nCoinbaseMaturity)
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: tried to stake at depth %d", __func__, pindex->nHeight - coin.nHeight), REJECT_INVALID, "bad-cs-premature");
 
-         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coin.nTime, coin.out.nValue, prevout, block.vtx[1]->nTime))
-              return state.DoS(100, error("ConnectBlock(): proof-of-stake hash doesn't match nBits"),
-                                 REJECT_INVALID, "bad-cs-proofhash");
+        if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coin.nTime, coin.out.nValue, prevout, block.vtx[1]->nTime))
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-proofhash", " proof-of-stake hash doesn't match nBits");
     }
 
     nBlocksTotal++;
@@ -3029,7 +3021,7 @@ static bool CheckBlockSignature(const CBlock& block, const Consensus::Params& co
         return CPubKey(vchPubKey).Verify(block.GetHash(), block.vchBlockSig);
     }
 	// Blackcoin ToDo: IsProtocolV3 check?
-    else if (consensusparams.IsProtocolV3(block.GetBlockTime()){
+    else /*if (consensusParams.IsProtocolV3(block.GetBlockTime())*/{
         // Block signing key also can be encoded in the nonspendable output
         // This allows to not pollute UTXO set with useless outputs e.g. in case of multisig staking
         const CScript& script = txout.scriptPubKey;
@@ -3147,7 +3139,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
         // check transaction timestamp
         if (block.GetBlockTime() < (int64_t)tx->nTime)
-           return state.DoS(100, false, REJECT_INVALID, "bad-tx-time", false, "block timestamp earlier than transaction timestamp");
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-tx-time", "block timestamp earlier than transaction timestamp");
     }
 
     unsigned int nSigOps = 0;
@@ -3204,8 +3196,6 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
     // Preliminary check of pos timestamp
     if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
         return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, false, REJECT_INVALID, "bad-pos-time", "incorrect pos block timestamp");
-        return state.DoS(50, error("%s: incorrect pos block timestamp", __func__),
-                             REJECT_INVALID, "bad-pos-time");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {

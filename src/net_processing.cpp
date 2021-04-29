@@ -1150,6 +1150,7 @@ static bool MaybePunishNode(NodeId nodeid, const CValidationState& state, bool v
     case ValidationInvalidReason::BLOCK_INVALID_HEADER:
     case ValidationInvalidReason::BLOCK_CHECKPOINT:
     case ValidationInvalidReason::BLOCK_INVALID_PREV:
+    case ValidationInvalidReason::BLOCK_HEADER_SPAM:
         {
             LOCK(cs_main);
             Misbehaving(nodeid, 100, message);

@@ -17,7 +17,6 @@ void CCoinControl::SetNull()
     setSelected.clear();
     m_feerate.reset();
     fOverrideFeeRate = false;
-    m_confirm_target.reset();
     m_min_depth = DEFAULT_MIN_DEPTH;
     m_max_depth = DEFAULT_MAX_DEPTH;
 }
