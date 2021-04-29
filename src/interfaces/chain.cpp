@@ -83,7 +83,7 @@ class LockImpl : public Chain::Lock, public UniqueLock<CCriticalSection>
         LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         assert(block != nullptr);
-        return block->GetPastTimeLimit();
+        return block->GetMedianTimePast();
     }
     bool haveBlockOnDisk(int height) override
     {

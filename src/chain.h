@@ -303,24 +303,21 @@ public:
 
     int64_t GetMedianTimePast() const
     {
-        int64_t pmedian[nMedianTimeSpan];
-        int64_t* pbegin = &pmedian[nMedianTimeSpan];
-        int64_t* pend = &pmedian[nMedianTimeSpan];
-
-        const CBlockIndex* pindex = this;
-        for (int i = 0; i < nMedianTimeSpan && pindex; i++, pindex = pindex->pprev)
-            *(--pbegin) = pindex->GetBlockTime();
-
-        std::sort(pbegin, pend);
-        return pbegin[(pend - pbegin)/2];
-    }
-
-    int64_t GetPastTimeLimit() const
-    {
+        // Blackcoin: use GetBlockTime() since ProtocolV2
         if (Params().GetConsensus().IsProtocolV2(GetBlockTime()))
             return GetBlockTime();
-        else
-            return GetMedianTimePast();
+        else {
+            int64_t pmedian[nMedianTimeSpan];
+            int64_t* pbegin = &pmedian[nMedianTimeSpan];
+            int64_t* pend = &pmedian[nMedianTimeSpan];
+
+            const CBlockIndex* pindex = this;
+            for (int i = 0; i < nMedianTimeSpan && pindex; i++, pindex = pindex->pprev)
+                *(--pbegin) = pindex->GetBlockTime();
+
+            std::sort(pbegin, pend);
+            return pbegin[(pend - pbegin)/2];
+        }
     }
 
     bool IsProofOfWork() const
@@ -419,7 +416,7 @@ public:
             READWRITE(VARINT(nDataPos));
         if (nStatus & BLOCK_HAVE_UNDO)
             READWRITE(VARINT(nUndoPos));
-		READWRITE(nFlags);
+        READWRITE(nFlags);
 
         // block header
         READWRITE(this->nVersion);

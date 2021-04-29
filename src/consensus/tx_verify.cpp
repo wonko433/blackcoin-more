@@ -68,7 +68,7 @@ std::pair<int, int64_t> CalculateSequenceLocks(const CTransaction &tx, int flags
         int nCoinHeight = (*prevHeights)[txinIndex];
 
         if (txin.nSequence & CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG) {
-            int64_t nCoinTime = block.GetAncestor(std::max(nCoinHeight-1, 0))->GetPastTimeLimit();
+            int64_t nCoinTime = block.GetAncestor(std::max(nCoinHeight-1, 0))->GetMedianTimePast();
             // NOTE: Subtract 1 to maintain nLockTime semantics
             // BIP 68 relative lock times have the semantics of calculating
             // the first block or time at which the transaction would be
@@ -94,7 +94,7 @@ std::pair<int, int64_t> CalculateSequenceLocks(const CTransaction &tx, int flags
 bool EvaluateSequenceLocks(const CBlockIndex& block, std::pair<int, int64_t> lockPair)
 {
     assert(block.pprev);
-    int64_t nBlockTime = block.pprev->GetPastTimeLimit();
+    int64_t nBlockTime = block.pprev->GetMedianTimePast();
     if (lockPair.first >= block.nHeight || lockPair.second >= nBlockTime)
         return false;
 
@@ -220,16 +220,8 @@ CAmount GetMinFee(const CTransaction& tx)
 CAmount GetMinFee(size_t nBytes, uint32_t nTime)
 {
     CAmount nMinFee;
-
-	/*
-	// Peercoin
-    if (IsProtocolV07(nTime)) // RFC-0007
-        nMinFee = (nBytes < 100) ? MIN_TX_FEE : (CAmount)(nBytes * (PERKB_TX_FEE / 1000));
-    else
-        nMinFee = (1 + (CAmount)nBytes / 1000) * PERKB_TX_FEE;
-    */
-	
-	nMinFee = (1 + (CAmount)nBytes / 1000) * MIN_TX_FEE;
+    
+    nMinFee = (1 + (CAmount)nBytes / 1000) * MIN_TX_FEE;
 
     if (!MoneyRange(nMinFee))
         nMinFee = MAX_MONEY;

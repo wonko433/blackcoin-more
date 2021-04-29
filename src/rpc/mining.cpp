@@ -677,7 +677,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     result.pushKV("coinbasevalue", (int64_t)pblock->vtx[0]->vout[0].nValue);
     result.pushKV("longpollid", ::ChainActive().Tip()->GetBlockHash().GetHex() + i64tostr(nTransactionsUpdatedLast));
     result.pushKV("target", hashTarget.GetHex());
-    result.pushKV("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1);
+    result.pushKV("mintime", (int64_t)pindexPrev->GetMedianTimePast()+1);
     result.pushKV("mutable", aMutable);
     result.pushKV("noncerange", "00000000ffffffff");
     result.pushKV("sigoplimit", (int64_t)MAX_BLOCK_SIGOPS);
@@ -818,10 +818,8 @@ static UniValue estimatefee(const JSONRPCRequest& request)
     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
-/*
 UniValue checkkernel(const JSONRPCRequest& request)
 {
-    // Blackcoin ToDo: adapt checkkernel 
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
             throw std::runtime_error(
                 "checkkernel [{\"txid\":txid,\"vout\":n},...] [createblocktemplate=false]\n"
@@ -914,14 +912,13 @@ UniValue checkkernel(const JSONRPCRequest& request)
         result.pushKV("blocktemplatefees", nFees);
 
         // Reserve a new key pair from key pool
-        if (!CanGetAddresses(true)) {
+        if (!pwallet->CanGetAddresses(true)) {
             throw JSONRPCError(RPC_MISC_ERROR, "Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.");
         }
 
         // result.pushKV("blocktemplatesignkey", HexStr(pubkey));
         return result;
 }
-*/
 
 // clang-format off
 static const CRPCCommand commands[] =
@@ -935,8 +932,7 @@ static const CRPCCommand commands[] =
     { "mining",             "submitblock",            &submitblock,            {"hexdata","dummy"} },
     { "mining",             "submitheader",           &submitheader,           {"hexdata"} },
 
-    // Blackcoin ToDo: enable!
-    /* { "mining",             "checkkernel",            &checkkernel,            {"kernel_input"} }, */
+    { "mining",             "checkkernel",            &checkkernel,            {"kernel_input"} },
     
     { "generating",         "generatetoaddress",      &generatetoaddress,      {"nblocks","address","maxtries"} },
 
