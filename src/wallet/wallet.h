@@ -1173,8 +1173,7 @@ public:
     CFeeRate m_pay_tx_fee{DEFAULT_PAY_TX_FEE};
     bool m_spend_zero_conf_change{DEFAULT_SPEND_ZEROCONF_CHANGE};
     bool m_allow_fallback_fee{true}; //!< will be defined via chainparams
-    // Override with -mintxfee
-    CFeeRate m_min_fee{DEFAULT_TRANSACTION_MINFEE_PER_KB};
+    CFeeRate m_min_fee{DEFAULT_TRANSACTION_MINFEE};
     /**
      * If fee estimation does not have enough data to provide estimates, use this fee instead.
      * Has no effect if not using fee estimation

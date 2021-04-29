@@ -818,6 +818,7 @@ static UniValue estimatefee(const JSONRPCRequest& request)
     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
+/*
 UniValue checkkernel(const JSONRPCRequest& request)
 {
     // Blackcoin ToDo: adapt checkkernel 
@@ -920,6 +921,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
         // result.pushKV("blocktemplatesignkey", HexStr(pubkey));
         return result;
 }
+*/
 
 // clang-format off
 static const CRPCCommand commands[] =
@@ -932,7 +934,9 @@ static const CRPCCommand commands[] =
     { "mining",             "getblocktemplate",       &getblocktemplate,       {"template_request"} },
     { "mining",             "submitblock",            &submitblock,            {"hexdata","dummy"} },
     { "mining",             "submitheader",           &submitheader,           {"hexdata"} },
-    { "mining",             "checkkernel",            &checkkernel,            {"kernel_input"} },
+
+    // Blackcoin ToDo: enable!
+    /* { "mining",             "checkkernel",            &checkkernel,            {"kernel_input"} }, */
     
     { "generating",         "generatetoaddress",      &generatetoaddress,      {"nblocks","address","maxtries"} },
 

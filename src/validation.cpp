@@ -3008,13 +3008,9 @@ static bool CheckBlockSignature(const CBlock& block, const Consensus::Params& co
     if (block.vchBlockSig.empty())
         return false;
 
-    vector<vector<unsigned char> > vSolutions;
-    txnouttype whichType;
-
+    std::vector<valtype> vSolutions;
     const CTxOut& txout = block.vtx[1]->vout[1];
-
-    if (!Solver(txout.scriptPubKey, whichType, vSolutions))
-        return false;
+    txnouttype whichType = Solver(txout.scriptPubKey, vSolutions);
 
     if (whichType == TX_PUBKEY) {
         vector<unsigned char>& vchPubKey = vSolutions[0];
@@ -3259,7 +3255,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     CScript expect = CScript() << nHeight;
     if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
         !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
-        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
+        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-height", "block height mismatch in coinbase");
     }
 
     return true;
