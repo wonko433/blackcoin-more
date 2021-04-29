@@ -61,6 +61,7 @@ public:
         nTime = 0;
         nBits = 0;
         nNonce = 0;
+        nFlags = 0;
     }
 
     bool IsNull() const
@@ -140,6 +141,7 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.nFlags         = nFlags;
         return block;
     }
 

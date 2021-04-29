@@ -236,6 +236,7 @@ public:
         nTime          = block.nTime;
         nBits          = block.nBits;
         nNonce         = block.nNonce;
+        nFlags         = block.nFlags;
     }
 
     FlatFilePos GetBlockPos() const {
@@ -266,6 +267,7 @@ public:
         block.nTime          = nTime;
         block.nBits          = nBits;
         block.nNonce         = nNonce;
+        block.nFlags         = nFlags;
         return block;
     }
 
@@ -417,6 +419,7 @@ public:
             READWRITE(VARINT(nDataPos));
         if (nStatus & BLOCK_HAVE_UNDO)
             READWRITE(VARINT(nUndoPos));
+		READWRITE(nFlags);
 
         // block header
         READWRITE(this->nVersion);

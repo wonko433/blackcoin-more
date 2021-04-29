@@ -2846,7 +2846,7 @@ void ResetBlockFailureFlags(CBlockIndex *pindex) {
     return ::ChainstateActive().ResetBlockFailureFlags(pindex);
 }
 
-CBlockIndex* BlockManager::AddToBlockIndex(const CBlockHeader& block, bool fSetAsProofOfStake)
+CBlockIndex* BlockManager::AddToBlockIndex(const CBlockHeader& block)
 {
     AssertLockHeld(cs_main);
 
@@ -2872,7 +2872,7 @@ CBlockIndex* BlockManager::AddToBlockIndex(const CBlockHeader& block, bool fSetA
         pindexNew->BuildSkip();
     }
     pindexNew->nTimeMax = (pindexNew->pprev ? std::max(pindexNew->pprev->nTimeMax, pindexNew->nTime) : pindexNew->nTime);
-    if (fSetAsProofOfStake)
+    if (block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE)
         pindexNew->SetProofOfStake();
     pindexNew->nChainWork = (pindexNew->pprev ? pindexNew->pprev->nChainWork : 0) + GetBlockProof(*pindexNew);
     pindexNew->RaiseValidity(BLOCK_VALID_TREE);
@@ -3177,10 +3177,12 @@ static CBlockIndex* GetLastCheckpoint(const CCheckpointData& data) EXCLUSIVE_LOC
  *  in ConnectBlock().
  *  Note that -reindex-chainstate skips the validation that happens here!
  */
-static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& params, const CBlockIndex* pindexPrev, int64_t nAdjustedTime, bool fProofOfStake) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& params, const CBlockIndex* pindexPrev, int64_t nAdjustedTime) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
+	
+	bool fProofOfStake = block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
 
     // Check proof of work
     const Consensus::Params& consensusParams = params.GetConsensus();
@@ -3208,11 +3210,11 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
         return state.Invalid(ValidationInvalidReason::BLOCK_TIME_FUTURE, false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
 
     // Check timestamp against prev
-    if (fProofOfStake && block.GetBlockTime() <= pindexPrev->GetPastTimeLimit())
+    if (/*fProofOfStake*/ && block.GetBlockTime() <= pindexPrev->GetPastTimeLimit())
         return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, false, REJECT_INVALID, "time-too-old", "block's timestamp is too early");
 
     // Check timestamp
-    if (fProofOfStake && block.GetBlockTime() > FutureDrift(nAdjustedTime))
+    if (/*fProofOfStake*/ && block.GetBlockTime() > FutureDrift(nAdjustedTime))
         return state.Invalid(ValidationInvalidReason::BLOCK_TIME_FUTURE, false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
 
     // Check maximum reorg depth
@@ -3261,7 +3263,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     return true;
 }
 
-bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex, bool fProofOfStake, bool fOldClient)
+bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& chainparams, CBlockIndex** ppindex)
 {
     AssertLockHeld(cs_main);
     // Check for duplicate
@@ -3280,14 +3282,10 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, CValidationState
             return true;
         }
 
-        // peercoin: Don't reject in case of old clients.
-        // ppcTODO: Maybe add restrictions until when this is allowed? We don't want new clients to pretend to be old clients and try to abuse this.
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !fProofOfStake, fOldClient)) {
-            if (fOldClient)
-                fSetAsPos = !fProofOfStake; // our guess was wrong - correct it
-            else
-                return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !(block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE))) {
+            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
         }
+
         // Get prev block index
         CBlockIndex* pindexPrev = nullptr;
         BlockMap::iterator mi = m_block_index.find(block.hashPrevBlock);
@@ -3296,7 +3294,7 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, CValidationState
         pindexPrev = (*mi).second;
         if (pindexPrev->nStatus & BLOCK_FAILED_MASK)
             return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_PREV, error("%s: prev block invalid", __func__), REJECT_INVALID, "bad-prevblk");
-        if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime(), fSetAsPos))
+        if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
             return error("%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
 
         /* Determine if this block descends from any block which has been found
@@ -3338,7 +3336,7 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, CValidationState
         }
     }
     if (pindex == nullptr)
-        pindex = AddToBlockIndex(block, fSetAsPos);
+        pindex = AddToBlockIndex(block);
 
     if (ppindex)
         *ppindex = pindex;
@@ -3531,7 +3529,7 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     indexDummy.phashBlock = &block_hash;
 
     // NOTE: CheckBlockHeader is called by CheckBlock
-    if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime(), block.IsProofOfStake()))
+    if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
         return error("%s: Consensus::ContextualCheckBlockHeader: %s", __func__, FormatStateMessage(state));
     if (!CheckBlock(block, state, chainparams.GetConsensus(), fCheckPOW, fCheckMerkleRoot))
         return error("%s: Consensus::CheckBlock: %s", __func__, FormatStateMessage(state));

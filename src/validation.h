@@ -478,7 +478,7 @@ public:
     /** Clear all data members. */
     void Unload() EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
-    CBlockIndex* AddToBlockIndex(const CBlockHeader& block, bool fSetAsProofOfStake) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+    CBlockIndex* AddToBlockIndex(const CBlockHeader& block) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
     /** Create a new block index entry for a given block hash */
     CBlockIndex* InsertBlockIndex(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
@@ -490,9 +490,7 @@ public:
         const CBlockHeader& block,
         CValidationState& state,
         const CChainParams& chainparams,
-        CBlockIndex** ppindex,
-        bool fProofOfStake,
-        bool fOldClient) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
+        CBlockIndex** ppindex) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 };
 
 /**

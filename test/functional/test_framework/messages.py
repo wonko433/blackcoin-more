@@ -417,6 +417,7 @@ class CBlockHeader:
             self.nNonce = header.nNonce
             self.sha256 = header.sha256
             self.hash = header.hash
+            self.nFlags = header.nFlags
             self.calc_sha256()
 
     def set_null(self):
@@ -426,6 +427,7 @@ class CBlockHeader:
         self.nTime = 0
         self.nBits = 0
         self.nNonce = 0
+        self.nFlags = 0
         self.sha256 = None
         self.hash = None
 
@@ -1306,9 +1308,3 @@ class msg_blocktxn:
     def __repr__(self):
         return "msg_blocktxn(block_transactions=%s)" % (repr(self.block_transactions))
 
-
-class msg_no_witness_blocktxn(msg_blocktxn):
-    __slots__ = ()
-
-    def serialize(self):
-        return self.block_transactions.serialize(with_witness=False)
