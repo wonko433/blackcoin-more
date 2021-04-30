@@ -12,7 +12,7 @@ What is Blackcoin More?
 ----------------
 
 Blackcoin More is the name of open source software which enables use of the Blackcoin protocol. 
-By building upon Bitcoin Core 0.20.2, with some patches from newer Bitcoin Core versions to offer performance enhancements, Blackcoin More is an alternate approach to the original client that provides wider compatibility with third party services and a more advanced base.
+By building upon Bitcoin Core 0.20.2, Blackcoin More is an alternate approach to the original client that provides wider compatibility with third party services and a more advanced base.
 
 For more information, as well as an immediately useable, binary version of
 the Blackcoin More software, see https://blackcoinmore.org.
