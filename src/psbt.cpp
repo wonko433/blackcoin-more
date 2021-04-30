@@ -1,11 +1,10 @@
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <psbt.h>
 #include <util/strencodings.h>
 
-#include <numeric>
 
 PartiallySignedTransaction::PartiallySignedTransaction(const CMutableTransaction& tx) : tx(tx)
 {
@@ -33,14 +32,6 @@ bool PartiallySignedTransaction::Merge(const PartiallySignedTransaction& psbt)
     }
     unknown.insert(psbt.unknown.begin(), psbt.unknown.end());
 
-    return true;
-}
-
-bool PartiallySignedTransaction::IsSane() const
-{
-    for (PSBTInput input : inputs) {
-        if (!input.IsSane()) return false;
-    }
     return true;
 }
 
@@ -134,11 +125,6 @@ void PSBTInput::Merge(const PSBTInput& input)
     if (final_script_sig.empty() && !input.final_script_sig.empty()) final_script_sig = input.final_script_sig;
 }
 
-bool PSBTInput::IsSane() const
-{
-    return true;
-}
-
 void PSBTOutput::FillSignatureData(SignatureData& sigdata) const
 {
     if (!redeem_script.empty()) {
@@ -211,11 +197,6 @@ bool SignPSBTInput(const SigningProvider& provider, PartiallySignedTransaction& 
     // Get UTXO
     CTxOut utxo;
 
-    // Verify input sanity
-    if (!input.IsSane()) {
-        return false;
-    }
-
     if (input.utxo.IsNull()) {
         return false;
     }
@@ -279,10 +260,6 @@ TransactionError CombinePSBTs(PartiallySignedTransaction& out, const std::vector
             return TransactionError::PSBT_MISMATCH;
         }
     }
-    if (!out.IsSane()) {
-        return TransactionError::INVALID_PSBT;
-    }
-
     return TransactionError::OK;
 }
 

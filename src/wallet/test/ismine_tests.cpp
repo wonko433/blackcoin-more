@@ -3,9 +3,10 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key.h>
+#include <node/context.h>
 #include <script/script.h>
 #include <script/standard.h>
-#include <test/setup_common.h>
+#include <test/util/setup_common.h>
 #include <wallet/ismine.h>
 #include <wallet/wallet.h>
 
@@ -26,7 +27,8 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
     CKey uncompressedKey;
     uncompressedKey.MakeNewKey(false);
     CPubKey uncompressedPubkey = uncompressedKey.GetPubKey();
-    std::unique_ptr<interfaces::Chain> chain = interfaces::MakeChain();
+    NodeContext node;
+    std::unique_ptr<interfaces::Chain> chain = interfaces::MakeChain(node);
 
     CScript scriptPubKey;
     isminetype result;
@@ -34,180 +36,190 @@ BOOST_AUTO_TEST_CASE(ismine_standard)
     // P2PK compressed
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
         scriptPubKey = GetScriptForRawPubKey(pubkeys[0]);
 
         // Keystore does not have key
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has key
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // P2PK uncompressed
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
         scriptPubKey = GetScriptForRawPubKey(uncompressedPubkey);
 
         // Keystore does not have key
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has key
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(uncompressedKey));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // P2PKH compressed
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
         scriptPubKey = GetScriptForDestination(PKHash(pubkeys[0]));
 
         // Keystore does not have key
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has key
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // P2PKH uncompressed
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
         scriptPubKey = GetScriptForDestination(PKHash(uncompressedPubkey));
 
         // Keystore does not have key
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has key
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(uncompressedKey));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // P2SH
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
 
         CScript redeemScript = GetScriptForDestination(PKHash(pubkeys[0]));
         scriptPubKey = GetScriptForDestination(ScriptHash(redeemScript));
 
         // Keystore does not have redeemScript or key
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has redeemScript but no key
-        BOOST_CHECK(keystore.AddCScript(redeemScript));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(redeemScript));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has redeemScript and key
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // (P2PKH inside) P2SH inside P2SH (invalid)
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
 
         CScript redeemscript_inner = GetScriptForDestination(PKHash(pubkeys[0]));
         CScript redeemscript = GetScriptForDestination(ScriptHash(redeemscript_inner));
         scriptPubKey = GetScriptForDestination(ScriptHash(redeemscript));
 
-        BOOST_CHECK(keystore.AddCScript(redeemscript));
-        BOOST_CHECK(keystore.AddCScript(redeemscript_inner));
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
-        BOOST_CHECK(keystore.AddKey(keys[0]));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(redeemscript));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(redeemscript_inner));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(scriptPubKey));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 
     // scriptPubKey multisig
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
 
         scriptPubKey = GetScriptForMultisig(2, {uncompressedPubkey, pubkeys[1]});
 
         // Keystore does not have any keys
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has 1/2 keys
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(uncompressedKey));
 
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has 2/2 keys
-        BOOST_CHECK(keystore.AddKey(keys[1]));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[1]));
 
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has 2/2 keys and the script
-        BOOST_CHECK(keystore.AddCScript(scriptPubKey));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(scriptPubKey));
 
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 
     // P2SH multisig
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(uncompressedKey));
-        BOOST_CHECK(keystore.AddKey(keys[1]));
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(uncompressedKey));
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[1]));
 
         CScript redeemScript = GetScriptForMultisig(2, {uncompressedPubkey, pubkeys[1]});
         scriptPubKey = GetScriptForDestination(ScriptHash(redeemScript));
 
         // Keystore has no redeemScript
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
 
         // Keystore has redeemScript
-        BOOST_CHECK(keystore.AddCScript(redeemScript));
-        result = IsMine(keystore, scriptPubKey);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddCScript(redeemScript));
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_SPENDABLE);
     }
 
     // OP_RETURN
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
 
         scriptPubKey.clear();
         scriptPubKey << OP_RETURN << ToByteVector(pubkeys[0]);
 
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 
     // Nonstandard
     {
         CWallet keystore(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-        LOCK(keystore.cs_wallet);
-        BOOST_CHECK(keystore.AddKey(keys[0]));
+        keystore.SetupLegacyScriptPubKeyMan();
+        LOCK(keystore.GetLegacyScriptPubKeyMan()->cs_KeyStore);
+        BOOST_CHECK(keystore.GetLegacyScriptPubKeyMan()->AddKey(keys[0]));
 
         scriptPubKey.clear();
         scriptPubKey << OP_9 << OP_ADD << OP_11 << OP_EQUAL;
 
-        result = IsMine(keystore, scriptPubKey);
+        result = keystore.GetLegacyScriptPubKeyMan()->IsMine(scriptPubKey);
         BOOST_CHECK_EQUAL(result, ISMINE_NO);
     }
 }

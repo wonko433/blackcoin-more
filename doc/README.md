@@ -30,7 +30,7 @@ Drag Blackcoin More to your applications folder, and then run Blackcoin More.
 
 * See the documentation at the [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page)
 for help and more information.
-* Ask for help on [#blackcoin](http://webchat.freenode.net?channels=blackcoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=blackcoin).
+* Ask for help on [#blackcoin](https://webchat.freenode.net/#blackcoin) on Freenode. If you don't have an IRC client use [webchat here](https://webchat.freenode.net/#blackcoin).
 * Ask for help in [Blackcoin room](https://gitter.im/BlackCoin_Hub) on Gitter.
 * Ask for help in [/r/blackcoin/](https://nm.reddit.com/r/blackcoin/) on Reddit.
 * Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838.new#new).
@@ -56,7 +56,7 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 - [Productivity Notes](productivity.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://dev.visucore.com/bitcoin/doxygen/)
+- [Source Code Documentation (External Link)](https://doxygen.bitcoincore.org/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
 - [JSON-RPC Interface](JSON-RPC-interface.md)
@@ -86,5 +86,3 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 License
 ---------------------
 Distributed under the [MIT software license](/COPYING).
-This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
-cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.

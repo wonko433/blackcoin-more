@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>گشایش آدرس جدید</translation>
+        <translation>یک آدرس جدید ایجاد کنید</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>کپی کردن آدرس جاری انتخاب شده به حافظه سیستم - کلیپ بورد</translation>
+        <translation>آدرس فعلی انتخواب شده را در کیبورد سیستم  خود کپی کنید</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -35,7 +35,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>صدور داده نوار جاری به یک فایل</translation>
+        <translation>اطلاعات موجود در صفحه را به یک فایل انقال دهید</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -47,7 +47,7 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>آدرس برای ارسال کوین‌ها را انتخاب کنید</translation>
+        <translation>آدرس را برای واریز کوین انتخواب کنید</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
@@ -72,6 +72,10 @@
     <message>
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
         <translation>این‌ها آدرس‌های بیتکوین شما برای دریافت مبالغ می‌باشد. توصیه می‌شود برای هر تراکنش از یک آدرس جدید استفاده کنید.</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>اینها آدرس بیت کوین های دریافتی شما می باشدند. در تب دریافت از دکمه 'ایحاد آدرس جدید' برای ساخت آدرس جدید استفاده نمائید.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -140,20 +144,16 @@
         <translation>نمایش رمز</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>کلمه رمز جدید را وارد کنید. &lt;br/&gt;لطفا کلمه رمزی که انتخاب میکنید &lt;b&gt;۱۰ یا بیشتر حرف تصادفی باشد &lt;b&gt; یا ۸ کلمه یا بیشتر باشد.</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
         <translation>رمزگذاری کیف پول</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>برای انجام این عملیات، باید رمز کیف‌پول خود را وارد نمائید تا کیف شما بازگشایی گردد.</translation>
+        <translation>این عملیات نیاز به رمز کیف ‌پول شما دارد تا کیف پول باز شود</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>بازکردن کیف‌پول</translation>
+        <translation>بازکردن کیف ‌پول</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>آیا از رمزگذاری کیف‌پول خود اطمینان دارید؟</translation>
+        <translation>آیا از رمزگذاری کیف ‌پول خود اطمینان دارید؟</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
@@ -320,7 +320,7 @@
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>تهیه نسخه پشتیبان از کیف پول</translation>
+        <translation>&amp;پیشتیبان‌گیری از کیف پول...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
@@ -336,7 +336,7 @@
     </message>
     <message>
         <source>Create a new wallet</source>
-        <translation>ایجاد یک کیف پول جدید</translation>
+        <translation>ساخت کیف پول جدید</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -377,14 +377,6 @@
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>رمز عبور مربوط به رمزگذاریِ کیف پول  را تغییر دهید</translation>
-    </message>
-    <message>
-        <source>&amp;Debug window</source>
-        <translation>پنجره دیباگ</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>باز کردن کنسول دی باگ و تشخیص</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -447,10 +439,6 @@
         <translation>نمایش لیست آدرس‌ها و لیبل‌های دریافتی استفاده شده</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>بازکردن بیت‌کوین: آدرس یا درخواست پرداخت</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>گزینه های خط فرمان</translation>
     </message>
@@ -499,12 +487,24 @@
         <translation>به روز</translation>
     </message>
     <message>
+        <source>Node window</source>
+        <translation>پنجره گره</translation>
+    </message>
+    <message>
+        <source>Open node debugging and diagnostic console</source>
+        <translation>باز کردن کنسول دی باگ و تشخیص گره</translation>
+    </message>
+    <message>
         <source>&amp;Sending addresses</source>
         <translation>ادرس ارسال</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
         <translation>ادرس درسافت</translation>
+    </message>
+    <message>
+        <source>Open a bitcoin: URI</source>
+        <translation>بارک کردن یک بیت‌کوین: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -921,10 +921,6 @@
         <translation>نسخه</translation>
     </message>
     <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-بیت)</translation>
-    </message>
-    <message>
         <source>About %1</source>
         <translation>حدود %1</translation>
     </message>
@@ -1030,32 +1026,28 @@
         <source>Hide</source>
         <translation>پنهان کردن</translation>
     </message>
+    <message>
+        <source>Esc</source>
+        <translation>خروج</translation>
+    </message>
     </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>باز کردن آدرس URL</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>بازکردن درخواست پرداخت از آدرس URL یا فایل</translation>
-    </message>
-    <message>
         <source>URI:</source>
         <translation>آدرس:</translation>
-    </message>
-    <message>
-        <source>Select payment request file</source>
-        <translation>انتخاب فایل درخواست وجه (Payment Request)</translation>
-    </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>انتخاب فایل درحواست وجه برای باز کردن</translation>
     </message>
 </context>
 <context>
     <name>OpenWalletActivity</name>
+    <message>
+        <source>Open wallet failed</source>
+        <translation>بازکردن کیف پول به مشکل خورده است</translation>
+    </message>
+    <message>
+        <source>Open wallet warning</source>
+        <translation>هشدار باز کردن کیف پول</translation>
+    </message>
     <message>
         <source>Open wallet failed</source>
         <translation>بازکردن کیف پول به مشکل خورده است</translation>
@@ -1343,36 +1335,20 @@
         <translation>درخواست پرداخت با خطا مواجه شد</translation>
     </message>
     <message>
+        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <translation>نمی‌توان بیت‌کوین را اجرا کرد: کنترل‌کنندهٔ کلیک-و-پرداخت</translation>
+    </message>
+    <message>
+        <source>URI handling</source>
+        <translation>مدیریت URI</translation>
+    </message>
+    <message>
         <source>Invalid payment address %1</source>
         <translation>آدرس پرداخت نامعتبر %1</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
         <translation>درحال پردازش درخواست پرداخت</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>درخواست پرداخت رد شد</translation>
-    </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation>درخواست پرداخت منقضی شد یا تاریخ آن گذشت.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>درخواست پرداخت, با مقداردهی اولیه یکسان نبود.</translation>
-    </message>
-    <message>
-        <source>Invalid payment request.</source>
-        <translation>درخواست پرداخت نامعتبر بود.</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>درخواست از شبکه با خطا مواجه شد</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>پرداخت تایید شد</translation>
     </message>
 </context>
 <context>
@@ -1547,10 +1523,6 @@
         <translation>&amp;اطلاعات</translation>
     </message>
     <message>
-        <source>Debug window</source>
-        <translation>پنجره یا صفحه دی باگ</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
@@ -1648,7 +1620,7 @@
     </message>
     <message>
         <source>Starting Block</source>
-        <translation>بلاک شروع</translation>
+        <translation>بلاک اولیه</translation>
     </message>
     <message>
         <source>Synced Blocks</source>
@@ -1657,6 +1629,10 @@
     <message>
         <source>User Agent</source>
         <translation>نماینده کاربر</translation>
+    </message>
+    <message>
+        <source>Node window</source>
+        <translation>پنجره گره</translation>
     </message>
     <message>
         <source>Decrease font size</source>
@@ -1991,10 +1967,6 @@
         <translation>هشدار:تخمین کارمزد در حال حاضر امکان پذیر نیست.</translation>
     </message>
     <message>
-        <source>collapse fee-settings</source>
-        <translation>تنظیمات کاهش کارمزد</translation>
-    </message>
-    <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
@@ -2037,6 +2009,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Dust:</source>
         <translation>گرد و غبار یا داست:</translation>
+    </message>
+    <message>
+        <source>Hide transaction fee settings</source>
+        <translation>تنظیمات مخفی کردن کارمزد عملیات</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
@@ -2127,6 +2103,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>تایید کردن ارسال کوین ها</translation>
     </message>
     <message>
+        <source>Send</source>
+        <translation>ارسال</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation>PSBT کپی شد</translation>
+    </message>
+    <message>
         <source>The recipient address is not valid. Please recheck.</source>
         <translation>آدرس گیرنده نامعتبر است.لطفا دوباره چک یا بررسی کنید.</translation>
     </message>
@@ -2149,10 +2133,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Transaction creation failed!</source>
         <translation>ایجاد تراکنش با خطا مواجه شد!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>به خاطر دلیل روبرو تراکنش رد شد: %1</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
@@ -2206,10 +2186,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>انتخاب آدرس قبلا استفاده شده</translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>این پرداحت,عادی هست.</translation>
-    </message>
-    <message>
         <source>The Bitcoin address to send the payment to</source>
         <translation>آدرس بیت کوین برای ارسال پرداحت به آن</translation>
     </message>
@@ -2244,17 +2220,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Memo:</source>
         <translation>یادداشت:</translation>
-    </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>یک برچسب برای این آدرس بنویسید تا به دفترچه‌ آدرس‌های شما اضافه شود</translation>
-    </message>
-</context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>بله</translation>
     </message>
 </context>
 <context>
@@ -2361,7 +2326,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>آدرس وارد شده به هیچ کلیدی مرتبط نمی باشد.</translation>
+        <translation>نشانی وارد شده به هیچ کلیدی اشاره نمی‌کند.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -2376,6 +2341,18 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>امضاء پیام انجام نگردید.</translation>
     </message>
     <message>
+        <source>No error</source>
+        <translation>بدون خطا</translation>
+    </message>
+    <message>
+        <source>Private key for the entered address is not available.</source>
+        <translation>کلید خصوصی برای نشانی وارد شده در دسترس نیست.</translation>
+    </message>
+    <message>
+        <source>Message signing failed.</source>
+        <translation>امضای پیام با شکست مواجه شد.</translation>
+    </message>
+    <message>
         <source>Message signed.</source>
         <translation>پیام امضاء شد.</translation>
     </message>
@@ -2386,6 +2363,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Please check the signature and try again.</source>
         <translation>لطفآ امضاء را برا بررسی نموده و مجدداً سعی نمائید.</translation>
+    </message>
+    <message>
+        <source>The signature could not be decoded.</source>
+        <translation>امضا نمی‌تواند کدگشایی شود.</translation>
+    </message>
+    <message>
+        <source>Please check the signature and try again.</source>
+        <translation>لطفاً امضا را بررسی نموده و دوباره تلاش کنید.</translation>
     </message>
     <message>
         <source>The signature did not match the message digest.</source>
@@ -2410,8 +2395,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 <context>
     <name>TransactionDesc</name>
     <message>
+        <source>Open until %1</source>
+        <translation>باز تا %1</translation>
+    </message>
+    <message>
         <source>abandoned</source>
         <translation>رها شده</translation>
+    </message>
+    <message>
+        <source>%1/unconfirmed</source>
+        <translation>%1/تأیید نشده</translation>
+    </message>
+    <message>
+        <source>%1 confirmations</source>
+        <translation>%1 تأییدیه</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2460,6 +2457,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>not accepted</source>
         <translation>قبول نشده</translation>
+    </message>
+    <message>
+        <source>Debit</source>
+        <translation>اعتبار</translation>
     </message>
     <message>
         <source>Total credit</source>
@@ -2544,12 +2545,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>برچسب</translation>
     </message>
     <message>
+        <source>Open until %1</source>
+        <translation>باز تا %1</translation>
+    </message>
+    <message>
         <source>Unconfirmed</source>
         <translation>تایید نشده</translation>
     </message>
     <message>
         <source>Abandoned</source>
         <translation>رهاشده</translation>
+    </message>
+    <message>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation>تأیید شده (%1 تأییدیه)</translation>
     </message>
     <message>
         <source>Generated but not accepted</source>
@@ -2586,6 +2595,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>(no label)</source>
         <translation>(برچسب ندارد)</translation>
+    </message>
+    <message>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>وضعیت تراکنش. نشانگر را روی این فیلد نگه دارید تا تعداد تأییدیه‌ها نشان داده شود.</translation>
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
@@ -2681,6 +2694,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Copy transaction ID</source>
         <translation>شناسه تراکنش را کپی نمائید.</translation>
+    </message>
+    <message>
+        <source>Copy raw transaction</source>
+        <translation>معامله اولیه را کپی نمائید.</translation>
     </message>
     <message>
         <source>Copy raw transaction</source>
@@ -2799,6 +2816,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>کارمزد جدید:</translation>
     </message>
     <message>
+        <source>PSBT copied</source>
+        <translation>PSBT کپی شد</translation>
+    </message>
+    <message>
         <source>Can't sign transaction.</source>
         <translation>نمیتوان تراکنش را ثبت کرد</translation>
     </message>
@@ -2823,7 +2844,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Wallet Data (*.dat)</source>
-        <translation>اطلاعات کیف پول (dat.*)</translation>
+        <translation>دادهٔ کیف پول (*.dat)</translation>
     </message>
     <message>
         <source>Backup Failed</source>
@@ -2843,6 +2864,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>The %s developers</source>
         <translation>%s توسعه دهندگان</translation>
+    </message>
+    <message>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation>این یک نسخه ی آزمایشی است - با مسئولیت خودتان از آن استفاده کنید -  آن را در معدن و بازرگانی بکار نگیرید.</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -2949,18 +2974,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>حجم تراکنش بسیار کم است برای پرداخت کارمزد</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>آدرس پراکسی یا هاست نامعتبر: ' %s'</translation>
-    </message>
-    <message>
-        <source>Signing transaction failed</source>
-        <translation>ثبت تراکنش با خطا مواجه شد</translation>
-    </message>
-    <message>
-        <source>The transaction amount is too small to pay the fee</source>
-        <translation>حجم تراکنش بسیار کم است برای پرداخت کارمزد</translation>
-    </message>
-    <message>
         <source>This is experimental software.</source>
         <translation>این یک نرم افزار تجربی است.</translation>
     </message>
@@ -2994,10 +3007,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>این هزینه تراکنشی است که در صورت عدم وجود هزینه تخمینی، پرداخت می کنید.</translation>
     </message>
     <message>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>این محصول شامل نرم افزار توسعه یافته با پروژه OpenSSL است، پروژه ای برای استفاده از جعبه ابزار OpenSSL %s و نرم افزار رمزنگاری که توسط اریک یانگ نوشته شده و همچنین نرم افزار UPnP که توسط توماس برنارد نوشته شده است.</translation>
-    </message>
-    <message>
         <source>%s is set very high!</source>
         <translation>%s بسیار بزرگ انتخاب شده است.</translation>
     </message>
@@ -3019,8 +3028,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
-        <translation>تراکنش بیش از حد طولانی از یک زنجیر مهر و موم شده است
-</translation>
+        <translation>طول زنجیره تراکنش بیش از حد مجاز میباشد</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
@@ -3044,15 +3052,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Loading block index...</source>
-        <translation>لود شدن نمایه بلاکها..</translation>
+        <translation>بارگذاری نمایه بلاک‌ها...</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
-        <translation>wallet در حال لود شدن است...</translation>
+        <translation>کیف پول در حال بارگیری است...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
-        <translation>قابلیت برگشت به نسخه قبلی برای wallet امکان پذیر نیست</translation>
+        <translation>تنزل نسخه کیف پول امکان پذیر نیست</translation>
     </message>
     <message>
         <source>Rescanning...</source>

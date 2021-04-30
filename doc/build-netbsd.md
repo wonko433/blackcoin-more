@@ -40,24 +40,26 @@ from ports, for the same reason as boost above (g++/libstd++ incompatibility).
 **Important**: Use `gmake` (the non-GNU `make` will exit with an error).
 
 With wallet:
-```
+```bash
 ./autogen.sh
 ./configure --with-gui=no CPPFLAGS="-I/usr/pkg/include" \
     LDFLAGS="-L/usr/pkg/lib" \
     BOOST_CPPFLAGS="-I/usr/pkg/include" \
     BOOST_LDFLAGS="-L/usr/pkg/lib" \
     BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
-    BDB_CFLAGS="-I${BDB_PREFIX}/include"
+    BDB_CFLAGS="-I${BDB_PREFIX}/include" \
+    MAKE=gmake
 ```
 
 Without wallet:
-```
+```bash
 ./autogen.sh
 ./configure --with-gui=no --disable-wallet \
     CPPFLAGS="-I/usr/pkg/include" \
     LDFLAGS="-L/usr/pkg/lib" \
     BOOST_CPPFLAGS="-I/usr/pkg/include" \
-    BOOST_LDFLAGS="-L/usr/pkg/lib"
+    BOOST_LDFLAGS="-L/usr/pkg/lib" \
+    MAKE=gmake
 ```
 
 Build and run the tests:

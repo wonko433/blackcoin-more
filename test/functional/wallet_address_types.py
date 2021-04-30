@@ -80,6 +80,10 @@ class AddressTypeTest(BitcoinTestFramework):
             ["-changetype=p2sh-segwit"],
             [],
         ]
+        # whitelist all peers to speed up tx relay / mempool sync
+        for args in self.extra_args:
+            args.append("-whitelist=noban@127.0.0.1")
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -232,8 +236,6 @@ class AddressTypeTest(BitcoinTestFramework):
             if explicit_type and not multisig:
                 if from_node == 1:
                     address_type = 'bech32'
-                elif from_node == 0 or from_node == 3:
-                    address_type = 'p2sh-segwit'
                 else:
                     address_type = 'legacy'
             self.log.info("Sending from node {} ({}) with{} multisig using {}".format(from_node, self.extra_args[from_node], "" if multisig else "out", "default" if address_type is None else address_type))
@@ -264,8 +266,6 @@ class AddressTypeTest(BitcoinTestFramework):
                     typ = address_type
                 elif to_node == 0:
                     typ = 'legacy'
-                elif to_node == 1 or (to_node == 2 and not change):
-                    typ = 'p2sh-segwit'
                 else:
                     typ = 'bech32'
                 self.test_address(to_node, address, multisig, typ)
@@ -309,7 +309,7 @@ class AddressTypeTest(BitcoinTestFramework):
                 to_node %= 4
                 assert_equal(new_balances[to_node], old_balances[to_node] + to_send * 10 * (2 + n))
 
-        # Get one p2sh/segwit address from node2 and two bech32 addresses from node3:
+        # Get one p2sh address from node2 and two bech32 addresses from node3:
         to_address_p2sh = self.nodes[2].getnewaddress()
         to_address_bech32_1 = self.nodes[3].getnewaddress()
         to_address_bech32_2 = self.nodes[3].getnewaddress()
@@ -320,20 +320,14 @@ class AddressTypeTest(BitcoinTestFramework):
         self.sync_blocks()
         assert_equal(self.nodes[4].getbalance(), 1)
 
-        self.log.info("Nodes with addresstype=legacy never use a P2WPKH change output")
+        self.log.info("Nodes with addresstype=legacy never use bech32 change output (unless changetype is set otherwise):")
         self.test_change_output_type(0, [to_address_bech32_1], 'legacy')
 
-        self.log.info("Nodes with addresstype=p2sh-segwit only use a P2WPKH change output if any destination address is bech32:")
-        self.test_change_output_type(1, [to_address_p2sh], 'p2sh-segwit')
-        self.test_change_output_type(1, [to_address_bech32_1], 'bech32')
-        self.test_change_output_type(1, [to_address_p2sh, to_address_bech32_1], 'bech32')
-        self.test_change_output_type(1, [to_address_bech32_1, to_address_bech32_2], 'bech32')
-
-        self.log.info("Nodes with change_type=bech32 always use a P2WPKH change output:")
+        self.log.info("Nodes with change_type=bech32 always use bech32 change output:")
         self.test_change_output_type(2, [to_address_bech32_1], 'bech32')
         self.test_change_output_type(2, [to_address_p2sh], 'bech32')
 
-        self.log.info("Nodes with addresstype=bech32 always use a P2WPKH change output (unless changetype is set otherwise):")
+        self.log.info("Nodes with addresstype=bech32 always use bech32 change output (unless changetype is set otherwise):")
         self.test_change_output_type(3, [to_address_bech32_1], 'bech32')
         self.test_change_output_type(3, [to_address_p2sh], 'bech32')
 

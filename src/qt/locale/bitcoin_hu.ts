@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>A cím vagy címke szerkesztéséhez kattints jobb gombbal</translation>
+        <translation>A cím vagy címke szerkesztéséhez kattints a jobb gombbal</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -74,6 +74,10 @@
         <translation>Ezek a fizetések fogadására szolgáló Bitcoin-címeid. Használd az "Új fogadócím létrehozása" gombot a fogadás fülön új cím létrehozásához.</translation>
     </message>
     <message>
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Ezek a fizetések fogadására szolgáló Bitcoin-címeid. Használd az "Új fogadócím létrehozása" gombot a fogadás fülön új cím létrehozásához.</translation>
+    </message>
+    <message>
         <source>&amp;Copy Address</source>
         <translation>&amp;Cím másolása</translation>
     </message>
@@ -125,7 +129,7 @@
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Írd be a jelszót</translation>
+        <translation>Írja be a jelszót</translation>
     </message>
     <message>
         <source>New passphrase</source>
@@ -181,11 +185,11 @@
     </message>
     <message>
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Írd be a tárca új jelszavát. &lt;br/&gt;A jelszónak tartalmaznia kell: &lt;b&gt;tíz vagy annál több véletlenszerű karakter&lt;/b&gt;, avagy &lt;b&gt;nyolc vagy annál több szó&lt;/b&gt;. </translation>
+        <translation>Írja be a tárca új jelszavát. &lt;br/&gt;A jelszó összetétele a következő: &lt;b&gt;tíz vagy annál több véletlenszerű karakter&lt;/b&gt;, vagy &lt;b&gt;nyolc vagy annál több szó&lt;/b&gt;. </translation>
     </message>
     <message>
         <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Írd be a tárca régi és új jelszavát.</translation>
+        <translation>Írja be a tárca régi és új jelszavát.</translation>
     </message>
     <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
@@ -201,7 +205,7 @@
     </message>
     <message>
         <source>Your wallet is now encrypted. </source>
-        <translation>Tárcádat titkosítottuk.</translation>
+        <translation>Tárcáját titkosítottuk.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -209,11 +213,11 @@
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>A tárca titkosítása sikertelen.</translation>
+        <translation>Nem sikerült a tárca titkosítása</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>A tárca titkosítása belső hiba miatt nem sikerült. A tárcád nem került titkosításra.</translation>
+        <translation>A tárca titkosítása belső hiba miatt nem sikerült. A tárcád nem lett titkosítva.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
@@ -221,7 +225,7 @@
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>A tárca feloldása nem sikerült</translation>
+        <translation>A tárca felnyitása nem sikerült</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
@@ -233,7 +237,7 @@
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>A tárca jelszavát sikeresen megváltoztattad.</translation>
+        <translation>A tárca jelszavát sikeresen megváltoztatta.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
@@ -315,7 +319,7 @@
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Biztonsági másolat készítése a tárcáról...</translation>
+        <translation>&amp;Biztonsági tárcamásolat készítése...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
@@ -332,6 +336,14 @@
     <message>
         <source>Create a new wallet</source>
         <translation>Új tárca létrehozása</translation>
+    </message>
+    <message>
+        <source>Create Wallet...</source>
+        <translation>Tárca készítése...</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Új tárca készítése</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -359,7 +371,7 @@
     </message>
     <message>
         <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
-        <translation>A proxy  &lt;b&gt;aktív&lt;/b&gt;: %1</translation>
+        <translation>Proxy  &lt;b&gt;aktív&lt;/b&gt;: %1</translation>
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
@@ -372,14 +384,6 @@
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>Tárcatitkosító jelszó megváltoztatása</translation>
-    </message>
-    <message>
-        <source>&amp;Debug window</source>
-        <translation>&amp;Debug ablak</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Hibakereső és diagnosztikai konzol megnyitása</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -442,10 +446,6 @@
         <translation>A használt fogadó címek és címkék megtekintése</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>"blackcoin:" URI azonosító vagy fizetési kérelem megnyitása</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>Paran&amp;cssor kapcsolók</translation>
     </message>
@@ -502,12 +502,24 @@
         <translation>Naprakész</translation>
     </message>
     <message>
+        <source>Node window</source>
+        <translation>Csomópont ablak</translation>
+    </message>
+    <message>
+        <source>Open node debugging and diagnostic console</source>
+        <translation>Nyisd meg a hibaellenőrző és diagnosztizáló konzolt.</translation>
+    </message>
+    <message>
         <source>&amp;Sending addresses</source>
         <translation>&amp;Küldő címek</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
         <translation>&amp;Fogadó címek</translation>
+    </message>
+    <message>
+        <source>Open a bitcoin: URI</source>
+        <translation>Bitcoin URI megnyitása</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -901,6 +913,14 @@
         <translation>A megadott "%1" cím már szerepel a címjegyzékben "%2" néven.</translation>
     </message>
     <message>
+        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
+        <translation>A(z) "%1" már egy létező fogadó cím "%2" névvel és nem lehet küldő címként hozzáadni.</translation>
+    </message>
+    <message>
+        <source>The entered address "%1" is already in the address book with label "%2".</source>
+        <translation>A megadott "%1" cím már szerepel a címjegyzékben "%2" néven.</translation>
+    </message>
+    <message>
         <source>Could not unlock wallet.</source>
         <translation>Nem sikerült a tárca megnyitása</translation>
     </message>
@@ -937,10 +957,6 @@
     <message>
         <source>version</source>
         <translation>verzió</translation>
-    </message>
-    <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-bit)</translation>
     </message>
     <message>
         <source>About %1</source>
@@ -998,6 +1014,10 @@
         <translation>Blokkok elhgyása ellenőrzés után, kivéve a legújabb %1 GB-ot (nyesés)</translation>
     </message>
     <message>
+        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
+        <translation>Blokkok elhgyása ellenőrzés után, kivéve a legújabb %1 GB-ot (nyesés)</translation>
+    </message>
+    <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
         <translation>Legalább %1 GB adatot fogunk ebben a könyvtárban tárolni és idővel ez egyre több lesz.</translation>
     </message>
@@ -1025,7 +1045,15 @@
         <source>%n GB of free space available</source>
         <translation><numerusform>%n GB elérhető szabad hely</numerusform><numerusform>%n GB elérhető szabad hely</numerusform></translation>
     </message>
-    </context>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation><numerusform>(a szükséges %n GB-ból)</numerusform><numerusform>(a szükséges %n GB-ból)</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation><numerusform>(%n GB szükséges a teljes sorozathoz)</numerusform><numerusform>(%n GB szükséges a teljes lánchoz)</numerusform></translation>
+    </message>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -1073,6 +1101,14 @@
         <translation>Elrejtés</translation>
     </message>
     <message>
+        <source>Esc</source>
+        <translation>Kilépés</translation>
+    </message>
+    <message>
+        <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
+        <translation>%1 szinkronizálás alatt. Fejléceket és blokkokat tölt le a felektől, majd érvényesíti, amíg el nem éri a blokklánc tetejét.</translation>
+    </message>
+    <message>
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation>Ismeretlen. Fejlécek szinkronizálása (%1, %2%)...</translation>
     </message>
@@ -1080,24 +1116,12 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>URI megnyitása</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>Fizetési kérelem megnyitása URI azonosítóból vagy fájlból</translation>
+        <source>Open bitcoin URI</source>
+        <translation>Nyisd meg a bitcoin címedet</translation>
     </message>
     <message>
         <source>URI:</source>
         <translation>URI:</translation>
-    </message>
-    <message>
-        <source>Select payment request file</source>
-        <translation>Fizetési kérelmi fájl kiválasztása</translation>
-    </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>Válassza ki a megnyitni kívánt fizetési kérelem fájlt</translation>
     </message>
 </context>
 <context>
@@ -1152,6 +1176,10 @@
     <message>
         <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
         <translation>Megmutatja, hogy az alapértelmezett SOCKS5 proxy van-e használatban, hogy elérje a párokat ennél a hálózati típusnál.</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
+        <translation>Za dostop do soležnikov preko skritih storitev Tor uporabi drug posredniški strežnik SOCKS&amp;5:</translation>
     </message>
     <message>
         <source>Hide the icon from the system tray.</source>
@@ -1500,6 +1528,10 @@
         <translation>'bitcoin://' nem érvényes egységes erőforrás azonosító (URI). Használd helyette a 'bitcoin'-t.</translation>
     </message>
     <message>
+        <source>Cannot process payment request because BIP70 is not supported.</source>
+        <translation>A fizetési kérelmet nem lehet feldolgozni, mert a BIP70 nem támogatott.</translation>
+    </message>
+    <message>
         <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation>A BIP70 széleskörű biztonsági hiányosságai következtében határozottan ajánljuk, hogy hagyjon figyelmen kívül bármiféle kereskedelmi utasítást, amely a tárca váltására készteti.</translation>
     </message>
@@ -1513,67 +1545,11 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
-        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen Blackcoin cím, vagy rossz URI paraméterezés.</translation>
+        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen Bitcoin cím, vagy rossz URI paraméterezés.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
         <translation>Fizetés kérelmi fájl kezelése</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Nem sikerült beolvasni a fizetési kérelmi fájlt! Ezt érvénytelen fizetési kérelmi fájl okozhatja.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>A fizetési kérelem visszautasítva</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>A fizetési kérelmi hálózat nem egyezik a kliens hálózatával.</translation>
-    </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation>A fizetési kérelem lejárt.</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>A fizetési kérelem nem inicializálódott</translation>
-    </message>
-    <message>
-        <source>Invalid payment request.</source>
-        <translation>Érvénytelen fizetési kérelem</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>A %1 fizetésre kért összege túl kevés (porszemnek minősül).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Visszatérítés innen: %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>A fizetési kérelem %1 túl nagy (%2 byte, csak %3 byte engedélyezett).</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Hiba a kommuniáció során %1 -el: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>Nem sikerült elemezni a fizetési kérelmet!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>Rossz válasz a kiszolgálótól %1</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Hálózati kérelem hiba</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Fizetés elfogadva</translation>
     </message>
 </context>
 <context>
@@ -1752,10 +1728,6 @@
         <translation>&amp;Információ</translation>
     </message>
     <message>
-        <source>Debug window</source>
-        <translation>Debug ablak</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Általános</translation>
     </message>
@@ -1872,8 +1844,20 @@
         <translation>Szinkronizált Blokkok</translation>
     </message>
     <message>
+        <source>The mapped Autonomous System used for diversifying peer selection.</source>
+        <translation>A megadott "Önálló rendszer" használom a peer választás diverzifikálásához.</translation>
+    </message>
+    <message>
+        <source>Mapped AS</source>
+        <translation>Felvett AS (önálló rendszer)</translation>
+    </message>
+    <message>
         <source>User Agent</source>
         <translation>User Agent</translation>
+    </message>
+    <message>
+        <source>Node window</source>
+        <translation>Csomópont ablak</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
@@ -1893,7 +1877,7 @@
     </message>
     <message>
         <source>Ban Score</source>
-        <translation>Tiltási érték</translation>
+        <translation>Kazenske točke</translation>
     </message>
     <message>
         <source>Connection Time</source>
@@ -2032,10 +2016,6 @@
         <translation>(csomópont azonosító: %1)</translation>
     </message>
     <message>
-        <source>(node id: %1)</source>
-        <translation>(csomópont azonosító: %1)</translation>
-    </message>
-    <message>
         <source>via %1</source>
         <translation>%1 által</translation>
     </message>
@@ -2093,6 +2073,14 @@
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
         <translation>Egy opcionálisan kérhető összeg. Hagyja üresen, vagy írjon be nullát, ha nem kívánja használni.</translation>
+    </message>
+    <message>
+        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
+        <translation>Egy opcionális címke, amit hozzá lehet rendelni az új fogadó címhez (amit használhatsz a számla azonosításához). E mellett hozzá lesz csatolva a fizetési kérelemhez is.</translation>
+    </message>
+    <message>
+        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
+        <translation>Egy opcionális üzenet ami a fizetési kérelemhez van fűzve és valószínűleg meg lesz jelenítve a fizető oldalán.</translation>
     </message>
     <message>
         <source>&amp;Create new receiving address</source>
@@ -2304,8 +2292,12 @@
         <translation>Figyelem: A hozzávetőleges díjszámítás jelenleg nem lehetséges.</translation>
     </message>
     <message>
-        <source>collapse fee-settings</source>
-        <translation>díj beállítások bezárása</translation>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+        <translation>Add meg a választott tranzakciós díjat kB (1000 bájt) -onként a tranzakció virtuális méretére számolva.
+
+Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB" egy 500 bájtos (fél kB) tranzakciónál  ténylegesen 50 satoshi lesz.</translation>
     </message>
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
@@ -2332,6 +2324,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Egyéni:</translation>
     </message>
     <message>
+        <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
+        <translation>(Samodejni obračun provizije še ni pripravljen. Po navadi izračun traja nekaj blokov ...)</translation>
+    </message>
+    <message>
         <source>Send to multiple recipients at once</source>
         <translation>Küldés több címzettnek egyszerre</translation>
     </message>
@@ -2346,6 +2342,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Dust:</source>
         <translation>Por-határ:</translation>
+    </message>
+    <message>
+        <source>Hide transaction fee settings</source>
+        <translation>Rejtsd el a tranzakciós költségek beállításait</translation>
     </message>
     <message>
         <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
@@ -2413,7 +2413,15 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     </message>
     <message>
         <source>%1 (%2 blocks)</source>
-        <translation>%1 (%2 blokk)</translation>
+        <translation>%1 (%2 blokov)</translation>
+    </message>
+    <message>
+        <source>Cr&amp;eate Unsigned</source>
+        <translation>&amp;Aláírás nélkül létrehozása Unsigned</translation>
+    </message>
+    <message>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation>Létrehoz egy Részlegesen Aláírt Bitcoin Tranzakciót (PSBT) melyet offline %1 tárcával vagy egy PSBT kompatibilis hardver tárcával használhatsz.</translation>
     </message>
     <message>
         <source> from wallet '%1'</source>
@@ -2422,6 +2430,14 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>%1 to '%2'</source>
         <translation>%1 -től '%2-ig'</translation>
+    </message>
+    <message>
+        <source>%1 to %2</source>
+        <translation>%1 do %2</translation>
+    </message>
+    <message>
+        <source>Do you want to draft this transaction?</source>
+        <translation>Piszkozatba teszed ezt a tranzakciót?</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2437,7 +2453,7 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     </message>
     <message>
         <source>Please, review your transaction.</source>
-        <translation>Kérjük, hogy ellenőrizze le a tranzakciót.</translation>
+        <translation>Kérjük, hogy ellenőrizze le a tranzakcióját.</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2458,6 +2474,22 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Confirm send coins</source>
         <translation>Összeg küldésének megerősítése</translation>
+    </message>
+    <message>
+        <source>Confirm transaction proposal</source>
+        <translation>Tranzakció javaslat megerősítése</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Küldés</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation>PSBT másolva</translation>
+    </message>
+    <message>
+        <source>Watch-only balance:</source>
+        <translation>Egyenleg csak megfigyelésre</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -2482,10 +2514,6 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Transaction creation failed!</source>
         <translation>Tranzakció létrehozása sikertelen!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>Tranzakció visszautasítva a következő indokkal: %1</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
@@ -2535,10 +2563,6 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Byte-ok másolása </translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>Ez normál fizetés.</translation>
-    </message>
-    <message>
         <source>The Bitcoin address to send the payment to</source>
         <translation>Erre a Blackcoin címre küldje az összeget</translation>
     </message>
@@ -2561,6 +2585,14 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>Az illeték le lesz vonva a küldött telkes összegből. A címzett kevesebb bitcoint fog megkapni, mint amennyit az összeg mezőbe beüt. Amennyiben több címzett van kiválasztva, az illeték egyenlő mértékben van elosztva.</translation>
+    </message>
+    <message>
+        <source>The amount to send in the selected unit</source>
+        <translation>A küldendő összeg a választott egységben.</translation>
+    </message>
+    <message>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Znesek plačila bo zmanjšan za znesek provizije. Prejemnik bo prejel manjše število kovancev, kot je bil vnešeni znesek. Če je prejemnikov več, bo provizija med njih enakomerno porazdeljena.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2587,23 +2619,16 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Adjon egy címkét ehhez a címhez, hogy bekerüljön a használt címek közé</translation>
     </message>
     <message>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <translation>Sporočilo, ki ste ga pripeli na URI tipa bitcoin:. Shranjeno bo skupaj s podatki o transakciji. Opomba: Sporočilo ne bo poslano preko omrežja Bitcoin.</translation>
+    </message>
+    <message>
         <source>Pay To:</source>
         <translation>Címzett:</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
         <translation>Összeg küldésének megerősítése</translation>
-    </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>Adjon egy címkét ehhez a címhez, hogy bekerüljön a címtárába</translation>
-    </message>
-</context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>Igen</translation>
     </message>
 </context>
 <context>
@@ -2627,6 +2652,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>Címeivel aláírhatja az üzeneteket/egyezményeket, amivel bizonyíthatja, hogy át tudja venni az ezekre a címekre küldött bitcoin-t. Vigyázzon, hogy ne írjon alá semmi félreérthetőt, mivel a phising támadásokkal megpróbálhatják becsapni, hogy az azonosságát átírja másokra. Csak olyan részletes állításokat írjon alá, amivel egyetért.</translation>
+    </message>
+    <message>
+        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>S svojimi naslovi lahko podpisujete sporočila ali pogodbe in s tem dokazujete, da na teh naslovih lahko prejemate kovance. Bodite previdni in ne podpisujte ničesar nejasnega ali naključnega, ker vas zlikovci preko ribarjenja (phishing) lahko prelisičijo, da na njih prepišete svojo identiteto. Podpisujte samo podrobno opisane izjave, s katerimi se strinjate.</translation>
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
@@ -2669,16 +2698,32 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Figyelmeztetés: Ismeretlen visszajáró cím</translation>
     </message>
     <message>
-        <source>Confirm custom change address</source>
-        <translation>Egyedi visszajáró cím jóváhagyása</translation>
+        <source>Reset all sign message fields</source>
+        <translation>Počisti vsa polja za vnos v oknu za podpisovanje</translation>
+    </message>
+    <message>
+        <source>Clear &amp;All</source>
+        <translation>Mindent &amp;töröl</translation>
     </message>
     <message>
         <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
         <translation>A cím, amelyet a visszajárónak megadott, nincs ebben a tárcában. Bármennyi vagy minden összeg elküldhető a tárcájából erre a címre. Biztos benne?</translation>
     </message>
     <message>
+        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <translation>Da preverite verodostojnost sporočila, spodaj vnesite: prejemnikov naslov, prejeto sporočilo (pazljivo skopirajte vse prelome vrstic, presledke, tabulatorje ipd.,) in prejeti podpis. Da se izognete napadom tipa man-in-the-middle, vedite, da iz veljavnega podpisa ne sledi nič drugega, kot tisto, kar je navedeno v sporočilu. Podpis samo potrjuje dejstvo, da ima podpisnik v lasti prejemni naslov, ne more pa dokazati vira nobene transakcije!</translation>
+    </message>
+    <message>
         <source>The Bitcoin address the message was signed with</source>
         <translation>Blackcoin cím, amivel aláírta az üzenetet</translation>
+    </message>
+    <message>
+        <source>The signed message to verify</source>
+        <translation>Az aláírt üzenet ellenőrzésre</translation>
+    </message>
+    <message>
+        <source>The signature given when the message was signed</source>
+        <translation>A kapott aláírás  amikor az üzenet alá lett írva.</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
@@ -2687,6 +2732,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Verify &amp;Message</source>
         <translation>Üzenet ellenőrzése</translation>
+    </message>
+    <message>
+        <source>Reset all verify message fields</source>
+        <translation>Počisti vsa polja za vnos v oknu za preverjanje</translation>
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
@@ -2702,11 +2751,15 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>A megadott cím nem hivatkozik egy kulcshoz sem.</translation>
+        <translation>Vnešeni naslov se ne nanaša na ključ.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
         <translation>Tárca megnyitása megszakítva</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>Nincs hiba</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -2729,6 +2782,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Kérem ellenőrizze az aláírást és próbálja újra.</translation>
     </message>
     <message>
+        <source>The signature did not match the message digest.</source>
+        <translation>Podpis ne ustreza rezultatu (digest) preverjanja.</translation>
+    </message>
+    <message>
         <source>Message verification failed.</source>
         <translation>Az üzenet ellenőrzése sikertelen.</translation>
     </message>
@@ -2749,6 +2806,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Open until %1</source>
         <translation>%1 -ig megnyitva</translation>
+    </message>
+    <message>
+        <source>conflicted with a transaction with %1 confirmations</source>
+        <translation>v sporu s transakcijo z %1 potrditvami</translation>
     </message>
     <message>
         <source>0/unconfirmed, %1</source>
@@ -2832,7 +2893,7 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     </message>
     <message>
         <source>Total credit</source>
-        <translation>Teljes hitel</translation>
+        <translation>Skupni kredit</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2864,7 +2925,7 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     </message>
     <message>
         <source>Output index</source>
-        <translation>Kimeneti index</translation>
+        <translation>Indeks izhoda</translation>
     </message>
     <message>
         <source> (Certificate was not verified)</source>
@@ -2873,6 +2934,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Merchant</source>
         <translation>Kereskedő</translation>
+    </message>
+    <message>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Ustvarjeni kovanci morajo zoreti %1 blokov, preden jih lahko porabite. Ko ste ta blok ustvarili, je bil posredovan v omrežje, da bo dodan v verigo blokov. Če se bloku ni uspelo uvrstiti v verigo, se bo njegovo stanje spremenilo v "ni bilo sprejeto" in kovancev ne bo mogoče porabiti. To se včasih zgodi, če kak drug rudar v roku nekaj sekund hkrati z vami odkrije drug blok.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -3005,8 +3070,12 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Egy csak megfigyelt cím érintett vagy nem ebben a tranzakcióban.</translation>
     </message>
     <message>
+        <source>User-defined intent/purpose of the transaction.</source>
+        <translation>Uporabniško določen namen transakcije.</translation>
+    </message>
+    <message>
         <source>Amount removed from or added to balance.</source>
-        <translation>Az egyenleghez jóváírt vagy ráterhelt összeg.</translation>
+        <translation>Znesek spremembe stanja sredstev.</translation>
     </message>
 </context>
 <context>
@@ -3058,6 +3127,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Other</source>
         <translation>Más</translation>
+    </message>
+    <message>
+        <source>Enter address, transaction id, or label to search</source>
+        <translation>Vnesi naslov, ID transakcije, ali oznako za iskanje</translation>
     </message>
     <message>
         <source>Min amount</source>
@@ -3152,13 +3225,25 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Sikeres Exportálás</translation>
     </message>
     <message>
+        <source>The transaction history was successfully saved to %1.</source>
+        <translation>Zgodovina poteklih transakcij je bila uspešno shranjena v datoteko %1.</translation>
+    </message>
+    <message>
         <source>Range:</source>
         <translation>Tartomány:</translation>
     </message>
-    </context>
+    <message>
+        <source>to</source>
+        <translation>za</translation>
+    </message>
+</context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
-    </context>
+    <message>
+        <source>Unit to show amounts in. Click to select another unit.</source>
+        <translation>Merska enota za prikaz zneskov. Kliknite za izbiro druge enote.</translation>
+    </message>
+</context>
 <context>
     <name>WalletController</name>
     <message>
@@ -3200,6 +3285,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Kívánja megnövelni a díjat?</translation>
     </message>
     <message>
+        <source>Do you want to draft a transaction with fee increase?</source>
+        <translation>Akarod egy piszkozat tranzakciót díj emeléssel?</translation>
+    </message>
+    <message>
         <source>Current fee:</source>
         <translation>Jelenlegi díj:</translation>
     </message>
@@ -3214,6 +3303,14 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Confirm fee bump</source>
         <translation>Erősitsd meg a díj emelését</translation>
+    </message>
+    <message>
+        <source>Can't draft transaction.</source>
+        <translation>Sikertelen tranzakciós piszkozat</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation>PSBT másolva</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
@@ -3282,12 +3379,12 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Nyesés: az utolsó tárcaszinkronizálás meghaladja a nyesett adatokat. Szükséges a -reindex használata (nyesett csomópont esetében a teljes blokklánc ismételt letöltése).</translation>
     </message>
     <message>
-        <source>Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.</source>
-        <translation>Nyesett üzemmódban nem lehet megismételni a feltérképezést. Szükséges a -reindex használata, ami a teljes blokklánc letöltését eredményezi.</translation>
-    </message>
-    <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation>Hiba: Fatális belső hiba történt, nézze meg a debug.log -ot a részletekért</translation>
+    </message>
+    <message>
+        <source>Pruning blockstore...</source>
+        <translation>Obrezujem ...</translation>
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
@@ -3310,6 +3407,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Hiba %s beolvasása közben. Az összes kulcs sikeresen beolvasva, de a tranzakciós adatok és a címtár rekordok hiányoznak vagy sérültek.</translation>
     </message>
     <message>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <translation>Opozorilo: Preverite, če sta datum in ura na vašem računalniku točna! %s ne bo deloval pravilno, če je nastavljeni čas nepravilen.</translation>
+    </message>
+    <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation>Kérlek támogasd ha hasznásnak találtad a  %s-t. Az alábbi linken találsz bővebb információt a szoftverről %s.</translation>
     </message>
@@ -3326,6 +3427,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Ezt a tranzakciós díjat figyelmen kívül hagyhatod ha a visszajáró kisebb mint a "porhintés" összege jelenleg.</translation>
     </message>
     <message>
+        <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
+        <translation>Ne morem ponoviti blokov. Podatkovno bazo bo potrebno ponovno zgraditi z uporabo ukaza -reindex-chainstate.</translation>
+    </message>
+    <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
         <translation>Az adatbázis visszatekerése az elágazás előtti állapotba nem sikerült. Ismételten le kell töltenie a blokkláncot.</translation>
     </message>
@@ -3334,8 +3439,28 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Figyelem: A hálózat úgy tűnik nem teljesen egyezik! Néhány bányász problémákat tapasztalhat.</translation>
     </message>
     <message>
+        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
+        <translation>Opozorilo: Trenutno se s soležniki ne strinjamo v popolnosti! Mogoče bi morali vi ali drugi udeleženci posodobiti odjemalce.</translation>
+    </message>
+    <message>
+        <source>%d of last 100 blocks have unexpected version</source>
+        <translation>%d od zadnjih 100 blokov imajo nepričakovano verzijo</translation>
+    </message>
+    <message>
+        <source>%s corrupt, salvage failed</source>
+        <translation>%s poškodovana, obnova neuspešna</translation>
+    </message>
+    <message>
         <source>-maxmempool must be at least %d MB</source>
         <translation>-maxmempool legalább %d MB kell legyen.</translation>
+    </message>
+    <message>
+        <source>Cannot resolve -%s address: '%s'</source>
+        <translation>Naslova -%s ni mogoče razrešiti: '%s'</translation>
+    </message>
+    <message>
+        <source>Change index out of range</source>
+        <translation>Indeks drobiža izven dovoljenega območja</translation>
     </message>
     <message>
         <source>Config setting for %s only applied on %s network when in [%s] section.</source>
@@ -3348,6 +3473,14 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Corrupted block database detected</source>
         <translation>Sérült blokk-adatbázis észlelve</translation>
+    </message>
+    <message>
+        <source>Could not find asmap file %s</source>
+        <translation>%s asmap fájl nem található</translation>
+    </message>
+    <message>
+        <source>Could not parse asmap file %s</source>
+        <translation>%s beolvasása sikertelen</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
@@ -3410,6 +3543,18 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Érvénytelen P2P jog: '%s'</translation>
     </message>
     <message>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Neveljavna količina za -%s=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
+        <translation>Neveljavna količina za -discardfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
+        <translation>Neveljavna količina za -fallbackfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
         <source>Specified blocks directory "%s" does not exist.</source>
         <translation>A megadott blokk "%s" nem létezik.</translation>
     </message>
@@ -3466,6 +3611,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>A tranzakciós díj és a visszajáró kiszámítása nem sikerült</translation>
     </message>
     <message>
+        <source>Unable to bind to %s on this computer. %s is probably already running.</source>
+        <translation>Na tem računalniku ni bilo mogoče vezati naslova %s. %s je verjetno že zagnan.</translation>
+    </message>
+    <message>
         <source>Unable to generate keys</source>
         <translation>Kulcs generálás sikertelen</translation>
     </message>
@@ -3488,6 +3637,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Wallet needed to be rewritten: restart %s to complete</source>
         <translation>A Tárca újraírása szükséges: Indítsa újra a %s-t.</translation>
+    </message>
+    <message>
+        <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
+        <translation>Napaka: Ni mogoče sprejemati dohodnih povezav (vrnjena napaka: %s)</translation>
     </message>
     <message>
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
@@ -3526,8 +3679,16 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Érvénytelen hálózati maszk van megadva itt:  -whitelist: '%s'</translation>
     </message>
     <message>
+        <source>Need to specify a port with -whitebind: '%s'</source>
+        <translation>Pri opciji -whitebind morate navesti vrata: %s</translation>
+    </message>
+    <message>
         <source>Prune mode is incompatible with -blockfilterindex.</source>
         <translation>A -blockfilterindex nem használható nyesés üzemmódban.</translation>
+    </message>
+    <message>
+        <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
+        <translation>Zmanjšujem maksimalno število povezav (-maxconnections) iz %d na %d, zaradi sistemskih omejitev.</translation>
     </message>
     <message>
         <source>Section [%s] is not recognized.</source>
@@ -3571,8 +3732,16 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
         <translation>Túl nagy tranzakció</translation>
     </message>
     <message>
+        <source>Unable to bind to %s on this computer (bind returned error %s)</source>
+        <translation>Na tem računalniku ni bilo mogoče vezati naslova %s (vrnjena napaka: %s)</translation>
+    </message>
+    <message>
         <source>Unable to create the PID file '%s': %s</source>
         <translation>PID fájl létrehozása sikertelen '%s': %s</translation>
+    </message>
+    <message>
+        <source>Unable to generate initial keys</source>
+        <translation>Ne zmorem ustvariti začetnih ključev</translation>
     </message>
     <message>
         <source>Unknown -blockfilterindex value %s.</source>
@@ -3581,6 +3750,10 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Verifying wallet(s)...</source>
         <translation>Tárcák ellenőrzése...</translation>
+    </message>
+    <message>
+        <source>Warning: unknown new rules activated (versionbit %i)</source>
+        <translation>Opozorilo: neznana nova pravila aktivirana (verzija %i)</translation>
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
@@ -3633,54 +3806,6 @@ Figyelem: Mivel bájtonként lesz a dj kiszámolva ezért a "100 satoshi per kB"
     <message>
         <source>Transaction has too long of a mempool chain</source>
         <translation>A tranzakcóihoz tartozó mempool elődlánc túl hosszú</translation>
-    </message>
-    <message>
-        <source>Transaction must have at least one recipient</source>
-        <translation>Legalább egy címzett kell a tranzakcióhoz</translation>
-    </message>
-    <message>
-        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
-        <translation>Kapcsolatonkénti maximum fogadó buffer, &lt;n&gt;*1000 byte (alapértelmezett: %u)</translation>
-    </message>
-    <message>
-        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: %u)</source>
-        <translation>Kapcsolatonkénti maximum küldő buffer, &lt;n&gt;*1000 byte (alapértelmezett: %u)</translation>
-    </message>
-    <message>
-        <source>Set key pool size to &lt;n&gt; (default: %u)</source>
-        <translation>Kulcs halmaz méretének a beállítása &lt;n&gt;(alapértelmezett: %u) </translation>
-    </message>
-    <message>
-        <source>Specify configuration file (default: %s)</source>
-        <translation>Konfigurációs fájl megadása (alapértelmezett: %s)</translation>
-    </message>
-    <message>
-        <source>Specify connection timeout in milliseconds (minimum: 1, default: %d)</source>
-        <translation>Csatlakozás időtúllépése milliszekundumban (minimum: 1, alapértelmezett: %d)</translation>
-    </message>
-    <message>
-        <source>Specify pid file (default: %s)</source>
-        <translation>Pid-fájl megadása (alapértelmezett: %s)</translation>
-    </message>
-    <message>
-        <source>Spend unconfirmed change when sending transactions (default: %u)</source>
-        <translation>Tranzakciók küldésekor a jóváhagyatlan visszajáró elköltése (alapértelmezés: %u)</translation>
-    </message>
-    <message>
-        <source>Starting network threads...</source>
-        <translation>Hálózati szálak indítása...</translation>
-    </message>
-    <message>
-        <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>Ez a minimum tranzakciós díj, amelyet tranzakciónként kifizet.</translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Ez a tranzakció díja, amelyet kifizet, ha tranzakciót indít.</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must not be negative</source>
-        <translation>Tranzakció összege nem lehet negatív</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>

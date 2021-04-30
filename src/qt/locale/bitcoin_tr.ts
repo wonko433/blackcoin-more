@@ -6,10 +6,6 @@
         <translation>Adres veya etiketi düzenlemek için sağ tıklayın</translation>
     </message>
     <message>
-        <source>Create a new address</source>
-        <translation>Yeni adres oluşturun</translation>
-    </message>
-    <message>
         <source>&amp;New</source>
         <translation>Yeni</translation>
     </message>
@@ -47,7 +43,7 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Coin gönderilecek adresi seçiniz</translation>
+        <translation>Para gönderilecek adresi seçiniz</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -97,18 +93,18 @@ Yeni adres oluşturmak için alım sekmesinden 'Yeni alıcı adresi oluşturun' 
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Adres listesini %1'e kaydederken bir hata oluştu. Lütfen tekrar deneyin.</translation>
+        <translation>Adres listesinin %1 konumuna kaydedilmesi sırasında bir hata meydana geldi. Lütfen tekrar deneyin.</translation>
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Label</source>
-        <translation>etiket</translation>
+        <translation>Etiket</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>ADres</translation>
+        <translation>Adres</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -119,7 +115,7 @@ Yeni adres oluşturmak için alım sekmesinden 'Yeni alıcı adresi oluşturun' 
     <name>AskPassphraseDialog</name>
     <message>
         <source>Enter passphrase</source>
-        <translation>Parolanızı giriniz.</translation>
+        <translation>parola giriniz.</translation>
     </message>
     <message>
         <source>New passphrase</source>
@@ -135,7 +131,7 @@ Yeni adres oluşturmak için alım sekmesinden 'Yeni alıcı adresi oluşturun' 
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Cüzdan şifrele</translation>
+        <translation>Cüzdanı şifrele</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
@@ -152,11 +148,11 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Change passphrase</source>
-        <translation>Parolayı değiştir</translation>
+        <translation>Parola değiştir</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Cüzdan şifrelemeyi onayla</translation>
+        <translation>Cüzdan şifrelemeyi onaylayınız</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -168,11 +164,11 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Your wallet is about to be encrypted. </source>
-        <translation>Cüzdanınız şifrelenmek üzere</translation>
+        <translation>Cüzdan şifrelenmek üzere</translation>
     </message>
     <message>
         <source>Your wallet is now encrypted. </source>
-        <translation>Cüzdanınız şu an şifrelenmiş</translation>
+        <translation>Cüzdan şifrelendi</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -210,7 +206,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>Ağ ile bağlantı kuruluyor...</translation>
+        <translation>Ağ ile senkronize ediliyor...</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
@@ -226,7 +222,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>İşlem geçişini görüntüle</translation>
+        <translation>İşlem geçmişini görüntüle</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -285,10 +281,6 @@ Cüzdan kilidini aç.</translation>
         <translation>Cüzdan</translation>
     </message>
     <message>
-        <source>Wallet:</source>
-        <translation>Cüzdan:</translation>
-    </message>
-    <message>
         <source>Click to disable network activity.</source>
         <translation>Ağ etkinliğini devre dışı bırakmak için tıklayın.</translation>
     </message>
@@ -310,7 +302,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>Mesajı doğrula</translation>
+        <translation>Mesajı onayla</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -366,7 +358,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Open Wallet</source>
-        <translation>Cüzdanı aç</translation>
+        <translation>Cüzdan aç</translation>
     </message>
     <message>
         <source>Open a wallet</source>
@@ -374,7 +366,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Close Wallet...</source>
-        <translation>Çüzdan kapat</translation>
+        <translation>Cüzdan kapat</translation>
     </message>
     <message>
         <source>Close wallet</source>
@@ -437,7 +429,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>Etiketi kopyala</translation>
+        <translation>Etiket kopyala</translation>
     </message>
     <message>
         <source>Copy amount</source>
@@ -457,11 +449,11 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>yes</source>
-        <translation>Evet</translation>
+        <translation>evet</translation>
     </message>
     <message>
         <source>no</source>
-        <translation>Hayır</translation>
+        <translation>hayır</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -539,7 +531,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>Error</source>
@@ -575,7 +567,7 @@ Cüzdan kilidini aç.</translation>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Ayarlar</translation>
+        <translation>Seçenekler</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -641,7 +633,7 @@ Cüzdan kilidini aç.</translation>
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
-        <translation>Ödeme isteği hatası</translation>
+        <translation>Ödeme talebi hatası</translation>
     </message>
     </context>
 <context>
@@ -655,7 +647,7 @@ Cüzdan kilidini aç.</translation>
     <name>QObject</name>
     <message>
         <source>Amount</source>
-        <translation>Mitar</translation>
+        <translation>Miktar</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -691,6 +683,9 @@ Cüzdan kilidini aç.</translation>
         <source>Version</source>
         <translation>Versiyon</translation>
     </message>
+</context>
+<context>
+    <name>CreateWalletDialog</name>
     <message>
         <source>Services</source>
         <translation>Servisler</translation>
@@ -707,6 +702,9 @@ Cüzdan kilidini aç.</translation>
         <source>No</source>
         <translation>hayır</translation>
     </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
     <message>
         <source>Unknown</source>
         <translation>Bilinmeyen</translation>
@@ -722,7 +720,7 @@ Cüzdan kilidini aç.</translation>
         <source>Copy amount</source>
         <translation>Miktar kopyala</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
@@ -795,13 +793,6 @@ Cüzdan kilidini aç.</translation>
 <context>
     <name>SendCoinsEntry</name>
     </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>evet</translation>
-    </message>
-</context>
 <context>
     <name>ShutdownWindow</name>
     </context>
@@ -918,15 +909,11 @@ Cüzdan kilidini aç.</translation>
     <name>bitcoin-core</name>
     <message>
         <source>Verifying wallet(s)...</source>
-        <translation>Cüzdan(lar) onaylanıyor...</translation>
-    </message>
-    <message>
-        <source>Wallet %s resides outside wallet directory %s</source>
-        <translation>Cüzdan %s, %s cüzdan klasörünün dışında bulunuyor</translation>
+        <translation>Cüzdan(lar) kontrol ediliyor...</translation>
     </message>
     <message>
         <source>%s is set very high!</source>
-        <translation>Ayarlanan %s çok yüksek!</translation>
+        <translation>%s çok yüksek ayarlanmış!</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -934,11 +921,11 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>Cüzdan minimum değişim ücretinden daha düşük olan ödemeyi önleyecektir</translation>
+        <translation>Cüzdan en az aktarma ücretinden daha az ödeme yapmaktan sakınacaktır.</translation>
     </message>
     <message>
         <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>Her işlem için minimum işlem ücretiniz budur</translation>
+        <translation>Bu her işlemde ödeceğiniz en düşük işlem ücretidir.</translation>
     </message>
     <message>
         <source>This is the transaction fee you will pay if you send a transaction.</source>
@@ -950,27 +937,19 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
-        <translation>İşlemin en az bir alıcıya sahip olmalı</translation>
+        <translation>İşlemin en az bir alıcısı olması gerekir</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Yetersiz Bakiye</translation>
-    </message>
-    <message>
-        <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>İşlem ücreti hesaplama başarısız. Fallbackfee özelliği devre dışı. Lütfen bir kaç blok için bekleyiniz yada -fallbackfee özelliğini aktif ediniz.</translation>
-    </message>
-    <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Veriler klasöre yazılamıyor '%s'; yetkilendirmeyi kontrol edin.</translation>
+        <translation>Yetersiz bakiye</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
-        <translation>Cüzdan Bekleniyor...</translation>
+        <translation>Cüzdan yükleniyor...</translation>
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Tekrar taranıyor...</translation>
+        <translation>Yeniden taranıyor...</translation>
     </message>
     <message>
         <source>Done loading</source>

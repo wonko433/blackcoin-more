@@ -57,7 +57,7 @@ make install # do NOT use -jX, this is broken
 
 ### Building Blackcoin More
 
-**Important**: use `gmake`, not `make`. The non-GNU `make` will exit with a horrible error.
+**Important**: Use `gmake` (the non-GNU `make` will exit with an error).
 
 Preparation:
 ```bash
@@ -77,12 +77,14 @@ Make sure `BDB_PREFIX` is set to the appropriate path from the above steps.
 To configure with wallet:
 ```bash
 ./configure --with-gui=no CC=cc CXX=c++ \
-    BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-6.2" BDB_CFLAGS="-I${BDB_PREFIX}/include"
+    BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-6.2" \
+    BDB_CFLAGS="-I${BDB_PREFIX}/include" \
+    MAKE=gmake
 ```
 
 To configure without wallet:
 ```bash
-./configure --disable-wallet --with-gui=no CC=cc CXX=c++
+./configure --disable-wallet --with-gui=no CC=cc CXX=c++ MAKE=gmake
 ```
 
 Build and run the tests:

@@ -137,15 +137,23 @@
     </message>
     <message>
         <source>Show passphrase</source>
-        <translation>సంకేతపదము చూపించు</translation>
+        <translation>సంకేతపదమును చూపించు</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>జోలె‌ను సంకేతపరుచు</translation>
+        <translation>వాలెట్‌ను గుప్తీకరించండి</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>ఈ ఆపరేషన్‌కు వాలెట్‌ను అన్‌లాక్ చేయడానికి మీ వాలెట్ పాస్‌ఫ్రేజ్ అవసరం.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
         <translation>వాలెట్ అన్లాక్</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>ఈ ఆపరేషన్‌కు వాలెట్‌ను డీక్రిప్ట్ చేయడానికి మీ వాలెట్ పాస్‌ఫ్రేజ్ అవసరం.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
@@ -177,7 +185,7 @@
     </message>
     <message>
         <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>వాలెట్ కోసం పాత పాస్‌ఫ్రేజ్ మరియు కొత్త పాస్‌ఫ్రేజ్‌ని నమోదు చేయండి.</translation>
+        <translation>Enter the old passphrase and new passphrase for the wallet.</translation>
     </message>
     <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
@@ -367,9 +375,6 @@
 </context>
 <context>
     <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,12 +10,15 @@
 #include <script/sign.h>
 #include <script/signingprovider.h>
 #include <script/standard.h>
+#include <util/vector.h>
 
 #include <assert.h>
 #include <string>
 
 static const std::string OUTPUT_TYPE_STRING_LEGACY = "legacy";
 static const std::string OUTPUT_TYPE_STRING_BECH32 = "bech32";
+
+const std::array<OutputType, 3> OUTPUT_TYPES = {OutputType::LEGACY, OutputType::P2SH_SEGWIT, OutputType::BECH32};
 
 bool ParseOutputType(const std::string& type, OutputType& output_type)
 {
@@ -52,10 +55,13 @@ CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type)
 std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key)
 {
     PKHash keyid(key);
+    CTxDestination p2pkh{keyid};
     if (key.IsCompressed()) {
         // Do nothing
     } else {
-        return std::vector<CTxDestination>{std::move(keyid)};
+        // Blackcoin ToDo?
+        // return Vector(std::move(p2pkh));
+        return Vector(std::move(p2pkh), std::move(p2sh));
     }
 
     return std::vector<CTxDestination>{std::move(keyid)};

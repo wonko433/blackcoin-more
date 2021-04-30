@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -77,7 +77,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
-        strNetworkID = "main";
+        strNetworkID = CBaseChainParams::MAIN;
         consensus.nMaxReorganizationDepth = 500;
         consensus.CSVHeight = 999999999; // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
         consensus.MinBIP9WarningHeight = 999999999; // CSV activation height + miner confirmation window
@@ -148,6 +148,7 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         m_is_test_chain = false;
+        m_is_mockable_chain = false;
 
         checkpointData = {
             {
@@ -175,7 +176,7 @@ public:
 class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
-        strNetworkID = "test";
+        strNetworkID = CBaseChainParams::TESTNET;
         consensus.nMaxReorganizationDepth = 500;
         consensus.CSVHeight = 999999999; // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
         consensus.MinBIP9WarningHeight = 999999999; // CSV activation height + miner confirmation window
@@ -239,6 +240,7 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
         m_is_test_chain = true;
+        m_is_mockable_chain = false;
 
         checkpointData = {
             {
@@ -261,7 +263,7 @@ public:
 class CRegTestParams : public CChainParams {
 public:
     explicit CRegTestParams(const ArgsManager& args) {
-        strNetworkID = "regtest";
+        strNetworkID =  CBaseChainParams::REGTEST;
         consensus.nMaxReorganizationDepth = 50;
         consensus.CSVHeight = 999999999; // CSV activated on regtest (Used in rpc activation tests)
         consensus.MinBIP9WarningHeight = 0;
@@ -316,6 +318,7 @@ public:
         fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         m_is_test_chain = true;
+        m_is_mockable_chain = true;
 
         checkpointData = {
             {
@@ -351,15 +354,15 @@ public:
 
 void CRegTestParams::UpdateActivationParametersFromArgs(const ArgsManager& args)
 {
-    if (gArgs.IsArgSet("-segwitheight")) {
-        int64_t height = gArgs.GetArg("-segwitheight", consensus.SegwitHeight);
+    if (gArgs.IsArgSet("-csvheight")) {
+        int64_t height = gArgs.GetArg("-csvheight", consensus.CSVHeight);
         if (height < -1 || height >= std::numeric_limits<int>::max()) {
-            throw std::runtime_error(strprintf("Activation height %ld for segwit is out of valid range. Use -1 to disable segwit.", height));
+            throw std::runtime_error(strprintf("Activation height %ld for CSV is out of valid range. Use -1 to disable segwit.", height));
         } else if (height == -1) {
-            LogPrintf("Segwit disabled for testing\n");
+            LogPrintf("CSV disabled for testing\n");
             height = std::numeric_limits<int>::max();
         }
-        consensus.SegwitHeight = static_cast<int>(height);
+        consensus.CSVHeight = static_cast<int>(height);
     }
 
     if (!args.IsArgSet("-vbparams")) return;

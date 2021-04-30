@@ -11,7 +11,6 @@
 class CCoinControl;
 class CFeeRate;
 class CWallet;
-struct FeeCalculation;
 
 /**
  * Return the minimum required absolute fee for this size

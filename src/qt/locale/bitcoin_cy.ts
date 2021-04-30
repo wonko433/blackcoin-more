@@ -324,10 +324,6 @@
         <translation>Newid y cyfrinair ddefnyddiwyd ar gyfer amgryptio'r waled</translation>
     </message>
     <message>
-        <source>&amp;Debug window</source>
-        <translation>&amp;Di fygio'r ffenest</translation>
-    </message>
-    <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Gwirio neges...</translation>
     </message>
@@ -386,10 +382,6 @@
     <message>
         <source>Show the list of used receiving addresses and labels</source>
         <translation>Dangos rhestr o gyfeiriadau derbyn a labelau wedi eu defnyddio</translation>
-    </message>
-    <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>Agor blackcoin: URI neu ofyn taliad</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -606,7 +598,11 @@
         <source>(no label)</source>
         <translation>(dim label)</translation>
     </message>
-    </context>
+    <message>
+        <source>(change)</source>
+        <translation>(newid)</translation>
+    </message>
+</context>
 <context>
     <name>CreateWalletActivity</name>
     </context>
@@ -627,7 +623,27 @@
         <source>&amp;Address</source>
         <translation>&amp;Cyfeiriad</translation>
     </message>
-    </context>
+    <message>
+        <source>New sending address</source>
+        <translation>Cyfeiriad anfon newydd</translation>
+    </message>
+    <message>
+        <source>Edit receiving address</source>
+        <translation>Golygu'r cyfeiriad derbyn</translation>
+    </message>
+    <message>
+        <source>Edit sending address</source>
+        <translation>Golygu'r cyfeiriad anfon</translation>
+    </message>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Methodd ddatgloi'r waled.</translation>
+    </message>
+    <message>
+        <source>New key generation failed.</source>
+        <translation>Methodd gynhyrchu allwedd newydd.</translation>
+    </message>
+</context>
 <context>
     <name>FreespaceChecker</name>
     <message>
@@ -663,14 +679,10 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>Agor URI</translation>
-    </message>
-    <message>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenWalletActivity</name>
     </context>
@@ -793,6 +805,10 @@
         <translation>Label</translation>
     </message>
     <message>
+        <source>Message</source>
+        <translation>Neges</translation>
+    </message>
+    <message>
         <source>Wallet</source>
         <translation>Waled</translation>
     </message>
@@ -806,6 +822,10 @@
     <message>
         <source>Label</source>
         <translation>Label</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Neges</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -863,6 +883,10 @@
         <translation>Copïo Cyfanswm</translation>
     </message>
     <message>
+        <source>%1 to %2</source>
+        <translation>%1 i %2</translation>
+    </message>
+    <message>
         <source>(no label)</source>
         <translation>(dim label)</translation>
     </message>
@@ -895,9 +919,6 @@
     </message>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
@@ -921,8 +942,16 @@
 <context>
     <name>TransactionDesc</name>
     <message>
+        <source>Open until %1</source>
+        <translation>Agor tan %1</translation>
+    </message>
+    <message>
         <source>Date</source>
         <translation>Dyddiad</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Neges</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -945,6 +974,10 @@
     <message>
         <source>Label</source>
         <translation>Label</translation>
+    </message>
+    <message>
+        <source>Open until %1</source>
+        <translation>Agor tan %1</translation>
     </message>
     <message>
         <source>(no label)</source>

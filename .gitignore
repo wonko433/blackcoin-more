@@ -7,8 +7,9 @@ src/blackmored
 src/blackmore-cli
 src/blackmore-tx
 src/blackmore-wallet
-src/test/blackmore
-src/test/test_blackmore_fuzzy
+src/test/fuzz
+!src/test/fuzz/*.*
+src/test/test_blackmore
 src/qt/test/test_blackmore-qt
 
 # autoreconf
@@ -89,7 +90,7 @@ src/qt/blackmore-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-blackmore-qt
+src/qt/blackmore-qt
 Blackmore-Qt.app
 background.tiff*
 

@@ -72,8 +72,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>പണം / പെയ്മെന്റുകൾ  സ്വീകരിക്കുന്നതിനുള്ള താങ്കളുടെ വിലാസങ്ങൾ ഇവയൊക്കെ ആണ്. 
- വിലാസങ്ങൾ കൂട്ടിച്ചേർക്കുന്നതിനായി ' പുതിയ വിലാസം സൃഷ്ടിയ്ക്കുക ' എന്ന ബട്ടൺ അമർത്തുക.</translation>
+        <translation>ഇവയാണ് പണം  സ്വീകരിയ്ക്കുന്നതിനായുള്ള താങ്കളുടെ വിലാസങ്ങൾ. പുതിയ വിലാസങ്ങൾ കൂട്ടിച്ചേർക്കുന്നതിനായി ' പുതിയ വിലാസം സൃഷ്ടിയ്ക്കുക ' എന്ന ബട്ടൺ അമർത്തുക.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -472,12 +471,24 @@
         <translation>കാലികമാണ്</translation>
     </message>
     <message>
+        <source>Node window</source>
+        <translation>നോഡ് വിൻഡോ</translation>
+    </message>
+    <message>
+        <source>Open node debugging and diagnostic console</source>
+        <translation>നോഡ് ഡീബഗ്ഗിംഗും ഡയഗ്നോസ്റ്റിക് കൺസോളും തുറക്കുക</translation>
+    </message>
+    <message>
         <source>&amp;Sending addresses</source>
         <translation>&amp;വിലാസങ്ങൾ അയയ്ക്കുന്നു</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
         <translation>&amp;വിലാസങ്ങൾ അയയ്ക്കുന്നു</translation>
+    </message>
+    <message>
+        <source>Open a bitcoin: URI</source>
+        <translation>ഒരു ബിറ്റ്കോയിൻ തുറക്കുക: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -489,7 +500,7 @@
     </message>
     <message>
         <source>Close Wallet...</source>
-        <translation>വാലറ്റ്  പൂട്ടുക...</translation>
+        <translation>വാലറ്റ്  പൂട്ടുക  </translation>
     </message>
     <message>
         <source>Close wallet</source>
@@ -810,6 +821,10 @@
     </context>
 <context>
     <name>RPCConsole</name>
+    <message>
+        <source>Node window</source>
+        <translation>നോഡ് വിൻഡോ</translation>
+    </message>
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
@@ -897,9 +912,6 @@
 </context>
 <context>
     <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>
