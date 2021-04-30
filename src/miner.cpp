@@ -30,7 +30,7 @@
 #include <utility>
 
 int64_t nLastCoinStakeSearchInterval = 0;
-unsigned int nMinerSleep = 500;
+unsigned int nMinerSleep = 1000;
 
 int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
@@ -470,7 +470,7 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
         return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex());
 
     // verify hash target and signature of coinstake tx
-    CValidationState state;
+    BlockValidationState state;
     if (!CheckProofOfStake(::BlockIndex()[pblock->hashPrevBlock], *pblock->vtx[1], pblock->nBits, state, ::ChainstateActive().CoinsTip()))
         return error("CheckStake() : proof-of-stake checking failed");
 
@@ -486,7 +486,7 @@ bool CheckStake(std::shared_ptr<CBlock> pblock, CWallet& wallet)
             return error("CheckStake() : generated block is stale");
 
         for (const CTxIn& vin : pblock->vtx[1]->vin) {
-            if (wallet.IsSpent(*locked_chain, vin.prevout.hash, vin.prevout.n)) {
+            if (wallet.IsSpent(vin.prevout.hash, vin.prevout.n)) {
                 return error("CheckStake() : generated block became invalid due to stake UTXO being spent");
             }
         }
@@ -521,19 +521,22 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
         {
             while (pwallet->IsLocked()) {
                 pwallet->m_last_coin_stake_search_interval = 0;
-                MilliSleep(10000);
+                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(10)))
+                        return;
             }
 
             if (!regtestMode) {
                 while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || ::ChainstateActive().IsInitialBlockDownload()) {
                     pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
-                    MilliSleep(1000);
+                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(1)))
+                        return;
                 }
                 if (fTryToSync) {
                     fTryToSync = false;
                     if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60) {
-                        MilliSleep(60000);
+                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(60)))
+                        return;
                         continue;
                     }
                 }
@@ -598,11 +601,13 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                         CheckStake(pblock, *pwallet);
                         // return back to low priority
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                        MilliSleep(3000);
+                        if (!connman->interruptNet.sleep_for(std::chrono::seconds(3)))
+                            return;
                     }
                 }
             }
-            MilliSleep(nMinerSleep);
+            if (!connman->interruptNet.sleep_for(std::chrono::seconds(nMinerSleep/10000)))
+                return;
         }
     }
     catch (const boost::thread_interrupted&)
@@ -661,9 +666,10 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
     
     auto locked_chain = wallet.chain().lock();
     LOCK(wallet.cs_wallet);
+    LegacyScriptPubKeyMan* spk_man = wallet.GetLegacyScriptPubKeyMan();
     if (nSearchTime > nLastCoinStakeSearchTime)
     {
-        if (wallet.CreateCoinStake(*locked_chain, wallet, pblock->nBits, 1, nFees, txCoinStake, key))
+        if (wallet.CreateCoinStake(*locked_chain, *spk_man, pblock->nBits, 1, nFees, txCoinStake, key))
         {
             if (txCoinStake.nTime >= pindexBestHeader->GetMedianTimePast()+1)
             {

@@ -188,7 +188,7 @@ public:
     };
 
     //! hash modifier of proof-of-stake
-    uint256 nStakeModifier{0};
+    uint256 nStakeModifier{};
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     int32_t nSequenceId{0};
