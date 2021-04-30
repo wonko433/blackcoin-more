@@ -660,7 +660,7 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
         int index_in_template = i - 1;
         entry.pushKV("fee", pblocktemplate->vTxFees[index_in_template]);
-        entry.pushKV("sigops", pblocktemplate->vTxSigOpsCost[index_in_template]);
+        entry.pushKV("sigops", pblocktemplate->vTxSigOpsCount[index_in_template]);
 
         transactions.push_back(entry);
     }
@@ -679,7 +679,6 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
     UniValue aRules(UniValue::VARR);
     aRules.push_back("csv");
-    if (!fPreSegWit) aRules.push_back("!segwit");
     UniValue vbavailable(UniValue::VOBJ);
     for (int j = 0; j < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j) {
         Consensus::DeploymentPos pos = Consensus::DeploymentPos(j);
@@ -869,8 +868,8 @@ static UniValue estimatefee(const JSONRPCRequest& request)
                 RPCResult{
                     RPCResult::Type::OBJ, "", "",
                     {
-                        {RPCResult::Type::NUM, "feerate",, "estimate fee rate in " + CURRENCY_UNIT + "/kB (only present if no errors were encountered)"},
-                    }},
+                        {RPCResult::Type::NUM, "feerate", "estimate fee rate in " + CURRENCY_UNIT + "/kB (only present if no errors were encountered)"},
+                    },
                 RPCExamples{
                     HelpExampleCli("estimatefee", "")
                 },
@@ -893,7 +892,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
         UniValue inputs = request.params[0].get_array();
         bool fCreateBlockTemplate = request.params.size() > 1 ? request.params[1].get_bool() : false;
 
-        if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
+        if (g_rpc_node->connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0)
             throw JSONRPCError(-9, "Blackcoin is not connected!");
 
         if (::ChainstateActive().IsInitialBlockDownload())
