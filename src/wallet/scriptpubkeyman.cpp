@@ -42,7 +42,6 @@ enum class IsMineSigVersion
 {
     TOP = 0,        //!< scriptPubKey execution
     P2SH = 1,       //!< P2SH redeemScript
-    WITNESS_V0 = 2, //!< P2WSH witness script execution
 };
 
 /**
@@ -55,7 +54,7 @@ enum class IsMineResult
     NO = 0,         //!< Not ours
     WATCH_ONLY = 1, //!< Included in watch-only balance
     SPENDABLE = 2,  //!< Included in all balances
-    INVALID = 3,    //!< Not spendable by anyone (uncompressed pubkey in segwit, P2SH inside P2SH or witness, witness inside witness)
+    INVALID = 3,    //!< Not spendable by anyone (P2SH inside P2SH)
 };
 
 bool PermitsUncompressed(IsMineSigVersion sigversion)
@@ -76,8 +75,8 @@ bool HaveKeys(const std::vector<valtype>& pubkeys, const LegacyScriptPubKeyMan& 
 //!
 //! @param keystore            legacy key and script store
 //! @param script              script to solve
-//! @param sigversion          script type (top-level / redeemscript / witnessscript)
-//! @param recurse_scripthash  whether to recurse into nested p2sh and p2wsh
+//! @param sigversion          script type (top-level / redeemscript)
+//! @param recurse_scripthash  whether to recurse into nested p2sh
 //!                            scripts or simply treat any script that has been
 //!                            stored in the keystore as spendable
 IsMineResult IsMineInner(const LegacyScriptPubKeyMan& keystore, const CScript& scriptPubKey, IsMineSigVersion sigversion, bool recurse_scripthash=true)
@@ -92,7 +91,6 @@ IsMineResult IsMineInner(const LegacyScriptPubKeyMan& keystore, const CScript& s
     {
     case TX_NONSTANDARD:
     case TX_NULL_DATA:
-    case TX_WITNESS_UNKNOWN:
         break;
     case TX_PUBKEY:
         keyID = CPubKey(vSolutions[0]).GetID();
@@ -103,21 +101,6 @@ IsMineResult IsMineInner(const LegacyScriptPubKeyMan& keystore, const CScript& s
             ret = std::max(ret, IsMineResult::SPENDABLE);
         }
         break;
-    case TX_WITNESS_V0_KEYHASH:
-    {
-        if (sigversion == IsMineSigVersion::WITNESS_V0) {
-            // P2WPKH inside P2WSH is invalid.
-            return IsMineResult::INVALID;
-        }
-        if (sigversion == IsMineSigVersion::TOP && !keystore.HaveCScript(CScriptID(CScript() << OP_0 << vSolutions[0]))) {
-            // We do not support bare witness outputs unless the P2SH version of it would be
-            // acceptable as well. This protects against matching before segwit activates.
-            // This also applies to the P2WSH case.
-            break;
-        }
-        ret = std::max(ret, IsMineInner(keystore, GetScriptForDestination(PKHash(uint160(vSolutions[0]))), IsMineSigVersion::WITNESS_V0));
-        break;
-    }
     case TX_PUBKEYHASH:
         keyID = CKeyID(uint160(vSolutions[0]));
         if (!PermitsUncompressed(sigversion)) {
@@ -140,24 +123,6 @@ IsMineResult IsMineInner(const LegacyScriptPubKeyMan& keystore, const CScript& s
         CScript subscript;
         if (keystore.GetCScript(scriptID, subscript)) {
             ret = std::max(ret, recurse_scripthash ? IsMineInner(keystore, subscript, IsMineSigVersion::P2SH) : IsMineResult::SPENDABLE);
-        }
-        break;
-    }
-    case TX_WITNESS_V0_SCRIPTHASH:
-    {
-        if (sigversion == IsMineSigVersion::WITNESS_V0) {
-            // P2WSH inside P2WSH is invalid.
-            return IsMineResult::INVALID;
-        }
-        if (sigversion == IsMineSigVersion::TOP && !keystore.HaveCScript(CScriptID(CScript() << OP_0 << vSolutions[0]))) {
-            break;
-        }
-        uint160 hash;
-        CRIPEMD160().Write(&vSolutions[0][0], vSolutions[0].size()).Finalize(hash.begin());
-        CScriptID scriptID = CScriptID(hash);
-        CScript subscript;
-        if (keystore.GetCScript(scriptID, subscript)) {
-            ret = std::max(ret, recurse_scripthash ? IsMineInner(keystore, subscript, IsMineSigVersion::WITNESS_V0) : IsMineResult::SPENDABLE);
         }
         break;
     }
@@ -541,12 +506,7 @@ TransactionError LegacyScriptPubKeyMan::FillPSBT(PartiallySignedTransaction& psb
             return TransactionError::SIGHASH_MISMATCH;
         }
 
-        // Check non_witness_utxo has specified prevout
-        if (input.non_witness_utxo) {
-            if (txin.prevout.n >= input.non_witness_utxo->vout.size()) {
-                return TransactionError::MISSING_INPUTS;
-            }
-        } else if (input.witness_utxo.IsNull()) {
+        if (input.utxo.IsNull()) {
             // There's no UTXO so we can just skip this now
             continue;
         }
@@ -1292,19 +1252,12 @@ bool LegacyScriptPubKeyMan::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& key
 
 void LegacyScriptPubKeyMan::LearnRelatedScripts(const CPubKey& key, OutputType type)
 {
-    if (key.IsCompressed() && (type == OutputType::P2SH_SEGWIT || type == OutputType::BECH32)) {
-        CTxDestination witdest = WitnessV0KeyHash(key.GetID());
-        CScript witprog = GetScriptForDestination(witdest);
-        // Make sure the resulting program is solvable.
-        assert(IsSolvable(*this, witprog));
-        AddCScript(witprog);
-    }
+    // Nothing to do...
 }
 
 void LegacyScriptPubKeyMan::LearnAllRelatedScripts(const CPubKey& key)
 {
-    // OutputType::P2SH_SEGWIT always adds all necessary scripts for all types.
-    LearnRelatedScripts(key, OutputType::P2SH_SEGWIT);
+    // Nothing to do...
 }
 
 void LegacyScriptPubKeyMan::MarkReserveKeysAsUsed(int64_t keypool_id)

@@ -1428,7 +1428,7 @@ static UniValue getmempoolinfo(const JSONRPCRequest& request)
                     {
                         {RPCResult::Type::BOOL, "loaded", "True if the mempool is fully loaded"},
                         {RPCResult::Type::NUM, "size", "Current tx count"},
-                        {RPCResult::Type::NUM, "bytes", "Sum of all virtual transaction sizes as defined in BIP 141. Differs from actual serialized size because witness data is discounted"},
+                        {RPCResult::Type::NUM, "bytes", "Sum of all transaction sizes"},
                         {RPCResult::Type::NUM, "usage", "Total memory usage for the mempool"},
                         {RPCResult::Type::NUM, "maxmempool", "Maximum memory usage for the mempool"},
                         {RPCResult::Type::STR_AMOUNT, "minrelaytxfee", "Current minimum relay fee for transactions"},

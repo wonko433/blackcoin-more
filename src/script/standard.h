@@ -82,7 +82,6 @@ struct PKHash : public uint160
     using uint160::uint160;
 };
 
-struct WitnessV0KeyHash;
 struct ScriptHash : public uint160
 {
     ScriptHash() : uint160() {}

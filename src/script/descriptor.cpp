@@ -568,9 +568,7 @@ public:
         switch (m_destination.which()) {
             case 1 /* PKHash */:
             case 2 /* ScriptHash */: return OutputType::LEGACY;
-            case 3 /* WitnessV0ScriptHash */:
-            case 4 /* WitnessV0KeyHash */:
-            case 5 /* WitnessUnknown */: return OutputType::BECH32;
+            case 5 /* BECH32 */: return OutputType::BECH32;
             case 0 /* CNoDestination */:
             default: return nullopt;
         }
@@ -595,9 +593,7 @@ public:
         switch (dest.which()) {
             case 1 /* PKHash */:
             case 2 /* ScriptHash */: return OutputType::LEGACY;
-            case 3 /* WitnessV0ScriptHash */:
-            case 4 /* WitnessV0KeyHash */:
-            case 5 /* WitnessUnknown */: return OutputType::BECH32;
+            case 5 /* BECH32 */: return OutputType::BECH32;
             case 0 /* CNoDestination */:
             default: return nullopt;
         }

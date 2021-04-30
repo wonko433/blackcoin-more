@@ -10,7 +10,6 @@ Test that permissions are correctly calculated and applied
 from test_framework.address import ADDRESS_BCRT1_P2WSH_OP_TRUE
 from test_framework.messages import (
     CTransaction,
-    CTxInWitness,
     FromHex,
 )
 from test_framework.mininode import P2PDataStore
@@ -119,8 +118,6 @@ class P2PPermissionsTests(BitcoinTestFramework):
                     ADDRESS_BCRT1_P2WSH_OP_TRUE: 5,
                 }]),
         )
-        tx.wit.vtxinwit = [CTxInWitness()]
-        tx.wit.vtxinwit[0].scriptWitness.stack = [CScript([OP_TRUE])]
         txid = tx.rehash()
 
         self.log.debug("Wait until tx is in node[1]'s mempool")

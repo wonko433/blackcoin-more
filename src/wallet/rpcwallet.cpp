@@ -3629,8 +3629,7 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
                         {RPCResult::Type::BOOL, "isscript", "If the key is a script."},
                         {RPCResult::Type::BOOL, "ischange", "If the address was used for change output."},
                         {RPCResult::Type::STR, "script", /* optional */ true, "The output script type. Only if isscript is true and the redeemscript is known. Possible\n"
-            "                                                         types: nonstandard, pubkey, pubkeyhash, scripthash, multisig, nulldata\n"
-                            "witness_v0_scripthash, witness_unknown."},
+            "                                                         types: nonstandard, pubkey, pubkeyhash, scripthash, multisig, nulldata"},
                         {RPCResult::Type::STR_HEX, "hex", /* optional */ true, "The redeemscript for the p2sh address."},
                         {RPCResult::Type::ARR, "pubkeys", /* optional */ true, "Array of pubkeys associated with the known redeemscript (only if script is multisig).",
                         {
