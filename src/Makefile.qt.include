@@ -301,7 +301,7 @@ $(qt_libbitcoinqt_a_OBJECTS) $(qt_blackmore_qt_OBJECTS) : | $(QT_MOC)
 # blackmore-qt binary #
 qt_blackmore_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QR_CFLAGS)
-qt_blackmore_qt_CPPFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_blackmore_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
 qt_blackmore_qt_SOURCES = qt/main.cpp
 if TARGET_WINDOWS
