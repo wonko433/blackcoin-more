@@ -30,7 +30,7 @@
 #include <utility>
 
 int64_t nLastCoinStakeSearchInterval = 0;
-unsigned int nMinerSleep = 1000;
+unsigned int nMinerSleep = 500;
 
 int64_t UpdateTime(CBlock* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
@@ -521,22 +521,22 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
         {
             while (pwallet->IsLocked()) {
                 pwallet->m_last_coin_stake_search_interval = 0;
-                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(10)))
-                        return;
+                //Blackcoin ToDo: FIX!
+                //MilliSleep(10000);
             }
 
             if (!regtestMode) {
                 while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || ::ChainstateActive().IsInitialBlockDownload()) {
                     pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
-                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(1)))
-                        return;
+                    //Blackcoin ToDo: FIX!
+                    //MilliSleep(1000);
                 }
                 if (fTryToSync) {
                     fTryToSync = false;
                     if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60) {
-                    if (!connman->interruptNet.sleep_for(std::chrono::seconds(60)))
-                        return;
+                        //Blackcoin ToDo: FIX!
+                        //MilliSleep(60000);
                         continue;
                     }
                 }
@@ -601,13 +601,13 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                         CheckStake(pblock, *pwallet);
                         // return back to low priority
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                        if (!connman->interruptNet.sleep_for(std::chrono::seconds(3)))
-                            return;
+                        //Blackcoin ToDo: FIX!
+                        //MilliSleep(3000);
                     }
                 }
             }
-            if (!connman->interruptNet.sleep_for(std::chrono::seconds(nMinerSleep/10000)))
-                return;
+            //Blackcoin ToDo: FIX!
+            //MilliSleep(nMinerSleep);
         }
     }
     catch (const boost::thread_interrupted&)
