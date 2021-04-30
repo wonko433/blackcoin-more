@@ -29,7 +29,7 @@ struct TxInUndoFormatter
             // Required to maintain compatibility with older undo format.
             ::Serialize(s, (unsigned char)0);
         }
-        ::Serialize(s, txout->nTime);
+        ::Serialize(s, txout.nTime);
         ::Serialize(s, Using<TxOutCompression>(txout.out));
     }
 
@@ -39,7 +39,7 @@ struct TxInUndoFormatter
         ::Unserialize(s, VARINT(nCode));
         txout.nHeight = nCode / 4;
         txout.fCoinBase = nCode & 1;
-        txout->fCoinStake = nCode & 2;
+        txout.fCoinStake = nCode & 2;
         if (txout.nHeight > 0) {
             // Old versions stored the version number for the last spend of
             // a transaction's outputs. Non-final spends were indicated with
@@ -47,7 +47,7 @@ struct TxInUndoFormatter
             unsigned int nVersionDummy;
             ::Unserialize(s, VARINT(nVersionDummy));
         }
-        ::Unserialize(s, VARINT(txout->nTime));
+        ::Unserialize(s, VARINT(txout.nTime));
         ::Unserialize(s, Using<TxOutCompression>(txout.out));
     }
 };

@@ -171,8 +171,15 @@ public:
     //! Verification status of this block. See enum BlockStatus
     uint32_t nStatus{0};
 
-    //! Proof-of-stake related block index fields
-    unsigned int nFlags{0};
+    //! block header
+    int32_t nVersion{0};
+    uint256 hashMerkleRoot{};
+    uint32_t nTime{0};
+    uint32_t nBits{0};
+    uint32_t nNonce{0};
+
+    //! peercoin: proof-of-stake related block index fields
+    unsigned int nFlags{0};  // peercoin: block index flags
     enum
     {
         BLOCK_PROOF_OF_STAKE = (1 << 0),
@@ -181,14 +188,7 @@ public:
     };
 
     //! hash modifier of proof-of-stake
-    uint256 nStakeModifier;
-
-    //! block header
-    int32_t nVersion{0};
-    uint256 hashMerkleRoot{};
-    uint32_t nTime{0};
-    uint32_t nBits{0};
-    uint32_t nNonce{0};
+    uint256 nStakeModifier{0};
 
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     int32_t nSequenceId{0};
