@@ -1,7 +1,13 @@
 # Changelog
 
-## v2.17.2.0 (?)
+## v2.20.2.0 (?)
 - ?
+
+## v2.13.2.8 (2021-02-24)
+- Immediately ban clients operating on forked chains older than nMaxReorganizationDepth
+- Fixed IsDust() policy to allow atomic swaps
+- Updated fixed seeds for mainnet and testnet
+- Updated dependencies for MacOS
 
 ## v2.13.2.7 (2020-11-24)
 - Dust mitigation in mempool (by JJ12880 from Radium Core) 
@@ -46,7 +52,6 @@
 - Disabled BIP 152
 
 ## v2.13.2.1 (2018-12-03)
-
 - Updated to Bitcoin Core 0.13.2
 - Some small fixes and updates from Bitcoin Core 0.14.x branch
 - Fixed testnet and regtest
@@ -64,7 +69,6 @@
 - Proof-of-stake related code optimized and refactored
 
 ## v2.12.1.1 (2018-10-01)
-
 - Rebranded to Blackcoin More
 - Some small fixes and updates from Bitcoin Core 0.13.x branch
 - Added use available balance button in send coins dialog (backport of Core's PR11316)
