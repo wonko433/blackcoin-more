@@ -26,6 +26,7 @@
  * Serialized format:
  * - VARINT((coinbase ? 1 : 0) | (height << 1))
  * - VARINT((coinstake ? 2 : 0) | (height << 2))
+ * - nTime
  * - the non-spent CTxOut (via CTxOutCompressor)
  */
 class Coin
@@ -47,8 +48,8 @@ public:
     unsigned int nTime;
 
     //! construct a Coin from a CTxOut and height/coinbase information.
-    Coin(CTxOut&& outIn, bool fCoinBaseIn, bool fCoinStakeIn, int nHeightIn, int nTimeIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nTime(nTimeIn) {}
-    Coin(const CTxOut& outIn, bool fCoinBaseIn, bool fCoinStakeIn, int nHeightIn, int nTimeIn) : out(outIn), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nTime(nTimeIn) {}
+    Coin(CTxOut&& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(std::move(outIn)), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nTime(nTimeIn) {}
+    Coin(const CTxOut& outIn, int nHeightIn, bool fCoinBaseIn, bool fCoinStakeIn, int nTimeIn) : out(outIn), fCoinBase(fCoinBaseIn), fCoinStake(fCoinStakeIn), nHeight(nHeightIn), nTime(nTimeIn) {}
 
     void Clear() {
         out.SetNull();
