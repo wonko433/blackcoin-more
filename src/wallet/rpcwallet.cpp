@@ -348,12 +348,12 @@ static CTransactionRef SendMoneyToScript(interfaces::Chain::Lock& locked_chain, 
     return tx;
 }
 
-static CTransactionRef SendMoney(interfaces::Chain::Lock& locked_chain, CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, const CCoinControl& coin_control, mapValue_t mapValue, std::string fromAccount)
+static CTransactionRef SendMoney(interfaces::Chain::Lock& locked_chain, CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, const CCoinControl& coin_control, mapValue_t mapValue)
 {
     // Parse Blackcoin address
     CScript scriptPubKey = GetScriptForDestination(address);
 
-    return SendMoneyToScript(locked_chain, pwallet, scriptPubKey, nValue, fSubtractFeeFromAmount, coin_control, mapValue, fromAccount);
+    return SendMoneyToScript(locked_chain, pwallet, scriptPubKey, nValue, fSubtractFeeFromAmount, coin_control, mapValue);
 }
 
 static UniValue sendtoaddress(const JSONRPCRequest& request)
@@ -1264,10 +1264,6 @@ static void ListTransactions(interfaces::Chain::Lock& locked_chain, const CWalle
     bool involvesWatchonly = wtx.IsFromMe(ISMINE_WATCH_ONLY);
 
     bool list_sent = fAllAccounts;
-
-    if (IsDeprecatedRPCEnabled("accounts")) {
-        list_sent |= strAccount == strSentAccount;
-    }
 
     // Sent
     if (!filter_label)
@@ -2654,12 +2650,6 @@ static UniValue loadwallet(const JSONRPCRequest& request)
     std::vector<std::string> warning;
     std::shared_ptr<CWallet> const wallet = LoadWallet(*g_rpc_chain, location, error, warning);
     if (!wallet) throw JSONRPCError(RPC_WALLET_ERROR, error);
-
-    // Mine proof-of-stake blocks in the background
-    if (gArgs.GetBoolArg("-staking", DEFAULT_STAKE)) {
-        CConnman& connman = *g_connman;
-        wallet->StartStake(&connman);
-    }
 	
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("name", wallet->GetName());
@@ -3418,7 +3408,7 @@ UniValue burn(const JSONRPCRequest& request)
         throw std::runtime_error(
             "burn <amount> [hex string]\n"
             "<amount> is a real and is rounded to the nearest 0.00000001"
-            + HelpRequiringPassphrase(pwallet));
+            + HELP_REQUIRING_PASSPHRASE);
 
     CScript scriptPubKey;
 

@@ -553,7 +553,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // Do not work on transactions that are too small.
     // Transactions smaller than this are not relayed to to reduce unnecessary malloc overhead.
-    if (::GetSerializeSize(tx, PROTOCOL_VERSION < MIN_STANDARD_SIZE)
+    if (::GetSerializeSize(tx, PROTOCOL_VERSION) < MIN_STANDARD_SIZE)
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
 
     // Only accept nLockTime-using transactions that can be mined in the next
@@ -1661,11 +1661,11 @@ bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& 
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "reject-pow", strprintf("%s: reject proof-of-work at height %d", __func__, nHeight));
     
     // Check difficulty 
-    if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, chainparams.GetConsensus(), block.IsProofOfStake()))
+    if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, consensusParams, block.IsProofOfStake()))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
 
     // Check proof-of-stake
-    if (block.IsProofOfStake() && chainparams.GetConsensus().IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, block.vtx[1], block.nBits, state, view) {
+    if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, block.vtx[1], state, block.nBits, state, view)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -1691,7 +1691,7 @@ bool CChainState::ConnectBlock(const CBlock& block, BlockValidationState& state,
     int64_t nTimeStart = GetTimeMicros();
 
     // peercoin/blackcoin: perform proof-of-stake check
-    if (pindex->nStakeModifier == 0 && !ContextualPOSCheck(block, state, chainparams.GetConsensus(), pindex, view)) {
+    if (pindex->nStakeModifier == uint256() && !ContextualPOSCheck(block, state, chainparams.GetConsensus(), pindex, view)) {
         return error("%s: failed proof-of-stake check %s", __func__, state.ToString());
     }
 
@@ -3090,7 +3090,7 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
     // because we receive the wrong transactions for it.
 
     // Size limits
-    if (block.vtx.empty() || block.vtx.size() > MAX_BLOCK_SIZE || ::GetSerializeSize(block, PROTOCOL_VERSION > MAX_BLOCK_SIZE)
+    if (block.vtx.empty() || block.vtx.size() > MAX_BLOCK_SIZE || ::GetSerializeSize(block, PROTOCOL_VERSION) > MAX_BLOCK_SIZE)
         return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-length", "size limits failed");
 
     // First transaction must be coinbase, the rest must not be
@@ -3198,7 +3198,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Preliminary check of pos timestamp
     if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
-        return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, "bad-pos-time", "incorrect pos block timestamp");
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-pos-time", "incorrect pos block timestamp");
 
     // Check against checkpoints
     if (fCheckpointsEnabled) {
@@ -3277,7 +3277,6 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, BlockValidationS
     uint256 hash = block.GetHash();
     BlockMap::iterator miSelf = m_block_index.find(hash);
     CBlockIndex *pindex = nullptr;
-    bool fSetAsPos = fProofOfStake;
     if (hash != chainparams.GetConsensus().hashGenesisBlock) {
         if (miSelf != m_block_index.end()) {
             // Block header is already known.

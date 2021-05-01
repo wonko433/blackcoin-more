@@ -34,6 +34,8 @@
 #include <utility>
 #include <vector>
 
+using valtype = std::vector<unsigned char>;
+
 class CChainState;
 class BlockValidationState;
 class CBlockIndex;

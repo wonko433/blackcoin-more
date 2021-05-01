@@ -869,7 +869,8 @@ static UniValue estimatefee(const JSONRPCRequest& request)
                     RPCResult::Type::OBJ, "", "",
                     {
                         {RPCResult::Type::NUM, "feerate", "estimate fee rate in " + CURRENCY_UNIT + "/kB (only present if no errors were encountered)"},
-                    },
+                    }
+                },
                 RPCExamples{
                     HelpExampleCli("estimatefee", "")
                 },
