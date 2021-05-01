@@ -899,6 +899,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (::ChainstateActive().IsInitialBlockDownload())
             throw JSONRPCError(-10, "Blackcoin is downloading blocks...");
 
+        const CTxMemPool& mempool = EnsureMemPool();
         COutPoint kernel;
         CBlockIndex* pindexPrev = ::ChainActive().Tip();
         CBlockHeader blockHeader = pindexPrev->GetBlockHeader();
@@ -958,10 +959,9 @@ UniValue checkkernel(const JSONRPCRequest& request)
             pwallet->TopUpKeyPool();
 
         std::unique_ptr<CBlockTemplate> pblocktemplate;
-        //Blackcoin ToDo: FIX!
-        //pblocktemplate = BlockAssembler(*mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
+        pblocktemplate = BlockAssembler(mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
 
-        if (!pblocktemplate.get())
+        if (!pblocktemplate)
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");
 
         CBlock *pblock = &pblocktemplate->block;
