@@ -554,6 +554,18 @@ void CWallet::AddToSpends(const uint256& wtxid)
         AddToSpends(txin.prevout, wtxid);
 }
 
+void CWallet::AddToSpends(const uint256& wtxid)
+{
+    auto it = mapWallet.find(wtxid);
+    assert(it != mapWallet.end());
+    CWalletTx& thisTx = it->second;
+    if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
+        return;
+
+    for (const CTxIn& txin : thisTx.tx->vin)
+        AddToSpends(txin.prevout, wtxid);
+}
+
 void CWallet::RemoveFromSpends(const uint256& wtxid)
 {
     assert(mapWallet.count(wtxid));
@@ -707,7 +719,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     txNew.vout.push_back(CTxOut(0, scriptEmpty));
 
     // Choose coins to use
-    CAmount nBalance = GetBalance();
+   CAmount nBalance = GetBalance().m_mine_trusted;
 
     if (nBalance <= m_reserve_balance)
         return false;
@@ -2280,9 +2292,9 @@ CAmount CWalletTx::GetImmatureWatchOnlyCredit(const bool fUseCache) const
     return 0;
 }
 
-CAmount CWalletTx::GetStakeWatchOnlyCredit(interfaces::Chain::Lock& locked_chain, const bool fUseCache) const
+CAmount CWalletTx::GetStakeWatchOnlyCredit(const bool fUseCache) const
 {
-    if (IsImmatureCoinStake(locked_chain) && IsInMainChain(locked_chain)) {
+    if (IsImmatureCoinStake() && IsInMainChain()) {
         return GetCachableAmount(IMMATURE_CREDIT, ISMINE_WATCH_ONLY, !fUseCache);
     }
 
@@ -2809,7 +2821,7 @@ bool CWallet::SignTransaction(CMutableTransaction& tx) const
             return false;
         }
         const CWalletTx& wtx = mi->second;
-        coins[input.prevout] = Coin(wtx.tx->vout[input.prevout.n], wtx.m_confirm.block_height, wtx.IsCoinBase());
+        coins[input.prevout] = Coin(wtx.tx->vout[input.prevout.n], wtx.m_confirm.block_height, wtx.IsCoinBase(), wtx.IsCoinStake(), wtx.nTimeSmart);
     }
     std::map<int, std::string> input_errors;
     return SignTransaction(tx, coins, SIGHASH_ALL, input_errors);
@@ -2848,10 +2860,19 @@ TransactionError CWallet::FillPSBT(PartiallySignedTransaction& psbtx, bool& comp
             const auto it = mapWallet.find(txhash);
             if (it != mapWallet.end()) {
                 const CWalletTx& wtx = it->second;
-                CTxOut utxo = wtx.tx->vout[txin.prevout.GetN()];
+                CTxOut utxo = wtx.tx->vout[txin.prevout.n];
                 // Update UTXOs from the wallet.
-                input.utxo = wtx.tx;
+                input.utxo = utxo;
             }
+        }
+    }
+
+    // Fill in information from ScriptPubKeyMans
+    for (ScriptPubKeyMan *spk_man : GetAllScriptPubKeyMans()) {
+        TransactionError res =
+            spk_man->FillPSBT(psbtx, sighash_type, sign, bip32derivs);
+        if (res != TransactionError::OK) {
+            return res;
         }
     }
 
@@ -3150,10 +3171,10 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     nValueIn = 0;
                     setCoins.clear();
                     int change_spend_size = CalculateMaximumSignedInputSize(change_prototype_txout, this);
-                    // If the wallet doesn't know how to sign change output, assume p2sh-p2wpkh
-                    // as lower-bound to allow BnB to do it's thing
+                    // If the wallet doesn't know how to sign change output, assume
+                    // p2psh as lower-bound to allow BnB to do it's thing
                     if (change_spend_size == -1) {
-                        coin_selection_params.change_spend_size = DUMMY_NESTED_P2WPKH_INPUT_SIZE;
+                        coin_selection_params.change_spend_size = DUMMY_NESTED_P2PKH_INPUT_SIZE;
                     } else {
                         coin_selection_params.change_spend_size = (size_t)change_spend_size;
                     }
@@ -3221,11 +3242,6 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                 }
 
                 nFeeNeeded = GetMinimumFee(*this, nBytes, coin_control);
-                if (feeCalc.reason == FeeReason::FALLBACK && !m_allow_fallback_fee) {
-                    // eventually allow a fallback fee
-                    strFailReason = _("Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.").translated;
-                    return false;
-                }
 
                 if (nFeeRet >= nFeeNeeded) {
                     // Reduce fee to only the needed amount if possible. This
@@ -3760,7 +3776,7 @@ void CWallet::DisableTransaction(const CTransaction &tx)
         return; // only disconnecting coinstake requires marking input unspent
 
     uint256 hash = tx.GetHash();
-    if(AbandonTransaction(locked_chain, hash))
+    if(AbandonTransaction(hash))
     {
         LOCK(cs_wallet);
         RemoveFromSpends(hash);
