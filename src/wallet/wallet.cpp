@@ -640,7 +640,7 @@ void CWallet::AvailableCoinsForStaking(interfaces::Chain::Lock& locked_chain, st
                 std::set<uint256> trusted_parents;
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
                     !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0)) {
-                        vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted(locked_chain, trusted_parents));
+                        vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted(locked_chain, trusted_parents)));
                     }
             }
         }
@@ -878,7 +878,8 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     }
 
     // Limit size
-    if (txNew->GetTotalSize() > MAX_STANDARD_TX_SIZE)
+    CTransactionRef tx2 = MakeTransactionRef(std::move(txNew));
+    if (tx2->GetTotalSize() > MAX_STANDARD_TX_SIZE)
         return error("CreateCoinStake : exceeded coinstake size limit");
 
     // Successfully generated coinstake
