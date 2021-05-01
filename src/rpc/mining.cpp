@@ -882,13 +882,44 @@ static UniValue estimatefee(const JSONRPCRequest& request)
 
 UniValue checkkernel(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
-            throw std::runtime_error(
-                "checkkernel [{\"txid\":txid,\"vout\":n},...] [createblocktemplate=false]\n"
-                "Check if one of given inputs is a kernel input at the moment.\n"
-            );
-
+    // Blackcoin ToDo: finish this!
         RPCTypeCheck(request.params, {UniValue::VARR, UniValue::VBOOL}, false);
+
+            RPCHelpMan{"checkkernel",
+                "\nCheck if one of given inputs is a kernel input at the moment.\n",
+                {
+                    {"inputs", RPCArg::Type::ARR, RPCArg::Optional::NO, "The inputs",
+                        {
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
+                                    {"vout", RPCArg::Type::NUM, RPCArg::Optional::NO, "The output number"},
+                                    {"sequence", RPCArg::Type::NUM, /* default */ "depends on the value of the 'locktime' argument", "The sequence number"},
+                                },
+                                },
+                        },
+                        },
+                    {"createblocktemplate", RPCArg::Type::BOOL, /* default */ "false", "Create block template?"},
+                },
+                RPCResult{
+                    RPCResult::Type::ARR, "", "outputs",
+                    {
+                        {RPCResult::Type::BOOL, "found", "?"},
+                        {RPCResult::Type::OBJ, "kernel", ""}
+                        {
+                            {RPCResult::Type::STR_HEX, "txid", "The transaction hash in hex"},
+                            {RPCResult::Type::NUM, "vout", "?"},
+                            {RPCResult::Type::NUM, "time", "?"},
+                        },
+                        {RPCResult::Type::STR_HEX, "blocktemplate", "?"},
+                        {RPCResult::Type::NUM, "blocktemplatefees", "?"},
+                    }
+                },
+                RPCExamples{
+                    HelpExampleCli("checkkernel", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"false\"")
+            + HelpExampleCli("checkkernel", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"true\"")
+                },
+            }.Check(request);
 
         UniValue inputs = request.params[0].get_array();
         bool fCreateBlockTemplate = request.params.size() > 1 ? request.params[1].get_bool() : false;
@@ -975,12 +1006,15 @@ UniValue checkkernel(const JSONRPCRequest& request)
         result.pushKV("blocktemplate", HexStr(ss.begin(), ss.end()));
         result.pushKV("blocktemplatefees", nFees);
 
+        /*
         // Reserve a new key pair from key pool
         if (!pwallet->CanGetAddresses(true)) {
-            throw JSONRPCError(RPC_MISC_ERROR, "Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.");
+            throw JSONRPCError(RPC_WALLET_ERROR, "Error: This wallet has no available keys");
         }
 
-        // result.pushKV("blocktemplatesignkey", HexStr(pubkey));
+        result.pushKV("blocktemplatesignkey", HexStr(pubkey));
+        */
+
         return result;
 }
 

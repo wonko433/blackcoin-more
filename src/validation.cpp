@@ -3379,8 +3379,7 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, BlockValid
             ::ChainstateActive().CheckBlockIndex(chainparams.GetConsensus());
 
             if (!accepted) {
-                // if we have seen a duplicate stake in this header list previously, then ban immediately.
-                if(fInstantBan) {
+                if (fInstantBan) {
                     state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, state.GetRejectReason(), "instant ban, due to duplicate header in the chain");
                 }
                 return false;
