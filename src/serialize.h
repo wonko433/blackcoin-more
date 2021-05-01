@@ -1060,9 +1060,10 @@ class CSizeComputer
 protected:
     size_t nSize;
 
+    const int nType;
     const int nVersion;
 public:
-    explicit CSizeComputer(int nVersionIn) : nSize(0), nVersion(nVersionIn) {}
+    explicit CSizeComputer(int nTypeIn, int nVersionIn) : nSize(0), nType(nTypeIn), nVersion(nVersionIn) {}
 
     void write(const char *psz, size_t _nSize)
     {
