@@ -1032,7 +1032,7 @@ static const CRPCCommand commands[] =
     { "mining",             "submitblock",            &submitblock,            {"hexdata","dummy"} },
     { "mining",             "submitheader",           &submitheader,           {"hexdata"} },
 
-    { "mining",             "checkkernel",            &checkkernel,            {"kernel_input"} },
+    { "mining",             "checkkernel",            &checkkernel,            {"inputs", "createblocktemplate"} },
     
     { "generating",         "generatetoaddress",      &generatetoaddress,      {"nblocks","address","maxtries"} },
     { "generating",         "generatetodescriptor",   &generatetodescriptor,   {"num_blocks","descriptor","maxtries"} },
