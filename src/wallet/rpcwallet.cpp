@@ -3411,7 +3411,7 @@ UniValue burn(const JSONRPCRequest& request)
                 RPCResult::Type::STR_HEX, "txid", "The transaction id."
             },
             RPCExamples{
-                HelpExampleCli("burn", "0.1 "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+                HelpExampleCli("burn", "0.1 \"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
             },
         }.Check(request);
 
