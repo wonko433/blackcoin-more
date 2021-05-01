@@ -609,12 +609,14 @@ void CWallet::CleanCoinStake()
     }
 }
 
-void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
+void CWallet::AvailableCoinsForStaking(interfaces::Chain::Lock& locked_chain, std::vector<COutput>& vCoins) const
 {
+    AssertLockHeld(cs_main);
+    AssertLockHeld(cs_wallet);
+
     vCoins.clear();
 
     {
-        LOCK2(cs_main, cs_wallet);
         for (map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it)
         {
             const uint256& wtxid = it->first;
@@ -634,30 +636,22 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
                 isminetype mine = IsMine(pcoin->tx->vout[i]);
                 std::unique_ptr<SigningProvider> provider = GetSolvingProvider(pcoin->tx->vout[i].scriptPubKey);
                 bool solvable = IsSolvable(*provider, pcoin->tx->vout[i].scriptPubKey);
+                bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
+                std::set<uint256> trusted_parents;
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
                     !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0)) {
-                        bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
-                        //Blackcoin ToDo: FIX!
-                        //if (spendable)
-                            //vCoins.push_back(std::make_pair(pcoin, i));
+                        vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted(locked_chain, trusted_parents));
                     }
             }
         }
     }
 }
 
-bool CWallet::HaveAvailableCoinsForStaking() const
-{
-    vector<COutput> vCoins;
-    AvailableCoinsForStaking(vCoins);
-    return vCoins.size() > 0;
-}
-
 // Select some coins without random shuffle or best subset approximation
-bool CWallet::SelectCoinsForStaking(CAmount& nTargetValue, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, CAmount& nValueRet) const
+bool CWallet::SelectCoinsForStaking(interfaces::Chain::Lock& locked_chain, CAmount& nTargetValue, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, CAmount& nValueRet) const
 {
     vector<COutput> vCoins;
-    AvailableCoinsForStaking(vCoins);
+    AvailableCoinsForStaking(locked_chain, vCoins);
 
     setCoinsRet.clear();
     nValueRet = 0;
@@ -723,7 +717,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
 
     // Select coins with suitable depth
     CAmount nTargetValue = nBalance - m_reserve_balance;
-    if (!SelectCoinsForStaking(nTargetValue, setCoins, nValueIn))
+    if (!SelectCoinsForStaking(locked_chain, nTargetValue, setCoins, nValueIn))
         return false;
 
     if (setCoins.empty())
@@ -884,7 +878,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     }
 
     // Limit size
-    unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    unsigned int nBytes = ::GetSerializeSize(txNew, PROTOCOL_VERSION);
     if (nBytes >= MAX_STANDARD_TX_SIZE)
         return error("CreateCoinStake : exceeded coinstake size limit");
 
@@ -3862,7 +3856,7 @@ void CWallet::ListLockedCoins(std::vector<COutPoint>& vOutpts) const
     }
 }
 
-uint64_t CWallet::GetStakeWeight() const
+uint64_t CWallet::GetStakeWeight(interfaces::Chain::Lock& locked_chain) const
 {
     // Choose coins to use
     CAmount nBalance = GetBalance().m_mine_trusted;
@@ -3876,7 +3870,7 @@ uint64_t CWallet::GetStakeWeight() const
     CAmount nValueIn = 0;
 
     CAmount nTargetValue = nBalance - m_reserve_balance;
-    if (!SelectCoinsForStaking(nTargetValue, setCoins, nValueIn))
+    if (!SelectCoinsForStaking(locked_chain, nTargetValue, setCoins, nValueIn))
         return 0;
 
     if (setCoins.empty())

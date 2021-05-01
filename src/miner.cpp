@@ -507,7 +507,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
     LogPrintf("Staking started\n");
 
     // Make this thread recognisable as the mining thread
-    std::string threadName = "stake";
+    std::string threadName = "blackcoin-stake";
     util::ThreadRename(threadName.c_str());
 
     try {
@@ -521,22 +521,19 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
         {
             while (pwallet->IsLocked()) {
                 pwallet->m_last_coin_stake_search_interval = 0;
-                //Blackcoin ToDo: FIX!
-                //MilliSleep(10000);
+                UninterruptibleSleep(std::chrono::milliseconds{10000});
             }
 
             if (!regtestMode) {
                 while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || ::ChainstateActive().IsInitialBlockDownload()) {
                     pwallet->m_last_coin_stake_search_interval = 0;
                     fTryToSync = true;
-                    //Blackcoin ToDo: FIX!
-                    //MilliSleep(1000);
+                    UninterruptibleSleep(std::chrono::milliseconds{1000});
                 }
                 if (fTryToSync) {
                     fTryToSync = false;
                     if (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60) {
-                        //Blackcoin ToDo: FIX!
-                        //MilliSleep(60000);
+                        UninterruptibleSleep(std::chrono::milliseconds{60000});
                         continue;
                     }
                 }
@@ -581,14 +578,27 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             }
             */
 
-            if (pwallet->HaveAvailableCoinsForStaking())
+            //
+            // Create new block
+            //
+            CAmount nBalance = pwallet->GetBalance().m_mine_trusted;
+            CAmount nTargetValue = nBalance - pwallet->m_reserve_balance;
+            CAmount nValueIn = 0;
+            std::set<std::pair<const CWalletTx*,unsigned int> > setCoins;
+            int64_t start = GetAdjustedTime();
+            {
+                auto locked_chain = pwallet->chain().lock();
+                LOCK(pwallet->cs_wallet);
+                pwallet->SelectCoinsForStaking(*locked_chain, nTargetValue, setCoins, nValueIn);
+            }
+            if (setCoins.size() > 0)
             {
                 int64_t nFees = 0;
                 std::unique_ptr<CBlockTemplate> pblocktemplate;
+                const CTxMemPool& mempool = EnsureMemPool();
 
                 // First just create an empty block. No need to process transactions until we know we can create a block
-                //Blackcoin ToDo: FIX!
-                //pblocktemplate = BlockAssembler(*mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
+                pblocktemplate = BlockAssembler(mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
 
                 if (!pblocktemplate.get())
                     return;
@@ -605,13 +615,11 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                         CheckStake(pblock, *pwallet);
                         // return back to low priority
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                        //Blackcoin ToDo: FIX!
-                        //MilliSleep(3000);
+                        UninterruptibleSleep(std::chrono::milliseconds{3000});
                     }
                 }
             }
-            //Blackcoin ToDo: FIX!
-            //MilliSleep(nMinerSleep);
+            UninterruptibleSleep(std::chrono::milliseconds{nMinerSleep});
         }
     }
     catch (const boost::thread_interrupted&)
