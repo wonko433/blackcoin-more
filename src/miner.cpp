@@ -576,10 +576,10 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
 
                 // Trying to sign a block
                 if (nSearchTime > pwallet->m_last_coin_stake_search_time) {
+                    pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+                    pwallet->m_last_coin_stake_search_time = nSearchTime;
+
                     if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
-                        // Update nLastCoinStakeSearchTime and nLastCoinStakeSearchInterval
-                        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
-                        pwallet->m_last_coin_stake_search_time = nSearchTime;
                         // increase priority
                         SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
                         // Sign the full block
@@ -587,12 +587,8 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                         // return back to low priority
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         UninterruptibleSleep(std::chrono::milliseconds{500});
-                    } else {
-                        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
-                        pwallet->m_last_coin_stake_search_time = nSearchTime;
                     }
                 }
-                
             }
             UninterruptibleSleep(std::chrono::milliseconds{nMinerSleep});
         }
@@ -626,7 +622,7 @@ void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_
 }
 
 // novacoin: attempt to generate suitable proof-of-stake
-bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, uint32_t nTimeTx)
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, uint32_t nTime)
 {
     // if we are trying to sign
     // something except proof-of-stake block template
