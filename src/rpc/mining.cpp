@@ -26,7 +26,6 @@
 #include <shutdown.h>
 #include <txmempool.h>
 #include <univalue.h>
-#include <util/fees.h>
 #include <util/strencodings.h>
 #include <util/string.h>
 #include <util/system.h>

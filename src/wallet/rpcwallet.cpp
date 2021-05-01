@@ -17,7 +17,6 @@
 #include <script/descriptor.h>
 #include <script/sign.h>
 #include <util/bip32.h>
-#include <util/fees.h>
 #include <util/message.h> // For MessageSign()
 #include <util/moneystr.h>
 #include <util/string.h>

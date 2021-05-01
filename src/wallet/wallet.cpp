@@ -27,7 +27,6 @@
 #include <txmempool.h>
 #include <util/bip32.h>
 #include <util/error.h>
-#include <util/fees.h>
 #include <util/moneystr.h>
 #include <util/translation.h>
 #include <wallet/coincontrol.h>
