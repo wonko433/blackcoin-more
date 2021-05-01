@@ -69,7 +69,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
         /*
         // Blackcoin ToDo
         // Bech32 decoding
-		*/
+        */
     }
     return CNoDestination();
 }

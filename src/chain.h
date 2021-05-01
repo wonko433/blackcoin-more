@@ -380,6 +380,7 @@ public:
         if (obj.nStatus & BLOCK_HAVE_DATA) READWRITE(VARINT(obj.nDataPos));
         if (obj.nStatus & BLOCK_HAVE_UNDO) READWRITE(VARINT(obj.nUndoPos));
         READWRITE(obj.nFlags);
+        READWRITE(obj.nStakeModifier);
 
         // block header
         READWRITE(obj.nVersion);

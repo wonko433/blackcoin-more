@@ -3374,26 +3374,6 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, BlockValid
         for (size_t i = 0; i < headers.size(); ++i) {
             const CBlockHeader& header = headers[i];
 
-            // Blackcoin ToDo: FIX!
-            /*
-            // If the stake has been seen and the header has not yet been seen
-            if (!fReindex && !fImporting && !::ChainstateActive().IsInitialBlockDownload() && header.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE && ::ChainstateActive().setStakeSeen.count(std::make_pair(header.prevoutStake, header.nTime)) && !::BlockIndex().count(header.GetHash())) {
-                // if it is the last header of the list
-                if(i+1 == headers.size()) {
-                    if(fInstantBan) {
-                        // if we've seen a dupe stake header already in this list, then instaban
-                        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "dupe-stake", strprintf("%s: duplicate proof-of-stake instant ban (%s, %d) for header %s", __func__, header.prevoutStake.ToString(), header.nTime, header.GetHash().ToString()));
-                    } else {
-                        // otherwise just reject the block until it is part of a longer list
-                        return state.Invalid(BlockValidationResult::BLOCK_HEADER_REJECT, "dupe-stake", strprintf("%s: duplicate proof-of-stake (%s, %d) for header %s", __func__, header.prevoutStake.ToString(), header.nTime, header.GetHash().ToString()));
-                    }
-                } else {
-                    // if it is not part of the longest chain, then any error on a subsequent header should result in an instant ban
-                    fInstantBan = true;
-                }
-            }
-            */
-
             CBlockIndex *pindex = nullptr; // Use a temp pindex instead of ppindex to avoid a const_cast
             bool accepted = g_blockman.AcceptBlockHeader(header, state, chainparams, &pindex);
             ::ChainstateActive().CheckBlockIndex(chainparams.GetConsensus());
