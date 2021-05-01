@@ -1140,9 +1140,9 @@ inline void WriteCompactSize(CSizeComputer &s, uint64_t nSize)
 }
 
 template <typename T>
-size_t GetSerializeSize(const T& t, int nType, int nVersion = 0)
+size_t GetSerializeSize(const T& t, int nVersion = 0)
 {
-    return (CSizeComputer(nType, nVersion) << t).size();
+    return (CSizeComputer(nVersion) << t).size();
 }
 
 template <typename... T>

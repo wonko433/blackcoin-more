@@ -1665,7 +1665,7 @@ bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& 
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
 
     // Check proof-of-stake
-    if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, block.vtx[1], block.nBits, state, view)) {
+    if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, *block.vtx[1], block.nBits, state, view)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -3362,7 +3362,6 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, BlockValid
     if(!::ChainstateActive().IsInitialBlockDownload() && headers.size() > 1) {
         LOCK(cs_main);
         const CBlockHeader last_header = headers[headers.size()-1];
-        unsigned int nHeight = ::ChainActive().Height() + 1;
         if (last_header.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE && last_header.GetBlockTime() > FutureDrift(GetAdjustedTime())) {
             return state.Invalid(BlockValidationResult::BLOCK_TIME_FUTURE, "time-too-new", "block timestamp too far in the future");
         }
@@ -3375,6 +3374,8 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, BlockValid
         for (size_t i = 0; i < headers.size(); ++i) {
             const CBlockHeader& header = headers[i];
 
+            // Blackcoin ToDo: FIX!
+            /*
             // If the stake has been seen and the header has not yet been seen
             if (!fReindex && !fImporting && !::ChainstateActive().IsInitialBlockDownload() && header.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE && ::ChainstateActive().setStakeSeen.count(std::make_pair(header.prevoutStake, header.nTime)) && !::BlockIndex().count(header.GetHash())) {
                 // if it is the last header of the list
@@ -3391,6 +3392,7 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, BlockValid
                     fInstantBan = true;
                 }
             }
+            */
 
             CBlockIndex *pindex = nullptr; // Use a temp pindex instead of ppindex to avoid a const_cast
             bool accepted = g_blockman.AcceptBlockHeader(header, state, chainparams, &pindex);
@@ -4026,7 +4028,8 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
         // check level 3: check for inconsistencies during memory-only disconnect of tip blocks
         if (nCheckLevel >= 3 && (coins.DynamicMemoryUsage() + ::ChainstateActive().CoinsTip().DynamicMemoryUsage()) <= nCoinCacheUsage) {
             assert(coins.GetBestBlock() == pindex->GetBlockHash());
-            DisconnectResult res = ::ChainstateActive().DisconnectBlock(block, pindex, coins);
+            bool fClean = true;
+            DisconnectResult res = ::ChainstateActive().DisconnectBlock(block, pindex, coins, &fClean);
             if (res == DISCONNECT_FAILED) {
                 return error("VerifyDB(): *** irrecoverable inconsistency in block data at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
             }
@@ -4358,7 +4361,7 @@ bool CChainState::LoadGenesisBlock(const CChainParams& chainparams)
         FlatFilePos blockPos = SaveBlockToDisk(block, 0, chainparams, nullptr);
         if (blockPos.IsNull())
             return error("%s: writing genesis block to disk failed", __func__);
-        CBlockIndex *pindex = m_blockman.AddToBlockIndex(block, false);
+        CBlockIndex *pindex = m_blockman.AddToBlockIndex(block);
         ReceivedBlockTransactions(block, pindex, blockPos, chainparams.GetConsensus());
     } catch (const std::runtime_error& e) {
         return error("%s: failed to write genesis block: %s", __func__, e.what());

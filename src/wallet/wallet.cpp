@@ -637,8 +637,9 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
                     !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0)) {
                         bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
-                        if (spendable)
-                            vCoins.push_back(std::make_pair(pcoin, i));
+                        //Blackcoin ToDo: FIX!
+                        //if (spendable)
+                            //vCoins.push_back(std::make_pair(pcoin, i));
                     }
             }
         }
@@ -763,7 +764,9 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
                 std::vector<valtype> vSolutions;
                 CScript scriptPubKeyOut;
                 scriptPubKeyKernel = pcoin.first->tx->vout[pcoin.second].scriptPubKey;
+                txnouttype whichType = Solver(scriptPubKeyKernel, vSolutions);
                 if (!Solver(scriptPubKeyKernel, vSolutions))
+                if (whichType == TX_NONSTANDARD)
                 {
                     LogPrint(BCLog::COINSTAKE, "CreateCoinStake : failed to parse kernel\n");
                     break;

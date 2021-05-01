@@ -83,7 +83,6 @@ bool FillableSigningProvider::AddKeyPubKey(const CKey& key, const CPubKey &pubke
 {
     LOCK(cs_KeyStore);
     mapKeys[pubkey.GetID()] = key;
-    ImplicitlyLearnRelatedKeyScripts(pubkey);
     return true;
 }
 
@@ -156,6 +155,7 @@ CKeyID GetKeyForDestination(const SigningProvider& store, const CTxDestination& 
 {
     // Only supports destinations which map to single public keys, i.e. P2PKH.
     if (auto id = boost::get<PKHash>(&dest)) {
-        return CKeyID(*id);
+        return ToKeyID(*id);
     }
+    return CKeyID();
 }
