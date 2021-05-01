@@ -551,11 +551,9 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
     if (fRequireStandard && !IsStandardTx(tx, reason))
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, reason);
 
-    // Return the constructed transaction data.
-
     // Do not work on transactions that are too small.
     // Transactions smaller than this are not relayed to to reduce unnecessary malloc overhead.
-    unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    unsigned int nBytes = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
     if (nBytes < MIN_STANDARD_TX_SIZE)
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
 
