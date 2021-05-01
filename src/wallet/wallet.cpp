@@ -878,8 +878,8 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     }
 
     // Limit size
-    CTransactionRef tx2 = MakeTransactionRef(std::move(txNew));
-    if (tx2->GetTotalSize() > MAX_STANDARD_TX_SIZE)
+    unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    if (nBytes > MAX_STANDARD_TX_SIZE)
         return error("CreateCoinStake : exceeded coinstake size limit");
 
     // Successfully generated coinstake

@@ -182,7 +182,6 @@ enum
     SER_NETWORK         = (1 << 0),
     SER_DISK            = (1 << 1),
     SER_GETHASH         = (1 << 2),
-	
 	SER_POSMARKER       = (1 << 18),  // peercoin: for sending block headers with PoS marker, to allow headers-first syncronization
 };
 
@@ -1087,6 +1086,7 @@ public:
         return nSize;
     }
 
+    int GetType() const { return nType; }
     int GetVersion() const { return nVersion; }
 };
 
@@ -1126,28 +1126,6 @@ inline void SerReadWriteMany(Stream& s, CSerActionUnserialize ser_action, Args&&
     ::UnserializeMany(s, args...);
 }
 
-template<typename Stream, typename Type, typename Fn>
-inline void SerRead(Stream& s, CSerActionSerialize ser_action, Type&&, Fn&&)
-{
-}
-
-template<typename Stream, typename Type, typename Fn>
-inline void SerRead(Stream& s, CSerActionUnserialize ser_action, Type&& obj, Fn&& fn)
-{
-    fn(s, std::forward<Type>(obj));
-}
-
-template<typename Stream, typename Type, typename Fn>
-inline void SerWrite(Stream& s, CSerActionSerialize ser_action, Type&& obj, Fn&& fn)
-{
-    fn(s, std::forward<Type>(obj));
-}
-
-template<typename Stream, typename Type, typename Fn>
-inline void SerWrite(Stream& s, CSerActionUnserialize ser_action, Type&&, Fn&&)
-{
-}
-
 template<typename I>
 inline void WriteVarInt(CSizeComputer &s, I n)
 {
@@ -1160,15 +1138,15 @@ inline void WriteCompactSize(CSizeComputer &s, uint64_t nSize)
 }
 
 template <typename T>
-size_t GetSerializeSize(const T& t, int nVersion = 0)
+size_t GetSerializeSize(const T& t, int nType, int nVersion = 0)
 {
-    return (CSizeComputer(nVersion) << t).size();
+    return (CSizeComputer(nType, nVersion) << t).size();
 }
 
 template <typename... T>
 size_t GetSerializeSizeMany(int nVersion, const T&... t)
 {
-    CSizeComputer sc(nVersion);
+    CSizeComputer sc(0, nVersion);
     SerializeMany(sc, t...);
     return sc.size();
 }

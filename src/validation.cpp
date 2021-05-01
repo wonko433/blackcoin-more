@@ -555,8 +555,8 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // Do not work on transactions that are too small.
     // Transactions smaller than this are not relayed to to reduce unnecessary malloc overhead.
-    CTransactionRef tx2 = MakeTransactionRef(std::move(tx));
-    if (tx2->GetTotalSize() < MIN_STANDARD_TX_SIZE)
+    unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    if (nBytes < MIN_STANDARD_TX_SIZE)
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
 
     // Only accept nLockTime-using transactions that can be mined in the next
@@ -1657,7 +1657,6 @@ static int64_t nBlocksTotal = 0;
 bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& state, const Consensus::Params& consensusParams, CBlockIndex* pindex, CCoinsViewCache& view)
 {
     int nHeight = pindex->nHeight;
-    uint256 hash = block.GetHash();
 
     // Check for the last proof of work block
     if (block.IsProofOfWork() && nHeight > consensusParams.nLastPOWBlock)

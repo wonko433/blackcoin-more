@@ -314,7 +314,7 @@ static UniValue setlabel(const JSONRPCRequest& request)
 }
 
 
-static CTransactionRef SendMoneyToScript(interfaces::Chain::Lock& locked_chain, CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, const CCoinControl& coin_control, mapValue_t mapValue)
+static CTransactionRef SendMoneyToScript(interfaces::Chain::Lock& locked_chain, CWallet * const pwallet, const CScript scriptPubKey, CAmount nValue, bool fSubtractFeeFromAmount, const CCoinControl& coin_control, mapValue_t mapValue)
 {
     CAmount curBalance = pwallet->GetBalance(0, coin_control.m_avoid_address_reuse).m_mine_trusted;
 
@@ -327,9 +327,6 @@ static CTransactionRef SendMoneyToScript(interfaces::Chain::Lock& locked_chain, 
 
    if (pwallet->m_wallet_unlock_staking_only)
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Wallet unlocked for staking only, unable to create transaction");
-
-    // Parse Bitcoin address
-    CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
     CAmount nFeeRequired = 0;
