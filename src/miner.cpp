@@ -542,50 +542,10 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             //
             // Create new block
             //
-            /*
-            // Blackcoin ToDo: accept or remove!
-            if (pwallet->HaveAvailableCoinsForStaking())
-            {
-                int64_t nFees = 0;
-                // First just create an empty block. No need to process transactions until we know we can create a block
-                std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(reservekey.reserveScript, &nFees, true));
-                if (!pblocktemplate.get())
-                    return;
-
-                std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
-
-                if (pwallet->m_last_coin_stake_search_time == 0)
-                    pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
-
-                int64_t nSearchTime = GetAdjustedTime();
-                nSearchTime &= ~Params().GetConsensus().nStakeTimestampMask;
-
-                if (nSearchTime > pwallet->m_last_coin_stake_search_time) {
-                    pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
-                    // Trying to sign a block
-                    if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
-                        // increase priority
-                        SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
-                        // Sign the full block
-                        CheckStake(pblock, *pwallet);
-                        // return back to low priority
-                        SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                        MilliSleep(500);
-                    }
-                    pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
-                    pwallet->m_last_coin_stake_search_time = nSearchTime;
-                }
-            }
-            */
-
-            //
-            // Create new block
-            //
             CAmount nBalance = pwallet->GetBalance().m_mine_trusted;
             CAmount nTargetValue = nBalance - pwallet->m_reserve_balance;
             CAmount nValueIn = 0;
             std::set<std::pair<const CWalletTx*,unsigned int> > setCoins;
-            int64_t start = GetAdjustedTime();
             {
                 auto locked_chain = pwallet->chain().lock();
                 LOCK(pwallet->cs_wallet);
@@ -603,21 +563,36 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                 if (!pblocktemplate.get())
                     return;
 
+                if (pwallet->m_last_coin_stake_search_time == 0)
+                    pwallet->m_last_coin_stake_search_time = GetAdjustedTime(); // startup timestamp
+
+                int64_t nSearchTime = GetAdjustedTime();
+                nSearchTime &= ~Params().GetConsensus().nStakeTimestampMask;
+
                 std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>(pblocktemplate->block);
 
-                if (pblock->IsProofOfStake()) {
-                    pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
-                    // Trying to sign a block
-                    if (SignBlock(pblock, *pwallet, nFees)) {
+                // Mark block as proof-of-stake
+                pblock->nFlags = CBlockIndex::BLOCK_PROOF_OF_STAKE;
+
+                // Trying to sign a block
+                if (nSearchTime > pwallet->m_last_coin_stake_search_time) {
+                    if (SignBlock(pblock, *pwallet, nFees, nSearchTime)) {
+                        // Update nLastCoinStakeSearchTime and nLastCoinStakeSearchInterval
+                        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+                        pwallet->m_last_coin_stake_search_time = nSearchTime;
                         // increase priority
                         SetThreadPriority(THREAD_PRIORITY_ABOVE_NORMAL);
                         // Sign the full block
                         CheckStake(pblock, *pwallet);
                         // return back to low priority
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
-                        UninterruptibleSleep(std::chrono::milliseconds{3000});
+                        UninterruptibleSleep(std::chrono::milliseconds{500});
+                    } else {
+                        pwallet->m_last_coin_stake_search_interval = nSearchTime - pwallet->m_last_coin_stake_search_time;
+                        pwallet->m_last_coin_stake_search_time = nSearchTime;
                     }
                 }
+                
             }
             UninterruptibleSleep(std::chrono::milliseconds{nMinerSleep});
         }
@@ -651,7 +626,7 @@ void StakeCoins(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_
 }
 
 // novacoin: attempt to generate suitable proof-of-stake
-bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
+bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, uint32_t nTimeTx)
 {
     // if we are trying to sign
     // something except proof-of-stake block template
@@ -666,45 +641,36 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees)
         return true;
     }
 
-    static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
-
     CKey key;
     CMutableTransaction txCoinBase(*pblock->vtx[0]);
     CMutableTransaction txCoinStake;
-    txCoinStake.nTime = GetAdjustedTime();
-    txCoinStake.nTime &= ~Params().GetConsensus().nStakeTimestampMask;
-    
-    int64_t nSearchTime = txCoinStake.nTime; // search to current time
+    txCoinStake.nTime = nTimeTx;
     
     auto locked_chain = wallet.chain().lock();
     LOCK(wallet.cs_wallet);
     LegacyScriptPubKeyMan* spk_man = wallet.GetLegacyScriptPubKeyMan();
-    if (nSearchTime > nLastCoinStakeSearchTime)
+
+    if (wallet.CreateCoinStake(*locked_chain, *spk_man, pblock->nBits, 1, nFees, txCoinStake, key))
     {
-        if (wallet.CreateCoinStake(*locked_chain, *spk_man, pblock->nBits, 1, nFees, txCoinStake, key))
+        if (txCoinStake.nTime >= pindexBestHeader->GetMedianTimePast()+1)
         {
-            if (txCoinStake.nTime >= pindexBestHeader->GetMedianTimePast()+1)
-            {
-                // make sure coinstake would meet timestamp protocol
-                // as it would be the same as the block timestamp
-                txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
-                pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
+            // make sure coinstake would meet timestamp protocol
+            // as it would be the same as the block timestamp
+            txCoinBase.nTime = pblock->nTime = txCoinStake.nTime;
+            pblock->vtx[0] = MakeTransactionRef(std::move(txCoinBase));
 
-                // we have to make sure that we have no future timestamps in
-                // our transactions set
-                for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
-                    if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
+            // we have to make sure that we have no future timestamps in
+            // our transactions set
+            for (std::vector<CTransactionRef>::iterator it = pblock->vtx.begin(); it != pblock->vtx.end();)
+                if (it->get()->nTime > pblock->nTime) { it = pblock->vtx.erase(it); } else { ++it; }
 
-                pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
+            pblock->vtx.insert(pblock->vtx.begin() + 1, MakeTransactionRef(txCoinStake));
 
-                pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
+            pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
 
-                // append a signature to our block
-                return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
-            }
+            // append a signature to our block
+            return key.Sign(pblock->GetHash(), pblock->vchBlockSig);
         }
-        nLastCoinStakeSearchInterval = nSearchTime - nLastCoinStakeSearchTime;
-        nLastCoinStakeSearchTime = nSearchTime;
     }
 
     return false;
