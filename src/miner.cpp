@@ -584,8 +584,12 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             if (pwallet->HaveAvailableCoinsForStaking())
             {
                 int64_t nFees = 0;
+                std::unique_ptr<CBlockTemplate> pblocktemplate;
+
                 // First just create an empty block. No need to process transactions until we know we can create a block
-                std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(CScript(), &nFees, true));
+                //Blackcoin ToDo: FIX!
+                //pblocktemplate = BlockAssembler(*mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
+
                 if (!pblocktemplate.get())
                     return;
 
