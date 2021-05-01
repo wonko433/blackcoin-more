@@ -957,7 +957,9 @@ UniValue checkkernel(const JSONRPCRequest& request)
         if (!pwallet->IsLocked())
             pwallet->TopUpKeyPool();
 
-        std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(CScript(), &nFees, true));
+        std::unique_ptr<CBlockTemplate> pblocktemplate;
+        //Blackcoin ToDo: FIX!
+        //pblocktemplate = BlockAssembler(*mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
 
         if (!pblocktemplate.get())
             throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block");

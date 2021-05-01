@@ -627,8 +627,8 @@ static size_t CalculateNestedKeyhashInputSize(bool use_max_sig)
 
 BOOST_FIXTURE_TEST_CASE(dummy_input_size_test, TestChain100Setup)
 {
-    BOOST_CHECK_EQUAL(CalculateNestedKeyhashInputSize(false), DUMMY_NESTED_P2WPKH_INPUT_SIZE);
-    BOOST_CHECK_EQUAL(CalculateNestedKeyhashInputSize(true), DUMMY_NESTED_P2WPKH_INPUT_SIZE);
+    BOOST_CHECK_EQUAL(CalculateNestedKeyhashInputSize(false), DUMMY_P2PKH_INPUT_SIZE);
+    BOOST_CHECK_EQUAL(CalculateNestedKeyhashInputSize(true), DUMMY_P2PKH_INPUT_SIZE);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

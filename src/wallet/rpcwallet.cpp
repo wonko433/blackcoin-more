@@ -1263,8 +1263,6 @@ static void ListTransactions(interfaces::Chain::Lock& locked_chain, const CWalle
 
     bool involvesWatchonly = wtx.IsFromMe(ISMINE_WATCH_ONLY);
 
-    bool list_sent = fAllAccounts;
-
     // Sent
     if (!filter_label)
     {
@@ -3411,6 +3409,7 @@ UniValue burn(const JSONRPCRequest& request)
             + HELP_REQUIRING_PASSPHRASE);
 
     CScript scriptPubKey;
+    auto locked_chain = pwallet->chain().lock();
 
     if (request.params.size() > 1) {
         vector<unsigned char> data;
@@ -3424,14 +3423,14 @@ UniValue burn(const JSONRPCRequest& request)
         scriptPubKey = CScript() << OP_RETURN;
     }
 
-    CAmount nAmount = AmountFromValue(request.params[0], true);
+    CAmount nAmount = AmountFromValue(request.params[0]);
 
     EnsureWalletIsUnlocked(pwallet);
 
     CCoinControl coin_control;
     mapValue_t mapValue;
 
-    CTransactionRef tx = SendMoneyToScript(pwallet, scriptPubKey, nAmount, false, coin_control, std::move(mapValue), {} /* fromAccount */);
+    CTransactionRef tx = SendMoneyToScript(*locked_chain, pwallet, scriptPubKey, nAmount, false, coin_control, std::move(mapValue), {} /* fromAccount */);
     return tx->GetHash().GetHex();
 }
 

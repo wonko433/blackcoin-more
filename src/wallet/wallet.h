@@ -85,6 +85,8 @@ constexpr CAmount DEFAULT_TRANSACTION_MAXFEE{1 * COIN};
 constexpr CAmount HIGH_TX_FEE_PER_KB{COIN / 10};
 //! -maxtxfee will warn if called with a higher fee than this amount (in satoshis)
 constexpr CAmount HIGH_MAX_TX_FEE{100 * HIGH_TX_FEE_PER_KB};
+//! Pre-calculated constants for input size estimation
+static constexpr size_t DUMMY_P2PKH_INPUT_SIZE = 148;
 
 static const CAmount DEFAULT_RESERVE_BALANCE = 0;
 
@@ -651,7 +653,9 @@ private:
     typedef std::multimap<COutPoint, uint256> TxSpends;
     TxSpends mapTxSpends GUARDED_BY(cs_wallet);
     void AddToSpends(const COutPoint& outpoint, const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    void RemoveFromSpends(const COutPoint& outpoint, const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     void AddToSpends(const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    void RemoveFromSpends(const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     /**
      * Add a transaction to the wallet, or update it.  pIndex and posInBlock should

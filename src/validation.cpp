@@ -553,7 +553,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     // Do not work on transactions that are too small.
     // Transactions smaller than this are not relayed to to reduce unnecessary malloc overhead.
-    if (::GetSerializeSize(tx, PROTOCOL_VERSION) < MIN_STANDARD_SIZE)
+    if (::GetSerializeSize(tx, PROTOCOL_VERSION) < MIN_STANDARD_TX_SIZE)
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "tx-size-small");
 
     // Only accept nLockTime-using transactions that can be mined in the next
@@ -1665,7 +1665,7 @@ bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& 
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
 
     // Check proof-of-stake
-    if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, block.vtx[1], state, block.nBits, state, view)) {
+    if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, block.vtx[1], block.nBits, state, view)) {
         LogPrintf("WARNING: %s: check proof-of-stake failed for block %s\n", __func__, block.GetHash().ToString());
         return false; // do not error here as we expect this during initial block download
     }
@@ -3102,29 +3102,29 @@ bool CheckBlock(const CBlock& block, BlockValidationState& state, const Consensu
 
     // Check coinbase timestamp
     if (block.GetBlockTime() > FutureDrift(block.vtx[0]->nTime))
-        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-time", "coinbase timestamp is too early");
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-time", "coinbase timestamp is too early");
 
     // Check coinstake timestamp
     if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime(), block.vtx[1]->nTime))
-        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-time", "coinstake timestamp violation");
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cs-time", "coinstake timestamp violation");
 
     if (block.IsProofOfStake()) {
         // Coinbase output must be empty if proof-of-stake block
         if (block.vtx[0]->vout.size() != 1 || !block.vtx[0]->vout[0].IsEmpty())
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cb-not-empty", "coinbase output not empty for proof-of-stake block");
+            return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cb-not-empty", "coinbase output not empty for proof-of-stake block");
 
         // Second transaction must be coinstake, the rest must not be
         if (block.vtx.size() < 2 || !block.vtx[1]->IsCoinStake())
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-missing", "second tx is not coinstake");
+            return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cs-missing", "second tx is not coinstake");
 
         for (unsigned int i = 2; i < block.vtx.size(); i++)
             if (block.vtx[i]->IsCoinStake())
-                return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-cs-multiple", "more than one coinstake");
+                return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-cs-multiple", "more than one coinstake");
     }
 
     // Check proof-of-stake block signature
     if (fCheckSig && !CheckBlockSignature(block))
-        return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-blk-signature", "bad proof-of-stake block signature");
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-blk-signature", "bad proof-of-stake block signature");
 
     // Check transactions
     // Must check for duplicate inputs (see CVE-2018-17144)
@@ -3290,7 +3290,7 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, BlockValidationS
             return true;
         }
 
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !(block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE))) {
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !(block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE)))
             return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), state.ToString());
 
         // Get prev block index

@@ -554,18 +554,6 @@ void CWallet::AddToSpends(const uint256& wtxid)
         AddToSpends(txin.prevout, wtxid);
 }
 
-void CWallet::AddToSpends(const uint256& wtxid)
-{
-    auto it = mapWallet.find(wtxid);
-    assert(it != mapWallet.end());
-    CWalletTx& thisTx = it->second;
-    if (thisTx.IsCoinBase()) // Coinbases don't spend anything!
-        return;
-
-    for (const CTxIn& txin : thisTx.tx->vin)
-        AddToSpends(txin.prevout, wtxid);
-}
-
 void CWallet::RemoveFromSpends(const uint256& wtxid)
 {
     assert(mapWallet.count(wtxid));
@@ -644,11 +632,14 @@ void CWallet::AvailableCoinsForStaking(std::vector<COutput>& vCoins) const
 
             for (unsigned int i = 0; i < pcoin->tx->vout.size(); i++) {
                 isminetype mine = IsMine(pcoin->tx->vout[i]);
-                bool solvable = IsSolvable(*this, pcoin->tx->vout[i].scriptPubKey);
-                bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
+                std::unique_ptr<SigningProvider> provider = GetSolvingProvider(pcoin->tx->vout[i].scriptPubKey);
+                bool solvable = IsSolvable(*provider, pcoin->tx->vout[i].scriptPubKey);
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
-                    !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0))
-                	vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, pcoin->IsTrusted()));
+                    !IsLockedCoin((*it).first, i) && (pcoin->tx->vout[i].nValue > 0)) {
+                        bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && solvable);
+                        if (spendable)
+                            vCoins.push_back(std::make_pair(pcoin, i));
+                    }
             }
         }
     }
@@ -748,7 +739,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
         {
             boost::this_thread::interruption_point();
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
-            CacheKernel(stakeCache, prevoutStake, pindexPrev, *pcoinsTip); // this will do a 2 disk loads per op
+            CacheKernel(stakeCache, prevoutStake, pindexPrev, ::ChainstateActive().CoinsTip()); // this will do a 2 disk loads per op
         }
 
     }
@@ -765,15 +756,14 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
             // Search backward in time from the given txNew timestamp
             // Search nSearchInterval seconds back up to nMaxStakeSearchInterval
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
-            if (CheckKernel(pindexPrev, nBits, txNew.nTime - n, prevoutStake, *pcoinsTip, stakeCache))
+            if (CheckKernel(pindexPrev, nBits, txNew.nTime - n, prevoutStake, ::ChainstateActive().CoinsTip(), stakeCache))
             {
                 // Found a kernel
                 LogPrint(BCLog::COINSTAKE, "CreateCoinStake : kernel found\n");
                 std::vector<valtype> vSolutions;
-                txnouttype whichType;
                 CScript scriptPubKeyOut;
                 scriptPubKeyKernel = pcoin.first->tx->vout[pcoin.second].scriptPubKey;
-                if (!Solver(scriptPubKeyKernel, whichType, vSolutions))
+                if (!Solver(scriptPubKeyKernel, vSolutions))
                 {
                     LogPrint(BCLog::COINSTAKE, "CreateCoinStake : failed to parse kernel\n");
                     break;
@@ -886,7 +876,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     int nIn = 0;
     for (const CWalletTx* pcoin : vwtxPrev)
     {
-        if (!SignSignature(*this, *pcoin->tx, txNew, nIn++, SIGHASH_ALL))
+        if (!SignSignature(keystore, *pcoin->tx, txNew, nIn++, SIGHASH_ALL))
             return error("CreateCoinStake : failed to sign coinstake");
     }
 
@@ -2239,7 +2229,7 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache) const
 
 CAmount CWalletTx::GetStakeCredit(bool fUseCache) const
 {
-    if (IsImmatureCoinStake(locked_chain) && IsInMainChain(locked_chain)) {
+    if (IsImmatureCoinStake() && IsInMainChain()) {
         return GetCachableAmount(IMMATURE_CREDIT, ISMINE_SPENDABLE, !fUseCache);
     }
 
@@ -3174,7 +3164,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     // If the wallet doesn't know how to sign change output, assume
                     // p2psh as lower-bound to allow BnB to do it's thing
                     if (change_spend_size == -1) {
-                        coin_selection_params.change_spend_size = DUMMY_NESTED_P2PKH_INPUT_SIZE;
+                        coin_selection_params.change_spend_size = DUMMY_P2PKH_INPUT_SIZE;
                     } else {
                         coin_selection_params.change_spend_size = (size_t)change_spend_size;
                     }
@@ -3869,23 +3859,10 @@ void CWallet::ListLockedCoins(std::vector<COutPoint>& vOutpts) const
     }
 }
 
-CAmount CWallet::GetWatchOnlyStake() const
-{
-    CAmount nTotal = 0;
-    LOCK2(cs_main, cs_wallet);
-    for (map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it)
-    {
-        const CWalletTx* pcoin = &(*it).second;
-        if (pcoin->IsCoinStake() && pcoin->GetBlocksToMaturity() > 0 && pcoin->GetDepthInMainChain() > 0)
-            nTotal += CWallet::GetCredit(*(pcoin->tx), ISMINE_WATCH_ONLY);
-    }
-    return nTotal;
-}
-
 uint64_t CWallet::GetStakeWeight() const
 {
     // Choose coins to use
-    CAmount nBalance = GetBalance();
+    CAmount nBalance = GetBalance().m_mine_trusted;
 
     if (nBalance <= m_reserve_balance)
         return 0;
