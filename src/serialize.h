@@ -1061,10 +1061,9 @@ class CSizeComputer
 protected:
     size_t nSize;
 
-    const int nType;
     const int nVersion;
 public:
-    explicit CSizeComputer(int nTypeIn, int nVersionIn) : nSize(0), nType(nTypeIn), nVersion(nVersionIn) {}
+    explicit CSizeComputer(int nVersionIn) : nSize(0), nVersion(nVersionIn) {}
 
     void write(const char *psz, size_t _nSize)
     {
@@ -1088,7 +1087,6 @@ public:
         return nSize;
     }
 
-    int GetType() const { return nType; }
     int GetVersion() const { return nVersion; }
 };
 
@@ -1128,6 +1126,28 @@ inline void SerReadWriteMany(Stream& s, CSerActionUnserialize ser_action, Args&&
     ::UnserializeMany(s, args...);
 }
 
+template<typename Stream, typename Type, typename Fn>
+inline void SerRead(Stream& s, CSerActionSerialize ser_action, Type&&, Fn&&)
+{
+}
+
+template<typename Stream, typename Type, typename Fn>
+inline void SerRead(Stream& s, CSerActionUnserialize ser_action, Type&& obj, Fn&& fn)
+{
+    fn(s, std::forward<Type>(obj));
+}
+
+template<typename Stream, typename Type, typename Fn>
+inline void SerWrite(Stream& s, CSerActionSerialize ser_action, Type&& obj, Fn&& fn)
+{
+    fn(s, std::forward<Type>(obj));
+}
+
+template<typename Stream, typename Type, typename Fn>
+inline void SerWrite(Stream& s, CSerActionUnserialize ser_action, Type&&, Fn&&)
+{
+}
+
 template<typename I>
 inline void WriteVarInt(CSizeComputer &s, I n)
 {
@@ -1148,7 +1168,7 @@ size_t GetSerializeSize(const T& t, int nVersion = 0)
 template <typename... T>
 size_t GetSerializeSizeMany(int nVersion, const T&... t)
 {
-    CSizeComputer sc(0, nVersion);
+    CSizeComputer sc(nVersion);
     SerializeMany(sc, t...);
     return sc.size();
 }
