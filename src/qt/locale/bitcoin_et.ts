@@ -1,4 +1,6 @@
-<TS language="et" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="et">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -407,7 +409,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiivne ühendus Blackcoini võrku</numerusform><numerusform>%n aktiivset ühendust Blackcoini võrku</numerusform></translation>
+        <translation>
+            <numerusform>%n aktiivne ühendus Blackcoini võrku</numerusform>
+            <numerusform>%n aktiivset ühendust Blackcoini võrku</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -419,7 +424,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Töödeldud %n plokk transaktsioonide ajaloost.</numerusform><numerusform>Töödeldud %n plokki transaktsioonide ajaloost.</numerusform></translation>
+        <translation>
+            <numerusform>Töödeldud %n plokk transaktsioonide ajaloost.</numerusform>
+            <numerusform>Töödeldud %n plokki transaktsioonide ajaloost.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -632,12 +640,6 @@
     </message>
 </context>
 <context>
-    <name>CreateWalletActivity</name>
-    </context>
-<context>
-    <name>CreateWalletDialog</name>
-    </context>
-<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
@@ -664,8 +666,8 @@
         <translation>Muuda saatvat aadressi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Sisestatud aadress "%1" ei ole korrektne Blackcoin aadress.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Sisestatud aadress &quot;%1&quot; ei ole korrektne Blackcoin aadress.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -682,7 +684,7 @@
         <source>name</source>
         <translation>nimi</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -708,7 +710,7 @@
         <source>Error</source>
         <translation>Viga</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -723,7 +725,7 @@
         <source>Hide</source>
         <translation>Peida</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -731,9 +733,6 @@
         <translation>URI:</translation>
     </message>
 </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -877,7 +876,7 @@
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>Mitte aegunud mine'itud jääk</translation>
+        <translation>Mitte aegunud mine&apos;itud jääk</translation>
     </message>
     <message>
         <source>Total:</source>
@@ -887,7 +886,7 @@
         <source>Recent transactions</source>
         <translation>Hiljutised transaktsioonid</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -902,7 +901,7 @@
         <source>URI handling</source>
         <translation>URI käsitsemine</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -930,15 +929,24 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n tund</numerusform><numerusform>%n tundi</numerusform></translation>
+        <translation>
+            <numerusform>%n tund</numerusform>
+            <numerusform>%n tundi</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n päev</numerusform><numerusform>%n päeva</numerusform></translation>
+        <translation>
+            <numerusform>%n päev</numerusform>
+            <numerusform>%n päeva</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n nädal</numerusform><numerusform>%n nädalat</numerusform></translation>
+        <translation>
+            <numerusform>%n nädal</numerusform>
+            <numerusform>%n nädalat</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -946,7 +954,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n aasta</numerusform><numerusform>%n aastat</numerusform></translation>
+        <translation>
+            <numerusform>%n aasta</numerusform>
+            <numerusform>%n aastat</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -985,13 +996,13 @@
     </message>
     <message>
         <source>Error encoding URI into QR Code.</source>
-        <translation>Tõrge URI'st QR koodi loomisel</translation>
+        <translation>Tõrge URI&apos;st QR koodi loomisel</translation>
     </message>
     <message>
         <source>Save QR Code</source>
         <translation>Salvesta QR Kood</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -1227,7 +1238,7 @@
         <source>(no message)</source>
         <translation>(sõnum puudub)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1433,7 +1444,7 @@
         <source>Pay To:</source>
         <translation>Maksa :</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ShutdownWindow</name>
     <message>
@@ -1524,8 +1535,8 @@
         <translation>Tühjenda kõik sõnumi kinnitamise väljad</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Allkirja loomiseks vajuta "Allkirjasta Sõnum"</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Allkirja loomiseks vajuta &quot;Allkirjasta Sõnum&quot;</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -1671,7 +1682,7 @@
     </message>
     <message>
         <source>Debug information</source>
-        <translation>Debug'imise info</translation>
+        <translation>Debug&apos;imise info</translation>
     </message>
     <message>
         <source>Transaction</source>
@@ -1700,7 +1711,7 @@
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Paan kuvab tehingu detailid</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1749,7 +1760,7 @@
     </message>
     <message>
         <source>Mined</source>
-        <translation>Mine'itud</translation>
+        <translation>Mine&apos;itud</translation>
     </message>
     <message>
         <source>(n/a)</source>
@@ -1820,7 +1831,7 @@
     </message>
     <message>
         <source>Mined</source>
-        <translation>Mine'itud</translation>
+        <translation>Mine&apos;itud</translation>
     </message>
     <message>
         <source>Other</source>
@@ -1896,21 +1907,12 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Müntide saatmine</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1937,12 +1939,12 @@
         <source>Backup Successful</source>
         <translation>Varundamine õnnestus</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining'uks ega kaupmeeste programmides</translation>
+        <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining&apos;uks ega kaupmeeste programmides</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -1993,8 +1995,8 @@
         <translation>Tehing liiga suur</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Kirjeldatud tundmatu võrgustik -onlynet'is: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Kirjeldatud tundmatu võrgustik -onlynet&apos;is: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
