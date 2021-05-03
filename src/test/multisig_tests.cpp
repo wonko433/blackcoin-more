@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(multisig_verify)
     // Test a AND b:
     keys.assign(1,key[0]);
     keys.push_back(key[1]);
-    s = sign_multisig(a_and_b, keys, txTo[0], 0);
+    s = sign_multisig(a_and_b, keys, CTransaction(txTo[0]), 0);
     BOOST_CHECK(VerifyScript(s, a_and_b, flags, MutableTransactionSignatureChecker(&txTo[0], 0, amount), &err));
     BOOST_CHECK_MESSAGE(err == SCRIPT_ERR_OK, ScriptErrorString(err));
 
