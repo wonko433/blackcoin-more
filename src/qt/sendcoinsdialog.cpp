@@ -544,6 +544,12 @@ void SendCoinsDialog::useAvailableBalance(SendCoinsEntry* entry)
     }
 }
 
+void SendCoinsDialog::updateCoinControlState(CCoinControl& ctrl)
+{
+    // Include watch-only for wallets without private key
+    ctrl.fAllowWatchOnly = model->wallet().privateKeysDisabled();
+}
+
 // Coin Control: copy label "Quantity" to clipboard
 void SendCoinsDialog::coinControlClipboardQuantity()
 {
