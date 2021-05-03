@@ -14,7 +14,7 @@
 
 #include <array>
 
-// Microbenchmark for verification of a basic P2WPKH script. Can be easily
+// Microbenchmark for verification of a basic P2PKH script. Can be easily
 // modified to measure performance of other types of scripts.
 static void VerifyScriptBench(benchmark::State& state)
 {
@@ -38,7 +38,8 @@ static void VerifyScriptBench(benchmark::State& state)
     CScript txScriptPubkey = CScript() << OP_DUP << OP_HASH160 << ToByteVector(pubkeyHash) << OP_EQUALVERIFY << OP_CHECKSIG;
     const CMutableTransaction& txCredit = BuildCreditingTransaction(scriptPubKey, 1);
     CMutableTransaction txSpend = BuildSpendingTransaction(scriptSig, CTransaction(txCredit));
-    key.Sign(SignatureHash(txScriptPubkey, txSpend, 0, SIGHASH_ALL, txCredit.vout[0].nValue, SigVersion::BASE), 0);
+    std::vector<unsigned char> vchBlockSig;
+    key.Sign(SignatureHash(txScriptPubkey, txSpend, 0, SIGHASH_ALL, txCredit.vout[0].nValue, SigVersion::BASE), vchBlockSig);
 
     // Benchmark.
     while (state.KeepRunning()) {

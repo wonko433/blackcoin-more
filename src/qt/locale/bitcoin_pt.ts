@@ -27,43 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Deletar o endereço selecionado da lista</translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>Exportar as informações da aba para um arquivo</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation>Enviando informações</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation>Recebendo informações</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas são suas informações para o envio de pagamentos por Bitcoins. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os Bitcoins.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas são suas informações para o recebimento de pagamentos por Bitcoins. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
-    </message>
-    <message>
-        <source>Export Address List</source>
-        <translation>Exportar lista de endereços</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ficheiro separado por vírgula (*.csv)</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>Falha na Exportação</translation>
-    </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Ocorreu um erro ao tentar guardar a lista em %1. Por favor, tente novamente.</translation>
+        <translation>Eliminar o endereço selecionado da lista</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -103,11 +67,11 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estes são os seus endereços Bitcoin para enviar pagamentos. Verifique sempre o valor e o endereço de receção antes de enviar moedas.</translation>
+        <translation>Estes são os seus endereços Blackcoin para enviar pagamentos. Verifique sempre o valor e o endereço de receção antes de enviar moedas.</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Estes são os endereços Bitcoin para receiver pagamentos. Use o botão "Criar novo endereço para receiver" para crier novo endereço.</translation>
+        <translation>Estes são os endereços Blackcoin para receiver pagamentos. Use o botão "Criar novo endereço para receiver" para crier novo endereço.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -157,234 +121,6 @@
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Diálogo senha</translation>
-    </message>
-    <message>
-        <source>Enter passphrase</source>
-        <translation>Insira a senha</translation>
-    </message>
-    <message>
-        <source>New passphrase</source>
-        <translation>Nova senha</translation>
-    </message>
-    <message>
-        <source>Repeat new passphrase</source>
-        <translation>Digite a nova senha novamente</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Insira a nova senha para a carteira.
-Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais palavras.</translation>
-    </message>
-    <message>
-        <source>Encrypt wallet</source>
-        <translation>Criptografar wallet</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Para esta operação se faz necessário o uso da sua senha da wallet para desbloquear a mesma.</translation>
-    </message>
-    <message>
-        <source>Unlock wallet</source>
-        <translation>Desbloquear a wallet</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Para esta operação se faz necessário o uso de sua senha wallet para descriptografar a mesma</translation>
-    </message>
-    <message>
-        <source>Decrypt wallet</source>
-        <translation>Descriptografar wallet</translation>
-    </message>
-    <message>
-        <source>Change passphrase</source>
-        <translation>Trocar senha</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Insira a antiga e nova senha na wallet, respectivamente.</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Você tem certeza que deseja criptografar a sua wallet?</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed</source>
-        <translation>Falha ao criptografar a wallet</translation>
-    </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
-<context>
-    <name>BitcoinGUI</name>
-    </context>
-<context>
-    <name>CoinControlDialog</name>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copiar o ID de transação</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(sem etiqueta)</translation>
-    </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
-    <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-    <name>ReceiveRequestDialog</name>
-    <message>
-        <source>Address</source>
-        <translation>Endereço</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    </context>
-<context>
-    <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(sem etiqueta)</translation>
-    </message>
-    </context>
-<context>
-    <name>SendCoinsDialog</name>
-    <message>
-        <source>(no label)</source>
-        <translation>(sem etiqueta)</translation>
-    </message>
-</context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
-    <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
-    <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(sem etiqueta)</translation>
-    </message>
-    </context>
-<context>
-    <name>TransactionView</name>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copiar o ID de transação</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ficheiro separado por vírgula (*.csv)</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Endereço</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>Falha na Exportação</translation>
-    </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>Exportar as informações da aba para um arquivo</translation>
-    </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    </context>
-=======
         <translation>Janela da Frase de Segurança</translation>
     </message>
     <message>
@@ -453,7 +189,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Lembra se que encrostar a sua carteira não o pode defender na totalidade os seus bitcoins de serem roubados por um malware que possa infectar o seu computador.</translation>
+        <translation>Lembra se que encrostar a sua carteira não o pode defender na totalidade os seus blackcoins de serem roubados por um malware que possa infectar o seu computador.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -642,10 +378,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation>&amp;Verificar mensagem...</translation>
     </message>
     <message>
-        <source>Bitcoin</source>
-        <translation>Blackcoin</translation>
-    </message>
-    <message>
         <source>&amp;Send</source>
         <translation>&amp;Enviar</translation>
     </message>
@@ -767,7 +499,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Open a bitcoin: URI</source>
-        <translation>Abrir um bitcoin URI</translation>
+        <translation>Abrir um blackcoin URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -794,12 +526,8 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation>carteira predefinida</translation>
     </message>
     <message>
-        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>A abrir a carteira &lt;b&gt;%1&lt;/b&gt;...</translation>
-    </message>
-    <message>
-        <source>Open Wallet Failed</source>
-        <translation>A abertura da carteira falhou</translation>
+        <source>No wallets available</source>
+        <translation>Sem carteiras disponíveis</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -812,10 +540,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Zoom</source>
         <translation>Ampliar</translation>
-    </message>
-    <message>
-        <source>Restore</source>
-        <translation>Restaurar</translation>
     </message>
     <message>
         <source>Main Window</source>
@@ -1151,23 +875,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>O endereço introduzido "%1" não é um endereço blackcoin válido.</translation>
-    </message>
-    <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>O endereço "%1" já existe como endereço de receção com o rótulo "%2" e não pode ser adicionado como endereço de envio.</translation>
-    </message>
-    <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>O endereço inserido "%1" já está no livro de endereços com o rótulo "%2".</translation>
-    </message>
-    <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>O endereço "%1" já existe como endereço de receção com a etiqueta "%2" e não pode ser adicionado como endereço de envio.</translation>
-    </message>
-    <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>O endereço inserido "%1" já está no livro de endereços com a etiqueta "%2".</translation>
+        <translation>O endereço introduzido "%1" não é um endereço Blackcoin válido.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -1265,10 +973,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Bitcoin</source>
         <translation>Blackcoin</translation>
-    </message>
-    <message>
-        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
-        <translation>Descartar blocos após a verificação, excepto os mais recentes %1 GB (apagar)</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -1374,7 +1078,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <name>OpenURIDialog</name>
     <message>
         <source>Open bitcoin URI</source>
-        <translation>Abrir um bitcoin URI</translation>
+        <translation>Abrir um blackcoin URI</translation>
     </message>
     <message>
         <source>URI:</source>
@@ -1383,14 +1087,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
 </context>
 <context>
     <name>OpenWalletActivity</name>
-    <message>
-        <source>Open wallet failed</source>
-        <translation>Falha ao abrir a carteira</translation>
-    </message>
-    <message>
-        <source>Open wallet warning</source>
-        <translation>Aviso abertura carteira</translation>
-    </message>
     <message>
         <source>Open wallet failed</source>
         <translation>Falha ao abrir a carteira</translation>
@@ -1529,7 +1225,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir a porta do cliente blackcoin automaticamente no seu router. Isto apenas funciona se o seu router suportar UPnP e este se encontrar ligado.</translation>
+        <translation>Abrir a porta do cliente Blackcoin automaticamente no seu router. Isto apenas funciona se o seu router suportar UPnP e este se encontrar ligado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1778,10 +1474,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation>'blackcoin://' não é um URI válido. Utilize 'blackcoin:'.</translation>
     </message>
     <message>
-        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
-        <translation>Está a usar uma URL do BIP70 que será desativado no futuro.</translation>
-    </message>
-    <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
         <translation>O pagamento requerido não pode ser processado porque BIP70 não é suportado.</translation>
     </message>
@@ -1799,7 +1491,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
-        <translation>URI não foi lido corretamente! Isto pode ser causado por um endereço Bitcoin inválido ou por parâmetros URI malformados.</translation>
+        <translation>URI não foi lido corretamente! Isto pode ser causado por um endereço Blackcoin inválido ou por parâmetros URI malformados.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1841,7 +1533,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Introduza um endereço Bitcoin (ex. %1)</translation>
+        <translation>Introduza um endereço Blackcoin (ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2349,7 +2041,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation>Endereços nativos SegWit (também conhecidos como Bech32 ou BIP-173) reduzem as taxas da sua transação mais tarde e oferecem melhor proteção contra erros, mas carteiras antigas não os suportam. Quando não selecionado, um endereço compatível com carteiras antigas irá ser criado em vez.</translation>
     </message>
     <message>
-        <source>Generate Bech32 address</source>
+        <source>Generate native segwit (Bech32) address</source>
         <translation>Gerar endereço nativo SegWit (Bech32)</translation>
     </message>
     <message>
@@ -2438,14 +2130,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Wallet</source>
         <translation>Carteira</translation>
-    </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>URI resultante muito longo. Tente reduzir o texto da etiqueta / mensagem.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Erro ao codificar URI em Código QR.</translation>
     </message>
 </context>
 <context>
@@ -2548,14 +2232,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Warning: Fee estimation is currently not possible.</source>
         <translation>Aviso: atualmente, não é possível a estimativa da taxa.</translation>
-    </message>
-    <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>Especifique uma taxa personalizada por kB (1.000 bytes) do tamanho virtual da transação.
-
-Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por uma transação de 500 bytes (metade de 1 kB) teria uma taxa final de apenas 50 satoshis.</translation>
     </message>
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
@@ -2679,7 +2355,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     </message>
     <message>
         <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Cria uma transação de Bitcoin parcialmente assinada (PSBT)(sigla em inglês) para ser usada por exemplo com uma carteira %1 offline ou uma carteira de hardware compatível com PSBT.</translation>
+        <translation>Cria uma transação de Blackcoin parcialmente assinada (PSBT)(sigla em inglês) para ser usada por exemplo com uma carteira %1 offline ou uma carteira de hardware compatível com PSBT.</translation>
     </message>
     <message>
         <source> from wallet '%1'</source>
@@ -2703,7 +2379,7 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     </message>
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Por favor, reveja sua proposta de transação. Isto irá produzir uma transação de Bitcoin parcialmente assinada (PSBT)(sigla em inglês) a qual você pode copiar e então assinar com por exemplo uma carteira %1 offiline ou uma carteira de hardware compatível com PSBT</translation>
+        <translation>Por favor, reveja sua proposta de transação. Isto irá produzir uma transação de Blackcoin parcialmente assinada (PSBT)(sigla em inglês) a qual você pode copiar e então assinar com por exemplo uma carteira %1 offiline ou uma carteira de hardware compatível com PSBT</translation>
     </message>
     <message>
         <source>or</source>
@@ -2712,10 +2388,6 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
         <translation>Pode aumentar a taxa depois (sinaliza substituir-por-taxa, BIP-125).</translation>
-    </message>
-    <message>
-        <source>from wallet %1</source>
-        <translation>da carteira %1</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2794,8 +2466,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Pedido de pagamento expirado.</translation>
     </message>
     <message numerus="yes">
-        <source>%n block(s)</source>
-        <translation><numerusform>%n bloco</numerusform><numerusform>%n blocos</numerusform></translation>
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation><numerusform>Estimado para iniciar a confirmação dentro de %n bloco.</numerusform><numerusform>Estimado para iniciar a confirmação dentro de %n blocos.</numerusform></translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -3672,10 +3344,6 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
         <translation>Não é possível iniciar o servidor HTTP. Verifique o debug.log para detalhes.</translation>
     </message>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Blackcoin More</translation>
-    </message>
-    <message>
         <source>The %s developers</source>
         <translation>Os programadores de %s</translation>
     </message>
@@ -3774,10 +3442,6 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kB" por u
     <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>Deseja reconstruir agora a base de dados de blocos.</translation>
-    </message>
-    <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>Erro ao criar %s: não pode criar carteiras não-HD com esta versão.</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
@@ -3917,10 +3581,6 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Categoria de registos desconhecida %s=%s.</translation>
     </message>
     <message>
-        <source>Unsupported logging category %s=%s.</source>
-        <translation>Categoria de registos desconhecida %s=%s.</translation>
-    </message>
-    <message>
         <source>Upgrading UTXO database</source>
         <translation>A atualizar a base de dados UTXO</translation>
     </message>
@@ -3953,24 +3613,8 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation>Necessita reconstruir a base de dados, utilizando -reindex para voltar ao modo sem poda. Isto irá descarregar novamente a cadeia de blocos completa</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
-        <translation>Erro a carregar %s: não pode desativar o HD numa carteira HD existente</translation>
-    </message>
-    <message>
         <source>Error reading from database, shutting down.</source>
         <translation>Erro ao ler da base de dados. A encerrar.</translation>
-    </message>
-    <message>
-        <source>Error upgrading chainstate database</source>
-        <translation>Erro ao atualizar a base de dados do estado da cadeia (chainstate)</translation>
-    </message>
-    <message>
-        <source>Error: Disk space is low for %s</source>
-        <translation>Erro: espaço em disco demasiado baixo para %s</translation>
-    </message>
-    <message>
-        <source>Error upgrading chainstate database</source>
-        <translation>Erro ao atualizar a base de dados do estado da cadeia (chainstate)</translation>
     </message>
     <message>
         <source>Error upgrading chainstate database</source>
@@ -4101,22 +3745,6 @@ A pasta de blocos especificados "%s" não existe.</translation>
     <message>
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation>Erro ao carregar a carteira %s. Especificado nome de fichero -wallet em duplicado.</translation>
-    </message>
-    <message>
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>A keypool esgotou-se, por favor execute primeiro keypoolrefill</translation>
-    </message>
-    <message>
-        <source>Starting network threads...</source>
-        <translation>A iniciar threads de rede...</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Erro ao carregar a carteira %s. Especificado nome de fichero -wallet em duplicado.</translation>
-    </message>
-    <message>
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>A keypool esgotou-se, por favor execute primeiro keypoolrefill</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
