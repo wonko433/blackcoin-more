@@ -1,4 +1,6 @@
-<TS language="eo" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="eo">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -158,10 +160,6 @@
     <message>
         <source>Change passphrase</source>
         <translation>Ŝanĝi la pasfrazon</translation>
-    </message>
-    <message>
-        <source>Confirm wallet encryption</source>
-        <translation>Konfirmo de ĉifrado de la monujo</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
@@ -766,8 +764,8 @@
         <translation>Redakti adreson por sendi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>La adreso enigita "%1" ne estas valida Bitmon-adreso.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>La adreso enigita &quot;%1&quot; ne estas valida Bitmon-adreso.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -844,9 +842,12 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n gigabajto de libera loko disponeble</numerusform><numerusform>%n gigabajtoj de libera loko disponebla.</numerusform></translation>
+        <translation>
+            <numerusform>%n gigabajto de libera loko disponeble</numerusform>
+            <numerusform>%n gigabajtoj de libera loko disponebla.</numerusform>
+        </translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -885,7 +886,7 @@
         <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
         <translation>%1 sinkronigadas. Ĝi elŝutos kapaĵojn kaj blokojn de samtavolanoj, kaj validigos ilin, ĝis ĝi atingas la pinton de la blokĉeno.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1074,10 +1075,6 @@
         <translation>Disponebla:</translation>
     </message>
     <message>
-        <source>Available:</source>
-        <translation>Disponebla:</translation>
-    </message>
-    <message>
         <source>Your current spendable balance</source>
         <translation>via aktuala elspezebla saldo</translation>
     </message>
@@ -1113,7 +1110,7 @@
         <source>Recent transactions</source>
         <translation>Lastaj transakcioj</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1122,7 +1119,7 @@
     </message>
     <message>
         <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation>Ne eblas lanĉi la ilon 'klaki-por-pagi'</translation>
+        <translation>Ne eblas lanĉi la ilon &apos;klaki-por-pagi&apos;</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1132,7 +1129,7 @@
         <source>Invalid payment address %1</source>
         <translation>Nevalida pagadreso %1</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PeerTableModel</name>
     <message>
@@ -1191,8 +1188,8 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Eraro: la elektita dosierujo por datumoj "%1" ne ekzistas.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Eraro: la elektita dosierujo por datumoj &quot;%1&quot; ne ekzistas.</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -1485,7 +1482,7 @@
         <source>(no message)</source>
         <translation>(neniu mesaĝo)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -1778,8 +1775,8 @@
         <translation>Reagordigi ĉiujn prikontrolajn kampojn</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Klaku "Subskribi Mesaĝon" por krei subskribon</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Klaku &quot;Subskribi Mesaĝon&quot; por krei subskribon</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -1924,8 +1921,8 @@
         <translation>Vendisto</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Kreitaj moneroj devas esti maturaj je %1 blokoj antaŭ ol eblas elspezi ilin. Kiam vi generis tiun ĉi blokon, ĝi estis elsendita al la reto por aldono al la blokĉeno. Se tiu aldono malsukcesas, ĝia stato ŝanĝiĝos al "neakceptita" kaj ne eblos elspezi ĝin. Tio estas malofta, sed povas okazi se alia bloko estas kreita je preskaŭ la sama momento kiel la via.</translation>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Kreitaj moneroj devas esti maturaj je %1 blokoj antaŭ ol eblas elspezi ilin. Kiam vi generis tiun ĉi blokon, ĝi estis elsendita al la reto por aldono al la blokĉeno. Se tiu aldono malsukcesas, ĝia stato ŝanĝiĝos al &quot;neakceptita&quot; kaj ne eblos elspezi ĝin. Tio estas malofta, sed povas okazi se alia bloko estas kreita je preskaŭ la sama momento kiel la via.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -1958,7 +1955,7 @@
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Tiu ĉi panelo montras detalan priskribon de la transakcio</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -2154,18 +2151,12 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
     <name>WalletController</name>
     <message>
         <source>Close wallet</source>
         <translation>Fermi monujon</translation>
     </message>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
@@ -2203,7 +2194,7 @@
         <source>Backup Successful</source>
         <translation>Sukcesis krei sekurkopion</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
@@ -2275,8 +2266,8 @@
         <translation>Transakcio estas tro granda</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Nekonata reto specifita en -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Nekonata reto specifita en -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>

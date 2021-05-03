@@ -1,4 +1,6 @@
-<TS language="cy" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cy">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -15,7 +17,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copio'r cyfeiriad sydd wedi'i ddewis i'r clipfwrdd system</translation>
+        <translation>Copio&apos;r cyfeiriad sydd wedi&apos;i ddewis i&apos;r clipfwrdd system</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +29,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Dileu'r cyfeiriad presennol wedi ei ddewis o'r rhestr</translation>
+        <translation>Dileu&apos;r cyfeiriad presennol wedi ei ddewis o&apos;r rhestr</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,7 +37,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Allforio'r data yn y tab presennol i ffeil</translation>
+        <translation>Allforio&apos;r data yn y tab presennol i ffeil</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -47,7 +49,7 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Dewis y cyfeiriad i yrru'r arian</translation>
+        <translation>Dewis y cyfeiriad i yrru&apos;r arian</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
@@ -67,7 +69,7 @@
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Rhain ydi eich cyfeiriadau Blackcoin ar gyfer gyrru taliadau. Gwnewch yn sicr o'r swm a'r cyfeiriad derbyn cyn gyrru arian.</translation>
+        <translation>Rhain ydi eich cyfeiriadau Blackcoin ar gyfer gyrru taliadau. Gwnewch yn sicr o&apos;r swm a&apos;r cyfeiriad derbyn cyn gyrru arian.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -78,6 +80,8 @@
         <translation>Copïo &amp;Label</translation>
     </message>
     <message>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -85,7 +89,7 @@
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Roedd camgymeriad yn trïo safio'r rhestr gyfeiriadau i'r %1. Triwch eto os gwelwch yn dda.</translation>
+        <translation>Roedd camgymeriad yn trïo safio&apos;r rhestr gyfeiriadau i&apos;r %1. Triwch eto os gwelwch yn dda.</translation>
     </message>
 </context>
 <context>
@@ -123,19 +127,19 @@
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Amgryptio'r Waled</translation>
+        <translation>Amgryptio&apos;r Waled</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Mae'r weithred hon angen eich cyfrinair waled i ddatgloi'r waled.</translation>
+        <translation>Mae&apos;r weithred hon angen eich cyfrinair waled i ddatgloi&apos;r waled.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Datgloi'r waled</translation>
+        <translation>Datgloi&apos;r waled</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Mae'r weithred hon angen eich cyfrinair waled i ddatgryptio'r waled.</translation>
+        <translation>Mae&apos;r weithred hon angen eich cyfrinair waled i ddatgryptio&apos;r waled.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
@@ -147,11 +151,11 @@
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Cadarnhau amgryptio'r waled</translation>
+        <translation>Cadarnhau amgryptio&apos;r waled</translation>
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation>Rhybudd: Os ydych yn amgryptio'r waled ag yn colli'r cyfrinair, byddwch yn &lt;b&gt; COLLI EICH BLACKCOINS I GYD &lt;b&gt; !</translation>
+        <translation>Rhybudd: Os ydych yn amgryptio&apos;r waled ag yn colli&apos;r cyfrinair, byddwch yn &lt;b&gt; COLLI EICH BLACKCOINS I GYD &lt;b&gt; !</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -163,11 +167,11 @@
     </message>
     <message>
         <source>Wallet to be encrypted</source>
-        <translation>Waled i'w amgryptio</translation>
+        <translation>Waled i&apos;w amgryptio</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>PWYSIG: Mi ddylai unrhyw back ups blaenorol rydych wedi ei wneud o ffeil eich waled gael ei ddiweddaru efo'r ffeil amgryptiedig newydd ei chreu. Am resymau diogelwch, bydd back ups blaenorol o ffeil y walet heb amgryptio yn ddiwerth mor fuan ac yr ydych yn dechrau defnyddio'r waled amgryptiedig newydd.</translation>
+        <translation>PWYSIG: Mi ddylai unrhyw back ups blaenorol rydych wedi ei wneud o ffeil eich waled gael ei ddiweddaru efo&apos;r ffeil amgryptiedig newydd ei chreu. Am resymau diogelwch, bydd back ups blaenorol o ffeil y walet heb amgryptio yn ddiwerth mor fuan ac yr ydych yn dechrau defnyddio&apos;r waled amgryptiedig newydd.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -179,7 +183,7 @@
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>Nid ydi'r cyfrineiriau a gyflenwyd yn cyfateb.</translation>
+        <translation>Nid ydi&apos;r cyfrineiriau a gyflenwyd yn cyfateb.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
@@ -187,7 +191,7 @@
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Mae'r cyfrinair ysgrifennwyd ar gyfer datgryptio'r waled yn anghywir.</translation>
+        <translation>Mae&apos;r cyfrinair ysgrifennwyd ar gyfer datgryptio&apos;r waled yn anghywir.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
@@ -221,7 +225,7 @@
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>Cysoni â'r rhwydwaith...</translation>
+        <translation>Cysoni â&apos;r rhwydwaith...</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
@@ -273,7 +277,7 @@
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Amgryptio'r waled...</translation>
+        <translation>&amp;Amgryptio&apos;r waled...</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
@@ -317,11 +321,11 @@
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Bacio fyny'r waled i leoliad arall</translation>
+        <translation>Bacio fyny&apos;r waled i leoliad arall</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Newid y cyfrinair ddefnyddiwyd ar gyfer amgryptio'r waled</translation>
+        <translation>Newid y cyfrinair ddefnyddiwyd ar gyfer amgryptio&apos;r waled</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -345,11 +349,11 @@
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Amgryptio'r allweddi preifat sy'n perthyn i'ch waled</translation>
+        <translation>Amgryptio&apos;r allweddi preifat sy&apos;n perthyn i&apos;ch waled</translation>
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Arwyddo negeseuon gyda eich cyfeiriadau Blackcoin i brofi mae chi sy'n berchen arnynt</translation>
+        <translation>Arwyddo negeseuon gyda eich cyfeiriadau Blackcoin i brofi mae chi sy&apos;n berchen arnynt</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
@@ -389,7 +393,7 @@
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
-        <translation>Mynegai'r blociau ar ddisg...</translation>
+        <translation>Mynegai&apos;r blociau ar ddisg...</translation>
     </message>
     <message>
         <source>Processing blocks on disk...</source>
@@ -401,7 +405,7 @@
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>Cafodd y bloc olaf i'w dderbyn ei greu %1 yn ôl.</translation>
+        <translation>Cafodd y bloc olaf i&apos;w dderbyn ei greu %1 yn ôl.</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
@@ -501,7 +505,7 @@
     </message>
     <message>
         <source>Incoming transaction</source>
-        <translation>Trafodiad sy'n cyrraedd</translation>
+        <translation>Trafodiad sy&apos;n cyrraedd</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
@@ -509,19 +513,19 @@
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>Cynhyrchu allweddi HD wedi'w &lt;b&gt; anablu &lt;/b&gt;</translation>
+        <translation>Cynhyrchu allweddi HD wedi&apos;w &lt;b&gt; anablu &lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Mae'r waled &lt;b&gt;wedi'i amgryptio&lt;/b&gt; ac &lt;b&gt;heb ei gloi&lt;/b&gt; ar hyn o bryd</translation>
+        <translation>Mae&apos;r waled &lt;b&gt;wedi&apos;i amgryptio&lt;/b&gt; ac &lt;b&gt;heb ei gloi&lt;/b&gt; ar hyn o bryd</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Mae'r waled &lt;b&gt;wedi'i amgryptio&lt;/b&gt; ac &lt;b&gt;ar glo&lt;/b&gt; ar hyn o bryd</translation>
+        <translation>Mae&apos;r waled &lt;b&gt;wedi&apos;i amgryptio&lt;/b&gt; ac &lt;b&gt;ar glo&lt;/b&gt; ar hyn o bryd</translation>
     </message>
     <message>
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>Mae gwall angheuol wedi digwydd. Ni all Blackcoin barhau'n ddiogel ac mae'n cau lawr.</translation>
+        <translation>Mae gwall angheuol wedi digwydd. Ni all Blackcoin barhau&apos;n ddiogel ac mae&apos;n cau lawr.</translation>
     </message>
 </context>
 <context>
@@ -604,16 +608,10 @@
     </message>
 </context>
 <context>
-    <name>CreateWalletActivity</name>
-    </context>
-<context>
-    <name>CreateWalletDialog</name>
-    </context>
-<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
-        <translation>Golygu'r cyfeiriad</translation>
+        <translation>Golygu&apos;r cyfeiriad</translation>
     </message>
     <message>
         <source>&amp;Label</source>
@@ -629,15 +627,15 @@
     </message>
     <message>
         <source>Edit receiving address</source>
-        <translation>Golygu'r cyfeiriad derbyn</translation>
+        <translation>Golygu&apos;r cyfeiriad derbyn</translation>
     </message>
     <message>
         <source>Edit sending address</source>
-        <translation>Golygu'r cyfeiriad anfon</translation>
+        <translation>Golygu&apos;r cyfeiriad anfon</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
-        <translation>Methodd ddatgloi'r waled.</translation>
+        <translation>Methodd ddatgloi&apos;r waled.</translation>
     </message>
     <message>
         <source>New key generation failed.</source>
@@ -650,10 +648,7 @@
         <source>name</source>
         <translation>enw</translation>
     </message>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
+</context>
 <context>
     <name>Intro</name>
     <message>
@@ -668,14 +663,14 @@
         <source>Error</source>
         <translation>Gwall</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>Ffurflen</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -683,9 +678,6 @@
         <translation>URI:</translation>
     </message>
 </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -724,20 +716,14 @@
         <source>Error</source>
         <translation>Gwall</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Ffurflen</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -752,10 +738,7 @@
         <source>Error: %1</source>
         <translation> Gwall: %1</translation>
     </message>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
@@ -770,7 +753,7 @@
         <source>&amp;Open</source>
         <translation>&amp;Agor</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -831,7 +814,7 @@
         <source>(no label)</source>
         <translation>(dim label)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -876,7 +859,7 @@
     </message>
     <message>
         <source>Confirm the send action</source>
-        <translation>Cadarnhau'r gweithrediad anfon</translation>
+        <translation>Cadarnhau&apos;r gweithrediad anfon</translation>
     </message>
     <message>
         <source>Copy amount</source>
@@ -907,7 +890,7 @@
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Gludo cyfeiriad o'r glipfwrdd</translation>
+        <translation>Gludo cyfeiriad o&apos;r glipfwrdd</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -917,10 +900,7 @@
         <source>Message:</source>
         <translation>Neges:</translation>
     </message>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -929,16 +909,13 @@
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Gludo cyfeiriad o'r glipfwrdd</translation>
+        <translation>Gludo cyfeiriad o&apos;r glipfwrdd</translation>
     </message>
     <message>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
+</context>
 <context>
     <name>TransactionDesc</name>
     <message>
@@ -957,10 +934,7 @@
         <source>Amount</source>
         <translation>Cyfanswm</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -983,7 +957,7 @@
         <source>(no label)</source>
         <translation>(dim label)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -1046,20 +1020,14 @@
         <source>Exporting Failed</source>
         <translation>Methu Allforio</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
+</context>
 <context>
     <name>WalletController</name>
     <message>
         <source>Close wallet</source>
         <translation>Cau waled</translation>
     </message>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
@@ -1078,7 +1046,7 @@
         <source>New fee:</source>
         <translation>Ffi newydd:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1087,10 +1055,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Allforio'r data yn y tab presennol i ffeil</translation>
+        <translation>Allforio&apos;r data yn y tab presennol i ffeil</translation>
     </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    </context>
+</context>
 </TS>

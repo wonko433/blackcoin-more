@@ -671,12 +671,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
-        <source>default wallet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+21"/>
+        <location line="+50"/>
         <source>No wallets available</source>
         <translation type="unfinished"></translation>
     </message>

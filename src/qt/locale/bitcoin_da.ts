@@ -1,4 +1,6 @@
-<TS language="da" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="da">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -70,8 +72,8 @@
         <translation>Disse er dine Blackcoin-adresser til afsendelse af betalinger. Tjek altid beløb og modtagelsesadresse, inden du sender blackcoins.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Disse er dine Bitcoin adresser til at modtage betalinger. Benyt 'Opret ny modtager adresse' knappen i modtag fanen for at oprette nye adresser.</translation>
+        <source>These are your Bitcoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <translation>Disse er dine Bitcoin adresser til at modtage betalinger. Benyt &apos;Opret ny modtager adresse&apos; knappen i modtag fanen for at oprette nye adresser.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -423,7 +425,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Anmod om betalinger (genererer QR-koder og “blackcoin:”-URI'er)</translation>
+        <translation>Anmod om betalinger (genererer QR-koder og “blackcoin:”-URI&apos;er)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -439,7 +441,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n aktiv forbindelse til Blackcoin-netværket</numerusform><numerusform>%n aktive forbindelser til Blackcoin-netværket</numerusform></translation>
+        <translation>
+            <numerusform>%n aktiv forbindelse til Blackcoin-netværket</numerusform>
+            <numerusform>%n aktive forbindelser til Blackcoin-netværket</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -451,7 +456,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Bearbejdede %n blok med transaktionshistorik.</numerusform><numerusform>Bearbejdede %n blokke med transaktionshistorik.</numerusform></translation>
+        <translation>
+            <numerusform>Bearbejdede %n blok med transaktionshistorik.</numerusform>
+            <numerusform>Bearbejdede %n blokke med transaktionshistorik.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -554,28 +562,8 @@
         <translation>Hoved Vindue</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>Standard tegnebog</translation>
-    </message>
-    <message>
         <source>No wallets available</source>
         <translation>Ingen tegnebøger tilgængelige</translation>
-    </message>
-    <message>
-        <source>&amp;Window</source>
-        <translation>&amp;Vindue</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation>Minimér</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation>Zoom</translation>
-    </message>
-    <message>
-        <source>Main Window</source>
-        <translation>Hoved Vindue</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -906,16 +894,16 @@
         <translation>Redigér afsendelsesadresse</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
         <translation>Den indtastede adresse “%1” er ikke en gyldig Blackcoin-adresse.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Adressen "%1" eksisterer allerede som modtagende adresse med mærkat "%2" og kan derfor ikke tilføjes som sende adresse.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Adressen &quot;%1&quot; eksisterer allerede som modtagende adresse med mærkat &quot;%2&quot; og kan derfor ikke tilføjes som sende adresse.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Den indtastede adresse "%1" er allerede i adresse bogen med mærkat "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Den indtastede adresse &quot;%1&quot; er allerede i adresse bogen med mærkat &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -1027,7 +1015,7 @@
         <translation>Tegnebogen vil også blive gemt i denne mappe.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>Fejl: Angivet datamappe “%1” kan ikke oprettes.</translation>
     </message>
     <message>
@@ -1036,15 +1024,24 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB fri plads tilgængelig</numerusform><numerusform>%n GB fri plads tilgængelig</numerusform></translation>
+        <translation>
+            <numerusform>%n GB fri plads tilgængelig</numerusform>
+            <numerusform>%n GB fri plads tilgængelig</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(ud af %n GB nødvendig)</numerusform><numerusform>(ud af %n GB nødvendig)</numerusform></translation>
+        <translation>
+            <numerusform>(ud af %n GB nødvendig)</numerusform>
+            <numerusform>(ud af %n GB nødvendig)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(%n GB needed for full chain)</source>
-        <translation><numerusform>(%n GB nødvendig for komplet kæde)</numerusform><numerusform>(%n GB nødvendig for komplet kæde)</numerusform></translation>
+        <translation>
+            <numerusform>(%n GB nødvendig for komplet kæde)</numerusform>
+            <numerusform>(%n GB nødvendig for komplet kæde)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1051,7 @@
         <translation>Formular</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Nylige transaktioner er måske ikke synlige endnu, og derfor kan din tegnebogs saldo være ukorrekt. Denne information vil være korrekt, når din tegnebog er færdig med at synkronisere med blackcoin-netværket, som detaljerne herunder viser.</translation>
     </message>
     <message>
@@ -1188,7 +1185,7 @@
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>Tredjeparts-URL'er (fx et blokhåndteringsværktøj), der vises i transaktionsfanen som genvejsmenupunkter. %s i URL'en erstattes med transaktionens hash. Flere URL'er separeres med en lodret streg |.</translation>
+        <translation>Tredjeparts-URL&apos;er (fx et blokhåndteringsværktøj), der vises i transaktionsfanen som genvejsmenupunkter. %s i URL&apos;en erstattes med transaktionens hash. Flere URL&apos;er separeres med en lodret streg |.</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
@@ -1225,10 +1222,6 @@
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation>Ændring af denne indstilling senere kræver download af hele blokkæden igen.</translation>
-    </message>
-    <message>
-        <source>MiB</source>
-        <translation>MiB</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1356,7 +1349,7 @@
     </message>
     <message>
         <source>&amp;Third party transaction URLs</source>
-        <translation>&amp;Tredjeparts-transaktions-URL'er</translation>
+        <translation>&amp;Tredjeparts-transaktions-URL&apos;er</translation>
     </message>
     <message>
         <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
@@ -1505,15 +1498,15 @@
         <translation>URI-håndtering</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'bitcoin://' er ikke et gyldigt URI. Brug 'bitcoin:' istedet.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;bitcoin://&apos; er ikke et gyldigt URI. Brug &apos;bitcoin:&apos; istedet.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
         <translation>Betalingsanmodninger kan ikke behandles mere, da BIP70 ikke længere er understøttet.</translation>
     </message>
     <message>
-        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <source>Due to widespread security flaws in BIP70 it&apos;s strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation>På grund af vidtstrakte sikkerhedsfejl i BIP70 anbefales det kraftigt, at enhver instruktion fra handlende om at skifte til en BIP70-tegnebog ignoreres.</translation>
     </message>
     <message>
@@ -1600,23 +1593,38 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n sekund</numerusform><numerusform>%n sekunder</numerusform></translation>
+        <translation>
+            <numerusform>%n sekund</numerusform>
+            <numerusform>%n sekunder</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minut</numerusform><numerusform>%n minutter</numerusform></translation>
+        <translation>
+            <numerusform>%n minut</numerusform>
+            <numerusform>%n minutter</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n time</numerusform><numerusform>%n timer</numerusform></translation>
+        <translation>
+            <numerusform>%n time</numerusform>
+            <numerusform>%n timer</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n dag</numerusform><numerusform>%n dage</numerusform></translation>
+        <translation>
+            <numerusform>%n dag</numerusform>
+            <numerusform>%n dage</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n uge</numerusform><numerusform>%n uger</numerusform></translation>
+        <translation>
+            <numerusform>%n uge</numerusform>
+            <numerusform>%n uger</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1624,7 +1632,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n år</numerusform><numerusform>%n år</numerusform></translation>
+        <translation>
+            <numerusform>%n år</numerusform>
+            <numerusform>%n år</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1643,7 +1654,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
         <translation>Fejl: Angivet datamappe “%1” eksisterer ikke.</translation>
     </message>
     <message>
@@ -1655,7 +1666,7 @@
         <translation>Fejl: %1</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 har endnu ikke afsluttet på sikker vis…</translation>
     </message>
     <message>
@@ -1721,7 +1732,7 @@
         <translation>Datamappe</translation>
     </message>
     <message>
-        <source>To specify a non-default location of the data directory use the '%1' option.</source>
+        <source>To specify a non-default location of the data directory use the &apos;%1&apos; option.</source>
         <translation>For at angive en alternativ placering af mappen med data, skal du bruge tilvalget ‘%1’.</translation>
     </message>
     <message>
@@ -1729,7 +1740,7 @@
         <translation>Blokmappe</translation>
     </message>
     <message>
-        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
+        <source>To specify a non-default location of the blocks directory use the &apos;%1&apos; option.</source>
         <translation>For at angive en alternativ placering af mappen med blokke, skal du bruge tilvalget ‘%1’.</translation>
     </message>
     <message>
@@ -1826,7 +1837,7 @@
     </message>
     <message>
         <source>The mapped Autonomous System used for diversifying peer selection.</source>
-        <translation>Afbildning fra Autonome Systemer (et Internet-Protocol-rutefindingsprefiks) til IP-adresser som bruges til at diversificere knudeforbindelser. Den engelske betegnelse er "asmap".</translation>
+        <translation>Afbildning fra Autonome Systemer (et Internet-Protocol-rutefindingsprefiks) til IP-adresser som bruges til at diversificere knudeforbindelser. Den engelske betegnelse er &quot;asmap&quot;.</translation>
     </message>
     <message>
         <source>Mapped AS</source>
@@ -1985,8 +1996,8 @@
         <translation>Udfører kommando uden en tegnebog</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation>Eksekverer kommando ved brug af "%1" tegnebog</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>Eksekverer kommando ved brug af &quot;%1&quot; tegnebog</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -2072,7 +2083,7 @@
         <translation>Ryd</translation>
     </message>
     <message>
-        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Bech32 (or BIP-173) addresses offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Rene segwit-adresser (kendt som Bech32 eller BIP-173) reducerer dine transaktionsgebyrer i det lange løb og giver bedre beskyttelse imod tastefejl, men gamle tegnebøger understøtter dem ikke. Hvis dette ikke vælges, vil i stedet en adresse, der fungerer med ældre tegnebøger, oprettes.</translation>
     </message>
     <message>
@@ -2269,12 +2280,12 @@
         <translation>Advarsel: Gebyrestimering er ikke muligt i øjeblikket.</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Specificer et brugerdefineret gebyr per kB (1.000 bytes) af transaktionens virtuelle størrelse.
 
-Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satoshis per kB" for en transkationsstørrelse på 500 bytes (halvdelen af 1kB) ville ultimativt udbytte et gebyr på kun 50 satoshis.</translation>
+Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på &quot;100 satoshis per kB&quot; for en transkationsstørrelse på 500 bytes (halvdelen af 1kB) ville ultimativt udbytte et gebyr på kun 50 satoshis.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2333,7 +2344,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Aktivér erstat-med-gebyr (RBF)</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Med erstat-med-gebyr (Replace-By-Fee, BIP-125) kan du øge en transaktions gebyr, efter den er sendt. Uden dette kan et højere gebyr anbefales for at kompensere for øget risiko for at transaktionen bliver forsinket.</translation>
     </message>
     <message>
@@ -2389,12 +2400,12 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>L&amp;av usigneret</translation>
     </message>
     <message>
-        <source> from wallet '%1'</source>
-        <translation>fra tegnebog '%1'</translation>
+        <source> from wallet &apos;%1&apos;</source>
+        <translation>fra tegnebog &apos;%1&apos;</translation>
     </message>
     <message>
-        <source>%1 to '%2'</source>
-        <translation>%1 til '%2'</translation>
+        <source>%1 to &apos;%2&apos;</source>
+        <translation>%1 til &apos;%2&apos;</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2433,8 +2444,8 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Total Mængde</translation>
     </message>
     <message>
-        <source>To review recipient list click "Show Details..."</source>
-        <translation>For at vurdere modtager listen tryk "Vis Detaljer..."</translation>
+        <source>To review recipient list click &quot;Show Details...&quot;</source>
+        <translation>For at vurdere modtager listen tryk &quot;Vis Detaljer...&quot;</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -2494,7 +2505,10 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Bekræftelse estimeret til at begynde om %n blok.</numerusform><numerusform>Bekræftelse estimeret til at begynde om %n blokke.</numerusform></translation>
+        <translation>
+            <numerusform>Bekræftelse estimeret til at begynde om %n blok.</numerusform>
+            <numerusform>Bekræftelse estimeret til at begynde om %n blokke.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2589,7 +2603,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
     </message>
     <message>
         <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
-        <translation>En besked, som blev føjet til “blackcoin:”-URI'en, som vil gemmes med transaktionen til din reference. Bemærk: Denne besked vil ikke blive sendt over Blackcoin-netværket.</translation>
+        <translation>En besked, som blev føjet til “blackcoin:”-URI&apos;en, som vil gemmes med transaktionen til din reference. Bemærk: Denne besked vil ikke blive sendt over Blackcoin-netværket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2678,7 +2692,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>&amp;Verificér besked</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Indtast modtagerens adresse, besked (vær sikker på at kopiere linjeskift, mellemrum, tabuleringer, etc. præcist) og signatur herunder for at verificere beskeden. Vær forsigtig med ikke at læse noget ud fra signaturen, som ikke står i selve beskeden, for at undgå at blive snydt af et eventuelt man-in-the-middle-angreb. Bemærk, at dette kun beviser, at den signerende person kan modtage med adressen; det kan ikke bevise hvem der har sendt en given transaktion!</translation>
     </message>
     <message>
@@ -2706,7 +2720,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Nulstil alle “verificér besked”-felter</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation>Klik “Signér besked” for at generere underskriften</translation>
     </message>
     <message>
@@ -2773,7 +2787,10 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Åben i %n yderligere blok</numerusform><numerusform>Åben i %n yderligere blokke</numerusform></translation>
+        <translation>
+            <numerusform>Åben i %n yderligere blok</numerusform>
+            <numerusform>Åben i %n yderligere blokke</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2853,7 +2870,10 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>modner om %n blok</numerusform><numerusform>modner om %n blokke</numerusform></translation>
+        <translation>
+            <numerusform>modner om %n blok</numerusform>
+            <numerusform>modner om %n blokke</numerusform>
+        </translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2912,7 +2932,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Forretningsdrivende</translation>
     </message>
     <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
         <translation>Minede blackcoins skal modne %1 blokke, før de kan bruges. Da du genererede denne blok, blev den transmitteret til netværket for at blive føjet til blokkæden. Hvis det ikke lykkes at få den i kæden, vil dens tilstand ændres til “ikke accepteret”, og den vil ikke kunne bruges. Dette kan ske nu og da, hvis en anden knude udvinder en blok inden for nogle få sekunder fra din.</translation>
     </message>
     <message>
@@ -2967,7 +2987,10 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Åben i %n yderligere blok</numerusform><numerusform>Åben i %n yderligere blokke</numerusform></translation>
+        <translation>
+            <numerusform>Åben i %n yderligere blok</numerusform>
+            <numerusform>Åben i %n yderligere blokke</numerusform>
+        </translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -3285,7 +3308,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Bekræft gebyrforøgelse</translation>
     </message>
     <message>
-        <source>Can't draft transaction.</source>
+        <source>Can&apos;t draft transaction.</source>
         <translation>Kan ikke lave transaktionsudkast.</translation>
     </message>
     <message>
@@ -3293,7 +3316,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>PSBT kopieret</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Kan ikke signere transaktionen.</translation>
     </message>
     <message>
@@ -3375,7 +3398,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Udviklerne af %s</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
+        <source>Can&apos;t generate a change-address key. No keys in the internal keypool and can&apos;t generate any keys.</source>
         <translation>Kan ikke generere en bytte-adresse nøgle. Ingen nøgler i den interne nøglepulje og kan ikke generere nogle nøgler.</translation>
     </message>
     <message>
@@ -3391,7 +3414,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Fejl under læsning af %s! Alle nøgler blev læst korrekt, men transaktionsdata eller indgange i adressebogen kan mangle eller være ukorrekte.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Undersøg venligst at din computers dato og klokkeslet er korrekt indstillet! Hvis der er fejl i disse, vil %s ikke fungere korrekt.</translation>
     </message>
     <message>
@@ -3399,7 +3422,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Overvej venligst at bidrage til udviklingen, hvis du finder %s brugbar. Besøg %s for yderligere information om softwaren.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Blokdatabasen indeholder en blok, som ser ud til at være fra fremtiden. Dette kan skyldes, at din computers dato og tid ikke er sat korrekt. Genopbyg kun blokdatabasen, hvis du er sikker på, at din computers dato og tid er korrekt</translation>
     </message>
     <message>
@@ -3439,7 +3462,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>-maxmempool skal være mindst %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
         <translation>Kan ikke finde -%s-adressen: “%s”</translation>
     </message>
     <message>
@@ -3523,31 +3546,31 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Sundhedstjek under initialisering mislykkedes. %s lukker ned.</translation>
     </message>
     <message>
-        <source>Invalid P2P permission: '%s'</source>
-        <translation>Invalid P2P tilladelse: '%s'</translation>
+        <source>Invalid P2P permission: &apos;%s&apos;</source>
+        <translation>Invalid P2P tilladelse: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>Ugyldigt beløb for -%s=&lt;beløb&gt;: “%s”</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>Ugyldigt beløb for -discardfee=&lt;amount&gt;: “%s”</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>Ugyldigt beløb for -fallbackfee=&lt;beløb&gt;: “%s”</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
         <translation>Angivet blokmappe “%s” eksisterer ikke.</translation>
     </message>
     <message>
-        <source>Unknown address type '%s'</source>
+        <source>Unknown address type &apos;%s&apos;</source>
         <translation>Ukendt adressetype ‘%s’</translation>
     </message>
     <message>
-        <source>Unknown change type '%s'</source>
+        <source>Unknown change type &apos;%s&apos;</source>
         <translation>Ukendt byttepengetype ‘%s’</translation>
     </message>
     <message>
@@ -3627,7 +3650,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Fejl: Lytning efter indkommende forbindelser mislykkedes (lytning resultarede i fejl %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Ugyldigt beløb for -maxtxfee=&lt;beløb&gt;: “%s” (skal være på mindst minrelay-gebyret på %s for at undgå hængende transaktioner)</translation>
     </message>
     <message>
@@ -3651,23 +3674,23 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Fejl: Disk plads er lavt for %s</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
         <translation>Ugyldig -onion-adresse eller værtsnavn: “%s”</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
         <translation>Ugyldig -proxy-adresse eller værtsnavn: “%s”</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
         <translation>Ugyldigt beløb for -paytxfee=&lt;beløb&gt;: “%s” (skal være mindst %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
         <translation>Ugyldig netmaske angivet i -whitelist: “%s”</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
         <translation>Nødt til at angive en port med -whitebinde: “%s”</translation>
     </message>
     <message>
@@ -3687,15 +3710,15 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Signering af transaktion mislykkedes</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
         <translation>Angivet -walletdir “%s” eksisterer ikke</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
         <translation>Angivet -walletdir “%s” er en relativ sti</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
         <translation>Angivet -walletdir “%s” er ikke en mappe</translation>
     </message>
     <message>
@@ -3725,8 +3748,8 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Ikke i stand til at tildele til %s på denne computer (bind returnerede fejl %s)</translation>
     </message>
     <message>
-        <source>Unable to create the PID file '%s': %s</source>
-        <translation>Ikke i stand til at oprette PID fil '%s': %s</translation>
+        <source>Unable to create the PID file &apos;%s&apos;: %s</source>
+        <translation>Ikke i stand til at oprette PID fil &apos;%s&apos;: %s</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
@@ -3801,7 +3824,7 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Transaktionen skal have mindst én modtager</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
         <translation>Ukendt netværk anført i -onlynet: “%s”</translation>
     </message>
     <message>
@@ -3821,8 +3844,8 @@ Note: Siden gebyret er kalkuleret på en per-byte basis, et gebyr på "100 satos
         <translation>Advarsel: Private nøgler opdaget i tegnebog {%s} med deaktiverede private nøgler</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Kan ikke skrive til datamappe '%s'; tjek tilladelser.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Kan ikke skrive til datamappe &apos;%s&apos;; tjek tilladelser.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

@@ -1,4 +1,6 @@
-<TS language="el" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="el">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -70,8 +72,8 @@
         <translation>Αυτές είναι οι Bitcoin διευθύνσεις σας για να στέλνετε πληρωμές. Να ελέγχετε πάντα το ποσό, καθώς και τη διεύθυνση παραλήπτη πριν στείλετε νομίσματα.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Αυτές είναι οι Bitcoin διευθύνσεις για την λήψη πληρωμών. Χρησιμοποιήσε το κουμπί  'Δημιουργία νέας διεύθυνσης λήψεων' στο παράθυρο λήψεων για την δημιουργία νέας διεύθυνσης  </translation>
+        <source>These are your Bitcoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <translation>Αυτές είναι οι Bitcoin διευθύνσεις για την λήψη πληρωμών. Χρησιμοποιήσε το κουμπί  &apos;Δημιουργία νέας διεύθυνσης λήψεων&apos; στο παράθυρο λήψεων για την δημιουργία νέας διεύθυνσης  </translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -242,6 +244,180 @@
         <source>Warning: The Caps Lock key is on!</source>
         <translation>Προσοχη: το πλήκτρο Caps Lock είναι ενεργο.</translation>
     </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform>
+            <numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Open until %1</source>
+        <translation>Ανοιχτό μέχρι %1</translation>
+    </message>
+    <message>
+        <source>conflicted with a transaction with %1 confirmations</source>
+        <translation>σε σύγκρουση με μια συναλλαγή με %1 επιβεβαιώσεις</translation>
+    </message>
+    <message>
+        <source>0/unconfirmed, %1</source>
+        <translation>0/ανεπιβεβαίωτο, %1</translation>
+    </message>
+    <message>
+        <source>in memory pool</source>
+        <translation>στην πισίνα μνήμης</translation>
+    </message>
+    <message>
+        <source>not in memory pool</source>
+        <translation>όχι στην πισίνα μνήμης</translation>
+    </message>
+    <message>
+        <source>abandoned</source>
+        <translation>εγκαταλελειμμένος</translation>
+    </message>
+    <message>
+        <source>%1/unconfirmed</source>
+        <translation>%1/μη επιβεβαιωμένο</translation>
+    </message>
+    <message>
+        <source>%1 confirmations</source>
+        <translation>%1 επιβεβαιώσεις</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Κατάσταση</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Ημερομηνία</translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation>Πηγή</translation>
+    </message>
+    <message>
+        <source>Generated</source>
+        <translation>Παράχθηκε</translation>
+    </message>
+    <message>
+        <source>From</source>
+        <translation>Από</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>Άγνωστο</translation>
+    </message>
+    <message>
+        <source>To</source>
+        <translation>Προς</translation>
+    </message>
+    <message>
+        <source>own address</source>
+        <translation>δική σας διεύθυνση</translation>
+    </message>
+    <message>
+        <source>watch-only</source>
+        <translation>παρακολούθηση-μόνο</translation>
+    </message>
+    <message>
+        <source>label</source>
+        <translation>ετικέτα</translation>
+    </message>
+    <message>
+        <source>Credit</source>
+        <translation>Πίστωση</translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform>ωριμάζει σε %n περισσότερα μπλοκ</numerusform>
+            <numerusform>ωριμάζει σε %n περισσότερα κομμάτια</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>not accepted</source>
+        <translation>μη έγκυρο</translation>
+    </message>
+    <message>
+        <source>Debit</source>
+        <translation>Χρέωση</translation>
+    </message>
+    <message>
+        <source>Total debit</source>
+        <translation>Συνολική χρέωση</translation>
+    </message>
+    <message>
+        <source>Total credit</source>
+        <translation>Συνολική πίστωση</translation>
+    </message>
+    <message>
+        <source>Transaction fee</source>
+        <translation>Κόστος συναλλαγής</translation>
+    </message>
+    <message>
+        <source>Net amount</source>
+        <translation>Καθαρό ποσό</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Μήνυμα</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Σχόλιο</translation>
+    </message>
+    <message>
+        <source>Transaction ID</source>
+        <translation>Ταυτότητα συναλλαγής</translation>
+    </message>
+    <message>
+        <source>Transaction total size</source>
+        <translation>Συνολικό μέγεθος συναλλαγής</translation>
+    </message>
+    <message>
+        <source>Transaction virtual size</source>
+        <translation>Εικονικό μέγεθος συναλλαγής</translation>
+    </message>
+    <message>
+        <source>Output index</source>
+        <translation>Δείκτης εξόδου</translation>
+    </message>
+    <message>
+        <source> (Certificate was not verified)</source>
+        <translation>(Το πιστοποιητικό δεν επαληθεύτηκε)</translation>
+    </message>
+    <message>
+        <source>Merchant</source>
+        <translation>Έμπορος</translation>
+    </message>
+    <message>
+        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Τα δημιουργημένα κέρματα πρέπει να ωριμάσουν σε %1 μπλοκ πριν να ξοδευτούν. Όταν δημιουργήσατε αυτό το μπλοκ, μεταδόθηκε στο δίκτυο για να προστεθεί στην αλυσίδα μπλοκ. Εάν αποτύχει να εισέλθει στην αλυσίδα, η κατάσταση της θα αλλάξει σε &quot;μη αποδεκτή&quot; και δεν θα είναι δαπανηρή. Αυτό μπορεί περιστασιακά να συμβεί εάν ένας άλλος κόμβος παράγει ένα μπλοκ μέσα σε λίγα δευτερόλεπτα από το δικό σας.</translation>
+    </message>
+    <message>
+        <source>Debug information</source>
+        <translation>Πληροφορίες σφαλμάτων</translation>
+    </message>
+    <message>
+        <source>Transaction</source>
+        <translation>Συναλλαγή</translation>
+    </message>
+    <message>
+        <source>Inputs</source>
+        <translation>Είσοδοι</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Ποσό</translation>
+    </message>
+    <message>
+        <source>true</source>
+        <translation>αληθής</translation>
+    </message>
+    <message>
+        <source>false</source>
+        <translation>ψευδής</translation>
+    </message>
 </context>
 <context>
     <name>BanTableModel</name>
@@ -326,7 +502,7 @@
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>'Ανοιγμα &amp;URI</translation>
+        <translation>&apos;Ανοιγμα &amp;URI</translation>
     </message>
     <message>
         <source>Create Wallet...</source>
@@ -406,7 +582,7 @@
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Bitcoin</translation>
+        <translation>Υπογράψτε ένα μήνυμα για ν&apos; αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Bitcoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -442,7 +618,10 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n ενεργές συνδέσεις στο δίκτυο Bitcoin</numerusform><numerusform>%n ενεργές συνδέσεις στο δίκτυο Bitcoin</numerusform></translation>
+        <translation>
+            <numerusform>%n ενεργές συνδέσεις στο δίκτυο Bitcoin</numerusform>
+            <numerusform>%n ενεργές συνδέσεις στο δίκτυο Bitcoin</numerusform>
+        </translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -454,7 +633,10 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Επεξεργασμένα %n μπλοκ ιστορικού συναλλαγών.</numerusform><numerusform>Επεξεργασμένα %n μπλοκ ιστορικού συναλλαγών.</numerusform></translation>
+        <translation>
+            <numerusform>Επεξεργασμένα %n μπλοκ ιστορικού συναλλαγών.</numerusform>
+            <numerusform>Επεξεργασμένα %n μπλοκ ιστορικού συναλλαγών.</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -877,16 +1059,16 @@
         <translation>Επεξεργασία διεύθυνσης αποστολής</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>Η διεύθυνση "%1" δεν είναι έγκυρη Bitcoin διεύθυνση.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Η διεύθυνση &quot;%1&quot; δεν είναι έγκυρη Bitcoin διεύθυνση.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Η διεύθυνση "%1"  υπάρχει ήδη ως διεύθυνσης λήψης με ετικέτα "%2" και γιαυτό τον λόγο δεν μπορεί να προστεθεί ως διεύθυνση αποστολής.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>Η διεύθυνση &quot;%1&quot;  υπάρχει ήδη ως διεύθυνσης λήψης με ετικέτα &quot;%2&quot; και γιαυτό τον λόγο δεν μπορεί να προστεθεί ως διεύθυνση αποστολής.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>Η διεύθυνση "%1" βρίσκεται ήδη στο βιβλίο διευθύνσεων με ετικέτα "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>Η διεύθυνση &quot;%1&quot; βρίσκεται ήδη στο βιβλίο διευθύνσεων με ετικέτα &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -986,8 +1168,8 @@
         <translation>Το πορτοφόλι θα αποθηκευτεί επίσης σε αυτό το ευρετήριο</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Σφάλμα: Ο καθορισμένος φάκελος δεδομένων "%1" δεν μπορεί να δημιουργηθεί.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
+        <translation>Σφάλμα: Ο καθορισμένος φάκελος δεδομένων &quot;%1&quot; δεν μπορεί να δημιουργηθεί.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -995,15 +1177,24 @@
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform><numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform></translation>
+        <translation>
+            <numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform>
+            <numerusform>%n GB ελεύθερου χώρου διαθέσιμα</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(από το %n GB που απαιτείται)</numerusform><numerusform>(από τα %n GB που απαιτούνται)</numerusform></translation>
+        <translation>
+            <numerusform>(από το %n GB που απαιτείται)</numerusform>
+            <numerusform>(από τα %n GB που απαιτούνται)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(%n GB needed for full chain)</source>
-        <translation><numerusform>(%n GB απαιτούνται για την πλήρη αλυσίδα)</numerusform><numerusform>(%n GB απαιτούνται για την πλήρη αλυσίδα)</numerusform></translation>
+        <translation>
+            <numerusform>(%n GB απαιτούνται για την πλήρη αλυσίδα)</numerusform>
+            <numerusform>(%n GB απαιτούνται για την πλήρη αλυσίδα)</numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -1013,7 +1204,7 @@
         <translation>Φόρμα</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Οι πρόσφατες συναλλαγές ενδέχεται να μην είναι ακόμα ορατές και επομένως η ισορροπία του πορτοφολιού σας μπορεί να είναι εσφαλμένη. Αυτές οι πληροφορίες θα είναι σωστές όταν ολοκληρωθεί το συγχρονισμό του πορτοφολιού σας με το δίκτυο Bitcoin, όπως περιγράφεται παρακάτω.</translation>
     </message>
     <message>
@@ -1343,7 +1534,7 @@
     </message>
     <message>
         <source>Configuration options</source>
-        <translation> 
+        <translation>&#xa0;
 Επιλογές διαμόρφωσης</translation>
     </message>
     <message>
@@ -1457,15 +1648,15 @@
         <translation>URI χειριστής</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation>'bitcoin: //' δεν είναι έγκυρο URI. Χρησιμοποιήστε το "bitcoin:" αντ 'αυτού.</translation>
+        <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <translation>&apos;bitcoin: //&apos; δεν είναι έγκυρο URI. Χρησιμοποιήστε το &quot;bitcoin:&quot; αντ &apos;αυτού.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.</source>
         <translation>Δεν είναι δυνατή η επεξεργασία της αίτησης πληρωμής, επειδή δεν υποστηρίζεται το BIP70.</translation>
     </message>
     <message>
-        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <source>Due to widespread security flaws in BIP70 it&apos;s strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation>Λόγω εκτεταμένων αδυναμιών ασφαλείας στο BIP70 συνιστάται ανεπιφύλακτα να αγνοούνται οι οδηγίες του εμπόρου για την αλλαγή πορτοφολιών.</translation>
     </message>
     <message>
@@ -1552,23 +1743,38 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n δευτερόλεπτα</numerusform><numerusform>%n δευτερόλεπτα</numerusform></translation>
+        <translation>
+            <numerusform>%n δευτερόλεπτα</numerusform>
+            <numerusform>%n δευτερόλεπτα</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n λεπτά</numerusform><numerusform>%n λεπτά</numerusform></translation>
+        <translation>
+            <numerusform>%n λεπτά</numerusform>
+            <numerusform>%n λεπτά</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n ώρες</numerusform><numerusform>%n ώρες</numerusform></translation>
+        <translation>
+            <numerusform>%n ώρες</numerusform>
+            <numerusform>%n ώρες</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n ημέρες</numerusform><numerusform>%n ημέρες</numerusform></translation>
+        <translation>
+            <numerusform>%n ημέρες</numerusform>
+            <numerusform>%n ημέρες</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n εβδομάδες</numerusform><numerusform>%n εβδομάδες</numerusform></translation>
+        <translation>
+            <numerusform>%n εβδομάδες</numerusform>
+            <numerusform>%n εβδομάδες</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 and %2</source>
@@ -1576,7 +1782,10 @@
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n χρόνια</numerusform><numerusform>%n χρόνια</numerusform></translation>
+        <translation>
+            <numerusform>%n χρόνια</numerusform>
+            <numerusform>%n χρόνια</numerusform>
+        </translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1595,8 +1804,8 @@
         <translation>%1 GB</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Σφάλμα: Ο καθορισμένος κατάλογος δεδομένων "%1" δεν υπάρχει.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>Σφάλμα: Ο καθορισμένος κατάλογος δεδομένων &quot;%1&quot; δεν υπάρχει.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1607,7 +1816,7 @@
         <translation>Σφάλμα: %1</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation> Το %1 δεν έφυγε ακόμα με ασφάλεια...</translation>
     </message>
     <message>
@@ -1677,20 +1886,8 @@
         <translation>Κατάλογος των Μπλοκς</translation>
     </message>
     <message>
-        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
-        <translation>Για να καθορίσετε μια μη προεπιλεγμένη θέση του καταλόγου μπλοκ, χρησιμοποιήστε την επιλογή '%1'.</translation>
-    </message>
-    <message>
-        <source>Startup time</source>
-        <translation>Χρόνος εκκίνησης</translation>
-    </message>
-    <message>
-        <source>Blocksdir</source>
-        <translation>Κατάλογος των Μπλοκς</translation>
-    </message>
-    <message>
-        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
-        <translation>Για να καθορίσετε μια μη προεπιλεγμένη θέση του καταλόγου μπλοκ, χρησιμοποιήστε την επιλογή '%1'.</translation>
+        <source>To specify a non-default location of the blocks directory use the &apos;%1&apos; option.</source>
+        <translation>Για να καθορίσετε μια μη προεπιλεγμένη θέση του καταλόγου μπλοκ, χρησιμοποιήστε την επιλογή &apos;%1&apos;.</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1945,9 +2142,9 @@
         <translation>Εκτέλεση εντολής χωρίς πορτοφόλι</translation>
     </message>
     <message>
-        <source>Executing command using "%1" wallet</source>
-        <translation> 
-Εκτελέστε εντολή χρησιμοποιώντας το πορτοφόλι "%1"</translation>
+        <source>Executing command using &quot;%1&quot; wallet</source>
+        <translation>&#xa0;
+Εκτελέστε εντολή χρησιμοποιώντας το πορτοφόλι &quot;%1&quot;</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -2033,7 +2230,7 @@
         <translation>Καθαρισμός</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don&apos;t support them. When unchecked, an address compatible with older wallets will be created instead.</source>
         <translation>Οι εγγενείς διευθύνσεις αλληλογραφίας (aka Bech32 ή BIP-173) μειώνουν αργότερα τις αμοιβές συναλλαγών σας και προσφέρουν καλύτερη προστασία από τυπογραφικά λάθη, αλλά τα παλιά πορτοφόλια δεν τα υποστηρίζουν. Όταν δεν έχει επιλεγεί, θα δημιουργηθεί μια διεύθυνση συμβατή με παλιότερα πορτοφόλια.</translation>
     </message>
     <message>
@@ -2227,16 +2424,16 @@
     </message>
     <message>
         <source>Warning: Fee estimation is currently not possible.</source>
-        <translation> 
+        <translation>&#xa0;
 Προειδοποίηση: Προς το παρόν δεν είναι δυνατή η εκτίμηση των εξόδων..</translation>
     </message>
     <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Καθορίστε μια προσαρμοσμένη χρέωση ανά kB (1.000 bytes) του εικονικού μεγέθους της συναλλαγής.
 
-Σημείωση: Δεδομένου ότι η χρέωση υπολογίζεται ανά βάση, η αμοιβή "100 satoshis ανά kB" για ένα μέγεθος συναλλαγής 500 bytes (το μισό του 1 kB) θα αποφέρει τέλος μόνο 50 satoshis.</translation>
+Σημείωση: Δεδομένου ότι η χρέωση υπολογίζεται ανά βάση, η αμοιβή &quot;100 satoshis ανά kB&quot; για ένα μέγεθος συναλλαγής 500 bytes (το μισό του 1 kB) θα αποφέρει τέλος μόνο 50 satoshis.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2295,7 +2492,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Ενεργοποίηση Αντικατάστασης-Aπό-Έξοδα</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>Με την υπηρεσία αντικατάστασης-πληρωμής (BIP-125) μπορείτε να αυξήσετε το τέλος μιας συναλλαγής μετά την αποστολή. Χωρίς αυτό, μπορεί να συνιστάται υψηλότερη αμοιβή για την αντιστάθμιση του αυξημένου κινδύνου καθυστέρησης της συναλλαγής.</translation>
     </message>
     <message>
@@ -2351,12 +2548,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Δη&amp;μιουργία Ανυπόγραφου</translation>
     </message>
     <message>
-        <source> from wallet '%1'</source>
-        <translation>από πορτοφόλι '%1'</translation>
+        <source> from wallet &apos;%1&apos;</source>
+        <translation>από πορτοφόλι &apos;%1&apos;</translation>
     </message>
     <message>
-        <source>%1 to '%2'</source>
-        <translation>%1 προς το '%2'</translation>
+        <source>%1 to &apos;%2&apos;</source>
+        <translation>%1 προς το &apos;%2&apos;</translation>
     </message>
     <message>
         <source>%1 to %2</source>
@@ -2392,7 +2589,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation> 
+        <translation>&#xa0;
 Δεν σηματοδοτεί την Aντικατάσταση-Aπό-Έξοδο, BIP-125.</translation>
     </message>
     <message>
@@ -2400,8 +2597,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Συνολικό Ποσό</translation>
     </message>
     <message>
-        <source>To review recipient list click "Show Details..."</source>
-        <translation>Για να ελέγξετε τη λίστα παραληπτών, κάντε κλικ στην επιλογή "Εμφάνιση Λεπτομερειών..."</translation>
+        <source>To review recipient list click &quot;Show Details...&quot;</source>
+        <translation>Για να ελέγξετε τη λίστα παραληπτών, κάντε κλικ στην επιλογή &quot;Εμφάνιση Λεπτομερειών...&quot;</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -2461,7 +2658,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Εκτιμάται η έναρξη επιβεβαίωσης εντός %n μπλοκ.</numerusform><numerusform>Εκτιμάται η έναρξη επιβεβαίωσης εντός %n μπλοκ.</numerusform></translation>
+        <translation>
+            <numerusform>Εκτιμάται η έναρξη επιβεβαίωσης εντός %n μπλοκ.</numerusform>
+            <numerusform>Εκτιμάται η έναρξη επιβεβαίωσης εντός %n μπλοκ.</numerusform>
+        </translation>
     </message>
     <message>
         <source>Warning: Invalid Bitcoin address</source>
@@ -2586,7 +2786,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Μπορείτε να υπογράψετε μηνύματα/συμφωνίες με τις διευθύνσεις σας για να αποδείξετε ότι μπορείτε να λάβετε τα bitcoins που τους αποστέλλονται. Προσέξτε να μην υπογράψετε τίποτα ασαφές ή τυχαίο, καθώς οι επιθέσεις ηλεκτρονικού "ψαρέματος" ενδέχεται να σας εξαπατήσουν να υπογράψετε την ταυτότητά σας σε αυτούς. Υπογράψτε μόνο πλήρως λεπτομερείς δηλώσεις που συμφωνείτε.</translation>
+        <translation>Μπορείτε να υπογράψετε μηνύματα/συμφωνίες με τις διευθύνσεις σας για να αποδείξετε ότι μπορείτε να λάβετε τα bitcoins που τους αποστέλλονται. Προσέξτε να μην υπογράψετε τίποτα ασαφές ή τυχαίο, καθώς οι επιθέσεις ηλεκτρονικού &quot;ψαρέματος&quot; ενδέχεται να σας εξαπατήσουν να υπογράψετε την ταυτότητά σας σε αυτούς. Υπογράψτε μόνο πλήρως λεπτομερείς δηλώσεις που συμφωνείτε.</translation>
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
@@ -2641,7 +2841,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>&amp;Επιβεβαίωση Mηνύματος</translation>
     </message>
     <message>
-        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <source>Enter the receiver&apos;s address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Εισαγάγετε τη διεύθυνση του παραλήπτη, το μήνυμα (βεβαιωθείτε ότι αντιγράφετε σωστά τα διαλείμματα γραμμής, τα κενά, τις καρτέλες κλπ.) Και την υπογραφή παρακάτω για να επαληθεύσετε το μήνυμα. Προσέξτε να μην διαβάσετε περισσότερα στην υπογραφή από ό,τι είναι στο ίδιο το υπογεγραμμένο μήνυμα, για να αποφύγετε να εξαπατήσετε από μια επίθεση στον άνθρωπο στη μέση. Σημειώστε ότι αυτό αποδεικνύει μόνο ότι η υπογραφή συμβαλλόμενο μέρος λαμβάνει με τη διεύθυνση, δεν μπορεί να αποδειχθεί αποστολή οποιασδήποτε συναλλαγής!</translation>
     </message>
     <message>
@@ -2669,8 +2869,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Επαναφορά όλων των πεδίων επαλήθευσης μηνύματος</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>Κάντε κλικ στην επιλογή "Υπογραφή μηνύματος" για να δημιουργήσετε υπογραφή</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Κάντε κλικ στην επιλογή &quot;Υπογραφή μηνύματος&quot; για να δημιουργήσετε υπογραφή</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2733,177 +2933,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
 </context>
 <context>
-    <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation><numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform><numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform></translation>
-    </message>
-    <message>
-        <source>Open until %1</source>
-        <translation>Ανοιχτό μέχρι %1</translation>
-    </message>
-    <message>
-        <source>conflicted with a transaction with %1 confirmations</source>
-        <translation>σε σύγκρουση με μια συναλλαγή με %1 επιβεβαιώσεις</translation>
-    </message>
-    <message>
-        <source>0/unconfirmed, %1</source>
-        <translation>0/ανεπιβεβαίωτο, %1</translation>
-    </message>
-    <message>
-        <source>in memory pool</source>
-        <translation>στην πισίνα μνήμης</translation>
-    </message>
-    <message>
-        <source>not in memory pool</source>
-        <translation>όχι στην πισίνα μνήμης</translation>
-    </message>
-    <message>
-        <source>abandoned</source>
-        <translation>εγκαταλελειμμένος</translation>
-    </message>
-    <message>
-        <source>%1/unconfirmed</source>
-        <translation>%1/μη επιβεβαιωμένο</translation>
-    </message>
-    <message>
-        <source>%1 confirmations</source>
-        <translation>%1 επιβεβαιώσεις</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Κατάσταση</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Ημερομηνία</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Πηγή</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Παράχθηκε</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>Από</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>Άγνωστο</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>Προς</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>δική σας διεύθυνση</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>παρακολούθηση-μόνο</translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>ετικέτα</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Πίστωση</translation>
-    </message>
-    <message numerus="yes">
-        <source>matures in %n more block(s)</source>
-        <translation><numerusform>ωριμάζει σε %n περισσότερα μπλοκ</numerusform><numerusform>ωριμάζει σε %n περισσότερα κομμάτια</numerusform></translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>μη έγκυρο</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Χρέωση</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Συνολική χρέωση</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Συνολική πίστωση</translation>
-    </message>
-    <message>
-        <source>Transaction fee</source>
-        <translation>Κόστος συναλλαγής</translation>
-    </message>
-    <message>
-        <source>Net amount</source>
-        <translation>Καθαρό ποσό</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Μήνυμα</translation>
-    </message>
-    <message>
-        <source>Comment</source>
-        <translation>Σχόλιο</translation>
-    </message>
-    <message>
-        <source>Transaction ID</source>
-        <translation>Ταυτότητα συναλλαγής</translation>
-    </message>
-    <message>
-        <source>Transaction total size</source>
-        <translation>Συνολικό μέγεθος συναλλαγής</translation>
-    </message>
-    <message>
-        <source>Transaction virtual size</source>
-        <translation>Εικονικό μέγεθος συναλλαγής</translation>
-    </message>
-    <message>
-        <source>Output index</source>
-        <translation>Δείκτης εξόδου</translation>
-    </message>
-    <message>
-        <source> (Certificate was not verified)</source>
-        <translation>(Το πιστοποιητικό δεν επαληθεύτηκε)</translation>
-    </message>
-    <message>
-        <source>Merchant</source>
-        <translation>Έμπορος</translation>
-    </message>
-    <message>
-        <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Τα δημιουργημένα κέρματα πρέπει να ωριμάσουν σε %1 μπλοκ πριν να ξοδευτούν. Όταν δημιουργήσατε αυτό το μπλοκ, μεταδόθηκε στο δίκτυο για να προστεθεί στην αλυσίδα μπλοκ. Εάν αποτύχει να εισέλθει στην αλυσίδα, η κατάσταση της θα αλλάξει σε "μη αποδεκτή" και δεν θα είναι δαπανηρή. Αυτό μπορεί περιστασιακά να συμβεί εάν ένας άλλος κόμβος παράγει ένα μπλοκ μέσα σε λίγα δευτερόλεπτα από το δικό σας.</translation>
-    </message>
-    <message>
-        <source>Debug information</source>
-        <translation>Πληροφορίες σφαλμάτων</translation>
-    </message>
-    <message>
-        <source>Transaction</source>
-        <translation>Συναλλαγή</translation>
-    </message>
-    <message>
-        <source>Inputs</source>
-        <translation>Είσοδοι</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Ποσό</translation>
-    </message>
-    <message>
-        <source>true</source>
-        <translation>αληθής</translation>
-    </message>
-    <message>
-        <source>false</source>
-        <translation>ψευδής</translation>
-    </message>
-</context>
-<context>
     <name>TransactionDescDialog</name>
     <message>
         <source>Transaction ID</source>
@@ -2930,7 +2959,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform><numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform></translation>
+        <translation>
+            <numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform>
+            <numerusform>Ανοίξτε για %n περισσότερα μπλοκ</numerusform>
+        </translation>
     </message>
     <message>
         <source>Output index</source>
@@ -3248,7 +3280,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Επιβεβαίωση χρέωσης εξόδων</translation>
     </message>
     <message>
-        <source>Can't draft transaction.</source>
+        <source>Can&apos;t draft transaction.</source>
         <translation>Δεν είναι δυνατή η σύνταξη συναλλαγής.</translation>
     </message>
     <message>
@@ -3256,7 +3288,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>PSBT αντιγράφηκε</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>Δεν είναι δυνατή η υπογραφή συναλλαγής.</translation>
     </message>
     <message>
@@ -3338,7 +3370,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Οι προγραμματιστές %s</translation>
     </message>
     <message>
-        <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
+        <source>Can&apos;t generate a change-address key. No keys in the internal keypool and can&apos;t generate any keys.</source>
         <translation>Δεν είναι δυνατή η δημιουργία ενός κλειδιού αλλαγής διεύθυνσης. Δεν υπάρχουν κλειδιά στην εσωτερική κεντρική μονάδα κλειδιών και δεν μπορούν να δημιουργήσουν κανένα κλειδί.</translation>
     </message>
     <message>
@@ -3354,7 +3386,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Σφάλμα κατά την ανάγνωση %s! Όλα τα κλειδιά διαβάζονται σωστά, αλλά τα δεδομένα των συναλλαγών ή οι καταχωρίσεις του βιβλίου διευθύνσεων ενδέχεται να λείπουν ή να είναι εσφαλμένα.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Ελέγξτε ότι η ημερομηνία και η ώρα του υπολογιστή σας είναι σωστές! Αν το ρολόι σας είναι λάθος, το %s δεν θα λειτουργήσει σωστά.</translation>
     </message>
     <message>
@@ -3362,7 +3394,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Παρακαλώ συμβάλλετε αν βρείτε %s χρήσιμο. Επισκεφθείτε το %s για περισσότερες πληροφορίες σχετικά με το λογισμικό.</translation>
     </message>
     <message>
-        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation>Η βάση δεδομένων μπλοκ περιέχει ένα μπλοκ που φαίνεται να είναι από το μέλλον. Αυτό μπορεί να οφείλεται στην εσφαλμένη ρύθμιση της ημερομηνίας και της ώρας του υπολογιστή σας. Αποκαταστήστε μόνο τη βάση δεδομένων μπλοκ αν είστε βέβαιοι ότι η ημερομηνία και η ώρα του υπολογιστή σας είναι σωστές</translation>
     </message>
     <message>
@@ -3402,8 +3434,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>-maxmempool πρέπει να είναι τουλάχιστον %d MB</translation>
     </message>
     <message>
-        <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Δεν είναι δυνατή η επίλυση -%s διεύθυνση: '%s'</translation>
+        <source>Cannot resolve -%s address: &apos;%s&apos;</source>
+        <translation>Δεν είναι δυνατή η επίλυση -%s διεύθυνση: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Change index out of range</source>
@@ -3486,24 +3518,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation> Ο έλεγχος ευελιξίας εκκίνησης απέτυχε. Το %s τερματίζεται.</translation>
     </message>
     <message>
-        <source>Invalid P2P permission: '%s'</source>
-        <translation>Μη έγκυρη άδεια P2P: '%s'</translation>
+        <source>Invalid P2P permission: &apos;%s&apos;</source>
+        <translation>Μη έγκυρη άδεια P2P: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation>Μη έγκυρο ποσό για το -discardfee =&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Μη έγκυρο ποσό για το -discardfee =&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation>Μη έγκυρο ποσό για το -fallbackfee =&lt;amount&gt;: '%s'</translation>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Μη έγκυρο ποσό για το -fallbackfee =&lt;amount&gt;: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Δεν υπάρχει κατάλογος καθορισμένων μπλοκ "%s".</translation>
+        <source>Specified blocks directory &quot;%s&quot; does not exist.</source>
+        <translation>Δεν υπάρχει κατάλογος καθορισμένων μπλοκ &quot;%s&quot;.</translation>
     </message>
     <message>
-        <source>Unknown address type '%s'</source>
-        <translation>Άγνωστος τύπος διεύθυνσης '%s'</translation>
+        <source>Unknown address type &apos;%s&apos;</source>
+        <translation>Άγνωστος τύπος διεύθυνσης &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
@@ -3582,8 +3614,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Σφάλμα: Η ακρόαση για εισερχόμενες συνδέσεις απέτυχε (ακούστε επιστραμμένο σφάλμα %s)</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>Μη έγκυρο ποσό για το -maxtxfee =: '%s' (πρέπει να είναι τουλάχιστον το minrelay έξοδο του %s για την αποφυγή κολλημένων συναλλαγών)</translation>
+        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation>Μη έγκυρο ποσό για το -maxtxfee =: &apos;%s&apos; (πρέπει να είναι τουλάχιστον το minrelay έξοδο του %s για την αποφυγή κολλημένων συναλλαγών)</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3606,24 +3638,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Σφάλμα: Ο χώρος στο δίσκο είναι χαμηλός για %s</translation>
     </message>
     <message>
-        <source>Invalid -onion address or hostname: '%s'</source>
-        <translation>Μη έγκυρη διεύθυνση μητρώου ή όνομα κεντρικού υπολογιστή: '%s'</translation>
+        <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
+        <translation>Μη έγκυρη διεύθυνση μητρώου ή όνομα κεντρικού υπολογιστή: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid -proxy address or hostname: '%s'</source>
-        <translation>Μη έγκυρη διεύθυνση -proxy ή όνομα κεντρικού υπολογιστή: '%s'</translation>
+        <source>Invalid -proxy address or hostname: &apos;%s&apos;</source>
+        <translation>Μη έγκυρη διεύθυνση -proxy ή όνομα κεντρικού υπολογιστή: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation>Μη έγκυρο ποσό για το -paytxfee =&lt;amount&gt;: '%s' (πρέπει να είναι τουλάχιστον %s)</translation>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos; (must be at least %s)</source>
+        <translation>Μη έγκυρο ποσό για το -paytxfee =&lt;amount&gt;: &apos;%s&apos; (πρέπει να είναι τουλάχιστον %s)</translation>
     </message>
     <message>
-        <source>Invalid netmask specified in -whitelist: '%s'</source>
-        <translation>Μη έγκυρη μάσκα δικτύου που καθορίζεται στο -whitelist: '%s'</translation>
+        <source>Invalid netmask specified in -whitelist: &apos;%s&apos;</source>
+        <translation>Μη έγκυρη μάσκα δικτύου που καθορίζεται στο -whitelist: &apos;%s&apos;</translation>
     </message>
     <message>
-        <source>Need to specify a port with -whitebind: '%s'</source>
-        <translation>Πρέπει να καθορίσετε μια θύρα με -whitebind: '%s'</translation>
+        <source>Need to specify a port with -whitebind: &apos;%s&apos;</source>
+        <translation>Πρέπει να καθορίσετε μια θύρα με -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Prune mode is incompatible with -blockfilterindex.</source>
@@ -3642,16 +3674,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Η υπογραφή συναλλαγής απέτυχε</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Δεν υπάρχει καθορισμένο "%s"</translation>
+        <source>Specified -walletdir &quot;%s&quot; does not exist</source>
+        <translation>Δεν υπάρχει καθορισμένο &quot;%s&quot;</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Το συγκεκριμένο -walletdir "%s" είναι μια σχετική διαδρομή</translation>
+        <source>Specified -walletdir &quot;%s&quot; is a relative path</source>
+        <translation>Το συγκεκριμένο -walletdir &quot;%s&quot; είναι μια σχετική διαδρομή</translation>
     </message>
     <message>
-        <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Το συγκεκριμένο -walletdir "%s" δεν είναι κατάλογος</translation>
+        <source>Specified -walletdir &quot;%s&quot; is not a directory</source>
+        <translation>Το συγκεκριμένο -walletdir &quot;%s&quot; δεν είναι κατάλογος</translation>
     </message>
     <message>
         <source>The specified config file %s does not exist
@@ -3680,8 +3712,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation> Δεν είναι δυνατή η δέσμευση του %s σε αυτόν τον υπολογιστή (δεσμεύει το επιστρεφόμενο σφάλμα %s)</translation>
     </message>
     <message>
-        <source>Unable to create the PID file '%s': %s</source>
-        <translation>Δεν είναι δυνατή η δημιουργία του PID αρχείου '%s': %s</translation>
+        <source>Unable to create the PID file &apos;%s&apos;: %s</source>
+        <translation>Δεν είναι δυνατή η δημιουργία του PID αρχείου &apos;%s&apos;: %s</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
@@ -3740,8 +3772,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Η συναλλαγή πρέπει να έχει τουλάχιστον έναν παραλήπτη</translation>
     </message>
     <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Έχει οριστεί άγνωστo δίκτυο στο -onlynet: '%s'</translation>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Έχει οριστεί άγνωστo δίκτυο στο -onlynet: &apos;%s&apos;</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
@@ -3756,8 +3788,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Η αποτίμηση του τέλους απέτυχε. Το Fallbackfee είναι απενεργοποιημένο. Περιμένετε λίγα τετράγωνα ή ενεργοποιήστε το -fallbackfee.</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Δεν είναι δυνατή η εγγραφή στον κατάλογο δεδομένων '%s'. ελέγξτε τα δικαιώματα.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>Δεν είναι δυνατή η εγγραφή στον κατάλογο δεδομένων &apos;%s&apos;. ελέγξτε τα δικαιώματα.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

@@ -1,4 +1,6 @@
-<TS language="be" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="be">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -208,9 +210,6 @@
         <translation>Увага: Caps Lock уключаны!</translation>
     </message>
 </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -427,7 +426,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Гаманец &lt;b&gt;зашыфраваны&lt;/b&gt; і зараз &lt;b&gt;заблакаваны&lt;/b&gt;</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -546,13 +545,7 @@
         <source>(no label)</source>
         <translation>непазначаны</translation>
     </message>
-    </context>
-<context>
-    <name>CreateWalletActivity</name>
-    </context>
-<context>
-    <name>CreateWalletDialog</name>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -602,7 +595,7 @@
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
         <translation>Каталог ужо існуе. Дадайце %1 калі вы збіраецеся стварыць тут новы каталог.</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
@@ -624,20 +617,14 @@
         <source>Error</source>
         <translation>Памылка</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
@@ -652,20 +639,14 @@
         <source>Error</source>
         <translation>Памылка</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
         <translation>Форма</translation>
     </message>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
+</context>
 <context>
     <name>QObject</name>
     <message>
@@ -682,15 +663,12 @@
     </message>
 </context>
 <context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
     <name>RPCConsole</name>
     <message>
         <source>&amp;Information</source>
         <translation>Інфармацыя</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -755,7 +733,7 @@
         <source>(no label)</source>
         <translation>непазначаны</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
@@ -879,9 +857,6 @@
     </message>
 </context>
 <context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Alt+A</source>
@@ -895,7 +870,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TrafficGraphWidget</name>
     <message>
@@ -941,14 +916,14 @@
         <source>Amount</source>
         <translation>Колькасць</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>Гэтая панэль паказвае дэтальнае апісанне транзакцыі</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>TransactionTableModel</name>
     <message>
@@ -1132,21 +1107,12 @@
     </message>
 </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
         <translation>Даслаць Манеты</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -1157,7 +1123,7 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Экспартаваць гэтыя звесткі у файл</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>

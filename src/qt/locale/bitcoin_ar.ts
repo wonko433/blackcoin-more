@@ -1,4 +1,6 @@
-<TS language="ar" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ar">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -70,8 +72,8 @@
         <translation>هذه هي عناوين البيتكوين لإرسال المدفوعات. دائما تحقق من المبلغ وعنوان المستلم قبل الإرسال.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>هذه هي عناوين البيتكوين الخاصة بك لإستلام المدفوعات. استخدم زر "إنشاء عنوان استلام جديد" في علامة التبويب "إستلام" لإنشاء عناوين جديدة.</translation>
+        <source>These are your Bitcoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <translation>هذه هي عناوين البيتكوين الخاصة بك لإستلام المدفوعات. استخدم زر &quot;إنشاء عنوان استلام جديد&quot; في علامة التبويب &quot;إستلام&quot; لإنشاء عناوين جديدة.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -97,7 +99,7 @@
         <source>Exporting Failed</source>
         <translation>لقد فشل التصدير</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
@@ -859,16 +861,16 @@
         <translation>تعديل عنوان الارسال</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>العنوان المدخل "%1" ليس عنوان بيت كوين صحيح.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>العنوان المدخل &quot;%1&quot; ليس عنوان بيت كوين صحيح.</translation>
     </message>
     <message>
-        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>العنوان "%1" موجود بالفعل كعنوان إستقبال تحت مسمى "%2" ولذلك لا يمكن إضافته كعنوان إرسال.</translation>
+        <source>Address &quot;%1&quot; already exists as a receiving address with label &quot;%2&quot; and so cannot be added as a sending address.</source>
+        <translation>العنوان &quot;%1&quot; موجود بالفعل كعنوان إستقبال تحت مسمى &quot;%2&quot; ولذلك لا يمكن إضافته كعنوان إرسال.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>العنوان المدخل  "%1" موجود بالفعل في سجل العناوين تحت مسمى " "%2".</translation>
+        <source>The entered address &quot;%1&quot; is already in the address book with label &quot;%2&quot;.</source>
+        <translation>العنوان المدخل  &quot;%1&quot; موجود بالفعل في سجل العناوين تحت مسمى &quot; &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -933,7 +935,7 @@
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>عند النقر على "موافق" ، سيبدأ %1 في تنزيل ومعالجة سلسلة الكتل %4 الكاملة (%2 جيجابايت) بدءًا من المعاملات الأقدم في %3 عند تشغيل %4 في البداية.</translation>
+        <translation>عند النقر على &quot;موافق&quot; ، سيبدأ %1 في تنزيل ومعالجة سلسلة الكتل %4 الكاملة (%2 جيجابايت) بدءًا من المعاملات الأقدم في %3 عند تشغيل %4 في البداية.</translation>
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
@@ -980,14 +982,14 @@
         <translation>سوف يتم تخزين المحفظة في هذا الدليل.</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation>خطأ: لا يمكن تكوين دليل بيانات مخصص ل %1</translation>
     </message>
     <message>
         <source>Error</source>
         <translation>خطأ</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -995,7 +997,7 @@
         <translation>نمودج</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>قد لا تكون المعاملات الأخيرة مرئية بعد، وبالتالي قد يكون رصيد محفظتك غير صحيح. ستكون هذه المعلومات صحيحة بمجرد الانتهاء من محفظتك مع شبكة البيتكوين، كما هو مفصل أدناه.</translation>
     </message>
     <message>
@@ -1516,15 +1518,15 @@
         <translation>%1 قيقا بايت</translation>
     </message>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>خطأ: دليل البيانات المحدد "%1" غير موجود.</translation>
+        <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
+        <translation>خطأ: دليل البيانات المحدد &quot;%1&quot; غير موجود.</translation>
     </message>
     <message>
         <source>Error: %1</source>
         <translation>خطأ: %1</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
+        <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 لم يخرج بعد بأمان...</translation>
     </message>
     <message>
@@ -2130,7 +2132,7 @@
         <translation>تفعيل الإستبدال بواسطة الرسوم</translation>
     </message>
     <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction&apos;s fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
         <translation>مع الإستبدال بواسطة الرسوم (BIP-125) يمكنك زيادة رسوم المعاملة بعد إرسالها. وبدون ذلك، قد نوصي برسوم أعلى للتعويض عن مخاطر تأخير المعاملة المتزايدة.</translation>
     </message>
     <message>
@@ -2435,8 +2437,8 @@
         <translation>إعادة تعيين جميع حقول التحقق من الرسالة</translation>
     </message>
     <message>
-        <source>Click "Sign Message" to generate signature</source>
-        <translation>اضغط  "توقيع الرسالة" لتوليد التوقيع</translation>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>اضغط  &quot;توقيع الرسالة&quot; لتوليد التوقيع</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2923,7 +2925,7 @@
         <source>Close wallet</source>
         <translation>اغلق المحفظة</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>WalletFrame</name>
     <message>
@@ -2966,7 +2968,7 @@
         <translation>تأكيد زيادة الرسوم</translation>
     </message>
     <message>
-        <source>Can't sign transaction.</source>
+        <source>Can&apos;t sign transaction.</source>
         <translation>لا يمكن توقيع المعاملة.</translation>
     </message>
     <message>
@@ -3249,8 +3251,8 @@
         <translation>الرصيد غير كافي</translation>
     </message>
     <message>
-        <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>لايمكن الكتابة على دليل البيانات '%s'؛ تحقق من السماحيات.</translation>
+        <source>Cannot write to data directory &apos;%s&apos;; check permissions.</source>
+        <translation>لايمكن الكتابة على دليل البيانات &apos;%s&apos;؛ تحقق من السماحيات.</translation>
     </message>
     <message>
         <source>Loading block index...</source>

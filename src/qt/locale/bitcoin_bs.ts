@@ -1,4 +1,6 @@
-<TS language="bs" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="bs">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -99,84 +101,12 @@
     </message>
 </context>
 <context>
-    <name>AddressTableModel</name>
-    </context>
-<context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
-<context>
-    <name>BitcoinGUI</name>
-    </context>
-<context>
-    <name>CoinControlDialog</name>
-    </context>
-<context>
-    <name>CreateWalletActivity</name>
-    </context>
-<context>
-    <name>CreateWalletDialog</name>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
     <name>Intro</name>
     <message>
         <source>Bitcoin</source>
         <translation>Bitcoin</translation>
     </message>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-    <name>ReceiveRequestDialog</name>
-    </context>
-<context>
-    <name>RecentRequestsTableModel</name>
-    </context>
-<context>
-    <name>SendCoinsDialog</name>
-    </context>
+</context>
 <context>
     <name>SendCoinsEntry</name>
     <message>
@@ -187,10 +117,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
+</context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
@@ -201,19 +128,7 @@
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
-    <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
-    <name>TransactionTableModel</name>
-    </context>
+</context>
 <context>
     <name>TransactionView</name>
     <message>
@@ -244,19 +159,7 @@
         <source>Exporting Failed</source>
         <translation>Izvoz neuspješan</translation>
     </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -267,12 +170,12 @@
         <source>Export the data in the current tab to a file</source>
         <translation>Izvezite podatke trenutne kartice u datoteku</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>bitcoin-core</name>
     <message>
         <source>Bitcoin Core</source>
         <translation>Bitcoin Jezrga</translation>
     </message>
-    </context>
+</context>
 </TS>
