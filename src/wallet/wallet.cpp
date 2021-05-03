@@ -579,14 +579,15 @@ void CWallet::StartStake(CConnman *connman)
 
 void CWallet::StopStake()
 {
-    m_enabled_staking = false;
-    if(stakeThread)
-    {
-        auto locked_chain = chain().lock();
-        LOCK(cs_wallet);
-        StakeCoins(false, 0);
+    if (!stakeThread) {
+        if (m_enabled_staking)
+            m_enabled_staking = false;
     }
-    stakeThread = 0;
+    else {
+        m_enabled_staking = false;
+        StakeCoins(false, 0);
+        stakeThread = 0;
+    }
 }
 
 void CWallet::CleanCoinStake()
