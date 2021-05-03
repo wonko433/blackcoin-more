@@ -83,13 +83,13 @@ BOOST_AUTO_TEST_CASE(multisig_verify)
     for (int i = 0; i < 4; i++)
     {
         keys.assign(1,key[i]);
-        s = sign_multisig(a_and_b, keys, txTo[0], 0);
+        s = sign_multisig(a_and_b, keys, CTransaction(txTo[0]), 0);
         BOOST_CHECK_MESSAGE(!VerifyScript(s, a_and_b, flags, MutableTransactionSignatureChecker(&txTo[0], 0, amount), &err), strprintf("a&b 1: %d", i));
         BOOST_CHECK_MESSAGE(err == SCRIPT_ERR_INVALID_STACK_OPERATION, ScriptErrorString(err));
 
         keys.assign(1,key[1]);
         keys.push_back(key[i]);
-        s = sign_multisig(a_and_b, keys, txTo[0], 0);
+        s = sign_multisig(a_and_b, keys, CTransaction(txTo[0]), 0);
         BOOST_CHECK_MESSAGE(!VerifyScript(s, a_and_b, flags, MutableTransactionSignatureChecker(&txTo[0], 0, amount), &err), strprintf("a&b 2: %d", i));
         BOOST_CHECK_MESSAGE(err == SCRIPT_ERR_EVAL_FALSE, ScriptErrorString(err));
     }
