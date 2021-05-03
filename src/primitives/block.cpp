@@ -14,15 +14,14 @@
 uint256 CBlockHeader::GetHash() const
 {
     if (nVersion > 6)
-            return SerializeHash(*this);
-        return GetPoWHash();
+        return SerializeHash(*this);
+    return GetPoWHash();
 }
 
 uint256 CBlockHeader::GetPoWHash() const
 {
     uint256 thash;
-    //Blackcoin ToDo: FIX!
-    //scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
+    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
     return thash;
 }
 

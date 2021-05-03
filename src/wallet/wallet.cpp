@@ -732,13 +732,11 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     }
 
     if (gArgs.GetBoolArg("-stakecache", DEFAULT_STAKE_CACHE)) {
-        for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins)
-        {
+        for (const std::pair<const CWalletTx*,unsigned int> &pcoin : setCoins) {
             boost::this_thread::interruption_point();
             COutPoint prevoutStake = COutPoint(pcoin.first->GetHash(), pcoin.second);
             CacheKernel(stakeCache, prevoutStake, pindexPrev, ::ChainstateActive().CoinsTip()); // this will do a 2 disk loads per op
         }
-
     }
 
     int64_t nCredit = 0;
