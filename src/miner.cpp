@@ -556,7 +556,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                 int64_t nFees = 0;
                 std::unique_ptr<CBlockTemplate> pblocktemplate;
                 // Blackcoin ToDo: initialize mempool!
-                const CTxMemPool& mempool = EnsureMemPool();
+                const CTxMemPool& mempool = nullptr;
 
                 // First just create an empty block. No need to process transactions until we know we can create a block
                 pblocktemplate = BlockAssembler(mempool, Params()).CreateNewBlock(CScript(), &nFees, true);
