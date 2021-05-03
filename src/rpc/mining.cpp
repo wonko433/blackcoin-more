@@ -894,25 +894,24 @@ UniValue checkkernel(const JSONRPCRequest& request)
                                     {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
                                     {"vout", RPCArg::Type::NUM, RPCArg::Optional::NO, "The output number"},
                                     {"sequence", RPCArg::Type::NUM, /* default */ "depends on the value of the 'locktime' argument", "The sequence number"},
-                                },
-                                },
+                                }},
                         },
                     },
                     {"createblocktemplate", RPCArg::Type::BOOL, /* default */ "false", "Create block template?"},
                 },
                 RPCResult{
-                    RPCResult::Type::ARR, "", "outputs",
+                    RPCResult::Type::OBJ, "", "",
                     {
                         {RPCResult::Type::BOOL, "found", "?"},
-                        {RPCResult::Type::OBJ, "kernel", ""}
-                        {
-                            {RPCResult::Type::STR_HEX, "txid", "The transaction hash in hex"},
-                            {RPCResult::Type::NUM, "vout", "?"},
-                            {RPCResult::Type::NUM, "time", "?"},
-                        },
+                        {RPCResult::Type::OBJ, "kernel", "",
+                            {
+                                {RPCResult::Type::STR_HEX, "txid", "The transaction hash in hex"},
+                                {RPCResult::Type::NUM, "vout", "?"},
+                                {RPCResult::Type::NUM, "time", "?"},
+                            }},
                         {RPCResult::Type::STR_HEX, "blocktemplate", "?"},
                         {RPCResult::Type::NUM, "blocktemplatefees", "?"},
-                    }
+                    },
                 },
                 RPCExamples{
                     HelpExampleCli("checkkernel", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"false\"")
