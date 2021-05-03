@@ -189,7 +189,7 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
     ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(!walletModel->wallet().privateKeysDisabled() && showWatchOnlyImmature); // show watch-only immature balance
     ui->labelStake->setVisible(showStake || showWatchOnlyStake);
-    ui->labelWatchStake->setVisible(!walletModel->privateKeysDisabled() && showWatchOnlyStake); // show watch-only stake balance
+    ui->labelWatchStake->setVisible(!walletModel->wallet().privateKeysDisabled() && showWatchOnlyStake); // show watch-only stake balance
 }
 
 // show/hide watch-only labels
