@@ -288,7 +288,9 @@ UniValue getstakinginfo(const JSONRPCRequest& request)
 
     if (pwallet)
     {
-        nWeight = pwallet->GetStakeWeight();
+        LOCK(pwallet->cs_wallet);
+        auto locked_chain = pwallet->chain().lock();
+        nWeight = pwallet->GetStakeWeight(*locked_chain);
         lastCoinStakeSearchInterval = pwallet->m_last_coin_stake_search_interval;
     }
 #endif
@@ -882,8 +884,6 @@ static UniValue estimatefee(const JSONRPCRequest& request)
 UniValue checkkernel(const JSONRPCRequest& request)
 {
     // Blackcoin ToDo: finish this!
-        RPCTypeCheck(request.params, {UniValue::VARR, UniValue::VBOOL}, false);
-
             RPCHelpMan{"checkkernel",
                 "\nCheck if one of given inputs is a kernel input at the moment.\n",
                 {
@@ -897,7 +897,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
                                 },
                                 },
                         },
-                        },
+                    },
                     {"createblocktemplate", RPCArg::Type::BOOL, /* default */ "false", "Create block template?"},
                 },
                 RPCResult{
