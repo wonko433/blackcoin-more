@@ -4,6 +4,7 @@
 
 #include <bench/bench.h>
 #include <consensus/validation.h>
+#include <script/standard.h>
 #include <crypto/sha256.h>
 #include <test/util/mining.h>
 #include <test/util/setup_common.h>
