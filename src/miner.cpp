@@ -555,6 +555,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
             {
                 int64_t nFees = 0;
                 std::unique_ptr<CBlockTemplate> pblocktemplate;
+                // Blackcoin ToDo: initialize mempool!
                 const CTxMemPool& mempool = EnsureMemPool();
 
                 // First just create an empty block. No need to process transactions until we know we can create a block
@@ -640,7 +641,7 @@ bool SignBlock(std::shared_ptr<CBlock> pblock, CWallet& wallet, int64_t& nFees, 
     CKey key;
     CMutableTransaction txCoinBase(*pblock->vtx[0]);
     CMutableTransaction txCoinStake;
-    txCoinStake.nTime = nTimeTx;
+    txCoinStake.nTime = nTime;
     
     auto locked_chain = wallet.chain().lock();
     LOCK(wallet.cs_wallet);
