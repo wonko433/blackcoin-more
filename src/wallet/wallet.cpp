@@ -29,6 +29,7 @@
 #include <util/error.h>
 #include <util/moneystr.h>
 #include <util/translation.h>
+#include <validation.h>
 #include <wallet/coincontrol.h>
 #include <wallet/fees.h>
 #include <miner.h>
@@ -691,7 +692,7 @@ bool CWallet::SelectCoinsForStaking(interfaces::Chain::Lock& locked_chain, CAmou
 typedef std::vector<unsigned char> valtype;
 bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const FillableSigningProvider& keystore, unsigned int nBits, int64_t nSearchInterval, CAmount& nFees, CMutableTransaction& tx, CKey& key)
 {
-    CBlockIndex* pindexPrev = pindexBestHeader;
+    CBlockIndex* pindexPrev = ::ChainActive().Tip();
     arith_uint256 bnTargetPerCoinDay;
     bnTargetPerCoinDay.SetCompact(nBits);
 
@@ -705,7 +706,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     txNew.vout.push_back(CTxOut(0, scriptEmpty));
 
     // Choose coins to use
-   CAmount nBalance = GetBalance().m_mine_trusted;
+    CAmount nBalance = GetBalance().m_mine_trusted;
 
     if (nBalance <= m_reserve_balance)
         return false;
@@ -745,7 +746,7 @@ bool CWallet::CreateCoinStake(interfaces::Chain::Lock& locked_chain, const Filla
     {
         static int nMaxStakeSearchInterval = 60;
         bool fKernelFound = false;
-        for (unsigned int n=0; n<min(nSearchInterval,(int64_t)nMaxStakeSearchInterval) && !fKernelFound && pindexPrev == pindexBestHeader; n++)
+        for (unsigned int n=0; n<min(nSearchInterval,(int64_t)nMaxStakeSearchInterval) && !fKernelFound && pindexPrev == ::ChainActive().Tip(); n++)
         {
             boost::this_thread::interruption_point();
             // Search backward in time from the given txNew timestamp
@@ -3878,7 +3879,6 @@ uint64_t CWallet::GetStakeWeight(interfaces::Chain::Lock& locked_chain) const
 
     uint64_t nWeight = 0;
 
-    LOCK2(cs_main, cs_wallet);
     for (std::pair<const CWalletTx*,unsigned int> pcoin : setCoins)
     {
         if (pcoin.first->GetDepthInMainChain() >= Params().GetConsensus().nCoinbaseMaturity)

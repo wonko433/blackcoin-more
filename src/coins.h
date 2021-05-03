@@ -25,7 +25,7 @@
  *
  * Serialized format:
  * - VARINT((coinbase ? 1 : 0) | (height << 1))
- * - VARINT((coinstake ? 2 : 0) | (height << 2))
+ * - VARINT((coinstake ? 1 : 0) | (height << 1))
  * - nTime
  * - the non-spent CTxOut (via CTxOutCompressor)
  */
@@ -39,7 +39,7 @@ public:
     unsigned int fCoinBase : 1;
 
     //! whether containing transaction was a coinstake
-    bool fCoinStake;
+    unsigned int fCoinStake : 1;
 
     //! at which height this containing transaction was included in the active block chain
     uint32_t nHeight : 31;
@@ -73,7 +73,7 @@ public:
     template<typename Stream>
     void Serialize(Stream &s) const {
         assert(!IsSpent());
-        uint32_t code = nHeight * uint32_t{2} + (fCoinBase ? 1 : 0) + (fCoinStake ? 2 : 0);
+        uint32_t code = nHeight * uint32_t{2} + (fCoinBase ? 1 : 0) + (fCoinStake ? 1 : 0);
         ::Serialize(s, VARINT(code));
         ::Serialize(s, VARINT(nTime));
         ::Serialize(s, Using<TxOutCompression>(out));
