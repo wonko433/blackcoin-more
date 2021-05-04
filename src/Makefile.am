@@ -624,6 +624,7 @@ blackmore_wallet_SOURCES += bitcoin-wallet-res.rc
 endif
 
 blackmore_wallet_LDADD = \
+  $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
