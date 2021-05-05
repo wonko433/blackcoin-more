@@ -19,7 +19,7 @@ public:
     {
         CSerializedNetMsg msg;
         msg.command = std::move(sCommand);
-        int32_t serModes = nVersion <= PROTOCOL_OLD_VERSION ? SER_NETWORK : SER_NETWORK | SER_POSMARKER;
+        int32_t serModes = nVersion <= OLD_VERSION ? SER_NETWORK : SER_NETWORK | SER_POSMARKER;
         CVectorWriter{ serModes, nFlags | nVersion, msg.data, 0, std::forward<Args>(args)... };
         return msg;
     }

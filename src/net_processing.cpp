@@ -2183,7 +2183,7 @@ bool ProcessMessage(CNode* pfrom, const std::string& msg_type, CDataStream& vRec
     }
 
     // peercoin: set/unset network serialization mode for new clients
-    if (pfrom->nVersion <= PROTOCOL_OLD_VERSION)
+    if (pfrom->nVersion <= OLD_VERSION)
         vRecv.SetType(vRecv.GetType() & ~SER_POSMARKER);
     else
         vRecv.SetType(vRecv.GetType() | SER_POSMARKER);

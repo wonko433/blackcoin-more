@@ -10,7 +10,9 @@
  */
 
 static const int PROTOCOL_VERSION = 70015;
-static const int PROTOCOL_OLD_VERSION = 70013; // peercoin: used to communicate with clients that don't know how to send PoS information in headers
+
+// peercoin: used to communicate with clients that don't know how to send PoS information in headers
+static const int OLD_VERSION = 70013; 
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
