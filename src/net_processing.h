@@ -25,6 +25,8 @@ static const bool DEFAULT_PEERBLOOMFILTERS = false;
 
 /** Default for -headerspamfilter, use header spam filter */
 static const bool DEFAULT_HEADER_SPAM_FILTER = true;
+/** Default for -headerspamfiltermaxsize, maximum size of the list of indexes in the header spam filter */
+static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE = 500;
 /** Default for -headerspamfiltermaxavg, maximum average size of an index occurrence in the header spam filter */
 static const unsigned int DEFAULT_HEADER_SPAM_FILTER_MAX_AVG = 10;
 /** Default for -headerspamfilterignoreport, ignore the port in the ip address when looking for header spam,
@@ -105,8 +107,5 @@ void RelayTransaction(const uint256&, const CConnman& connman);
 
 /** Process network block received from a given node */
 bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CNode* pfrom, CConnman& connman);
-
-/** Default for -headerspamfiltermaxsize, maximum size of the list of indexes in the header spam filter */
-unsigned int GetDefaultHeaderSpamFilterMaxSize();
 
 #endif // BITCOIN_NET_PROCESSING_H

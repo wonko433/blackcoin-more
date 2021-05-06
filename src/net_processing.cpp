@@ -209,7 +209,7 @@ public:
         maxSize(0),
         maxAvg(0)
     {
-        maxSize = gArgs.GetArg("-headerspamfiltermaxsize", GetDefaultHeaderSpamFilterMaxSize());
+        maxSize = gArgs.GetArg("-headerspamfiltermaxsize", DEFAULT_HEADER_SPAM_FILTER_MAX_SIZE);
         maxAvg = gArgs.GetArg("-headerspamfiltermaxavg", DEFAULT_HEADER_SPAM_FILTER_MAX_AVG);
     }
 
@@ -4192,11 +4192,6 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         return error("%s: ProcessNewBlock FAILED", __func__);
 
     return true;
-}
-
-unsigned int GetDefaultHeaderSpamFilterMaxSize()
-{
-    return Params().GetConsensus().nCoinbaseMaturity;
 }
 
 class CNetProcessingCleanup
