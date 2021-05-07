@@ -948,7 +948,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 va descarca si stoca o copie a blockchainului Bitcoin</translation>
+        <translation>%1 va descarca si stoca o copie a blockchainului Blackcoin</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

@@ -1005,7 +1005,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 は Bitcoin ブロックチェーンのコピーをダウンロードし保存します。</translation>
+        <translation>%1 は Blackcoin ブロックチェーンのコピーをダウンロードし保存します。</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

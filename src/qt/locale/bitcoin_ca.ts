@@ -1001,7 +1001,7 @@ Això és ideal per a carteres de mode només lectura.</translation>
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 descarregarà i emmagatzemarà una còpia de la cadena de blocs Bitcoin.</translation>
+        <translation>%1 descarregarà i emmagatzemarà una còpia de la cadena de blocs Blackcoin.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

@@ -996,7 +996,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 wird eine Kopie der Bitcoin-Blockchain herunterladen und speichern.</translation>
+        <translation>%1 wird eine Kopie der Blackcoin-Blockchain herunterladen und speichern.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

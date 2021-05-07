@@ -1040,7 +1040,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 биће преузеће и складиштити копију Биткоин ланца блокова.</translation>
+        <translation>%1 биће преузеће и складиштити копију Blackcoin ланца блокова.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>

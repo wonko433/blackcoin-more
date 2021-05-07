@@ -1000,7 +1000,7 @@
     </message>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 буде завантажувати та зберігати копію ланцюжка блоків біткінів.</translation>
+        <translation>%1 буде завантажувати та зберігати копію ланцюжка блоків блэккінів.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
