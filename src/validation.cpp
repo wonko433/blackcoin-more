@@ -2879,7 +2879,8 @@ CBlockIndex* BlockManager::AddToBlockIndex(const CBlockHeader& block)
         pindexNew->BuildSkip();
     }
     pindexNew->nTimeMax = (pindexNew->pprev ? std::max(pindexNew->pprev->nTimeMax, pindexNew->nTime) : pindexNew->nTime);
-    if (block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE)
+    bool fProofOfStake = block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
+    if (fProofOfStake)
         pindexNew->SetProofOfStake();
     pindexNew->nChainWork = (pindexNew->pprev ? pindexNew->pprev->nChainWork : 0) + GetBlockProof(*pindexNew);
     pindexNew->RaiseValidity(BLOCK_VALID_TREE);
@@ -3290,7 +3291,9 @@ bool BlockManager::AcceptBlockHeader(const CBlockHeader& block, BlockValidationS
             return true;
         }
 
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !(block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE)))
+        bool fProofOfStake = block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
+
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), !fProofOfStake))
             return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), state.ToString());
 
         // Get prev block index
