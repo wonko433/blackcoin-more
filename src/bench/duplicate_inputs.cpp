@@ -25,7 +25,7 @@ static void DuplicateInputs(benchmark::State& state)
     LOCK(cs_main);
     CBlockIndex* pindexPrev = ::ChainActive().Tip();
     assert(pindexPrev != nullptr);
-    block.nBits = GetNextTargetRequired(pindexPrev, &block, chainparams.GetConsensus(), block.IsProofOfStake());
+    block.nBits = GetNextTargetRequired(pindexPrev, chainparams.GetConsensus(), block.IsProofOfStake());
     block.nNonce = 0;
     auto nHeight = pindexPrev->nHeight + 1;
 

@@ -931,8 +931,7 @@ UniValue checkkernel(const JSONRPCRequest& request)
         const CTxMemPool& mempool = EnsureMemPool();
         COutPoint kernel;
         CBlockIndex* pindexPrev = ::ChainActive().Tip();
-        CBlockHeader blockHeader = pindexPrev->GetBlockHeader();
-        unsigned int nBits = GetNextTargetRequired(pindexPrev, &blockHeader, Params().GetConsensus(), true);
+        unsigned int nBits = GetNextTargetRequired(pindexPrev, Params().GetConsensus(), true);
         int64_t nTime = GetAdjustedTime();
         nTime &= ~Params().GetConsensus().nStakeTimestampMask;
 

@@ -1662,7 +1662,7 @@ bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& 
     
     // Check difficulty 
     //Blackcoin ToDo: ENABLE!
-    //if (block.nBits != GetNextTargetRequired(pindex->pprev, &block, consensusParams, block.IsProofOfStake()))
+    //if (block.nBits != GetNextTargetRequired(pindex->pprev, consensusParams, block.IsProofOfStake()))
     //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
 
     // Check proof-of-stake
@@ -3196,7 +3196,7 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 
     // Preliminary check difficulty in pos-only stage
     //Blackcoin ToDo: ENABLE!
-    //if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, &block, consensusParams, fProofOfStake))
+    //if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, consensusParams, fProofOfStake))
     //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
 
     // Preliminary check of pos timestamp
