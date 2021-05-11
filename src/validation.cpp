@@ -3187,8 +3187,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
 {
     assert(pindexPrev != nullptr);
     const int nHeight = pindexPrev->nHeight + 1;
-
-    // Check proof of work
+	
+    bool fProofOfStake = block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
     const Consensus::Params& consensusParams = params.GetConsensus();
 
     // Preliminary check difficulty in pos-only stage
@@ -3196,7 +3196,6 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
 
     // Preliminary check of pos timestamp
-    bool fProofOfStake = block.nFlags & CBlockIndex::BLOCK_PROOF_OF_STAKE;
     if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-pos-time", "incorrect pos block timestamp");
 
