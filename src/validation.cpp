@@ -3048,7 +3048,7 @@ static bool CheckBlockSignature(const CBlock& block)
     return false;
 }
 
-static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
+static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = false)
 {
     // Check block version
     if (block.nVersion < 7 && consensusParams.IsProtocolV2(block.GetBlockTime()))
