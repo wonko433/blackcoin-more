@@ -293,7 +293,7 @@ public:
 
     bool IsProofOfWork() const
     {
-        return !IsProofOfStake();
+        return !(nFlags & BLOCK_PROOF_OF_STAKE);
     }
 
     bool IsProofOfStake() const
