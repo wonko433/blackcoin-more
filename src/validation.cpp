@@ -1661,9 +1661,8 @@ bool CChainState::ContextualPOSCheck(const CBlock& block, BlockValidationState& 
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "reject-pow", strprintf("%s: reject proof-of-work at height %d", __func__, nHeight));
     
     // Check difficulty 
-    //Blackcoin ToDo: ENABLE!
-    //if (block.nBits != GetNextTargetRequired(pindex->pprev, consensusParams, block.IsProofOfStake()))
-    //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
+    if (block.nBits != GetNextTargetRequired(pindex->pprev, consensusParams, block.IsProofOfStake()))
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", strprintf("%s: incorrect %s", __func__, block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
 
     // Check proof-of-stake
     if (block.IsProofOfStake() && consensusParams.IsProtocolV3(block.GetBlockTime()) && !CheckProofOfStake(pindex->pprev, *block.vtx[1], block.nBits, state, view)) {
@@ -3195,9 +3194,8 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, BlockValidatio
     const Consensus::Params& consensusParams = params.GetConsensus();
 
     // Preliminary check difficulty in pos-only stage
-    //Blackcoin ToDo: ENABLE!
-    //if (::ChainActive().Height() > consensusParams.nLastPOWBlock && nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, consensusParams, fProofOfStake))
-    //    return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
+    if (nHeight > consensusParams.nLastPOWBlock && block.nBits != GetNextTargetRequired(pindexPrev, consensusParams, fProofOfStake))
+        return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "bad-diffbits", "incorrect proof of work");
 
     // Preliminary check of pos timestamp
     if (nHeight > consensusParams.nLastPOWBlock && fProofOfStake && !CheckStakeBlockTimestamp(block.GetBlockTime()))
