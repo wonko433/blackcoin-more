@@ -506,7 +506,7 @@ static void CleanAddressHeaders(const CAddress& addr) EXCLUSIVE_LOCKS_REQUIRED(c
 bool ProcessNetBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block, BlockValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=nullptr)
 {
     const CBlockIndex *pindexFirst = nullptr;
-    bool ret = ProcessNewBlockHeaders(block, state, chainparams, ppindex, &pindexFirst);
+    bool ret = ProcessNewBlockHeaders(pfrom->nVersion <= OLD_VERSION, block, state, chainparams, ppindex, &pindexFirst);
     if(gArgs.GetBoolArg("-headerspamfilter", DEFAULT_HEADER_SPAM_FILTER))
     {
         LOCK(cs_main);
