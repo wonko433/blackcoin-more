@@ -853,7 +853,7 @@ static UniValue submitheader(const JSONRPCRequest& request)
     }
 
     BlockValidationState state;
-    ProcessNewBlockHeaders({h}, state, Params());
+    ProcessNewBlockHeaders(false, {h}, state, Params());
     if (state.IsValid()) return NullUniValue;
     if (state.IsError()) {
         throw JSONRPCError(RPC_VERIFY_ERROR, state.ToString());
