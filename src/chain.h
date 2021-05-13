@@ -391,7 +391,14 @@ public:
 
     uint256 GetBlockHash() const
     {
-    	return *phashBlock;
+        CBlockHeader block;
+        block.nVersion        = nVersion;
+        block.hashPrevBlock   = hashPrev;
+        block.hashMerkleRoot  = hashMerkleRoot;
+        block.nTime           = nTime;
+        block.nBits           = nBits;
+        block.nNonce          = nNonce;
+        return block.GetHash();
     }
 
     std::string ToString() const
