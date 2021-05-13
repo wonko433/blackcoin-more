@@ -18,7 +18,7 @@
 static const std::string OUTPUT_TYPE_STRING_LEGACY = "legacy";
 static const std::string OUTPUT_TYPE_STRING_BECH32 = "bech32";
 
-const std::array<OutputType, 3> OUTPUT_TYPES = {OutputType::LEGACY, OutputType::BECH32};
+const std::array<OutputType, 2> OUTPUT_TYPES = {OutputType::LEGACY, OutputType::BECH32};
 
 bool ParseOutputType(const std::string& type, OutputType& output_type)
 {
