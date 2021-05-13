@@ -357,15 +357,13 @@ class CDiskBlockIndex : public CBlockIndex
 {
 public:
     uint256 hashPrev;
-    uint256 nHashBlock;
+
     CDiskBlockIndex() {
         hashPrev = uint256();
-        nHashBlock = uint256();
     }
 
     explicit CDiskBlockIndex(const CBlockIndex* pindex) : CBlockIndex(*pindex) {
         hashPrev = (pprev ? pprev->GetBlockHash() : uint256());
-        nHashBlock = *pindex->phashBlock;
     }
 
     SERIALIZE_METHODS(CDiskBlockIndex, obj)
@@ -393,7 +391,7 @@ public:
 
     uint256 GetBlockHash() const
     {
-    	return nHashBlock;
+    	return *phashBlock;
     }
 
     std::string ToString() const
