@@ -59,12 +59,11 @@ std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key)
     PKHash keyid(key);
     CTxDestination p2pkh{keyid};
     if (key.IsCompressed()) {
-        // Do nothing
+        CTxDestination p2sh = ScriptHash(GetScriptForDestination(keyid));
+        return Vector(std::move(p2pkh), std::move(p2sh));
     } else {
         return Vector(std::move(p2pkh));
     }
-
-    return std::vector<CTxDestination>{std::move(keyid)};
 }
 
 CTxDestination AddAndGetDestinationForScript(FillableSigningProvider& keystore, const CScript& script, OutputType type)
