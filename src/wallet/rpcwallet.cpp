@@ -3569,6 +3569,28 @@ public:
         return obj;
     }
 
+    UniValue operator()(const DummyKeyHash& pkhash) const
+    {
+        CKeyID keyID(pkhash);
+        UniValue obj(UniValue::VOBJ);
+        CPubKey vchPubKey;
+        if (provider && provider->GetPubKey(keyID, vchPubKey)) {
+            obj.pushKV("pubkey", HexStr(vchPubKey));
+            obj.pushKV("iscompressed", vchPubKey.IsCompressed());
+        }
+        return obj;
+    }
+
+    UniValue operator()(const DummyScriptHash& scripthash) const
+    {
+        CScriptID scriptID(scripthash);
+        UniValue obj(UniValue::VOBJ);
+        CScript subscript;
+        if (provider && provider->GetCScript(scriptID, subscript)) {
+            ProcessSubScript(subscript, obj);
+        }
+        return obj;
+    }
 };
 
 static UniValue DescribeWalletAddress(const CWallet* const pwallet, const CTxDestination& dest)

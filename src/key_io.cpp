@@ -39,8 +39,6 @@ public:
         return EncodeBase58Check(data);
     }
 
-    /*
-    // Blackcoin ToDo: CHECK AND FIX!
     std::string operator()(const DummyKeyHash& id) const
     {
         std::vector<unsigned char> data = {0};
@@ -56,7 +54,6 @@ public:
         ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.begin(), id.end());
         return bech32::Encode(bech32::Encoding::BECH32, m_params.Bech32HRP(), data);
     }
-    */
 
     std::string operator()(const CNoDestination& no) const { return {}; }
 };
@@ -83,8 +80,6 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
         }
     }
     data.clear();
-    // Blackcoin ToDo: CHECK AND FIX!
-    /*
     const auto dec = bech32::Decode(str);
     if ((dec.encoding == bech32::Encoding::BECH32 || dec.encoding == bech32::Encoding::BECH32M) && dec.data.size() > 0 && dec.hrp == params.Bech32HRP()) {
         // Bech32 decoding
@@ -106,7 +101,6 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
             }
         }
     }
-    */
     return CNoDestination();
 }
 } // namespace

@@ -20,6 +20,10 @@ ScriptHash::ScriptHash(const CScript& in) : uint160(Hash160(in.begin(), in.end()
 
 PKHash::PKHash(const CPubKey& pubkey) : uint160(pubkey.GetID()) {}
 
+DummyScriptHash::DummyScriptHash(const CScript& in) : uint160(Hash160(in.begin(), in.end())) {}
+
+DummyKeyHash::DummyKeyHash(const CPubKey& pubkey) : uint160(pubkey.GetID()) {}
+
 const char* GetTxnOutputType(txnouttype t)
 {
     switch (t)
@@ -214,6 +218,18 @@ public:
     }
 
     bool operator()(const ScriptHash &scriptID) const {
+        script->clear();
+        *script << OP_HASH160 << ToByteVector(scriptID) << OP_EQUAL;
+        return true;
+    }
+
+    bool operator()(const DummyKeyHash &keyID) const {
+        script->clear();
+        *script << OP_DUP << OP_HASH160 << ToByteVector(keyID) << OP_EQUALVERIFY << OP_CHECKSIG;
+        return true;
+    }
+
+    bool operator()(const DummyScriptHash &scriptID) const {
         script->clear();
         *script << OP_HASH160 << ToByteVector(scriptID) << OP_EQUAL;
         return true;

@@ -93,6 +93,25 @@ struct ScriptHash : public uint160
     using uint160::uint160;
 };
 
+struct DummyKeyHash : public uint160
+{
+    DummyKeyHash() : uint160() {}
+    explicit DummyKeyHash(const uint160& hash) : uint160(hash) {}
+    explicit DummyKeyHash(const CPubKey& pubkey);
+    using uint160::uint160;
+};
+
+struct DummyScriptHash : public uint160
+{
+    DummyScriptHash() : uint160() {}
+    // These don't do what you'd expect.
+    // Use ScriptHash(GetScriptForDestination(...)) instead.
+    explicit DummyScriptHash(const PKHash& hash) = delete;
+    explicit DummyScriptHash(const uint160& hash) : uint160(hash) {}
+    explicit DummyScriptHash(const CScript& script);
+    using uint160::uint160;
+};
+
 /**
  * A txout script template with a specific destination. It is either:
  *  * CNoDestination: no destination set
@@ -100,7 +119,7 @@ struct ScriptHash : public uint160
  *  * ScriptHash: TX_SCRIPTHASH destination (P2SH)
  *  A CTxDestination is the internal data type encoded in a bitcoin address
  */
-typedef boost::variant<CNoDestination, PKHash, ScriptHash> CTxDestination;
+typedef boost::variant<CNoDestination, PKHash, ScriptHash, DummyScriptHash, DummyKeyHash> CTxDestination;
 
 /** Check whether a CTxDestination is a CNoDestination. */
 bool IsValidDestination(const CTxDestination& dest);

@@ -47,8 +47,7 @@ CTxDestination GetDestinationForKey(const CPubKey& key, OutputType type)
     case OutputType::LEGACY: return PKHash(key);
     case OutputType::BECH32: {
         if (!key.IsCompressed()) return PKHash(key);
-        CScript script = GetScriptForDestination(PKHash(key));
-        return ScriptHash(script);
+        return DummyKeyHash(key);
     }
     default: assert(false);
     }
@@ -75,7 +74,7 @@ CTxDestination AddAndGetDestinationForScript(FillableSigningProvider& keystore, 
     case OutputType::LEGACY:
         return ScriptHash(script);
     case OutputType::BECH32: {
-        return ScriptHash(script);
+        return DummyScriptHash(script);
     }
     default: assert(false);
     }
