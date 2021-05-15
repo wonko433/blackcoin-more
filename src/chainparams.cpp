@@ -79,8 +79,8 @@ public:
     CMainParams() {
         strNetworkID = CBaseChainParams::MAIN;
         consensus.nMaxReorganizationDepth = 500;
-        consensus.CSVHeight = 999999999; // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
-        consensus.MinBIP9WarningHeight = 999999999; // CSV activation height + miner confirmation window
+        consensus.CSVHeight = std::numeric_limits<int>::max(); // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
+        consensus.MinBIP9WarningHeight = std::numeric_limits<int>::max(); // CSV activation height + miner confirmation window
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimitV2 = uint256S("000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -178,8 +178,8 @@ public:
     CTestNetParams() {
         strNetworkID = CBaseChainParams::TESTNET;
         consensus.nMaxReorganizationDepth = 500;
-        consensus.CSVHeight = 999999999; // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
-        consensus.MinBIP9WarningHeight = 999999999; // CSV activation height + miner confirmation window
+        consensus.CSVHeight = std::numeric_limits<int>::max(); // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
+        consensus.MinBIP9WarningHeight = std::numeric_limits<int>::max(); // CSV activation height + miner confirmation window
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimitV2 = uint256S("000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -265,8 +265,8 @@ public:
     explicit CRegTestParams(const ArgsManager& args) {
         strNetworkID =  CBaseChainParams::REGTEST;
         consensus.nMaxReorganizationDepth = 50;
-        consensus.CSVHeight = 999999999; // CSV activated on regtest (Used in rpc activation tests)
-        consensus.MinBIP9WarningHeight = 0;
+        consensus.CSVHeight = std::numeric_limits<int>::max();
+        consensus.MinBIP9WarningHeight = std::numeric_limits<int>::max();
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimitV2 = uint256S("000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff");
