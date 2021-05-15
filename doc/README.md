@@ -1,43 +1,41 @@
-Blackcoin More
+Bitcoin Core
 =============
 
 Setup
 ---------------------
-Blackcoin More is experimental Blackcoin client and it builds the backbone of the network. However, it downloads and stores the entire history of Blackcoin transactions (which is currently several GBs). Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Bitcoin Core is the original Bitcoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Bitcoin transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Blackcoin More, visit [blackcoinmore.org](https://blackcoinmore.org).
+To download Bitcoin Core, visit [bitcoincore.org](https://bitcoincore.org/en/download/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Blackcoin More on your native platform.
+The following are some helpful notes on how to run Bitcoin Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/blackmore-qt` (GUI) or
-- `bin/blackmored` (headless)
+- `bin/bitcoin-qt` (GUI) or
+- `bin/bitcoind` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run blackmore-qt.exe.
+Unpack the files into a directory, and then run bitcoin-qt.exe.
 
 ### macOS
 
-Drag Blackcoin More to your applications folder, and then run Blackcoin More.
+Drag Bitcoin Core to your applications folder, and then run Bitcoin Core.
 
 ### Need Help?
 
 * See the documentation at the [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page)
 for help and more information.
-* Ask for help on [#blackcoin](https://webchat.freenode.net/#blackcoin) on Freenode. If you don't have an IRC client use [webchat here](https://webchat.freenode.net/#blackcoin).
-* Ask for help in [Blackcoin room](https://gitter.im/BlackCoin_Hub) on Gitter.
-* Ask for help in [/r/blackcoin/](https://nm.reddit.com/r/blackcoin/) on Reddit.
-* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838.new#new).
+* Ask for help on [#bitcoin](https://webchat.freenode.net/#bitcoin) on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin).
+* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?board=4.0).
 
 Building
 ---------------------
-The following are developer notes on how to build Blackcoin More on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Bitcoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -50,7 +48,7 @@ The following are developer notes on how to build Blackcoin More on your native 
 
 Development
 ---------------------
-The Blackcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Bitcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
@@ -67,9 +65,9 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Blackcoin topic](https://bitcointalk.org/index.php?topic=3017838.new#new).
-* Discuss Blackcoin development in [Blackcoin room](https://gitter.im/BlackCoin_Hub) on Gitter.
-* Discuss Blackcoin development in [Blackcoin team](https://keybase.io/team/blackcoin) on Keybase.
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
+* Discuss project-specific development on #bitcoin-core-dev on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin-core-dev).
+* Discuss general Bitcoin development on #bitcoin-dev on Freenode. If you don't have an IRC client, use [webchat here](https://webchat.freenode.net/#bitcoin-dev).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
@@ -86,5 +84,3 @@ The Blackcoin repo's [root README](/README.md) contains relevant information on 
 License
 ---------------------
 Distributed under the [MIT software license](/COPYING).
-This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
-cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.
