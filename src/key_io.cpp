@@ -39,6 +39,25 @@ public:
         return EncodeBase58Check(data);
     }
 
+    /*
+    // Blackcoin ToDo: CHECK AND FIX!
+    std::string operator()(const DummyKeyHash& id) const
+    {
+        std::vector<unsigned char> data = {0};
+        data.reserve(33);
+        ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.begin(), id.end());
+        return bech32::Encode(bech32::Encoding::BECH32, m_params.Bech32HRP(), data);
+    }
+
+    std::string operator()(const DummyScriptHash& id) const
+    {
+        std::vector<unsigned char> data = {0};
+        data.reserve(53);
+        ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.begin(), id.end());
+        return bech32::Encode(bech32::Encoding::BECH32, m_params.Bech32HRP(), data);
+    }
+    */
+
     std::string operator()(const CNoDestination& no) const { return {}; }
 };
 
@@ -64,19 +83,30 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
         }
     }
     data.clear();
+    // Blackcoin ToDo: CHECK AND FIX!
+    /*
     const auto dec = bech32::Decode(str);
     if ((dec.encoding == bech32::Encoding::BECH32 || dec.encoding == bech32::Encoding::BECH32M) && dec.data.size() > 0 && dec.hrp == params.Bech32HRP()) {
         // Bech32 decoding
-        // Blackcoin ToDo: CHECK AND FIX!
         data.reserve(((dec.data.size() - 1) * 5) / 8);
         if (ConvertBits<5, 8, false>([&](unsigned char c) { data.push_back(c); }, dec.data.begin() + 1, dec.data.end())) {
-            ScriptHash keyid;
-            if (data.size() == keyid.size()) {
-                std::copy(data.begin(), data.end(), keyid.begin());
-                return keyid;
+            {
+                DummyKeyHash keyid;
+                if (data.size() == keyid.size()) {
+                    std::copy(data.begin(), data.end(), keyid.begin());
+                    return keyid;
+                }
+            }
+            {
+                DummyScriptHash scriptid;
+                if (data.size() == scriptid.size()) {
+                    std::copy(data.begin(), data.end(), scriptid.begin());
+                    return scriptid;
+                }
             }
         }
     }
+    */
     return CNoDestination();
 }
 } // namespace
