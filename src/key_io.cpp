@@ -81,7 +81,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     }
     data.clear();
     const auto dec = bech32::Decode(str);
-    if ((dec.encoding == bech32::Encoding::BECH32 || dec.encoding == bech32::Encoding::BECH32M) && dec.data.size() > 0 && dec.hrp == params.Bech32HRP()) {
+    if ((dec.encoding == bech32::Encoding::BECH32) && dec.data.size() > 0 && dec.hrp == params.Bech32HRP()) {
         // Bech32 decoding
         data.reserve(((dec.data.size() - 1) * 5) / 8);
         if (ConvertBits<5, 8, false>([&](unsigned char c) { data.push_back(c); }, dec.data.begin() + 1, dec.data.end())) {
