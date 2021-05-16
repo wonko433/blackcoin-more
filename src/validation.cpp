@@ -3503,7 +3503,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, Block
     if (true && !ContextualPOSCheck(block, state, chainparams.GetConsensus(), pindex, CoinsTip())) {
         pindex->nStatus |= BLOCK_FAILED_VALID;
         setDirtyBlockIndex.insert(pindex);
-        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-pos");
+        return state.Invalid(BlockValidationResult::BLOCK_CONSENSUS, "bad-pos", "proof of stake is incorrect");
     }
 
     // Header is valid/has work, merkle tree is good...RELAY NOW
