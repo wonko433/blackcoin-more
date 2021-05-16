@@ -25,8 +25,6 @@ class ScantxoutsetTest(BitcoinTestFramework):
         self.log.info("Mining blocks...")
         self.nodes[0].generate(110)
 
-        addr_P2SH_SEGWIT = self.nodes[0].getnewaddress("", "p2sh-segwit")
-        pubk1 = self.nodes[0].getaddressinfo(addr_P2SH_SEGWIT)['pubkey']
         addr_LEGACY = self.nodes[0].getnewaddress("", "legacy")
         pubk2 = self.nodes[0].getaddressinfo(addr_LEGACY)['pubkey']
         addr_BECH32 = self.nodes[0].getnewaddress("", "bech32")

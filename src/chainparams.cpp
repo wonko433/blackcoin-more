@@ -372,7 +372,7 @@ void CRegTestParams::UpdateActivationParametersFromArgs(const ArgsManager& args)
     if (gArgs.IsArgSet("-csvheight")) {
         int64_t height = gArgs.GetArg("-csvheight", consensus.CSVHeight);
         if (height < -1 || height >= std::numeric_limits<int>::max()) {
-            throw std::runtime_error(strprintf("Activation height %ld for CSV is out of valid range. Use -1 to disable segwit.", height));
+            throw std::runtime_error(strprintf("Activation height %ld for CSV is out of valid range.", height));
         } else if (height == -1) {
             LogPrintf("CSV disabled for testing\n");
             height = std::numeric_limits<int>::max();

@@ -86,7 +86,6 @@ BASE_SCRIPTS = [
     # vv Tests less than 2m vv
     'wallet_basic.py',
     'wallet_labels.py',
-    'p2p_segwit.py',
     'p2p_timeouts.py',
     'p2p_tx_download.py',
     'wallet_dump.py',
@@ -115,7 +114,6 @@ BASE_SCRIPTS = [
     'wallet_txn_doublespend.py --mineblock',
     'tool_wallet.py',
     'wallet_txn_clone.py',
-    'wallet_txn_clone.py --segwit',
     'rpc_getchaintips.py',
     'rpc_misc.py',
     'interface_rest.py',

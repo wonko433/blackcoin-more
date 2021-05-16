@@ -46,7 +46,7 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
         self.moved = 0
         for self.nkeys in [3, 5]:
             for self.nsigs in [2, 3]:
-                for self.output_type in ["bech32", "p2sh-segwit", "legacy"]:
+                for self.output_type in ["bech32", "legacy"]:
                     self.get_keys()
                     self.do_multisig()
 
@@ -70,11 +70,9 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
             legacy_addr = node0.createmultisig(2, keys, 'legacy')['address']
             assert_equal(legacy_addr, node0.addmultisigaddress(2, keys, '', 'legacy')['address'])
 
-            # Generate addresses with the segwit types. These should all make legacy addresses
+            # Generate addresses. These should all make legacy addresses
             assert_equal(legacy_addr, node0.createmultisig(2, keys, 'bech32')['address'])
-            assert_equal(legacy_addr, node0.createmultisig(2, keys, 'p2sh-segwit')['address'])
             assert_equal(legacy_addr, node0.addmultisigaddress(2, keys, '', 'bech32')['address'])
-            assert_equal(legacy_addr, node0.addmultisigaddress(2, keys, '', 'p2sh-segwit')['address'])
 
         self.log.info('Testing sortedmulti descriptors with BIP 67 test vectors')
         with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data/rpc_bip67.json'), encoding='utf-8') as f:
@@ -120,8 +118,6 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
         desc = 'multi({},{})'.format(self.nsigs, ','.join(self.pub))
         if self.output_type == 'legacy':
             desc = 'sh({})'.format(desc)
-        elif self.output_type == 'p2sh-segwit':
-            desc = 'sh(wsh({}))'.format(desc)
         elif self.output_type == 'bech32':
             desc = 'wsh({})'.format(desc)
         desc = descsum_create(desc)

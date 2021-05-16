@@ -323,8 +323,8 @@ Wallet options:
 .HP
 \fB\-addresstype\fR
 .IP
-What type of addresses to use ("legacy", "p2sh\-segwit", or "bech32",
-default: "bech32")
+What type of addresses to use ("legacy" or "bech32",
+default: "legacy")
 .HP
 \fB\-avoidpartialspends\fR
 .IP
@@ -337,7 +337,7 @@ selection may result due to the added limitation (default: 0
 .HP
 \fB\-changetype\fR
 .IP
-What type of change to use ("legacy", "p2sh\-segwit", or "bech32").
+What type of change to use ("legacy" or "bech32").
 Default is same as \fB\-addresstype\fR, except when
 \fB\-addresstype\fR=\fI\,p2sh\-segwit\/\fR a native segwit output is used when
 sending to a native segwit address)
@@ -620,11 +620,6 @@ Password for JSON\-RPC connections
 .IP
 Listen for JSON\-RPC connections on <port> (default: 8332, testnet:
 18332, regtest: 18443)
-.HP
-\fB\-rpcserialversion\fR
-.IP
-Sets the serialization of raw transaction or block hex returned in
-non\-verbose mode, non\-segwit(0) or segwit(1) (default: 1)
 .HP
 \fB\-rpcthreads=\fR<n>
 .IP
